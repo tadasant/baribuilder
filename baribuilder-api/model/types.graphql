@@ -1,0 +1,56 @@
+type User @model {
+  id: ID! @isUnique
+}
+
+type AffiliateLink @model {
+  url: String!
+}
+
+type Listing @model {
+  url: String!
+  asin: String
+  affiliateLink: AffiliateLink
+  price: Price!
+}
+
+type Price @model {
+  value: Float!
+}
+
+type Product @model {
+  name: String!
+  brand: BRAND!
+  category: CATEGORY!
+  flavor: FLAVOR
+  form: FORM!
+  listings: [Listing]
+  images: [Image]
+  substituteProducts: [Product]
+  nutritionFacts: NutritionFacts!
+}
+
+type Image @model {
+  url: String!
+}
+
+type NutritionFacts @model {
+  serving: Serving!
+  ingredients: [Ingredient]!
+}
+
+type Serving @model {
+  size: Float!
+  units: SERVING_UNITS!
+  count: Integer!
+}
+
+type Ingredient @model {
+  amount: Float!
+  units: INGREDIENT_UNITS!
+  ingredientType: IngredientType!
+}
+
+type IngredientType @model {
+  name: String!
+  synonyms: [String]
+}
