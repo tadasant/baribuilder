@@ -5,6 +5,7 @@ type User @model {
 type AffiliateLink @model {
   id: ID! @isUnique
   url: String!
+  listing: Listing! @relation(name: "ListingAffiliateLink")
 }
 
 type Listing @model {
@@ -12,12 +13,14 @@ type Listing @model {
   url: String! @isUnique
   asin: String
   affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
-  price: Price! @relation(name: "price")
+  price: Price! @relation(name: "ListingPrice")
+  product: Product! @relation(name: "ProductListings")
 }
 
 type Price @model {
   id: ID! @isUnique
   value: Float!
+  listing: Listing! @relation(name: "ListingPrice")
 }
 
 type Product @model {
@@ -27,21 +30,23 @@ type Product @model {
   category: CATEGORY!
   flavor: FLAVOR
   form: FORM!
-  listings: [Listing!]! @relation(name: "listings")
-  images: [Image!]! @relation(name: "images")
-  substituteProducts: [Product!]! @relation(name: "substituteProducts")
-  nutritionFacts: NutritionFacts! @relation(name: "nutritionFacts")
+  listings: [Listing!]! @relation(name: "ProductListings")
+  images: [Image!]! @relation(name: "ProductImages")
+  substituteProducts: [Product!]! @relation(name: "SubstituteProducts")
+  nutritionFacts: NutritionFacts! @relation(name: "ProductNutritionFacts")
 }
 
 type Image @model {
   id: ID! @isUnique
   url: String!
+  product: Product! @relation(name: "ProductImages")
 }
 
 type NutritionFacts @model {
   id: ID! @isUnique
-  serving: Serving! @relation(name: "serving")
-  ingredients: [Ingredient!]! @relation(name: "ingredients")
+  serving: Serving! @relation(name: "NutritionFactsServing")
+  ingredients: [Ingredient!]! @relation(name: "NutritionFactsIngredients")
+  product: Product! @relation(name: "ProductNutritionFacts")
 }
 
 type Serving @model {
@@ -49,17 +54,20 @@ type Serving @model {
   size: Float!
   units: SERVING_UNITS!
   count: Int!
+  nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsServing")
 }
 
 type Ingredient @model {
   id: ID! @isUnique
   amount: Float!
   units: INGREDIENT_UNITS!
-  ingredientType: IngredientType! @relation(name: "ingredientType")
+  ingredientType: IngredientType! @relation(name: "IngredientIngredientType")
+  nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsIngredients")
 }
 
 type IngredientType @model {
   id: ID! @isUnique
   name: String!
   synonyms: [String!]!
+  ingredients: [Ingredient!]! @relation(name: "IngredientIngredientType")
 }
