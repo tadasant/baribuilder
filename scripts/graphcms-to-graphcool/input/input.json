@@ -6,6 +6,7 @@
     "brand": "VITA_G",
     "asin": "B075DVMWKD",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -13,91 +14,91 @@
         "count": 60
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 120,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 3000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 60,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 340,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 3,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 4,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 40,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 4,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 500,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 20,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 22.5,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 112.5,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 400,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 15,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 70,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 1,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 120,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 100,
           "units": "mcg"
         }
@@ -107,10 +108,10 @@
         "xylitol": true,
         "pineapple_juice_powder": true,
         "orange_flavor": true,
-        "crosscamellose_sodium": true,
+        "crosscamellose_Sodium": true,
         "citric_acid": true,
-        "magnesium_stearate": true,
-        "silicon_dioxide": true
+        "Magnesium_stearate": true,
+        "Silicon_dioxide": true
       }
     }
   },
@@ -121,6 +122,7 @@
     "brand": "CELEBRATE",
     "asin": "B00VL1ZBTM",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -128,91 +130,91 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 180,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 3000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 60,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 120,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 40,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 4,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 500,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 20,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 36,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 30,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 140,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 3,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 200,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 75,
           "units": "mcg"
         }
@@ -226,7 +228,7 @@
         "turmeric_color": true,
         "microcrystalline_cellulose": true,
         "citric_acid": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true,
         "sucralose": true,
         "milk": true
@@ -240,6 +242,7 @@
     "brand": "CENTRUM",
     "asin": "B000RKVS5E",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -247,59 +250,59 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 1500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 400,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 30,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 10,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 1.5,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 1.7,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 2,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 6,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 45,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 8,
           "units": "mg"
         },
@@ -307,35 +310,35 @@
           "value": 50,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 40,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 15,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 140,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 2,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 1,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 20,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 20,
           "units": "mcg"
         }
@@ -350,6 +353,7 @@
     "brand": "BIOTECH",
     "asin": "B000A0F2B2",
     "category": "VITAMIN_D3",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -357,7 +361,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 50000,
           "units": "iu"
         }
@@ -375,6 +379,7 @@
     "brand": "KAL",
     "asin": "B00013YZ1Q",
     "category": "MAGNESIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -390,7 +395,7 @@
           "value": 1,
           "units": "g"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 400,
           "units": "mg"
         }
@@ -399,7 +404,7 @@
         "cellulose": true,
         "stearic_acid": true,
         "silica": true,
-        "magnesium_stearate": true
+        "Magnesium_stearate": true
       }
     }
   },
@@ -410,6 +415,7 @@
     "brand": "UPCAL_D",
     "asin": "B01MS6XZHH",
     "category": "CALCIUM",
+    "form": "POWDER",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -417,11 +423,11 @@
         "count": 80
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 500,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 500,
           "units": "mg"
         }
@@ -430,12 +436,13 @@
     }
   },
   {
-    "name": "Vita.G, Chewable Calcium Citrate Supplement, 120 dissolving tablets, Blueberry flavor calcium citrate bariatric vitamins, elemental calcium for Duodenal Switch patients, Vitamin D & Magnesium",
+    "name": "Vita.G, Chewable Calcium Citrate Supplement, 120 dissolving tablets, Blueberry flavor Calcium citrate bariatric vitamins, elemental Calcium for Duodenal Switch patients, Vitamin D & Magnesium",
     "url": "https://www.amazon.com/Vita-G-Supplement-dissolving-Blueberry-bariatric/dp/B075DVKZ4P",
     "price": 23.99,
     "brand": "VITA_G",
     "asin": "B075DVKZ4P",
     "category": "CALCIUM",
+    "form": "CHEWABLE_TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -443,15 +450,15 @@
         "count": 60
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 500,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 500,
           "units": "mg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 10,
           "units": "mg"
         }
@@ -461,9 +468,9 @@
         "xyitol": true,
         "berry_flavor": true,
         "citric_acid": true,
-        "croscarmellose_sodium": true,
-        "magnesium_stearate": true,
-        "silicon_dioxide": true
+        "croscarmellose_Sodium": true,
+        "Magnesium_stearate": true,
+        "Silicon_dioxide": true
       }
     }
   },
@@ -474,6 +481,7 @@
     "brand": "CELEBRATE",
     "asin": "B00P1U6GWU",
     "category": "MULTIVITAMIN",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 3,
@@ -481,83 +489,83 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 180,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 3000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 60,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 120,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 40,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 500,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 20,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 30,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 140,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 3,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 200,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 75,
           "units": "mcg"
         }
@@ -565,7 +573,7 @@
       "additives": {
         "gelatin": true,
         "microcrystalline_cellulose": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true
       }
     }
@@ -577,6 +585,7 @@
     "brand": "CELEBRATE",
     "asin": "B003VVR6WK",
     "category": "MULTIVITAMIN",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 3,
@@ -584,83 +593,83 @@
         "count": 30
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 180,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 3000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 60,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 120,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 40,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 500,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 20,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 30,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 140,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 3,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 200,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 75,
           "units": "mcg"
         }
@@ -668,7 +677,7 @@
       "additives": {
         "gelatin": true,
         "microcrystalline_cellulose": true,
-        "magnesium_stearlate": true,
+        "Magnesium_stearlate": true,
         "silica": true
       }
     }
@@ -680,6 +689,7 @@
     "brand": "CELEBRATE",
     "asin": "B00PHO4YYM",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -694,87 +704,87 @@
           "value": 2,
           "units": "g"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 180,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 3000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 60,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 120,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 40,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 500,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 0.02,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 0.1,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 30,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 140,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 3,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 200,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 75,
           "units": "mcg"
         }
@@ -783,7 +793,7 @@
         "xylitol": true,
         "stearic_acid": true,
         "dried_coconut_oil_complex": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "microcrystalline_cellulose": true,
         "citric_acid": true,
         "malic_acid": true,
@@ -800,6 +810,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B01ECK2E1G",
     "category": "COMPLEX",
+    "form": "MELTING_TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -807,11 +818,11 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 200,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 1000,
           "units": "mcg"
         }
@@ -820,9 +831,9 @@
         "mannitol_and_corn_starch_compound": true,
         "natural_flavors": true,
         "stearic_acid": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "citric_acid": true,
-        "silicon_dioxide": true
+        "Silicon_dioxide": true
       }
     }
   },
@@ -833,6 +844,7 @@
     "brand": "KIRKLAND",
     "asin": "B00P8ZAWK0",
     "category": "MULTIVITAMIN",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -840,59 +852,59 @@
         "count": 400
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 2500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 90,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 500,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 50,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 30,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 1.5,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 1.7,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 3,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 500,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 25,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 30,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 220,
           "units": "mg"
         },
@@ -900,104 +912,104 @@
           "value": 110,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 50,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 11,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 55,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.9,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2.3,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 45,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 45,
           "units": "mcg"
         },
-        "chloride": {
+        "Chloride": {
           "value": 72,
           "units": "mg"
         },
-        "potassium": {
+        "Potassium": {
           "value": 80,
           "units": "mg"
         },
-        "nickel": {
+        "Nickel": {
           "value": 5,
           "units": "mcg"
         },
-        "silicon": {
+        "Silicon": {
           "value": 2,
           "units": "mg"
         },
-        "vanadium": {
+        "Vanadium": {
           "value": 10,
           "units": "mcg"
         },
-        "lutein": {
+        "Lutein": {
           "value": 250,
           "units": "mcg"
         },
-        "lycopene": {
+        "Lycopene": {
           "value": 300,
           "units": "mcg"
         },
-        "boron": {
+        "Boron": {
           "value": 0.15,
           "units": "mg"
         }
       },
       "additives": {
-        "dibasic_calcium_phosphate": true,
-        "calcium_carbonate": true,
-        "potassium_chloride": true,
+        "dibasic_Calcium_phosphate": true,
+        "Calcium_carbonate": true,
+        "Potassium_Chloride": true,
         "cellulose_gel": true,
         "ascorbic_acid": true,
-        "magnesium_oxide": true,
+        "Magnesium_oxide": true,
         "starch_(corn_&_tapioca)": true,
         "dl-alpha_tocopheryl_acetate": true,
-        "zinc_oxide": true,
+        "Zinc_oxide": true,
         "hydroxypropyl_methylcellulose": true,
-        "d-calcium_pantothenate": true,
-        "manganese_sulfate": true,
-        "croscarmellose_sodium": true,
-        "magnesium_stearate": true,
-        "silicon_dioxide": true,
+        "d-Calcium_pantothenate": true,
+        "Manganese_sulfate": true,
+        "croscarmellose_Sodium": true,
+        "Magnesium_stearate": true,
+        "Silicon_dioxide": true,
         "gelatin": true,
-        "pyridoxine_hydrochloride": true,
-        "copper_sulfate": true,
+        "pyridoxine_hydroChloride": true,
+        "Copper_sulfate": true,
         "polyethylene_glycol": true,
-        "sodium_borate": true,
+        "Sodium_borate": true,
         "beta_carotene": true,
         "boric_acid": true,
-        "chromium_picolinate": true,
-        "lutein": true,
-        "potassium_iodide": true,
-        "sodium_selenate": true,
-        "sodium_molybdate": true,
+        "Chromium_picolinate": true,
+        "Lutein": true,
+        "Potassium_iodide": true,
+        "Sodium_selenate": true,
+        "Sodium_molybdate": true,
         "phytonadione": true,
-        "biotin": true,
+        "Biotin": true,
         "cyanocobalamin": true,
         "nickle_sulfate": true,
-        "sodium_metavanadate": true
+        "Sodium_metavanadate": true
       }
     }
   },
@@ -1008,6 +1020,7 @@
     "brand": "SUPERIOR_SOURCE",
     "asin": "B005CD3XUY",
     "category": "VITAMIN_K2",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1034,6 +1047,7 @@
     "brand": "JARROW",
     "asin": "B0013OQGO6",
     "category": "VITAMIN_B12",
+    "form": "LOZENGE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1041,7 +1055,7 @@
         "count": 60
       },
       "micronutrients": {
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 5000,
           "units": "mcg"
         }
@@ -1052,7 +1066,7 @@
         "stearic_acid": true,
         "natural_cherry_flavor": true,
         "citric_acid": true,
-        "and_magnesium_stearate": true
+        "and_Magnesium_stearate": true
       }
     }
   },
@@ -1063,6 +1077,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B004IMLJ4W",
     "category": "CALCIUM",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1085,19 +1100,19 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 300,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 20,
           "units": "mcg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 500,
           "units": "mg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 11,
           "units": "mg"
         }
@@ -1115,9 +1130,9 @@
         "xanthan_gum": true,
         "guar_gum": true,
         "microcrystalline_cellulose": true,
-        "magnesium_amino_acid_chelate": true,
-        "magnesium_stearate": true,
-        "silicon_dioxide": true,
+        "Magnesium_amino_acid_chelate": true,
+        "Magnesium_stearate": true,
+        "Silicon_dioxide": true,
         "sucralose": true,
         "milk": true,
         "soy": true,
@@ -1133,6 +1148,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B004H9KYLU",
     "category": "IRON",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1144,11 +1160,11 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 29,
           "units": "mg"
         }
@@ -1158,10 +1174,10 @@
         "sobitol": true,
         "xyllitol": true,
         "stearic_acid": true,
-        "silicon_dioxide": true,
+        "Silicon_dioxide": true,
         "natural_flavors": true,
         "artificial_flavors": true,
-        "magnesium_stearate": true
+        "Magnesium_stearate": true
       }
     }
   },
@@ -1172,6 +1188,7 @@
     "brand": "CELEBRATE",
     "asin": "B006MNKNG0",
     "category": "VITAMIN_D3",
+    "form": "MELTING_TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1179,7 +1196,7 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 5000,
           "units": "iu"
         }
@@ -1190,7 +1207,7 @@
         "microcrystalline_cellulose": true,
         "crospovidone": true,
         "stearic_acid": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "natural_flavor": true,
         "citric_acid": true,
         "silica": true,
@@ -1205,6 +1222,7 @@
     "brand": "BIOTECH",
     "asin": "B00CS4BGC2",
     "category": "VITAMIN_E",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1212,7 +1230,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 400,
           "units": "iu"
         }
@@ -1230,6 +1248,7 @@
     "brand": "NIVAGEN",
     "asin": "B00LXNU684",
     "category": "VITAMIN_D3",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1237,7 +1256,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 50000,
           "units": "iu"
         }
@@ -1245,7 +1264,7 @@
       "additives": {
         "microsrystalline": true,
         "cellulose": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true,
         "gelatin": true
       }
@@ -1258,6 +1277,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B004IMQ5VY",
     "category": "COMPLEX",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1265,35 +1285,35 @@
         "count": 180
       },
       "micronutrients": {
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 250,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 500,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 50,
           "units": "mg"
         },
@@ -1306,8 +1326,8 @@
         "hydroxypropylmethylcellulose": true,
         "microcrystalline_cellulose": true,
         "stearic_acid": true,
-        "silicon_dioxide": true,
-        "magnesium_stearate": true
+        "Silicon_dioxide": true,
+        "Magnesium_stearate": true
       }
     }
   },
@@ -1318,6 +1338,7 @@
     "brand": "SUPERIOR_SOURCE",
     "asin": "B004X4WM8W",
     "category": "VITAMIN_B1",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1325,7 +1346,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 100,
           "units": "mg"
         },
@@ -1348,6 +1369,7 @@
     "brand": "WONDER_LABORATORIES",
     "asin": "B007ZCLOQU",
     "category": "MAGNESIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -1355,7 +1377,7 @@
         "count": 125
       },
       "micronutrients": {
-        "magnesium": {
+        "Magnesium": {
           "value": 482.6,
           "units": "mg"
         }
@@ -1363,7 +1385,7 @@
       "additives": {
         "cellulose": true,
         "steanc_acid": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true
       }
     }
@@ -1375,6 +1397,7 @@
     "brand": "BARIATRIC_FUSION",
     "asin": "B00N03CMJG",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1397,91 +1420,91 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 1875,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 45,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 750,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 7.5,
           "units": "iu"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 3,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 0.425,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 5,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 0.5,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 200,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 140,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 150,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 2.5,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 300,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 11.3,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 37.5,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 7.5,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 17.5,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.5,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 0.5,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 30,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 18.8,
           "units": "mcg"
         }
@@ -1498,6 +1521,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B004WQO00Y",
     "category": "MULTIVITAMIN",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 6,
@@ -1505,91 +1529,91 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 120,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 1000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 60,
           "units": "iu"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 6,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 3.4,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 40,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 4,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 350,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 20,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 200,
           "units": "mg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 15,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 100,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 2,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 120,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 75,
           "units": "mcg"
         },
-        "potassium": {
+        "Potassium": {
           "value": 99,
           "units": "mg"
         },
-        "vanadium": {
+        "Vanadium": {
           "value": 25,
           "units": "mcg"
         },
@@ -1605,7 +1629,7 @@
           "value": 10,
           "units": "mg"
         },
-        "boron": {
+        "Boron": {
           "value": 3,
           "units": "mg"
         }
@@ -1620,6 +1644,7 @@
     "brand": "JARROW",
     "asin": "B002FJW3ZY",
     "category": "VITAMIN_B12",
+    "form": "LOZENGE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1627,7 +1652,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 1000,
           "units": "mcg"
         }
@@ -1639,7 +1664,7 @@
         "natural_lemon_flavour": true,
         "magenesium_stearate": true,
         "citric_acid": true,
-        "silicon_dioxide": true
+        "Silicon_dioxide": true
       }
     }
   },
@@ -1650,6 +1675,7 @@
     "brand": "CELEBRATE",
     "asin": "B01LXC7G1G",
     "category": "CALCIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1664,15 +1690,15 @@
           "value": 2,
           "units": "g"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 333,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 500,
           "units": "mg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 34,
           "units": "mg"
         }
@@ -1685,7 +1711,7 @@
         "turmeric_color": true,
         "citric_acid": true,
         "natural_flavor": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true,
         "sucralose": true,
         "beet_color": true,
@@ -1700,6 +1726,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B0041II0CC",
     "category": "VITAMIN_D3",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1707,7 +1734,7 @@
         "count": 180
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 5000,
           "units": "iu"
         }
@@ -1715,8 +1742,8 @@
       "additives": {
         "microcrystalline_cellulose": true,
         "hydroxpropyl-methylcellulose": true,
-        "silicon_dioxide": true,
-        "magnesium_stearate": true
+        "Silicon_dioxide": true,
+        "Magnesium_stearate": true
       }
     }
   },
@@ -1727,6 +1754,7 @@
     "brand": "PROFERRIN",
     "asin": "B00MJPVYZE",
     "category": "IRON",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1734,17 +1762,17 @@
         "count": 30
       },
       "micronutrients": {
-        "iron": {
+        "Iron": {
           "value": 10.5,
           "units": "mg"
         }
       },
       "additives": {
         "microcrystalline_cellulose": true,
-        "aoscarmellose_sodium": true,
-        "silicon": true,
-        "silicon_dioxide": true,
-        "calcium_stearate": true,
+        "aoscarmellose_Sodium": true,
+        "Silicon": true,
+        "Silicon_dioxide": true,
+        "Calcium_stearate": true,
         "povidone": true,
         "polyvinyl_alcohol": true,
         "polyethylene_glycol": true,
@@ -1762,6 +1790,7 @@
     "brand": "HEALTH_AS_IT_OUGHT_TO_BE",
     "asin": "B00Q5HRAB4",
     "category": "VITAMIN_K2",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1780,12 +1809,13 @@
     }
   },
   {
-    "name": "NOW Opti L-zinc, 30mg, 100 Capsules (Pack of 3)",
-    "url": "https://www.amazon.com/NOW-Opti-L-zinc-30mg-Capsules/dp/B001F0R9HG",
+    "name": "NOW Opti L-Zinc, 30mg, 100 Capsules (Pack of 3)",
+    "url": "https://www.amazon.com/NOW-Opti-L-Zinc-30mg-Capsules/dp/B001F0R9HG",
     "price": 17.33,
     "brand": "NOW_FOODS",
     "asin": "B001F0R9HG",
     "category": "ZINC",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1793,11 +1823,11 @@
         "count": 100
       },
       "micronutrients": {
-        "zinc": {
+        "Zinc": {
           "value": 30,
           "units": "mg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.3,
           "units": "mg"
         }
@@ -1816,6 +1846,7 @@
     "brand": "JAMIESON",
     "asin": "B01K30E1SI",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -1823,43 +1854,43 @@
         "count": 60
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 1000,
           "units": "iu"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 2.2,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 3.2,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 16,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 3,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 12,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 45,
           "units": "mcg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 75,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 8,
           "units": "mg"
         },
@@ -1867,27 +1898,27 @@
           "value": 38,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 50,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 3,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 55,
           "units": "mcg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 35,
           "units": "mcg"
         },
-        "lutein": {
+        "Lutein": {
           "value": 250,
           "units": "mcg"
         }
@@ -1911,6 +1942,7 @@
     "brand": "BARIATRIC_FUSION",
     "asin": "B072PRFWKW",
     "category": "MULTIVITAMIN",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -1918,94 +1950,94 @@
         "count": 30
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 7500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 180,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 3000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 30,
           "units": "iu"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 12,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 1.7,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 2,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 560,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 200,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 30,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 70,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 2,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 120,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 75,
           "units": "mcg"
         }
       },
       "additives": {
         "gelatin": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true
       }
     }
@@ -2017,6 +2049,7 @@
     "brand": "BIOTECH",
     "asin": "B00G3A7NWY",
     "category": "VITAMIN_K1",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2024,13 +2057,13 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 1000,
           "units": "mcg"
         }
       },
       "additives": {
-        "dicalcium_phosphate": true,
+        "diCalcium_phosphate": true,
         "microcrystalline_cellulose": true,
         "gelatin": true
       }
@@ -2043,6 +2076,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B0196TI2O6",
     "category": "CALCIUM",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2065,21 +2099,21 @@
           "value": 2,
           "units": "g"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 500,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 500,
           "units": "mg"
         },
-        "sodium": {
+        "Sodium": {
           "value": 10,
           "units": "mg"
         }
       },
       "additives": {
-        "calcium_citrate": true,
+        "Calcium_citrate": true,
         "maltitol_syrup": true,
         "palm_oil": true,
         "natural_flavor": true,
@@ -2101,6 +2135,7 @@
     "brand": "BIOTECH",
     "asin": "B0051HZKKM",
     "category": "VITAMIN_A",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2108,7 +2143,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 25000,
           "units": "iu"
         }
@@ -2119,8 +2154,8 @@
         "maltodextrin": true,
         "medium_chain_triglycerides": true,
         "sucrose": true,
-        "sodium_ascorbate": true,
-        "silicon_dioxide": true,
+        "Sodium_ascorbate": true,
+        "Silicon_dioxide": true,
         "and_mixed_tocopherols": true
       }
     }
@@ -2132,14 +2167,15 @@
     "brand": "PURITANS_PRIDE",
     "asin": "B004R68SF2",
     "category": "ZINC",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
-        "units": "CAPSULE",
+        "units": "TABLET",
         "count": 250
       },
       "micronutrients": {
-        "zinc": {
+        "Zinc": {
           "value": 50,
           "units": "mg"
         }
@@ -2154,6 +2190,7 @@
     "brand": "COUNTRY_LIFE",
     "asin": "B0001VUZX0",
     "category": "ZINC",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2161,7 +2198,7 @@
         "count": 100
       },
       "micronutrients": {
-        "zinc": {
+        "Zinc": {
           "value": 50,
           "units": "mg"
         }
@@ -2176,6 +2213,7 @@
     "brand": "COUNTRY_LIFE",
     "asin": "B00117ZURO",
     "category": "VITAMIN_E",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2183,7 +2221,7 @@
         "count": 180
       },
       "micronutrients": {
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 400,
           "units": "iu"
         }
@@ -2201,6 +2239,7 @@
     "brand": "CELEBRATE",
     "asin": "B005F5EIV2",
     "category": "COMPLEX",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2208,42 +2247,42 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 50,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 150,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 50,
           "units": "mg"
         }
       },
       "additives": {
         "gelatin": true,
-        "magnesium": true,
+        "Magnesium": true,
         "stearate": true,
         "silica": true
       }
@@ -2256,6 +2295,7 @@
     "brand": "SUPERIOR_SOURCE",
     "asin": "B003VRBLMA",
     "category": "BIOTIN",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2263,7 +2303,7 @@
         "count": 100
       },
       "micronutrients": {
-        "biotin": {
+        "Biotin": {
           "value": 5000,
           "units": "mcg"
         }
@@ -2281,6 +2321,7 @@
     "brand": "CELEBRATE",
     "asin": "B004ZA3E22",
     "category": "VITAMIN_B12",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2288,11 +2329,11 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 1000,
           "units": "mcg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 200,
           "units": "mcg"
         }
@@ -2305,7 +2346,7 @@
         "copovidone": true,
         "silica": true,
         "stearic_acid": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "natural_flavors": true,
         "sucralose": true
       }
@@ -2318,6 +2359,7 @@
     "brand": "CELEBRATE",
     "asin": "B00D4BUIGI",
     "category": "IRON",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2336,11 +2378,11 @@
           "value": 2,
           "units": "g"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 60,
           "units": "mg"
         }
@@ -2351,7 +2393,7 @@
         "citric_acid": true,
         "malic_acid": true,
         "beet_juice": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "sillica": true,
         "sucralose": true
       }
@@ -2364,6 +2406,7 @@
     "brand": "CENTRUM",
     "asin": "B0000VLXUA",
     "category": "MULTIVITAMIN",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2371,59 +2414,59 @@
         "count": 220
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 2500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 1000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 50,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 30,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 1.5,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 1.7,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 3,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 25,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 30,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 220,
           "units": "mg"
         },
@@ -2431,109 +2474,109 @@
           "value": 20,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 50,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 11,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 19,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.5,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2.3,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 50,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 45,
           "units": "mcg"
         },
-        "chloride": {
+        "Chloride": {
           "value": 72,
           "units": "mg"
         },
-        "potassium": {
+        "Potassium": {
           "value": 80,
           "units": "mg"
         },
-        "nickel": {
+        "Nickel": {
           "value": 5,
           "units": "mcg"
         },
-        "silicon": {
+        "Silicon": {
           "value": 2,
           "units": "mg"
         },
-        "vanadium": {
+        "Vanadium": {
           "value": 10,
           "units": "mcg"
         },
-        "lutein": {
+        "Lutein": {
           "value": 250,
           "units": "mcg"
         },
-        "lycopene": {
+        "Lycopene": {
           "value": 300,
           "units": "mcg"
         }
       },
       "additives": {
-        "calcium_carbonate": true,
-        "potassium_chloride": true,
-        "dibasic_calcium_phosphate": true,
-        "magnesium_oxide": true,
+        "Calcium_carbonate": true,
+        "Potassium_Chloride": true,
+        "dibasic_Calcium_phosphate": true,
+        "Magnesium_oxide": true,
         "microcrystalline_cellulose": true,
         "modified_corn_starch": true,
         "corn_starch": true,
         "maltodextrin": true,
         "beta-carotene": true,
         "bht": true,
-        "biotin": true,
+        "Biotin": true,
         "blue_2_lake": true,
-        "calcium_pantothenate": true,
-        "chromium_picolinate": true,
-        "copper_sulfate": true,
+        "Calcium_pantothenate": true,
+        "Chromium_picolinate": true,
+        "Copper_sulfate": true,
         "crospovidone": true,
         "gelatin": true,
         "hydrogenated_palm_oil": true,
         "hypromellose": true,
-        "lutein": true,
-        "lycopene": true,
-        "magnesium_stearate": true,
-        "manganese_sulfate": true,
+        "Lutein": true,
+        "Lycopene": true,
+        "Magnesium_stearate": true,
+        "Manganese_sulfate": true,
         "medium-chain_triglycerides": true,
         "niacinamide": true,
-        "nickelous_sulfate": true,
+        "Nickelous_sulfate": true,
         "polydextrose": true,
-        "potassium_iodide": true,
+        "Potassium_iodide": true,
         "pregelatinized_corn_starch": true,
         "red_40_lake": true,
-        "silicon_dioxide": true,
-        "sodium_ascorbate": true,
-        "sodium_metavanadate": true,
-        "sodium_molybdate": true,
-        "sodium_selenate": true,
+        "Silicon_dioxide": true,
+        "Sodium_ascorbate": true,
+        "Sodium_metavanadate": true,
+        "Sodium_molybdate": true,
+        "Sodium_selenate": true,
         "talc": true,
         "titanium_dioxide": true,
         "tocopherols": true,
-        "vitamin_a_acetate": true,
+        "Vitamin A_acetate": true,
         "yellow_6_lake": true,
-        "zinc_oxide": true
+        "Zinc_oxide": true
       }
     }
   },
@@ -2544,6 +2587,7 @@
     "brand": "SUPERIOR_SOURCE",
     "asin": "B003AVIR8S",
     "category": "COMPLEX",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -2551,35 +2595,35 @@
         "count": 30
       },
       "micronutrients": {
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 15,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 15,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 15,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 15,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 1000,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 20,
           "units": "mg"
         },
@@ -2602,6 +2646,7 @@
     "brand": "BARIATRIC_ADVANTAGE",
     "asin": "B00ILYYNUA",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -2624,63 +2669,63 @@
           "value": 2,
           "units": "g"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 90,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 3000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 150,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 300,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 12.5,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 3.4,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 4,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 1000,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 600,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 0.02,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 180,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 45,
           "units": "mg"
         },
@@ -2688,39 +2733,39 @@
           "value": 150,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 50,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 15,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 70,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 2,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 120,
           "units": "mcg"
         },
-        "sodium": {
+        "Sodium": {
           "value": 10,
           "units": "mg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 50,
           "units": "mcg"
         },
@@ -2736,7 +2781,7 @@
           "value": 10,
           "units": "mg"
         },
-        "boron": {
+        "Boron": {
           "value": 2,
           "units": "mg"
         }
@@ -2753,13 +2798,13 @@
         "oligofructose": true,
         "erythritol": true,
         "soybean_oil": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true,
         "rice_flour": true,
         "citric_acid": true,
         "sucralose": true,
         "vegetable_protein_isolate": true,
-        "acesulfame_potassium": true
+        "acesulfame_Potassium": true
       }
     }
   },
@@ -2770,6 +2815,7 @@
     "brand": "CENTRUM",
     "asin": "B003G4BP5G",
     "category": "MULTIVITAMIN",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2777,63 +2823,63 @@
         "count": 200
       },
       "micronutrients": {
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 3500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 1000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 30,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 25,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 1.5,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 1.7,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 2,
           "units": "mg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 6,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 30,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 200,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 18,
           "units": "mg"
         },
@@ -2841,51 +2887,51 @@
           "value": 20,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 50,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 11,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 55,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.5,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2.3,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 35,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 45,
           "units": "mcg"
         },
-        "chloride": {
+        "Chloride": {
           "value": 72,
           "units": "mg"
         },
-        "potassium": {
+        "Potassium": {
           "value": 80,
           "units": "mg"
         },
-        "nickel": {
+        "Nickel": {
           "value": 5,
           "units": "mcg"
         },
-        "silicon": {
+        "Silicon": {
           "value": 2,
           "units": "mg"
         },
@@ -2893,50 +2939,50 @@
           "value": 10,
           "units": "mcg"
         },
-        "vanadium": {
+        "Vanadium": {
           "value": 10,
           "units": "mcg"
         }
       },
       "additives": {
-        "calcium_carbonate": true,
-        "potassium_chloride": true,
-        "dibasic_calcium_phosphate": true,
-        "magnesium_oxide": true,
+        "Calcium_carbonate": true,
+        "Potassium_Chloride": true,
+        "dibasic_Calcium_phosphate": true,
+        "Magnesium_oxide": true,
         "microcrystalline_cellulose": true,
         "ferrous_fumarate": true,
         "maltodextrin": true,
         "beta-carotene": true,
         "bht": true,
-        "biotin": true,
-        "calcium_pantothenate": true,
-        "chromium_picolinate": true,
+        "Biotin": true,
+        "Calcium_pantothenate": true,
+        "Chromium_picolinate": true,
         "corn_starch": true,
         "crospovidone": true,
-        "copper_sulfate": true,
+        "Copper_sulfate": true,
         "gelatin": true,
         "hydrogenated_palm_oil": true,
-        "magnesium_stearate": true,
-        "magnesium_sulfate": true,
+        "Magnesium_stearate": true,
+        "Magnesium_sulfate": true,
         "modified_corn_starch": true,
         "niacinamide": true,
-        "nickelous_sulfate": true,
+        "Nickelous_sulfate": true,
         "polyethylene_glycol": true,
         "polyvinyl_alcohol": true,
-        "potassium_iodide": true,
+        "Potassium_iodide": true,
         "pregelatinized_corn_starch": true,
-        "silicon_dioxide": true,
-        "sodium_ascorbate": true,
-        "sodium_metavanadate": true,
-        "sodium_molybdate": true,
-        "sodium_selenate": true,
-        "stannous_chloride": true,
+        "Silicon_dioxide": true,
+        "Sodium_ascorbate": true,
+        "Sodium_metavanadate": true,
+        "Sodium_molybdate": true,
+        "Sodium_selenate": true,
+        "stannous_Chloride": true,
         "talc": true,
         "titanium_dioxide": true,
         "tocopherols": true,
-        "vitamin_a_acetate": true,
+        "Vitamin A_acetate": true,
         "yellow_6_lake": true,
-        "zinc_oxide": true
+        "Zinc_oxide": true
       }
     }
   },
@@ -2947,6 +2993,7 @@
     "brand": "ADVANCE_PHARMACEUTICAL",
     "asin": "B00YW6JEFK",
     "category": "IRON",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2954,7 +3001,7 @@
         "count": 100
       },
       "micronutrients": {
-        "iron": {
+        "Iron": {
           "value": 150,
           "units": "mg"
         }
@@ -2962,12 +3009,12 @@
       "additives": {
         "microcrystalline_cellulose": true,
         "gelatin": true,
-        "croscarmellose_sodium": true,
+        "croscarmellose_Sodium": true,
         "citric_acid_anhydrous": true,
         "stearic_acid": true,
         "titanium_dioxide": true,
         "d&c_yellow_#10": true,
-        "sodium_lauryl_sulfate": true,
+        "Sodium_lauryl_sulfate": true,
         "fd&c_yellow_#6": true,
         "fd&c_blue_#1": true,
         "white_ink": true
@@ -2981,6 +3028,7 @@
     "brand": "CELEBRATE",
     "asin": "B0030FGWEA",
     "category": "CALCIUM",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -2999,15 +3047,15 @@
           "value": 0,
           "units": "g"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 333,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 500,
           "units": "mg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 34,
           "units": "mg"
         }
@@ -3018,7 +3066,7 @@
         "coconut_oil_complex": true,
         "stearic_acid": true,
         "beet_color": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true,
         "artificial_flavors": true,
         "citric_acid": true,
@@ -3034,6 +3082,7 @@
     "brand": "OPTISOURCE",
     "asin": "B00CJB9K4K",
     "category": "MULTIVITAMIN",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3052,63 +3101,63 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 1875,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 15,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 200,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 15,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 40,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 0.8,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 0.4,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 5,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 0.5,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 200,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 125,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 15,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 2.5,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 250,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 9,
           "units": "mg"
         },
@@ -3116,78 +3165,78 @@
           "value": 50,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 37.5,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 7.5,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 17.5,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.5,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 0.5,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 30,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 18.8,
           "units": "mcg"
         }
       },
       "additives": {
         "sugar": true,
-        "calcium_citrate": true,
-        "dicalcium_phosphate": true,
-        "magnesium_oxide": true,
+        "Calcium_citrate": true,
+        "diCalcium_phosphate": true,
+        "Magnesium_oxide": true,
         "natural_and_artificial_flavor_and_less_than_2%_of_maltodextrin": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "citric_acid": true,
         "ferrous_fumarate": true,
         "gum_acacia": true,
         "modified_food_starch": true,
         "mono-_and_diglycerides": true,
         "d-alpha-tocopherol_acetate": true,
-        "silicon_dioxide": true,
+        "Silicon_dioxide": true,
         "aspartame^_(sweetener)": true,
-        "zinc_oxide": true,
+        "Zinc_oxide": true,
         "ascorbic_acid": true,
         "medium_chain_triglycerides": true,
-        "sodium_ascorbate": true,
-        "calcium_pantothenate": true,
+        "Sodium_ascorbate": true,
+        "Calcium_pantothenate": true,
         "dextrose": true,
         "cornstarch": true,
         "gelatin": true,
-        "manganese_sulfate": true,
+        "Manganese_sulfate": true,
         "hydrogenated_soybean_oil": true,
         "beta_carotene": true,
-        "pyridoxine_hydrochloride": true,
+        "pyridoxine_hydroChloride": true,
         "cupric_oxide": true,
         "cyanocobalamin": true,
-        "chromium_chloride": true,
+        "Chromium_Chloride": true,
         "glucose_syrup": true,
         "lactose_(from_milk)": true,
-        "potassium_iodide": true,
-        "sodium_selenate": true,
-        "sodium_molybdate": true,
+        "Potassium_iodide": true,
+        "Sodium_selenate": true,
+        "Sodium_molybdate": true,
         "mixed_tocopherols_and_bht_(to_preserve_freshness)": true,
-        "biotin": true,
+        "Biotin": true,
         "phytonadione": true,
-        "calcium_stearate\n\n*phenylketonurics:_contains_phenylalanine.": true
+        "Calcium_stearate\n\n*phenylketonurics:_contains_phenylalanine.": true
       }
     }
   },
@@ -3198,6 +3247,7 @@
     "brand": "NATURES_BOUNTY",
     "asin": "B07G67Y8J9",
     "category": "MULTIVITAMIN",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -3207,10 +3257,10 @@
       "micronutrients": {},
       "additives": {
         "proprietary_probiotic_blend": true,
-        "dicalcium_phosphate": true,
+        "diCalcium_phosphate": true,
         "cellulose": true,
         "silica": true,
-        "magnesium_stearate": true
+        "Magnesium_stearate": true
       }
     }
   },
@@ -3221,6 +3271,7 @@
     "brand": "JARROW",
     "asin": "B0045X82OE",
     "category": "COMPLEX",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 6,
@@ -3228,11 +3279,11 @@
         "count": 60
       },
       "micronutrients": {
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 200,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 1000,
           "units": "iu"
         },
@@ -3240,38 +3291,38 @@
           "value": 45,
           "units": "mcg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 1000,
           "units": "mg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 500,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 10,
           "units": "mg"
         },
-        "copper": {
+        "Copper": {
           "value": 1,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 1,
           "units": "mg"
         },
-        "potassium": {
+        "Potassium": {
           "value": 99,
           "units": "mg"
         },
-        "boron": {
+        "Boron": {
           "value": 3,
           "units": "mg"
         }
       },
       "additives": {
-        "silicon_dioxide": true,
-        "magnesium_stearate": true,
+        "Silicon_dioxide": true,
+        "Magnesium_stearate": true,
         "maltodextrin": true
       }
     }
@@ -3283,6 +3334,7 @@
     "brand": "SUPERIOR_SOURCE",
     "asin": "B004X4WHS2",
     "category": "VITAMIN_A",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3290,7 +3342,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 10000,
           "units": "iu"
         },
@@ -3312,6 +3364,7 @@
     "brand": "BIOTECH",
     "asin": "B018JFQIGM",
     "category": "VITAMIN_K2",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3336,6 +3389,7 @@
     "brand": "SOURCE_NATURALS",
     "asin": "B00022DNVY",
     "category": "VITAMIN_B1",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3343,17 +3397,17 @@
         "count": 250
       },
       "micronutrients": {
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 100,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 35,
           "units": "mg"
         }
       },
       "additives": {
-        "dibasic_calcium_phosphate": true,
+        "dibasic_Calcium_phosphate": true,
         "stearic_acid": true,
         "modified_cellulose_gum": true,
         "silica": true
@@ -3367,6 +3421,7 @@
     "brand": "EQUATE",
     "asin": "B00DPLZG3W",
     "category": "MULTIVITAMIN",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3374,59 +3429,59 @@
         "count": 200
       },
       "micronutrients": {
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 2500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 500,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 50,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 30,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 1.5,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 1.7,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 3,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 25,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 30,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 220,
           "units": "mg"
         },
@@ -3434,80 +3489,80 @@
           "value": 20,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 50,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 11,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 55,
           "units": "mcg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.5,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 2.3,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 45,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 45,
           "units": "mcg"
         },
-        "chloride": {
+        "Chloride": {
           "value": 72,
           "units": "mg"
         },
-        "potassium": {
+        "Potassium": {
           "value": 80,
           "units": "mg"
         },
-        "nickel": {
+        "Nickel": {
           "value": 5,
           "units": "mcg"
         },
-        "silicon": {
+        "Silicon": {
           "value": 2,
           "units": "mg"
         },
-        "vanadium": {
+        "Vanadium": {
           "value": 10,
           "units": "mcg"
         },
-        "lutein": {
+        "Lutein": {
           "value": 250,
           "units": "mcg"
         },
-        "lycopene": {
+        "Lycopene": {
           "value": 300,
           "units": "mcg"
         },
-        "boron": {
+        "Boron": {
           "value": 0.15,
           "units": "mg"
         }
       },
       "additives": {
         "di-alpha_tocopheryl_acetate": true,
-        "dicalcium_phosphate": true,
-        "magnesium_oxide": true,
+        "diCalcium_phosphate": true,
+        "Magnesium_oxide": true,
         "microcrystalline_cellulose": true,
         "ascorbic_acid": true,
-        "sodium_starch_glycolate": true,
+        "Sodium_starch_glycolate": true,
         "nicotinamide": true,
-        "zinc_oxide": true,
+        "Zinc_oxide": true,
         "hydroxypropyl_methylcellulose": true,
         "polyethalene_sorbate": true
       }
@@ -3520,6 +3575,7 @@
     "brand": "KIRKLAND",
     "asin": "B002CQUFYQ",
     "category": "VITAMIN_C",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3531,23 +3587,23 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 500,
           "units": "mg"
         },
-        "sodium": {
+        "Sodium": {
           "value": 35,
           "units": "mg"
         }
       },
       "additives": {
         "sorbitol": true,
-        "sodium_ascorbate": true,
+        "Sodium_ascorbate": true,
         "ascorbic_acid": true,
         "corn_starch": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "natural_&_artificial_orange_flavors": true,
-        "silicon_dioxide": true,
+        "Silicon_dioxide": true,
         "sucralose": true,
         "orange_juice_powder": true,
         "fd&c_yellow_#6": true,
@@ -3564,6 +3620,7 @@
     "brand": "CITRACAL",
     "asin": "B001LRPUMY",
     "category": "CALCIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -3574,46 +3631,46 @@
         "calories": {
           "value": "5"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 500,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 630,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 5.5,
           "units": "mg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.5,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 1.1,
           "units": "mg"
         },
-        "sodium": {
+        "Sodium": {
           "value": 5,
           "units": "mg"
         }
       },
       "additives": {
-        "calcium_citrate": true,
+        "Calcium_citrate": true,
         "pylyethylene_glycol": true,
-        "croscarmellose_sodium": true,
-        "copper": true,
+        "croscarmellose_Sodium": true,
+        "Copper": true,
         "gluconate": true,
         "hydroypropyl_methylcellulose": true,
-        "magnesium_silicate": true,
-        "magnesium_stearate": true,
-        "manganese_gluconate": true,
+        "Magnesium_silicate": true,
+        "Magnesium_stearate": true,
+        "Manganese_gluconate": true,
         "oligofructose_enriched_inulin": true,
         "polyvinylpyrrolidone": true,
         "propylene_glycol_dicaprylate/dicaprate": true,
         "titanium_dioxide": true,
-        "zinc_oxide": true
+        "Zinc_oxide": true
       }
     }
   },
@@ -3624,6 +3681,7 @@
     "brand": "NATURE_MADE",
     "asin": "B005LUWYLC",
     "category": "COMPLEX",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3631,59 +3689,59 @@
         "count": 60
       },
       "micronutrients": {
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 150,
           "units": "mg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 100,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 25,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 2,
           "units": "mg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 15,
           "units": "mcg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 30,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 5.5,
           "units": "mg"
         }
       },
       "additives": {
         "ascorbic_acid": true,
-        "dibasic_calcium_phosphate": true,
+        "dibasic_Calcium_phosphate": true,
         "thiamin_mononitrate": true,
         "cellulose_gel": true,
         "niacinamide": true,
         "riboflavin": true,
-        "crosscarmekkise_sodium": true,
+        "crosscarmekkise_Sodium": true,
         "hydroxypropyl_methylcellulose": true,
-        "d-calcium_pantotenate": true,
-        "magnesium_stearate": true,
-        "silicon_dioxide": true,
-        "pyridoxine_hydrochloride": true,
+        "d-Calcium_pantotenate": true,
+        "Magnesium_stearate": true,
+        "Silicon_dioxide": true,
+        "pyridoxine_hydroChloride": true,
         "folic_acide": true,
         "polyethylene_glycol": true,
-        "biotin": true,
+        "Biotin": true,
         "cyanocobalamin": true
       }
     }
@@ -3695,6 +3753,7 @@
     "brand": "SMARTYPANTS",
     "asin": "B01B1JPXBE",
     "category": "MULTIVITAMIN",
+    "form": "GUMMY",
     "nutritionFacts": {
       "serving": {
         "size": 6,
@@ -3713,19 +3772,19 @@
           "value": 7,
           "units": "g"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 1500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 1000,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 30,
           "units": "iu"
         },
@@ -3733,47 +3792,47 @@
           "value": 32,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 0.8,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 2.6,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 4,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 2,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 100,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 300,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 4.5,
           "units": "mg"
         },
-        "sodium": {
+        "Sodium": {
           "value": 25,
           "units": "mg"
         },
@@ -3805,6 +3864,7 @@
     "brand": "SLICE_OF_LIFE",
     "asin": "B01GLJ6LQA",
     "category": "MULTIVITAMIN",
+    "form": "GUMMY",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -3823,67 +3883,67 @@
           "value": 4,
           "units": "g"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 2500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 30,
           "units": "mg"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 600,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 15,
           "units": "iu"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 75,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 85,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 10,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 2,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 6,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 150,
           "units": "mcg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 75,
           "units": "mcg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 7.5,
           "units": "mg"
         },
-        "selenium": {
+        "Selenium": {
           "value": 35,
           "units": "mcg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 120,
           "units": "mcg"
         },
-        "sodium": {
+        "Sodium": {
           "value": 10,
           "units": "mg"
         },
@@ -3897,7 +3957,7 @@
         "organic_cane_sugar": true,
         "organic_lemon_juice_concentrate": true,
         "pectin": true,
-        "sodium_citrate": true,
+        "Sodium_citrate": true,
         "organic_sunflower_oil": true,
         "organic_carnauba_wax": true
       }
@@ -3910,6 +3970,7 @@
     "brand": "RUGBY",
     "asin": "B003H5SXDQ",
     "category": "VITAMIN_B3",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3917,17 +3978,17 @@
         "count": 1000
       },
       "micronutrients": {
-        "vitamin_b3": {
+        "Niacin": {
           "units": "mg",
           "value": 500
         }
       },
       "additives": {
         "microcrystalline_cellulose": true,
-        "croscarmellose_sodium": true,
+        "croscarmellose_Sodium": true,
         "stearic_acid": true,
         "hydroxypropyl_cellulose": true,
-        "magnesium_stearate": true
+        "Magnesium_stearate": true
       }
     }
   },
@@ -3938,6 +3999,7 @@
     "brand": "NOW_FOODS",
     "asin": "B0013OQJ66",
     "category": "CALCIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -3945,31 +4007,31 @@
         "count": 125
       },
       "micronutrients": {
-        "vitamin_d2": {
+        "Vitamin D2": {
           "value": 400,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 600,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 15,
           "units": "mg"
         },
-        "copper": {
+        "Copper": {
           "value": 1,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 5,
           "units": "mg"
         }
       },
       "additives": {
         "cellulose": true,
-        "croscarmellose_sodium": true,
-        "magnesium_stearate": true,
+        "croscarmellose_Sodium": true,
+        "Magnesium_stearate": true,
         "silica": true,
         "stearic_acid": true
       }
@@ -3982,6 +4044,7 @@
     "brand": "PURE_ENCAPSULATIONS",
     "asin": "B000H7Y6J2",
     "category": "COPPER",
+    "form": "CAPSULE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -3989,7 +4052,7 @@
         "count": 60
       },
       "micronutrients": {
-        "copper": {
+        "Copper": {
           "value": 2,
           "units": "mg"
         }
@@ -4007,6 +4070,7 @@
     "brand": "NATURE_MADE",
     "asin": "B004U3Y8OM",
     "category": "VITAMIN_D3",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4014,7 +4078,7 @@
         "count": 300
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 1000,
           "units": "iu"
         }
@@ -4034,6 +4098,7 @@
     "brand": "NATURES_WAY",
     "asin": "B00024D3SK",
     "category": "ZINC",
+    "form": "LOZENGE",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4045,11 +4110,11 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 100,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 23,
           "units": "mg"
         }
@@ -4064,6 +4129,7 @@
     "brand": "NATURES_PLUS",
     "asin": "B00014EKLK",
     "category": "VITAMIN_C",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4071,7 +4137,7 @@
         "count": 90
       },
       "micronutrients": {
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 2000,
           "units": "mg"
         }
@@ -4082,7 +4148,7 @@
         "microcrystalline_cellulose": true,
         "hydroxypropyl_methylcellulose": true,
         "silica": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "carob": true,
         "pharmaceutical_glze": true
       }
@@ -4095,6 +4161,7 @@
     "brand": "NATURE_MADE",
     "asin": "B002FH5I0I",
     "category": "CALCIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4102,11 +4169,11 @@
         "count": 220
       },
       "micronutrients": {
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 400,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 600,
           "units": "mg"
         }
@@ -4114,9 +4181,9 @@
       "additives": {
         "maltodextrin": true,
         "cellulose_gel": true,
-        "croscarmellose_sodium": true,
+        "croscarmellose_Sodium": true,
         "hydroxypropyl_methylcellulose": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "polyethylene_glycol": true,
         "gelatin": true,
         "corn_starch": true
@@ -4130,6 +4197,7 @@
     "brand": "NATURES_BOUNTY",
     "asin": "B000HRVSP2",
     "category": "VITAMIN_B9",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4137,18 +4205,18 @@
         "count": 250
       },
       "micronutrients": {
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 800,
           "units": "mcg"
         }
       },
       "additives": {
-        "dicalcium_phosphate": true,
+        "diCalcium_phosphate": true,
         "vegetable_cellulose": true,
         "maltodextrin": true,
         "croscarmellose": true,
         "stearic_acid": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "silica": true
       }
     }
@@ -4160,6 +4228,7 @@
     "brand": "CENTRUM",
     "asin": "B000RKVS5E",
     "category": "MULTIVITAMIN",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4178,106 +4247,106 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_a": {
+        "Vitamin A": {
           "value": 1500,
           "units": "iu"
         },
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 60,
           "units": "mg"
         },
-        "vitamin_d": {
+        "Vitamin D3": {
           "value": 400,
           "units": "iu"
         },
-        "vitamin_e": {
+        "Vitamin E": {
           "value": 30,
           "units": "iu"
         },
-        "vitamin_k1": {
+        "Vitamin K1": {
           "value": 10,
           "units": "mcg"
         },
-        "vitamin_b1": {
+        "Thiamine": {
           "value": 1.5,
           "units": "mg"
         },
-        "vitamin_b2": {
+        "Ribonflavin": {
           "value": 1.7,
           "units": "mg"
         },
-        "vitamin_b3": {
+        "Niacin": {
           "value": 20,
           "units": "mg"
         },
-        "vitamin_b6": {
+        "Vitamin B6": {
           "value": 2,
           "units": "mg"
         },
-        "vitamin_b9": {
+        "Folic Acid": {
           "value": 400,
           "units": "mcg"
         },
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 6,
           "units": "mcg"
         },
-        "biotin": {
+        "Biotin": {
           "value": 45,
           "units": "mcg"
         },
-        "pantothenic_acid": {
+        "Pantothenic Acid": {
           "value": 10,
           "units": "mg"
         },
-        "calcium": {
+        "Calcium": {
           "value": 108,
           "units": "mg"
         },
-        "iron": {
+        "Iron": {
           "value": 8,
           "units": "mg"
         },
-        "phosphorous": {
+        "Phosphorous": {
           "value": 50,
           "units": "mg"
         },
-        "iodine": {
+        "Iodine": {
           "value": 150,
           "units": "mcg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 40,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 15,
           "units": "mg"
         },
-        "copper": {
+        "Copper": {
           "value": 2,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 1,
           "units": "mg"
         },
-        "chromium": {
+        "Chromium": {
           "value": 20,
           "units": "mcg"
         },
-        "molybdenum": {
+        "Molybdenum": {
           "value": 20,
           "units": "mcg"
         }
       },
       "additives": {
         "sucrose": true,
-        "dibasic_calcium_phosphate": true,
+        "dibasic_Calcium_phosphate": true,
         "microcrystalline_cellulose": true,
         "mannitol": true,
-        "calcium_carbonate": true,
-        "magnesium_oxide": true,
+        "Calcium_carbonate": true,
+        "Magnesium_oxide": true,
         "mono-glycerides": true,
         "di-glycerides": true,
         "pregelatinized_corn_starch": true,
@@ -4285,21 +4354,21 @@
         "stearic_acid": true,
         "aspartame": true,
         "bht": true,
-        "calcium_pantothenate": true,
-        "carbonyl_iron": true,
+        "Calcium_pantothenate": true,
+        "carbonyl_Iron": true,
         "carrageenan": true,
-        "chromic_chloride": true,
+        "chromic_Chloride": true,
         "citric_acid": true,
         "cupric_oxide": true,
         "gelatin": true,
         "guar_gum": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "malic_acid": true,
-        "manganese_sulfate": true,
-        "silicon_dioxide": true,
-        "sodium_molybdate": true,
+        "Manganese_sulfate": true,
+        "Silicon_dioxide": true,
+        "Sodium_molybdate": true,
         "yellow_6_lake": true,
-        "zinc_oxide": true
+        "Zinc_oxide": true
       }
     }
   },
@@ -4310,6 +4379,7 @@
     "brand": "SPRING_VALLEY",
     "asin": "B007WIAI5A",
     "category": "VITAMIN_B12",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4317,20 +4387,20 @@
         "count": 300
       },
       "micronutrients": {
-        "vitamin_b12": {
+        "Vitamin B12": {
           "value": 1000,
           "units": "mcg"
         }
       },
       "additives": {
-        "dicalcium_phosphate": true,
+        "diCalcium_phosphate": true,
         "hydroxypropyl_methylcellulose": true,
         "microcrystalline_cellulose": true,
-        "silicon_dioxide": true,
+        "Silicon_dioxide": true,
         "cornstarch": true,
-        "magnesium_stearate": true,
+        "Magnesium_stearate": true,
         "cyanocobalamin": true,
-        "sodium_chloride": true
+        "Sodium_Chloride": true
       }
     }
   },
@@ -4341,6 +4411,7 @@
     "brand": "SPRING_VALLEY",
     "asin": "B0015319ZG",
     "category": "VITAMIN_C",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4348,7 +4419,7 @@
         "count": 250
       },
       "micronutrients": {
-        "vitamin_c": {
+        "Vitamin C": {
           "value": 1000,
           "units": "mg"
         }
@@ -4365,6 +4436,7 @@
     "brand": "CALTRATE",
     "asin": "B001IY03L8",
     "category": "CALCIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4376,31 +4448,31 @@
           "value": 1,
           "units": "g"
         },
-        "vitamin_d3": {
+        "Vitamin D3": {
           "value": 800,
           "units": "iu"
         },
-        "calcium": {
+        "Calcium": {
           "value": 600,
           "units": "mg"
         },
-        "magnesium": {
+        "Magnesium": {
           "value": 40,
           "units": "mg"
         },
-        "zinc": {
+        "Zinc": {
           "value": 7.5,
           "units": "mg"
         },
-        "copper": {
+        "Copper": {
           "value": 0.25,
           "units": "mg"
         },
-        "manganese": {
+        "Manganese": {
           "value": 1.8,
           "units": "mg"
         },
-        "boron": {
+        "Boron": {
           "value": 70,
           "units": "mcg"
         }
@@ -4415,6 +4487,7 @@
     "brand": "SPRING_VALLEY",
     "asin": "B001R5METW",
     "category": "SELENIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4422,7 +4495,7 @@
         "count": 100
       },
       "micronutrients": {
-        "selenium": {
+        "Selenium": {
           "value": 200,
           "units": "mcg"
         }
@@ -4433,18 +4506,19 @@
         "croscarmellose": true,
         "vegetable_stearic_acid": true,
         "silica": true,
-        "vegetable_magnesium_stearate": true,
+        "vegetable_Magnesium_stearate": true,
         "wheat": true
       }
     }
   },
   {
     "name": "ONLY 1 IN PACK Spring Valley Magnesium 400 Mg, 250 Tablets",
-    "url": "https://www.amazon.com/ONLY-Spring-Valley-Magnesium-Tablets/dp/B00ODI9862/ref=sr_1_1_s_it?s=hpc&ie=UTF8&qid=1536117550&sr=1-1&keywords=spring+valley+magnesium",
+    "url": "https://www.amazon.com/ONLY-Spring-Valley-Magnesium-Tablets/dp/B00ODI9862/ref=sr_1_1_s_it?s=hpc&ie=UTF8&qid=1536117550&sr=1-1&keywords=spring+valley+Magnesium",
     "price": 19.41,
     "brand": "SPRING_VALLEY",
     "asin": "B00ODI9862",
     "category": "MAGNESIUM",
+    "form": "TABLET",
     "nutritionFacts": {
       "serving": {
         "size": 1,
@@ -4452,7 +4526,7 @@
         "count": 250
       },
       "micronutrients": {
-        "magnesium": {
+        "Magnesium": {
           "value": 400,
           "units": "mg"
         }

@@ -7,4 +7,4 @@ JSON format that enables me to perform a series of mutations that effectively do
 
 Uncomment `run()` on last line of `run.js`, make sure the inputs and `run` function are doing what you expect.
 
-Then `yarn run run`
+Then `yarn run insert`
