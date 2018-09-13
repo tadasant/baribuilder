@@ -3,54 +3,63 @@ type User @model {
 }
 
 type AffiliateLink @model {
+  id: ID! @isUnique
   url: String!
 }
 
 type Listing @model {
-  url: String!
+  id: ID! @isUnique
+  url: String! @isUnique
   asin: String
-  affiliateLink: AffiliateLink
-  price: Price!
+  affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
+  price: Price! @relation(name: "price")
 }
 
 type Price @model {
+  id: ID! @isUnique
   value: Float!
 }
 
 type Product @model {
+  id: ID! @isUnique
   name: String!
   brand: BRAND!
   category: CATEGORY!
   flavor: FLAVOR
   form: FORM!
-  listings: [Listing]
-  images: [Image]
-  substituteProducts: [Product]
-  nutritionFacts: NutritionFacts!
+  listings: [Listing!]! @relation(name: "listings")
+  images: [Image!]! @relation(name: "images")
+  substituteProducts: [Product!]! @relation(name: "substituteProducts")
+  nutritionFacts: NutritionFacts! @relation(name: "nutritionFacts")
 }
 
 type Image @model {
+  id: ID! @isUnique
   url: String!
 }
 
 type NutritionFacts @model {
-  serving: Serving!
-  ingredients: [Ingredient]!
+  id: ID! @isUnique
+  serving: Serving! @relation(name: "serving")
+  ingredients: [Ingredient!]! @relation(name: "ingredients")
 }
 
 type Serving @model {
+  id: ID! @isUnique
   size: Float!
   units: SERVING_UNITS!
-  count: Integer!
+  count: Int!
 }
 
 type Ingredient @model {
+  id: ID! @isUnique
   amount: Float!
   units: INGREDIENT_UNITS!
-  ingredientType: IngredientType!
+  ingredientType: IngredientType! @relation(name: "ingredientType")
 }
 
 type IngredientType @model {
+  id: ID! @isUnique
   name: String!
-  synonyms: [String]
+  synonyms: [String!]!
 }

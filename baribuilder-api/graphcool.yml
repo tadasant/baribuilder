@@ -8,7 +8,7 @@
 #
 
 
-types: ./model/enums.graphql, ./model/types.graphql
+types: [./model/enums.graphql, ./model/types.graphql]
 
 
 functions:
