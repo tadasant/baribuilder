@@ -10,3 +10,7 @@ Steps:
 
 Notes:
 * 10mb max per NDF file
+
+# Importing NDF
+
+`graphcool import --data import/data.zip`

@@ -1,73 +1,74 @@
 type User @model {
-  id: ID! @isUnique
+    id: ID! @isUnique
 }
 
 type AffiliateLink @model {
-  id: ID! @isUnique
-  url: String!
-  listing: Listing! @relation(name: "ListingAffiliateLink")
+    id: ID! @isUnique
+    url: String!
+    listing: Listing! @relation(name: "ListingAffiliateLink")
 }
 
 type Listing @model {
-  id: ID! @isUnique
-  url: String! @isUnique
-  asin: String
-  affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
-  price: Price! @relation(name: "ListingPrice")
-  product: Product! @relation(name: "ProductListings")
+    id: ID! @isUnique
+    url: String! @isUnique
+    asin: String
+    affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
+    price: Price! @relation(name: "ListingPrice")
+    product: Product! @relation(name: "ProductListings")
 }
 
 type Price @model {
-  id: ID! @isUnique
-  value: Float!
-  listing: Listing! @relation(name: "ListingPrice")
+    id: ID! @isUnique
+    value: Float!
+    listing: Listing! @relation(name: "ListingPrice")
 }
 
 type Product @model {
-  id: ID! @isUnique
-  name: String!
-  brand: BRAND!
-  category: CATEGORY!
-  flavor: FLAVOR
-  form: FORM!
-  listings: [Listing!]! @relation(name: "ProductListings")
-  images: [Image!]! @relation(name: "ProductImages")
-  substituteProducts: [Product!]! @relation(name: "SubstituteProducts")
-  nutritionFacts: NutritionFacts! @relation(name: "ProductNutritionFacts")
+    id: ID! @isUnique
+    name: String!
+    brand: BRAND!
+    category: CATEGORY!
+    flavor: FLAVOR
+    form: FORM!
+    listings: [Listing!]! @relation(name: "ProductListings")
+    images: [Image!]! @relation(name: "ProductImages")
+    substituteProducts: [Product!]! @relation(name: "SubstituteProducts")
+    nutritionFacts: NutritionFacts! @relation(name: "ProductNutritionFacts")
 }
 
 type Image @model {
-  id: ID! @isUnique
-  url: String!
-  product: Product! @relation(name: "ProductImages")
+    id: ID! @isUnique
+    url: String!
+    product: Product! @relation(name: "ProductImages")
 }
 
 type NutritionFacts @model {
-  id: ID! @isUnique
-  serving: Serving! @relation(name: "NutritionFactsServing")
-  ingredients: [Ingredient!]! @relation(name: "NutritionFactsIngredients")
-  product: Product! @relation(name: "ProductNutritionFacts")
+    id: ID! @isUnique
+    serving: Serving! @relation(name: "NutritionFactsServing")
+    ingredients: [Ingredient!]! @relation(name: "NutritionFactsIngredients")
+    product: Product! @relation(name: "ProductNutritionFacts")
 }
 
 type Serving @model {
-  id: ID! @isUnique
-  size: Float!
-  units: SERVING_UNITS!
-  count: Int!
-  nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsServing")
+    id: ID! @isUnique
+    size: Float!
+    units: SERVING_UNITS!
+    count: Int!
+    nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsServing")
 }
 
 type Ingredient @model {
-  id: ID! @isUnique
-  amount: Float!
-  units: INGREDIENT_UNITS!
-  ingredientType: IngredientType! @relation(name: "IngredientIngredientType")
-  nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsIngredients")
+    id: ID! @isUnique
+    amount: Float!
+    units: INGREDIENT_UNITS!
+    ingredientType: IngredientType! @relation(name: "IngredientIngredientType")
+    nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsIngredients")
 }
 
 type IngredientType @model {
-  id: ID! @isUnique
-  name: String!
-  synonyms: [String!]!
-  ingredients: [Ingredient!]! @relation(name: "IngredientIngredientType")
+    id: ID! @isUnique
+    name: String! @isUnique
+    synonyms: [String!]!
+    defaultUnits: INGREDIENT_UNITS!
+    ingredients: [Ingredient!]! @relation(name: "IngredientIngredientType")
 }
