@@ -32,14 +32,6 @@ const generateCreateMutation = (dataType, entry) => {
 };
 
 // JSON format to entry-able string format (i.e. correcttly formatted lists, enums, etc.)
-// const ingredientTypeRecordToEntry = (record) => {
-//   return {
-//     'name': `"${record['name']}"`, // string
-//     'synonyms': `[${record['synonyms'].map(o => `"${o}"`).join(',')}]`, // list
-//     'defaultUnits': record['defaultUnits'] // enum
-//   }
-// };
-
 const graphcmsRecordToEntry = (record, ingredientTypeIdByIngredientTypeName, existingNames) => {
   const serving = [
     `size: ${record.nutritionFacts.serving.size}`,
