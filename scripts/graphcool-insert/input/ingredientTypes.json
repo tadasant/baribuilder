@@ -1,140 +1,140 @@
 {
-  "valueType": "nodes",
+  "typeName": "IngredientType",
   "values": [
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin A",
-      "defaultUnits": "IU"
+      "defaultUnits": "IU",
+      "synonyms": ["retinol", "retinal"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin C",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": ["l-ascorbic acid"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin D2",
-      "defaultUnits": "IU"
+      "defaultUnits": "IU",
+      "synonyms": ["ergocalciferol"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin D3",
-      "defaultUnits": "IU"
+      "defaultUnits": "IU",
+      "synonyms": ["cholecalciferol"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin E",
-      "defaultUnits": "IU"
+      "defaultUnits": "IU",
+      "synonyms": ["alpha-tocopherol", "beta-tocopherol", "gamma-tocopherol", "delta-tocopherol", "alpha-tocotrienol", "beta-tocotrienol", "gamma-tocotrienol", "delta-tocotrienol"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin K1",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": ["phylloquinone", "phytonadione"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin K2",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": ["menaquinone", "mk-4", "mk-7"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Thiamine",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": ["vitamin b1"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Riboflavin",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": ["vitamin b2"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Niacin",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": ["vitamin b3"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin B6",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": ["pyridoxine", "pyridoxal", "pyridoxamine"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Folic Acid",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": ["folate", "folacin"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Vitamin B12",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": ["methylcobalamin", "5-deoxyadenosylcobalamin"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Biotin",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": ["vitamin b7"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Pantothenic Acid",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": ["vitamin b5"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Calcium",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Iron",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Phosphorus",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Iodine",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Magnesium",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Zinc",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Selenium",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": ["selenate", "selenite", "selenomethionine", "selenocysteine"]
     },
     {
-      "_typeName": "IngredientType",
       "name": "Copper",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Manganese",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Chromium",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Sodium",
-      "defaultUnits": "MG"
+      "defaultUnits": "MG",
+      "synonyms": []
     },
     {
-      "_typeName": "IngredientType",
       "name": "Molybdenum",
-      "defaultUnits": "MCG"
+      "defaultUnits": "MCG",
+      "synonyms": []
     }
   ]
 }
