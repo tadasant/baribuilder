@@ -76,7 +76,9 @@ enum FORM {
     CHEWABLE_TABLET
     TABLET
     CAPSULE
-    STICK_PACK
+    POWDER
+    LOZENGE
+    GUMMY
 }
 
 enum SERVING_UNITS {
