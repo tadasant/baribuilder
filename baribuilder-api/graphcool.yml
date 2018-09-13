@@ -12,11 +12,11 @@ types: [./model/enums.graphql, ./model/types.graphql]
 
 
 functions:
-  hello:
+  score:
     handler:
-      code: src/hello.js
+      code: src/score.js
     type: resolver
-    schema: src/hello.graphql
+    schema: src/score.graphql
 
 
 # Model/Relation permissions are used to limit the API access

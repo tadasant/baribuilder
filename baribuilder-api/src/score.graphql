@@ -1,0 +1,7 @@
+type ProductAndScore {
+    test: String!
+}
+
+extend type Query {
+    allProductsAndScores(name: String): ProductAndScore
+}
