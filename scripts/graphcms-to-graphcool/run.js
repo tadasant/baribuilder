@@ -41,31 +41,37 @@ const generateCreateMutation = (dataType, entry) => {
 // };
 
 const graphcmsRecordToEntry = (record, ingredientTypeIdByIngredientTypeName) => {
-  const servingValues = [
+  const serving = [
     `size: ${record.nutritionFacts.serving.size}`,
     `count: ${record.nutritionFacts.serving.count}`,
     `units: ${record.nutritionFacts.serving.units}`
   ];
   const relevantIngredientNames = Object.keys(records.nutritionFacts.micronutrients).filter(name =>
     !['calories', 'total_carbohydrates', 'total_fat', 'sugar', 'sugars', 'sugar_alcohol', 'stevia'].includes(name)
-  )
-  const ingredientValuesList = [
-    Object.keys(record.nutritionFacts.micronutrients).map(name => [
-      `amount: ${}`,
-      `units: ${}`,
-      `ingredientTypeId" ${}`
+  );
+  const ingredientList = [
+    relevantIngredientNames.map(name => [
+      `amount: ${record.nutritionFacts.micronutrients[name].value}`,
+      `units: ${record.nutritionFacts.micronutrients[name].units.toUpperCase()}`,
+      `ingredientTypeId: "${ingredientTypeIdByIngredientTypeName[name]}"`
     ])
   ];
-  const nutritionFacts = {
-    'serving': `{\n${servingValues.join(',\n')}\n}`,
-    'ingredients': `[\n${ingredientValuesList.map(l => `{${l.join(',\n')}}`).join(',\n')}\n]`,
-  };
+  const nutritionFacts = [
+    `serving: {\n${serving.join(',\n')}\n}`,
+    `ingredients: [\n${ingredientList.map(ingredient => `{${ingredient.join(',\n')}}`).join(',\n')}\n]`,
+  ];
+  const listing = [
+    `asin: "${record.asin}"`,
+    `url: "${record.url}"`,
+    `price: {\namount: ${record.price}\n}`
+  ];
   return {
     'name': record['name'],
     'brand': record['brand'],
     'category': record['category'],
     'form': record['form'],
-    'nutritionFacts': `{\n${nutritionFacts}\n}`
+    'nutritionFacts': `{\n${nutritionFacts.join(',\n')}\n}`,
+    'listings': `[{\n${listing.join(',\n')}\n}]`
   }
 };
 

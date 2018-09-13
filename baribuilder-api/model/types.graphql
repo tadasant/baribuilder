@@ -19,7 +19,7 @@ type Listing @model {
 
 type Price @model {
     id: ID! @isUnique
-    value: Float!
+    amount: Float!
     listing: Listing! @relation(name: "ListingPrice")
 }
 
