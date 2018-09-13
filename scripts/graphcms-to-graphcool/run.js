@@ -40,15 +40,18 @@ const generateCreateMutation = (dataType, entry) => {
 //   }
 // };
 
-const graphcmsRecordToEntry = (record, ingredientTypeIdByIngredientTypeName) => {
+const graphcmsRecordToEntry = (record, ingredientTypeIdByIngredientTypeName, existingNames) => {
   const serving = [
     `size: ${record.nutritionFacts.serving.size}`,
     `count: ${record.nutritionFacts.serving.count}`,
     `units: ${record.nutritionFacts.serving.units}`
   ];
   const relevantIngredientNames = Object.keys(record.nutritionFacts.micronutrients).filter(name =>
-    !['calories', 'total_carbohydrates', 'total_fat', 'sugar', 'sugars', 'sugar_alcohol', 'stevia'].includes(name)
+    !['calories', 'total_carbohydrates', 'total_fat', 'sugar', 'sugars', 'sugar_alcohol', 'stevia', 'fiber'].includes(name)
   );
+  // if (existingNames.includes(record.name)) { use if needed as hack for retries
+  //   return null
+  // }
   const ingredientList =
     relevantIngredientNames.map(name => ([
       `amount: ${record.nutritionFacts.micronutrients[name].value}`,
@@ -92,20 +95,36 @@ const getIngredientTypes = async () => {
   return result;
 };
 
+const getProductNames = async () => {
+  const query = `
+    query {
+      allProducts {
+        name
+      }
+    }
+  `;
+  const response = await Promise.resolve(api.request(query));
+  const values = response['allProducts'];
+  return values.map(entry => entry['name'])
+};
+
 const run = async () => {
   const ingredientTypeIdByIngredientTypeName = await getIngredientTypes();
+  const existingNames = await getProductNames();
   inputData.forEach(record => {
-    const entry = graphcmsRecordToEntry(record, ingredientTypeIdByIngredientTypeName);
-    const query = generateCreateMutation('Product', entry);
-    console.log(query);
-    api
-      .request(query)
-      .then(data => console.log(data))
-      .catch(error => {
-        console.log(`ERROR ON QUERY:\n${query}`)
-        console.log(error)
-      })
+    const entry = graphcmsRecordToEntry(record, ingredientTypeIdByIngredientTypeName, existingNames);
+    if (entry !== null) {
+      const query = generateCreateMutation('Product', entry);
+      api
+        .request(query)
+        .then(data => console.log(data))
+        .catch(error => {
+          console.log(error)
+        })
+    }
+
   });
 };
 
+// Set CODE and IMPORT before uncommenting
 // run();

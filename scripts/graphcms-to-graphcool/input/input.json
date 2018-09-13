@@ -38,7 +38,7 @@
           "value": 3,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 4,
           "units": "mg"
         },
@@ -154,7 +154,7 @@
           "value": 12,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 12,
           "units": "mg"
         },
@@ -274,7 +274,7 @@
           "value": 1.5,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 1.7,
           "units": "mg"
         },
@@ -306,7 +306,7 @@
           "value": 8,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 50,
           "units": "mg"
         },
@@ -442,7 +442,7 @@
     "brand": "VITA_G",
     "asin": "B075DVKZ4P",
     "category": "CALCIUM",
-    "form": "CHEWABLE_TABLET",
+    "form": "CHEWABLE",
     "nutritionFacts": {
       "serving": {
         "size": 2,
@@ -513,7 +513,7 @@
           "value": 12,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 12,
           "units": "mg"
         },
@@ -617,7 +617,7 @@
           "value": 12,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 12,
           "units": "mg"
         },
@@ -728,7 +728,7 @@
           "value": 12,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 12,
           "units": "mg"
         },
@@ -876,7 +876,7 @@
           "value": 1.5,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 1.7,
           "units": "mg"
         },
@@ -908,7 +908,7 @@
           "value": 220,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 110,
           "units": "mg"
         },
@@ -1028,7 +1028,7 @@
         "count": 60
       },
       "micronutrients": {
-        "vitamin_k2": {
+        "Vitamin K2": {
           "value": 100,
           "units": "mcg"
         },
@@ -1289,7 +1289,7 @@
           "value": 50,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 50,
           "units": "mg"
         },
@@ -1317,7 +1317,7 @@
           "value": 50,
           "units": "mg"
         },
-        "choline": {
+        "Choline": {
           "value": 25,
           "units": "mg"
         }
@@ -1440,7 +1440,7 @@
           "value": 3,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 0.425,
           "units": "mg"
         },
@@ -1549,7 +1549,7 @@
           "value": 6,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 3.4,
           "units": "mg"
         },
@@ -1617,15 +1617,15 @@
           "value": 25,
           "units": "mcg"
         },
-        "nac": {
+        "NAC": {
           "value": 100,
           "units": "mg"
         },
-        "alpha_lipoic_acid": {
+        "Alpha Lipoic Acid": {
           "value": 25,
           "units": "mg"
         },
-        "choline": {
+        "Choline": {
           "value": 10,
           "units": "mg"
         },
@@ -1798,7 +1798,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_k2": {
+        "Vitamin K2": {
           "value": 150,
           "units": "mcg"
         }
@@ -1862,7 +1862,7 @@
           "value": 2.2,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 3.2,
           "units": "mg"
         },
@@ -1894,7 +1894,7 @@
           "value": 8,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 38,
           "units": "mg"
         },
@@ -1970,7 +1970,7 @@
           "value": 12,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 1.7,
           "units": "mg"
         },
@@ -2251,7 +2251,7 @@
           "value": 50,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 50,
           "units": "mg"
         },
@@ -2294,7 +2294,7 @@
     "price": 9.95,
     "brand": "SUPERIOR_SOURCE",
     "asin": "B003VRBLMA",
-    "category": "BIOTIN",
+    "category": "VITAMIN_B7",
     "form": "TABLET",
     "nutritionFacts": {
       "serving": {
@@ -2438,7 +2438,7 @@
           "value": 1.5,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 1.7,
           "units": "mg"
         },
@@ -2470,7 +2470,7 @@
           "value": 220,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 20,
           "units": "mg"
         },
@@ -2573,7 +2573,7 @@
         "Sodium_selenate": true,
         "talc": true,
         "titanium_dioxide": true,
-        "tocopherols": true,
+        "Vitamin E": true,
         "Vitamin A_acetate": true,
         "yellow_6_lake": true,
         "Zinc_oxide": true
@@ -2599,7 +2599,7 @@
           "value": 15,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 15,
           "units": "mg"
         },
@@ -2693,7 +2693,7 @@
           "value": 12.5,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 3.4,
           "units": "mg"
         },
@@ -2729,7 +2729,7 @@
           "value": 45,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 150,
           "units": "mg"
         },
@@ -2769,15 +2769,15 @@
           "value": 50,
           "units": "mcg"
         },
-        "tocopherols": {
+        "Vitamin E": {
           "value": 30,
           "units": "mg"
         },
-        "choline": {
+        "Choline": {
           "value": 20,
           "units": "mg"
         },
-        "ubiquinone": {
+        "Ubiquinone": {
           "value": 10,
           "units": "mg"
         },
@@ -2851,7 +2851,7 @@
           "value": 1.5,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 1.7,
           "units": "mg"
         },
@@ -2883,7 +2883,7 @@
           "value": 18,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 20,
           "units": "mg"
         },
@@ -2935,7 +2935,7 @@
           "value": 2,
           "units": "mg"
         },
-        "tin": {
+        "Tin": {
           "value": 10,
           "units": "mcg"
         },
@@ -2979,7 +2979,7 @@
         "stannous_Chloride": true,
         "talc": true,
         "titanium_dioxide": true,
-        "tocopherols": true,
+        "Vitamin E": true,
         "Vitamin A_acetate": true,
         "yellow_6_lake": true,
         "Zinc_oxide": true
@@ -3125,7 +3125,7 @@
           "value": 0.8,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 0.4,
           "units": "mg"
         },
@@ -3161,7 +3161,7 @@
           "value": 9,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 50,
           "units": "mg"
         },
@@ -3287,7 +3287,7 @@
           "value": 1000,
           "units": "iu"
         },
-        "vitamin_k2": {
+        "Vitamin K2": {
           "value": 45,
           "units": "mcg"
         },
@@ -3372,7 +3372,7 @@
         "count": 100
       },
       "micronutrients": {
-        "vitamin_k2": {
+        "Vitamin K2": {
           "value": 150,
           "units": "mg"
         }
@@ -3453,7 +3453,7 @@
           "value": 1.5,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 1.7,
           "units": "mg"
         },
@@ -3485,7 +3485,7 @@
           "value": 220,
           "units": "mg"
         },
-        "phosphorus": {
+        "Phosphorus": {
           "value": 20,
           "units": "mg"
         },
@@ -3697,7 +3697,7 @@
           "value": 100,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 20,
           "units": "mg"
         },
@@ -3788,7 +3788,7 @@
           "value": 30,
           "units": "iu"
         },
-        "vitamin_k2": {
+        "Vitamin K2": {
           "value": 32,
           "units": "mcg"
         },
@@ -3796,7 +3796,7 @@
           "value": 0.8,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 2.6,
           "units": "mg"
         },
@@ -3836,11 +3836,11 @@
           "value": 25,
           "units": "mg"
         },
-        "choline": {
+        "Choline": {
           "value": 18,
           "units": "mg"
         },
-        "ubiquinone": {
+        "Ubiquinone": {
           "value": 100,
           "units": "mg"
         }
@@ -3903,7 +3903,7 @@
           "value": 75,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 85,
           "units": "mg"
         },
@@ -3947,7 +3947,7 @@
           "value": 10,
           "units": "mg"
         },
-        "choline": {
+        "Choline": {
           "value": 0.04,
           "units": "mg"
         }
@@ -4271,7 +4271,7 @@
           "value": 1.5,
           "units": "mg"
         },
-        "Ribonflavin": {
+        "Riboflavin": {
           "value": 1.7,
           "units": "mg"
         },
@@ -4307,7 +4307,7 @@
           "value": 8,
           "units": "mg"
         },
-        "Phosphorous": {
+        "Phosphorus": {
           "value": 50,
           "units": "mg"
         },
