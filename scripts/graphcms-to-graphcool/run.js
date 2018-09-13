@@ -1,4 +1,4 @@
-import { fromEvent } from 'graphcool-lib';
+import {fromEvent} from 'graphcool-lib';
 import inputData from './input/input';
 
 // const pat = '__PAT__';
@@ -46,16 +46,15 @@ const graphcmsRecordToEntry = (record, ingredientTypeIdByIngredientTypeName) => 
     `count: ${record.nutritionFacts.serving.count}`,
     `units: ${record.nutritionFacts.serving.units}`
   ];
-  const relevantIngredientNames = Object.keys(records.nutritionFacts.micronutrients).filter(name =>
+  const relevantIngredientNames = Object.keys(record.nutritionFacts.micronutrients).filter(name =>
     !['calories', 'total_carbohydrates', 'total_fat', 'sugar', 'sugars', 'sugar_alcohol', 'stevia'].includes(name)
   );
-  const ingredientList = [
-    relevantIngredientNames.map(name => [
+  const ingredientList =
+    relevantIngredientNames.map(name => ([
       `amount: ${record.nutritionFacts.micronutrients[name].value}`,
       `units: ${record.nutritionFacts.micronutrients[name].units.toUpperCase()}`,
       `ingredientTypeId: "${ingredientTypeIdByIngredientTypeName[name]}"`
-    ])
-  ];
+    ]));
   const nutritionFacts = [
     `serving: {\n${serving.join(',\n')}\n}`,
     `ingredients: [\n${ingredientList.map(ingredient => `{${ingredient.join(',\n')}}`).join(',\n')}\n]`,
@@ -66,7 +65,7 @@ const graphcmsRecordToEntry = (record, ingredientTypeIdByIngredientTypeName) => 
     `price: {\namount: ${record.price}\n}`
   ];
   return {
-    'name': record['name'],
+    'name': `"${record['name']}"`,
     'brand': record['brand'],
     'category': record['category'],
     'form': record['form'],
@@ -84,7 +83,8 @@ const getIngredientTypes = async () => {
       }
     }
   `;
-  const values = await api.request(query)['data']['allIngredientTypes'];
+  const response = await Promise.resolve(api.request(query));
+  const values = response['allIngredientTypes'];
   const result = {};
   values.forEach(value => {
     result[value['name']] = value['id']
@@ -92,16 +92,20 @@ const getIngredientTypes = async () => {
   return result;
 };
 
-const run = () => {
-  const ingredientTypeIdByIngredientTypeName = getIngredientTypes();
+const run = async () => {
+  const ingredientTypeIdByIngredientTypeName = await getIngredientTypes();
   inputData.forEach(record => {
     const entry = graphcmsRecordToEntry(record, ingredientTypeIdByIngredientTypeName);
     const query = generateCreateMutation('Product', entry);
     console.log(query);
-    // api
-    //   .request(query)
-    //   .then(data => console.log(data))
+    api
+      .request(query)
+      .then(data => console.log(data))
+      .catch(error => {
+        console.log(`ERROR ON QUERY:\n${query}`)
+        console.log(error)
+      })
   });
 };
 
-run();
+// run();

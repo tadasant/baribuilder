@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "insert": "babel-node graphcool-insert/run.js"
+    "insert": "babel-node graphcool-insert/run.js",
+    "import": "babel-node graphcms-to-graphcool/run.js"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
