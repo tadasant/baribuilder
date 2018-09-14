@@ -2,12 +2,12 @@ const Sketch = {
   'color': {
     'primary': {
       'green': '#82CD23',
-      'green2': '#6FB01A', // darker
+      'green-2': '#6FB01A', // darker
     },
     'secondary': {
       'blue': '#008BCC',
-      'blue2': '#3BAFE0', // lighter
-      'blue3': '#49CBFF', // lightest
+      'blue-2': '#3BAFE0', // lighter
+      'blue-3': '#49CBFF', // lightest
     },
     'accent': {
       'black': '#2D3239',
@@ -29,7 +29,7 @@ const Sketch = {
         'font-weight': 800,
       },
     },
-    'header2': { // bold
+    'header-2': { // bold
       'text-align': 'center',
       'font-size': '24px',
       'font-weight': 600,
@@ -45,18 +45,18 @@ const Sketch = {
       },
     },
     'caption': { // light italic
-      'fontsize': '14px',
-      'fontweight': 300,
-      'fontstyle': 'italic',
-      'textalign': 'center',
-      'verticalalign': 'middle',
+      'font-size': '14px',
+      'font-weight': 300,
+      'font-style': 'italic',
+      'text-align': 'center',
+      'vertical-align': 'middle',
     },
     'subcaption': { // light italic
-      'fontsize': '11px',
-      'fontweight': 300,
-      'fontstyle': 'italic',
-      'textalign': 'center',
-      'verticalalign': 'middle',
+      'font-size': '11px',
+      'font-weight': 300,
+      'font-style': 'italic',
+      'text-align': 'center',
+      'vertical-align': 'middle',
     },
   },
   'breakpoints': {

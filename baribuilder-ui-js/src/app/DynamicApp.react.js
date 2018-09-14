@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import ApolloClient from 'apollo-boost';
 // import {ApolloProvider} from 'react-apollo';
-// import {Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import NotFound from './NotFound.react';
 
 // const client = new ApolloClient({
@@ -10,14 +10,14 @@ import NotFound from './NotFound.react';
 
 class DynamicApp extends Component {
   render() {
-    return <NotFound />;
+    return (
       {/*<ApolloProvider client={client}>*/}
-        {/*<Switch>*/}
+        <Switch>
           {/*<Route exact path="/builder" component={Builder}/>*/}
-          {/*<Route component={NotFound}/>*/}
-        // </Switch>
+          <Route component={NotFound}/>
+        </Switch>
       // </ApolloProvider>
-    // );
+    );
   }
 }
 
