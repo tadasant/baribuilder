@@ -1,19 +1,21 @@
-import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import StaticApp from './StaticApp.react';
-import NotFound from './NotFound.react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import theme from './style/MuiTheming';
 import 'npm-font-open-sans';
-import ReactGA from 'react-ga';
+import * as React from 'react';
+import {Component} from 'react';
 import ReactPixel from 'react-facebook-pixel';
+import * as ReactGA from 'react-ga';
+import {InitializeOptions} from 'react-ga';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import NotFound from './NotFound.react';
+import StaticApp from './StaticApp.react';
+import theme from './style/MuiTheming';
 
 const isProduction = window.location.host === 'baribuilder.com';
 
 // Prod pixel or dev pixel
 const fbPixel = isProduction ? '521388551638106' : '1096420780524071';
-const reactGaSettings = {};
-const reactFbPixelSettings = {
+const reactGaSettings: InitializeOptions = {};
+const reactFbPixelSettings: any = {
   autoConfig: true,
 };
 
@@ -37,7 +39,7 @@ ReactGA.initialize('UA-104887163-2', reactGaSettings);
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
-  render() {
+  public render() {
     return (
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
