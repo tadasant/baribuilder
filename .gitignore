@@ -11,6 +11,14 @@ pids
 *.seed
 *.pid.lock
 
+# UI Distribution
+**/build/dist
+
+# IDEA files
+baribuilder.iml
+misc.xml
+modules.xml
+
 # Dependency directories
 **/node_modules/
 
