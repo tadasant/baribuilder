@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import { media } from './Core';
 
+interface ITypographyProps {
+  dark: boolean
+}
+
 export const Header = styled.div`
-  color: ${props => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
+  color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.header.textAlign};
   
@@ -17,7 +21,7 @@ export const Header = styled.div`
 `;
 
 export const Header2 = styled.div`
-  color: ${props => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
+  color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.header2.textAlign};
   
@@ -31,7 +35,7 @@ export const Header2 = styled.div`
 `;
 
 export const Body = styled.div`
-  color: ${props => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
+  color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.body.fontSize};
   
@@ -41,7 +45,7 @@ export const Body = styled.div`
 `;
 
 export const Caption = styled.div`
-  color: ${props => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
+  color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.caption.fontSize};
   font-weight: ${Sketch.typography.caption.fontWeight};
@@ -51,7 +55,7 @@ export const Caption = styled.div`
 `;
 
 export const Subcaption = styled.div`
-  color: ${props => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
+  color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.subcaption.fontSize};
   font-weight: ${Sketch.typography.subcaption.fontWeight};

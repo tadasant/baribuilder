@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import {Header} from '../../style/Typography.react';
-import {EmptyRow} from '../../style/Layout.react';
+import {Header} from '../../style/Typography';
+import {EmptyRow} from '../../style/Layout';
 import Step1 from './steps/Step1.react';
 import Step2 from './steps/Step2.react';
 import Step3 from './steps/Step3.react';

@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
-import {Caption, Subcaption} from '../../style/Typography.react';
+import {Caption, Subcaption} from '../../style/Typography';
 import Grid from '@material-ui/core/Grid';
 import Sketch from '../../../app/style/SketchVariables';
 import styled from 'styled-components';
-import {EmptyRow} from '../../style/Layout.react';
+import {EmptyRow} from '../../style/Layout';
 import {media} from '../../style/Core';
 import Hidden from '@material-ui/core/Hidden';
 import ReactGA from 'react-ga';

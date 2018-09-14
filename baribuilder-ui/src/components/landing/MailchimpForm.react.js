@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Body, Caption, Header2} from '../style/Typography.react';
+import {Body, Caption, Header2} from '../style/Typography';
 import Button from '@material-ui/core/Button';
 import ReactGA from 'react-ga';
 import ReactPixel from 'react-facebook-pixel';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import {EmptyRow} from '../style/Layout.react';
+import {EmptyRow} from '../style/Layout';
 
 class MailchimpForm extends Component {
   constructor(props) {

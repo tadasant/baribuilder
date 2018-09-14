@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Hero from './sections/1_Hero.react';
 import Grid from '@material-ui/core/Grid';
 import PriceSection from './sections/2_PriceSection.react';
-import {EmptyRow} from '../style/Layout.react';
+import {EmptyRow} from '../style/Layout';
 import UniqueSection from './sections/3_UniqueSection.react';
 import HowItWorksSection from './sections/4_HowItWorksSection.react';
 import BottomCTABanner from './sections/5_BottomCTABanner.react';

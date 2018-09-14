@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sketch from '../../../../app/style/SketchVariables';
 import styled from 'styled-components';
-import {Body} from '../../../style/Typography.react';
+import {Body} from '../../../style/Typography';
 
 const Pill = styled.div`
   border-radius: 18px;

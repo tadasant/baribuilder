@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import * as React from 'react'
+import {Component} from 'react';
 // import ApolloClient from 'apollo-boost';
 // import {ApolloProvider} from 'react-apollo';
 // import {Route, Switch} from 'react-router-dom';
-import NotFound from './NotFound.react';
+import NotFound from './NotFound';
 
 // const client = new ApolloClient({
 //   uri: "https://api-useast.graphcms.com/v1/cjko3wfon06d601cospqasvh8/master"

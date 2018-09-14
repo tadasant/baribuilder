@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import {Body, Header} from '../../style/Typography.react';
-import {EmptyRow} from '../../style/Layout.react';
+import {Body, Header} from '../../style/Typography';
+import {EmptyRow} from '../../style/Layout';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import Hidden from '@material-ui/core/Hidden';

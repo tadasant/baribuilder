@@ -2,9 +2,9 @@ import React, {Fragment} from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import StepOval from './StepOval.react';
-import {EmptyRow} from '../../../style/Layout.react';
+import {EmptyRow} from '../../../style/Layout';
 import styled from 'styled-components';
-import {Body, Header2} from '../../../style/Typography.react';
+import {Body, Header2} from '../../../style/Typography';
 import OptionPill from './OptionPill.react';
 import Sketch from '../../../../app/style/SketchVariables';
 

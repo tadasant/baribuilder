@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
-import {Header} from '../../style/Typography.react';
+import {Header} from '../../style/Typography';
 import Grid from '@material-ui/core/Grid';
 import Sketch from '../../../app/style/SketchVariables';
 import styled from 'styled-components';
-import {EmptyRow} from '../../style/Layout.react';
+import {EmptyRow} from '../../style/Layout';
 import {media} from '../../style/Core';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';

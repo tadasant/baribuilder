@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import {Caption, Header} from '../../style/Typography.react';
-import {EmptyRow} from '../../style/Layout.react';
+import {Caption, Header} from '../../style/Typography';
+import {EmptyRow} from '../../style/Layout';
 import Button from '@material-ui/core/Button';
 import Sketch from '../../../app/style/SketchVariables';
 import Grid from '@material-ui/core/Grid';

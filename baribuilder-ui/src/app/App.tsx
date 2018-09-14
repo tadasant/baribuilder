@@ -6,8 +6,8 @@ import ReactPixel from 'react-facebook-pixel';
 import * as ReactGA from 'react-ga';
 import {InitializeOptions} from 'react-ga';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import NotFound from './NotFound.react';
-import StaticApp from './StaticApp.react';
+import NotFound from './NotFound';
+import StaticApp from './StaticApp';
 import theme from './style/MuiTheming';
 
 const isProduction = window.location.host === 'baribuilder.com';
