@@ -64,11 +64,6 @@ const Sketch = {
     'tablet': 600,
     'mobile': 320,
   },
-  'gutters': {
-    'desktop': 32,
-    'tablet': 16,
-    'mobile': 16,
-  },
 };
 
 export default Sketch;

@@ -7,7 +7,9 @@ const theme = createMuiTheme({
       // Don't need mobile (320) since we'll just go with 0
       xs: 0,
       sm: Sketch.breakpoints.tablet,
+      md: Sketch.breakpoints.tablet + 1, // not used
       lg: Sketch.breakpoints.desktop,
+      xl: Sketch.breakpoints.desktop + 1, // not used
     }
   },
   palette: {
