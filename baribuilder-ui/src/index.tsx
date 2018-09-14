@@ -1,9 +1,9 @@
-import App from './app/App.react';
-import {AppContainer} from 'react-hot-loader';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
+import {AppContainer} from 'react-hot-loader';
+import App from './app/App.react';
 import './index.css';
+import registerServiceWorker from './registerServiceWorker';
 
 // polyfill for IntersectionObserver
 import 'intersection-observer';

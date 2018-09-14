@@ -21,10 +21,10 @@ const BoxedBlueShadowHangingGrid = styled(Grid)`
 `;
 
 const HeaderWithHeader2MobileSize = styled(Header)`
-  font-size: ${Sketch.typography.header2.fontsize};
+  font-size: ${Sketch.typography.header2.fontSize};
 
   ${media.tablet`
-    font-size: ${Sketch.typography.header.tablet.fontsize};
+    font-size: ${Sketch.typography.header.tablet.fontSize};
   `}
 `;
 
