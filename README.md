@@ -29,7 +29,7 @@ Download GraphQL schema:
 Generate GraphQL Schema TypeScript typings:
 
 `cd baribuilder-ui`
-`apollo codegen:generate ./baribuilder-ui/typings --schema ./baribuilder/graphql.schema.json --target typescript --outputFlat --addTypename --queries “src/**/*.js”`
+`apollo codegen:generate ./baribuilder-ui/src/gql-typings --schema ./baribuilder/graphql.schema.json --target typescript --outputFlat --addTypename --queries “src/**/*.tsx”`
 
 Troubleshooting:
 * `SyntaxError: Operation extraction from file baribuilder-ui/node_modules/browser-resolve/node_modules/resolve/test/precedence/bbb.js failed with 
