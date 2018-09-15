@@ -1,7 +1,8 @@
 import {IConfig} from './typing';
+import commonConfig from './common.config';
 
 const config: IConfig = {
-  graphqlEndpoint: 'https://api.graph.cool/simple/v1/cjlzqvawt1ib00107g3nfr04i',
+  ...commonConfig,
   fbPixel: {
     key: '521388551638106',
     settings: {
@@ -9,12 +10,6 @@ const config: IConfig = {
       debug: false,
     }
   },
-  ga: {
-    key: 'UA-104887163-2',
-    settings: {
-      gaOptions: {},
-    }
-  }
 };
 
 export default config;
