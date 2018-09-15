@@ -17,6 +17,11 @@ GraphQL Endpoint: https://api.graph.cool/simple/v1/cjlzqvawt1ib00107g3nfr04i
 
 ## baribuilder-ui
 
+### Managing GraphQL query typing
+If you don't have Apollo yet:
+
+`npm install -g apollo`
+
 Download GraphQL schema:
 
 `apollo schema:download graphql.schema.json --endpoint=https://api.graph.cool/simple/v1/cjlzqvawt1ib00107g3nfr04i`
