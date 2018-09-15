@@ -29,10 +29,12 @@ Download GraphQL schema:
 Generate GraphQL Schema TypeScript typings:
 
 `cd baribuilder-ui`
-`apollo codegen:generate ./baribuilder-ui/src/gql-typings --schema ./baribuilder/graphql.schema.json --target typescript --outputFlat --addTypename --queries “src/**/*.tsx”`
+`apollo codegen:generate ./baribuilder-ui/src/gql-typings --schema ./graphql.schema.json --target typescript --outputFlat --addTypename --queries=./baribuilder-ui/src/components/**/*.tsx`
 
 Troubleshooting:
 * `SyntaxError: Operation extraction from file baribuilder-ui/node_modules/browser-resolve/node_modules/resolve/test/precedence/bbb.js failed with 
    Unexpected token, expected ";" (1:15)`
-   * Make sure you've set the `--queries` flag correctly - it needs to find queries for which to make types
+    * Make sure you've set the `--queries` flag correctly - it needs to find queries for which to make types
+* `TypeError: Cannot read property 'getQueryType' of undefined`
+    * You might have the wrong path to your schema 
 

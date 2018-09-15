@@ -5,16 +5,11 @@ import {Component} from 'react';
 import ReactPixel from 'react-facebook-pixel';
 import * as ReactGA from 'react-ga';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import devConfig from '../../config/dev.config';
-import prodConfig from '../../config/prod.config';
-import {IConfig} from '../../config/typing';
+import config from '../config/config';
 import DynamicApp from './DynamicApp';
 import NotFound from './NotFound';
 import StaticApp from './StaticApp';
 import theme from './style/MuiTheming';
-
-const isProduction = window.location.host === 'baribuilder.com';
-const config: IConfig = isProduction ? prodConfig : devConfig;
 
 // Initialize FB Pixel
 const advancedMatching = {};

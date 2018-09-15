@@ -7,17 +7,17 @@ interface IPixelSettings {
 }
 
 interface IGAConfig {
-  key: String;
+  key: string;
   settings: InitializeOptions;
 }
 
 interface IPixelConfig {
-  key: String;
+  key: string;
   settings: IPixelSettings;
 }
 
 export interface IConfig {
-  graphqlEndpoint: String;
+  graphqlEndpoint: string;
   fbPixel: IPixelConfig;
   ga: IGAConfig;
 }
