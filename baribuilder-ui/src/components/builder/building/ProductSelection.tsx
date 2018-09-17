@@ -3,7 +3,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {branch, compose, pure, renderComponent} from 'recompose';
-import {GetProducts} from '../../../gql-typings/GetProducts';
+import {GetProducts} from '../../../typings/gql/GetProducts';
 import Product from './Product';
 
 // GraphQL HOC props (output)
