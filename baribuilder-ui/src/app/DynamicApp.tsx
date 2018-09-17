@@ -5,15 +5,17 @@ import {ApolloProvider} from 'react-apollo';
 import {Route, Switch} from 'react-router-dom';
 import Builder from '../components/builder/Builder';
 import config from '../config/config';
-import NotFound from './NotFound';
+import {clientSchema} from '../state/clientSchema';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
+import NotFound from './NotFound';
 
 const client = new ApolloClient({
   uri: config.graphqlEndpoint,
   clientState: {
     defaults,
     resolvers,
+    typeDefs: clientSchema,
   },
 });
 
