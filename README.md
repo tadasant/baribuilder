@@ -28,7 +28,6 @@ Download GraphQL schema:
 
 Generate GraphQL Schema TypeScript typings:
 
-`cd baribuilder-ui`
 `apollo codegen:generate ./baribuilder-ui/src/gql-typings --schema ./graphql.schema.json --target typescript --outputFlat --addTypename --queries=./baribuilder-ui/src/components/**/*.tsx`
 
 Troubleshooting:
