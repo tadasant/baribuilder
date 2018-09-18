@@ -11,13 +11,32 @@ interface IRegimen {
   products: IRegimenProduct[]
 }
 
+type Frequency = 'DAILY' | 'MONTHLY' | 'YEARLY';
+
+interface IPrice {
+  amount: number
+}
+
+interface ICost {
+  value: IPrice;
+  frequency: Frequency;
+}
+
+export interface IProductLocal {
+  id: string;
+  cost: ICost;
+  projectedRegimenCost: ICost;
+  defaultUnitQuantity: number;
+  matchScore: number;
+}
+
 export interface IApolloStateShape {
   currentRegimen: IRegimen;
 }
 
 const defaults: IApolloStateShape = {
   currentRegimen: {
-    __typename: 'Regimen',
+    __typename: 'CurrentRegimen',
     products: [],
   },
   // desiredDosages: {
