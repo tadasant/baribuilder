@@ -9,6 +9,23 @@ const GET_PRODUCT_QUERY = gql`
     query GetProduct($id: ID) {
         Product(id: $id) {
             id
+            listings {
+                price {
+                    amount
+                }
+            }
+            nutritionFacts {
+                serving {
+                    count
+                }
+                ingredients {
+                    amount
+                    units
+                    ingredientType {
+                        name
+                    }
+                }
+            }
         }
     }
 `;

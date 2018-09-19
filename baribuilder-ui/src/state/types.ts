@@ -11,21 +11,13 @@ export interface IRegimen {
 
 export type Frequency = 'DAILY' | 'MONTHLY' | 'YEARLY';
 
-interface IPrice {
+export interface IPrice {
   amount: number
 }
 
-interface ICost {
+export interface ICost {
   value: IPrice;
   frequency: Frequency;
-}
-
-export interface IProductLocal {
-  id: string;
-  cost?: ICost;
-  projectedRegimenCost?: ICost;
-  defaultUnitQuantity?: IQuantity;
-  matchScore?: number;
 }
 
 export interface IQuantity {

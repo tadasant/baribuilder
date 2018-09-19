@@ -1,7 +1,6 @@
 import {IResolverContext} from '../resolvers';
-import {IProductLocal} from '../types';
 
-export default (_: any, args: any, {cache}: IResolverContext): IProductLocal[] => {
+export default (_: any, args: any, {cache}: IResolverContext): any[] => {
   // Get all products
   // Augment them
   return [];

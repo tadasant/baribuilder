@@ -1,59 +1,49 @@
 import gql from 'graphql-tag';
-import {DataProps} from 'react-apollo/types';
-import {GetProductForLocal, GetProductForLocal_Product} from '../../typings/gql/GetProductForLocal';
-import {IResolverContext} from '../resolvers';
-import {IProductLocal, IQuantity} from '../types';
+import {GetProductForLocal} from '../../typings/gql/GetProductForLocal';
+import {IResolverContext, TResolverFunc} from '../resolvers';
+import {ICost, IQuantity} from '../types';
 
-interface ILocalProductArgs {
+// TODO replace with actual query that uses @client
+interface IProductQuery {
   id: string;
-  quantity?: IQuantity;
+
+  [key: string]: any;
 }
 
-const calculateDefaultUnitQuantity = (remoteProduct: GetProductForLocal_Product): IQuantity => {
+type TLocalProductResolverFunc<TData> = TResolverFunc<IProductQuery, TData>;
+
+/**
+ * Beware that most of these local resolvers require that certain remote data be present in the cache
+ */
+interface ILocalProductResolvers {
+  cost: TLocalProductResolverFunc<ICost>;
+  projectedRegimenCost: TLocalProductResolverFunc<ICost>;
+  defaultUnitQuantity: TLocalProductResolverFunc<IQuantity>;
+  matchScore: TLocalProductResolverFunc<number>;
+}
+
+const costResolver: TLocalProductResolverFunc<ICost> = (_, args, {cache}) => {
   return {
-    amount: 1,
+    value: {
+      amount: 100.0,
+    },
     frequency: 'DAILY',
-  };
-};
-
-const calculateDailyCostValue = (remoteProduct: GetProductForLocal_Product, quantity: IQuantity): number => {
-  return 100.0;
-};
-
-const calculateProjectedRegimenCostDailyValueAmount = (remoteProduct: GetProductForLocal_Product, quantity: IQuantity): number => {
-  return 200.0;
-};
-
-const calculateMatchScore = (remoteProduct: GetProductForLocal_Product): number => {
-  return 100.0;
-};
-
-export const deriveLocalProduct = (args: ILocalProductArgs, remoteProduct: GetProductForLocal_Product): IProductLocal => {
-  const defaultUnitQuantity = calculateDefaultUnitQuantity(remoteProduct);
-  return {
-    id: args.id,
-    cost: {
-      value: {
-        amount: calculateDailyCostValue(remoteProduct, args.quantity || defaultUnitQuantity),
-      },
-      frequency: 'DAILY',
-    },
-    projectedRegimenCost: {
-      value: {
-        amount: calculateProjectedRegimenCostDailyValueAmount(remoteProduct, args.quantity || defaultUnitQuantity),
-      },
-      frequency: 'DAILY',
-    },
-    defaultUnitQuantity,
-    matchScore: calculateMatchScore(remoteProduct),
   }
 };
 
-export default (_: any, args: ILocalProductArgs, blah: IResolverContext): IProductLocal => {
-  const cache = blah.cache;
+const projectedRegimenCostResolver = (_: any, args: any, {cache}: IResolverContext): ICost => {
+  return {
+    value: {
+      amount: 200.0,
+    },
+    frequency: 'DAILY',
+  }
+};
+
+const defaultUnitQuantityResolver: TLocalProductResolverFunc<IQuantity> = (obj, args, {cache}) => {
   const query = gql`
       query GetProductForLocal {
-          Product(id: "${args.id}") {
+          Product(id: "${obj.id}") {
               listings {
                   price {
                       amount
@@ -74,13 +64,62 @@ export default (_: any, args: ILocalProductArgs, blah: IResolverContext): IProdu
           }
       }
   `;
-  const remoteProductData: DataProps<GetProductForLocal> | null = cache.readQuery<any, GetProductForLocal>({query});
-  const remoteProduct = remoteProductData === null ? null : remoteProductData.data.Product;
+  const result: GetProductForLocal | null = cache.readQuery<any, GetProductForLocal>({query});
+  const remoteProduct = result === null ? null : result.Product;
   if (remoteProduct === null || remoteProduct === undefined) {
     console.warn('remoteProductData null');
-    return {
-      id: args.id
-    }
+    return null;
   }
-  return deriveLocalProduct(args, remoteProduct)
+  return {
+    amount: 1,
+    frequency: 'DAILY',
+  };
 };
+
+const matchScoreResolver = (_: any, args: any, {cache}: IResolverContext): number => {
+  return 100.0;
+};
+
+const resolvers: ILocalProductResolvers = {
+  cost: costResolver,
+  projectedRegimenCost: projectedRegimenCostResolver,
+  defaultUnitQuantity: defaultUnitQuantityResolver,
+  matchScore: matchScoreResolver,
+};
+
+export default resolvers;
+
+// export default (_: any, args: ILocalProductArgs, { cache }: IResolverContext): IProductLocal => {
+//   const query = gql`
+//       query GetProductForLocal {
+//           Product(id: "${args.id}") {
+//               listings {
+//                   price {
+//                       amount
+//                   }
+//               }
+//               nutritionFacts {
+//                   serving {
+//                       count
+//                   }
+//                   ingredients {
+//                       amount
+//                       units
+//                       ingredientType {
+//                           name
+//                       }
+//                   }
+//               }
+//           }
+//       }
+//   `;
+//   const remoteProductData: DataProps<GetProductForLocal> | null = cache.readQuery<any, GetProductForLocal>({query});
+//   const remoteProduct = remoteProductData === null ? null : remoteProductData.data.Product;
+//   if (remoteProduct === null || remoteProduct === undefined) {
+//     console.warn('remoteProductData null');
+//     return {
+//       id: args.id
+//     }
+//   }
+//   return deriveLocalProduct(args, remoteProduct)
+// };
