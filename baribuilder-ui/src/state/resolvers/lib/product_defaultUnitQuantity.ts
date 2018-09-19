@@ -4,8 +4,10 @@ import {GetProductIngredients_Product_nutritionFacts_ingredients} from '../../..
 import {IUnitQuantity} from '../../types';
 import {keyBy} from 'lodash';
 
-// Returns the ideal number of servings of this product for the given target
-// Will give you the least amount that fulfills the most micronutrients without exceeding any
+/**
+ * Returns the ideal number of servings of this product for the given target
+ * Will give you the least amount that fulfills the most micronutrients without exceeding any
+ */
 const deriveIdealQuantityViaLimitingMicros = (
   productIngredients: GetProductIngredients_Product_nutritionFacts_ingredients[],
   targetIngredientRanges: any[],
@@ -32,9 +34,39 @@ const deriveIdealQuantityViaLimitingMicros = (
 };
 
 // TODO return type is same as desiredIngredientRanges
-const calculateTargetDosages = (desiredIngredientRanges: any[], currentRegimenProducts: any[], products: GetAllProductIngredients_allProducts): any[] => {
-  // Assert that all desired dosages are daily
-  return desiredIngredientRanges;
+const calculateTargetIngredientRanges = (desiredIngredientRanges: any[], currentRegimenProducts: any[], products: GetAllProductIngredients_allProducts[]): any[] => {
+  const allDosagesDaily = desiredIngredientRanges.every((range: any) => range.frequency === 'DAILY');
+  const allRegimenProductDosagesDaily = currentRegimenProducts.every((product: any) => product.frequency === 'DAILY');
+  if (!allDosagesDaily || !allRegimenProductDosagesDaily) {
+    console.warn('Not all desired dosages are DAILY. Error 38239');
+    return [];
+  }
+
+  const targetIngredientRanges: any[] = [];
+  desiredIngredientRanges.forEach(range => {
+    let newMax = range.maximum.amount;
+    let newMin = range.minumum.amount;
+    currentRegimenProducts.forEach(product => {
+      const productIngredients = products[product.id].nutritionFacts.ingredients || [];
+      productIngredients.forEach((productIngredient: GetProductIngredients_Product_nutritionFacts_ingredients) => {
+        if (productIngredient.ingredientType.name === range.ingredientType.name) {
+          if (productIngredient.units === range.units) {
+            newMax -= productIngredient.amount * product.numServings;
+            newMin -= productIngredient.amount * product.numServings;
+          } else {
+            console.warn(`Conversions not yet supported ${product.name}, ${productIngredient.ingredientType.name}`);
+          }
+        }
+      });
+    });
+    targetIngredientRanges.push({
+      ...range,
+      minimum: newMin,
+      maximum: newMax,
+    });
+  });
+
+  return targetIngredientRanges;
 };
 
 export const calculateDefaultUnitQuantity = (
@@ -43,7 +75,7 @@ export const calculateDefaultUnitQuantity = (
   desiredIngredientRanges: any[],
   currentRegimenProducts: any[]
 ): IUnitQuantity => {
-  const targetIngredientRanges = calculateTargetDosages(desiredIngredientRanges, currentRegimenProducts, products);
+  const targetIngredientRanges = calculateTargetIngredientRanges(desiredIngredientRanges, currentRegimenProducts, products);
   return {
     amount: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),
     frequency: 'DAILY',

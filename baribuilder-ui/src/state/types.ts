@@ -2,8 +2,8 @@ import {INGREDIENT_UNITS} from '../typings/gql/globalTypes';
 
 interface IRegimenProduct {
   id: string;
-  quantity: number;
-  units: string;
+  numServings: number;
+  frequency: Frequency;
 }
 
 export interface IRegimen {
@@ -15,15 +15,12 @@ export interface IIngredientType {
   name: string;
 }
 
-export interface IIngredientQuantity {
-  amount: number;
-  units: INGREDIENT_UNITS;
-}
-
 export interface IIngredientRange {
   ingredientType: IIngredientType;
-  minimum: IIngredientQuantity;
-  maximum: IIngredientQuantity;
+  minimum: number;
+  maximum: number;
+  units: INGREDIENT_UNITS;
+  frequency: Frequency;
 }
 
 export interface IDesiredDosages {
