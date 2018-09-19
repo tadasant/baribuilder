@@ -6,7 +6,7 @@ export interface IResolverContext {
   cache: ApolloClient<IApolloStateShape>
 }
 
-export type TResolverFunc<TArgs, TData> = (obj: any, args: TArgs, context: IResolverContext) => TData | null;
+export type TResolverFunc<TObj, TData> = (obj: TObj, args: {}, context: IResolverContext) => TData | null;
 
 // TODO is there a way to enforce a remote query so that my local queries don't break if dependent on a remote one wasn't done?
 const resolvers = {

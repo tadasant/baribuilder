@@ -3,7 +3,12 @@ import {ICost, IUnitQuantity} from '../client-schema-types';
 import {IResolverContext, TResolverFunc} from '../resolvers';
 import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
 
-// TODO replace with actual query that uses @client (this is used in the client side `obj` arg for resolvers)
+/**
+ * Used for ensuring that the @client resolvers (presumably called after the remote ones) have access to
+ * upstream properties to do their calculations.
+ *
+ * Basically a hacky way to do args, since they don't get passed down.
+ */
 interface IProductQuery {
   id: string;
 
