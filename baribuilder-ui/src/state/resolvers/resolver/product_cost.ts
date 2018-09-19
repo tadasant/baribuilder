@@ -1,6 +1,6 @@
 import {ICost} from '../../client-schema-types';
-import {TLocalProductResolverFunc} from '../localProduct';
 import calculateCost from '../lib/product_cost';
+import {TLocalProductResolverFunc} from '../localProduct';
 
 // TODO queries
 

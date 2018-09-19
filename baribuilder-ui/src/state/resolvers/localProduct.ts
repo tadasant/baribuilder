@@ -1,9 +1,9 @@
 import {ICost, IUnitQuantity} from '../client-schema-types';
 import {TResolverFunc} from '../resolvers';
-import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
 import costResolver from './resolver/product_cost';
-import projectedRegimenCostResolver from './resolver/product_projectedRegimenCost';
+import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
 import matchScoreResolver from './resolver/product_matchScore';
+import projectedRegimenCostResolver from './resolver/product_projectedRegimenCost';
 
 /**
  * Used for ensuring that the @client resolvers (presumably called after the remote ones) have access to

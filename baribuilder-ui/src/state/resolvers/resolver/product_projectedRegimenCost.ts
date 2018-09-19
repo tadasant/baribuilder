@@ -1,6 +1,6 @@
 import {ICost} from '../../client-schema-types';
-import {TLocalProductResolverFunc} from '../localProduct';
 import calculateProjectedRegimenCost from '../lib/product_projectedRegimenCost';
+import {TLocalProductResolverFunc} from '../localProduct';
 
 // TODO queries
 
