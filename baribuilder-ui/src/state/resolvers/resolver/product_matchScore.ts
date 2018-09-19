@@ -15,7 +15,7 @@ import calculateMatchScore from '../lib/product_matchScore';
 //     }
 // `;
 
-const matchScoreResolver: TLocalProductResolverFunc<number> = (obj, args, {cache}) => {
+const matchScoreResolver: TLocalProductResolverFunc<number> = (obj, _, {cache}) => {
   //// Grab data
   // const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
   //   query: PRODUCT_INGREDIENTS_QUERY(obj.id)

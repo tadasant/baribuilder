@@ -73,7 +73,7 @@ const CURRENT_REGIMEN_QUERY = gql`
     }
 `;
 
-const defaultUnitQuantityResolver: TLocalProductResolverFunc<IUnitQuantity> = (obj, args, {cache}) => {
+const defaultUnitQuantityResolver: TLocalProductResolverFunc<IUnitQuantity> = (obj, _, {cache}) => {
   //// Grab data
   const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
     query: PRODUCT_INGREDIENTS_QUERY(obj.id)
