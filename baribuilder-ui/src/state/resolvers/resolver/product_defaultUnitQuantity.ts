@@ -1,7 +1,9 @@
 import gql from 'graphql-tag';
 import {GetAllProductIngredients} from '../../../typings/gql/GetAllProductIngredients';
+import {GetCurrentRegimen} from '../../../typings/gql/GetCurrentRegimen';
+import {GetDesiredDosages} from '../../../typings/gql/GetDesiredDosages';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
-import {IUnitQuantity} from '../../types';
+import {IUnitQuantity} from '../../client-schema-types';
 import {TLocalProductResolverFunc} from '../localProduct';
 import {calculateDefaultUnitQuantity} from '../lib/product_defaultUnitQuantity';
 
@@ -43,7 +45,7 @@ const ALL_PRODUCTS_QUERY = gql`
 
 const DESIRED_DOSAGES_QUERY = gql`
     query GetDesiredDosages {
-        desiredDosages {
+        desiredDosages @client {
             ingredientRanges {
                 ingredientType {
                     name
@@ -65,11 +67,11 @@ const DESIRED_DOSAGES_QUERY = gql`
 
 const CURRENT_REGIMEN_QUERY = gql`
   query GetCurrentRegimen {
-      currentRegimen {
+      currentRegimen @client {
           products {
               id
-              quantity
-              units
+              numServings
+              frequency
           }
       }
   }
@@ -83,11 +85,10 @@ const defaultUnitQuantityResolver: TLocalProductResolverFunc<IUnitQuantity> = (o
   const allProductsResult: GetAllProductIngredients | null = cache.readQuery<any, GetAllProductIngredients>({
     query: ALL_PRODUCTS_QUERY
   });
-  // TODO [T-69] fix client side introspection, generate types
-  const dosagesResult: any | null = cache.readQuery({
+  const dosagesResult: GetDesiredDosages | null = cache.readQuery({
     query: DESIRED_DOSAGES_QUERY
   });
-  const regimenResult: any | null = cache.readQuery({
+  const regimenResult: GetCurrentRegimen | null = cache.readQuery({
     query: CURRENT_REGIMEN_QUERY
   });
 
@@ -100,11 +101,11 @@ const defaultUnitQuantityResolver: TLocalProductResolverFunc<IUnitQuantity> = (o
     console.warn('allProductsResult falsey');
     return null;
   }
-  if (!dosagesResult) {
+  if (!dosagesResult || !dosagesResult.desiredDosages) {
     console.warn('desiredDosages falsey');
     return null;
   }
-  if (!regimenResult) {
+  if (!regimenResult || !regimenResult.currentRegimen) {
     console.warn('currentRegimen falsey');
     return null;
   }
@@ -113,8 +114,8 @@ const defaultUnitQuantityResolver: TLocalProductResolverFunc<IUnitQuantity> = (o
   return calculateDefaultUnitQuantity(
     productResult.Product.nutritionFacts.ingredients,
     allProductsResult.allProducts,
-    dosagesResult.DesiredDosages.ingredientRanges,
-    regimenResult.CurrentRegimen.products,
+    dosagesResult.desiredDosages.ingredientRanges,
+    regimenResult.currentRegimen.products,
   );
 };
 

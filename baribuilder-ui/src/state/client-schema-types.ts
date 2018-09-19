@@ -1,9 +1,11 @@
 import {INGREDIENT_UNITS} from '../typings/gql/globalTypes';
 
-interface IRegimenProduct {
+export type FREQUENCY = 'DAILY' | 'MONTHLY' | 'YEARLY';
+
+export interface IRegimenProduct {
   id: string;
   numServings: number;
-  frequency: Frequency;
+  frequency: FREQUENCY;
 }
 
 export interface IRegimen {
@@ -15,12 +17,18 @@ export interface IIngredientType {
   name: string;
 }
 
+export interface IDosage {
+  amount: number;
+  units: INGREDIENT_UNITS;
+  frequency: FREQUENCY;
+}
+
 export interface IIngredientRange {
   ingredientType: IIngredientType;
-  minimum: number;
-  maximum: number;
+  minimum: IDosage;
+  maximum: IDosage;
   units: INGREDIENT_UNITS;
-  frequency: Frequency;
+  frequency: FREQUENCY;
 }
 
 export interface IDesiredDosages {
@@ -28,18 +36,16 @@ export interface IDesiredDosages {
   ingredientRanges: IIngredientRange[];
 }
 
-export type Frequency = 'DAILY' | 'MONTHLY' | 'YEARLY';
-
 export interface IPrice {
   amount: number
 }
 
 export interface ICost {
   value: IPrice;
-  frequency: Frequency;
+  frequency: FREQUENCY;
 }
 
 export interface IUnitQuantity {
   amount: number;
-  frequency: Frequency;
+  frequency: FREQUENCY;
 }

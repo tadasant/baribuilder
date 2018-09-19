@@ -1,5 +1,5 @@
 import {IResolverContext, TResolverFunc} from '../resolvers';
-import {ICost, IUnitQuantity} from '../types';
+import {ICost, IUnitQuantity} from '../client-schema-types';
 import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
 
 // TODO replace with actual query that uses @client (this is used in the client side `obj` arg for resolvers)

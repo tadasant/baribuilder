@@ -5,6 +5,12 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum FREQUENCY {
+  DAILY = "DAILY",
+  MONTHLY = "MONTHLY",
+  WEEKLY = "WEEKLY",
+}
+
 export enum INGREDIENT_UNITS {
   G = "G",
   IU = "IU",

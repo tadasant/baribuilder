@@ -1,4 +1,4 @@
-import {IDesiredDosages, IRegimen} from './types';
+import {IDesiredDosages, IRegimen} from './client-schema-types';
 
 export interface IApolloStateShape {
   currentRegimen: IRegimen;
@@ -7,7 +7,7 @@ export interface IApolloStateShape {
 
 const defaults: IApolloStateShape = {
   currentRegimen: {
-    __typename: 'CurrentRegimen',
+    __typename: 'Regimen',
     products: [],
   },
   desiredDosages: {
