@@ -7,7 +7,7 @@ BariBuilder Monorepo
 
 `graphcool init <project-name>`
 
-`graphcool deploy`
+`cd baribuilder-api && graphcool deploy`
 
 `graphcool playground`
 

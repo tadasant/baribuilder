@@ -101,3 +101,8 @@ enum INGREDIENT_UNITS {
     MCG
 }
 
+enum FREQUENCY {
+    DAILY
+    WEEKLY
+    MONTHLY
+}
