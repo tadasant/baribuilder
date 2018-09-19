@@ -16,27 +16,26 @@
 
 // apollo-link-state docs: https://www.apollographql.com/docs/link/links/state.html
 // local state docs: https://www.apollographql.com/docs/react/essentials/local-state.html
-// export const typeDefs = `
-//     enum Frequency {
-//         DAILY
-//         MONTHLY
-//         YEARLY
-//     }
-//
-//     type Cost {
-//         value: Price!
-//         frequency: Frequency!
-//     }
-//
-//     type ProductLocal {
-//         id: ID!
-//         cost: Cost!
-//         projectedRegimenCost: Cost!
-//         defaultUnitQuantity: Int!
-//         matchScore: Float!
-//     }
-//
-//     type Query {
-//         localProducts
-//     }
-// `;
+export const typeDefs = `
+    type Cost {
+        value: Price!
+        frequency: Frequency!
+    }
+    
+    type Quantity {
+        amount: Int!
+        frequency: Frequency!
+    }
+
+    extends type Product {
+        id: ID!
+        cost: Cost!
+        projectedRegimenCost: Cost!
+        defaultUnitQuantity: Quantity!
+        matchScore: Float!
+    }
+
+    type Query {
+        localProducts
+    }
+`;

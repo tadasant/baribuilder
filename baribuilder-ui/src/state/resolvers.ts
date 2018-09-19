@@ -1,48 +1,27 @@
 import ApolloClient from 'apollo-client/ApolloClient';
-import {IApolloStateShape, IProductLocal} from './defaults';
+import {IApolloStateShape} from './defaults';
+import localProduct from './resolvers/localProduct';
+import localProducts from './resolvers/localProducts';
 
-interface IResolverContext {
+export interface IResolverContext {
   cache: ApolloClient<IApolloStateShape>
-}
-
-interface ILocalProductArgs {
-  id: string;
 }
 
 const resolvers = {
   Query: {
-    localProducts: (_: any, args: any, { cache }: IResolverContext): IProductLocal[] => {
-      // Get all products
-      // Augment them
-      return [];
-    },
-    localProduct: (_: any, args: ILocalProductArgs, { cache }: IResolverContext): IProductLocal => {
-      // Get single product w/ args
-      // Augment
-      return {
-        id: 'testid',
-        cost: {
-          value: {
-            amount: 100.00,
-          },
-          frequency: 'DAILY',
-        },
-        projectedRegimenCost: {
-          value: {
-            amount: 100.00,
-          },
-          frequency: 'DAILY',
-        },
-        defaultUnitQuantity: 1,
-        matchScore: 100.0,
-      };
+    localProducts,
+    localProduct,
+  },
+  Product: {
+    extraInfo: (obj: any, args: any, context: any) => {
+      return 'hello';
     }
   },
-  Mutation: {
-    // AddProductToCurrentRegimen(id, qty, units)
-    // RemoveProductFromCurrentRegimen(id, qty, units)
-    // SetDesiredDosages(...: IDosages[])
-  },
+  // Mutation: {
+  // AddProductToCurrentRegimen(id, qty, units)
+  // RemoveProductFromCurrentRegimen(id, qty, units)
+  // SetDesiredDosages(...: IDosages[])
+  // },
 };
 
 export default resolvers;
