@@ -1,7 +1,9 @@
-import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {ICost, IUnitQuantity} from '../client-schema-types';
-import {IResolverContext, TResolverFunc} from '../resolvers';
+import {TResolverFunc} from '../resolvers';
 import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
+import costResolver from './resolver/product_cost';
+import projectedRegimenCostResolver from './resolver/product_projectedRegimenCost';
+import matchScoreResolver from './resolver/product_matchScore';
 
 /**
  * Used for ensuring that the @client resolvers (presumably called after the remote ones) have access to
@@ -27,27 +29,6 @@ interface ILocalProductResolvers {
   matchScore: TLocalProductResolverFunc<number>;
 }
 
-const costResolver: TLocalProductResolverFunc<ICost> = (_, args, {cache}) => {
-  return {
-    value: {
-      amount: 100.0,
-    },
-    frequency: FREQUENCY.DAILY,
-  }
-};
-
-const projectedRegimenCostResolver = (_: any, args: any, {cache}: IResolverContext): ICost => {
-  return {
-    value: {
-      amount: 200.0,
-    },
-    frequency: FREQUENCY.DAILY,
-  }
-};
-
-const matchScoreResolver = (_: any, args: any, {cache}: IResolverContext): number => {
-  return 100.0;
-};
 
 const resolvers: ILocalProductResolvers = {
   cost: costResolver,
