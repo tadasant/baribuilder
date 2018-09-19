@@ -4,8 +4,8 @@ import {GetCurrentRegimen} from '../../../typings/gql/GetCurrentRegimen';
 import {GetDesiredDosages} from '../../../typings/gql/GetDesiredDosages';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {IUnitQuantity} from '../../client-schema-types';
-import {TLocalProductResolverFunc} from '../localProduct';
 import {calculateDefaultUnitQuantity} from '../lib/product_defaultUnitQuantity';
+import {TLocalProductResolverFunc} from '../localProduct';
 
 const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
     query GetProductIngredients {
@@ -32,10 +32,6 @@ const ALL_PRODUCTS_QUERY = gql`
                     ingredientType {
                         name
                     }
-                    units
-                }
-                serving {
-                    count
                     units
                 }
             }
@@ -66,15 +62,15 @@ const DESIRED_DOSAGES_QUERY = gql`
 `;
 
 const CURRENT_REGIMEN_QUERY = gql`
-  query GetCurrentRegimen {
-      currentRegimen @client {
-          products {
-              id
-              numServings
-              frequency
-          }
-      }
-  }
+    query GetCurrentRegimen {
+        currentRegimen @client {
+            products {
+                id
+                numServings
+                frequency
+            }
+        }
+    }
 `;
 
 const defaultUnitQuantityResolver: TLocalProductResolverFunc<IUnitQuantity> = (obj, args, {cache}) => {
@@ -101,7 +97,7 @@ const defaultUnitQuantityResolver: TLocalProductResolverFunc<IUnitQuantity> = (o
     console.warn('allProductsResult falsey');
     return null;
   }
-  if (!dosagesResult || !dosagesResult.desiredDosages) {
+  if (!dosagesResult || !dosagesResult.desiredDosages || !dosagesResult.desiredDosages.ingredientRanges) {
     console.warn('desiredDosages falsey');
     return null;
   }

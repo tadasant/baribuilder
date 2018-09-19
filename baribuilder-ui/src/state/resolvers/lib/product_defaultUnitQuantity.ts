@@ -1,8 +1,9 @@
+import {keyBy} from 'lodash';
 import {GetAllProductIngredients_allProducts} from '../../../typings/gql/GetAllProductIngredients';
 
 import {GetProductIngredients_Product_nutritionFacts_ingredients} from '../../../typings/gql/GetProductIngredients';
-import {IIngredientRange, IUnitQuantity, IRegimenProduct} from '../../client-schema-types';
-import {keyBy} from 'lodash';
+import {FREQUENCY} from '../../../typings/gql/globalTypes';
+import {IIngredientRange, IRegimenProduct, IUnitQuantity} from '../../client-schema-types';
 
 /**
  * Returns the ideal number of servings of this product for the given target
@@ -19,13 +20,21 @@ const deriveIdealQuantityViaLimitingMicros = (
   targetIngredientRanges.forEach(ingredientRange => {
     const ingredientName = ingredientRange.ingredientType.name;
     if (productIngredientsByName.hasOwnProperty(ingredientName)) {
-      let smallestToFillIngredient = ingredientRange.minimum.amount / productIngredientsByName[ingredientName].amount;
-      smallestToFillIngredient = smallestToFillIngredient % 1 > 0.001 ? Math.ceil(smallestToFillIngredient) : Math.floor(smallestToFillIngredient); // Don't round up if it's within .001
-      const maxBeforeExceedIngredient = Math.floor(ingredientRange.maximum.amount / productIngredientsByName[ingredientName].amount);
-      if (smallestToFill === undefined || smallestToFillIngredient > smallestToFill) {
+      let smallestToFillIngredient: number | undefined = undefined;
+      if (ingredientRange.minimum) {
+        smallestToFillIngredient = ingredientRange.minimum.amount / productIngredientsByName[ingredientName].amount;
+        smallestToFillIngredient = smallestToFillIngredient % 1 > 0.001 ? Math.ceil(smallestToFillIngredient) : Math.floor(smallestToFillIngredient); // Don't round up if it's within .001
+      }
+
+      let maxBeforeExceedIngredient: number | undefined = undefined;
+      if (ingredientRange.maximum) {
+        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximum.amount / productIngredientsByName[ingredientName].amount);
+      }
+
+      if (smallestToFill === undefined || (smallestToFillIngredient !== undefined && smallestToFillIngredient > smallestToFill)) {
         smallestToFill = smallestToFillIngredient;
       }
-      if (maxBeforeExceed === undefined || maxBeforeExceedIngredient < maxBeforeExceed) {
+      if (maxBeforeExceed === undefined || (maxBeforeExceedIngredient !== undefined && maxBeforeExceedIngredient < maxBeforeExceed)) {
         maxBeforeExceed = maxBeforeExceedIngredient;
       }
     }
@@ -33,43 +42,49 @@ const deriveIdealQuantityViaLimitingMicros = (
   return smallestToFill === undefined || maxBeforeExceed === undefined ? 1 : smallestToFill > maxBeforeExceed ? maxBeforeExceed : smallestToFill;
 };
 
-// TODO return type is same as desiredIngredientRanges
+// TODO break this out into more steps (very confusing logic)
 const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], products: GetAllProductIngredients_allProducts[]): IIngredientRange[] => {
-  const allDosagesDaily = desiredIngredientRanges.every(range => range.frequency === 'DAILY');
+  const allDosagesDaily = desiredIngredientRanges.every(range => (range.minimum ? range.minimum.frequency === 'DAILY' : true) && (range.maximum ? range.maximum.frequency === 'DAILY' : true));
   const allRegimenProductDosagesDaily = currentRegimenProducts.every(product => product.frequency === 'DAILY');
   if (!allDosagesDaily || !allRegimenProductDosagesDaily) {
-    console.warn('Not all desired dosages are DAILY. Error 38239');
+    console.warn('Not all frequencies are DAILY. Error 38239');
     return [];
   }
 
   const targetIngredientRanges: IIngredientRange[] = [];
   desiredIngredientRanges.forEach(range => {
-    let newMax = range.maximum.amount;
-    let newMin = range.minimum.amount;
+    let newMax = range.maximum ? range.maximum.amount : undefined;
+    let newMin = range.minimum ? range.minimum.amount : undefined;
     currentRegimenProducts.forEach(product => {
       const productIngredients = products[product.id].nutritionFacts.ingredients || [];
       productIngredients.forEach((productIngredient: GetProductIngredients_Product_nutritionFacts_ingredients) => {
         if (productIngredient.ingredientType.name === range.ingredientType.name) {
-          if (productIngredient.units === range.units) {
-            newMax -= productIngredient.amount * product.numServings;
-            newMin -= productIngredient.amount * product.numServings;
-          } else {
+          if ((range.maximum && productIngredient.units !== range.maximum.units) || (range.minimum && productIngredient.units !== range.minimum.units)) {
             console.warn(`Conversions not yet supported ${products[product.id].name}, ${productIngredient.ingredientType.name}`);
+          }
+          if (range.maximum && newMax !== undefined) {
+            newMax -= productIngredient.amount * product.numServings;
+          }
+          if (range.minimum && newMin !== undefined) {
+            newMin -= productIngredient.amount * product.numServings;
           }
         }
       });
     });
-    targetIngredientRanges.push({
-      ...range,
-      minimum: {
+    const result = {...range};
+    if (range.minimum && newMin !== undefined) {
+      result.minimum = {
         ...range.minimum,
         amount: newMin,
-      },
-      maximum: {
+      }
+    }
+    if (range.maximum && newMax !== undefined) {
+      result.maximum = {
         ...range.maximum,
         amount: newMax,
-      },
-    });
+      }
+    }
+    targetIngredientRanges.push(result);
   });
 
   return targetIngredientRanges;
@@ -84,6 +99,6 @@ export const calculateDefaultUnitQuantity = (
   const targetIngredientRanges = calculateTargetIngredientRanges(desiredIngredientRanges, currentRegimenProducts, products);
   return {
     amount: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),
-    frequency: 'DAILY',
+    frequency: FREQUENCY.DAILY,
   };
 };

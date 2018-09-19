@@ -1,5 +1,6 @@
-import {IResolverContext, TResolverFunc} from '../resolvers';
+import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {ICost, IUnitQuantity} from '../client-schema-types';
+import {IResolverContext, TResolverFunc} from '../resolvers';
 import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
 
 // TODO replace with actual query that uses @client (this is used in the client side `obj` arg for resolvers)
@@ -26,7 +27,7 @@ const costResolver: TLocalProductResolverFunc<ICost> = (_, args, {cache}) => {
     value: {
       amount: 100.0,
     },
-    frequency: 'DAILY',
+    frequency: FREQUENCY.DAILY,
   }
 };
 
@@ -35,7 +36,7 @@ const projectedRegimenCostResolver = (_: any, args: any, {cache}: IResolverConte
     value: {
       amount: 200.0,
     },
-    frequency: 'DAILY',
+    frequency: FREQUENCY.DAILY,
   }
 };
 

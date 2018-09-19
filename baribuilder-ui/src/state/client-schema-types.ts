@@ -1,6 +1,4 @@
-import {INGREDIENT_UNITS} from '../typings/gql/globalTypes';
-
-export type FREQUENCY = 'DAILY' | 'MONTHLY' | 'YEARLY';
+import {FREQUENCY, INGREDIENT_UNITS} from '../typings/gql/globalTypes';
 
 export interface IRegimenProduct {
   id: string;
@@ -25,10 +23,8 @@ export interface IDosage {
 
 export interface IIngredientRange {
   ingredientType: IIngredientType;
-  minimum: IDosage;
-  maximum: IDosage;
-  units: INGREDIENT_UNITS;
-  frequency: FREQUENCY;
+  minimum: IDosage | null;
+  maximum: IDosage | null;
 }
 
 export interface IDesiredDosages {

@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { INGREDIENT_UNITS, SERVING_UNITS } from "./globalTypes";
+import { INGREDIENT_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetAllProductIngredients
@@ -19,16 +19,9 @@ export interface GetAllProductIngredients_allProducts_nutritionFacts_ingredients
   units: INGREDIENT_UNITS;
 }
 
-export interface GetAllProductIngredients_allProducts_nutritionFacts_serving {
-  __typename: "Serving";
-  count: number;
-  units: SERVING_UNITS;
-}
-
 export interface GetAllProductIngredients_allProducts_nutritionFacts {
   __typename: "NutritionFacts";
   ingredients: GetAllProductIngredients_allProducts_nutritionFacts_ingredients[] | null;
-  serving: GetAllProductIngredients_allProducts_nutritionFacts_serving;
 }
 
 export interface GetAllProductIngredients_allProducts {
