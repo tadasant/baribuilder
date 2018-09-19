@@ -1,0 +1,78 @@
+##// Defines what we can query on the GraphQL client store
+##
+##// TODO this typeDefs feature is broken. It is only used for
+##// introspection, not validation, and the introspection breaks
+##// for weird reasons: https://github.com/apollographql/apollo-client-devtools/issues/132
+##
+##// Don't forget to include __typename in GraphiQL: https://github.com/apollographql/apollo-link-state/issues/239
+##
+##// apollo-link-state docs: https://www.apollographql.com/docs/link/links/state.html
+##// local state docs: https://www.apollographql.com/docs/react/essentials/local-state.html
+##export const typeDefs = `
+#
+#// Don't forget to include __typename in GraphiQL: https://github.com/apollographql/apollo-link-state/issues/239
+#
+#// apollo-link-state docs: https://www.apollographql.com/docs/link/links/state.html
+#// local state docs: https://www.apollographql.com/docs/react/essentials/local-state.html
+
+
+##### Augmenting product with local information
+
+# This already exists remotely, but doesn't get downloaded because it's not used remotely (yet)
+enum FREQUENCY {
+    DAILY
+    WEEKLY
+    MONTHLY
+}
+
+type Cost {
+    value: Price!
+    frequency: FREQUENCY!
+}
+
+type Quantity {
+    amount: Int!
+    frequency: FREQUENCY!
+}
+
+extend type Product {
+    cost: Cost!
+    projectedRegimenCost: Cost!
+    defaultUnitQuantity: Quantity!
+    matchScore: Float!
+}
+
+##### Local state storage (matches client-schema-types.ts); hopefully we can generate that sometime
+
+type RegimenProduct {
+    id: ID!
+    numServings: Int!
+    frequency: FREQUENCY!
+}
+
+type Regimen {
+    products: [RegimenProduct!]!
+}
+
+type Dosage {
+    amount: Float!
+    units: INGREDIENT_UNITS!
+    frequency: FREQUENCY!
+}
+
+type IngredientRange {
+    ingredientType: IngredientType!
+    minimum: Dosage
+    maximum: Dosage
+    units: INGREDIENT_UNITS!
+    frequency: FREQUENCY!
+}
+
+type DesiredDosages {
+    ingredientRanges: [IngredientRange!]!
+}
+
+extend type Query {
+    desiredDosages: DesiredDosages
+    currentRegimen: Regimen
+}

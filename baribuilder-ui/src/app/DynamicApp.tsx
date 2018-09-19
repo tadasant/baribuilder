@@ -1,14 +1,35 @@
-import ApolloClient from 'apollo-boost';
-import * as React from 'react'
-import {Component} from 'react'
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {ApolloClient} from 'apollo-client';
+import * as ApolloLink from 'apollo-link';
+import {HttpLink} from 'apollo-link-http';
+import {withClientState} from 'apollo-link-state';
+import * as React from 'react';
+import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
 import {Route, Switch} from 'react-router-dom';
 import Builder from '../components/builder/Builder';
 import config from '../config/config';
+import defaults from '../state/defaults';
+import resolvers from '../state/resolvers';
 import NotFound from './NotFound';
 
+
+const cache = new InMemoryCache();
+
+const stateLink = withClientState({
+  cache,
+  resolvers,
+  defaults,
+});
+
 const client = new ApolloClient({
-  uri: config.graphqlEndpoint
+  link: ApolloLink.from([
+    stateLink,
+    new HttpLink({
+      uri: config.graphqlEndpoint,
+    })
+  ]),
+  cache,
 });
 
 class DynamicApp extends Component {

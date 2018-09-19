@@ -15,6 +15,7 @@
     "object-literal-sort-keys": false,
     "no-console": false,
     "no-var-requires": false,
-    "member-access": ["no-public"]
+    "member-access": ["no-public"],
+    "no-unnecessary-initializer": false
   }
 }
