@@ -5,7 +5,6 @@ import {Component} from 'react';
 import ReactPixel from 'react-facebook-pixel';
 import * as ReactGA from 'react-ga';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Header from '../components/Header';
 import config from '../config/config';
 import DynamicApp from './DynamicApp';
 import NotFound from './NotFound';
@@ -26,7 +25,6 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
-          <Route path="/" component={Header}/>
           <Switch>
             <Route exact={true} path="/" component={StaticApp}/>
             <Route component={DynamicApp}/>
