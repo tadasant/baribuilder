@@ -1,15 +1,16 @@
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import TextField from '@material-ui/core/TextField';
+import {fade} from '@material-ui/core/styles/colorManipulator';
 import React, {Component, Fragment} from 'react';
 import * as ReactGA from 'react-ga';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
+import {generateTrackNavClick} from '../../../lib/gaHelper';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import SignupForm from '../SignupForm';
 
 const HeroGrid = styled(Grid)`
@@ -86,18 +87,22 @@ class Hero extends Component {
           <Grid item xs={1} lg={3}/>
           <Grid item xs={5} lg={3} container direction='row'>
             <Grid item xs={11}>
-              <CTANavButton variant='raised' fullWidth>
-                Browse Product Catalog
-              </CTANavButton>
+              <Link to={'/builder'} onClick={generateTrackNavClick('Browse CTA')}>
+                <CTANavButton variant='raised' fullWidth>
+                  Browse Product Catalog
+                </CTANavButton>
+              </Link>
             </Grid>
             <Grid item xs={1}/>
           </Grid>
           <Grid item xs={5} lg={3} container direction='row'>
             <Grid item xs={1}/>
             <Grid item xs={11}>
-              <CTANavButton variant='raised' fullWidth>
-                Build Personal Regimen
-              </CTANavButton>
+              <Link to={'/builder?openMyRegimen=true'} onClick={generateTrackNavClick('Build CTA')}>
+                <CTANavButton variant='raised' fullWidth>
+                  Build Personal Regimen
+                </CTANavButton>
+              </Link>
             </Grid>
           </Grid>
           <Grid item xs={1} lg={3}/>

@@ -44,7 +44,7 @@ const HeaderPure: SFC = () => {
           </Link>
         </Grid>
         <Grid item>
-          <Link to='/builder' onClick={generateTrackNavClick('Build nav')}>
+          <Link to='/builder?openMyRegimen=true' onClick={generateTrackNavClick('Build nav')}>
             <WhiteNavButton fullWidth>
               Build
             </WhiteNavButton>
