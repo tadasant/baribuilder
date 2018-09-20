@@ -16,6 +16,7 @@
     "no-console": false,
     "no-var-requires": false,
     "member-access": ["no-public"],
-    "no-unnecessary-initializer": false
+    "no-unnecessary-initializer": false,
+    "jsx-boolean-value": false
   }
 }
