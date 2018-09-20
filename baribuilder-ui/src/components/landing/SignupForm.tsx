@@ -9,14 +9,36 @@ const NearFullWidthTextField = styled(TextField)`
   width: 95%;
 `;
 
+const postToMailchimp = (email: string) => {
+  const path = "https://baribuilder.us18.list-manage.com/subscribe/post?u=cfcfc2dfdd3593e3bb9d472f0&amp;id=c1667f6a02";
+  const method = 'post';
+
+  const form = document.createElement("form");
+  form.setAttribute("method", method);
+  form.setAttribute("action", path);
+  form.setAttribute("target", "_blank");
+
+  const hiddenField = document.createElement("input");
+  hiddenField.setAttribute("type", "hidden");
+  hiddenField.setAttribute("name", 'EMAIL');
+  hiddenField.setAttribute("value", email);
+  form.appendChild(hiddenField);
+
+  document.body.appendChild(form);
+  form.submit();
+};
+
 class SignupForm extends Component {
+  private inputRef: React.RefObject<any>;
+
   constructor(props: {}) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.inputRef = React.createRef();
   }
 
   handleSubmit() {
-    console.log('Submitted');
+    postToMailchimp(this.inputRef.current.value);
   }
 
   render() {
@@ -25,6 +47,7 @@ class SignupForm extends Component {
         <Grid item xs={1} lg={3}/>
         <Grid item xs={6} lg={4}>
           <NearFullWidthTextField
+            inputRef={this.inputRef}
             placeholder='Email Address'
             inputProps={{type: 'email'}}
           />
