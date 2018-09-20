@@ -27,7 +27,12 @@ const WhiteNavButton = styled(Button)`
   }
 `;
 
-const HeaderPure: SFC = () => {
+interface IProps {
+  disableButtons?: boolean;
+  hideNavigation?: boolean;
+}
+
+const HeaderPure: SFC<IProps> = props => {
   return (
     <GridWithRaisedBackground container spacing={8}>
       <Grid item xs={6}>
@@ -35,22 +40,26 @@ const HeaderPure: SFC = () => {
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
         </Link>
       </Grid>
-      <Grid item xs={6} container alignItems='center' justify='flex-end'>
-        <Grid item>
-          <Link to='/builder' onClick={generateTrackNavClick('Browse nav')}>
-            <WhiteNavButton fullWidth>
-              Browse
-            </WhiteNavButton>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link to='/builder?openMyRegimen=true' onClick={generateTrackNavClick('Build nav')}>
-            <WhiteNavButton fullWidth>
-              Build
-            </WhiteNavButton>
-          </Link>
-        </Grid>
-      </Grid>
+      {
+        props.hideNavigation ? null :
+          <Grid item xs={6} container alignItems='center' justify='flex-end'>
+            <Grid item>
+              <Link to='/builder' onClick={generateTrackNavClick('Browse nav')}>
+                <WhiteNavButton fullWidth>
+                  Browse
+                </WhiteNavButton>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to='/builder?openMyRegimen=true' onClick={generateTrackNavClick('Build nav')}>
+                <WhiteNavButton fullWidth>
+                  Build
+                </WhiteNavButton>
+              </Link>
+            </Grid>
+          </Grid>
+      }
+
     </GridWithRaisedBackground>
   )
 };

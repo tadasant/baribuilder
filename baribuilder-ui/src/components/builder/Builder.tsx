@@ -1,13 +1,26 @@
 import * as React from 'react';
-import {Component} from 'react';
-import ProductSelection from './building/ProductSelection';
+import {Fragment, SFC} from 'react';
+import {withState} from 'recompose';
+import Header from '../Header';
 
-class Builder extends Component {
-  render() {
-    return (
-      <ProductSelection/>
-    )
-  }
+const enhance = withState<{}, {}, 'disableHeader', 'setDisableHeader'>(
+  'disableHeader',
+  'setDisableHeader',
+  false
+);
+
+interface IProps {
+  disableHeader: boolean;
+  setDisableHeader: () => boolean;
 }
 
-export default Builder;
+const PureBuilder: SFC<IProps> = ({disableHeader}) => {
+  return (
+    <Fragment>
+      <Header disableButtons={disableHeader} hideNavigation />
+      {/*<ProductSelection/>*/}
+    </Fragment>
+  );
+};
+
+export default enhance(PureBuilder);
