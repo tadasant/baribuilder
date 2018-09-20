@@ -13,7 +13,7 @@ type Listing @model {
     url: String! @isUnique
     asin: String
     flavor: FLAVOR
-    numServings: Int! @migrationValue(value: 0)
+    numServings: Int!
     affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
     price: Price! @relation(name: "ListingPrice")
     product: Product! @relation(name: "ProductListings")
@@ -55,7 +55,6 @@ type Serving @model {
     id: ID! @isUnique
     size: Float!
     units: SERVING_UNITS!
-    count: Int!
     nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsServing")
 }
 
