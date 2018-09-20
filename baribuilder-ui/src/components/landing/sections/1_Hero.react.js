@@ -1,10 +1,12 @@
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
+import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
-import ReactGA from 'react-ga';
+import * as ReactGA from 'react-ga';
 import styled from 'styled-components';
+import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
 import {EmptyRow} from '../../style/Layout';
 import {Caption, Header} from '../../style/Typography';
@@ -27,8 +29,8 @@ const HeroGrid = styled(Grid)`
   }
 `;
 
-const PaddedImg = styled.img`
-  padding: 8px;
+const NearFullWidthTextField = styled(TextField)`
+  width: 90%;
 `;
 
 class Hero extends Component {
@@ -64,25 +66,32 @@ class Hero extends Component {
             <Grid item sm={1}/>
           </Hidden>
           <Grid item xs={12} sm={10} lg={12}>
-            <Header dark>Bariatric vitamins, made easy.</Header>
+            <Header dark>Find the bariatric vitamins best for <u>you</u>.</Header>
           </Grid>
           <Hidden only='xs' lgUp>
             <Grid item sm={1}/>
           </Hidden>
         </Fragment>
-        <EmptyRow mobile='75px' desktop='50px'/>
+        <EmptyRow mobile='50px'/>
         <Fragment>
-          <Grid item xs={2} sm={3} lg={4}/>
-          <Grid item xs={8} sm={6} lg={4}>
+          <Grid item xs={1} lg={3}/>
+          <Grid item xs={6} lg={4}>
+            <NearFullWidthTextField
+              InputProps={{style: {borderColor: Sketch.color.secondary.blue}}}
+              placeholder='Email Address'
+            />
+          </Grid>
+          <Grid item xs={4} lg={2}>
             <Button
               color='secondary'
               fullWidth
               variant='raised'
-              onClick={this.handleCTAClick}>
-              Join Waitlist
+              // onClick={this.handleCTAClick}
+            >
+              Get Updates
             </Button>
           </Grid>
-          <Grid item xs={2} sm={3} lg={4}/>
+          <Grid item xs={1} lg={3}/>
         </Fragment>
         <Fragment>
           <Grid item xs={2} sm={3} lg={4}/>
