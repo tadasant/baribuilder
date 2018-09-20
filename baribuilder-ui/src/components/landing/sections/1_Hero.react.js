@@ -9,7 +9,8 @@ import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
 import {EmptyRow} from '../../style/Layout';
-import {Caption, Header} from '../../style/Typography';
+import {Header} from '../../style/Typography';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const HeroGrid = styled(Grid)`
   height: 100vh;
@@ -30,7 +31,18 @@ const HeroGrid = styled(Grid)`
 `;
 
 const NearFullWidthTextField = styled(TextField)`
-  width: 90%;
+  width: 95%;
+`;
+
+const CTANavButton = styled(Button)`
+  && {
+    color: ${Sketch.color.accent.white};
+    background-color: ${Sketch.color.accent.black};
+    
+    :hover {
+      background-color: ${fade(Sketch.color.accent.black, .8)};
+    }
+  }
 `;
 
 class Hero extends Component {
@@ -60,7 +72,7 @@ class Hero extends Component {
   render() {
     return (
       <HeroGrid item container alignContent='flex-start'>
-        <EmptyRow mobile='50px'/>
+        <EmptyRow mobile='25px'/>
         <Fragment>
           <Hidden only='xs' lgUp>
             <Grid item sm={1}/>
@@ -72,7 +84,7 @@ class Hero extends Component {
             <Grid item sm={1}/>
           </Hidden>
         </Fragment>
-        <EmptyRow mobile='50px'/>
+        <EmptyRow mobile='25px'/>
         <Fragment>
           <Grid item xs={1} lg={3}/>
           <Grid item xs={6} lg={4}>
@@ -93,13 +105,26 @@ class Hero extends Component {
           </Grid>
           <Grid item xs={1} lg={3}/>
         </Fragment>
+        <EmptyRow mobile='25px'/>
         <Fragment>
-          <Grid item xs={2} sm={3} lg={4}/>
-          <Grid item xs={8} sm={6} lg={4}>
-            <Caption dark>Coming soon: BariBuilder, a <u>free</u> web application to help you find your
-              vitamins.</Caption>
+          <Grid item xs={1} lg={3}/>
+          <Grid item xs={5} lg={3} container direction='row'>
+            <Grid item xs={11}>
+              <CTANavButton variant='raised' fullWidth>
+                Browse Product Catalog
+              </CTANavButton>
+            </Grid>
+            <Grid item xs={1}/>
           </Grid>
-          <Grid item xs={2} sm={3} lg={4}/>
+          <Grid item xs={5} lg={3} container direction='row'>
+            <Grid item xs={1}/>
+            <Grid item xs={11}>
+              <CTANavButton variant='raised' fullWidth>
+                Build Personal Regimen
+              </CTANavButton>
+            </Grid>
+          </Grid>
+          <Grid item xs={1} lg={3}/>
         </Fragment>
       </HeroGrid>
     );
