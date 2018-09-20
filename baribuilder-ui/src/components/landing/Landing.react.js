@@ -24,7 +24,6 @@ class Landing extends Component {
       ctaModalActive: false,
       maxScrolled: 0,
     };
-    this.handleCTAClick = this.handleCTAClick.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
   }
 
@@ -54,10 +53,6 @@ class Landing extends Component {
     }
   }
 
-  handleCTAClick() {
-    this.props.history.push('/signup');
-  }
-
   handleScroll(fraction) {
     const percentage = fraction * 100;
     if (percentage > this.state.maxScrolled) {
@@ -70,7 +65,7 @@ class Landing extends Component {
       <Fragment>
         <ScrollPercentage onChange={this.handleScroll}>
           <Grid container>
-            <Hero onCTAClick={this.handleCTAClick}/>
+            <Hero/>
             <GutteredGrid container direction='row'>
               <EmptyRow mobile='75px' tablet='100px'/>
               <PriceSection/>

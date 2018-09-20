@@ -2,7 +2,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
 import * as ReactGA from 'react-ga';
 import styled from 'styled-components';
@@ -11,6 +10,7 @@ import images from '../../../constants/images';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import SignupForm from '../SignupForm';
 
 const HeroGrid = styled(Grid)`
   height: 100vh;
@@ -28,10 +28,6 @@ const HeroGrid = styled(Grid)`
   @media (min-width: 900px) and (max-height: 960px) {
     background-image: url('${images.hero.desktop}');
   }
-`;
-
-const NearFullWidthTextField = styled(TextField)`
-  width: 95%;
 `;
 
 const CTANavButton = styled(Button)`
@@ -66,7 +62,6 @@ class Hero extends Component {
       action: 'click',
       label: 'Hero CTA Click'
     });
-    this.props.onCTAClick();
   }
 
   render() {
@@ -85,26 +80,7 @@ class Hero extends Component {
           </Hidden>
         </Fragment>
         <EmptyRow mobile='25px'/>
-        <Fragment>
-          <Grid item xs={1} lg={3}/>
-          <Grid item xs={6} lg={4}>
-            <NearFullWidthTextField
-              InputProps={{style: {borderColor: Sketch.color.secondary.blue}}}
-              placeholder='Email Address'
-            />
-          </Grid>
-          <Grid item xs={4} lg={2}>
-            <Button
-              color='secondary'
-              fullWidth
-              variant='raised'
-              // onClick={this.handleCTAClick}
-            >
-              Get Updates
-            </Button>
-          </Grid>
-          <Grid item xs={1} lg={3}/>
-        </Fragment>
+        <SignupForm/>
         <EmptyRow mobile='25px'/>
         <Fragment>
           <Grid item xs={1} lg={3}/>
@@ -130,9 +106,5 @@ class Hero extends Component {
     );
   }
 }
-
-Hero.propTypes = {
-  onCTAClick: PropTypes.func.isRequired,
-};
 
 export default Hero;

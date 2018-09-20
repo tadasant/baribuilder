@@ -26,7 +26,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <Switch>
-            <Route exact={true} path="/" component={StaticApp}/>
+            <Route exact path="/" component={StaticApp}/>
             <Route component={DynamicApp}/>
             <Route component={NotFound}/>
           </Switch>

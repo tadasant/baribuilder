@@ -34,7 +34,7 @@ const HiddenSpan = styled.span`
 
 // Creates full row (12 columns) of space, using props `mobile`, `tablet`, `desktop` as margin size
 export const EmptyRow = (props: IMarginProps) => (
-  <SpacedGrid item={true} xs={12} margin={{mobile: props.mobile, tablet: props.tablet, desktop: props.desktop}}>
+  <SpacedGrid item xs={12} margin={{mobile: props.mobile, tablet: props.tablet, desktop: props.desktop}}>
     <HiddenSpan>-</HiddenSpan>
   </SpacedGrid>
 );
