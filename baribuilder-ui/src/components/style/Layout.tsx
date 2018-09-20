@@ -6,8 +6,8 @@ import { media } from './Core';
 
 interface IMarginProps {
   mobile: string;
-  tablet: string;
-  desktop: string;
+  tablet?: string;
+  desktop?: string;
 }
 
 interface ISpacedGridProps extends GridProps {

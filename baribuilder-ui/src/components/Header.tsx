@@ -9,6 +9,7 @@ import {generateTrackNavClick} from '../lib/gaHelper';
 import {fixedWidthImage} from '../lib/imageKitHelpers';
 
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
+export const headerHeight = '64px';
 
 const PaddedImg = styled.img`
   height: 80%;
@@ -18,7 +19,7 @@ const PaddedImg = styled.img`
 const GridWithRaisedBackground = styled(Grid)`
   background-color: ${Sketch.color.accent.black};
   box-shadow: 0px 2px 4px 0px;
-  height: 64px;
+  height: ${headerHeight};
 `;
 
 const WhiteNavButton = styled(Button)`
