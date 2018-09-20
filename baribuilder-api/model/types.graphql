@@ -12,6 +12,8 @@ type Listing @model {
     id: ID! @isUnique
     url: String! @isUnique
     asin: String
+    flavor: FLAVOR
+    numServings: Int! @migrationValue(value: 0)
     affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
     price: Price! @relation(name: "ListingPrice")
     product: Product! @relation(name: "ProductListings")
@@ -30,11 +32,9 @@ type Product @model {
     name: String!
     brand: BRAND!
     category: CATEGORY!
-    flavor: FLAVOR
     form: FORM!
     listings: [Listing!]! @relation(name: "ProductListings")
     images: [Image!]! @relation(name: "ProductImages")
-    substituteProducts: [Product!]! @relation(name: "SubstituteProducts")
     nutritionFacts: NutritionFacts! @relation(name: "ProductNutritionFacts")
 }
 
