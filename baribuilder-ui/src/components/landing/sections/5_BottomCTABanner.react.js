@@ -48,7 +48,7 @@ class BottomCTABanner extends Component {
       <Grid item container direction='row'>
         <Grid item xs={1} sm={2}/>
         <BoxedBlueShadowHangingGrid item xs={10} sm={8} container>
-          <EmptyRow mobile='30px' tablet='75px'/>
+          <EmptyRow mobile='20px' tablet='65px'/>
           <Grid item xs={12} container>
             <Grid item xs={2} lg={1} />
             <Grid item xs={8} lg={10}>
@@ -56,7 +56,7 @@ class BottomCTABanner extends Component {
             </Grid>
             <Grid item xs={2} lg={1}/>
           </Grid>
-          <EmptyRow mobile='30px' tablet='75px'/>
+          <EmptyRow mobile='20px' tablet='65px'/>
           <Fragment>
             <Grid item xs={2} sm={3} lg={4}/>
             <Grid item xs={8} sm={6} lg={4}>
@@ -70,7 +70,7 @@ class BottomCTABanner extends Component {
             </Grid>
             <Grid item xs={2} sm={3} lg={4}/>
           </Fragment>
-          <EmptyRow mobile='30px' tablet='75px'/>
+          <EmptyRow mobile='20px' tablet='65px'/>
         </BoxedBlueShadowHangingGrid>
         <Grid item xs={1} sm={2}/>
       </Grid>

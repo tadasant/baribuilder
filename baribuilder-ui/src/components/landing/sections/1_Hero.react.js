@@ -68,7 +68,7 @@ class Hero extends Component {
   render() {
     return (
       <HeroGrid item container alignContent='flex-start'>
-        <EmptyRow mobile='25px'/>
+        <EmptyRow mobile='15px'/>
         <Fragment>
           <Hidden only='xs' lgUp>
             <Grid item sm={1}/>
@@ -80,9 +80,9 @@ class Hero extends Component {
             <Grid item sm={1}/>
           </Hidden>
         </Fragment>
-        <EmptyRow mobile='25px'/>
+        <EmptyRow mobile='15px'/>
         <SignupForm/>
-        <EmptyRow mobile='25px'/>
+        <EmptyRow mobile='15px'/>
         <Fragment>
           <Grid item xs={1} lg={3}/>
           <Grid item xs={5} lg={3} container direction='row'>

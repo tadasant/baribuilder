@@ -31,7 +31,7 @@ class UniqueSection extends Component {
         <Grid item xs={12}>
           <Header dark><BlueText>You</BlueText> are unique</Header>
         </Grid>
-        <EmptyRow mobile='30px'/>
+        <EmptyRow mobile='20px'/>
         <Fragment>
           <Hidden only='xs'>
             <Grid item sm={1} lg={2}/>
@@ -64,7 +64,7 @@ class UniqueSection extends Component {
             </Grid>
             <Hidden mdDown>
               {/* Padding hack to adjust for the container's forced too-large height on above item */}
-              <EmptyRow desktop='100px'/>
+              <EmptyRow desktop='90px'/>
             </Hidden>
           </Grid>
           <Hidden only={['xs', 'lg', 'xl']}>

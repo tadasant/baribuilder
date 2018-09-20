@@ -20,7 +20,7 @@ class PriceSection extends Component {
         <Grid item xs={12}>
           <Header dark>Transparent <LightText>prices.</LightText></Header>
         </Grid>
-        <EmptyRow mobile='30px'/>
+        <EmptyRow mobile='20px'/>
         <Fragment>
           <Grid item xs={1} lg={3}/>
           <Grid item xs={10} lg={6}>
@@ -34,7 +34,7 @@ class PriceSection extends Component {
           </Grid>
           <Grid item xs={1} lg={3}/>
         </Fragment>
-        <EmptyRow mobile='30px'/>
+        <EmptyRow mobile='20px'/>
         <Grid item xs={12}>
           <Header dark>Low <LightText>prices.*</LightText></Header>
         </Grid>

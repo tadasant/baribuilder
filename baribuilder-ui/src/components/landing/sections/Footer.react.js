@@ -45,13 +45,13 @@ class Footer extends Component {
   render() {
     return (
       <BlackGrid item container direction='row'>
-        <EmptyRow mobile='125px' tablet='150px'/>
+        <EmptyRow mobile='115px' tablet='140px'/>
         <Grid item xs={1} sm={2}/>
         <Grid item container xs={10} sm={8}>
           <Grid item xs={12}>
             <DisclaimerCaption>{citationText}</DisclaimerCaption>
           </Grid>
-          <EmptyRow mobile='25px' tablet='50px'/>
+          <EmptyRow mobile='5px' tablet='40px'/>
           <Grid item container direction='row'>
             <Hidden only='xs'>
               <Grid item sm={9} container>
@@ -61,7 +61,7 @@ class Footer extends Component {
                     alt='Vita.G Logo'
                   />
                 </a>
-                <EmptyRow tablet='10px'/>
+                <EmptyRow tablet='1px'/>
                 <Subcaption>© Vita.G, LLC 2018</Subcaption>
               </Grid>
               <Grid item sm={3} container>
@@ -98,7 +98,7 @@ class Footer extends Component {
               <Grid item xs={12}>
                 <a href='mailto:feedback@vitaglab.com' onClick={this.generateHandleLinkClick('email')}><Subcaption>feedback@vitaglab.com</Subcaption></a>
               </Grid>
-              <EmptyRow mobile='10px'/>
+              <EmptyRow mobile='1px'/>
               <Fragment>
                 <Grid item xs={3}/>
                 <Grid item xs={6} container direction='row'>
@@ -129,7 +129,7 @@ class Footer extends Component {
                 </Grid>
                 <Grid item xs={3}/>
               </Fragment>
-              <EmptyRow mobile='20px'/>
+              <EmptyRow mobile='10px'/>
               <Grid item xs={12} container alignItems='flex-start' justify='center'>
                 <a href='https://vitaglab.com/' target='_blank' rel='noopener noreferrer' onClick={this.generateHandleLinkClick('web')}>
                   <img
@@ -138,7 +138,7 @@ class Footer extends Component {
                   />
                 </a>
               </Grid>
-              <EmptyRow mobile='10px'/>
+              <EmptyRow mobile='1px'/>
               <Grid item xs={12}>
                 <Subcaption>© Vita.G, LLC 2018</Subcaption>
               </Grid>
@@ -146,7 +146,7 @@ class Footer extends Component {
           </Grid>
         </Grid>
         <Grid item xs={1} sm={2}/>
-        <EmptyRow mobile='25px' tablet='50px'/>
+        <EmptyRow mobile='5px' tablet='40px'/>
       </BlackGrid>
     );
   }

@@ -67,13 +67,13 @@ class Landing extends Component {
           <Grid container>
             <Hero/>
             <GutteredGrid container direction='row'>
-              <EmptyRow mobile='75px' tablet='100px'/>
+              <EmptyRow mobile='65px' tablet='90px'/>
               <PriceSection/>
-              <EmptyRow mobile='75px' tablet='100px'/>
+              <EmptyRow mobile='65px' tablet='90px'/>
               <UniqueSection/>
-              <EmptyRow mobile='75px' tablet='100px'/>
+              <EmptyRow mobile='65px' tablet='90px'/>
               <HowItWorksSection/>
-              <EmptyRow mobile='75px' tablet='100px'/>
+              <EmptyRow mobile='65px' tablet='90px'/>
               <BottomCTABanner onCTAClick={this.handleCTAClick}/>
             </GutteredGrid>
             <Footer/>

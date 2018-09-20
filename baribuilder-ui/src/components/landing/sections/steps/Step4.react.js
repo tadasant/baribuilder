@@ -33,7 +33,7 @@ const Step4 = () => (
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
         </Grid>
         <Grid item xs={1}/>
-        <EmptyRow mobile='10px'/>
+        <EmptyRow mobile='1px'/>
         <Grid item xs={12}>
           <Header dark>YOU.</Header>
         </Grid>
@@ -41,7 +41,7 @@ const Step4 = () => (
       <Hidden only='xs'>
         <Grid item sm={1}/>
       </Hidden>
-      <EmptyRow mobile='15px'/>
+      <EmptyRow mobile='5px'/>
       <Hidden only='xs'>
         <Grid item sm={1} />
       </Hidden>
@@ -69,7 +69,7 @@ const Step4 = () => (
       <Grid item lg={4} container>
         <Grid item lg={12}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
-          <EmptyRow desktop='10px'/>
+          <EmptyRow desktop='1px'/>
           <Header dark>YOU.</Header>
         </Grid>
       </Grid>

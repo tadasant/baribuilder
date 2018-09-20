@@ -5,6 +5,9 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
+import styled from 'styled-components';
+import {TypographyHeaderGrey} from '../../../app/style/MuiTheming';
+import Sketch from '../../../app/style/SketchVariables';
 import {GetEnumValuesOfCategoriesAndForms} from '../../../typings/gql/GetEnumValuesOfCategoriesAndForms';
 import {headerHeight} from '../../Header';
 import {EmptyRow} from '../../style/Layout';
@@ -34,25 +37,32 @@ const enhance = compose<DataOutputProps, {}>(
   pure,
 );
 
+const OuterGrid = styled(Grid)`
+  height: calc(100vh - ${headerHeight} - ${builderHeaderHeight});
+`;
+
+const InnerGrid = styled(Grid)`
+  border-right: 1px solid ${Sketch.color.accent.grey};
+`;
+
 // Pure
 const BuilderLeftPanelPure: SFC<DataOutputProps> = ({data: {CATEGORY, FORMS}}) => {
   return (
-    <Grid container alignContent='flex-start'
-          style={{border: '1px solid red', height: `calc(100vh - ${headerHeight} - ${builderHeaderHeight})`}}>
-      <EmptyRow mobile='8px'/>
-      <Grid item container direction='row' style={{borderRight: '1px solid grey', height: 'calc(100% - 8px)'}}>
+    <OuterGrid container alignContent='flex-start'>
+      <EmptyRow mobile='1px'/>
+      <InnerGrid item container direction='row'>
         <Grid item lg={1}/>
         <Grid item lg={10} container direction='row' alignContent='flex-start'>
           <Grid item lg={12}>
-            <Typography variant='display1'>Show category</Typography>
+            <TypographyHeaderGrey variant='display1'>Show category</TypographyHeaderGrey>
           </Grid>
-          <EmptyRow mobile='16px'/>
+          <EmptyRow mobile='0px'/>
           <Grid item lg={12}>
             <Typography variant='body2' style={{fontWeight: 'bold'}}>All Products</Typography>
           </Grid>
           <Grid item container lg={12}>
             {CATEGORY && CATEGORY.enumValues ? CATEGORY.enumValues.map(category => (
-              <Fragment>
+              <Fragment key={category.name}>
                 <Grid item lg={1}/>
                 <Grid item lg={11}>
                   {category.name.toLowerCase().split('_').map(str => upperFirst(str)).join(' ')}
@@ -62,8 +72,9 @@ const BuilderLeftPanelPure: SFC<DataOutputProps> = ({data: {CATEGORY, FORMS}}) =
           </Grid>
         </Grid>
         <Grid item lg={1}/>
-      </Grid>
-    </Grid>
+      </InnerGrid>
+      <EmptyRow mobile='1px'/>
+    </OuterGrid>
   )
 };
 

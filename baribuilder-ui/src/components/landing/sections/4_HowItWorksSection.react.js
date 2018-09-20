@@ -14,13 +14,13 @@ class HowItWorksSection extends Component {
         <Grid item xs={12}>
           <Header dark>How it works</Header>
         </Grid>
-        <EmptyRow mobile='30px'/>
+        <EmptyRow mobile='20px'/>
         <Step1/>
-        <EmptyRow mobile='50px'/>
+        <EmptyRow mobile='40px'/>
         <Step2/>
-        <EmptyRow mobile='50px'/>
+        <EmptyRow mobile='40px'/>
         <Step3/>
-        <EmptyRow mobile='50px'/>
+        <EmptyRow mobile='40px'/>
         <Step4/>
       </Fragment>
     );

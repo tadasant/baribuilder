@@ -1,5 +1,14 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import {Typography} from '@material-ui/core';
+import {createMuiTheme} from '@material-ui/core/styles';
+import styled from 'styled-components';
 import Sketch from './SketchVariables';
+
+const fontFamily = [
+  Sketch.typography.fontFamily,
+  'Roboto',
+  '"Helvetica Neue"',
+  'sans-serif',
+].join(',');
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -25,13 +34,16 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: [
-      Sketch.typography.fontFamily,
-      'Roboto',
-      '"Helvetica Neue"',
-      'sans-serif',
-    ].join(','),
+    fontFamily,
   },
 });
+
+export const TypographyHeaderGrey = styled(Typography)`
+  && {
+    font-size: 24px;
+    font-weight: 500;
+    font-color: #767676;
+  }
+`;
 
 export default theme;
