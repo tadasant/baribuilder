@@ -11,8 +11,8 @@ import {fixedWidthImage} from '../lib/imageKitHelpers';
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
 
 const PaddedImg = styled.img`
-  height: 90%;
-  padding: 8px;
+  height: 80%;
+  margin: 8px;
 `;
 
 const GridWithRaisedBackground = styled(Grid)`
@@ -34,7 +34,7 @@ interface IProps {
 
 const HeaderPure: SFC<IProps> = props => {
   return (
-    <GridWithRaisedBackground container spacing={8}>
+    <GridWithRaisedBackground container>
       <Grid item xs={6}>
         <Link to='/' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>

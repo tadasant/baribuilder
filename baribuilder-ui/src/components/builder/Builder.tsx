@@ -1,26 +1,32 @@
 import * as React from 'react';
-import {Fragment, SFC} from 'react';
-import {withState} from 'recompose';
-import Header from '../Header';
+import {Component} from 'react';
+import BuilderPure from './BuilderPure';
 
-const enhance = withState<{}, {}, 'disableHeader', 'setDisableHeader'>(
-  'disableHeader',
-  'setDisableHeader',
-  false
-);
-
-interface IProps {
+interface IState {
   disableHeader: boolean;
-  setDisableHeader: () => boolean;
 }
 
-const PureBuilder: SFC<IProps> = ({disableHeader}) => {
-  return (
-    <Fragment>
-      <Header disableButtons={disableHeader} hideNavigation />
-      {/*<ProductSelection/>*/}
-    </Fragment>
-  );
-};
+class BuilderContainer extends Component<{}, Readonly<IState>> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      disableHeader: false,
+    };
+    this.setDisableHeader = this.setDisableHeader.bind(this);
+  }
 
-export default enhance(PureBuilder);
+  setDisableHeader(disableHeader: boolean) {
+    this.setState({disableHeader});
+  }
+
+  render() {
+    return (
+      <BuilderPure
+        disableHeader={this.state.disableHeader}
+        setDisableHeader={this.setDisableHeader}
+      />
+    );
+  }
+}
+
+export default BuilderContainer;
