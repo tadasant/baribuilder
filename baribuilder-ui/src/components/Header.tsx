@@ -30,13 +30,13 @@ const WhiteNavButton = styled(Button)`
 const HeaderPure: SFC = () => {
   return (
     <GridWithRaisedBackground container={true} spacing={8}>
-      <Grid item={true} lg={3}>
+      <Grid item={true} lg={3} xs={6}>
         <Link to='/' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
         </Link>
       </Grid>
-      <Grid item={true} lg={7}/>
-      <Grid item={true} container={true} lg={1} alignItems='center'>
+      <Grid item={true} lg={7} xs={2}/>
+      <Grid item={true} container={true} lg={1} xs={2} alignItems='center'>
         <Grid item={true}>
           <Link to='/builder' onClick={generateTrackNavClick('Browse nav')}>
             <WhiteNavButton fullWidth={true}>
@@ -45,7 +45,7 @@ const HeaderPure: SFC = () => {
           </Link>
         </Grid>
       </Grid>
-      <Grid item={true} container={true} lg={1} alignItems='center'>
+      <Grid item={true} container={true} lg={1} xs={2} alignItems='center'>
         <Grid item={true}>
           <Link to='/builder' onClick={generateTrackNavClick('Build nav')}>
             <WhiteNavButton fullWidth={true}>
