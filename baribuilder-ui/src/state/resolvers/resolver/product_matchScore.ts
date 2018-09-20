@@ -1,5 +1,5 @@
-import {TLocalProductResolverFunc} from '../localProduct';
 import calculateMatchScore from '../lib/product_matchScore';
+import {TLocalProductResolverFunc} from '../localProduct';
 
 // TODO queries
 

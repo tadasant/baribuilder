@@ -1,14 +1,16 @@
-import React, {Component, Fragment} from 'react';
-import {Caption, Header} from '../../style/Typography';
-import {EmptyRow} from '../../style/Layout';
 import Button from '@material-ui/core/Button';
-import Sketch from '../../../app/style/SketchVariables';
 import Grid from '@material-ui/core/Grid';
-import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
-import images from '../../../constants/images';
+import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
-import ReactGA from 'react-ga';
+import React, {Component, Fragment} from 'react';
+import * as ReactGA from 'react-ga';
+import styled from 'styled-components';
+import Sketch from '../../../app/style/SketchVariables';
+import images from '../../../constants/images';
+import {EmptyRow} from '../../style/Layout';
+import {Header} from '../../style/Typography';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const HeroGrid = styled(Grid)`
   height: 100vh;
@@ -28,8 +30,19 @@ const HeroGrid = styled(Grid)`
   }
 `;
 
-const PaddedImg = styled.img`
-  padding: 8px;
+const NearFullWidthTextField = styled(TextField)`
+  width: 95%;
+`;
+
+const CTANavButton = styled(Button)`
+  && {
+    color: ${Sketch.color.accent.white};
+    background-color: ${Sketch.color.accent.black};
+    
+    :hover {
+      background-color: ${fade(Sketch.color.accent.black, .8)};
+    }
+  }
 `;
 
 class Hero extends Component {
@@ -59,50 +72,60 @@ class Hero extends Component {
   render() {
     return (
       <HeroGrid item container alignContent='flex-start'>
-          <Grid item xs={12}>
-            <a href='https://vitaglab.com/' target='_blank' rel='noopener noreferrer' onClick={this.handleLogoClick}>
-              <PaddedImg
-                src={images.coloredLogo.original}
-                srcSet={`${images.coloredLogo.mobile} 64w,
-                         ${images.coloredLogo.tablet} 128w`}
-                sizes={`(min-width: ${Sketch.breakpoints.tablet}px) 128px, 64px`}
-                alt='Vita.G Logo'
-              />
-            </a>
+        <EmptyRow mobile='25px'/>
+        <Fragment>
+          <Hidden only='xs' lgUp>
+            <Grid item sm={1}/>
+          </Hidden>
+          <Grid item xs={12} sm={10} lg={12}>
+            <Header dark>Find the bariatric vitamins best for <u>you</u>.</Header>
           </Grid>
-          <EmptyRow mobile='50px'/>
-          <Fragment>
-            <Hidden only='xs' lgUp>
-              <Grid item sm={1}/>
-            </Hidden>
-            <Grid item xs={12} sm={10} lg={12}>
-              <Header dark>Bariatric vitamins, made easy.</Header>
+          <Hidden only='xs' lgUp>
+            <Grid item sm={1}/>
+          </Hidden>
+        </Fragment>
+        <EmptyRow mobile='25px'/>
+        <Fragment>
+          <Grid item xs={1} lg={3}/>
+          <Grid item xs={6} lg={4}>
+            <NearFullWidthTextField
+              InputProps={{style: {borderColor: Sketch.color.secondary.blue}}}
+              placeholder='Email Address'
+            />
+          </Grid>
+          <Grid item xs={4} lg={2}>
+            <Button
+              color='secondary'
+              fullWidth
+              variant='raised'
+              // onClick={this.handleCTAClick}
+            >
+              Get Updates
+            </Button>
+          </Grid>
+          <Grid item xs={1} lg={3}/>
+        </Fragment>
+        <EmptyRow mobile='25px'/>
+        <Fragment>
+          <Grid item xs={1} lg={3}/>
+          <Grid item xs={5} lg={3} container direction='row'>
+            <Grid item xs={11}>
+              <CTANavButton variant='raised' fullWidth>
+                Browse Product Catalog
+              </CTANavButton>
             </Grid>
-            <Hidden only='xs' lgUp>
-              <Grid item sm={1}/>
-            </Hidden>
-          </Fragment>
-          <EmptyRow mobile='75px' desktop='50px'/>
-          <Fragment>
-            <Grid item xs={2} sm={3} lg={4}/>
-            <Grid item xs={8} sm={6} lg={4}>
-              <Button
-                color='secondary'
-                fullWidth
-                variant='raised'
-                onClick={this.handleCTAClick}>
-                Join Waitlist
-              </Button>
+            <Grid item xs={1}/>
+          </Grid>
+          <Grid item xs={5} lg={3} container direction='row'>
+            <Grid item xs={1}/>
+            <Grid item xs={11}>
+              <CTANavButton variant='raised' fullWidth>
+                Build Personal Regimen
+              </CTANavButton>
             </Grid>
-            <Grid item xs={2} sm={3} lg={4}/>
-          </Fragment>
-          <Fragment>
-            <Grid item xs={2} sm={3} lg={4}/>
-            <Grid item xs={8} sm={6} lg={4}>
-              <Caption dark>Coming soon: BariBuilder, a <u>free</u> web application to help you find your vitamins.</Caption>
-            </Grid>
-            <Grid item xs={2} sm={3} lg={4}/>
-          </Fragment>
+          </Grid>
+          <Grid item xs={1} lg={3}/>
+        </Fragment>
       </HeroGrid>
     );
   }
