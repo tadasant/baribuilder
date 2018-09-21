@@ -1,52 +1,48 @@
-import {FREQUENCY} from '../../../typings/gql/globalTypes';
+import gql from 'graphql-tag';
+import {GetProductForProductCost} from '../../../typings/gql/GetProductForProductCost';
+import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {ICost} from '../../client-schema-types';
 import calculateCost from '../lib/product_cost';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
+import defaultUnitQuantityResolver from './product_defaultUnitQuantity';
 
 /**
- * Required remote data. Reverse engineered from a query.
- *
- * query {
- *      Product(id: "${id}"){
- *          listings {
- *              price {
- *                  amount
- *              }
- *              numServings
- *          }
- *      }
- *  }
+ * Non-client queries need to be in cache already.
  */
+const PRODUCT_QUERY = (id: string) => gql`
+    query GetProductForProductCost {
+        Product(id: "${id}"){
+            listings {
+                price {
+                    amount
+                }
+                numServings
+            }
+        }
+    }
+`;
 
-interface IPrice {
-  amount: number;
-}
+const costResolver: TLocalProductResolverFunc<IProductObj, ICost> = (obj, _, {cache}) => {
 
-export interface IListingForProductCost {
-  price: IPrice;
-  numServings: number;
-}
+  // Grab data
+  const productResult: GetProductForProductCost | null = cache.readQuery<any, GetProductIngredients>({
+    query: PRODUCT_QUERY(obj.id)
+  });
+  // TODO get quantity from local state cache
+  const quantity = defaultUnitQuantityResolver(obj, _, {cache});
 
-interface IDefaultQuantity {
-  amount: number;
-  frequency: FREQUENCY;
-}
-
-export type IProductObjForProductCost = IProductObj & {
-  listings: IListingForProductCost[] | null;
-  defaultUnitQuantity: IDefaultQuantity;
-}
-
-const costResolver: TLocalProductResolverFunc<IProductObjForProductCost, ICost> = (obj, _, {cache}) => {
   //// Verify required data is present
-  if (!obj.listings || !obj.defaultUnitQuantity) {
-    console.warn('obj listings or defaultUnitQuantity falsey');
+  if (!productResult || !productResult.Product || !productResult.Product.listings) {
+    console.warn('productResult falsey');
+    return null;
+  }
+  if (quantity === null) {
+    console.warn('quantity falsey');
     return null;
   }
 
   //// Perform transformation
-  // TODO send quantity from local state (not just defaultUnitQuantity)
-  return calculateCost(obj.listings, obj.defaultUnitQuantity);
+  return calculateCost(productResult.Product.listings, quantity);
 };
 
 export default costResolver;

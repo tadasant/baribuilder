@@ -7,6 +7,9 @@ import {IUnitQuantity} from '../../client-schema-types';
 import {calculateDefaultUnitQuantity} from '../lib/product_defaultUnitQuantity';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 
+/**
+ * Non-client queries need to be in cache already.
+ */
 const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
     query GetProductIngredients {
         Product(id: "${id}") {
@@ -113,6 +116,7 @@ const defaultUnitQuantityResolver: TLocalProductResolverFunc<IProductObj, IUnitQ
     dosagesResult.desiredDosages.ingredientRanges,
     regimenResult.currentRegimen.products,
   );
+  // TODO write quantity to the cache
 };
 
 export default defaultUnitQuantityResolver;
