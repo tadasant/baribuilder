@@ -34,7 +34,11 @@ const GET_PRODUCT_QUERY = gql`
             }
             cost @client {
                 value
-                frequency
+                quantity {
+                    number
+                    units
+                    frequency
+                }
             }
         }
     }

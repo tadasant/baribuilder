@@ -38,7 +38,7 @@ enum QUANTITY_UNITS {
 
 type Cost {
     value: Float!
-    frequency: FREQUENCY!
+    quantity: Quantity!
 }
 
 type RegimenCost {

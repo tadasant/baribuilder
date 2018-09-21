@@ -19,7 +19,7 @@ const calculateCost = (listings: GetProductForProductCost_Product_listings[], qu
     return {
       __typename: 'Cost',
       value: 0.0,
-      frequency: quantity.frequency,
+      quantity,
     }
   }
 
@@ -29,7 +29,7 @@ const calculateCost = (listings: GetProductForProductCost_Product_listings[], qu
   return {
     __typename: 'Cost',
     value: cheapestCostPerServing * quantity.number,
-    frequency: quantity.frequency,
+    quantity,
   }
 };
 

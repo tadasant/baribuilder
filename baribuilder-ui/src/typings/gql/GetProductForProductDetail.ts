@@ -48,10 +48,17 @@ export interface GetProductForProductDetail_Product_defaultQuantity {
   frequency: FREQUENCY;
 }
 
+export interface GetProductForProductDetail_Product_cost_quantity {
+  __typename: "Quantity";
+  number: number;
+  units: QUANTITY_UNITS;
+  frequency: FREQUENCY;
+}
+
 export interface GetProductForProductDetail_Product_cost {
   __typename: "Cost";
   value: number;
-  frequency: FREQUENCY;
+  quantity: GetProductForProductDetail_Product_cost_quantity;
 }
 
 export interface GetProductForProductDetail_Product {

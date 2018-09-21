@@ -1,11 +1,20 @@
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
-import {ICost} from '../../client-schema-types';
+import {IRegimenCost, QUANTITY_UNITS} from '../../client-schema-types';
 
-const calculateProjectedRegimenCost = (): ICost => {
+const calculateProjectedRegimenCost = (): IRegimenCost => {
   return {
-    __typename: 'Cost',
-    value: 200.0,
-    frequency: FREQUENCY.DAILY,
+    __typename: 'RegimenCost',
+    numRemainingProducts: 0,
+    cost: {
+      __typename: 'Cost',
+      value: 200.0,
+      quantity: {
+        __typename: 'Quantity',
+        units: QUANTITY_UNITS.SERVINGS,
+        frequency: FREQUENCY.DAILY,
+        number: 0.0,
+      },
+    }
   }
 };
 

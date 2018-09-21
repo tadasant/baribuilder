@@ -50,7 +50,7 @@ export interface IIngredientType {
 export interface ICost {
   __typename: string;
   value: number;
-  frequency: FREQUENCY;
+  quantity: IQuantity;
 }
 
 export interface IRegimenCost {

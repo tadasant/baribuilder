@@ -1,4 +1,4 @@
-import {ICost} from '../../client-schema-types';
+import {IRegimenCost} from '../../client-schema-types';
 import calculateProjectedRegimenCost from '../lib/product_projectedRegimenCost';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 
@@ -16,7 +16,7 @@ import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 //     }
 // `;
 
-const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, ICost> = (obj, _, {cache}) => {
+const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegimenCost> = (obj, _, {cache}) => {
   //// Grab data
   // const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
   //   query: PRODUCT_INGREDIENTS_QUERY(obj.id)
