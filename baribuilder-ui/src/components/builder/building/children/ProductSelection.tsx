@@ -16,6 +16,26 @@ const data = graphql<{}, GetProductsForProductSelection>(gql`
     query GetProductsForProductSelection {
         allProducts {
             id
+            
+            # Prefetch data for detail cards
+            listings {
+                price {
+                    amount
+                }
+                numServings
+            }
+            nutritionFacts {
+                serving {
+                    count
+                }
+                ingredients {
+                    amount
+                    units
+                    ingredientType {
+                        name
+                    }
+                }
+            }
         }
     }
 `);
