@@ -41,7 +41,7 @@ export interface GetProductForProductDetail_Product_nutritionFacts {
   ingredients: GetProductForProductDetail_Product_nutritionFacts_ingredients[] | null;
 }
 
-export interface GetProductForProductDetail_Product_defaultUnitQuantity {
+export interface GetProductForProductDetail_Product_defaultQuantity {
   __typename: "Quantity";
   number: number;
   units: QUANTITY_UNITS;
@@ -59,7 +59,7 @@ export interface GetProductForProductDetail_Product {
   id: string;
   listings: GetProductForProductDetail_Product_listings[] | null;
   nutritionFacts: GetProductForProductDetail_Product_nutritionFacts;
-  defaultUnitQuantity: GetProductForProductDetail_Product_defaultUnitQuantity;
+  defaultQuantity: GetProductForProductDetail_Product_defaultQuantity;
   cost: GetProductForProductDetail_Product_cost;
 }
 

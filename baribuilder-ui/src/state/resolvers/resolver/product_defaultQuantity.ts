@@ -4,7 +4,7 @@ import {GetCurrentRegimen} from '../../../typings/gql/GetCurrentRegimen';
 import {GetDesiredDosages} from '../../../typings/gql/GetDesiredDosages';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {IQuantity} from '../../client-schema-types';
-import {calculateDefaultUnitQuantity} from '../lib/product_defaultUnitQuantity';
+import {calculateDefaultQuantity} from '../lib/product_defaultQuantity';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 
 /**
@@ -76,7 +76,7 @@ const CURRENT_REGIMEN_QUERY = gql`
     }
 `;
 
-const defaultUnitQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuantity> = (obj, _, {cache}) => {
+const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuantity> = (obj, _, {cache}) => {
   //// Grab data
   const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
     query: PRODUCT_INGREDIENTS_QUERY(obj.id)
@@ -110,7 +110,7 @@ const defaultUnitQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuant
   }
 
   //// Perform transformation
-  return calculateDefaultUnitQuantity(
+  return calculateDefaultQuantity(
     productResult.Product.nutritionFacts.ingredients,
     allProductsResult.allProducts,
     dosagesResult.desiredDosages.ingredientRanges,
@@ -119,4 +119,4 @@ const defaultUnitQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuant
   // TODO write quantity to the cache
 };
 
-export default defaultUnitQuantityResolver;
+export default defaultQuantityResolver;

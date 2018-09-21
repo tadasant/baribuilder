@@ -27,7 +27,7 @@ const GET_PRODUCT_QUERY = gql`
                     }
                 }
             }
-            defaultUnitQuantity @client {
+            defaultQuantity @client {
                 number
                 units
                 frequency
@@ -65,7 +65,7 @@ const enhance = compose<IProps & DataOutputProps, IProps>(
 
 // Pure
 const ProductPure: SFC<IProps & DataOutputProps> = ({data: { Product }, id}) => {
-  return <div>{Product === null || Product === undefined ? null : `${id}; ${Product.defaultUnitQuantity.number}; ${Product.cost.value}`}</div>;
+  return <div>{Product === null || Product === undefined ? null : `${id}; ${Product.defaultQuantity.number}; ${Product.cost.value}`}</div>;
 };
 
 export default enhance(ProductPure);

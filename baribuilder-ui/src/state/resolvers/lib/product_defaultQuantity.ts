@@ -90,7 +90,7 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
   return targetIngredientRanges;
 };
 
-export const calculateDefaultUnitQuantity = (
+export const calculateDefaultQuantity = (
   productIngredients: GetProductIngredients_Product_nutritionFacts_ingredients[],
   products: GetAllProductIngredients_allProducts[],
   desiredIngredientRanges: IIngredientRange[],

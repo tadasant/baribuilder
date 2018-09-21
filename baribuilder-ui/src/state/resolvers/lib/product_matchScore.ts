@@ -1,5 +1,5 @@
-const calculateDefaultUnitQuantity = (): number => {
+const calculateDefaultQuantity = (): number => {
   return 100.0
 };
 
-export default calculateDefaultUnitQuantity;
+export default calculateDefaultQuantity;

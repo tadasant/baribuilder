@@ -1,7 +1,7 @@
 import {ICost, IQuantity} from '../client-schema-types';
 import {TResolverFunc} from '../resolvers';
 import costResolver from './resolver/product_cost';
-import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
+import defaultQuantityResolver from './resolver/product_defaultQuantity';
 import matchScoreResolver from './resolver/product_matchScore';
 import projectedRegimenCostResolver from './resolver/product_projectedRegimenCost';
 
@@ -23,7 +23,7 @@ export type TLocalProductResolverFunc<IRemoteObj, IResultData> = TResolverFunc<I
 interface ILocalProductResolvers {
   cost: TLocalProductResolverFunc<IProductObj, ICost>;
   projectedRegimenCost: TLocalProductResolverFunc<IProductObj, ICost>;
-  defaultUnitQuantity: TLocalProductResolverFunc<IProductObj, IQuantity>;
+  defaultQuantity: TLocalProductResolverFunc<IProductObj, IQuantity>;
   matchScore: TLocalProductResolverFunc<IProductObj, number>;
 }
 
@@ -31,7 +31,7 @@ interface ILocalProductResolvers {
 const resolvers: ILocalProductResolvers = {
   cost: costResolver,
   projectedRegimenCost: projectedRegimenCostResolver,
-  defaultUnitQuantity: defaultUnitQuantityResolver,
+  defaultQuantity: defaultQuantityResolver,
   matchScore: matchScoreResolver,
 };
 

@@ -43,7 +43,7 @@ type Quantity {
 extend type Product {
     cost: Cost!
     projectedRegimenCost: Cost!
-    defaultUnitQuantity: Quantity!
+    defaultQuantity: Quantity!
     matchScore: Float!
 }
 
