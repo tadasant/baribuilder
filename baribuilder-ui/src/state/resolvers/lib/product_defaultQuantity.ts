@@ -44,8 +44,9 @@ const deriveIdealQuantityViaLimitingMicros = (
 
 // TODO break this out into more steps (very confusing logic)
 const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], products: GetAllProductIngredients_allProducts[]): IIngredientRange[] => {
+  // TODO quantity units need to implemented somewhere here
   const allDosagesDaily = desiredIngredientRanges.every(range => (range.minimum ? range.minimum.frequency === 'DAILY' : true) && (range.maximum ? range.maximum.frequency === 'DAILY' : true));
-  const allRegimenProductDosagesDaily = currentRegimenProducts.every(product => product.frequency === 'DAILY');
+  const allRegimenProductDosagesDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
   if (!allDosagesDaily || !allRegimenProductDosagesDaily) {
     console.warn('Not all frequencies are DAILY. Error 38239');
     return [];
@@ -63,10 +64,10 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
             console.warn(`Conversions not yet supported ${products[product.id].name}, ${productIngredient.ingredientType.name}`);
           }
           if (range.maximum && newMax !== undefined) {
-            newMax -= productIngredient.amount * product.numServings;
+            newMax -= productIngredient.amount * product.quantity.number;
           }
           if (range.minimum && newMin !== undefined) {
-            newMin -= productIngredient.amount * product.numServings;
+            newMin -= productIngredient.amount * product.quantity.number;
           }
         }
       });

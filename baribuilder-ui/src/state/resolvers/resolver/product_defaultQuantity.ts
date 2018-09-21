@@ -69,8 +69,11 @@ const CURRENT_REGIMEN_QUERY = gql`
         currentRegimen @client {
             products {
                 id
-                numServings
-                frequency
+                quantity {
+                    number
+                    frequency
+                    units
+                }
             }
         }
     }

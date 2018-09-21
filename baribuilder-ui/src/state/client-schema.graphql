@@ -51,8 +51,7 @@ extend type Product {
 
 type RegimenProduct {
     id: ID!
-    numServings: Int!
-    frequency: FREQUENCY!
+    quantity: Quantity!
 }
 
 type Regimen {

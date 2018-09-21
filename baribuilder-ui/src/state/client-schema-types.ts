@@ -6,8 +6,7 @@ export enum QUANTITY_UNITS {
 
 export interface IRegimenProduct {
   id: string;
-  numServings: number;
-  frequency: FREQUENCY;
+  quantity: IQuantity;
 }
 
 export interface IRegimen {
@@ -15,6 +14,7 @@ export interface IRegimen {
   products: IRegimenProduct[]
 }
 
+// TODO this should be moved to central source of truth reference data concept
 export interface IIngredientType {
   name: string;
 }
