@@ -1,6 +1,6 @@
 import {ICost, IUnitQuantity} from '../client-schema-types';
 import {TResolverFunc} from '../resolvers';
-import costResolver from './resolver/product_cost';
+import costResolver, {ICostArgs} from './resolver/product_cost';
 import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
 import matchScoreResolver from './resolver/product_matchScore';
 import projectedRegimenCostResolver from './resolver/product_projectedRegimenCost';
@@ -17,13 +17,13 @@ interface IProductQuery {
   [key: string]: any;
 }
 
-export type TLocalProductResolverFunc<TData> = TResolverFunc<IProductQuery, TData>;
+export type TLocalProductResolverFunc<TData, TArgs = {}> = TResolverFunc<IProductQuery, TArgs, TData>;
 
 /**
  * Beware that most of these local resolvers require that certain remote data be present in the cache.
  */
 interface ILocalProductResolvers {
-  cost: TLocalProductResolverFunc<ICost>;
+  cost: TLocalProductResolverFunc<ICost, ICostArgs>;
   projectedRegimenCost: TLocalProductResolverFunc<ICost>;
   defaultUnitQuantity: TLocalProductResolverFunc<IUnitQuantity>;
   matchScore: TLocalProductResolverFunc<number>;

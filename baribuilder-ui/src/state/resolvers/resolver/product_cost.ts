@@ -1,35 +1,47 @@
-import {ICost} from '../../client-schema-types';
+import gql from 'graphql-tag';
+import {GetProductForProductCost} from '../../../typings/gql/GetProductForProductCost';
+import {ICost, IUnitQuantity} from '../../client-schema-types';
 import calculateCost from '../lib/product_cost';
 import {TLocalProductResolverFunc} from '../localProduct';
 
-// TODO queries
+/**
+ * Can pass these args
+ */
+export interface ICostArgs {
+  quantity?: IUnitQuantity; // If not present, use defaultUnitQuantity
+}
 
-// const CURRENT_REGIMEN_QUERY = gql`
-//     query GetCurrentRegimen {
-//         currentRegimen @client {
-//             products {
-//                 id
-//                 numServings
-//                 frequency
-//             }
-//         }
-//     }
-// `;
+const PRODUCT_QUERY = (id: string) => gql`
+    query GetProductForProductCost {
+        Product(id: "${id}"){
+            listings {
+                price {
+                    amount
+                }
+                numServings
+            }
+            defaultUnitQuantity @client {
+                amount
+                frequency
+            }
+        }
+    }
+`;
 
-const costResolver: TLocalProductResolverFunc<ICost> = (obj, _, {cache}) => {
+const costResolver: TLocalProductResolverFunc<ICost, ICostArgs> = (obj, args, {cache}) => {
   //// Grab data
-  // const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
-  //   query: PRODUCT_INGREDIENTS_QUERY(obj.id)
-  // });
+  const productResult: GetProductForProductCost | null = cache.readQuery<any, GetProductForProductCost>({
+    query: PRODUCT_QUERY(obj.id)
+  });
 
   //// Verify successful grabs
-  // if (!productResult || !productResult.Product || !productResult.Product.nutritionFacts.ingredients) {
-  //   console.warn('productResult falsey');
-  //   return null;
-  // }
+  if (!productResult || !productResult.Product || !productResult.Product.listings) {
+    console.warn('productResult falsey');
+    return null;
+  }
 
   //// Perform transformation
-  return calculateCost();
+  return calculateCost(productResult.Product.listings, args.quantity || productResult.Product.defaultUnitQuantity);
 };
 
 export default costResolver;
