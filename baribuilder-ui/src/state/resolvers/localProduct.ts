@@ -1,6 +1,6 @@
 import {ICost, IUnitQuantity} from '../client-schema-types';
 import {TResolverFunc} from '../resolvers';
-import costResolver, {ICostArgs} from './resolver/product_cost';
+import costResolver, {IProductObjForProductCost} from './resolver/product_cost';
 import defaultUnitQuantityResolver from './resolver/product_defaultUnitQuantity';
 import matchScoreResolver from './resolver/product_matchScore';
 import projectedRegimenCostResolver from './resolver/product_projectedRegimenCost';
@@ -11,22 +11,20 @@ import projectedRegimenCostResolver from './resolver/product_projectedRegimenCos
  *
  * Basically a hacky way to do args, since they don't get passed down.
  */
-interface IProductQuery {
+export interface IProductObj {
   id: string;
-
-  [key: string]: any;
 }
 
-export type TLocalProductResolverFunc<TData, TArgs = {}> = TResolverFunc<IProductQuery, TArgs, TData>;
+export type TLocalProductResolverFunc<IRemoteObj, IResultData> = TResolverFunc<IRemoteObj, {}, IResultData>;
 
 /**
  * Beware that most of these local resolvers require that certain remote data be present in the cache.
  */
 interface ILocalProductResolvers {
-  cost: TLocalProductResolverFunc<ICost, ICostArgs>;
-  projectedRegimenCost: TLocalProductResolverFunc<ICost>;
-  defaultUnitQuantity: TLocalProductResolverFunc<IUnitQuantity>;
-  matchScore: TLocalProductResolverFunc<number>;
+  cost: TLocalProductResolverFunc<IProductObjForProductCost, ICost>;
+  projectedRegimenCost: TLocalProductResolverFunc<IProductObj, ICost>;
+  defaultUnitQuantity: TLocalProductResolverFunc<IProductObj, IUnitQuantity>;
+  matchScore: TLocalProductResolverFunc<IProductObj, number>;
 }
 
 

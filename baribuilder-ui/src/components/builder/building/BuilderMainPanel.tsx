@@ -3,7 +3,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
 import {EmptyRow} from '../../style/Layout';
-import ProductSelection from './children/ProductSelection';
+// import ProductSelection from './children/ProductSelection';
 
 const PaddedGrid = styled(Grid)`
   padding-left: 8px;
@@ -17,7 +17,7 @@ const BuilderMainPanel: SFC = () => {
       <Grid item container direction='row'>
         <Grid item lg={11} container direction='row' alignContent='flex-start'>
           <Grid item lg={12}>
-            <ProductSelection/>
+            {/*<ProductSelection/>*/}
           </Grid>
         </Grid>
         <Grid item lg={1}/>
