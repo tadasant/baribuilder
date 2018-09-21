@@ -1,5 +1,9 @@
 import {FREQUENCY, INGREDIENT_UNITS} from '../typings/gql/globalTypes';
 
+export enum QUANTITY_UNITS {
+  SERVINGS = "SERVINGS",
+}
+
 export interface IRegimenProduct {
   id: string;
   numServings: number;
@@ -38,8 +42,9 @@ export interface ICost {
   frequency: FREQUENCY;
 }
 
-export interface IUnitQuantity {
+export interface IQuantity {
   __typename: string;
-  amount: number;
+  number: number;
+  units: QUANTITY_UNITS;
   frequency: FREQUENCY;
 }

@@ -3,7 +3,7 @@ import {GetAllProductIngredients} from '../../../typings/gql/GetAllProductIngred
 import {GetCurrentRegimen} from '../../../typings/gql/GetCurrentRegimen';
 import {GetDesiredDosages} from '../../../typings/gql/GetDesiredDosages';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
-import {IUnitQuantity} from '../../client-schema-types';
+import {IQuantity} from '../../client-schema-types';
 import {calculateDefaultUnitQuantity} from '../lib/product_defaultUnitQuantity';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 
@@ -76,7 +76,7 @@ const CURRENT_REGIMEN_QUERY = gql`
     }
 `;
 
-const defaultUnitQuantityResolver: TLocalProductResolverFunc<IProductObj, IUnitQuantity> = (obj, _, {cache}) => {
+const defaultUnitQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuantity> = (obj, _, {cache}) => {
   //// Grab data
   const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
     query: PRODUCT_INGREDIENTS_QUERY(obj.id)

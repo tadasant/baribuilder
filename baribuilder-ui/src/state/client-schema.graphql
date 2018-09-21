@@ -35,7 +35,8 @@ type Cost {
 }
 
 type Quantity {
-    amount: Int!
+    number: Int!
+    units: QUANTITY_UNITS!
     frequency: FREQUENCY!
 }
 

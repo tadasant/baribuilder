@@ -18,6 +18,10 @@ export enum INGREDIENT_UNITS {
   MG = "MG",
 }
 
+export enum QUANTITY_UNITS {
+  SERVINGS = "SERVINGS",
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
