@@ -50,12 +50,12 @@ const DESIRED_DOSAGES_QUERY = gql`
                     name
                 }
                 minimum {
-                    amount
+                    number
                     units
                     frequency
                 }
                 maximum {
-                    amount
+                    number
                     units
                     frequency
                 }

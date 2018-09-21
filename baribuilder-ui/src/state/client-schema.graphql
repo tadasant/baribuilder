@@ -55,7 +55,7 @@ type Regimen {
 }
 
 type Dosage {
-    amount: Float!
+    number: Float!
     units: INGREDIENT_UNITS!
     frequency: FREQUENCY!
 }

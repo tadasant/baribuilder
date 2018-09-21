@@ -16,7 +16,7 @@ export interface IIngredientType {
 }
 
 export interface IDosage {
-  amount: number;
+  number: number;
   units: INGREDIENT_UNITS;
   frequency: FREQUENCY;
 }

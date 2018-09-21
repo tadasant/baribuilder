@@ -14,14 +14,14 @@ export interface GetDesiredDosages_desiredDosages_ingredientRanges_ingredientTyp
 
 export interface GetDesiredDosages_desiredDosages_ingredientRanges_minimum {
   __typename: "Dosage";
-  amount: number;
+  number: number;
   units: INGREDIENT_UNITS;
   frequency: FREQUENCY;
 }
 
 export interface GetDesiredDosages_desiredDosages_ingredientRanges_maximum {
   __typename: "Dosage";
-  amount: number;
+  number: number;
   units: INGREDIENT_UNITS;
   frequency: FREQUENCY;
 }
