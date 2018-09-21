@@ -3,7 +3,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {branch, compose, pure, renderComponent} from 'recompose';
-import {GetProduct, GetProductVariables} from '../../../typings/gql/GetProduct';
+import {GetProduct, GetProductVariables} from '../../../../typings/gql/GetProduct';
 
 const GET_PRODUCT_QUERY = gql`
     query GetProduct($id: ID) {

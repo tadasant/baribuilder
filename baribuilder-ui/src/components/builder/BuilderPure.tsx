@@ -4,6 +4,7 @@ import {Fragment, SFC} from 'react';
 import Header from '../Header';
 import BuilderHeader from './building/BuilderHeader';
 import BuilderLeftPanel from './building/BuilderLeftPanel';
+import BuilderMainPanel from './building/BuilderMainPanel';
 
 interface IProps {
   disableHeader: boolean;
@@ -21,8 +22,7 @@ const BuilderPure: SFC<IProps> = ({disableHeader}) => {
           <BuilderLeftPanel />
         </Grid>
         <Grid item lg={8}>
-          {/*<ProductSelection/>*/}
-          Product Selection
+          <BuilderMainPanel/>
         </Grid>
       </Grid>
     </Fragment>

@@ -9,9 +9,7 @@ import styled from 'styled-components';
 import {TypographyHeaderGrey} from '../../../app/style/MuiTheming';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetEnumValuesOfCategoriesAndForms} from '../../../typings/gql/GetEnumValuesOfCategoriesAndForms';
-import {headerHeight} from '../../Header';
 import {EmptyRow} from '../../style/Layout';
-import {builderHeaderHeight} from './BuilderHeader';
 
 // GraphQL HOC props (output)
 // TODO pass in selected category & filters
@@ -37,10 +35,6 @@ const enhance = compose<DataOutputProps, {}>(
   pure,
 );
 
-const OuterGrid = styled(Grid)`
-  height: calc(100vh - ${headerHeight} - ${builderHeaderHeight});
-`;
-
 const InnerGrid = styled(Grid)`
   border-right: 1px solid ${Sketch.color.accent.grey};
 `;
@@ -48,7 +42,7 @@ const InnerGrid = styled(Grid)`
 // Pure
 const BuilderLeftPanelPure: SFC<DataOutputProps> = ({data: {CATEGORY, FORMS}}) => {
   return (
-    <OuterGrid container alignContent='flex-start'>
+    <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
       <InnerGrid item container direction='row'>
         <Grid item lg={1}/>
@@ -74,7 +68,7 @@ const BuilderLeftPanelPure: SFC<DataOutputProps> = ({data: {CATEGORY, FORMS}}) =
         <Grid item lg={1}/>
       </InnerGrid>
       <EmptyRow mobile='1px'/>
-    </OuterGrid>
+    </Grid>
   )
 };
 
