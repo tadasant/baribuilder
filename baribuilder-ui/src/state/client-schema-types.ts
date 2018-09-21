@@ -32,14 +32,9 @@ export interface IDesiredDosages {
   ingredientRanges: IIngredientRange[];
 }
 
-export interface IPrice {
-  __typename: string;
-  amount: number
-}
-
 export interface ICost {
   __typename: string;
-  value: IPrice;
+  value: number;
   frequency: FREQUENCY;
 }
 

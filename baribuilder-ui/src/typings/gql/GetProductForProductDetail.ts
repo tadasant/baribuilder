@@ -47,14 +47,9 @@ export interface GetProductForProductDetail_Product_defaultUnitQuantity {
   frequency: FREQUENCY;
 }
 
-export interface GetProductForProductDetail_Product_cost_value {
-  __typename: "Price";
-  amount: number;
-}
-
 export interface GetProductForProductDetail_Product_cost {
   __typename: "Cost";
-  value: GetProductForProductDetail_Product_cost_value;
+  value: number;
   frequency: FREQUENCY;
 }
 

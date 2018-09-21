@@ -1,7 +1,7 @@
 ##// Defines what we can query on the GraphQL client store
 ##
 ##// TODO this typeDefs feature is broken. It is only used for
-##// introspection, not validation, and the introspection breaks
+##// introspection, not validation, and the introspection breaks in GraphiQL (but is still useful for apollo CLI)
 ##// for weird reasons: https://github.com/apollographql/apollo-client-devtools/issues/132
 ##
 ##// Don't forget to include __typename in GraphiQL: https://github.com/apollographql/apollo-link-state/issues/239
@@ -25,8 +25,12 @@ enum FREQUENCY {
     MONTHLY
 }
 
+enum QUANTITY_UNITS {
+    SERVINGS
+}
+
 type Cost {
-    value: Price!
+    value: Float!
     frequency: FREQUENCY!
 }
 
