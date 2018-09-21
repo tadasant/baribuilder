@@ -2,14 +2,14 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetProducts
+// GraphQL query operation: GetProductsForBuilderHeader
 // ====================================================
 
-export interface GetProducts_allProducts {
+export interface GetProductsForBuilderHeader_allProducts {
   __typename: "Product";
   id: string;
 }
 
-export interface GetProducts {
-  allProducts: GetProducts_allProducts[];
+export interface GetProductsForBuilderHeader {
+  allProducts: GetProductsForBuilderHeader_allProducts[];
 }

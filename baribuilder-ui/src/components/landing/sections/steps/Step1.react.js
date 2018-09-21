@@ -49,7 +49,7 @@ const Step1 = () => (
       <Hidden only='xs'>
         <Grid item sm={1}/>
       </Hidden>
-      <EmptyRow mobile='15px'/>
+      <EmptyRow mobile='5px'/>
       <Hidden only='xs'>
         <Grid item sm={1} />
       </Hidden>
@@ -68,7 +68,7 @@ const Step1 = () => (
       <Fragment>
         <Grid item xs={1} sm={2} />
         <Grid item xs={10} sm={8} container justify='center'>
-          <EmptyRow mobile='20px'/>
+          <EmptyRow mobile='10px'/>
           <Grid item lg={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
           </Grid>
@@ -92,7 +92,7 @@ const Step1 = () => (
       <Grid item lg={4} container>
         <Grid item lg={12}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
-          <EmptyRow desktop='30px'/>
+          <EmptyRow desktop='20px'/>
           <CenteredBody dark>{subInstructionCopy}</CenteredBody>
           <OptionPill value={optionsCopy[0]} />
           <OptionPill value={optionsCopy[1]} />

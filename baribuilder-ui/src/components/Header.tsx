@@ -9,16 +9,17 @@ import {generateTrackNavClick} from '../lib/gaHelper';
 import {fixedWidthImage} from '../lib/imageKitHelpers';
 
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
+export const headerHeight = '64px';
 
 const PaddedImg = styled.img`
-  height: 90%;
-  padding: 8px;
+  height: 80%;
+  margin: 8px;
 `;
 
 const GridWithRaisedBackground = styled(Grid)`
   background-color: ${Sketch.color.accent.black};
   box-shadow: 0px 2px 4px 0px;
-  height: 64px;
+  height: ${headerHeight};
 `;
 
 const WhiteNavButton = styled(Button)`
@@ -27,30 +28,39 @@ const WhiteNavButton = styled(Button)`
   }
 `;
 
-const HeaderPure: SFC = () => {
+interface IProps {
+  disableButtons?: boolean;
+  hideNavigation?: boolean;
+}
+
+const HeaderPure: SFC<IProps> = props => {
   return (
-    <GridWithRaisedBackground container spacing={8}>
+    <GridWithRaisedBackground container>
       <Grid item xs={6}>
         <Link to='/' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
         </Link>
       </Grid>
-      <Grid item xs={6} container alignItems='center' justify='flex-end'>
-        <Grid item>
-          <Link to='/builder' onClick={generateTrackNavClick('Browse nav')}>
-            <WhiteNavButton fullWidth>
-              Browse
-            </WhiteNavButton>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link to='/builder?openMyRegimen=true' onClick={generateTrackNavClick('Build nav')}>
-            <WhiteNavButton fullWidth>
-              Build
-            </WhiteNavButton>
-          </Link>
-        </Grid>
-      </Grid>
+      {
+        props.hideNavigation ? null :
+          <Grid item xs={6} container alignItems='center' justify='flex-end'>
+            <Grid item>
+              <Link to='/builder' onClick={generateTrackNavClick('Browse nav')}>
+                <WhiteNavButton fullWidth>
+                  Browse
+                </WhiteNavButton>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to='/builder?openMyRegimen=true' onClick={generateTrackNavClick('Build nav')}>
+                <WhiteNavButton fullWidth>
+                  Build
+                </WhiteNavButton>
+              </Link>
+            </Grid>
+          </Grid>
+      }
+
     </GridWithRaisedBackground>
   )
 };

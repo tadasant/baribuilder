@@ -6,8 +6,8 @@ import { media } from './Core';
 
 interface IMarginProps {
   mobile: string;
-  tablet: string;
-  desktop: string;
+  tablet?: string;
+  desktop?: string;
 }
 
 interface ISpacedGridProps extends GridProps {
@@ -29,7 +29,7 @@ const SpacedGrid = styled(Grid)`
 `;
 
 const HiddenSpan = styled.span`
-  display: none;
+  visibility: hidden;
 `;
 
 // Creates full row (12 columns) of space, using props `mobile`, `tablet`, `desktop` as margin size
