@@ -98,6 +98,7 @@ export const calculateDefaultUnitQuantity = (
 ): IUnitQuantity => {
   const targetIngredientRanges = calculateTargetIngredientRanges(desiredIngredientRanges, currentRegimenProducts, products);
   return {
+    __typename: 'Quantity',
     amount: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),
     frequency: FREQUENCY.DAILY,
   };

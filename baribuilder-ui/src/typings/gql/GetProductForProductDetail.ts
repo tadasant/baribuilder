@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { INGREDIENT_UNITS } from "./globalTypes";
+import { INGREDIENT_UNITS, FREQUENCY } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetProductForProductDetail
@@ -41,11 +41,30 @@ export interface GetProductForProductDetail_Product_nutritionFacts {
   ingredients: GetProductForProductDetail_Product_nutritionFacts_ingredients[] | null;
 }
 
+export interface GetProductForProductDetail_Product_defaultUnitQuantity {
+  __typename: "Quantity";
+  amount: number;
+  frequency: FREQUENCY;
+}
+
+export interface GetProductForProductDetail_Product_cost_value {
+  __typename: "Price";
+  amount: number;
+}
+
+export interface GetProductForProductDetail_Product_cost {
+  __typename: "Cost";
+  value: GetProductForProductDetail_Product_cost_value;
+  frequency: FREQUENCY;
+}
+
 export interface GetProductForProductDetail_Product {
   __typename: "Product";
   id: string;
   listings: GetProductForProductDetail_Product_listings[] | null;
   nutritionFacts: GetProductForProductDetail_Product_nutritionFacts;
+  defaultUnitQuantity: GetProductForProductDetail_Product_defaultUnitQuantity;
+  cost: GetProductForProductDetail_Product_cost;
 }
 
 export interface GetProductForProductDetail {

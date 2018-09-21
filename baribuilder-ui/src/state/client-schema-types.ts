@@ -33,15 +33,18 @@ export interface IDesiredDosages {
 }
 
 export interface IPrice {
+  __typename: string;
   amount: number
 }
 
 export interface ICost {
+  __typename: string;
   value: IPrice;
   frequency: FREQUENCY;
 }
 
 export interface IUnitQuantity {
+  __typename: string;
   amount: number;
   frequency: FREQUENCY;
 }

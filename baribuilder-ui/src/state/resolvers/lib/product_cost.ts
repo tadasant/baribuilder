@@ -17,7 +17,9 @@ const calculateCheapestCostPerServing = (listings: GetProductForProductCost_Prod
 const calculateCost = (listings: GetProductForProductCost_Product_listings[], quantity: IUnitQuantity): ICost => {
   if (listings.length === 0) {
     return {
+      __typename: 'Cost',
       value: {
+        __typename: 'Price',
         amount: 0.0,
       },
       frequency: quantity.frequency,
@@ -28,7 +30,9 @@ const calculateCost = (listings: GetProductForProductCost_Product_listings[], qu
 
   // Use qty to calculate the amount
   return {
+    __typename: 'Cost',
     value: {
+      __typename: 'Price',
       amount: cheapestCostPerServing * quantity.amount,
     },
     frequency: quantity.frequency,
