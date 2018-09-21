@@ -25,6 +25,13 @@ enum FREQUENCY {
     MONTHLY
 }
 
+extend type Product {
+    cost: Cost!
+    projectedRegimenCost: RegimenCost!
+    defaultQuantity: Quantity!
+    matchScore: Float!
+}
+
 enum QUANTITY_UNITS {
     SERVINGS
 }
@@ -34,28 +41,38 @@ type Cost {
     frequency: FREQUENCY!
 }
 
+type RegimenCost {
+    numRemainingProducts: Int!
+    cost: Cost!
+}
+
 type Quantity {
     number: Int!
     units: QUANTITY_UNITS!
     frequency: FREQUENCY!
 }
 
-extend type Product {
-    cost: Cost!
-    projectedRegimenCost: Cost!
-    defaultQuantity: Quantity!
-    matchScore: Float!
-}
-
 ##### Local state storage (matches client-schema-types.ts); hopefully we can generate that sometime
+
+type Regimen {
+    products: [RegimenProduct!]!
+}
 
 type RegimenProduct {
     id: ID!
     quantity: Quantity!
 }
 
-type Regimen {
-    products: [RegimenProduct!]!
+type DesiredDosages {
+    ingredientRanges: [IngredientRange!]!
+}
+
+type IngredientRange {
+    ingredientType: IngredientType!
+    minimumDosage: Dosage
+    maximumDosage: Dosage
+    units: INGREDIENT_UNITS!
+    frequency: FREQUENCY!
 }
 
 type Dosage {
@@ -64,17 +81,7 @@ type Dosage {
     frequency: FREQUENCY!
 }
 
-type IngredientRange {
-    ingredientType: IngredientType!
-    minimum: Dosage
-    maximum: Dosage
-    units: INGREDIENT_UNITS!
-    frequency: FREQUENCY!
-}
-
-type DesiredDosages {
-    ingredientRanges: [IngredientRange!]!
-}
+##### Queries and Mutations for local state
 
 extend type Query {
     desiredDosages: DesiredDosages

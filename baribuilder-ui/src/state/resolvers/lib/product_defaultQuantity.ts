@@ -21,14 +21,14 @@ const deriveIdealQuantityViaLimitingMicros = (
     const ingredientName = ingredientRange.ingredientType.name;
     if (productIngredientsByName.hasOwnProperty(ingredientName)) {
       let smallestToFillIngredient: number | undefined = undefined;
-      if (ingredientRange.minimum) {
-        smallestToFillIngredient = ingredientRange.minimum.number / productIngredientsByName[ingredientName].amount;
+      if (ingredientRange.minimumDosage) {
+        smallestToFillIngredient = ingredientRange.minimumDosage.number / productIngredientsByName[ingredientName].amount;
         smallestToFillIngredient = smallestToFillIngredient % 1 > 0.001 ? Math.ceil(smallestToFillIngredient) : Math.floor(smallestToFillIngredient); // Don't round up if it's within .001
       }
 
       let maxBeforeExceedIngredient: number | undefined = undefined;
-      if (ingredientRange.maximum) {
-        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximum.number / productIngredientsByName[ingredientName].amount);
+      if (ingredientRange.maximumDosage) {
+        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximumDosage.number / productIngredientsByName[ingredientName].amount);
       }
 
       if (smallestToFill === undefined || (smallestToFillIngredient !== undefined && smallestToFillIngredient > smallestToFill)) {
@@ -45,7 +45,7 @@ const deriveIdealQuantityViaLimitingMicros = (
 // TODO break this out into more steps (very confusing logic)
 const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], products: GetAllProductIngredients_allProducts[]): IIngredientRange[] => {
   // TODO quantity units need to implemented somewhere here
-  const allDosagesDaily = desiredIngredientRanges.every(range => (range.minimum ? range.minimum.frequency === 'DAILY' : true) && (range.maximum ? range.maximum.frequency === 'DAILY' : true));
+  const allDosagesDaily = desiredIngredientRanges.every(range => (range.minimumDosage ? range.minimumDosage.frequency === 'DAILY' : true) && (range.maximumDosage ? range.maximumDosage.frequency === 'DAILY' : true));
   const allRegimenProductDosagesDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
   if (!allDosagesDaily || !allRegimenProductDosagesDaily) {
     console.warn('Not all frequencies are DAILY. Error 38239');
@@ -54,34 +54,34 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
 
   const targetIngredientRanges: IIngredientRange[] = [];
   desiredIngredientRanges.forEach(range => {
-    let newMax = range.maximum ? range.maximum.number : undefined;
-    let newMin = range.minimum ? range.minimum.number : undefined;
+    let newMax = range.maximumDosage ? range.maximumDosage.number : undefined;
+    let newMin = range.minimumDosage ? range.minimumDosage.number : undefined;
     currentRegimenProducts.forEach(product => {
       const productIngredients = products[product.id].nutritionFacts.ingredients || [];
       productIngredients.forEach((productIngredient: GetProductIngredients_Product_nutritionFacts_ingredients) => {
         if (productIngredient.ingredientType.name === range.ingredientType.name) {
-          if ((range.maximum && productIngredient.units !== range.maximum.units) || (range.minimum && productIngredient.units !== range.minimum.units)) {
+          if ((range.maximumDosage && productIngredient.units !== range.maximumDosage.units) || (range.minimumDosage && productIngredient.units !== range.minimumDosage.units)) {
             console.warn(`Conversions not yet supported ${products[product.id].name}, ${productIngredient.ingredientType.name}`);
           }
-          if (range.maximum && newMax !== undefined) {
+          if (range.maximumDosage && newMax !== undefined) {
             newMax -= productIngredient.amount * product.quantity.number;
           }
-          if (range.minimum && newMin !== undefined) {
+          if (range.minimumDosage && newMin !== undefined) {
             newMin -= productIngredient.amount * product.quantity.number;
           }
         }
       });
     });
     const result = {...range};
-    if (range.minimum && newMin !== undefined) {
-      result.minimum = {
-        ...range.minimum,
+    if (range.minimumDosage && newMin !== undefined) {
+      result.minimumDosage = {
+        ...range.minimumDosage,
         number: newMin,
       }
     }
-    if (range.maximum && newMax !== undefined) {
-      result.maximum = {
-        ...range.maximum,
+    if (range.maximumDosage && newMax !== undefined) {
+      result.maximumDosage = {
+        ...range.maximumDosage,
         number: newMax,
       }
     }
