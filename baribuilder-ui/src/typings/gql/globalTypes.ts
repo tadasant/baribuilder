@@ -11,11 +11,15 @@ export enum FREQUENCY {
   WEEKLY = "WEEKLY",
 }
 
-export enum INGREDIENT_UNITS {
+export enum INGREDIENT_QUANTITY_UNITS {
   G = "G",
   IU = "IU",
   MCG = "MCG",
   MG = "MG",
+}
+
+export enum PRODUCT_QUANTITY_UNITS {
+  SERVINGS = "SERVINGS",
 }
 
 //==============================================================

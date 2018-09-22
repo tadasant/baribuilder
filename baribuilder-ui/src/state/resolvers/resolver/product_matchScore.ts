@@ -1,9 +1,9 @@
 import calculateMatchScore from '../lib/product_matchScore';
-import {TLocalProductResolverFunc} from '../localProduct';
+import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 
 // TODO queries
 
-// const CURRENT_REGIMEN_QUERY = gql`
+// const CURRENT_REGIMEN_PRODUCTS_QUERY = gql`
 //     query GetCurrentRegimen {
 //         currentRegimen @client {
 //             products {
@@ -15,7 +15,7 @@ import {TLocalProductResolverFunc} from '../localProduct';
 //     }
 // `;
 
-const matchScoreResolver: TLocalProductResolverFunc<number> = (obj, _, {cache}) => {
+const matchScoreResolver: TLocalProductResolverFunc<IProductObj, number> = (obj, _, {cache}) => {
   //// Grab data
   // const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
   //   query: PRODUCT_INGREDIENTS_QUERY(obj.id)

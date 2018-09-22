@@ -1,7 +1,7 @@
 ##// Defines what we can query on the GraphQL client store
 ##
 ##// TODO this typeDefs feature is broken. It is only used for
-##// introspection, not validation, and the introspection breaks
+##// introspection, not validation, and the introspection breaks in GraphiQL (but is still useful for apollo CLI)
 ##// for weird reasons: https://github.com/apollographql/apollo-client-devtools/issues/132
 ##
 ##// Don't forget to include __typename in GraphiQL: https://github.com/apollographql/apollo-link-state/issues/239
@@ -25,54 +25,61 @@ enum FREQUENCY {
     MONTHLY
 }
 
-type Cost {
-    value: Price!
-    frequency: FREQUENCY!
-}
-
-type Quantity {
-    amount: Int!
-    frequency: FREQUENCY!
-}
-
 extend type Product {
     cost: Cost!
-    projectedRegimenCost: Cost!
-    defaultUnitQuantity: Quantity!
+    projectedRegimenCost: RegimenCost
+    # defaultQuantity will be 1 Daily if desiredIngredients not set
+    defaultQuantity: ProductQuantity!
+    # quantity: ProductQuantity need to be implemented on client
     matchScore: Float!
 }
 
-##### Local state storage (matches client-schema-types.ts); hopefully we can generate that sometime
+enum PRODUCT_QUANTITY_UNITS {
+    SERVINGS
+}
 
-type RegimenProduct {
-    id: ID!
-    numServings: Int!
+type Cost {
+    money: Float!
     frequency: FREQUENCY!
 }
+
+type RegimenCost {
+    numRemainingProducts: Int!
+    cost: Cost!
+}
+
+type ProductQuantity {
+    number: Int!
+    units: PRODUCT_QUANTITY_UNITS!
+    frequency: FREQUENCY!
+}
+
+##### Local state storage (matches client-schema-types.ts); hopefully we can generate that sometime
 
 type Regimen {
     products: [RegimenProduct!]!
 }
 
-type Dosage {
-    amount: Float!
-    units: INGREDIENT_UNITS!
-    frequency: FREQUENCY!
+type RegimenProduct {
+    id: ID!
+    quantity: ProductQuantity!
+    cost: Cost!
+}
+
+type DesiredIngredients {
+    ingredientRanges: [IngredientRange!]!
 }
 
 type IngredientRange {
     ingredientType: IngredientType!
-    minimum: Dosage
-    maximum: Dosage
-    units: INGREDIENT_UNITS!
+    minimumIngredientQuantity: IngredientQuantity
+    maximumIngredientQuantity: IngredientQuantity
     frequency: FREQUENCY!
 }
 
-type DesiredDosages {
-    ingredientRanges: [IngredientRange!]!
-}
+##### Queries and Mutations for local state
 
 extend type Query {
-    desiredDosages: DesiredDosages
+    desiredIngredients: DesiredIngredients
     currentRegimen: Regimen
 }

@@ -6,9 +6,9 @@ export interface IResolverContext {
   cache: ApolloClient<IApolloStateShape>
 }
 
-export type TResolverFunc<TObj, TData> = (obj: TObj, args: {}, context: IResolverContext) => TData | null;
+export type TResolverFunc<TObj, TArgs, TData> = (obj: TObj, args: TArgs, context: IResolverContext) => TData | null;
 
-// TODO is there a way to enforce a remote query so that my local queries don't break if dependent on a remote one wasn't done?
+// TODO is there a way to make a remote query call within local resolver so my dependent things don't break if not present in cache?
 const resolvers = {
   Product: {
     ...localProductResolvers
@@ -16,7 +16,7 @@ const resolvers = {
   // Mutation: {
   // AddProductToCurrentRegimen(id, qty, units)
   // RemoveProductFromCurrentRegimen(id, qty, units)
-  // SetDesiredDosages(...: IDosages[])
+  // SetDesiredIngredientRanges(...: I)
   // },
 };
 

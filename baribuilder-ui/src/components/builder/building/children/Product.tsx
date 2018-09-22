@@ -3,27 +3,43 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {branch, compose, pure, renderComponent} from 'recompose';
-import {GetProduct, GetProductVariables} from '../../../../typings/gql/GetProduct';
+import {GetProductForProductDetail, GetProductForProductDetailVariables} from '../../../../typings/gql/GetProductForProductDetail';
 
 const GET_PRODUCT_QUERY = gql`
-    query GetProduct($id: ID) {
+    query GetProductForProductDetail($id: ID) {
         Product(id: $id) {
             id
             listings {
                 price {
                     amount
                 }
+                numServings
             }
             nutritionFacts {
-                serving {
-                    count
-                }
                 ingredients {
-                    amount
-                    units
+                    ingredientQuantity {
+                        amount
+                        units
+                    }
                     ingredientType {
                         name
                     }
+                }
+            }
+            defaultQuantity @client {
+                number
+                units
+                frequency
+            }
+            cost @client {
+                money
+                frequency
+            }
+            projectedRegimenCost @client {
+                numRemainingProducts
+                cost {
+                    money
+                    frequency
                 }
             }
         }
@@ -34,9 +50,9 @@ interface IProps {
   id: string
 }
 
-type DataOutputProps = ChildDataProps<IProps, GetProduct, GetProductVariables>;
+type DataOutputProps = ChildDataProps<IProps, GetProductForProductDetail, GetProductForProductDetailVariables>;
 
-const data = graphql<IProps, GetProduct, GetProductVariables, DataOutputProps>(GET_PRODUCT_QUERY, {
+const data = graphql<IProps, GetProductForProductDetail, GetProductForProductDetailVariables, DataOutputProps>(GET_PRODUCT_QUERY, {
   options: ({ id }) => ({
     variables: { id },
   }),
@@ -55,7 +71,7 @@ const enhance = compose<IProps & DataOutputProps, IProps>(
 
 // Pure
 const ProductPure: SFC<IProps & DataOutputProps> = ({data: { Product }, id}) => {
-  return <div>{Product === null || Product === undefined ? null : id}</div>;
+  return <div>{Product === null || Product === undefined ? null : `${id}; ${Product.defaultQuantity.number}; ${Product.cost.money}; ${Product.projectedRegimenCost ? Product.projectedRegimenCost.cost.money : 'Can\'t determine projCost' }`}</div>;
 };
 
 export default enhance(ProductPure);

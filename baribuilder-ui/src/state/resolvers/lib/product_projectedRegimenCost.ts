@@ -1,12 +1,34 @@
-import {FREQUENCY} from '../../../typings/gql/globalTypes';
-import {ICost} from '../../client-schema-types';
+import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
+import {ICost, IIngredientRange, IProductQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
+import {
+  projectCostOfIngredients,
+  subtractProductFromRegimenIngredients,
+  subtractRegimenIngredientsFromDesiredIngredientRanges,
+  sumCostOfProducts,
+  sumCosts
+} from './helpers';
 
-const calculateProjectedRegimenCost = (): ICost => {
+
+export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients_allProducts {
+  cost: ICost;
+  quantity: IProductQuantity;
+}
+
+const calculateProjectedRegimenCost = (
+  product: IProductForProjectedRegimenCost,
+  desiredIngredientRanges: IIngredientRange[],
+  currentRegimenProducts: IRegimenProduct[],
+  products: GetAllProductsIngredients_allProducts[],
+): IRegimenCost => {
+  const targetRegimenIngredients = subtractRegimenIngredientsFromDesiredIngredientRanges(currentRegimenProducts, desiredIngredientRanges, products);
+  const remainingRegimenIngredients = subtractProductFromRegimenIngredients(targetRegimenIngredients, product);
+  const numRemainingProducts = remainingRegimenIngredients.length;
+  const remainingProjectedCost = projectCostOfIngredients(remainingRegimenIngredients);
+  const totalProjectedCost = sumCosts(product.cost, sumCostOfProducts(currentRegimenProducts), remainingProjectedCost);
   return {
-    value: {
-      amount: 200.0,
-    },
-    frequency: FREQUENCY.DAILY,
+    __typename: 'RegimenCost',
+    numRemainingProducts,
+    cost: totalProjectedCost,
   }
 };
 

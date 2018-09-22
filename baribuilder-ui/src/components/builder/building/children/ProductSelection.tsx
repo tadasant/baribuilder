@@ -16,6 +16,25 @@ const data = graphql<{}, GetProductsForProductSelection>(gql`
     query GetProductsForProductSelection {
         allProducts {
             id
+            
+            # Prefetch data for detail cards
+            listings {
+                price {
+                    amount
+                }
+                numServings
+            }
+            nutritionFacts {
+                ingredients {
+                    ingredientQuantity {
+                        amount
+                        units
+                    }
+                    ingredientType {
+                        name
+                    }
+                }
+            }
         }
     }
 `);
@@ -35,11 +54,11 @@ const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allProducts, loading
     return (
       <Grid container direction='row' alignItems='flex-start'>
         {allProducts.map(product => (
-          <Fragment>
+          <Fragment key={product.id}>
             <Grid item lg={12}>
               <Paper>
                 <PaddedDiv>
-                  <Product key={product.id} id={product.id}/>
+                  <Product id={product.id}/>
                 </PaddedDiv>
               </Paper>
             </Grid>
