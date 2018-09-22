@@ -47,8 +47,8 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
   // TODO quantity units need to implemented somewhere here
   // TODO [BUG] need to do a keyBy on products so I can access w/ ID
   const allRangesDaily = desiredIngredientRanges.every(range => range.frequency === 'DAILY');
-  const allRegimenProductDosagesDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
-  if (!allRangesDaily || !allRegimenProductDosagesDaily) {
+  const allRegimenProductIngredientsDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
+  if (!allRangesDaily || !allRegimenProductIngredientsDaily) {
     console.warn('Not all frequencies are DAILY. Error 38239');
     return [];
   }

@@ -56,7 +56,7 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   const result: IRegimenIngredient[] = [];
 
   desiredIngredientRanges.forEach(range => {
-    const regimenIngredient = subtractRegimenIngredientFromMinimumDosage(range, regimenIngredientsByName[range.ingredientType.name]);
+    const regimenIngredient = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientType.name]);
     if (regimenIngredient !== null) {
       result.push(regimenIngredient)
     }
@@ -118,7 +118,7 @@ const addRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIn
   }
 };
 
-const subtractRegimenIngredientFromMinimumDosage = (
+const subtractRegimenIngredientFromMinimumIngredient = (
   range: IIngredientRange,
   regimenIngredient: IRegimenIngredient
 ): IRegimenIngredient | null => {
@@ -129,7 +129,7 @@ const subtractRegimenIngredientFromMinimumDosage = (
     return null;
   }
   if (minimumIngredientQuantity == null) {
-    console.warn('Minimum dosage was null. Error code 489293.');
+    console.warn('minimumIngredientQuantity was null. Error code 489293.');
     return null;
   }
   // if (minimumIngredientQuantity.units !==)

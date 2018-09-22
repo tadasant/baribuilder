@@ -47,7 +47,7 @@ export const ALL_PRODUCTS_QUERY = gql`
     }
 `;
 
-const DESIRED_DOSAGES_QUERY = gql`
+const DESIRED_INGREDIENTS_QUERY = gql`
     query GetDesiredIngredients {
         desiredIngredients @client {
             ingredientRanges {
@@ -91,8 +91,8 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQu
   const allProductsResult: GetAllProductsIngredients | null = cache.readQuery<any, GetAllProductsIngredients>({
     query: ALL_PRODUCTS_QUERY
   });
-  const dosagesResult: GetDesiredIngredients | null = cache.readQuery({
-    query: DESIRED_DOSAGES_QUERY
+  const desiredIngredientsResult: GetDesiredIngredients | null = cache.readQuery({
+    query: DESIRED_INGREDIENTS_QUERY
   });
   const regimenResult: GetCurrentRegimen | null = cache.readQuery({
     query: CURRENT_REGIMEN_QUERY
@@ -107,7 +107,7 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQu
     console.warn('allProductsResult falsey');
     return null;
   }
-  if (!dosagesResult || !dosagesResult.desiredIngredients || !dosagesResult.desiredIngredients.ingredientRanges) {
+  if (!desiredIngredientsResult || !desiredIngredientsResult.desiredIngredients || !desiredIngredientsResult.desiredIngredients.ingredientRanges) {
     console.warn('desiredIngredientRanges falsey');
     return null;
   }
@@ -120,7 +120,7 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQu
   return calculateDefaultQuantity(
     productResult.Product.nutritionFacts.ingredients,
     allProductsResult.allProducts,
-    dosagesResult.desiredIngredients.ingredientRanges,
+    desiredIngredientsResult.desiredIngredients.ingredientRanges,
     regimenResult.currentRegimen.products,
   );
   // TODO write quantity to the cache

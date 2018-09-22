@@ -16,7 +16,7 @@ const resolvers = {
   // Mutation: {
   // AddProductToCurrentRegimen(id, qty, units)
   // RemoveProductFromCurrentRegimen(id, qty, units)
-  // SetDesiredIngredientRanges(...: IDosages[])
+  // SetDesiredIngredientRanges(...: I)
   // },
 };
 
