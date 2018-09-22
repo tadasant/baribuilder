@@ -1,8 +1,9 @@
 import {cloneDeep, keyBy} from 'lodash';
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
-import {ICost, IIngredient, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
-import {IProductForProjectedRegimenCost} from './product_projectedRegimenCost';
+import {ICost, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
+
+// TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
 
 /**
  * Returns non-range ingredients with the minimum desired as a reference point. If the existing exceeds the
@@ -26,16 +27,39 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   return results;
 };
 
+/**
+ * Returns the same regimenIngredients minus the aggregate of the ingredients found in product.
+ */
 export const subtractProductFromRegimenIngredients = (
-  ingredients: IRegimenIngredient[],
-  product: IProductForProjectedRegimenCost,
-): IIngredient[] => {
-  // TODO
-  return [];
+  regimenIngredients: IRegimenIngredient[],
+  product: GetAllProductsIngredients_allProducts,
+): IRegimenIngredient[] => {
+  if (product.nutritionFacts.ingredients === null) {
+    console.warn(`Ingredients shouldn\'t be null. Error code 58938238. Product ID: ${product.id}`);
+    return [];
+  }
+
+  const productIngredientsByName = keyBy(product.nutritionFacts.ingredients, i => i.ingredientType.name);
+  return regimenIngredients.map(regimenIngredient => {
+    if (productIngredientsByName.hasOwnProperty(regimenIngredient.ingredientType.name)) {
+      if (regimenIngredient.ingredientQuantity.units === productIngredientsByName[regimenIngredient.ingredientType.name].ingredientQuantity.units) {
+        return {
+          ...regimenIngredient,
+          ingredientQuantity: {
+            ...regimenIngredient.ingredientQuantity,
+            amount: regimenIngredient.ingredientQuantity.amount - productIngredientsByName[regimenIngredient.ingredientType.name].ingredientQuantity.amount,
+          }
+        }
+      } else {
+        console.warn('Unit conversions unsupported. Error code 58938238');
+      }
+    }
+    return regimenIngredient;
+  })
 };
 
 // NB: "project" is a verb here
-export const projectCost = (remainingIngredients: IIngredient[]): ICost => {
+export const projectCost = (remainingIngredients: IRegimenIngredient[]): ICost => {
   // TODO
   return {
     __typename: 'Cost',

@@ -1,16 +1,14 @@
-import {
-  GetAllProductsIngredients,
-  GetAllProductsIngredients_allProducts
-} from '../../../typings/gql/GetAllProductsIngredients';
+import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {ICost, IIngredientRange, IProductQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import {
-  addCosts, calculateRegimenCost,
+  addCosts,
+  calculateRegimenCost,
   projectCost,
   subtractProductFromRegimenIngredients,
   subtractRegimenIngredientsFromDesiredIngredientRanges
 } from './helpers';
 
-export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients {
+export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients_allProducts {
   cost: ICost;
   quantity: IProductQuantity;
 }
