@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngredients';
 import {GetCurrentRegimen} from '../../../typings/gql/GetCurrentRegimen';
-import {GetDesiredIngredientRanges} from '../../../typings/gql/GetDesiredIngredientRanges';
+import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {IQuantity} from '../../client-schema-types';
 import {calculateDefaultQuantity} from '../lib/product_defaultQuantity';
@@ -44,8 +44,8 @@ export const ALL_PRODUCTS_QUERY = gql`
 `;
 
 const DESIRED_DOSAGES_QUERY = gql`
-    query GetDesiredIngredientRanges {
-        desiredIngredientRanges @client {
+    query GetDesiredIngredients {
+        desiredIngredients @client {
             ingredientRanges {
                 ingredientType {
                     name
@@ -87,7 +87,7 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuantity>
   const allProductsResult: GetAllProductsIngredients | null = cache.readQuery<any, GetAllProductsIngredients>({
     query: ALL_PRODUCTS_QUERY
   });
-  const dosagesResult: GetDesiredIngredientRanges | null = cache.readQuery({
+  const dosagesResult: GetDesiredIngredients | null = cache.readQuery({
     query: DESIRED_DOSAGES_QUERY
   });
   const regimenResult: GetCurrentRegimen | null = cache.readQuery({
@@ -103,7 +103,7 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuantity>
     console.warn('allProductsResult falsey');
     return null;
   }
-  if (!dosagesResult || !dosagesResult.desiredIngredientRanges || !dosagesResult.desiredIngredientRanges.ingredientRanges) {
+  if (!dosagesResult || !dosagesResult.desiredIngredients || !dosagesResult.desiredIngredients.ingredientRanges) {
     console.warn('desiredIngredientRanges falsey');
     return null;
   }
@@ -116,7 +116,7 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuantity>
   return calculateDefaultQuantity(
     productResult.Product.nutritionFacts.ingredients,
     allProductsResult.allProducts,
-    dosagesResult.desiredIngredientRanges.ingredientRanges,
+    dosagesResult.desiredIngredients.ingredientRanges,
     regimenResult.currentRegimen.products,
   );
   // TODO write quantity to the cache

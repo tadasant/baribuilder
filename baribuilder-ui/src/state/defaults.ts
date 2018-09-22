@@ -1,8 +1,8 @@
-import {IDesiredIngredientRanges, IRegimen} from './client-schema-types';
+import {IDesiredIngredients, IRegimen} from './client-schema-types';
 
 export interface IApolloStateShape {
   currentRegimen: IRegimen;
-  desiredIngredientRanges: IDesiredIngredientRanges;
+  desiredIngredients: IDesiredIngredients;
 }
 
 const defaults: IApolloStateShape = {
@@ -10,8 +10,8 @@ const defaults: IApolloStateShape = {
     __typename: 'Regimen',
     products: [],
   },
-  desiredIngredientRanges: {
-    __typename: 'DesiredIngredientRanges',
+  desiredIngredients: {
+    __typename: 'DesiredIngredients',
     ingredientRanges: [],
   }
 };

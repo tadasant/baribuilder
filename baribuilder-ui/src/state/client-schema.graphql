@@ -63,7 +63,7 @@ type RegimenProduct {
     quantity: Quantity!
 }
 
-type DesiredIngredientRanges {
+type DesiredIngredients {
     ingredientRanges: [IngredientRange!]!
 }
 
@@ -83,6 +83,6 @@ type Dosage {
 ##### Queries and Mutations for local state
 
 extend type Query {
-    desiredIngredientRanges: DesiredIngredientRanges
+    desiredIngredients: DesiredIngredients
     currentRegimen: Regimen
 }
