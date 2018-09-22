@@ -22,7 +22,10 @@ const calculateRegimenIngredients = (
       ingredients.forEach(ingredient => {
         const regimenIngredient: IRegimenIngredient = {
           ...cloneDeep(ingredient),
-          amount: ingredient.amount * product.quantity.number,
+          ingredientQuantity: {
+            ...cloneDeep(ingredient.ingredientQuantity),
+            amount: ingredient.ingredientQuantity.amount * product.quantity.number,
+          },
           frequency: product.quantity.frequency,
         };
 
@@ -103,12 +106,15 @@ const addRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIn
   return {
     __typename: 'RegimenIngredient',
     frequency: FREQUENCY.DAILY,
-    amount: 0.0,
+    ingredientQuantity: {
+      __typename: 'IngredientQuantity',
+      amount: 0.0,
+      units: INGREDIENT_QUANTITY_UNITS.G
+    },
     ingredientType: {
       __typename: 'IngredientType',
       name: 'Vitamin A',
     },
-    units: INGREDIENT_QUANTITY_UNITS.G
   }
 };
 

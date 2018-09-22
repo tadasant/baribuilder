@@ -73,9 +73,14 @@ export interface IIngredientType {
   name: string;
 }
 
-export interface IIngredient {
+export interface IIngredientQuantity {
   __typename: string;
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
+}
+
+export interface IIngredient {
+  __typename: string;
+  ingredientQuantity: IIngredientQuantity;
   ingredientType: IIngredientType;
 }
