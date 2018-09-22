@@ -16,14 +16,6 @@ interface IRegimenIngredientsByName {
   [key: string]: IRegimenIngredient;
 }
 
-/**
- * RegimenIngredient, as opposed to ingredient, adds the following enhancements in the context of a regimen:
- *
- * 1) Removes concept of products so we're only looking at discrete ingredients
- * 2) Removes concept of quantity of each product so we're only looking at aggregations of ingredients
- * 3) The above removals are captured in the "amount"
- * 4) Adds concept of "frequency", since regimens are taken on a cadence
- */
 const calculateRegimenIngredients = (
   regimenProducts: IRegimenProduct[],
   products: GetAllProductsIngredients_allProducts[]
@@ -65,15 +57,16 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   products: GetAllProductsIngredients_allProducts[],
 ): IRegimenIngredient[] => {
   const regimenIngredientsByName = calculateRegimenIngredients(regimenProducts, products);
-  // const result = [];
-  //
-  // desiredIngredientRanges.forEach(range => {
-  //   result.push(subtractIngredientFromDosage(range.minimumDosage, ))
-  //   const
-  //   let remainingIngredient = range.minimumDosage;
-  // })
-  // TODO
-  return [];
+  const result: IRegimenIngredient[] = [];
+
+  desiredIngredientRanges.forEach(range => {
+    const regimenIngredient = subtractRegimenIngredientFromMinimumDosage(range, regimenIngredientsByName[range.ingredientType.name]);
+    if (regimenIngredient !== null) {
+      result.push(regimenIngredient)
+    }
+  });
+
+  return result;
 };
 
 export const subtractProductFromRegimenIngredients = (
@@ -139,4 +132,23 @@ const addRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIn
     },
     units: INGREDIENT_UNITS.G
   }
+};
+
+const subtractRegimenIngredientFromMinimumDosage = (
+  range: IIngredientRange,
+  regimenIngredient: IRegimenIngredient
+): IRegimenIngredient | null => {
+  const {minimumDosage} = range;
+
+  if (range.frequency !== regimenIngredient.frequency) {
+    console.warn('Frequency conversions unsupported. Error code 489293.');
+    return null;
+  }
+  if (minimumDosage == null) {
+    console.warn('Minimum dosage was null. Error code 489293.');
+    return null;
+  }
+  // if (minimumDosage.units !==)
+  //
+  // return minimumDosage.number;
 };

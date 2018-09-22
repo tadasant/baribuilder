@@ -53,6 +53,18 @@ export interface IRegimenCost {
   cost: ICost;
 }
 
+/**
+ * RegimenIngredient, as opposed to Ingredient, combines concept of Regimen and Ingredient, with these modifications:
+ *
+ * 1) Removes concept of products so we're only looking at discrete ingredients
+ * 2) Removes concept of quantity of each product so we're only looking at aggregations of ingredients
+ * 3) The above removals are captured in the "amount" / "units"
+ * 4) Adds concept of "frequency", since regimens are taken on a cadence
+ */
+export interface IRegimenIngredient extends IIngredient {
+  frequency: FREQUENCY;
+}
+
 //// Server side duplicates
 
 // TODO this should be moved to central source of truth reference data concept
@@ -66,8 +78,4 @@ export interface IIngredient {
   amount: number;
   units: INGREDIENT_UNITS;
   ingredientType: IIngredientType;
-}
-
-export interface IRegimenIngredient extends IIngredient {
-  frequency: FREQUENCY;
 }
