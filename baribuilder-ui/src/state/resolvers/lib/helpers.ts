@@ -63,8 +63,8 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   regimenProducts: IRegimenProduct[],
   desiredIngredientRanges: IIngredientRange[],
   products: GetAllProductsIngredients_allProducts[],
-): IIngredient[] => {
-  // const regimenIngredientsByName = calculateRegimenIngredients(regimenProducts, products);
+): IRegimenIngredient[] => {
+  const regimenIngredientsByName = calculateRegimenIngredients(regimenProducts, products);
   // const result = [];
   //
   // desiredIngredientRanges.forEach(range => {
@@ -76,8 +76,8 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   return [];
 };
 
-export const subtractProductFromIngredients = (
-  ingredients: IIngredient[],
+export const subtractProductFromRegimenIngredients = (
+  ingredients: IRegimenIngredient[],
   product: IProductForProjectedRegimenCost,
 ): IIngredient[] => {
   // TODO

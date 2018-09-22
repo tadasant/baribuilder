@@ -6,7 +6,7 @@ import {ICost, IIngredientRange, IQuantity, IRegimenCost, IRegimenProduct} from 
 import {
   addCosts, calculateRegimenCost,
   projectCost,
-  subtractProductFromIngredients,
+  subtractProductFromRegimenIngredients,
   subtractRegimenIngredientsFromDesiredIngredientRanges
 } from './helpers';
 
@@ -21,10 +21,10 @@ const calculateProjectedRegimenCost = (
   currentRegimenProducts: IRegimenProduct[],
   products: GetAllProductsIngredients_allProducts[],
 ): IRegimenCost => {
-  const targetIngredients = subtractRegimenIngredientsFromDesiredIngredientRanges(currentRegimenProducts, desiredIngredientRanges, products);
-  const remainingIngredients = subtractProductFromIngredients(targetIngredients, product);
-  const numRemainingProducts = remainingIngredients.length;
-  const remainingProjectedCost = projectCost(remainingIngredients);
+  const targetRegimenIngredients = subtractRegimenIngredientsFromDesiredIngredientRanges(currentRegimenProducts, desiredIngredientRanges, products);
+  const remainingRegimenIngredients = subtractProductFromRegimenIngredients(targetRegimenIngredients, product);
+  const numRemainingProducts = remainingRegimenIngredients.length;
+  const remainingProjectedCost = projectCost(remainingRegimenIngredients);
   const totalProjectedCost: ICost = addCosts(product.cost, calculateRegimenCost(currentRegimenProducts), remainingProjectedCost);
   return {
     __typename: 'RegimenCost',
