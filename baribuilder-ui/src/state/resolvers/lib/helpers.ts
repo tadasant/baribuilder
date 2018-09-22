@@ -2,6 +2,7 @@ import {cloneDeep, keyBy} from 'lodash';
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
 import {ICost, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
+import {ingredientPricesByName} from '../data/ingredientPrices';
 import {IProductForProjectedRegimenCost} from './product_projectedRegimenCost';
 
 // TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
@@ -61,11 +62,29 @@ export const subtractProductFromRegimenIngredients = (
 
 // NB: "project" is a verb here
 export const projectCostOfIngredients = (ingredients: IRegimenIngredient[]): ICost => {
-  // TODO
+  let totalMoney = 0.0;
+  const frequency = ingredients.length > 0 ? ingredients[0].frequency : FREQUENCY.DAILY;
+
+  ingredients.forEach(ingredient => {
+    if (ingredient.frequency === frequency) {
+      const ingredientPrice = ingredientPricesByName[ingredient.ingredientType.name];
+      if (ingredientPrice) {
+        if (ingredientPrice.units === ingredient.ingredientQuantity.units) {
+          totalMoney += ingredientPrice.price * ingredient.ingredientQuantity.amount;
+        } else {
+          console.warn('Unit conversions unsupported. Error code 10493.');
+        }
+      } else {
+        console.warn(`Missing ingredientPrice for ${ingredient.ingredientType.name}`)
+      }
+    } else {
+      console.warn('Frequency conversions unsupported. Error code 10493.');
+    }
+  });
   return {
     __typename: 'Cost',
-    money: 0.0,
-    frequency: FREQUENCY.DAILY,
+    money: totalMoney,
+    frequency,
   };
 };
 
