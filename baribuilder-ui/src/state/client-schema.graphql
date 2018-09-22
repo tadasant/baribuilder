@@ -18,13 +18,6 @@
 
 ##### Augmenting product with local information
 
-# This already exists remotely, but doesn't get downloaded because it's not used remotely (yet)
-enum FREQUENCY {
-    DAILY
-    WEEKLY
-    MONTHLY
-}
-
 extend type Product {
     cost: Cost!
     projectedRegimenCost: RegimenCost!

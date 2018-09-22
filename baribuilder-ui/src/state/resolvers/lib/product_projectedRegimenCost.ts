@@ -2,13 +2,13 @@ import {
   GetAllProductsIngredients,
   GetAllProductsIngredients_allProducts
 } from '../../../typings/gql/GetAllProductsIngredients';
+import {ICost, IIngredientRange, IQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import {
-  ICost,
-  IIngredientRange,
-  IQuantity,
-  IRegimenCost,
-  IRegimenProduct,
-} from '../../client-schema-types';
+  addCosts, calculateRegimenCost,
+  projectCost,
+  subtractProductFromIngredients,
+  subtractRegimenIngredientsFromIngredientRanges
+} from './helpers';
 
 export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients {
   cost: ICost;
@@ -21,22 +21,15 @@ const calculateProjectedRegimenCost = (
   currentRegimenProducts: IRegimenProduct[],
   products: GetAllProductsIngredients_allProducts[],
 ): IRegimenCost => {
-  const targetIngredients = subtractRegimenIngredientsFromDesiredIngredientRanges(currentRegimenProducts, desiredIngredientRanges, products);
+  const targetIngredients = subtractRegimenIngredientsFromIngredientRanges(currentRegimenProducts, desiredIngredientRanges, products);
   const remainingIngredients = subtractProductFromIngredients(targetIngredients, product);
-  const numRemainingProducts = ...;
-  const remainingProjectedCost: ICost = projectCost(remainingIngredients);
+  const numRemainingProducts = remainingIngredients.length;
+  const remainingProjectedCost = projectCost(remainingIngredients);
   const totalProjectedCost: ICost = addCosts(product.cost, calculateRegimenCost(currentRegimenProducts), remainingProjectedCost);
   return {
     __typename: 'RegimenCost',
     numRemainingProducts,
-    cost: {
-      __typename: 'Cost',
-      ...totalProjectedCost,
-      quantity: {
-        __typename: 'Quantity',
-        ...totalProjectedCost.quantity,
-      },
-    }
+    cost: totalProjectedCost,
   }
 };
 

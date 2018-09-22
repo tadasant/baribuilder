@@ -41,12 +41,6 @@ export interface IDosage {
   frequency: FREQUENCY;
 }
 
-// TODO this should be moved to central source of truth reference data concept
-export interface IIngredientType {
-  __typename: string;
-  name: string;
-}
-
 export interface ICost {
   __typename: string;
   value: number;
@@ -57,4 +51,19 @@ export interface IRegimenCost {
   __typename: string;
   numRemainingProducts: number;
   cost: ICost;
+}
+
+//// Server side duplicates
+
+// TODO this should be moved to central source of truth reference data concept
+export interface IIngredientType {
+  __typename: string;
+  name: string;
+}
+
+export interface IIngredient {
+  __typename: string;
+  amount: number;
+  units: INGREDIENT_UNITS;
+  ingredientType: IIngredientType;
 }
