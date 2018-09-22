@@ -67,3 +67,7 @@ export interface IIngredient {
   units: INGREDIENT_UNITS;
   ingredientType: IIngredientType;
 }
+
+export interface IRegimenIngredient extends IIngredient {
+  frequency: FREQUENCY;
+}

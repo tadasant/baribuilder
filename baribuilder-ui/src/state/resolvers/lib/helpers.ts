@@ -1,29 +1,50 @@
 import {cloneDeep, keyBy} from 'lodash';
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {FREQUENCY, INGREDIENT_UNITS} from '../../../typings/gql/globalTypes';
-import {ICost, IIngredient, IIngredientRange, IRegimenProduct, QUANTITY_UNITS} from '../../client-schema-types';
+import {
+  ICost,
+  IIngredient,
+  IIngredientRange,
+  IRegimenIngredient,
+  IRegimenProduct,
+  QUANTITY_UNITS
+} from '../../client-schema-types';
 import {IProductForProjectedRegimenCost} from './product_projectedRegimenCost';
 
 
+interface IRegimenIngredientsByName {
+  [key: string]: IRegimenIngredient;
+}
+
+/**
+ * RegimenIngredient, as opposed to ingredient, adds the following enhancements in the context of a regimen:
+ *
+ * 1) Removes concept of products so we're only looking at discrete ingredients
+ * 2) Removes concept of quantity of each product so we're only looking at aggregations of ingredients
+ * 3) The above removals are captured in the "amount"
+ * 4) Adds concept of "frequency", since regimens are taken on a cadence
+ */
 const calculateRegimenIngredients = (
   regimenProducts: IRegimenProduct[],
   products: GetAllProductsIngredients_allProducts[]
-): IIngredient[] => {
+): IRegimenIngredientsByName => {
   const productsById = keyBy(products, product => product.id);
 
-  interface IIngredientsByName {
-    [key: string]: IIngredient;
-  }
-
-  const regimenIngredientsByName: IIngredientsByName = {};
+  const result: IRegimenIngredientsByName = {};
   regimenProducts.forEach(product => {
     const ingredients = productsById[product.id].nutritionFacts.ingredients;
     if (ingredients !== null) {
       ingredients.forEach(ingredient => {
-        if (!regimenIngredientsByName.hasOwnProperty(ingredient.ingredientType.name)) {
-          regimenIngredientsByName[ingredient.ingredientType.name] = cloneDeep(ingredient);
+        const regimenIngredient: IRegimenIngredient = {
+          ...cloneDeep(ingredient),
+          amount: ingredient.amount * product.quantity.number,
+          frequency: product.quantity.frequency,
+        };
+
+        if (!result.hasOwnProperty(ingredient.ingredientType.name)) {
+          result[ingredient.ingredientType.name] = regimenIngredient;
         } else {
-          regimenIngredientsByName[ingredient.ingredientType.name] = addIngredients(regimenIngredientsByName[ingredient.ingredientType.name], ingredient);
+          result[ingredient.ingredientType.name] = addRegimenIngredients(result[ingredient.ingredientType.name], regimenIngredient);
         }
       })
     } else {
@@ -31,7 +52,7 @@ const calculateRegimenIngredients = (
     }
   });
 
-  return Object.keys(regimenIngredientsByName).map(k => regimenIngredientsByName[k]);
+  return result;
 };
 
 /**
@@ -43,7 +64,14 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   desiredIngredientRanges: IIngredientRange[],
   products: GetAllProductsIngredients_allProducts[],
 ): IIngredient[] => {
-  const regimenIngredients = calculateRegimenIngredients(regimenProducts, products);
+  // const regimenIngredientsByName = calculateRegimenIngredients(regimenProducts, products);
+  // const result = [];
+  //
+  // desiredIngredientRanges.forEach(range => {
+  //   result.push(subtractIngredientFromDosage(range.minimumDosage, ))
+  //   const
+  //   let remainingIngredient = range.minimumDosage;
+  // })
   // TODO
   return [];
 };
@@ -99,10 +127,11 @@ export const addCosts = (...costs: ICost[]): ICost => {
   };
 };
 
-const addIngredients = (...ingredients: IIngredient[]): IIngredient => {
+const addRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIngredient => {
   // TODO
   return {
-    __typename: 'Ingredient',
+    __typename: 'RegimenIngredient',
+    frequency: FREQUENCY.DAILY,
     amount: 0.0,
     ingredientType: {
       __typename: 'IngredientType',
