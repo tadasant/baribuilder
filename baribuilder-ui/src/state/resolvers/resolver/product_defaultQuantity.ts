@@ -29,6 +29,7 @@ const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
 export const ALL_PRODUCTS_QUERY = gql`
     query GetAllProductsIngredients {
         allProducts {
+            id
             nutritionFacts {
                 ingredients {
                     amount

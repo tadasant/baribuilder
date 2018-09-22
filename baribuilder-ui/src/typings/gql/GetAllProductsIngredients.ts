@@ -26,6 +26,7 @@ export interface GetAllProductsIngredients_allProducts_nutritionFacts {
 
 export interface GetAllProductsIngredients_allProducts {
   __typename: "Product";
+  id: string;
   nutritionFacts: GetAllProductsIngredients_allProducts_nutritionFacts;
 }
 
