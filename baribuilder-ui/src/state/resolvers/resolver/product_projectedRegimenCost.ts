@@ -33,7 +33,7 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
       console.warn('allProductsResult falsey');
       return null;
     }
-    const product = allProductsResult.allProducts.find(product => product.id === obj.id);
+    const product = allProductsResult.allProducts.find(p => p.id === obj.id);
     if (!product) {
       console.warn('product not found in allProducts');
       return null;
@@ -62,13 +62,13 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
       quantity: productQuantity,
     };
     const currentRegimenProducts: IRegimenProduct[] = [];
-    currentRegimenProductsResult.currentRegimen.products.forEach(product => {
-      const cost = costResolver(product, _, {cache});
+    currentRegimenProductsResult.currentRegimen.products.forEach(p => {
+      const cost = costResolver(p, _, {cache});
       if (cost === null) {
-        console.warn(`Unable to derive cost for ${product.id}. Error code 39293`);
+        console.warn(`Unable to derive cost for ${p.id}. Error code 39293`);
       } else {
         currentRegimenProducts.push({
-          ...product,
+          ...p,
           cost,
         })
       }

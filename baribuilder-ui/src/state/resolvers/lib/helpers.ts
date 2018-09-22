@@ -105,9 +105,9 @@ export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): ICost => 
 };
 
 export const sumCosts = (...costs: ICost[]): ICost => {
-  if (costs.length == 1) {
+  if (costs.length === 1) {
     return costs[0];
-  } else if (costs.length == 2) {
+  } else if (costs.length === 2) {
     if (costs[0].frequency !== costs[1].frequency) {
       console.warn('Frequency conversions unsupported. Error code 09204');
     }
@@ -167,9 +167,9 @@ const calculateRegimenIngredients = (
 };
 
 const sumRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIngredient | null => {
-  if (ingredients.length == 1) {
+  if (ingredients.length === 1) {
     return ingredients[0];
-  } else if (ingredients.length == 2) {
+  } else if (ingredients.length === 2) {
     if (ingredients[0].ingredientType.name !== ingredients[1].ingredientType.name) {
       console.error(`${ingredients[0].ingredientType.name} !== ${ingredients[1].ingredientType.name}. This shouldn't happen. Error code 434829.`);
       return null;
