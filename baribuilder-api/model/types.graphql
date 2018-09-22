@@ -61,15 +61,23 @@ type Serving @model {
 type Ingredient @model {
     id: ID! @isUnique
     amount: Float!
-    units: INGREDIENT_UNITS!
+    units: INGREDIENT_QUANTITY_UNITS!
     ingredientType: IngredientType! @relation(name: "IngredientIngredientType")
+    ingredientQuantity: IngredientQuantity @relation(name: "IngredientIngredientQuantity")
     nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsIngredients")
+}
+
+type IngredientQuantity @model {
+    id: ID! @isUnique
+    amount: Float!
+    units: INGREDIENT_QUANTITY_UNITS!
+    ingredient: Ingredient! @relation(name: "IngredientIngredientQuantity")
 }
 
 type IngredientType @model {
     id: ID! @isUnique
     name: String! @isUnique
     synonyms: [String!]!
-    defaultUnits: INGREDIENT_UNITS!
+    defaultUnits: INGREDIENT_QUANTITY_UNITS!
     ingredients: [Ingredient!]! @relation(name: "IngredientIngredientType")
 }

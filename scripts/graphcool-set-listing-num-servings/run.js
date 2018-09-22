@@ -6,33 +6,6 @@ const client = new GraphQLClient('https://api.graph.cool/simple/v1/cjlzqvawt1ib0
   },
 });
 
-
-function setItem() {
-  return client.request(`
-    {
-      allProducts {
-        listings {
-          id
-        }
-        nutritionFacts {
-          serving {
-            count
-          }
-        }
-      }
-    }
-
-    mutation {
-      updateListing(
-        id: "abc"
-        numServings: 100
-      ) {
-        id
-      }
-    }
-  `)
-}
-
 const getProducts = () => {
   return client.request(`
     {

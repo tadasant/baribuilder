@@ -94,7 +94,7 @@ enum SERVING_UNITS {
     GUMMY
 }
 
-enum INGREDIENT_UNITS {
+enum INGREDIENT_QUANTITY_UNITS {
     IU
     G
     MG
