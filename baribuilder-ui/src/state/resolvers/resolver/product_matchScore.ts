@@ -3,7 +3,7 @@ import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 
 // TODO queries
 
-// const CURRENT_REGIMEN_QUERY = gql`
+// const CURRENT_REGIMEN_PRODUCTS_QUERY = gql`
 //     query GetCurrentRegimen {
 //         currentRegimen @client {
 //             products {

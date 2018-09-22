@@ -1,101 +1,34 @@
-import gql from 'graphql-tag';
 import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngredients';
-import {GetCurrentRegimen} from '../../../typings/gql/GetCurrentRegimen';
+import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenProducts';
 import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {IProductQuantity} from '../../client-schema-types';
 import {calculateDefaultQuantity} from '../lib/product_defaultQuantity';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
-
 /**
  * Query fields need to be prefetched into cache.
  */
-const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
-    query GetProductIngredients {
-        Product(id: "${id}") {
-            nutritionFacts {
-                ingredients {
-                    ingredientQuantity {
-                        amount
-                        units
-                    }
-                    ingredientType {
-                        name
-                    }
-                }
-            }
-        }
-    }
-`;
+import {
+  ALL_PRODUCTS_INGREDIENTS_QUERY,
+  CURRENT_REGIMEN_PRODUCTS_QUERY,
+  DESIRED_INGREDIENTS_QUERY,
+  PRODUCT_INGREDIENTS_QUERY
+} from './queries';
 
-export const ALL_PRODUCTS_QUERY = gql`
-    query GetAllProductsIngredients {
-        allProducts {
-            id
-            nutritionFacts {
-                ingredients {
-                    ingredientQuantity {
-                        amount
-                        units
-                    }
-                    ingredientType {
-                        name
-                    }
-                }
-            }
-        }
-    }
-`;
-
-const DESIRED_INGREDIENTS_QUERY = gql`
-    query GetDesiredIngredients {
-        desiredIngredients @client {
-            ingredientRanges {
-                ingredientType {
-                    name
-                }
-                minimumIngredientQuantity {
-                    amount
-                    units
-                }
-                maximumIngredientQuantity {
-                    amount
-                    units
-                }
-                frequency
-            }
-        }
-    }
-`;
-
-const CURRENT_REGIMEN_QUERY = gql`
-    query GetCurrentRegimen {
-        currentRegimen @client {
-            products {
-                id
-                quantity {
-                    number
-                    frequency
-                    units
-                }
-            }
-        }
-    }
-`;
 
 const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQuantity> = (obj, _, {cache}) => {
   //// Grab data
-  const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
+  const productResult = cache.readQuery<GetProductIngredients>({
     query: PRODUCT_INGREDIENTS_QUERY(obj.id)
   });
-  const allProductsResult: GetAllProductsIngredients | null = cache.readQuery<any, GetAllProductsIngredients>({
-    query: ALL_PRODUCTS_QUERY
+  const allProductsResult = cache.readQuery<GetAllProductsIngredients>({
+    query: ALL_PRODUCTS_INGREDIENTS_QUERY
   });
-  const desiredIngredientsResult: GetDesiredIngredients | null = cache.readQuery({
+  const desiredIngredientsResult = cache.readQuery<GetDesiredIngredients>({
     query: DESIRED_INGREDIENTS_QUERY
   });
-  const regimenResult: GetCurrentRegimen | null = cache.readQuery({
-    query: CURRENT_REGIMEN_QUERY
+  const regimenResult = cache.readQuery<GetCurrentRegimenProducts>({
+    query: CURRENT_REGIMEN_PRODUCTS_QUERY
   });
 
   //// Verify successful grabs

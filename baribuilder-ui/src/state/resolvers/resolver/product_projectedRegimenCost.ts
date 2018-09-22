@@ -1,23 +1,28 @@
 import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngredients';
+import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
 import {IRegimenCost} from '../../client-schema-types';
 import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/product_projectedRegimenCost';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 import costResolver from './product_cost';
-import defaultQuantityResolver, {ALL_PRODUCTS_QUERY as ALL_PRODUCTS_INGREDIENTS_QUERY} from './product_defaultQuantity';
-
+import defaultQuantityResolver from './product_defaultQuantity';
 /**
  * Query fields need to be prefetched into cache.
  */
-const ALL_PRODUCTS_QUERY = ALL_PRODUCTS_INGREDIENTS_QUERY;
+import {ALL_PRODUCTS_INGREDIENTS_QUERY, DESIRED_INGREDIENTS_QUERY} from './queries';
+
 
 const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegimenCost> = (obj, _, {cache}) => {
   //// Grab data
-  const allProductsResult: GetAllProductsIngredients | null = cache.readQuery<any, GetAllProductsIngredients>({
-    query: ALL_PRODUCTS_QUERY
+  const allProductsResult = cache.readQuery<GetAllProductsIngredients>({
+    query: ALL_PRODUCTS_INGREDIENTS_QUERY
   });
   // TODO get quantity from local state cache
   const productQuantity = defaultQuantityResolver(obj, _, {cache});
   const productCost = costResolver(obj, _, {cache});
+  const desiredIngredientsResult = cache.readQuery<GetDesiredIngredients>({
+    query: DESIRED_INGREDIENTS_QUERY
+  });
+  // const currentRegimenProducts =
 
   //// Verify successful grabs
   if (!allProductsResult) {
@@ -37,10 +42,10 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
     console.warn('productCost for projection failed');
     return null;
   }
-  // if (!productResult || !productResult.Product || !productResult.Product.nutritionFacts.ingredients) {
-  //   console.warn('productResult falsey');
-  //   return null;
-  // }
+  if (!desiredIngredientsResult || !desiredIngredientsResult.desiredIngredients) {
+    console.warn('desiredIngredientsResult falsey');
+    return null;
+  }
 
   //// Perform transformation
 
@@ -51,7 +56,11 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
   };
 
   return calculateProjectedRegimenCost(
-    productForProjectedRegimenCost
+    productForProjectedRegimenCost,
+    desiredIngredientsResult.desiredIngredients.ingredientRanges,
+    // TODO
+    [],
+    allProductsResult.allProducts,
   );
 };
 
