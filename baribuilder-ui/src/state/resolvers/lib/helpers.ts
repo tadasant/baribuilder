@@ -105,13 +105,22 @@ export const sumCostOfProducts = (regimenProducts: IProductForProjectedRegimenCo
   };
 };
 
-export const addCosts = (...costs: ICost[]): ICost => {
-  // TODO
-  return {
-    __typename: 'Cost',
-    money: 0.0,
-    frequency: FREQUENCY.DAILY,
-  };
+export const sumCosts = (...costs: ICost[]): ICost | null => {
+  if (costs.length == 1) {
+    return costs[0];
+  } else if (costs.length == 2) {
+    if (costs[0].frequency !== costs[1].frequency) {
+      console.warn('Frequency conversions unsupported. Error code 09204');
+      return null;
+    }
+
+    return {
+      ...cloneDeep(costs[0]),
+      money: costs[0].money + costs[1].money,
+    }
+  }
+
+  return sumCosts(costs[0], ...costs.slice(1));
 };
 
 /**
@@ -145,7 +154,7 @@ const calculateRegimenIngredients = (
         if (!result.hasOwnProperty(ingredient.ingredientType.name)) {
           result[ingredient.ingredientType.name] = regimenIngredient;
         } else {
-          const totalRegimenIngredients = addRegimenIngredients(result[ingredient.ingredientType.name], regimenIngredient);
+          const totalRegimenIngredients = sumRegimenIngredients(result[ingredient.ingredientType.name], regimenIngredient);
           if (totalRegimenIngredients !== null) {
             result[ingredient.ingredientType.name] = totalRegimenIngredients;
           }
@@ -159,7 +168,7 @@ const calculateRegimenIngredients = (
   return result;
 };
 
-const addRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIngredient | null => {
+const sumRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIngredient | null => {
   if (ingredients.length == 1) {
     return ingredients[0];
   } else if (ingredients.length == 2) {
@@ -181,9 +190,7 @@ const addRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIn
     }
   }
 
-  // TODO support recursive
-  console.warn('Recursion unsupported. Error code 434829');
-  return null;
+  return sumRegimenIngredients(ingredients[0], ...ingredients.slice(1));
 };
 
 const subtractRegimenIngredientFromMinimumIngredient = (

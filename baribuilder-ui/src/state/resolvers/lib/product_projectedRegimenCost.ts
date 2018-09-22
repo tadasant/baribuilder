@@ -1,7 +1,7 @@
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {ICost, IIngredientRange, IProductQuantity, IRegimenCost} from '../../client-schema-types';
 import {
-  addCosts,
+  sumCosts,
   sumCostOfProducts,
   projectCostOfIngredients,
   subtractProductFromRegimenIngredients,
@@ -23,7 +23,7 @@ const calculateProjectedRegimenCost = (
   const remainingRegimenIngredients = subtractProductFromRegimenIngredients(targetRegimenIngredients, product);
   const numRemainingProducts = remainingRegimenIngredients.length;
   const remainingProjectedCost = projectCostOfIngredients(remainingRegimenIngredients);
-  const totalProjectedCost: ICost = addCosts(product.cost, sumCostOfProducts(currentRegimenProducts), remainingProjectedCost);
+  const totalProjectedCost: ICost = sumCosts(product.cost, sumCostOfProducts(currentRegimenProducts), remainingProjectedCost);
   return {
     __typename: 'RegimenCost',
     numRemainingProducts,
