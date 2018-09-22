@@ -23,7 +23,7 @@ const calculateProjectedRegimenCost = (
   const remainingRegimenIngredients = subtractProductFromRegimenIngredients(targetRegimenIngredients, product);
   const numRemainingProducts = remainingRegimenIngredients.length;
   const remainingProjectedCost = projectCostOfIngredients(remainingRegimenIngredients);
-  const totalProjectedCost: ICost = sumCosts(product.cost, sumCostOfProducts(currentRegimenProducts), remainingProjectedCost);
+  const totalProjectedCost = sumCosts(product.cost, sumCostOfProducts(currentRegimenProducts), remainingProjectedCost);
   return {
     __typename: 'RegimenCost',
     numRemainingProducts,

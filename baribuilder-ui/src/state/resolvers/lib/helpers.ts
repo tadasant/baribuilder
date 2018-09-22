@@ -105,13 +105,12 @@ export const sumCostOfProducts = (regimenProducts: IProductForProjectedRegimenCo
   };
 };
 
-export const sumCosts = (...costs: ICost[]): ICost | null => {
+export const sumCosts = (...costs: ICost[]): ICost => {
   if (costs.length == 1) {
     return costs[0];
   } else if (costs.length == 2) {
     if (costs[0].frequency !== costs[1].frequency) {
       console.warn('Frequency conversions unsupported. Error code 09204');
-      return null;
     }
 
     return {
