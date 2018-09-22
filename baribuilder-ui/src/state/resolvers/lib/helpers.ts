@@ -2,6 +2,7 @@ import {cloneDeep, keyBy} from 'lodash';
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
 import {ICost, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
+import {IProductForProjectedRegimenCost} from './product_projectedRegimenCost';
 
 // TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
 
@@ -59,7 +60,7 @@ export const subtractProductFromRegimenIngredients = (
 };
 
 // NB: "project" is a verb here
-export const projectCost = (remainingIngredients: IRegimenIngredient[]): ICost => {
+export const projectCostOfIngredients = (ingredients: IRegimenIngredient[]): ICost => {
   // TODO
   return {
     __typename: 'Cost',
@@ -68,12 +69,20 @@ export const projectCost = (remainingIngredients: IRegimenIngredient[]): ICost =
   };
 };
 
-export const calculateRegimenCost = (regimenProducts: IRegimenProduct[]): ICost => {
-  // TODO
+export const sumCostOfProducts = (regimenProducts: IProductForProjectedRegimenCost[]): ICost => {
+  let totalMoney = 0.0;
+  const frequency = regimenProducts.length > 0 ? regimenProducts[0].quantity.frequency : FREQUENCY.DAILY;
+  regimenProducts.forEach(product => {
+    if (product.quantity.frequency === frequency) {
+      totalMoney += product.quantity.number;
+    } else {
+      console.warn('Frequency conversions unsupported. Error code 69821.');
+    }
+  });
   return {
     __typename: 'Cost',
-    money: 0.0,
-    frequency: FREQUENCY.DAILY,
+    money: totalMoney,
+    frequency,
   };
 };
 
