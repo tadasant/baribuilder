@@ -68,6 +68,10 @@ export const CURRENT_REGIMEN_PRODUCTS_QUERY = gql`
                     frequency
                     units
                 }
+                cost {
+                    money
+                    frequency
+                }
             }
         }
     }

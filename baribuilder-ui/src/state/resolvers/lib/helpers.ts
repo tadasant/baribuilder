@@ -3,7 +3,6 @@ import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAll
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
 import {ICost, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
 import {ingredientPricesByName} from '../data/ingredientPrices';
-import {IProductForProjectedRegimenCost} from './product_projectedRegimenCost';
 
 // TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
 
@@ -88,7 +87,7 @@ export const projectCostOfIngredients = (ingredients: IRegimenIngredient[]): ICo
   };
 };
 
-export const sumCostOfProducts = (regimenProducts: IProductForProjectedRegimenCost[]): ICost => {
+export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): ICost => {
   let totalMoney = 0.0;
   const frequency = regimenProducts.length > 0 ? regimenProducts[0].quantity.frequency : FREQUENCY.DAILY;
   regimenProducts.forEach(product => {

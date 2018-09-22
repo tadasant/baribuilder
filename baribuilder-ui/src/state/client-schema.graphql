@@ -61,6 +61,7 @@ type Regimen {
 type RegimenProduct {
     id: ID!
     quantity: ProductQuantity!
+    cost: Cost!
 }
 
 type DesiredIngredients {

@@ -1,12 +1,13 @@
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
-import {ICost, IIngredientRange, IProductQuantity, IRegimenCost} from '../../client-schema-types';
+import {ICost, IIngredientRange, IProductQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import {
-  sumCosts,
-  sumCostOfProducts,
   projectCostOfIngredients,
   subtractProductFromRegimenIngredients,
-  subtractRegimenIngredientsFromDesiredIngredientRanges
+  subtractRegimenIngredientsFromDesiredIngredientRanges,
+  sumCostOfProducts,
+  sumCosts
 } from './helpers';
+
 
 export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients_allProducts {
   cost: ICost;
@@ -16,7 +17,7 @@ export interface IProductForProjectedRegimenCost extends GetAllProductsIngredien
 const calculateProjectedRegimenCost = (
   product: IProductForProjectedRegimenCost,
   desiredIngredientRanges: IIngredientRange[],
-  currentRegimenProducts: IProductForProjectedRegimenCost[],
+  currentRegimenProducts: IRegimenProduct[],
   products: GetAllProductsIngredients_allProducts[],
 ): IRegimenCost => {
   const targetRegimenIngredients = subtractRegimenIngredientsFromDesiredIngredientRanges(currentRegimenProducts, desiredIngredientRanges, products);

@@ -1,14 +1,15 @@
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 
 export interface IRegimen {
-  __typename: string;
+  __typename: 'Regimen';
   products: IRegimenProduct[]
 }
 
 export interface IRegimenProduct {
-  __typename: string;
+  __typename: 'RegimenProduct';
   id: string;
   quantity: IProductQuantity;
+  cost: ICost;
 }
 
 export enum PRODUCT_QUANTITY_UNITS {
@@ -16,19 +17,19 @@ export enum PRODUCT_QUANTITY_UNITS {
 }
 
 export interface IProductQuantity {
-  __typename: string;
+  __typename: 'ProductQuantity';
   number: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
 }
 
 export interface IDesiredIngredients {
-  __typename: string;
+  __typename: 'DesiredIngredients';
   ingredientRanges: IIngredientRange[];
 }
 
 export interface IIngredientRange {
-  __typename: string;
+  __typename: 'IngredientRange';
   ingredientType: IIngredientType;
   minimumIngredientQuantity: IIngredientQuantity | null;
   maximumIngredientQuantity: IIngredientQuantity | null;
@@ -36,13 +37,13 @@ export interface IIngredientRange {
 }
 
 export interface ICost {
-  __typename: string;
+  __typename: 'Cost';
   money: number;
   frequency: FREQUENCY;
 }
 
 export interface IRegimenCost {
-  __typename: string;
+  __typename: 'RegimenCost';
   numRemainingProducts: number;
   cost: ICost;
 }
@@ -63,18 +64,18 @@ export interface IRegimenIngredient extends IIngredient {
 
 // TODO this should be moved to central source of truth reference data concept
 export interface IIngredientType {
-  __typename: string;
+  __typename: 'IngredientType';
   name: string;
 }
 
 export interface IIngredientQuantity {
-  __typename: string;
+  __typename: 'IngredientQuantity';
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
 }
 
 export interface IIngredient {
-  __typename: string;
+  __typename: 'Ingredient';
   ingredientQuantity: IIngredientQuantity;
   ingredientType: IIngredientType;
 }

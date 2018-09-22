@@ -14,10 +14,17 @@ export interface GetCurrentRegimenProducts_currentRegimen_products_quantity {
   units: PRODUCT_QUANTITY_UNITS;
 }
 
+export interface GetCurrentRegimenProducts_currentRegimen_products_cost {
+  __typename: "Cost";
+  money: number;
+  frequency: FREQUENCY;
+}
+
 export interface GetCurrentRegimenProducts_currentRegimen_products {
   __typename: "RegimenProduct";
   id: string;
   quantity: GetCurrentRegimenProducts_currentRegimen_products_quantity;
+  cost: GetCurrentRegimenProducts_currentRegimen_products_cost;
 }
 
 export interface GetCurrentRegimenProducts_currentRegimen {
