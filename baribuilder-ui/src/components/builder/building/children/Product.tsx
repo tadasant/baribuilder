@@ -71,7 +71,7 @@ const enhance = compose<IProps & DataOutputProps, IProps>(
 
 // Pure
 const ProductPure: SFC<IProps & DataOutputProps> = ({data: { Product }, id}) => {
-  return <div>{Product === null || Product === undefined ? null : `${id}; ${Product.defaultQuantity.number}; ${Product.cost.money}; ${Product.projectedRegimenCost.cost.money}`}</div>;
+  return <div>{Product === null || Product === undefined ? null : `${id}; ${Product.defaultQuantity.number}; ${Product.cost.money}; ${Product.projectedRegimenCost ? Product.projectedRegimenCost.cost.money : 'Can\'t determine projCost' }`}</div>;
 };
 
 export default enhance(ProductPure);

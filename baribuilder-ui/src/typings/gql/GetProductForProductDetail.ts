@@ -72,7 +72,7 @@ export interface GetProductForProductDetail_Product {
   nutritionFacts: GetProductForProductDetail_Product_nutritionFacts;
   defaultQuantity: GetProductForProductDetail_Product_defaultQuantity;
   cost: GetProductForProductDetail_Product_cost;
-  projectedRegimenCost: GetProductForProductDetail_Product_projectedRegimenCost;
+  projectedRegimenCost: GetProductForProductDetail_Product_projectedRegimenCost | null;
 }
 
 export interface GetProductForProductDetail {

@@ -26,7 +26,6 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
     const currentRegimenProductsResult = cache.readQuery<GetCurrentRegimenProducts>({
       query: CURRENT_REGIMEN_PRODUCTS_QUERY
     });
-    // const currentRegimenProducts =
 
     //// Verify successful grabs
     if (!allProductsResult) {
@@ -52,6 +51,11 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
     }
     if (!currentRegimenProductsResult || !currentRegimenProductsResult.currentRegimen) {
       console.warn('currentRegimenProductsResult falsey');
+      return null;
+    }
+
+    if (desiredIngredientsResult.desiredIngredients.ingredientRanges.length === 0) {
+      // Can't predict a regimen cost without desiredIngredients
       return null;
     }
 
