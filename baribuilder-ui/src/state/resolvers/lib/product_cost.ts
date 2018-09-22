@@ -1,5 +1,5 @@
 import {GetProductForProductCost_Product_listings} from '../../../typings/gql/GetProductForProductCost';
-import {ICost, IQuantity} from '../../client-schema-types';
+import {ICost, IProductQuantity} from '../../client-schema-types';
 
 const calculateCheapestCostPerServing = (listings: GetProductForProductCost_Product_listings[]): number => {
   let cheapestCostPerServing: number | undefined = undefined;
@@ -14,12 +14,12 @@ const calculateCheapestCostPerServing = (listings: GetProductForProductCost_Prod
   return cheapestCostPerServing || 0;
 };
 
-const calculateCost = (listings: GetProductForProductCost_Product_listings[], quantity: IQuantity): ICost => {
+const calculateCost = (listings: GetProductForProductCost_Product_listings[], quantity: IProductQuantity): ICost => {
   if (listings.length === 0) {
     return {
       __typename: 'Cost',
-      value: 0.0,
-      quantity,
+      money: 0.0,
+      frequency: quantity.frequency,
     }
   }
 
@@ -28,8 +28,8 @@ const calculateCost = (listings: GetProductForProductCost_Product_listings[], qu
   // Use qty to calculate the amount
   return {
     __typename: 'Cost',
-    value: cheapestCostPerServing * quantity.number,
-    quantity,
+    money: cheapestCostPerServing * quantity.number,
+    frequency: quantity.frequency,
   }
 };
 

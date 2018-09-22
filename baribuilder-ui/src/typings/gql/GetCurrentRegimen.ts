@@ -1,17 +1,17 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { FREQUENCY, QUANTITY_UNITS } from "./globalTypes";
+import { FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCurrentRegimen
 // ====================================================
 
 export interface GetCurrentRegimen_currentRegimen_products_quantity {
-  __typename: "Quantity";
+  __typename: "ProductQuantity";
   number: number;
   frequency: FREQUENCY;
-  units: QUANTITY_UNITS;
+  units: PRODUCT_QUANTITY_UNITS;
 }
 
 export interface GetCurrentRegimen_currentRegimen_products {

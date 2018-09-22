@@ -8,17 +8,17 @@ export interface IRegimen {
 export interface IRegimenProduct {
   __typename: string;
   id: string;
-  quantity: IQuantity;
+  quantity: IProductQuantity;
 }
 
-export enum QUANTITY_UNITS {
+export enum PRODUCT_QUANTITY_UNITS {
   SERVINGS = "SERVINGS",
 }
 
-export interface IQuantity {
+export interface IProductQuantity {
   __typename: string;
   number: number;
-  units: QUANTITY_UNITS;
+  units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
 }
 
@@ -43,8 +43,8 @@ export interface IDosage {
 
 export interface ICost {
   __typename: string;
-  value: number;
-  quantity: IQuantity;
+  money: number;
+  frequency: FREQUENCY;
 }
 
 export interface IRegimenCost {

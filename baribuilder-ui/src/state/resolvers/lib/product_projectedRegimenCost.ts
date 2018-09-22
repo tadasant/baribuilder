@@ -2,7 +2,7 @@ import {
   GetAllProductsIngredients,
   GetAllProductsIngredients_allProducts
 } from '../../../typings/gql/GetAllProductsIngredients';
-import {ICost, IIngredientRange, IQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
+import {ICost, IIngredientRange, IProductQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import {
   addCosts, calculateRegimenCost,
   projectCost,
@@ -12,7 +12,7 @@ import {
 
 export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients {
   cost: ICost;
-  quantity: IQuantity;
+  quantity: IProductQuantity;
 }
 
 const calculateProjectedRegimenCost = (

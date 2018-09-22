@@ -18,7 +18,7 @@ export enum INGREDIENT_UNITS {
   MG = "MG",
 }
 
-export enum QUANTITY_UNITS {
+export enum PRODUCT_QUANTITY_UNITS {
   SERVINGS = "SERVINGS",
 }
 

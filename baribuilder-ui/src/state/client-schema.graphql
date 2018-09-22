@@ -28,17 +28,17 @@ enum FREQUENCY {
 extend type Product {
     cost: Cost!
     projectedRegimenCost: RegimenCost!
-    defaultQuantity: Quantity!
+    defaultQuantity: ProductQuantity!
     matchScore: Float!
 }
 
-enum QUANTITY_UNITS {
+enum PRODUCT_QUANTITY_UNITS {
     SERVINGS
 }
 
 type Cost {
-    value: Float!
-    quantity: Quantity!
+    money: Float!
+    frequency: FREQUENCY!
 }
 
 type RegimenCost {
@@ -46,9 +46,9 @@ type RegimenCost {
     cost: Cost!
 }
 
-type Quantity {
+type ProductQuantity {
     number: Int!
-    units: QUANTITY_UNITS!
+    units: PRODUCT_QUANTITY_UNITS!
     frequency: FREQUENCY!
 }
 
@@ -60,7 +60,7 @@ type Regimen {
 
 type RegimenProduct {
     id: ID!
-    quantity: Quantity!
+    quantity: ProductQuantity!
 }
 
 type DesiredIngredients {

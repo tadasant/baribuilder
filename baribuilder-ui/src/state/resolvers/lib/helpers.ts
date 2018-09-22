@@ -1,14 +1,7 @@
 import {cloneDeep, keyBy} from 'lodash';
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {FREQUENCY, INGREDIENT_UNITS} from '../../../typings/gql/globalTypes';
-import {
-  ICost,
-  IIngredient,
-  IIngredientRange,
-  IRegimenIngredient,
-  IRegimenProduct,
-  QUANTITY_UNITS
-} from '../../client-schema-types';
+import {ICost, IIngredient, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
 import {IProductForProjectedRegimenCost} from './product_projectedRegimenCost';
 
 
@@ -82,13 +75,8 @@ export const projectCost = (remainingIngredients: IIngredient[]): ICost => {
   // TODO
   return {
     __typename: 'Cost',
-    value: 0.0,
-    quantity: {
-      __typename: 'Quantity',
-      number: 5,
-      frequency: FREQUENCY.DAILY,
-      units: QUANTITY_UNITS.SERVINGS,
-    }
+    money: 0.0,
+    frequency: FREQUENCY.DAILY,
   };
 };
 
@@ -96,13 +84,8 @@ export const calculateRegimenCost = (regimenProducts: IRegimenProduct[]): ICost 
   // TODO
   return {
     __typename: 'Cost',
-    value: 0.0,
-    quantity: {
-      __typename: 'Quantity',
-      number: 5,
-      frequency: FREQUENCY.DAILY,
-      units: QUANTITY_UNITS.SERVINGS,
-    }
+    money: 0.0,
+    frequency: FREQUENCY.DAILY,
   };
 };
 
@@ -110,13 +93,8 @@ export const addCosts = (...costs: ICost[]): ICost => {
   // TODO
   return {
     __typename: 'Cost',
-    value: 0.0,
-    quantity: {
-      __typename: 'Quantity',
-      number: 5,
-      frequency: FREQUENCY.DAILY,
-      units: QUANTITY_UNITS.SERVINGS,
-    }
+    money: 0.0,
+    frequency: FREQUENCY.DAILY,
   };
 };
 
