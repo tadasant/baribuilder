@@ -105,7 +105,13 @@ export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): ICost => 
 };
 
 export const sumCosts = (...costs: ICost[]): ICost => {
-  if (costs.length === 1) {
+  if (costs.length === 0) {
+    return {
+      __typename: 'Cost',
+      money: 0.0,
+      frequency: FREQUENCY.DAILY
+    }
+  } else if (costs.length === 1) {
     return costs[0];
   } else if (costs.length === 2) {
     if (costs[0].frequency !== costs[1].frequency) {
@@ -118,7 +124,7 @@ export const sumCosts = (...costs: ICost[]): ICost => {
     }
   }
 
-  return sumCosts(costs[0], ...costs.slice(1));
+  return sumCosts(costs[0], sumCosts(...costs.slice(1)));
 };
 
 /**
@@ -166,29 +172,27 @@ const calculateRegimenIngredients = (
   return result;
 };
 
-const sumRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIngredient | null => {
-  if (ingredients.length === 1) {
-    return ingredients[0];
-  } else if (ingredients.length === 2) {
-    if (ingredients[0].ingredientType.name !== ingredients[1].ingredientType.name) {
-      console.error(`${ingredients[0].ingredientType.name} !== ${ingredients[1].ingredientType.name}. This shouldn't happen. Error code 434829.`);
-      return null;
+const sumRegimenIngredients = (baseIngredient: IRegimenIngredient, ...ingredients: IRegimenIngredient[]): IRegimenIngredient => {
+  if (ingredients.length === 0) {
+    return baseIngredient;
+  } else if (ingredients.length === 1) {
+    if (baseIngredient.ingredientType.name !== ingredients[0].ingredientType.name) {
+      console.error(`${baseIngredient.ingredientType.name} !== ${ingredients[0].ingredientType.name}. This shouldn't happen. Error code 434829.`);
     }
-    if (ingredients[0].ingredientQuantity.units !== ingredients[1].ingredientQuantity.units) {
+    if (baseIngredient.ingredientQuantity.units !== ingredients[0].ingredientQuantity.units) {
       console.warn('Unit conversions unsupported. Error code 434829');
-      return null;
     }
 
     return {
-      ...cloneDeep(ingredients[0]),
+      ...cloneDeep(baseIngredient),
       ingredientQuantity: {
-        ...cloneDeep(ingredients[0].ingredientQuantity),
-        amount: ingredients[0].ingredientQuantity.amount + ingredients[1].ingredientQuantity.amount,
+        ...cloneDeep(baseIngredient.ingredientQuantity),
+        amount: baseIngredient.ingredientQuantity.amount + ingredients[0].ingredientQuantity.amount,
       }
     }
   }
 
-  return sumRegimenIngredients(ingredients[0], ...ingredients.slice(1));
+  return sumRegimenIngredients(sumRegimenIngredients(baseIngredient, ingredients[0]), ...ingredients.slice(1));
 };
 
 const subtractRegimenIngredientFromMinimumIngredient = (
