@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import {GetAllProductIngredients} from '../../../typings/gql/GetAllProductIngredients';
+import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngredients';
 import {GetCurrentRegimen} from '../../../typings/gql/GetCurrentRegimen';
 import {GetDesiredDosages} from '../../../typings/gql/GetDesiredDosages';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
@@ -8,7 +8,7 @@ import {calculateDefaultQuantity} from '../lib/product_defaultQuantity';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 
 /**
- * Non-client queries need to be in cache already.
+ * Query fields need to be prefetched into cache.
  */
 const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
     query GetProductIngredients {
@@ -26,8 +26,8 @@ const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
     }
 `;
 
-const ALL_PRODUCTS_QUERY = gql`
-    query GetAllProductIngredients {
+export const ALL_PRODUCTS_QUERY = gql`
+    query GetAllProductsIngredients {
         allProducts {
             nutritionFacts {
                 ingredients {
@@ -84,7 +84,7 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IQuantity>
   const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
     query: PRODUCT_INGREDIENTS_QUERY(obj.id)
   });
-  const allProductsResult: GetAllProductIngredients | null = cache.readQuery<any, GetAllProductIngredients>({
+  const allProductsResult: GetAllProductsIngredients | null = cache.readQuery<any, GetAllProductsIngredients>({
     query: ALL_PRODUCTS_QUERY
   });
   const dosagesResult: GetDesiredDosages | null = cache.readQuery({

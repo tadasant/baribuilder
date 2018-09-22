@@ -1,5 +1,5 @@
 import {keyBy} from 'lodash';
-import {GetAllProductIngredients_allProducts} from '../../../typings/gql/GetAllProductIngredients';
+import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
 
 import {GetProductIngredients_Product_nutritionFacts_ingredients} from '../../../typings/gql/GetProductIngredients';
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
@@ -43,7 +43,7 @@ const deriveIdealQuantityViaLimitingMicros = (
 };
 
 // TODO break this out into more steps (very confusing logic)
-const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], products: GetAllProductIngredients_allProducts[]): IIngredientRange[] => {
+const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], products: GetAllProductsIngredients_allProducts[]): IIngredientRange[] => {
   // TODO quantity units need to implemented somewhere here
   const allDosagesDaily = desiredIngredientRanges.every(range => (range.minimumDosage ? range.minimumDosage.frequency === 'DAILY' : true) && (range.maximumDosage ? range.maximumDosage.frequency === 'DAILY' : true));
   const allRegimenProductDosagesDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
@@ -93,7 +93,7 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
 
 export const calculateDefaultQuantity = (
   productIngredients: GetProductIngredients_Product_nutritionFacts_ingredients[],
-  products: GetAllProductIngredients_allProducts[],
+  products: GetAllProductsIngredients_allProducts[],
   desiredIngredientRanges: IIngredientRange[],
   currentRegimenProducts: IRegimenProduct[]
 ): IQuantity => {

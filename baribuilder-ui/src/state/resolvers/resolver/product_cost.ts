@@ -7,7 +7,7 @@ import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 import defaultQuantityResolver from './product_defaultQuantity';
 
 /**
- * Non-client queries need to be in cache already.
+ * Query fields need to be prefetched into cache.
  */
 const PRODUCT_QUERY = (id: string) => gql`
     query GetProductForProductCost {
