@@ -45,7 +45,7 @@ const deriveIdealQuantityViaLimitingMicros = (
 // TODO break this out into more steps (very confusing logic)
 const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], products: GetAllProductsIngredients_allProducts[]): IIngredientRange[] => {
   // TODO quantity units need to implemented somewhere here
-  // TODO [BUG] need to do a keyBy on products so I can access w/ ID
+  const productsById = keyBy(products, product => product.id);
   const allRangesDaily = desiredIngredientRanges.every(range => range.frequency === 'DAILY');
   const allRegimenProductIngredientsDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
   if (!allRangesDaily || !allRegimenProductIngredientsDaily) {
@@ -58,11 +58,11 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
     let newMax = range.maximumIngredientQuantity ? range.maximumIngredientQuantity.amount : undefined;
     let newMin = range.minimumIngredientQuantity ? range.minimumIngredientQuantity.amount : undefined;
     currentRegimenProducts.forEach(product => {
-      const productIngredients = products[product.id].nutritionFacts.ingredients || [];
+      const productIngredients = productsById[product.id].nutritionFacts.ingredients || [];
       productIngredients.forEach((productIngredient: GetProductIngredients_Product_nutritionFacts_ingredients) => {
         if (productIngredient.ingredientType.name === range.ingredientType.name) {
           if ((range.maximumIngredientQuantity && productIngredient.ingredientQuantity.units !== range.maximumIngredientQuantity.units) || (range.minimumIngredientQuantity && productIngredient.ingredientQuantity.units !== range.minimumIngredientQuantity.units)) {
-            console.warn(`Conversions not yet supported ${products[product.id].name}, ${productIngredient.ingredientType.name}`);
+            console.warn(`Conversions not yet supported ${product.id}, ${productIngredient.ingredientType.name}`);
           }
           if (range.maximumIngredientQuantity && newMax !== undefined) {
             newMax -= productIngredient.ingredientQuantity.amount * product.quantity.number;
