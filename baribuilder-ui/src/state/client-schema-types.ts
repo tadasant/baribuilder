@@ -30,15 +30,9 @@ export interface IDesiredIngredients {
 export interface IIngredientRange {
   __typename: string;
   ingredientType: IIngredientType;
-  minimumDosage: IDosage | null;
-  maximumDosage: IDosage | null;
+  minimumIngredientQuantity: IIngredientQuantity | null;
+  maximumIngredientQuantity: IIngredientQuantity | null;
   frequency: FREQUENCY;
-}
-
-export interface IDosage {
-  __typename: string;
-  number: number;
-  units: INGREDIENT_QUANTITY_UNITS;
 }
 
 export interface ICost {

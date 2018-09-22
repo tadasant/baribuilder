@@ -54,12 +54,12 @@ const DESIRED_DOSAGES_QUERY = gql`
                 ingredientType {
                     name
                 }
-                minimumDosage {
-                    number
+                minimumIngredientQuantity {
+                    amount
                     units
                 }
-                maximumDosage {
-                    number
+                maximumIngredientQuantity {
+                    amount
                     units
                 }
                 frequency

@@ -122,17 +122,17 @@ const subtractRegimenIngredientFromMinimumDosage = (
   range: IIngredientRange,
   regimenIngredient: IRegimenIngredient
 ): IRegimenIngredient | null => {
-  const {minimumDosage} = range;
+  const {minimumIngredientQuantity} = range;
 
   if (range.frequency !== regimenIngredient.frequency) {
     console.warn('Frequency conversions unsupported. Error code 489293.');
     return null;
   }
-  if (minimumDosage == null) {
+  if (minimumIngredientQuantity == null) {
     console.warn('Minimum dosage was null. Error code 489293.');
     return null;
   }
-  // if (minimumDosage.units !==)
+  // if (minimumIngredientQuantity.units !==)
   //
-  // return minimumDosage.number;
+  // return minimumIngredientQuantity.number;
 };

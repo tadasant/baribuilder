@@ -21,14 +21,14 @@ const deriveIdealQuantityViaLimitingMicros = (
     const ingredientName = ingredientRange.ingredientType.name;
     if (productIngredientsByName.hasOwnProperty(ingredientName)) {
       let smallestToFillIngredient: number | undefined = undefined;
-      if (ingredientRange.minimumDosage) {
-        smallestToFillIngredient = ingredientRange.minimumDosage.number / productIngredientsByName[ingredientName].ingredientQuantity.amount;
+      if (ingredientRange.minimumIngredientQuantity) {
+        smallestToFillIngredient = ingredientRange.minimumIngredientQuantity.amount / productIngredientsByName[ingredientName].ingredientQuantity.amount;
         smallestToFillIngredient = smallestToFillIngredient % 1 > 0.001 ? Math.ceil(smallestToFillIngredient) : Math.floor(smallestToFillIngredient); // Don't round up if it's within .001
       }
 
       let maxBeforeExceedIngredient: number | undefined = undefined;
-      if (ingredientRange.maximumDosage) {
-        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximumDosage.number / productIngredientsByName[ingredientName].ingredientQuantity.amount);
+      if (ingredientRange.maximumIngredientQuantity) {
+        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximumIngredientQuantity.amount / productIngredientsByName[ingredientName].ingredientQuantity.amount);
       }
 
       if (smallestToFill === undefined || (smallestToFillIngredient !== undefined && smallestToFillIngredient > smallestToFill)) {
@@ -55,35 +55,35 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
 
   const targetIngredientRanges: IIngredientRange[] = [];
   desiredIngredientRanges.forEach(range => {
-    let newMax = range.maximumDosage ? range.maximumDosage.number : undefined;
-    let newMin = range.minimumDosage ? range.minimumDosage.number : undefined;
+    let newMax = range.maximumIngredientQuantity ? range.maximumIngredientQuantity.amount : undefined;
+    let newMin = range.minimumIngredientQuantity ? range.minimumIngredientQuantity.amount : undefined;
     currentRegimenProducts.forEach(product => {
       const productIngredients = products[product.id].nutritionFacts.ingredients || [];
       productIngredients.forEach((productIngredient: GetProductIngredients_Product_nutritionFacts_ingredients) => {
         if (productIngredient.ingredientType.name === range.ingredientType.name) {
-          if ((range.maximumDosage && productIngredient.ingredientQuantity.units !== range.maximumDosage.units) || (range.minimumDosage && productIngredient.ingredientQuantity.units !== range.minimumDosage.units)) {
+          if ((range.maximumIngredientQuantity && productIngredient.ingredientQuantity.units !== range.maximumIngredientQuantity.units) || (range.minimumIngredientQuantity && productIngredient.ingredientQuantity.units !== range.minimumIngredientQuantity.units)) {
             console.warn(`Conversions not yet supported ${products[product.id].name}, ${productIngredient.ingredientType.name}`);
           }
-          if (range.maximumDosage && newMax !== undefined) {
+          if (range.maximumIngredientQuantity && newMax !== undefined) {
             newMax -= productIngredient.ingredientQuantity.amount * product.quantity.number;
           }
-          if (range.minimumDosage && newMin !== undefined) {
+          if (range.minimumIngredientQuantity && newMin !== undefined) {
             newMin -= productIngredient.ingredientQuantity.amount * product.quantity.number;
           }
         }
       });
     });
     const result = {...range};
-    if (range.minimumDosage && newMin !== undefined) {
-      result.minimumDosage = {
-        ...range.minimumDosage,
-        number: newMin,
+    if (range.minimumIngredientQuantity && newMin !== undefined) {
+      result.minimumIngredientQuantity = {
+        ...range.minimumIngredientQuantity,
+        amount: newMin,
       }
     }
-    if (range.maximumDosage && newMax !== undefined) {
-      result.maximumDosage = {
-        ...range.maximumDosage,
-        number: newMax,
+    if (range.maximumIngredientQuantity && newMax !== undefined) {
+      result.maximumIngredientQuantity = {
+        ...range.maximumIngredientQuantity,
+        amount: newMax,
       }
     }
     targetIngredientRanges.push(result);
