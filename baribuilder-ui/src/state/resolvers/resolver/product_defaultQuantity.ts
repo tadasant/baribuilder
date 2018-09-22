@@ -53,13 +53,12 @@ const DESIRED_DOSAGES_QUERY = gql`
                 minimumDosage {
                     number
                     units
-                    frequency
                 }
                 maximumDosage {
                     number
                     units
-                    frequency
                 }
+                frequency
             }
         }
     }

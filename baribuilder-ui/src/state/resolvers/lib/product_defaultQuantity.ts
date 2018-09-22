@@ -46,9 +46,9 @@ const deriveIdealQuantityViaLimitingMicros = (
 const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], products: GetAllProductsIngredients_allProducts[]): IIngredientRange[] => {
   // TODO quantity units need to implemented somewhere here
   // TODO [BUG] need to do a keyBy on products so I can access w/ ID
-  const allDosagesDaily = desiredIngredientRanges.every(range => (range.minimumDosage ? range.minimumDosage.frequency === 'DAILY' : true) && (range.maximumDosage ? range.maximumDosage.frequency === 'DAILY' : true));
+  const allRangesDaily = desiredIngredientRanges.every(range => range.frequency === 'DAILY');
   const allRegimenProductDosagesDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
-  if (!allDosagesDaily || !allRegimenProductDosagesDaily) {
+  if (!allRangesDaily || !allRegimenProductDosagesDaily) {
     console.warn('Not all frequencies are DAILY. Error 38239');
     return [];
   }

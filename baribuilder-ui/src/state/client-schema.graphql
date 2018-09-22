@@ -78,7 +78,6 @@ type IngredientRange {
 type Dosage {
     number: Float!
     units: INGREDIENT_UNITS!
-    frequency: FREQUENCY!
 }
 
 ##### Queries and Mutations for local state

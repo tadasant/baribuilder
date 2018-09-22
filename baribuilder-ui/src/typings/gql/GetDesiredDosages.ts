@@ -16,14 +16,12 @@ export interface GetDesiredDosages_desiredDosages_ingredientRanges_minimumDosage
   __typename: "Dosage";
   number: number;
   units: INGREDIENT_UNITS;
-  frequency: FREQUENCY;
 }
 
 export interface GetDesiredDosages_desiredDosages_ingredientRanges_maximumDosage {
   __typename: "Dosage";
   number: number;
   units: INGREDIENT_UNITS;
-  frequency: FREQUENCY;
 }
 
 export interface GetDesiredDosages_desiredDosages_ingredientRanges {
@@ -31,6 +29,7 @@ export interface GetDesiredDosages_desiredDosages_ingredientRanges {
   ingredientType: GetDesiredDosages_desiredDosages_ingredientRanges_ingredientType;
   minimumDosage: GetDesiredDosages_desiredDosages_ingredientRanges_minimumDosage | null;
   maximumDosage: GetDesiredDosages_desiredDosages_ingredientRanges_maximumDosage | null;
+  frequency: FREQUENCY;
 }
 
 export interface GetDesiredDosages_desiredDosages {

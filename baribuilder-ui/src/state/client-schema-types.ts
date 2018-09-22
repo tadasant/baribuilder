@@ -32,13 +32,13 @@ export interface IIngredientRange {
   ingredientType: IIngredientType;
   minimumDosage: IDosage | null;
   maximumDosage: IDosage | null;
+  frequency: FREQUENCY;
 }
 
 export interface IDosage {
   __typename: string;
   number: number;
   units: INGREDIENT_UNITS;
-  frequency: FREQUENCY;
 }
 
 export interface ICost {
