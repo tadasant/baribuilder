@@ -22,13 +22,13 @@ const deriveIdealQuantityViaLimitingMicros = (
     if (productIngredientsByName.hasOwnProperty(ingredientName)) {
       let smallestToFillIngredient: number | undefined = undefined;
       if (ingredientRange.minimumDosage) {
-        smallestToFillIngredient = ingredientRange.minimumDosage.number / productIngredientsByName[ingredientName].amount;
+        smallestToFillIngredient = ingredientRange.minimumDosage.number / productIngredientsByName[ingredientName].ingredientQuantity.amount;
         smallestToFillIngredient = smallestToFillIngredient % 1 > 0.001 ? Math.ceil(smallestToFillIngredient) : Math.floor(smallestToFillIngredient); // Don't round up if it's within .001
       }
 
       let maxBeforeExceedIngredient: number | undefined = undefined;
       if (ingredientRange.maximumDosage) {
-        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximumDosage.number / productIngredientsByName[ingredientName].amount);
+        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximumDosage.number / productIngredientsByName[ingredientName].ingredientQuantity.amount);
       }
 
       if (smallestToFill === undefined || (smallestToFillIngredient !== undefined && smallestToFillIngredient > smallestToFill)) {
@@ -61,14 +61,14 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
       const productIngredients = products[product.id].nutritionFacts.ingredients || [];
       productIngredients.forEach((productIngredient: GetProductIngredients_Product_nutritionFacts_ingredients) => {
         if (productIngredient.ingredientType.name === range.ingredientType.name) {
-          if ((range.maximumDosage && productIngredient.units !== range.maximumDosage.units) || (range.minimumDosage && productIngredient.units !== range.minimumDosage.units)) {
+          if ((range.maximumDosage && productIngredient.ingredientQuantity.units !== range.maximumDosage.units) || (range.minimumDosage && productIngredient.ingredientQuantity.units !== range.minimumDosage.units)) {
             console.warn(`Conversions not yet supported ${products[product.id].name}, ${productIngredient.ingredientType.name}`);
           }
           if (range.maximumDosage && newMax !== undefined) {
-            newMax -= productIngredient.amount * product.quantity.number;
+            newMax -= productIngredient.ingredientQuantity.amount * product.quantity.number;
           }
           if (range.minimumDosage && newMin !== undefined) {
-            newMin -= productIngredient.amount * product.quantity.number;
+            newMin -= productIngredient.ingredientQuantity.amount * product.quantity.number;
           }
         }
       });

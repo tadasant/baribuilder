@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { INGREDIENT_UNITS, PRODUCT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
+import { INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetProductForProductDetail
@@ -18,9 +18,10 @@ export interface GetProductForProductDetail_Product_listings {
   numServings: number;
 }
 
-export interface GetProductForProductDetail_Product_nutritionFacts_serving {
-  __typename: "Serving";
-  count: number;
+export interface GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientQuantity {
+  __typename: "IngredientQuantity";
+  amount: number;
+  units: INGREDIENT_QUANTITY_UNITS;
 }
 
 export interface GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientType {
@@ -30,14 +31,12 @@ export interface GetProductForProductDetail_Product_nutritionFacts_ingredients_i
 
 export interface GetProductForProductDetail_Product_nutritionFacts_ingredients {
   __typename: "Ingredient";
-  amount: number;
-  units: INGREDIENT_UNITS;
+  ingredientQuantity: GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientQuantity;
   ingredientType: GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientType;
 }
 
 export interface GetProductForProductDetail_Product_nutritionFacts {
   __typename: "NutritionFacts";
-  serving: GetProductForProductDetail_Product_nutritionFacts_serving;
   ingredients: GetProductForProductDetail_Product_nutritionFacts_ingredients[] | null;
 }
 

@@ -301,6 +301,101 @@
             "deprecationReason": null
           },
           {
+            "name": "allIngredientQuantities",
+            "description": null,
+            "args": [
+              {
+                "name": "filter",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantityFilter",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "IngredientQuantityOrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "skip",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "after",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "before",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "first",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "last",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "IngredientQuantity",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "allIngredientTypes",
             "description": null,
             "args": [
@@ -1227,6 +1322,93 @@
             "deprecationReason": null
           },
           {
+            "name": "_allIngredientQuantitiesMeta",
+            "description": null,
+            "args": [
+              {
+                "name": "filter",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantityFilter",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "IngredientQuantityOrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "skip",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "after",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "before",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "first",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "last",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "_QueryMeta",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_allIngredientTypesMeta",
             "description": null,
             "args": [
@@ -1899,6 +2081,29 @@
             "type": {
               "kind": "OBJECT",
               "name": "Ingredient",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "IngredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "id",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientQuantity",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5502,6 +5707,239 @@
             "defaultValue": null
           },
           {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not",
+            "description": "All values that are not equal to given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_in",
+            "description": "All values that are contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_in",
+            "description": "All values that are not contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_lt",
+            "description": "All values less than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_lte",
+            "description": "All values less than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_gt",
+            "description": "All values greater than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_gte",
+            "description": "All values greater than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_contains",
+            "description": "All values containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_contains",
+            "description": "All values not containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_starts_with",
+            "description": "All values starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_starts_with",
+            "description": "All values not starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_ends_with",
+            "description": "All values ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_ends_with",
+            "description": "All values not ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientQuantity",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientQuantityFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientType",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientTypeFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nutritionFacts",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NutritionFactsFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "IngredientQuantityFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "AND",
+            "description": "Logical AND on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantityFilter",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "OR",
+            "description": "Logical OR on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantityFilter",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
             "name": "amount",
             "description": "",
             "type": {
@@ -5758,7 +6196,7 @@
             "description": "",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -5768,7 +6206,7 @@
             "description": "All values that are not equal to given value.",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -5784,7 +6222,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -5802,7 +6240,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -5810,21 +6248,11 @@
             "defaultValue": null
           },
           {
-            "name": "ingredientType",
+            "name": "ingredient",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "IngredientTypeFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nutritionFacts",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NutritionFactsFilter",
+              "name": "IngredientFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -5836,7 +6264,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "INGREDIENT_UNITS",
+        "name": "INGREDIENT_QUANTITY_UNITS",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -5916,7 +6344,7 @@
             "description": "",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -5926,7 +6354,7 @@
             "description": "All values that are not equal to given value.",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -5942,7 +6370,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -5960,7 +6388,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -6353,102 +6781,6 @@
                   "ofType": null
                 }
               }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_not",
-            "description": "All values that are not equal to given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_in",
-            "description": "All values that are contained in given list.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_not_in",
-            "description": "All values that are not contained in given list.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_lt",
-            "description": "All values less than the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_lte",
-            "description": "All values less than or equal the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_gt",
-            "description": "All values greater than the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_gte",
-            "description": "All values greater than or equal the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
             },
             "defaultValue": null
           },
@@ -7010,6 +7342,11 @@
           {
             "kind": "OBJECT",
             "name": "Ingredient",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "IngredientQuantity",
             "ofType": null
           },
           {
@@ -8239,18 +8576,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "amount_ASC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "amount_DESC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id_ASC",
             "description": null,
             "isDeprecated": false,
@@ -8258,18 +8583,6 @@
           },
           {
             "name": "id_DESC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "units_ASC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "units_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -8283,22 +8596,6 @@
         "description": null,
         "fields": [
           {
-            "name": "amount",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "args": [],
@@ -8308,6 +8605,33 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ingredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "filter",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantityFilter",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "IngredientQuantity",
                 "ofType": null
               }
             },
@@ -8367,6 +8691,82 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "IngredientQuantity",
+        "description": null,
+        "fields": [
+          {
+            "name": "amount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ingredient",
+            "description": null,
+            "args": [
+              {
+                "name": "filter",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientFilter",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Ingredient",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "units",
@@ -8377,7 +8777,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
+                "name": "INGREDIENT_QUANTITY_UNITS",
                 "ofType": null
               }
             },
@@ -8410,7 +8810,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
+                "name": "INGREDIENT_QUANTITY_UNITS",
                 "ofType": null
               }
             },
@@ -8692,22 +9092,6 @@
         "description": null,
         "fields": [
           {
-            "name": "count",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "args": [],
@@ -8792,6 +9176,53 @@
           }
         ],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "IngredientQuantityOrderBy",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "amount_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "amount_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "units_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "units_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -9002,18 +9433,6 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
-          {
-            "name": "count_ASC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "count_DESC",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id_ASC",
             "description": null,
@@ -9443,30 +9862,22 @@
             "description": null,
             "args": [
               {
-                "name": "amount",
+                "name": "ingredientQuantityId",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Float",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
                 },
                 "defaultValue": null
               },
               {
-                "name": "units",
+                "name": "ingredientQuantity",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "INGREDIENT_UNITS",
-                    "ofType": null
-                  }
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientingredientQuantityIngredientQuantity",
+                  "ofType": null
                 },
                 "defaultValue": null
               },
@@ -9520,6 +9931,67 @@
             "deprecationReason": null
           },
           {
+            "name": "createIngredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "amount",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Float",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "units",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "INGREDIENT_QUANTITY_UNITS",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "ingredientId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "ingredient",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantityingredientIngredient",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientQuantity",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createIngredientType",
             "description": null,
             "args": [
@@ -9531,7 +10003,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "INGREDIENT_UNITS",
+                    "name": "INGREDIENT_QUANTITY_UNITS",
                     "ofType": null
                   }
                 },
@@ -10037,20 +10509,6 @@
             "description": null,
             "args": [
               {
-                "name": "count",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "size",
                 "description": null,
                 "type": {
@@ -10226,16 +10684,6 @@
             "description": null,
             "args": [
               {
-                "name": "amount",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "id",
                 "description": null,
                 "type": {
@@ -10250,11 +10698,21 @@
                 "defaultValue": null
               },
               {
-                "name": "units",
+                "name": "ingredientQuantityId",
                 "description": null,
                 "type": {
-                  "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "ingredientQuantity",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientingredientQuantityIngredientQuantity",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -10309,6 +10767,73 @@
             "deprecationReason": null
           },
           {
+            "name": "updateIngredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "amount",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "units",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "ingredientId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "ingredient",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantityingredientIngredient",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientQuantity",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updateIngredientType",
             "description": null,
             "args": [
@@ -10317,7 +10842,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -10860,16 +11385,6 @@
             "description": null,
             "args": [
               {
-                "name": "count",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "id",
                 "description": null,
                 "type": {
@@ -11077,6 +11592,47 @@
             "type": {
               "kind": "OBJECT",
               "name": "Ingredient",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updateOrCreateIngredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "update",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateIngredientQuantity",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "create",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CreateIngredientQuantity",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientQuantity",
               "ofType": null
             },
             "isDeprecated": false,
@@ -11437,6 +11993,33 @@
             "deprecationReason": null
           },
           {
+            "name": "deleteIngredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientQuantity",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "deleteIngredientType",
             "description": null,
             "args": [
@@ -11620,6 +12203,47 @@
             "type": {
               "kind": "OBJECT",
               "name": "User",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "setIngredientIngredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "ingredientQuantityIngredientQuantityId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "ingredientIngredientId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SetIngredientIngredientQuantityPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -12355,20 +12979,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "count",
-            "description": "",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
             "name": "size",
             "description": "",
             "type": {
@@ -12408,30 +13018,22 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "amount",
+            "name": "ingredientQuantityId",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "units",
+            "name": "ingredientQuantity",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientingredientQuantityIngredientQuantity",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -12462,6 +13064,45 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "IngredientingredientQuantityIngredientQuantity",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "amount",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "units",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "INGREDIENT_QUANTITY_UNITS",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "IngredientingredientTypeIngredientType",
         "description": null,
         "fields": null,
@@ -12474,7 +13115,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
+                "name": "INGREDIENT_QUANTITY_UNITS",
                 "ofType": null
               }
             },
@@ -12560,30 +13201,22 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "amount",
+            "name": "ingredientQuantityId",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "units",
+            "name": "ingredientQuantity",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientingredientQuantityIngredientQuantity",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -13148,6 +13781,57 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "IngredientQuantityingredientIngredient",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "ingredientTypeId",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientType",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientingredientTypeIngredientType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nutritionFactsId",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nutritionFacts",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientnutritionFactsNutritionFacts",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "PricelistingListing",
         "description": null,
         "fields": null,
@@ -13519,16 +14203,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "amount",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "id",
             "description": "",
             "type": {
@@ -13543,11 +14217,21 @@
             "defaultValue": null
           },
           {
-            "name": "units",
+            "name": "ingredientQuantityId",
             "description": "",
             "type": {
-              "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientQuantity",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientingredientQuantityIngredientQuantity",
               "ofType": null
             },
             "defaultValue": null
@@ -13604,30 +14288,22 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "amount",
+            "name": "ingredientQuantityId",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "units",
+            "name": "ingredientQuantity",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientingredientQuantityIngredientQuantity",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -13678,6 +14354,130 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "UpdateIngredientQuantity",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "amount",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "units",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "INGREDIENT_QUANTITY_UNITS",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientId",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredient",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientQuantityingredientIngredient",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CreateIngredientQuantity",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "amount",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "units",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "INGREDIENT_QUANTITY_UNITS",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientId",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredient",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientQuantityingredientIngredient",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "UpdateIngredientType",
         "description": null,
         "fields": null,
@@ -13687,7 +14487,7 @@
             "description": "",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -13789,7 +14589,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
+                "name": "INGREDIENT_QUANTITY_UNITS",
                 "ofType": null
               }
             },
@@ -14723,16 +15523,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "count",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "id",
             "description": "",
             "type": {
@@ -14797,20 +15587,6 @@
         "description": null,
         "fields": null,
         "inputFields": [
-          {
-            "name": "count",
-            "description": "",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
           {
             "name": "size",
             "description": "",
@@ -14886,6 +15662,41 @@
           }
         ],
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SetIngredientIngredientQuantityPayload",
+        "description": null,
+        "fields": [
+          {
+            "name": "ingredientIngredient",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Ingredient",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ingredientQuantityIngredientQuantity",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientQuantity",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -15326,6 +16137,29 @@
             "type": {
               "kind": "OBJECT",
               "name": "IngredientSubscriptionPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "IngredientQuantity",
+            "description": null,
+            "args": [
+              {
+                "name": "filter",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantitySubscriptionFilter",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientQuantitySubscriptionPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -16791,6 +17625,422 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not",
+            "description": "All values that are not equal to given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_in",
+            "description": "All values that are contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_in",
+            "description": "All values that are not contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_lt",
+            "description": "All values less than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_lte",
+            "description": "All values less than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_gt",
+            "description": "All values greater than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_gte",
+            "description": "All values greater than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_contains",
+            "description": "All values containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_contains",
+            "description": "All values not containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_starts_with",
+            "description": "All values starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_starts_with",
+            "description": "All values not starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_ends_with",
+            "description": "All values ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_ends_with",
+            "description": "All values not ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientQuantity",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientQuantityFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ingredientType",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientTypeFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nutritionFacts",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NutritionFactsFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "IngredientSubscriptionPayload",
+        "description": null,
+        "fields": [
+          {
+            "name": "mutation",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "_ModelMutationType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "node",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Ingredient",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedFields",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousValues",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IngredientPreviousValues",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "IngredientPreviousValues",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "IngredientQuantitySubscriptionFilter",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "AND",
+            "description": "Logical AND on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantitySubscriptionFilter",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "OR",
+            "description": "Logical OR on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IngredientQuantitySubscriptionFilter",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "mutation_in",
+            "description": "The subscription event gets dispatched when it's listed in mutation_in",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "_ModelMutationType",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedFields_contains",
+            "description": "The subscription event gets only dispatched when one of the updated fields names is included in this list",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedFields_contains_every",
+            "description": "The subscription event gets only dispatched when all of the field names included in this list have been updated",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedFields_contains_some",
+            "description": "The subscription event gets only dispatched when some of the field names included in this list have been updated",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "node",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IngredientQuantitySubscriptionFilterNode",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "IngredientQuantitySubscriptionFilterNode",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
             "name": "amount",
             "description": "",
             "type": {
@@ -17047,7 +18297,7 @@
             "description": "",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -17057,7 +18307,7 @@
             "description": "All values that are not equal to given value.",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -17073,7 +18323,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -17091,7 +18341,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -17099,21 +18349,11 @@
             "defaultValue": null
           },
           {
-            "name": "ingredientType",
+            "name": "ingredient",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "IngredientTypeFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nutritionFacts",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NutritionFactsFilter",
+              "name": "IngredientFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -17125,7 +18365,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "IngredientSubscriptionPayload",
+        "name": "IngredientQuantitySubscriptionPayload",
         "description": null,
         "fields": [
           {
@@ -17150,7 +18390,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Ingredient",
+              "name": "IngredientQuantity",
               "ofType": null
             },
             "isDeprecated": false,
@@ -17182,7 +18422,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "IngredientPreviousValues",
+              "name": "IngredientQuantityPreviousValues",
               "ofType": null
             },
             "isDeprecated": false,
@@ -17196,7 +18436,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "IngredientPreviousValues",
+        "name": "IngredientQuantityPreviousValues",
         "description": null,
         "fields": [
           {
@@ -17240,7 +18480,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
+                "name": "INGREDIENT_QUANTITY_UNITS",
                 "ofType": null
               }
             },
@@ -17385,7 +18625,7 @@
             "description": "",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -17395,7 +18635,7 @@
             "description": "All values that are not equal to given value.",
             "type": {
               "kind": "ENUM",
-              "name": "INGREDIENT_UNITS",
+              "name": "INGREDIENT_QUANTITY_UNITS",
               "ofType": null
             },
             "defaultValue": null
@@ -17411,7 +18651,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -17429,7 +18669,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "INGREDIENT_UNITS",
+                  "name": "INGREDIENT_QUANTITY_UNITS",
                   "ofType": null
                 }
               }
@@ -17868,7 +19108,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "INGREDIENT_UNITS",
+                "name": "INGREDIENT_QUANTITY_UNITS",
                 "ofType": null
               }
             },
@@ -21009,102 +22249,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "count",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_not",
-            "description": "All values that are not equal to given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_in",
-            "description": "All values that are contained in given list.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_not_in",
-            "description": "All values that are not contained in given list.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_lt",
-            "description": "All values less than the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_lte",
-            "description": "All values less than or equal the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_gt",
-            "description": "All values greater than the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "count_gte",
-            "description": "All values greater than or equal the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "id",
             "description": "",
             "type": {
@@ -21503,22 +22647,6 @@
         "name": "ServingPreviousValues",
         "description": null,
         "fields": [
-          {
-            "name": "count",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,

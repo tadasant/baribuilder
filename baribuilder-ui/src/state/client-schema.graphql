@@ -71,13 +71,13 @@ type IngredientRange {
     ingredientType: IngredientType!
     minimumDosage: Dosage
     maximumDosage: Dosage
-    units: INGREDIENT_UNITS!
+    units: INGREDIENT_QUANTITY_UNITS!
     frequency: FREQUENCY!
 }
 
 type Dosage {
     number: Float!
-    units: INGREDIENT_UNITS!
+    units: INGREDIENT_QUANTITY_UNITS!
 }
 
 ##### Queries and Mutations for local state

@@ -15,8 +15,10 @@ const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
         Product(id: "${id}") {
             nutritionFacts {
                 ingredients {
-                    amount
-                    units
+                    ingredientQuantity {
+                        amount
+                        units
+                    }
                     ingredientType {
                         name
                     }
@@ -32,11 +34,13 @@ export const ALL_PRODUCTS_QUERY = gql`
             id
             nutritionFacts {
                 ingredients {
-                    amount
+                    ingredientQuantity {
+                        amount
+                        units
+                    }
                     ingredientType {
                         name
                     }
-                    units
                 }
             }
         }

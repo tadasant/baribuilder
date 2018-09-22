@@ -60,10 +60,8 @@ type Serving @model {
 
 type Ingredient @model {
     id: ID! @isUnique
-    amount: Float!
-    units: INGREDIENT_QUANTITY_UNITS!
     ingredientType: IngredientType! @relation(name: "IngredientIngredientType")
-    ingredientQuantity: IngredientQuantity @relation(name: "IngredientIngredientQuantity")
+    ingredientQuantity: IngredientQuantity! @relation(name: "IngredientIngredientQuantity")
     nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsIngredients")
 }
 

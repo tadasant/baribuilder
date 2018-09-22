@@ -1,6 +1,6 @@
 import {cloneDeep, keyBy} from 'lodash';
 import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
-import {FREQUENCY, INGREDIENT_UNITS} from '../../../typings/gql/globalTypes';
+import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
 import {ICost, IIngredient, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
 import {IProductForProjectedRegimenCost} from './product_projectedRegimenCost';
 
@@ -108,7 +108,7 @@ const addRegimenIngredients = (...ingredients: IRegimenIngredient[]): IRegimenIn
       __typename: 'IngredientType',
       name: 'Vitamin A',
     },
-    units: INGREDIENT_UNITS.G
+    units: INGREDIENT_QUANTITY_UNITS.G
   }
 };
 

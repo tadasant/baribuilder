@@ -25,12 +25,11 @@ const data = graphql<{}, GetProductsForProductSelection>(gql`
                 numServings
             }
             nutritionFacts {
-                serving {
-                    count
-                }
                 ingredients {
-                    amount
-                    units
+                    ingredientQuantity {
+                        amount
+                        units
+                    }
                     ingredientType {
                         name
                     }

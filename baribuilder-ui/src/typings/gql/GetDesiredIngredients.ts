@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { INGREDIENT_UNITS, FREQUENCY } from "./globalTypes";
+import { INGREDIENT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetDesiredIngredients
@@ -15,13 +15,13 @@ export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_ingre
 export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_minimumDosage {
   __typename: "Dosage";
   number: number;
-  units: INGREDIENT_UNITS;
+  units: INGREDIENT_QUANTITY_UNITS;
 }
 
 export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_maximumDosage {
   __typename: "Dosage";
   number: number;
-  units: INGREDIENT_UNITS;
+  units: INGREDIENT_QUANTITY_UNITS;
 }
 
 export interface GetDesiredIngredients_desiredIngredients_ingredientRanges {

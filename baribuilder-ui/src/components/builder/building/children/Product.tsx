@@ -16,12 +16,11 @@ const GET_PRODUCT_QUERY = gql`
                 numServings
             }
             nutritionFacts {
-                serving {
-                    count
-                }
                 ingredients {
-                    amount
-                    units
+                    ingredientQuantity {
+                        amount
+                        units
+                    }
                     ingredientType {
                         name
                     }

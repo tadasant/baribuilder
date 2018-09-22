@@ -1,4 +1,4 @@
-import {FREQUENCY, INGREDIENT_UNITS} from '../typings/gql/globalTypes';
+import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 
 export interface IRegimen {
   __typename: string;
@@ -38,7 +38,7 @@ export interface IIngredientRange {
 export interface IDosage {
   __typename: string;
   number: number;
-  units: INGREDIENT_UNITS;
+  units: INGREDIENT_QUANTITY_UNITS;
 }
 
 export interface ICost {
@@ -76,6 +76,6 @@ export interface IIngredientType {
 export interface IIngredient {
   __typename: string;
   amount: number;
-  units: INGREDIENT_UNITS;
+  units: INGREDIENT_QUANTITY_UNITS;
   ingredientType: IIngredientType;
 }

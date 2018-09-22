@@ -1,11 +1,17 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { INGREDIENT_UNITS } from "./globalTypes";
+import { INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetProductIngredients
 // ====================================================
+
+export interface GetProductIngredients_Product_nutritionFacts_ingredients_ingredientQuantity {
+  __typename: "IngredientQuantity";
+  amount: number;
+  units: INGREDIENT_QUANTITY_UNITS;
+}
 
 export interface GetProductIngredients_Product_nutritionFacts_ingredients_ingredientType {
   __typename: "IngredientType";
@@ -14,8 +20,7 @@ export interface GetProductIngredients_Product_nutritionFacts_ingredients_ingred
 
 export interface GetProductIngredients_Product_nutritionFacts_ingredients {
   __typename: "Ingredient";
-  amount: number;
-  units: INGREDIENT_UNITS;
+  ingredientQuantity: GetProductIngredients_Product_nutritionFacts_ingredients_ingredientQuantity;
   ingredientType: GetProductIngredients_Product_nutritionFacts_ingredients_ingredientType;
 }
 
