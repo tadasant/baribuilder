@@ -22,7 +22,7 @@ export interface IQuantity {
   frequency: FREQUENCY;
 }
 
-export interface IDesiredDosages {
+export interface IDesiredIngredientRanges {
   __typename: string;
   ingredientRanges: IIngredientRange[];
 }
