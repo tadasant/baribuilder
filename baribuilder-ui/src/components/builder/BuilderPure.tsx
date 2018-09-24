@@ -6,24 +6,35 @@ import BuilderHeader from './building/BuilderHeader';
 import BuilderLeftPanel from './building/BuilderLeftPanel';
 import BuilderMainPanel from './building/BuilderMainPanel';
 
+export type SetBuilderStateFunction = (value: boolean) => void;
+
 interface IProps {
   disableHeader: boolean;
-  setDisableHeader: (value: boolean) => void;
+  setDisableHeader: SetBuilderStateFunction;
+  showMyProducts: boolean;
+  setShowMyProducts: SetBuilderStateFunction;
 }
 
-const BuilderPure: SFC<IProps> = ({disableHeader}) => {
+const BuilderPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProducts}) => {
   return (
     <Fragment>
-      <Header disableButtons={disableHeader} hideNavigation />
+      <Header disableButtons={disableHeader} hideNavigation/>
       {/*<DesiredIngredientsModal />*/}
-      <BuilderHeader />
+      <BuilderHeader setShowMyProducts={setShowMyProducts} showMyProducts={showMyProducts}/>
       <Grid container>
         <Grid item lg={4}>
-          <BuilderLeftPanel />
+          <BuilderLeftPanel/>
         </Grid>
-        <Grid item lg={8}>
+        <Grid item lg={showMyProducts ? 5 : 8}>
           <BuilderMainPanel/>
         </Grid>
+        {
+          !showMyProducts ? null :
+            <Grid item lg={3}>
+              Current Regimen Products
+              {/*<CurrentRegimenProducts />*/}
+            </Grid>
+        }
       </Grid>
     </Fragment>
   );
