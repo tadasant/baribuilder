@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
+import { SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetProductsForProductSelection
@@ -37,6 +37,8 @@ export interface GetProductsForProductSelection_allCatalogProducts_serving_ingre
 
 export interface GetProductsForProductSelection_allCatalogProducts_serving {
   __typename: "Serving";
+  size: number;
+  units: SERVING_SIZE_UNITS;
   ingredients: GetProductsForProductSelection_allCatalogProducts_serving_ingredients[] | null;
 }
 
