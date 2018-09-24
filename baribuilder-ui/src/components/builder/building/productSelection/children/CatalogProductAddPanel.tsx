@@ -1,4 +1,4 @@
-import {Button, Grid} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
@@ -12,9 +12,11 @@ import {
 const GET_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
     query GetCatalogProductQuantities($id: ID) {
         CatalogProduct(id: $id) {
+            # ID required to reconcile @client queries
+            id
             quantity @client {
-                number
-                units
+                amount
+                frequency
             }
         }
     }
@@ -38,23 +40,14 @@ const enhance = compose<IProps & DataOutputProps, IProps>(
 );
 
 // Pure
-const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = (props) => {
-  const CatalogProduct = props.data.CatalogProduct;
+const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}}) => {
   if (!CatalogProduct) {
     return null;
   }
   return (
     <Fragment>
-      <Grid container alignItems='center' justify='space-evenly'>
-        <Grid item lg={12}>
-          {/* TODO need to add mutation to update that quantity */}
-          {CatalogProduct.quantity.number}
-        </Grid>
-        <Grid item lg={12}>
-          {/* TODO need to add mutation to update that regimen stuff when hit */}
-          <Button color='default'>Add</Button>
-          blah
-        </Grid>
+      <Grid container alignItems='center'>
+        {CatalogProduct.quantity.amount}
       </Grid>
     </Fragment>
   );

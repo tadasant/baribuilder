@@ -38,8 +38,13 @@ const GET_PRODUCT_QUERY = gql`
                     }
                 }
             }
+            # TODO replace w/ fragments
             cost @client {
                 money
+                frequency
+            }
+            quantity @client {
+                amount
                 frequency
             }
             projectedRegimenCost @client {

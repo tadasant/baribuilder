@@ -64,7 +64,7 @@ export const CURRENT_REGIMEN_PRODUCTS_QUERY = gql`
             products {
                 catalogProductId
                 quantity {
-                    number
+                    amount
                     frequency
                     units
                 }

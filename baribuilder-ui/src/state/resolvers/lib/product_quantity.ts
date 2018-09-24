@@ -65,10 +65,10 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
             console.warn(`Conversions not yet supported ${product.catalogProductId}, ${productIngredient.ingredientType.name}`);
           }
           if (range.maximumQuantity && newMax !== undefined) {
-            newMax -= productIngredient.quantity.amount * product.quantity.number;
+            newMax -= productIngredient.quantity.amount * product.quantity.amount;
           }
           if (range.minimumQuantity && newMin !== undefined) {
-            newMin -= productIngredient.quantity.amount * product.quantity.number;
+            newMin -= productIngredient.quantity.amount * product.quantity.amount;
           }
         }
       });
@@ -101,7 +101,7 @@ export const calculateDefaultQuantity = (
   const targetIngredientRanges = calculateTargetIngredientRanges(desiredIngredientRanges, currentRegimenProducts, products);
   return {
     __typename: 'ProductQuantity',
-    number: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),
+    amount: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),
     units: PRODUCT_QUANTITY_UNITS.SERVINGS,
     frequency: FREQUENCY.DAILY,
   };

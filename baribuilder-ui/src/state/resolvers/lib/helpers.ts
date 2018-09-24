@@ -94,7 +94,7 @@ export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): ICost => 
   const frequency = regimenProducts.length > 0 ? regimenProducts[0].quantity.frequency : FREQUENCY.DAILY;
   regimenProducts.forEach(product => {
     if (product.quantity.frequency === frequency) {
-      totalMoney += product.quantity.number;
+      totalMoney += product.quantity.amount;
     } else {
       console.warn('Frequency conversions unsupported. Error code 69821.');
     }
@@ -152,7 +152,7 @@ const calculateRegimenIngredients = (
           ...cloneDeep(ingredient),
           quantity: {
             ...cloneDeep(ingredient.quantity),
-            amount: ingredient.quantity.amount * product.quantity.number,
+            amount: ingredient.quantity.amount * product.quantity.amount,
           },
           frequency: product.quantity.frequency,
         };

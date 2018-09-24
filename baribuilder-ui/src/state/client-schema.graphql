@@ -48,7 +48,7 @@ type RegimenCost {
 }
 
 type ProductQuantity {
-    number: Int!
+    amount: Int!
     units: PRODUCT_QUANTITY_UNITS!
     frequency: FREQUENCY!
 }

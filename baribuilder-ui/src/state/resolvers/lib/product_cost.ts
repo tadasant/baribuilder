@@ -28,7 +28,7 @@ const calculateCost = (listings: GetProductForProductCost_CatalogProduct_listing
   // Use qty to calculate the amount
   return {
     __typename: 'Cost',
-    money: cheapestCostPerServing * quantity.number,
+    money: cheapestCostPerServing * quantity.amount,
     frequency: quantity.frequency,
   }
 };

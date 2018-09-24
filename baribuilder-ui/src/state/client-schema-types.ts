@@ -18,7 +18,7 @@ export enum PRODUCT_QUANTITY_UNITS {
 
 export interface IProductQuantity {
   __typename: 'ProductQuantity';
-  number: number;
+  amount: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
 }
