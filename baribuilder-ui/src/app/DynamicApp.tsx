@@ -8,9 +8,10 @@ import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
 import {Route, Switch} from 'react-router-dom';
 import Builder from '../components/builder/Builder';
-import config from '../config/config';
+import config, {isProduction} from '../config/config';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
+import Dev from './Dev';
 import NotFound from './NotFound';
 
 
@@ -46,6 +47,7 @@ class DynamicApp extends Component {
       <ApolloProvider client={client}>
         <Switch>
           <Route exact path="/builder" component={Builder}/>
+          {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
           <Route component={NotFound}/>
         </Switch>
       </ApolloProvider>
