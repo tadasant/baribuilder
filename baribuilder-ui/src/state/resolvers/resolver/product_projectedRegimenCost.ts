@@ -5,7 +5,7 @@ import {IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/product_projectedRegimenCost';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 import costResolver from './product_cost';
-import defaultQuantityResolver from './product_defaultQuantity';
+import quantityResolver from './product_quantity';
 /**
  * Query fields need to be prefetched into cache.
  */
@@ -17,8 +17,7 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
     const allCatalogProductsResult = cache.readQuery<GetAllProductsIngredients>({
       query: ALL_PRODUCTS_INGREDIENTS_QUERY
     });
-    // TODO get quantity from local state cache
-    const productQuantity = defaultQuantityResolver(obj, _, {cache});
+    const productQuantity = quantityResolver(obj, _, {cache});
     const productCost = costResolver(obj, _, {cache});
     const desiredIngredientsResult = cache.readQuery<GetDesiredIngredients>({
       query: DESIRED_INGREDIENTS_QUERY

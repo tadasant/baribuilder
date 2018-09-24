@@ -4,7 +4,7 @@ import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients'
 import {ICost} from '../../client-schema-types';
 import calculateCost from '../lib/product_cost';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
-import defaultQuantityResolver from './product_defaultQuantity';
+import quantityResolver from './product_quantity';
 
 /**
  * Query fields need to be prefetched into cache.
@@ -28,8 +28,7 @@ const costResolver: TLocalProductResolverFunc<IProductObj, ICost> = (obj, _, {ca
   const productResult: GetProductForProductCost | null = cache.readQuery<any, GetProductIngredients>({
     query: PRODUCT_QUERY(catalogProductId)
   });
-  // TODO get quantity from local state cache
-  const quantity = defaultQuantityResolver(obj, _, {cache});
+  const quantity = quantityResolver(obj, _, {cache});
 
   //// Verify required data is present
   if (!productResult || !productResult.CatalogProduct || !productResult.CatalogProduct.listings) {

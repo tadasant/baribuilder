@@ -3,7 +3,7 @@ import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenP
 import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {IProductQuantity} from '../../client-schema-types';
-import {calculateDefaultQuantity} from '../lib/product_defaultQuantity';
+import {calculateDefaultQuantity} from '../lib/product_quantity';
 import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 /**
  * Query fields need to be prefetched into cache.
@@ -16,7 +16,9 @@ import {
 } from './queries';
 
 
-const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQuantity> = (obj, _, {cache}) => {
+const quantityResolver: TLocalProductResolverFunc<IProductObj, IProductQuantity> = (obj, _, {cache}) => {
+  // TODO return non-default quantity if exists
+
   //// Grab data
   const catalogProductId = 'id' in obj ? obj.id : obj.catalogProductId;
   const productResult = cache.readQuery<GetProductIngredients>({
@@ -60,4 +62,4 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQu
   // TODO write quantity to the cache
 };
 
-export default defaultQuantityResolver;
+export default quantityResolver;

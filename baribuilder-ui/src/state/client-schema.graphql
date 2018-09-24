@@ -28,9 +28,8 @@ enum FREQUENCY {
 extend type CatalogProduct {
     cost: Cost!
     projectedRegimenCost: RegimenCost
-    # defaultQuantity will be 1 Daily if desiredIngredients not set
-    defaultQuantity: ProductQuantity!
-    # quantity: ProductQuantity TODO need to be implemented on client store
+    # default quantity will be 1 Daily if desiredIngredients not set
+    quantity: ProductQuantity!
     matchScore: Float!
 }
 

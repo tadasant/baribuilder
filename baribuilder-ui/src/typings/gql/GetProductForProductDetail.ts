@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
+import { SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetProductForProductDetail
@@ -42,13 +42,6 @@ export interface GetProductForProductDetail_CatalogProduct_serving {
   ingredients: GetProductForProductDetail_CatalogProduct_serving_ingredients[] | null;
 }
 
-export interface GetProductForProductDetail_CatalogProduct_defaultQuantity {
-  __typename: "ProductQuantity";
-  number: number;
-  units: PRODUCT_QUANTITY_UNITS;
-  frequency: FREQUENCY;
-}
-
 export interface GetProductForProductDetail_CatalogProduct_cost {
   __typename: "Cost";
   money: number;
@@ -72,7 +65,6 @@ export interface GetProductForProductDetail_CatalogProduct {
   id: string;
   listings: GetProductForProductDetail_CatalogProduct_listings[] | null;
   serving: GetProductForProductDetail_CatalogProduct_serving;
-  defaultQuantity: GetProductForProductDetail_CatalogProduct_defaultQuantity;
   cost: GetProductForProductDetail_CatalogProduct_cost;
   projectedRegimenCost: GetProductForProductDetail_CatalogProduct_projectedRegimenCost | null;
 }

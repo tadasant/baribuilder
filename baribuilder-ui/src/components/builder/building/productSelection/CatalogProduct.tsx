@@ -11,6 +11,7 @@ import {
   GetProductForProductDetailVariables
 } from '../../../../typings/gql/GetProductForProductDetail';
 import {EmptyRow} from '../../../style/Layout';
+import CatalogProductAddPanel from './children/CatalogProductAddPanel';
 import CatalogProductPrice from './children/CatalogProductPrice';
 import MainProductImage from './children/MainProductImage';
 
@@ -36,11 +37,6 @@ const GET_PRODUCT_QUERY = gql`
                         name
                     }
                 }
-            }
-            defaultQuantity @client {
-                number
-                units
-                frequency
             }
             cost @client {
                 money
@@ -101,14 +97,7 @@ const ProductPure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}, id}
           <CatalogProductPrice catalogProductId={id}/>
         </Grid>
         <LeftBorderGrid item lg={3}>
-          <Grid container direction='column'>
-            <Grid item lg={12}>
-              {CatalogProduct ? CatalogProduct.defaultQuantity.number : null}
-            </Grid>
-            <Grid item lg={12}>
-              Add
-            </Grid>
-          </Grid>
+          <CatalogProductAddPanel catalogProductId={id}/>
         </LeftBorderGrid>
       </Grid>
       <EmptyRow mobile='-20px'/>
