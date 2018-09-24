@@ -11,9 +11,15 @@ import projectedRegimenCostResolver from './resolver/product_projectedRegimenCos
  *
  * Basically a hacky way to do args, since they don't get passed down.
  */
-export interface IProductObj {
+export interface ICatalogProductObj {
   id: string;
 }
+
+export interface IRegimenProductObj {
+  catalogProductId: string;
+}
+
+export type IProductObj = ICatalogProductObj | IRegimenProductObj;
 
 export type TLocalProductResolverFunc<IRemoteObj, IResultData> = TResolverFunc<IRemoteObj, {}, IResultData>;
 

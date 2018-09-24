@@ -1,5 +1,7 @@
 import {cloneDeep, keyBy} from 'lodash';
-import {GetAllProductsIngredients_allProducts} from '../../../typings/gql/GetAllProductsIngredients';
+import {
+  GetAllProductsIngredients_allCatalogProducts
+} from '../../../typings/gql/GetAllProductsIngredients';
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
 import {ICost, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
 import {ingredientPricesByName} from '../data/ingredientPrices';
@@ -13,14 +15,14 @@ import {ingredientPricesByName} from '../data/ingredientPrices';
 export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   regimenProducts: IRegimenProduct[],
   desiredIngredientRanges: IIngredientRange[],
-  products: GetAllProductsIngredients_allProducts[],
+  products: GetAllProductsIngredients_allCatalogProducts[],
 ): IRegimenIngredient[] => {
   const regimenIngredientsByName = calculateRegimenIngredients(regimenProducts, products);
   const results: IRegimenIngredient[] = [];
 
   desiredIngredientRanges.forEach(range => {
     const result = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientType.name]);
-    if (result !== null && result.ingredientQuantity.amount > 0) {
+    if (result !== null && result.quantity.amount > 0) {
       results.push(result)
     }
   });
@@ -33,22 +35,22 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
  */
 export const subtractProductFromRegimenIngredients = (
   regimenIngredients: IRegimenIngredient[],
-  product: GetAllProductsIngredients_allProducts,
+  product: GetAllProductsIngredients_allCatalogProducts,
 ): IRegimenIngredient[] => {
-  if (product.nutritionFacts.ingredients === null) {
+  if (product.serving.ingredients === null) {
     console.warn(`Ingredients shouldn\'t be null. Error code 58938238. Product ID: ${product.id}`);
     return [];
   }
 
-  const productIngredientsByName = keyBy(product.nutritionFacts.ingredients, i => i.ingredientType.name);
+  const productIngredientsByName = keyBy(product.serving.ingredients, i => i.ingredientType.name);
   return regimenIngredients.map(regimenIngredient => {
     if (productIngredientsByName.hasOwnProperty(regimenIngredient.ingredientType.name)) {
-      if (regimenIngredient.ingredientQuantity.units === productIngredientsByName[regimenIngredient.ingredientType.name].ingredientQuantity.units) {
+      if (regimenIngredient.quantity.units === productIngredientsByName[regimenIngredient.ingredientType.name].quantity.units) {
         return {
           ...regimenIngredient,
-          ingredientQuantity: {
-            ...regimenIngredient.ingredientQuantity,
-            amount: regimenIngredient.ingredientQuantity.amount - productIngredientsByName[regimenIngredient.ingredientType.name].ingredientQuantity.amount,
+          quantity: {
+            ...regimenIngredient.quantity,
+            amount: regimenIngredient.quantity.amount - productIngredientsByName[regimenIngredient.ingredientType.name].quantity.amount,
           }
         }
       } else {
@@ -68,8 +70,8 @@ export const projectCostOfIngredients = (ingredients: IRegimenIngredient[]): ICo
     if (ingredient.frequency === frequency) {
       const ingredientPrice = ingredientPricesByName[ingredient.ingredientType.name];
       if (ingredientPrice) {
-        if (ingredientPrice.units === ingredient.ingredientQuantity.units) {
-          totalMoney += ingredientPrice.price * ingredient.ingredientQuantity.amount;
+        if (ingredientPrice.units === ingredient.quantity.units) {
+          totalMoney += ingredientPrice.price * ingredient.quantity.amount;
         } else {
           console.warn('Unit conversions unsupported. Error code 10493.');
         }
@@ -137,20 +139,20 @@ interface IRegimenIngredientsByName {
 
 const calculateRegimenIngredients = (
   regimenProducts: IRegimenProduct[],
-  products: GetAllProductsIngredients_allProducts[]
+  catalogProducts: GetAllProductsIngredients_allCatalogProducts[]
 ): IRegimenIngredientsByName => {
-  const productsById = keyBy(products, product => product.id);
+  const productsById = keyBy(catalogProducts, product => product.id);
 
   const result: IRegimenIngredientsByName = {};
   regimenProducts.forEach(product => {
-    const ingredients = productsById[product.id].nutritionFacts.ingredients;
+    const ingredients = productsById[product.catalogProductId].serving.ingredients;
     if (ingredients !== null) {
       ingredients.forEach(ingredient => {
         const regimenIngredient: IRegimenIngredient = {
           ...cloneDeep(ingredient),
-          ingredientQuantity: {
-            ...cloneDeep(ingredient.ingredientQuantity),
-            amount: ingredient.ingredientQuantity.amount * product.quantity.number,
+          quantity: {
+            ...cloneDeep(ingredient.quantity),
+            amount: ingredient.quantity.amount * product.quantity.number,
           },
           frequency: product.quantity.frequency,
         };
@@ -165,7 +167,7 @@ const calculateRegimenIngredients = (
         }
       })
     } else {
-      console.warn(`Ingredients shouldn\'t be null. Error code 589238. Product ID: ${product.id}`);
+      console.warn(`Ingredients shouldn\'t be null. Error code 589238. Product ID: ${product.catalogProductId}`);
     }
   });
 
@@ -179,15 +181,15 @@ const sumRegimenIngredients = (baseIngredient: IRegimenIngredient, ...ingredient
     if (baseIngredient.ingredientType.name !== ingredients[0].ingredientType.name) {
       console.error(`${baseIngredient.ingredientType.name} !== ${ingredients[0].ingredientType.name}. This shouldn't happen. Error code 434829.`);
     }
-    if (baseIngredient.ingredientQuantity.units !== ingredients[0].ingredientQuantity.units) {
+    if (baseIngredient.quantity.units !== ingredients[0].quantity.units) {
       console.warn('Unit conversions unsupported. Error code 434829');
     }
 
     return {
       ...cloneDeep(baseIngredient),
-      ingredientQuantity: {
-        ...cloneDeep(baseIngredient.ingredientQuantity),
-        amount: baseIngredient.ingredientQuantity.amount + ingredients[0].ingredientQuantity.amount,
+      quantity: {
+        ...cloneDeep(baseIngredient.quantity),
+        amount: baseIngredient.quantity.amount + ingredients[0].quantity.amount,
       }
     }
   }
@@ -199,9 +201,9 @@ const subtractRegimenIngredientFromMinimumIngredient = (
   range: IIngredientRange,
   regimenIngredient: IRegimenIngredient
 ): IRegimenIngredient | null => {
-  const {minimumIngredientQuantity} = range;
+  const {minimumQuantity} = range;
   // Assume 0 minimum if not set
-  const minimumIngredientQuantityAmount = minimumIngredientQuantity === null ? 0 : minimumIngredientQuantity.amount;
+  const minimumIngredientQuantityAmount = minimumQuantity === null ? 0 : minimumQuantity.amount;
 
   if (range.ingredientType.name !== regimenIngredient.ingredientType.name) {
     console.error(`${range.ingredientType.name} !== ${regimenIngredient.ingredientType.name}. This shouldn't happen. Error code 489293.`);
@@ -211,8 +213,8 @@ const subtractRegimenIngredientFromMinimumIngredient = (
     console.warn('Frequency conversions unsupported. Error code 489293.');
     return null;
   }
-  if (minimumIngredientQuantity !== null) {
-    if (minimumIngredientQuantity.units !== regimenIngredient.ingredientQuantity.units) {
+  if (minimumQuantity !== null) {
+    if (minimumQuantity.units !== regimenIngredient.quantity.units) {
       console.warn('Ingredient conversions unsupported. Error code 489293.');
       return null;
     }
@@ -220,9 +222,9 @@ const subtractRegimenIngredientFromMinimumIngredient = (
 
   return {
     ...cloneDeep(regimenIngredient),
-    ingredientQuantity: {
-      ...cloneDeep(regimenIngredient.ingredientQuantity),
-      amount: minimumIngredientQuantityAmount - regimenIngredient.ingredientQuantity.amount,
+    quantity: {
+      ...cloneDeep(regimenIngredient.quantity),
+      amount: minimumIngredientQuantityAmount - regimenIngredient.quantity.amount,
     },
   }
 };

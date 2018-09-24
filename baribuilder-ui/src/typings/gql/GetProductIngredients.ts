@@ -7,33 +7,33 @@ import { INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
 // GraphQL query operation: GetProductIngredients
 // ====================================================
 
-export interface GetProductIngredients_Product_nutritionFacts_ingredients_ingredientQuantity {
+export interface GetProductIngredients_CatalogProduct_serving_ingredients_quantity {
   __typename: "IngredientQuantity";
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
 }
 
-export interface GetProductIngredients_Product_nutritionFacts_ingredients_ingredientType {
+export interface GetProductIngredients_CatalogProduct_serving_ingredients_ingredientType {
   __typename: "IngredientType";
   name: string;
 }
 
-export interface GetProductIngredients_Product_nutritionFacts_ingredients {
+export interface GetProductIngredients_CatalogProduct_serving_ingredients {
   __typename: "Ingredient";
-  ingredientQuantity: GetProductIngredients_Product_nutritionFacts_ingredients_ingredientQuantity;
-  ingredientType: GetProductIngredients_Product_nutritionFacts_ingredients_ingredientType;
+  quantity: GetProductIngredients_CatalogProduct_serving_ingredients_quantity;
+  ingredientType: GetProductIngredients_CatalogProduct_serving_ingredients_ingredientType;
 }
 
-export interface GetProductIngredients_Product_nutritionFacts {
-  __typename: "NutritionFacts";
-  ingredients: GetProductIngredients_Product_nutritionFacts_ingredients[] | null;
+export interface GetProductIngredients_CatalogProduct_serving {
+  __typename: "Serving";
+  ingredients: GetProductIngredients_CatalogProduct_serving_ingredients[] | null;
 }
 
-export interface GetProductIngredients_Product {
-  __typename: "Product";
-  nutritionFacts: GetProductIngredients_Product_nutritionFacts;
+export interface GetProductIngredients_CatalogProduct {
+  __typename: "CatalogProduct";
+  serving: GetProductIngredients_CatalogProduct_serving;
 }
 
 export interface GetProductIngredients {
-  Product: GetProductIngredients_Product | null;
+  CatalogProduct: GetProductIngredients_CatalogProduct | null;
 }

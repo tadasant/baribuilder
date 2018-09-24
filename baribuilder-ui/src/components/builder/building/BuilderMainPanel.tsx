@@ -3,7 +3,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
 import {EmptyRow} from '../../style/Layout';
-import ProductSelection from './children/ProductSelection';
+import ProductSelection from './children/CatalogProductSelection';
 
 const PaddedGrid = styled(Grid)`
   padding-left: 8px;

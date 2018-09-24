@@ -7,11 +7,11 @@ export const DESIRED_INGREDIENTS_QUERY = gql`
                 ingredientType {
                     name
                 }
-                minimumIngredientQuantity {
+                minimumQuantity {
                     amount
                     units
                 }
-                maximumIngredientQuantity {
+                maximumQuantity {
                     amount
                     units
                 }
@@ -23,10 +23,10 @@ export const DESIRED_INGREDIENTS_QUERY = gql`
 
 export const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
     query GetProductIngredients {
-        Product(id: "${id}") {
-            nutritionFacts {
+        CatalogProduct(id: "${id}") {
+            serving {
                 ingredients {
-                    ingredientQuantity {
+                    quantity {
                         amount
                         units
                     }
@@ -41,11 +41,11 @@ export const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
 
 export const ALL_PRODUCTS_INGREDIENTS_QUERY = gql`
     query GetAllProductsIngredients {
-        allProducts {
+        allCatalogProducts {
             id
-            nutritionFacts {
+            serving {
                 ingredients {
-                    ingredientQuantity {
+                    quantity {
                         amount
                         units
                     }
@@ -62,7 +62,7 @@ export const CURRENT_REGIMEN_PRODUCTS_QUERY = gql`
     query GetCurrentRegimenProducts {
         currentRegimen @client {
             products {
-                id
+                catalogProductId
                 quantity {
                     number
                     frequency

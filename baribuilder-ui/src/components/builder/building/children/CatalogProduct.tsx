@@ -7,7 +7,7 @@ import {GetProductForProductDetail, GetProductForProductDetailVariables} from '.
 
 const GET_PRODUCT_QUERY = gql`
     query GetProductForProductDetail($id: ID) {
-        Product(id: $id) {
+        CatalogProduct(id: $id) {
             id
             listings {
                 price {
@@ -15,9 +15,11 @@ const GET_PRODUCT_QUERY = gql`
                 }
                 numServings
             }
-            nutritionFacts {
+            serving {
+                size
+                units
                 ingredients {
-                    ingredientQuantity {
+                    quantity {
                         amount
                         units
                     }
@@ -70,8 +72,8 @@ const enhance = compose<IProps & DataOutputProps, IProps>(
 );
 
 // Pure
-const ProductPure: SFC<IProps & DataOutputProps> = ({data: { Product }, id}) => {
-  return <div>{Product === null || Product === undefined ? null : `${id}; ${Product.defaultQuantity.number}; ${Product.cost.money}; ${Product.projectedRegimenCost ? Product.projectedRegimenCost.cost.money : 'Can\'t determine projCost' }`}</div>;
+const ProductPure: SFC<IProps & DataOutputProps> = ({data: { CatalogProduct }, id}) => {
+  return <div>{CatalogProduct === null || CatalogProduct === undefined ? null : `${id}; ${CatalogProduct.defaultQuantity.number}; ${CatalogProduct.cost.money}; ${CatalogProduct.projectedRegimenCost ? CatalogProduct.projectedRegimenCost.cost.money : 'Can\'t determine projCost' }`}</div>;
 };
 
 export default enhance(ProductPure);

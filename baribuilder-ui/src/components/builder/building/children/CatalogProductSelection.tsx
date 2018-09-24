@@ -7,14 +7,14 @@ import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import {GetProductsForProductSelection} from '../../../../typings/gql/GetProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
-import Product from './Product';
+import Product from './CatalogProduct';
 
 // GraphQL HOC props (output)
 type DataOutputProps = ChildDataProps<{}, GetProductsForProductSelection>;
 
 const data = graphql<{}, GetProductsForProductSelection>(gql`
     query GetProductsForProductSelection {
-        allProducts {
+        allCatalogProducts {
             id
             
             # Prefetch data for detail cards
@@ -24,9 +24,9 @@ const data = graphql<{}, GetProductsForProductSelection>(gql`
                 }
                 numServings
             }
-            nutritionFacts {
+            serving {
                 ingredients {
-                    ingredientQuantity {
+                    quantity {
                         amount
                         units
                     }
@@ -49,11 +49,11 @@ const PaddedDiv = styled.div`
 `;
 
 // Pure
-const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allProducts, loading}}) => {
-  if (allProducts !== undefined && !loading) {
+const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allCatalogProducts, loading}}) => {
+  if (allCatalogProducts !== undefined && !loading) {
     return (
       <Grid container direction='row' alignItems='flex-start'>
-        {allProducts.map(product => (
+        {allCatalogProducts.map(product => (
           <Fragment key={product.id}>
             <Grid item lg={12}>
               <Paper>

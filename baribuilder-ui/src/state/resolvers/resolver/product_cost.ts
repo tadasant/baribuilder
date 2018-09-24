@@ -11,7 +11,7 @@ import defaultQuantityResolver from './product_defaultQuantity';
  */
 const PRODUCT_QUERY = (id: string) => gql`
     query GetProductForProductCost {
-        Product(id: "${id}"){
+        CatalogProduct(id: "${id}"){
             listings {
                 price {
                     amount
@@ -23,16 +23,16 @@ const PRODUCT_QUERY = (id: string) => gql`
 `;
 
 const costResolver: TLocalProductResolverFunc<IProductObj, ICost> = (obj, _, {cache}) => {
-
+  const catalogProductId = 'id' in obj ? obj.id : obj.catalogProductId;
   // Grab data
   const productResult: GetProductForProductCost | null = cache.readQuery<any, GetProductIngredients>({
-    query: PRODUCT_QUERY(obj.id)
+    query: PRODUCT_QUERY(catalogProductId)
   });
   // TODO get quantity from local state cache
   const quantity = defaultQuantityResolver(obj, _, {cache});
 
   //// Verify required data is present
-  if (!productResult || !productResult.Product || !productResult.Product.listings) {
+  if (!productResult || !productResult.CatalogProduct || !productResult.CatalogProduct.listings) {
     console.warn('productResult falsey');
     return null;
   }
@@ -42,7 +42,7 @@ const costResolver: TLocalProductResolverFunc<IProductObj, ICost> = (obj, _, {ca
   }
 
   //// Perform transformation
-  return calculateCost(productResult.Product.listings, quantity);
+  return calculateCost(productResult.CatalogProduct.listings, quantity);
 };
 
 export default costResolver;

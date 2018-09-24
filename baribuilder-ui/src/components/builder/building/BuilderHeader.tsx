@@ -16,7 +16,7 @@ type DataOutputProps = ChildDataProps<{}, GetProductsForBuilderHeader>;
 // TODO eventually pass filters & selected category into this query
 const data = graphql<{}, GetProductsForBuilderHeader>(gql`
     query GetProductsForBuilderHeader {
-        allProducts {
+        allCatalogProducts {
             id
         }
     }
@@ -41,8 +41,8 @@ const PaddedTypography = styled(Typography)`
 `;
 
 // Pure
-const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allProducts, loading}}) => {
-  const productCount = allProducts && !loading ? allProducts.length : undefined;
+const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allCatalogProducts, loading}}) => {
+  const productCount = allCatalogProducts && !loading ? allCatalogProducts.length : undefined;
   return (
     <FixedGrid container direction='row'>
       <Grid item lg={6} container alignItems='center'>

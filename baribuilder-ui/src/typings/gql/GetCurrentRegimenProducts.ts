@@ -22,7 +22,7 @@ export interface GetCurrentRegimenProducts_currentRegimen_products_cost {
 
 export interface GetCurrentRegimenProducts_currentRegimen_products {
   __typename: "RegimenProduct";
-  id: string;
+  catalogProductId: string;
   quantity: GetCurrentRegimenProducts_currentRegimen_products_quantity;
   cost: GetCurrentRegimenProducts_currentRegimen_products_cost;
 }

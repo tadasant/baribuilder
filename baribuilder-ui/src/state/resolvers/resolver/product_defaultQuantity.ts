@@ -18,8 +18,9 @@ import {
 
 const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQuantity> = (obj, _, {cache}) => {
   //// Grab data
+  const catalogProductId = 'id' in obj ? obj.id : obj.catalogProductId;
   const productResult = cache.readQuery<GetProductIngredients>({
-    query: PRODUCT_INGREDIENTS_QUERY(obj.id)
+    query: PRODUCT_INGREDIENTS_QUERY(catalogProductId)
   });
   const allProductsResult = cache.readQuery<GetAllProductsIngredients>({
     query: ALL_PRODUCTS_INGREDIENTS_QUERY
@@ -32,7 +33,7 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQu
   });
 
   //// Verify successful grabs
-  if (!productResult || !productResult.Product || !productResult.Product.nutritionFacts.ingredients) {
+  if (!productResult || !productResult.CatalogProduct || !productResult.CatalogProduct.serving.ingredients) {
     console.warn('productResult falsey');
     return null;
   }
@@ -51,8 +52,8 @@ const defaultQuantityResolver: TLocalProductResolverFunc<IProductObj, IProductQu
 
   //// Perform transformation
   return calculateDefaultQuantity(
-    productResult.Product.nutritionFacts.ingredients,
-    allProductsResult.allProducts,
+    productResult.CatalogProduct.serving.ingredients,
+    allProductsResult.allCatalogProducts,
     desiredIngredientsResult.desiredIngredients.ingredientRanges,
     regimenResult.currentRegimen.products,
   );

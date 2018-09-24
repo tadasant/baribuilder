@@ -12,13 +12,13 @@ export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_ingre
   name: string;
 }
 
-export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_minimumIngredientQuantity {
+export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_minimumQuantity {
   __typename: "IngredientQuantity";
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
 }
 
-export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_maximumIngredientQuantity {
+export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_maximumQuantity {
   __typename: "IngredientQuantity";
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
@@ -27,8 +27,8 @@ export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_maxim
 export interface GetDesiredIngredients_desiredIngredients_ingredientRanges {
   __typename: "IngredientRange";
   ingredientType: GetDesiredIngredients_desiredIngredients_ingredientRanges_ingredientType;
-  minimumIngredientQuantity: GetDesiredIngredients_desiredIngredients_ingredientRanges_minimumIngredientQuantity | null;
-  maximumIngredientQuantity: GetDesiredIngredients_desiredIngredients_ingredientRanges_maximumIngredientQuantity | null;
+  minimumQuantity: GetDesiredIngredients_desiredIngredients_ingredientRanges_minimumQuantity | null;
+  maximumQuantity: GetDesiredIngredients_desiredIngredients_ingredientRanges_maximumQuantity | null;
   frequency: FREQUENCY;
 }
 

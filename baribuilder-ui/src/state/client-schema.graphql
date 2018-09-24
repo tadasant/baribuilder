@@ -25,12 +25,12 @@ enum FREQUENCY {
     MONTHLY
 }
 
-extend type Product {
+extend type CatalogProduct {
     cost: Cost!
     projectedRegimenCost: RegimenCost
     # defaultQuantity will be 1 Daily if desiredIngredients not set
     defaultQuantity: ProductQuantity!
-    # quantity: ProductQuantity need to be implemented on client
+    # quantity: ProductQuantity TODO need to be implemented on client store
     matchScore: Float!
 }
 
@@ -61,7 +61,7 @@ type Regimen {
 }
 
 type RegimenProduct {
-    id: ID!
+    catalogProductId: ID!
     quantity: ProductQuantity!
     cost: Cost!
 }
@@ -72,8 +72,8 @@ type DesiredIngredients {
 
 type IngredientRange {
     ingredientType: IngredientType!
-    minimumIngredientQuantity: IngredientQuantity
-    maximumIngredientQuantity: IngredientQuantity
+    minimumQuantity: IngredientQuantity
+    maximumQuantity: IngredientQuantity
     frequency: FREQUENCY!
 }
 

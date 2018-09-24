@@ -5,22 +5,22 @@
 // GraphQL query operation: GetProductForProductCost
 // ====================================================
 
-export interface GetProductForProductCost_Product_listings_price {
+export interface GetProductForProductCost_CatalogProduct_listings_price {
   __typename: "Price";
   amount: number;
 }
 
-export interface GetProductForProductCost_Product_listings {
+export interface GetProductForProductCost_CatalogProduct_listings {
   __typename: "Listing";
-  price: GetProductForProductCost_Product_listings_price;
+  price: GetProductForProductCost_CatalogProduct_listings_price;
   numServings: number;
 }
 
-export interface GetProductForProductCost_Product {
-  __typename: "Product";
-  listings: GetProductForProductCost_Product_listings[] | null;
+export interface GetProductForProductCost_CatalogProduct {
+  __typename: "CatalogProduct";
+  listings: GetProductForProductCost_CatalogProduct_listings[] | null;
 }
 
 export interface GetProductForProductCost {
-  Product: GetProductForProductCost_Product | null;
+  CatalogProduct: GetProductForProductCost_CatalogProduct | null;
 }

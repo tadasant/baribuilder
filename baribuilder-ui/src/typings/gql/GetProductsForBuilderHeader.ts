@@ -5,11 +5,11 @@
 // GraphQL query operation: GetProductsForBuilderHeader
 // ====================================================
 
-export interface GetProductsForBuilderHeader_allProducts {
-  __typename: "Product";
+export interface GetProductsForBuilderHeader_allCatalogProducts {
+  __typename: "CatalogProduct";
   id: string;
 }
 
 export interface GetProductsForBuilderHeader {
-  allProducts: GetProductsForBuilderHeader_allProducts[];
+  allCatalogProducts: GetProductsForBuilderHeader_allCatalogProducts[];
 }

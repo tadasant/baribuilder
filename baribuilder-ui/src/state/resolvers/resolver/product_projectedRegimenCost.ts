@@ -14,7 +14,7 @@ import {ALL_PRODUCTS_INGREDIENTS_QUERY, CURRENT_REGIMEN_PRODUCTS_QUERY, DESIRED_
 
 const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegimenCost> = (obj, _, {cache}) => {
     //// Grab data
-    const allProductsResult = cache.readQuery<GetAllProductsIngredients>({
+    const allCatalogProductsResult = cache.readQuery<GetAllProductsIngredients>({
       query: ALL_PRODUCTS_INGREDIENTS_QUERY
     });
     // TODO get quantity from local state cache
@@ -28,13 +28,14 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
     });
 
     //// Verify successful grabs
-    if (!allProductsResult) {
-      console.warn('allProductsResult falsey');
+    if (!allCatalogProductsResult) {
+      console.warn('allCatalogProductsResult falsey');
       return null;
     }
-    const product = allProductsResult.allProducts.find(p => p.id === obj.id);
+    const catalogProductId = 'id' in obj ? obj.id : obj.catalogProductId;
+    const product = allCatalogProductsResult.allCatalogProducts.find(p => p.id === catalogProductId);
     if (!product) {
-      console.warn('product not found in allProducts');
+      console.warn('product not found in allCatalogProducts');
       return null;
     }
     if (!productQuantity) {
@@ -69,7 +70,7 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
     currentRegimenProductsResult.currentRegimen.products.forEach(p => {
       const cost = costResolver(p, _, {cache});
       if (cost === null) {
-        console.warn(`Unable to derive cost for ${p.id}. Error code 39293`);
+        console.warn(`Unable to derive cost for ${p.catalogProductId}. Error code 39293`);
       } else {
         currentRegimenProducts.push({
           ...p,
@@ -82,7 +83,7 @@ const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegi
       productForProjectedRegimenCost,
       desiredIngredientsResult.desiredIngredients.ingredientRanges,
       currentRegimenProducts,
-      allProductsResult.allProducts,
+      allCatalogProductsResult.allCatalogProducts,
     );
   }
 ;

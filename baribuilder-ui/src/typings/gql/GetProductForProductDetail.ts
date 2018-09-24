@@ -1,82 +1,84 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
+import { SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetProductForProductDetail
 // ====================================================
 
-export interface GetProductForProductDetail_Product_listings_price {
+export interface GetProductForProductDetail_CatalogProduct_listings_price {
   __typename: "Price";
   amount: number;
 }
 
-export interface GetProductForProductDetail_Product_listings {
+export interface GetProductForProductDetail_CatalogProduct_listings {
   __typename: "Listing";
-  price: GetProductForProductDetail_Product_listings_price;
+  price: GetProductForProductDetail_CatalogProduct_listings_price;
   numServings: number;
 }
 
-export interface GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientQuantity {
+export interface GetProductForProductDetail_CatalogProduct_serving_ingredients_quantity {
   __typename: "IngredientQuantity";
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
 }
 
-export interface GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientType {
+export interface GetProductForProductDetail_CatalogProduct_serving_ingredients_ingredientType {
   __typename: "IngredientType";
   name: string;
 }
 
-export interface GetProductForProductDetail_Product_nutritionFacts_ingredients {
+export interface GetProductForProductDetail_CatalogProduct_serving_ingredients {
   __typename: "Ingredient";
-  ingredientQuantity: GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientQuantity;
-  ingredientType: GetProductForProductDetail_Product_nutritionFacts_ingredients_ingredientType;
+  quantity: GetProductForProductDetail_CatalogProduct_serving_ingredients_quantity;
+  ingredientType: GetProductForProductDetail_CatalogProduct_serving_ingredients_ingredientType;
 }
 
-export interface GetProductForProductDetail_Product_nutritionFacts {
-  __typename: "NutritionFacts";
-  ingredients: GetProductForProductDetail_Product_nutritionFacts_ingredients[] | null;
+export interface GetProductForProductDetail_CatalogProduct_serving {
+  __typename: "Serving";
+  size: number;
+  units: SERVING_SIZE_UNITS;
+  ingredients: GetProductForProductDetail_CatalogProduct_serving_ingredients[] | null;
 }
 
-export interface GetProductForProductDetail_Product_defaultQuantity {
+export interface GetProductForProductDetail_CatalogProduct_defaultQuantity {
   __typename: "ProductQuantity";
   number: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
 }
 
-export interface GetProductForProductDetail_Product_cost {
+export interface GetProductForProductDetail_CatalogProduct_cost {
   __typename: "Cost";
   money: number;
   frequency: FREQUENCY;
 }
 
-export interface GetProductForProductDetail_Product_projectedRegimenCost_cost {
+export interface GetProductForProductDetail_CatalogProduct_projectedRegimenCost_cost {
   __typename: "Cost";
   money: number;
   frequency: FREQUENCY;
 }
 
-export interface GetProductForProductDetail_Product_projectedRegimenCost {
+export interface GetProductForProductDetail_CatalogProduct_projectedRegimenCost {
   __typename: "RegimenCost";
   numRemainingProducts: number;
-  cost: GetProductForProductDetail_Product_projectedRegimenCost_cost;
+  cost: GetProductForProductDetail_CatalogProduct_projectedRegimenCost_cost;
 }
 
-export interface GetProductForProductDetail_Product {
-  __typename: "Product";
+export interface GetProductForProductDetail_CatalogProduct {
+  __typename: "CatalogProduct";
   id: string;
-  listings: GetProductForProductDetail_Product_listings[] | null;
-  nutritionFacts: GetProductForProductDetail_Product_nutritionFacts;
-  defaultQuantity: GetProductForProductDetail_Product_defaultQuantity;
-  cost: GetProductForProductDetail_Product_cost;
-  projectedRegimenCost: GetProductForProductDetail_Product_projectedRegimenCost | null;
+  listings: GetProductForProductDetail_CatalogProduct_listings[] | null;
+  serving: GetProductForProductDetail_CatalogProduct_serving;
+  defaultQuantity: GetProductForProductDetail_CatalogProduct_defaultQuantity;
+  cost: GetProductForProductDetail_CatalogProduct_cost;
+  projectedRegimenCost: GetProductForProductDetail_CatalogProduct_projectedRegimenCost | null;
 }
 
 export interface GetProductForProductDetail {
-  Product: GetProductForProductDetail_Product | null;
+  CatalogProduct: GetProductForProductDetail_CatalogProduct | null;
 }
 
 export interface GetProductForProductDetailVariables {

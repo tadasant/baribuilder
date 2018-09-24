@@ -7,7 +7,7 @@ export interface IRegimen {
 
 export interface IRegimenProduct {
   __typename: 'RegimenProduct';
-  id: string;
+  catalogProductId: string;
   quantity: IProductQuantity;
   cost: ICost;
 }
@@ -31,8 +31,8 @@ export interface IDesiredIngredients {
 export interface IIngredientRange {
   __typename: 'IngredientRange';
   ingredientType: IIngredientType;
-  minimumIngredientQuantity: IIngredientQuantity | null;
-  maximumIngredientQuantity: IIngredientQuantity | null;
+  minimumQuantity: IIngredientQuantity | null;
+  maximumQuantity: IIngredientQuantity | null;
   frequency: FREQUENCY;
 }
 
@@ -76,6 +76,6 @@ export interface IIngredientQuantity {
 
 export interface IIngredient {
   __typename: 'Ingredient';
-  ingredientQuantity: IIngredientQuantity;
+  quantity: IIngredientQuantity;
   ingredientType: IIngredientType;
 }
