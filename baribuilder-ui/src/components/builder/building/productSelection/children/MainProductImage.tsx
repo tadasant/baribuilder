@@ -1,8 +1,10 @@
+import {Grid} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
+import styled from 'styled-components';
 import {
   GetCatalogProductImages,
   GetCatalogProductImagesVariables
@@ -38,10 +40,20 @@ const enhance = compose<IProps & DataOutputProps, IProps>(
 
 const noProductImageUrl = 'https://ik.imagekit.io/vitaglab/no-product-image_H1Xq788tQ.jpg';
 
+const CenteredImage = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 // Pure
 const MainProductImagePure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}, className}) => {
   const productImageUrl = CatalogProduct ? CatalogProduct.images ? CatalogProduct.images.length > 0 ? CatalogProduct.images[0].url : null : null : null;
-  return <img className={className} src={productImageUrl || noProductImageUrl}/>;
+  return (
+    <Grid>
+      <CenteredImage className={className} src={productImageUrl || noProductImageUrl}/>
+    </Grid>
+  );
 };
 
 export default enhance(MainProductImagePure);
