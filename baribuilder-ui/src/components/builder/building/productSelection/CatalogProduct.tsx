@@ -6,8 +6,12 @@ import {ChildDataProps, graphql} from 'react-apollo';
 import {branch, compose, pure, renderComponent} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
-import {GetProductForProductDetail, GetProductForProductDetailVariables} from '../../../../typings/gql/GetProductForProductDetail';
+import {
+  GetProductForProductDetail,
+  GetProductForProductDetailVariables
+} from '../../../../typings/gql/GetProductForProductDetail';
 import {EmptyRow} from '../../../style/Layout';
+import CatalogProductPrice from './children/CatalogProductPrice';
 import MainProductImage from './children/MainProductImage';
 
 const GET_PRODUCT_QUERY = gql`
@@ -60,8 +64,8 @@ interface IProps {
 type DataOutputProps = ChildDataProps<IProps, GetProductForProductDetail, GetProductForProductDetailVariables>;
 
 const data = graphql<IProps, GetProductForProductDetail, GetProductForProductDetailVariables, DataOutputProps>(GET_PRODUCT_QUERY, {
-  options: ({ id }) => ({
-    variables: { id },
+  options: ({id}) => ({
+    variables: {id},
   }),
 });
 
@@ -85,31 +89,31 @@ const MainImage = styled(MainProductImage)`
 `;
 
 // Pure
-const ProductPure: SFC<IProps & DataOutputProps> = ({data: { CatalogProduct }, id}) => {
-    return (
+const ProductPure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}, id}) => {
+  return (
+    <Grid container direction='row'>
+      <EmptyRow mobile='-20px'/>
       <Grid container direction='row'>
-        <EmptyRow mobile='-20px'/>
-        <Grid container direction='row'>
-          <Grid item lg={3}>
-            <MainImage productId={id}/>
-          </Grid>
-          <Grid item lg={6}>
-            {CatalogProduct ? CatalogProduct.projectedRegimenCost ? CatalogProduct.projectedRegimenCost.cost.money : CatalogProduct.cost.money : null }
-          </Grid>
-          <LeftBorderGrid item lg={3}>
-            <Grid container direction='column'>
-              <Grid item lg={12}>
-                {CatalogProduct ? CatalogProduct.defaultQuantity.number : null}
-              </Grid>
-              <Grid item lg={12}>
-                Add
-              </Grid>
-            </Grid>
-          </LeftBorderGrid>
+        <Grid item lg={3}>
+          <MainImage productId={id}/>
         </Grid>
-        <EmptyRow mobile='-20px'/>
+        <Grid item lg={6} container justify='center'>
+          <CatalogProductPrice catalogProductId={id}/>
+        </Grid>
+        <LeftBorderGrid item lg={3}>
+          <Grid container direction='column'>
+            <Grid item lg={12}>
+              {CatalogProduct ? CatalogProduct.defaultQuantity.number : null}
+            </Grid>
+            <Grid item lg={12}>
+              Add
+            </Grid>
+          </Grid>
+        </LeftBorderGrid>
       </Grid>
-    )
+      <EmptyRow mobile='-20px'/>
+    </Grid>
+  )
 };
 
 export default enhance(ProductPure);

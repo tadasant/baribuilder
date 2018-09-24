@@ -4,14 +4,13 @@ import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import {
-  GetImageForCatalogProductDetail,
-  GetImageForCatalogProductDetailVariables
-} from '../../../../../typings/gql/GetImageForCatalogProductDetail';
+  GetCatalogProductImages,
+  GetCatalogProductImagesVariables
+} from '../../../../../typings/gql/GetCatalogProductImages';
 
 const GET_IMAGES_QUERY = gql`
-    query GetImageForCatalogProductDetail($id: ID) {
+    query GetCatalogProductImages($id: ID) {
         CatalogProduct(id: $id) {
-            id
             images {
                 url
             }
@@ -24,9 +23,9 @@ interface IProps {
   className?: string; // styled-components
 }
 
-type DataOutputProps = ChildDataProps<IProps, GetImageForCatalogProductDetail, GetImageForCatalogProductDetailVariables>;
+type DataOutputProps = ChildDataProps<IProps, GetCatalogProductImages, GetCatalogProductImagesVariables>;
 
-const data = graphql<IProps, GetImageForCatalogProductDetail, GetImageForCatalogProductDetailVariables, DataOutputProps>(GET_IMAGES_QUERY, {
+const data = graphql<IProps, GetCatalogProductImages, GetCatalogProductImagesVariables, DataOutputProps>(GET_IMAGES_QUERY, {
   options: ({productId}) => ({
     variables: {id: productId},
   }),
