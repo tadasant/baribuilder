@@ -82,7 +82,7 @@ enum FORM {
     GUMMY
 }
 
-enum SERVING_UNITS {
+enum SERVING_SIZE_UNITS {
     GRAM
     TABLET
     CAPSULE

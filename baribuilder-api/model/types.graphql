@@ -16,7 +16,7 @@ type Listing @model {
     numServings: Int!
     affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
     price: Price! @relation(name: "ListingPrice")
-    product: Product! @relation(name: "ProductListings")
+    product: CatalogProduct! @relation(name: "CatalogProductListings")
 }
 
 type Price @model {
@@ -27,42 +27,36 @@ type Price @model {
     listing: Listing! @relation(name: "ListingPrice")
 }
 
-type Product @model {
+type CatalogProduct @model {
     id: ID! @isUnique
     name: String!
     brand: BRAND!
     category: CATEGORY!
     form: FORM!
-    listings: [Listing!]! @relation(name: "ProductListings")
-    images: [Image!]! @relation(name: "ProductImages")
-    nutritionFacts: NutritionFacts! @relation(name: "ProductNutritionFacts")
+    listings: [Listing!]! @relation(name: "CatalogProductListings")
+    images: [Image!]! @relation(name: "CatalogProductImages")
+    serving: Serving! @relation(name: "CatalogProductServing")
 }
 
 type Image @model {
     id: ID! @isUnique
     url: String!
-    product: Product! @relation(name: "ProductImages")
-}
-
-type NutritionFacts @model {
-    id: ID! @isUnique
-    serving: Serving! @relation(name: "NutritionFactsServing")
-    ingredients: [Ingredient!]! @relation(name: "NutritionFactsIngredients")
-    product: Product! @relation(name: "ProductNutritionFacts")
+    product: CatalogProduct! @relation(name: "CatalogProductImages")
 }
 
 type Serving @model {
     id: ID! @isUnique
     size: Float!
-    units: SERVING_UNITS!
-    nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsServing")
+    units: SERVING_SIZE_UNITS!
+    ingredients: [Ingredient!]! @relation(name: "ServingIngredients")
+    product: CatalogProduct! @relation(name: "CatalogProductServing")
 }
 
 type Ingredient @model {
     id: ID! @isUnique
     ingredientType: IngredientType! @relation(name: "IngredientIngredientType")
-    ingredientQuantity: IngredientQuantity! @relation(name: "IngredientIngredientQuantity")
-    nutritionFacts: NutritionFacts! @relation(name: "NutritionFactsIngredients")
+    quantity: IngredientQuantity! @relation(name: "IngredientIngredientQuantity")
+    serving: Serving! @relation(name: "ServingIngredients")
 }
 
 type IngredientQuantity @model {
