@@ -1,4 +1,5 @@
-import {Grid, Typography} from '@material-ui/core';
+import {Button, Grid, Typography} from '@material-ui/core';
+import {fade} from '@material-ui/core/styles/colorManipulator';
 import gql from "graphql-tag";
 import * as React from 'react';
 import {SFC} from 'react';
@@ -40,17 +41,41 @@ const PaddedTypography = styled(Typography)`
   }
 `;
 
+const LeftMostNavTabGrid = styled(Grid)`
+  && {
+    border-left: 1px solid ${Sketch.color.accent.grey};
+    height: 100%
+  }
+`;
+
+const LeftMostNavTabButton = styled(Button)`
+  && {
+    height: 100%;
+    background-color: ${Sketch.color.secondary.blue};
+    color: ${Sketch.color.accent.white};
+    
+    :hover {
+      background-color: ${fade(Sketch.color.secondary.blue, .8)};
+    }
+  }
+`;
+
 // Pure
 const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allCatalogProducts, loading}}) => {
   const productCount = allCatalogProducts && !loading ? allCatalogProducts.length : undefined;
   return (
     <FixedGrid container direction='row'>
-      <Grid item lg={6} container alignItems='center'>
+      <Grid item lg={4} container alignItems='center'>
         <Grid item>
           <PaddedTypography variant='body1'>
             Showing{productCount ? ` ${productCount} ` : ' '}results
           </PaddedTypography>
         </Grid>
+      </Grid>
+      <Grid item lg={8} container alignItems='flex-end' direction='column'>
+        <LeftMostNavTabGrid item>
+          <LeftMostNavTabButton fullWidth>My Products</LeftMostNavTabButton>
+        </LeftMostNavTabGrid>
       </Grid>
     </FixedGrid>
   )
