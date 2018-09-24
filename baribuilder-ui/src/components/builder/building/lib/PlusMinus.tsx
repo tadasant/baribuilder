@@ -3,6 +3,8 @@ import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
 
+// TODO incomplete
+
 interface IProps {
   value: number;
   onChange: (value: number) => void;
