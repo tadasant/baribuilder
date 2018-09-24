@@ -39,3 +39,9 @@ Troubleshooting:
 * `TypeError: Cannot read property 'getQueryType' of undefined`
     * You might have the wrong path to your schema 
 
+## Shortcomings of Typescript for being a catchall
+
+No good way to track the extensions of remote schema (`state/resolvers.ts`)
+
+No good way to track cache redirect keys (`DynamicApp.tsx`)
+

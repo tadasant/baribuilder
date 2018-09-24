@@ -18,8 +18,8 @@ const cache = new InMemoryCache({
   // Prevent unnecessary cache misses https://www.apollographql.com/docs/react/advanced/caching.html#cacheRedirect
   cacheRedirects: {
     Query: {
-      Product: (_, args, myCache) =>
-        myCache.getCacheKey({ __typename: 'Product', id: args.id }),
+      CatalogProduct: (_, args, myCache) =>
+        myCache.getCacheKey({ __typename: 'CatalogProduct', id: args.id }),
     },
   },
 });

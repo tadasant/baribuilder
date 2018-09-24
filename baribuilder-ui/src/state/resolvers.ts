@@ -10,7 +10,7 @@ export type TResolverFunc<TObj, TArgs, TData> = (obj: TObj, args: TArgs, context
 
 // TODO is there a way to make a remote query call within local resolver so my dependent things don't break if not present in cache?
 const resolvers = {
-  Product: {
+  CatalogProduct: {
     ...localProductResolvers
   },
   // Mutation: {

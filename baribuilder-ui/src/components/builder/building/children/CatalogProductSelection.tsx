@@ -15,9 +15,9 @@ type DataOutputProps = ChildDataProps<{}, GetProductsForProductSelection>;
 const data = graphql<{}, GetProductsForProductSelection>(gql`
     query GetProductsForProductSelection {
         allCatalogProducts {
+            # Prefetch data for detail cards TODO replace with fragment
+            # Needed for avoiding cache miss, but seems to fail to optimize?
             id
-            
-            # Prefetch data for detail cards
             listings {
                 price {
                     amount
@@ -25,6 +25,8 @@ const data = graphql<{}, GetProductsForProductSelection>(gql`
                 numServings
             }
             serving {
+                size
+                units
                 ingredients {
                     quantity {
                         amount
