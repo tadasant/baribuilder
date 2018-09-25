@@ -14,6 +14,7 @@ const defaults: IApolloStateShape = {
         __typename: 'RegimenProduct',
         catalogProductId: 'cjm0tbtko00560179xhyj5uju',
         quantity: {
+          id: '30935nvfiljs',
           amount: 5,
           __typename: 'ProductQuantity',
           frequency: FREQUENCY.DAILY,
@@ -21,6 +22,7 @@ const defaults: IApolloStateShape = {
         },
         cost: {
           __typename: 'Cost',
+          id: '4kdgiuaerkjn',
           money: 50.4,
           frequency: FREQUENCY.MONTHLY,
         }

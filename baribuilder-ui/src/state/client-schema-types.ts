@@ -18,6 +18,7 @@ export enum PRODUCT_QUANTITY_UNITS {
 
 export interface IProductQuantity {
   __typename: 'ProductQuantity';
+  id?: string;
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
@@ -38,6 +39,7 @@ export interface IIngredientRange {
 
 export interface ICost {
   __typename: 'Cost';
+  id?: string;
   money: number;
   frequency: FREQUENCY;
 }

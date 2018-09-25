@@ -11,20 +11,30 @@ const GET_PREFETCH_QUERY = gql`
             # Needed for avoiding cache miss, but seems to fail to optimize?
             id
             listings {
+                __typename
                 price {
+                    __typename
                     amount
                 }
                 numServings
             }
+            images {
+                __typename
+                url
+            }
             serving {
+                __typename
                 size
                 units
                 ingredients {
+                    __typename
                     quantity {
+                        __typename
                         amount
                         units
                     }
                     ingredientType {
+                        __typename
                         name
                     }
                 }

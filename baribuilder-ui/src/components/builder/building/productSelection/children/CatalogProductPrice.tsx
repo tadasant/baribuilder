@@ -13,6 +13,7 @@ import {
 const GET_CATALOG_PRODUCT_PRICES_QUERY = gql`
     query GetCatalogProductPrices($id: ID) {
         CatalogProduct(id: $id) {
+            id
             cost @client {
                 money
                 frequency
