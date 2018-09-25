@@ -1,5 +1,5 @@
-import calculateMatchScore from '../lib/product_matchScore';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
+import calculateMatchScore from '../lib/product_matchScore';
 
 // TODO queries
 

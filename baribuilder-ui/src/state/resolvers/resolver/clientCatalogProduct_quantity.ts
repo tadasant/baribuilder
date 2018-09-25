@@ -3,8 +3,8 @@ import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenP
 import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {IProductQuantity} from '../../client-schema-types';
-import {calculateDefaultQuantity} from '../lib/product_quantity';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
+import {calculateDefaultQuantity} from '../lib/product_quantity';
 /**
  * Query fields need to be prefetched into cache.
  */

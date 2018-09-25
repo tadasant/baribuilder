@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 import {GetProductForProductCost} from '../../../typings/gql/GetProductForProductCost';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {ICost} from '../../client-schema-types';
-import calculateCost from '../lib/product_cost';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
+import calculateCost from '../lib/product_cost';
 import quantityResolver from './clientCatalogProduct_quantity';
 
 /**

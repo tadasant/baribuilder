@@ -2,8 +2,8 @@ import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngr
 import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenProducts';
 import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
 import {IRegimenCost, IRegimenProduct} from '../../client-schema-types';
-import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/product_projectedRegimenCost';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
+import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/product_projectedRegimenCost';
 import costResolver from './clientCatalogProduct_cost';
 import quantityResolver from './clientCatalogProduct_quantity';
 /**
