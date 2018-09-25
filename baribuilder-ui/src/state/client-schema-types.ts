@@ -27,8 +27,8 @@ export interface IDesiredIngredients {
 export interface IIngredientRange {
   __typename: 'IngredientRange';
   ingredientType: IIngredientType;
-  minimumQuantity: IIngredientQuantity | null;
-  maximumQuantity: IIngredientQuantity | null;
+  minimum: IRangeIngredientQuantity | null;
+  maximum: IRangeIngredientQuantity | null;
   frequency: FREQUENCY;
 }
 
@@ -64,14 +64,15 @@ export interface IIngredientType {
   name: string;
 }
 
-export interface IIngredientQuantity {
-  __typename: 'IngredientQuantity';
+export interface IRangeIngredientQuantity {
+  __typename: 'RangeIngredientQuantity';
+  id: string;
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
 }
 
 export interface IIngredient {
   __typename: 'Ingredient';
-  quantity: IIngredientQuantity;
+  quantity: IRangeIngredientQuantity;
   ingredientType: IIngredientType;
 }

@@ -7,11 +7,13 @@ export const DESIRED_INGREDIENTS_QUERY = gql`
                 ingredientType {
                     name
                 }
-                minimumQuantity {
+                minimum {
+                    id
                     amount
                     units
                 }
-                maximumQuantity {
+                maximum {
+                    id
                     amount
                     units
                 }

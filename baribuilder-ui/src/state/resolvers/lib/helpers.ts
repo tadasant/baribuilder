@@ -148,11 +148,18 @@ const calculateRegimenIngredients = (
     const ingredients = productsById[product.catalogProductId].serving.ingredients;
     if (ingredients !== null) {
       ingredients.forEach(ingredient => {
+        // TODO types are all wrong
         const regimenIngredient: IRegimenIngredient = {
-          ...cloneDeep(ingredient),
+          __typename: 'Ingredient',
+          ingredientType: {
+            __typename: 'IngredientType',
+            name: ingredient.ingredientType.name,
+          },
           quantity: {
-            ...cloneDeep(ingredient.quantity),
-            amount: ingredient.quantity.amount * product.quantity.amount,
+            __typename: 'RangeIngredientQuantity',
+            id: 'not yet',
+            amount: ingredient.quantity.amount,
+            units: ingredient.quantity.units,
           },
           frequency: product.quantity.frequency,
         };
@@ -201,9 +208,9 @@ const subtractRegimenIngredientFromMinimumIngredient = (
   range: IIngredientRange,
   regimenIngredient: IRegimenIngredient
 ): IRegimenIngredient | null => {
-  const {minimumQuantity} = range;
+  const {minimum} = range;
   // Assume 0 minimum if not set
-  const minimumIngredientQuantityAmount = minimumQuantity === null ? 0 : minimumQuantity.amount;
+  const minimumIngredientQuantityAmount = minimum === null ? 0 : minimum.amount;
 
   if (range.ingredientType.name !== regimenIngredient.ingredientType.name) {
     console.error(`${range.ingredientType.name} !== ${regimenIngredient.ingredientType.name}. This shouldn't happen. Error code 489293.`);
@@ -213,8 +220,8 @@ const subtractRegimenIngredientFromMinimumIngredient = (
     console.warn('Frequency conversions unsupported. Error code 489293.');
     return null;
   }
-  if (minimumQuantity !== null) {
-    if (minimumQuantity.units !== regimenIngredient.quantity.units) {
+  if (minimum !== null) {
+    if (minimum.units !== regimenIngredient.quantity.units) {
       console.warn('Ingredient conversions unsupported. Error code 489293.');
       return null;
     }

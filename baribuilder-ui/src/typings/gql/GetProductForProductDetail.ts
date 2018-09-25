@@ -19,7 +19,7 @@ export interface GetProductForProductDetail_CatalogProduct_listings {
 }
 
 export interface GetProductForProductDetail_CatalogProduct_serving_ingredients_quantity {
-  __typename: "IngredientQuantity";
+  __typename: "ServingIngredientQuantity";
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
 }
@@ -30,7 +30,7 @@ export interface GetProductForProductDetail_CatalogProduct_serving_ingredients_i
 }
 
 export interface GetProductForProductDetail_CatalogProduct_serving_ingredients {
-  __typename: "Ingredient";
+  __typename: "ServingIngredient";
   quantity: GetProductForProductDetail_CatalogProduct_serving_ingredients_quantity;
   ingredientType: GetProductForProductDetail_CatalogProduct_serving_ingredients_ingredientType;
 }

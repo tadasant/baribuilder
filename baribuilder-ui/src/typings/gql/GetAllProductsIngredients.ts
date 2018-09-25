@@ -8,7 +8,7 @@ import { INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
 // ====================================================
 
 export interface GetAllProductsIngredients_allCatalogProducts_serving_ingredients_quantity {
-  __typename: "IngredientQuantity";
+  __typename: "ServingIngredientQuantity";
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
 }
@@ -19,7 +19,7 @@ export interface GetAllProductsIngredients_allCatalogProducts_serving_ingredient
 }
 
 export interface GetAllProductsIngredients_allCatalogProducts_serving_ingredients {
-  __typename: "Ingredient";
+  __typename: "ServingIngredient";
   quantity: GetAllProductsIngredients_allCatalogProducts_serving_ingredients_quantity;
   ingredientType: GetAllProductsIngredients_allCatalogProducts_serving_ingredients_ingredientType;
 }
