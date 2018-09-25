@@ -50,11 +50,11 @@ const PaddedTypography = styled(Typography)`
 const LeftMostNavTabGrid = styled(Grid)`
   && {
     height: 100%;
-    box-shadow: -2px 0px 1px 0px ${Sketch.color.accent.grey};
+    box-shadow: -1px 0px 1px 0px ${Sketch.color.accent.grey};
   }
 `;
 
-const LeftMostNavTabButton = styled(Button)`
+const NavTabButton = styled(Button)`
   && {
     height: 100%;
     background-color: ${Sketch.color.secondary.blue};
@@ -64,6 +64,17 @@ const LeftMostNavTabButton = styled(Button)`
     
     :hover {
       background-color: ${fade(Sketch.color.secondary.blue, .8)};
+    }
+  }
+`;
+
+const NavTabButtonActive = styled(NavTabButton)`
+  && {
+    background-color: white;
+    color: ${Sketch.color.accent.black};
+    
+    :hover {
+      background-color: ${fade(Sketch.color.accent.grey, .8)};
     }
   }
 `;
@@ -85,13 +96,13 @@ const BuilderHeaderPure: SFC<DataOutputProps & IProps> = ({data: {allCatalogProd
         <Fragment>
           <Grid item lg={5}/>
           <LeftMostNavTabGrid item lg={3}>
-            <LeftMostNavTabButton fullWidth onClick={handleMyProductsClick}>My Products</LeftMostNavTabButton>
+            <NavTabButtonActive fullWidth onClick={handleMyProductsClick}>My Products</NavTabButtonActive>
           </LeftMostNavTabGrid>
         </Fragment>
         :
         <Grid item lg={8} container alignItems='flex-end' direction='column'>
           <LeftMostNavTabGrid item xs={12}>
-            <LeftMostNavTabButton fullWidth onClick={handleMyProductsClick}>My Products</LeftMostNavTabButton>
+            <NavTabButton fullWidth onClick={handleMyProductsClick}>My Products</NavTabButton>
           </LeftMostNavTabGrid>
         </Grid>
       }

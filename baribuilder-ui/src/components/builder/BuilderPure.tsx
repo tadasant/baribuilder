@@ -1,6 +1,8 @@
 import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
+import styled from 'styled-components';
+import Sketch from '../../app/style/SketchVariables';
 import Header from '../Header';
 import BuilderHeader from './building/BuilderHeader';
 import BuilderLeftPanel from './building/BuilderLeftPanel';
@@ -15,6 +17,15 @@ interface IProps {
   showMyProducts: boolean;
   setShowMyProducts: SetBuilderStateFunction;
 }
+
+const TabGrid = styled(Grid)`
+  background-color: white;
+  box-shadow: -1px 0px 4px 0px ${Sketch.color.accent.grey};
+  height: 100vh;
+  overflow-y: scroll;
+  position: sticky;
+  top: 0;
+`;
 
 const BuilderPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProducts}) => {
   return (
@@ -31,9 +42,9 @@ const BuilderPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProdu
         </Grid>
         {
           !showMyProducts ? null :
-            <Grid item lg={3}>
-              <BuilderMyProducts />
-            </Grid>
+            <TabGrid item lg={3}>
+              <BuilderMyProducts/>
+            </TabGrid>
         }
       </Grid>
     </Fragment>

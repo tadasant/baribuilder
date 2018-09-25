@@ -1,4 +1,4 @@
-import {Grid, Paper} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
@@ -15,9 +15,7 @@ const BuilderMyProducts: SFC = () => {
   return (
     <PaddedGrid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
-      <Paper>
-        <CurrentRegimenProducts />
-      </Paper>
+      <CurrentRegimenProducts/>
       <EmptyRow mobile='1px'/>
     </PaddedGrid>
   )
