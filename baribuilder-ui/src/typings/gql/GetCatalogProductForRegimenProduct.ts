@@ -9,6 +9,7 @@ import { BRAND } from "./globalTypes";
 
 export interface GetCatalogProductForRegimenProduct_CatalogProduct {
   __typename: "CatalogProduct";
+  id: string;
   name: string;
   brand: BRAND;
 }

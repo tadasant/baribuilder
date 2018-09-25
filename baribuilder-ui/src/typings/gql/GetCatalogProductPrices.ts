@@ -27,6 +27,7 @@ export interface GetCatalogProductPrices_CatalogProduct_projectedRegimenCost {
 
 export interface GetCatalogProductPrices_CatalogProduct {
   __typename: "CatalogProduct";
+  id: string;
   cost: GetCatalogProductPrices_CatalogProduct_cost;
   projectedRegimenCost: GetCatalogProductPrices_CatalogProduct_projectedRegimenCost | null;
 }
