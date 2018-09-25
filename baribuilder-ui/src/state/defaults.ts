@@ -1,9 +1,10 @@
 import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
-import {IDesiredIngredients, IRegimen} from './client-schema-types';
+import {IClientCatalogProduct, IDesiredIngredients, IRegimen} from './client-schema-types';
 
 export interface IApolloStateShape {
   currentRegimen: IRegimen;
   desiredIngredients: IDesiredIngredients;
+  clientCatalogProducts: IClientCatalogProduct[];
 }
 
 const defaults: IApolloStateShape = {
@@ -30,7 +31,8 @@ const defaults: IApolloStateShape = {
   desiredIngredients: {
     __typename: 'DesiredIngredients',
     ingredientRanges: [],
-  }
+  },
+  clientCatalogProducts: [],
 };
 
 export default defaults;

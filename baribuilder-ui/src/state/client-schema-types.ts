@@ -1,5 +1,14 @@
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 
+export interface IClientCatalogProduct {
+  __typename: 'ClientCatalogProduct';
+  catalogProductId: string;
+  cost: ICost;
+  projectedRegimenCost?: IRegimenCost;
+  quantity: IProductQuantity;
+  matchScore: number;
+}
+
 export interface IRegimen {
   __typename: 'Regimen';
   products: IRegimenProduct[]

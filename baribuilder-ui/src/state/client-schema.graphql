@@ -25,6 +25,14 @@ enum FREQUENCY {
     MONTHLY
 }
 
+type ClientCatalogProduct {
+    catalogProductId: ID!
+    cost: Cost!
+    projectedRegimenCost: RegimenCost
+    quantity: ProductQuantity!
+    matchScore: Float!
+}
+
 extend type CatalogProduct {
     cost: Cost!
     projectedRegimenCost: RegimenCost
@@ -86,6 +94,8 @@ type RangeIngredientQuantity {
 ##### Queries and Mutations for local state
 
 extend type Query {
+    allClientCatalogProducts: [ClientCatalogProduct!]!
+#    ClientCatalogProduct(catalogProductId: ID!): ClientCatalogProduct
     desiredIngredients: DesiredIngredients!
     currentRegimen: Regimen!
 }
