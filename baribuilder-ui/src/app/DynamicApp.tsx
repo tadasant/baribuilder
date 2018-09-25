@@ -1,4 +1,4 @@
-import {InMemoryCache} from 'apollo-cache-inmemory';
+import {defaultDataIdFromObject, InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloClient} from 'apollo-client';
 import * as ApolloLink from 'apollo-link';
 import {HttpLink} from 'apollo-link-http';
@@ -16,6 +16,15 @@ import NotFound from './NotFound';
 
 
 const cache = new InMemoryCache({
+  dataIdFromObject: object => {
+    switch (object.__typename) {
+      // @ts-ignore Bug
+      case 'RegimenProduct': return object.catalogProductId;
+      // @ts-ignore Bug
+      case 'IngredientType': return object.name;
+      default: return defaultDataIdFromObject(object);
+    }
+  },
   // Prevent unnecessary cache misses https://www.apollographql.com/docs/react/advanced/caching.html#cacheRedirect
   cacheRedirects: {
     Query: {
