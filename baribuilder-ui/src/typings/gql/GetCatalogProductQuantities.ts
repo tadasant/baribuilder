@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { FREQUENCY } from "./globalTypes";
+import { FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCatalogProductQuantities
@@ -11,6 +11,7 @@ export interface GetCatalogProductQuantities_CatalogProduct_quantity {
   __typename: "ProductQuantity";
   amount: number;
   frequency: FREQUENCY;
+  units: PRODUCT_QUANTITY_UNITS;
 }
 
 export interface GetCatalogProductQuantities_CatalogProduct {

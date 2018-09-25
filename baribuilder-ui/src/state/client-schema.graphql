@@ -79,10 +79,10 @@ type IngredientRange {
 ##### Queries and Mutations for local state
 
 extend type Query {
-    desiredIngredients: DesiredIngredients
-    currentRegimen: Regimen
+    desiredIngredients: DesiredIngredients!
+    currentRegimen: Regimen!
 }
 
 extend type Mutation {
-    AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!): Boolean
+    AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): RegimenProduct!
 }

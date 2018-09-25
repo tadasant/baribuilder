@@ -33,5 +33,5 @@ export interface GetCurrentRegimenProducts_currentRegimen {
 }
 
 export interface GetCurrentRegimenProducts {
-  currentRegimen: GetCurrentRegimenProducts_currentRegimen | null;
+  currentRegimen: GetCurrentRegimenProducts_currentRegimen;
 }

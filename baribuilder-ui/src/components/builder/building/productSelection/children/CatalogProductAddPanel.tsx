@@ -16,12 +16,15 @@ interface IProps {
 }
 
 const ADD_PRODUCT_MUTATION = gql`
-    mutation AddProduct ($catalogProductId: ID!, $amount: Int!, $frequency: FREQUENCY!) {
+    mutation AddProduct ($catalogProductId: ID!, $amount: Int!, $frequency: FREQUENCY!, $units: PRODUCT_QUANTITY_UNITS!) {
         AddProductToCurrentRegimen(
             catalogProductId: $catalogProductId,
             amount: $amount,
-            frequency: $frequency
-        ) @client
+            frequency: $frequency,
+            units: $units
+        ) @client {
+            catalogProductId
+        }
     }
 `;
 
@@ -33,6 +36,7 @@ const GET_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
             quantity @client {
                 amount
                 frequency
+                units
             }
         }
     }
@@ -85,6 +89,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = ({data: {Catal
                 variables: {
                   catalogProductId: id,
                   amount: quantity.amount,
+                  units: quantity.units,
                   frequency: quantity.frequency
                 }
               })}>

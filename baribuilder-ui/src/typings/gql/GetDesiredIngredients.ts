@@ -38,5 +38,5 @@ export interface GetDesiredIngredients_desiredIngredients {
 }
 
 export interface GetDesiredIngredients {
-  desiredIngredients: GetDesiredIngredients_desiredIngredients | null;
+  desiredIngredients: GetDesiredIngredients_desiredIngredients;
 }
