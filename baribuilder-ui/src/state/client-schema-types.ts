@@ -1,4 +1,4 @@
-import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
+import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 
 export interface IRegimen {
   __typename: 'Regimen';
@@ -10,10 +10,6 @@ export interface IRegimenProduct {
   catalogProductId: string;
   quantity: IProductQuantity;
   cost: ICost;
-}
-
-export enum PRODUCT_QUANTITY_UNITS {
-  SERVINGS = "SERVINGS",
 }
 
 export interface IProductQuantity {

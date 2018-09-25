@@ -1,6 +1,7 @@
 import ApolloClient from 'apollo-client/ApolloClient';
 import {IApolloStateShape} from './defaults';
 import localProductResolvers from './resolvers/clientCatalogProduct';
+import AddProductToCurrentRegimen from './resolvers/resolver/mutation/AddProductToCurrentRegimen';
 
 export interface IResolverContext {
   cache: ApolloClient<IApolloStateShape>
@@ -14,7 +15,7 @@ const resolvers = {
     ...localProductResolvers
   },
   Mutation: {
-    // AddProductToCurrentRegimen: (_: any, args: , context): boolean => true,
+    AddProductToCurrentRegimen,
   // RemoveProductFromCurrentRegimen(id, qty, units)
   // SetDesiredIngredientRanges(...: I)
   },

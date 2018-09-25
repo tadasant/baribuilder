@@ -82,3 +82,7 @@ extend type Query {
     desiredIngredients: DesiredIngredients
     currentRegimen: Regimen
 }
+
+extend type Mutation {
+    AddProductToCurrentRegimen: Boolean
+}

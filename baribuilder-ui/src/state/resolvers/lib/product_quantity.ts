@@ -2,8 +2,8 @@ import {keyBy} from 'lodash';
 import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql/GetAllProductsIngredients';
 
 import {GetProductIngredients_CatalogProduct_serving_ingredients} from '../../../typings/gql/GetProductIngredients';
-import {FREQUENCY} from '../../../typings/gql/globalTypes';
-import {IIngredientRange, IProductQuantity, IRegimenProduct, PRODUCT_QUANTITY_UNITS} from '../../client-schema-types';
+import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
+import {IIngredientRange, IProductQuantity, IRegimenProduct} from '../../client-schema-types';
 
 /**
  * Returns the ideal number of servings of this product for the given target
