@@ -39,6 +39,14 @@ const Sketch = {
         'fontWeight': 600,
       }
     },
+    'bodybold': { // emphasized body
+      'textAlign': 'center',
+      'fontSize': '18px',
+      'fontWeight': 600,
+      'tablet': {
+        'fontSize': '21px',
+      }
+    },
     'body': {
       'fontSize': '18px',
       'tablet': {

@@ -48,6 +48,12 @@ export interface GetProductForProductDetail_CatalogProduct_cost {
   frequency: FREQUENCY;
 }
 
+export interface GetProductForProductDetail_CatalogProduct_quantity {
+  __typename: "ProductQuantity";
+  amount: number;
+  frequency: FREQUENCY;
+}
+
 export interface GetProductForProductDetail_CatalogProduct_projectedRegimenCost_cost {
   __typename: "Cost";
   money: number;
@@ -66,6 +72,7 @@ export interface GetProductForProductDetail_CatalogProduct {
   listings: GetProductForProductDetail_CatalogProduct_listings[] | null;
   serving: GetProductForProductDetail_CatalogProduct_serving;
   cost: GetProductForProductDetail_CatalogProduct_cost;
+  quantity: GetProductForProductDetail_CatalogProduct_quantity;
   projectedRegimenCost: GetProductForProductDetail_CatalogProduct_projectedRegimenCost | null;
 }
 

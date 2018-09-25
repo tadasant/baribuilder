@@ -1,12 +1,15 @@
-import styled from 'styled-components';
+import {HTMLProps} from 'react';
+import styled, {StyledFunction} from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
-import { media } from './Core';
+import {media} from './Core';
 
 interface ITypographyProps {
-  dark: boolean
+  dark?: boolean
 }
 
-export const Header = styled.div`
+const div: StyledFunction<ITypographyProps & HTMLProps<HTMLInputElement>> = styled.div;
+
+export const Header = div`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.header.textAlign};
@@ -20,7 +23,7 @@ export const Header = styled.div`
   `}
 `;
 
-export const Header2 = styled.div`
+export const Header2 = div`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.header2.textAlign};
@@ -34,7 +37,20 @@ export const Header2 = styled.div`
   `}
 `;
 
-export const Body = styled.div`
+export const BodyBold = div`
+  color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
+  font-family: ${Sketch.typography.fontFamily};
+  text-align: ${Sketch.typography.bodybold.textAlign};
+  
+  font-size: ${Sketch.typography.bodybold.fontSize};
+  font-weight: ${Sketch.typography.bodybold.fontWeight};
+  
+  ${media.tablet`
+    font-size: ${Sketch.typography.bodybold.tablet.fontSize};
+  `}
+`;
+
+export const Body = div`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.body.fontSize};
@@ -44,7 +60,7 @@ export const Body = styled.div`
   `}
 `;
 
-export const Caption = styled.div`
+export const Caption = div`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.caption.fontSize};
@@ -54,7 +70,7 @@ export const Caption = styled.div`
   vertical-align: ${Sketch.typography.caption.verticalAlign};
 `;
 
-export const Subcaption = styled.div`
+export const Subcaption = div`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.subcaption.fontSize};

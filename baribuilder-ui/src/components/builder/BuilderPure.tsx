@@ -5,6 +5,7 @@ import Header from '../Header';
 import BuilderHeader from './building/BuilderHeader';
 import BuilderLeftPanel from './building/BuilderLeftPanel';
 import BuilderMainPanel from './building/BuilderMainPanel';
+import BuilderMyProducts from './building/BuilderMyProducts';
 
 export type SetBuilderStateFunction = (value: boolean) => void;
 
@@ -31,8 +32,7 @@ const BuilderPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProdu
         {
           !showMyProducts ? null :
             <Grid item lg={3}>
-              Current Regimen Products
-              {/*<CurrentRegimenProducts />*/}
+              <BuilderMyProducts />
             </Grid>
         }
       </Grid>

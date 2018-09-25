@@ -58,7 +58,7 @@ const PriceDescriptionText = styled(Typography)`
 `;
 
 // Pure
-const CatalogProductPricePure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}}) => {
+const CatalogProductPricePure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}, catalogProductId}) => {
   if (!CatalogProduct) {
     return null;
   }

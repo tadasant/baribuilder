@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {Component} from 'react';
-import PlusMinus from '../components/builder/building/lib/PlusMinus';
+import CurrentRegimenProducts from '../components/builder/building/myProducts/CurrentRegimenProducts';
 
 interface IState {
   value: number;
 }
+
 class Dev extends Component<{}, IState> {
   constructor(props: {}) {
     super(props);
@@ -21,7 +22,7 @@ class Dev extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <PlusMinus value={this.state.value} onChange={this.onChange}/>
+        <CurrentRegimenProducts/>
       </div>
     );
   }

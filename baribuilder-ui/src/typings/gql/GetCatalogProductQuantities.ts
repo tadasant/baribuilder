@@ -15,6 +15,7 @@ export interface GetCatalogProductQuantities_CatalogProduct_quantity {
 
 export interface GetCatalogProductQuantities_CatalogProduct {
   __typename: "CatalogProduct";
+  id: string;
   quantity: GetCatalogProductQuantities_CatalogProduct_quantity;
 }
 

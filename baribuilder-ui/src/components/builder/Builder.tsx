@@ -1,6 +1,37 @@
+import gql from 'graphql-tag';
 import * as React from 'react';
 import {Component} from 'react';
+import {Query} from 'react-apollo';
 import BuilderPure from './BuilderPure';
+
+const GET_PREFETCH_QUERY = gql`
+    query GetCatalogProducts {
+        allCatalogProducts {
+            # Prefetch data that'll be needed TODO replace with fragments
+            # Needed for avoiding cache miss, but seems to fail to optimize?
+            id
+            listings {
+                price {
+                    amount
+                }
+                numServings
+            }
+            serving {
+                size
+                units
+                ingredients {
+                    quantity {
+                        amount
+                        units
+                    }
+                    ingredientType {
+                        name
+                    }
+                }
+            }
+        }
+    }
+`;
 
 interface IState {
   disableHeader: boolean;
@@ -12,7 +43,7 @@ class BuilderContainer extends Component<{}, Readonly<IState>> {
     super(props);
     this.state = {
       disableHeader: false,
-      showMyProducts: false,
+      showMyProducts: true,
     };
     this.setDisableHeader = this.setDisableHeader.bind(this);
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
@@ -28,12 +59,23 @@ class BuilderContainer extends Component<{}, Readonly<IState>> {
 
   render() {
     return (
-      <BuilderPure
-        disableHeader={this.state.disableHeader}
-        setDisableHeader={this.setDisableHeader}
-        showMyProducts={this.state.showMyProducts}
-        setShowMyProducts={this.setShowMyProducts}
-      />
+      <Query query={GET_PREFETCH_QUERY}>
+        {
+          ({loading, error, data}) => {
+            if (loading || !data) {
+              return null;
+            }
+            return (
+              <BuilderPure
+                disableHeader={this.state.disableHeader}
+                setDisableHeader={this.setDisableHeader}
+                showMyProducts={this.state.showMyProducts}
+                setShowMyProducts={this.setShowMyProducts}
+              />
+            )
+          }
+        }
+      </Query>
     );
   }
 }
