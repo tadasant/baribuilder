@@ -1,5 +1,5 @@
 import calculateMatchScore from '../lib/product_matchScore';
-import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
+import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
 
 // TODO queries
 
@@ -15,7 +15,7 @@ import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
 //     }
 // `;
 
-const matchScoreResolver: TLocalProductResolverFunc<IProductObj, number> = (obj, _, {cache}) => {
+const matchScoreResolver: TLocalCatalogProductResolverFunc<IProductObj, number> = (obj, _, {cache}) => {
   //// Grab data
   // const productResult: GetProductIngredients | null = cache.readQuery<any, GetProductIngredients>({
   //   query: PRODUCT_INGREDIENTS_QUERY(obj.id)

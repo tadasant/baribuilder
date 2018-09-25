@@ -3,16 +3,16 @@ import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenP
 import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
 import {IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/product_projectedRegimenCost';
-import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
-import costResolver from './product_cost';
-import quantityResolver from './product_quantity';
+import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
+import costResolver from './clientCatalogProduct_cost';
+import quantityResolver from './clientCatalogProduct_quantity';
 /**
  * Query fields need to be prefetched into cache.
  */
 import {ALL_PRODUCTS_INGREDIENTS_QUERY, CURRENT_REGIMEN_PRODUCTS_QUERY, DESIRED_INGREDIENTS_QUERY} from './queries';
 
 
-const projectedRegimenCostResolver: TLocalProductResolverFunc<IProductObj, IRegimenCost> = (obj, _, {cache}) => {
+const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj, IRegimenCost> = (obj, _, {cache}) => {
     //// Grab data
     const allCatalogProductsResult = cache.readQuery<GetAllProductsIngredients>({
       query: ALL_PRODUCTS_INGREDIENTS_QUERY

@@ -3,8 +3,8 @@ import {GetProductForProductCost} from '../../../typings/gql/GetProductForProduc
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {ICost} from '../../client-schema-types';
 import calculateCost from '../lib/product_cost';
-import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
-import quantityResolver from './product_quantity';
+import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
+import quantityResolver from './clientCatalogProduct_quantity';
 
 /**
  * Query fields need to be prefetched into cache.
@@ -22,7 +22,7 @@ const PRODUCT_QUERY = (id: string) => gql`
     }
 `;
 
-const costResolver: TLocalProductResolverFunc<IProductObj, ICost> = (obj, _, {cache}) => {
+const costResolver: TLocalCatalogProductResolverFunc<IProductObj, ICost> = (obj, _, {cache}) => {
   const catalogProductId = 'id' in obj ? obj.id : obj.catalogProductId;
   // Grab data
   const productResult: GetProductForProductCost | null = cache.readQuery<any, GetProductIngredients>({

@@ -4,7 +4,7 @@ import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients'
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {IProductQuantity} from '../../client-schema-types';
 import {calculateDefaultQuantity} from '../lib/product_quantity';
-import {IProductObj, TLocalProductResolverFunc} from '../localProduct';
+import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
 /**
  * Query fields need to be prefetched into cache.
  */
@@ -16,7 +16,7 @@ import {
 } from './queries';
 
 
-const quantityResolver: TLocalProductResolverFunc<IProductObj, IProductQuantity> = (obj, _, {cache}) => {
+const quantityResolver: TLocalCatalogProductResolverFunc<IProductObj, IProductQuantity> = (obj, _, {cache}) => {
   // TODO return non-default quantity if exists
 
   //// Grab data
