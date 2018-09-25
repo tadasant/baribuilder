@@ -5,10 +5,12 @@ import {SFC} from 'react';
 import {ChildDataProps, graphql, Mutation} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
+import {CURRENT_REGIMEN_PRODUCTS_QUERY} from '../../../../../state/resolvers/resolver/queries';
 import {
   GetCatalogProductQuantities,
   GetCatalogProductQuantitiesVariables
 } from '../../../../../typings/gql/GetCatalogProductQuantities';
+import {GetCurrentRegimenProducts} from '../../../../../typings/gql/GetCurrentRegimenProducts';
 import {EmptyRow} from '../../../../style/Layout';
 
 interface IProps {
@@ -24,6 +26,11 @@ const ADD_PRODUCT_MUTATION = gql`
             units: $units
         ) @client {
             catalogProductId
+            quantity {
+                amount
+                frequency
+                units
+            }
         }
     }
 `;
@@ -79,7 +86,18 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = ({data: {Catal
       <EmptyRow mobile='0px'/>
       <Grid item lg={4}/>
       <Grid item lg={4}>
-        <Mutation mutation={ADD_PRODUCT_MUTATION}>
+        <Mutation
+          mutation={ADD_PRODUCT_MUTATION}
+          update={(cache, { data: { AddProductToCurrentRegimen } }) => {
+            const queryResult = cache.readQuery<GetCurrentRegimenProducts>({ query: CURRENT_REGIMEN_PRODUCTS_QUERY });
+            if (queryResult) {
+              queryResult.currentRegimen.products.push(AddProductToCurrentRegimen);
+              cache.writeQuery({
+                query: CURRENT_REGIMEN_PRODUCTS_QUERY,
+                data: { currentRegimen: queryResult.currentRegimen }
+              });
+            }
+          }}>
           {(addProduct) => (
             <Button
               variant='raised'
