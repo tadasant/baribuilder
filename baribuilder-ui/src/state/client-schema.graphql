@@ -84,5 +84,5 @@ extend type Query {
 }
 
 extend type Mutation {
-    AddProductToCurrentRegimen: Boolean
+    AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!): Boolean
 }

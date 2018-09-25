@@ -17,6 +17,7 @@
     "no-var-requires": false,
     "member-access": ["no-public"],
     "no-unnecessary-initializer": false,
-    "jsx-boolean-value": false
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false
   }
 }

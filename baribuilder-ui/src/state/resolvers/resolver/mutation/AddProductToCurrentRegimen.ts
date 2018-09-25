@@ -1,39 +1,36 @@
 import gql from 'graphql-tag';
-import {GetCurrentRegimenProductQuantities} from '../../../../typings/gql/GetCurrentRegimenProductQuantities';
 import {PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
+import {IRegimenProduct} from '../../../client-schema-types';
 import {TResolverFunc} from '../../../resolvers';
 
 interface IAddProductToCurrentRegimenArgs {
-  productCatalogId: string;
+  catalogProductId: string;
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
 }
 
-const CURRENT_QUANTITIES_QUERY = gql`
-    query GetCurrentRegimenProductQuantities {
-        currentRegimen @client {
-            products {
-                catalogProductId
-                quantity {
-                    amount
-                    frequency
-                    units
-                }
-            }
-        }
-    }
-`;
-
 const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrentRegimenArgs, void> = (obj, args, {cache}) => {
-  const currentQuantitiesResult = cache.readQuery<GetCurrentRegimenProductQuantities>({query: CURRENT_QUANTITIES_QUERY});
-  if (!currentQuantitiesResult || !currentQuantitiesResult.currentRegimen) {
-    console.warn('Current Regimen should never be undefined. Error code 453289.');
-    return;
+  // TODO investigate why this doesn't generate
+  interface IExistingRegimenProductQuantity {
+    catalogProductId: string;
+    quantity: { amount: number };
   }
 
-  const matchingRegimenProduct = currentQuantitiesResult.currentRegimen.products.find(p => p.catalogProductId === args.productCatalogId);
-  if (!matchingRegimenProduct) {
+  const product = cache.readFragment<IExistingRegimenProductQuantity, IRegimenProduct>({
+    id: `RegimenProduct:${args.catalogProductId}`,
+    fragment: gql`
+        fragment ExistingRegimenProductQuantity on RegimenProduct {
+            catalogProductId @client
+            quantity @client {
+                amount
+            }
+        }
+    `,
+  });
 
+  console.log(product);
+
+  if (!product) {
     // create new one
   } else {
     // update quantity
