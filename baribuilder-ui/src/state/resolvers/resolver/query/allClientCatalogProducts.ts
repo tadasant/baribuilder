@@ -7,7 +7,6 @@ import matchScoreResolver from '../clientCatalogProduct_matchScore';
 import projectedRegimenCostResolver from '../clientCatalogProduct_projectedRegimenCost';
 import quantityResolver from '../clientCatalogProduct_quantity';
 
-
 const ALL_CATALOG_PRODUCTS_QUERY = gql`
     query GetAllCatalogProductsForClientCatalogProducts {
         allCatalogProducts {
@@ -31,6 +30,7 @@ const allClientCatalogProducts: TResolverFunc<{}, {}, IClientCatalogProduct[]> =
     const projectedRegimenCost = projectedRegimenCostResolver({catalogProductId: product.id}, {}, {cache});
     const quantity = quantityResolver({catalogProductId: product.id}, {}, {cache});
     const matchScore = matchScoreResolver({catalogProductId: product.id}, {}, {cache});
+    // TODO look into returning resolvers directly
     if (cost !== null && quantity !== null && matchScore !== null) {
       results.push({
         __typename: 'ClientCatalogProduct',

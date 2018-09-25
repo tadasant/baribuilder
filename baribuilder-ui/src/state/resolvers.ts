@@ -3,6 +3,7 @@ import {IApolloStateShape} from './defaults';
 import localProductResolvers from './resolvers/clientCatalogProduct';
 import AddProductToCurrentRegimen from './resolvers/resolver/mutation/AddProductToCurrentRegimen';
 import allClientCatalogProducts from './resolvers/resolver/query/allClientCatalogProducts';
+import ClientCatalogProduct from './resolvers/resolver/query/ClientCatalogProduct';
 
 export interface IResolverContext {
   cache: ApolloClient<IApolloStateShape>
@@ -14,6 +15,7 @@ export type TResolverFunc<TObj, TArgs, TData> = (obj: TObj, args: TArgs, context
 const resolvers = {
   Query: {
     allClientCatalogProducts,
+    ClientCatalogProduct,
   },
   CatalogProduct: {
     ...localProductResolvers

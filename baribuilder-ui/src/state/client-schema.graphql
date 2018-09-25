@@ -95,7 +95,7 @@ type RangeIngredientQuantity {
 
 extend type Query {
     allClientCatalogProducts: [ClientCatalogProduct!]!
-#    ClientCatalogProduct(catalogProductId: ID!): ClientCatalogProduct
+    ClientCatalogProduct(catalogProductId: ID!): ClientCatalogProduct
     desiredIngredients: DesiredIngredients!
     currentRegimen: Regimen!
 }
