@@ -12,6 +12,7 @@
     "apollo-link-state": "^0.4.2",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
+    "immutability-helper": "^2.8.1",
     "intersection-observer": "^0.5.0",
     "lodash": "^4.17.11",
     "npm-font-open-sans": "^1.1.0",

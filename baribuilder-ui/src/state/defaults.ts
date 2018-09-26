@@ -1,3 +1,4 @@
+import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 import {IClientCatalogProduct, IDesiredIngredients, IRegimen} from './client-schema-types';
 
 export interface IApolloStateShape {
@@ -13,7 +14,21 @@ const defaults: IApolloStateShape = {
   },
   desiredIngredients: {
     __typename: 'DesiredIngredients',
-    ingredientRanges: [],
+    ingredientRanges: [{
+      __typename: 'IngredientRange',
+      ingredientTypeName: 'Vitamin A',
+      frequency: FREQUENCY.DAILY,
+      maximum: {
+        __typename: 'RangeIngredientQuantity',
+        amount: 2.0,
+        units: INGREDIENT_QUANTITY_UNITS.G
+      },
+      minimum: {
+        __typename: 'RangeIngredientQuantity',
+        amount: 1.0,
+        units: INGREDIENT_QUANTITY_UNITS.G
+      },
+    }],
   },
   clientCatalogProducts: [],
 };
