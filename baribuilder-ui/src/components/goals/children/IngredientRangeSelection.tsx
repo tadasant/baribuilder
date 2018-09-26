@@ -7,6 +7,7 @@ import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
+import XIcon from '../../../assets/icon/x.svg';
 import {IIngredientRange} from '../../../state/client-schema-types';
 import {GetIngredientReferenceData} from '../../../typings/gql/GetIngredientReferenceData';
 import {Body} from '../../style/Typography';
@@ -59,6 +60,12 @@ const EmphasizedShadowedSelect = styled(ShadowedSelect)`
     font-weight: 800;
     font-size: 1.5em;
   }
+`;
+
+const XIconImg = styled.img`
+  max-height: 16px;
+  text-align: center;
+  cursor: pointer;
 `;
 
 
@@ -117,8 +124,12 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
             </ShadowedSelect>
           </Grid>
         </Grid>
-        <Grid item lg={2}>
-          x
+        <Grid item lg={2} container direction='column' justify='center'>
+          <Grid item container direction='row' justify='center'>
+            <Grid item>
+              <XIconImg src={XIcon}/>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
