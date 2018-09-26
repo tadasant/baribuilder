@@ -5,17 +5,17 @@ import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
-import {GetProductsForProductSelection} from '../../../../typings/gql/GetProductsForProductSelection';
+import {GetClientCatalogProductsForProductSelection} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
 // import Product from './CatalogProduct';
 
 // GraphQL HOC props (output)
-type DataOutputProps = ChildDataProps<{}, GetProductsForProductSelection>;
+type DataOutputProps = ChildDataProps<{}, GetClientCatalogProductsForProductSelection>;
 
-const data = graphql<{}, GetProductsForProductSelection>(gql`
-    query GetProductsForProductSelection {
-        allCatalogProducts {
-            id
+const data = graphql<{}, GetClientCatalogProductsForProductSelection>(gql`
+    query GetClientCatalogProductsForProductSelection {
+        allClientCatalogProducts @client {
+            catalogProductId
         }
     }
 `);
@@ -30,12 +30,12 @@ const PaddedDiv = styled.div`
 `;
 
 // Pure
-const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allCatalogProducts, loading}}) => {
-  if (allCatalogProducts !== undefined && !loading) {
+const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allClientCatalogProducts, loading}}) => {
+  if (allClientCatalogProducts !== undefined && !loading) {
     return (
       <Grid container direction='row' alignItems='flex-start'>
-        {allCatalogProducts.map(product => (
-          <Fragment key={product.id}>
+        {allClientCatalogProducts.map(product => (
+          <Fragment key={product.catalogProductId}>
             <Grid item lg={12}>
               <Paper>
                 <PaddedDiv>
