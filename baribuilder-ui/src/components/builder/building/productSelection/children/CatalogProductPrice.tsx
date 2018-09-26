@@ -19,10 +19,8 @@ const GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY = gql`
             }
             projectedRegimenCost {
                 numRemainingProducts
-                cost {
-                    money
-                    frequency
-                }
+                money
+                frequency
             }
         }
     }
@@ -62,7 +60,7 @@ const CatalogProductPricePure: SFC<IProps & DataOutputProps> = ({data: {ClientCa
   if (!ClientCatalogProduct) {
     return null;
   }
-  const price = ClientCatalogProduct.projectedRegimenCost ? ClientCatalogProduct.projectedRegimenCost.cost.money.toFixed(0) : ClientCatalogProduct.cost.money.toFixed(2);
+  const price = ClientCatalogProduct.projectedRegimenCost ? ClientCatalogProduct.projectedRegimenCost.money.toFixed(0) : ClientCatalogProduct.cost.money.toFixed(2);
   const subText = ClientCatalogProduct.projectedRegimenCost ? 'Monthly Regimen Cost (Projected)' : 'Monthly Product Cost';
   return (
     <Fragment>

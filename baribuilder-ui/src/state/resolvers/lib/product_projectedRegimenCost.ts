@@ -28,7 +28,8 @@ const calculateProjectedRegimenCost = (
   return {
     __typename: 'RegimenCost',
     numRemainingProducts,
-    cost: totalProjectedCost,
+    money: totalProjectedCost.money,
+    frequency: totalProjectedCost.frequency,
   }
 };
 

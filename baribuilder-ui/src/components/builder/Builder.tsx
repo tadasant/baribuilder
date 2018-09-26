@@ -50,10 +50,8 @@ const GET_PREFETCH_QUERY_CLIENT = gql`
           }
           projectedRegimenCost {
               numRemainingProducts
-              cost {
-                  money
-                  frequency
-              }
+              money
+              frequency
           }
           quantity {
               amount

@@ -50,7 +50,8 @@ export interface ICost {
 export interface IRegimenCost {
   __typename: 'RegimenCost';
   numRemainingProducts: number;
-  cost: ICost;
+  money: number;
+  frequency: FREQUENCY;
 }
 
 /**

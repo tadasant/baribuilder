@@ -38,7 +38,8 @@ type Cost {
 
 type RegimenCost {
     numRemainingProducts: Int!
-    cost: Cost!
+    frequency: FREQUENCY!
+    money: Float!
 }
 
 type ProductQuantity {
