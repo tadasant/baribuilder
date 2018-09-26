@@ -20,7 +20,19 @@ const ADD_PRODUCT_MUTATION = gql`
             frequency: $frequency,
             units: $units
         ) @client {
-            catalogProductId
+            # TODO replace w/ frag that matches entire regimen
+            products {
+                catalogProductId
+                quantity {
+                    amount
+                    units
+                    frequency
+                }
+                cost {
+                    money
+                    frequency
+                }
+            }
         }
     }
 `;

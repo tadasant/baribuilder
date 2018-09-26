@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 import {GetCurrentRegimen} from '../../../../typings/gql/GetCurrentRegimen';
-import {GetCurrentRegimenProductQuantities} from '../../../../typings/gql/GetCurrentRegimenProductQuantities';
 import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
 import {IRegimen} from '../../../client-schema-types';
 import {TResolverFunc} from '../../../resolvers';
@@ -41,7 +40,7 @@ const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrent
   }
 
   const {currentRegimen} = currentRegimenResult;
-  const product = currentRegimen.products.find(product => product.catalogProductId === args.catalogProductId);
+  const product = currentRegimen.products.find(p => p.catalogProductId === args.catalogProductId);
   if (!product) {
     const productCost = costResolver({catalogProductId: args.catalogProductId}, {}, {cache});
     if (!productCost) {
@@ -67,7 +66,7 @@ const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrent
     // update quantity TODO
   }
 
-  cache.writeQuery<GetCurrentRegimenProductQuantities>({
+  cache.writeQuery<GetCurrentRegimen>({
     query: CURRENT_REGIMEN_QUERY,
     data: {currentRegimen},
   });
