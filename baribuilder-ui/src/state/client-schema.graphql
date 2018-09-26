@@ -10,9 +10,8 @@
 ##// local state docs: https://www.apollographql.com/docs/react/essentials/local-state.html
 
 
-##### Augmenting product with local information
+##### These enums already exist remotely, but don't get downloaded (because not used remotely yet?)
 
-# These enums already exist remotely, but don't get downloaded (because not used remotely yet?)
 enum FREQUENCY {
     DAILY
     WEEKLY
@@ -23,11 +22,13 @@ enum PRODUCT_QUANTITY_UNITS {
     SERVINGS
 }
 
+##### Local state storage (matches client-schema-types.ts); hopefully we can generate that sometime
+
 type ClientCatalogProduct {
     catalogProductId: ID!
     cost: Cost!
     projectedRegimenCost: RegimenCost
-    quantity: ProductQuantity!
+    quantity: CatalogProductQuantity!
     matchScore: Float!
 }
 
@@ -42,13 +43,11 @@ type RegimenCost {
     money: Float!
 }
 
-type ProductQuantity {
+type CatalogProductQuantity {
     amount: Int!
     units: PRODUCT_QUANTITY_UNITS!
     frequency: FREQUENCY!
 }
-
-##### Local state storage (matches client-schema-types.ts); hopefully we can generate that sometime
 
 type Regimen {
     products: [RegimenProduct!]!
@@ -56,8 +55,14 @@ type Regimen {
 
 type RegimenProduct {
     catalogProductId: ID!
-    quantity: ProductQuantity!
+    quantity: RegimenProductQuantity!
     cost: Cost!
+}
+
+type RegimenProductQuantity {
+    amount: Int!
+    units: PRODUCT_QUANTITY_UNITS!
+    frequency: FREQUENCY!
 }
 
 type DesiredIngredients {

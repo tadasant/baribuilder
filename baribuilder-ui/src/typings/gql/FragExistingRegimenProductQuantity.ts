@@ -8,7 +8,7 @@ import { PRODUCT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
 // ====================================================
 
 export interface FragExistingRegimenProductQuantity_quantity {
-  __typename: "ProductQuantity";
+  __typename: "RegimenProductQuantity";
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;

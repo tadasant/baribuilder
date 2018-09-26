@@ -1,5 +1,5 @@
 import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql/GetAllProductsIngredients';
-import {ICost, IIngredientRange, IProductQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
+import {ICost, IIngredientRange, ICatalogProductQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import {
   projectCostOfIngredients,
   subtractProductFromRegimenIngredients,
@@ -11,7 +11,7 @@ import {
 
 export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients_allCatalogProducts {
   cost: ICost;
-  quantity: IProductQuantity;
+  quantity: ICatalogProductQuantity;
 }
 
 const calculateProjectedRegimenCost = (

@@ -8,7 +8,7 @@ import { FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 // ====================================================
 
 export interface GetCurrentRegimenProducts_currentRegimen_products_quantity {
-  __typename: "ProductQuantity";
+  __typename: "RegimenProductQuantity";
   amount: number;
   frequency: FREQUENCY;
   units: PRODUCT_QUANTITY_UNITS;

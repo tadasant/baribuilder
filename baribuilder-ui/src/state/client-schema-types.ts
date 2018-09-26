@@ -1,12 +1,36 @@
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 
+// TODO look into auto-generating this from client-schema.graphql file
+
+// Local store types
+
 export interface IClientCatalogProduct {
   __typename: 'ClientCatalogProduct';
   catalogProductId: string;
   cost: ICost;
   projectedRegimenCost: IRegimenCost | null;
-  quantity: IProductQuantity;
+  quantity: ICatalogProductQuantity;
   matchScore: number;
+}
+
+export interface ICost {
+  __typename: 'Cost';
+  money: number;
+  frequency: FREQUENCY;
+}
+
+export interface IRegimenCost {
+  __typename: 'RegimenCost';
+  numRemainingProducts: number;
+  money: number;
+  frequency: FREQUENCY;
+}
+
+export interface ICatalogProductQuantity {
+  __typename: 'CatalogProductQuantity';
+  amount: number;
+  units: PRODUCT_QUANTITY_UNITS;
+  frequency: FREQUENCY;
 }
 
 export interface IRegimen {
@@ -17,12 +41,12 @@ export interface IRegimen {
 export interface IRegimenProduct {
   __typename: 'RegimenProduct';
   catalogProductId: string;
-  quantity: IProductQuantity;
+  quantity: IRegimenProductQuantity;
   cost: ICost;
 }
 
-export interface IProductQuantity {
-  __typename: 'ProductQuantity';
+export interface IRegimenProductQuantity {
+  __typename: 'RegimenProductQuantity';
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
@@ -38,19 +62,6 @@ export interface IIngredientRange {
   ingredientType: IIngredientType;
   minimum: IRangeIngredientQuantity | null;
   maximum: IRangeIngredientQuantity | null;
-  frequency: FREQUENCY;
-}
-
-export interface ICost {
-  __typename: 'Cost';
-  money: number;
-  frequency: FREQUENCY;
-}
-
-export interface IRegimenCost {
-  __typename: 'RegimenCost';
-  numRemainingProducts: number;
-  money: number;
   frequency: FREQUENCY;
 }
 

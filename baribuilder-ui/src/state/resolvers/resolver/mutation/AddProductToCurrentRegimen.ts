@@ -39,7 +39,7 @@ const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrent
         __typename: 'RegimenProduct',
         catalogProductId: args.catalogProductId,
         quantity: {
-          __typename: 'ProductQuantity',
+          __typename: 'RegimenProductQuantity',
           amount: args.amount,
           units: args.units,
           frequency: args.frequency,

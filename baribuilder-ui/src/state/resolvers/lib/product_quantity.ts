@@ -3,7 +3,7 @@ import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql
 
 import {GetProductIngredients_CatalogProduct_serving_ingredients} from '../../../typings/gql/GetProductIngredients';
 import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
-import {IIngredientRange, IProductQuantity, IRegimenProduct} from '../../client-schema-types';
+import {IIngredientRange, ICatalogProductQuantity, IRegimenProduct} from '../../client-schema-types';
 
 /**
  * Returns the ideal number of servings of this product for the given target
@@ -97,10 +97,10 @@ export const calculateDefaultQuantity = (
   products: GetAllProductsIngredients_allCatalogProducts[],
   desiredIngredientRanges: IIngredientRange[],
   currentRegimenProducts: IRegimenProduct[]
-): IProductQuantity => {
+): ICatalogProductQuantity => {
   const targetIngredientRanges = calculateTargetIngredientRanges(desiredIngredientRanges, currentRegimenProducts, products);
   return {
-    __typename: 'ProductQuantity',
+    __typename: 'CatalogProductQuantity',
     amount: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),
     units: PRODUCT_QUANTITY_UNITS.SERVINGS,
     frequency: FREQUENCY.DAILY,

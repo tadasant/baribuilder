@@ -16,7 +16,7 @@ const defaults: IApolloStateShape = {
         catalogProductId: 'cjm0rzfrj1sdp0138x3hhr3us',
         quantity: {
           amount: 5,
-          __typename: 'ProductQuantity',
+          __typename: 'RegimenProductQuantity',
           frequency: FREQUENCY.DAILY,
           units: PRODUCT_QUANTITY_UNITS.SERVINGS,
         },
