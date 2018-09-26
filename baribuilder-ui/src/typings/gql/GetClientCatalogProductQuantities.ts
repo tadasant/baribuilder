@@ -16,6 +16,7 @@ export interface GetClientCatalogProductQuantities_ClientCatalogProduct_quantity
 
 export interface GetClientCatalogProductQuantities_ClientCatalogProduct {
   __typename: "ClientCatalogProduct";
+  catalogProductId: string;
   quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_quantity;
 }
 

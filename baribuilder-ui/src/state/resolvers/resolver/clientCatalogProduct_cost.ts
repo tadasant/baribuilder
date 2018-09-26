@@ -12,6 +12,8 @@ import quantityResolver from './clientCatalogProduct_quantity';
 const PRODUCT_QUERY = (id: string) => gql`
     query GetProductForProductCost {
         CatalogProduct(id: "${id}"){
+            id
+            
             listings {
                 price {
                     amount

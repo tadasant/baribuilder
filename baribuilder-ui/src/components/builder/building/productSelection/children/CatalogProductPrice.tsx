@@ -13,6 +13,8 @@ import {
 const GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY = gql`
     query GetClientCatalogProductPrices($catalogProductId: ID!) {
         ClientCatalogProduct(catalogProductId: $catalogProductId) @client {
+            catalogProductId # ensure cache hit
+            
             cost {
                 money
                 frequency

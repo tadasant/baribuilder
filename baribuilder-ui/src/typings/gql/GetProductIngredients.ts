@@ -31,6 +31,7 @@ export interface GetProductIngredients_CatalogProduct_serving {
 
 export interface GetProductIngredients_CatalogProduct {
   __typename: "CatalogProduct";
+  id: string;
   serving: GetProductIngredients_CatalogProduct_serving;
 }
 

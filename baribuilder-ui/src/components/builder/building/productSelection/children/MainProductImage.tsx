@@ -13,6 +13,8 @@ import {
 const GET_IMAGES_QUERY = gql`
     query GetCatalogProductImages($id: ID) {
         CatalogProduct(id: $id) {
+            id # ensure cache hit
+            
             images {
                 url
             }

@@ -12,6 +12,7 @@ export interface GetCatalogProductImages_CatalogProduct_images {
 
 export interface GetCatalogProductImages_CatalogProduct {
   __typename: "CatalogProduct";
+  id: string;
   images: GetCatalogProductImages_CatalogProduct_images[] | null;
 }
 

@@ -22,6 +22,7 @@ export interface GetClientCatalogProductPrices_ClientCatalogProduct_projectedReg
 
 export interface GetClientCatalogProductPrices_ClientCatalogProduct {
   __typename: "ClientCatalogProduct";
+  catalogProductId: string;
   cost: GetClientCatalogProductPrices_ClientCatalogProduct_cost;
   projectedRegimenCost: GetClientCatalogProductPrices_ClientCatalogProduct_projectedRegimenCost | null;
 }

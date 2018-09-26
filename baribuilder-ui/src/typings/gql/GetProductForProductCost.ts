@@ -18,6 +18,7 @@ export interface GetProductForProductCost_CatalogProduct_listings {
 
 export interface GetProductForProductCost_CatalogProduct {
   __typename: "CatalogProduct";
+  id: string;
   listings: GetProductForProductCost_CatalogProduct_listings[] | null;
 }
 

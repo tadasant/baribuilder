@@ -19,7 +19,7 @@ const cache = new InMemoryCache({
   dataIdFromObject: object => {
     switch (object.__typename) {
       // @ts-ignore Bug (obj is not allowed any type's properties)
-      case 'RegimenProduct': return `RegimenProduct:${object.catalogProductId}`;
+      case 'ClientCatalogProduct': return `ClientCatalogProduct:${object.catalogProductId}`;
       // @ts-ignore Bug
       case 'IngredientType': return `IngredientType:${object.name}`;
       default: return defaultDataIdFromObject(object);

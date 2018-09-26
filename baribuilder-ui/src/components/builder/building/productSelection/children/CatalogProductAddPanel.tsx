@@ -19,6 +19,8 @@ interface IProps {
 const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
     query GetClientCatalogProductQuantities($catalogProductId: ID!) {
         ClientCatalogProduct(catalogProductId: $catalogProductId) @client {
+            catalogProductId # ensure cache hit
+            
             quantity {
                 amount
                 frequency
