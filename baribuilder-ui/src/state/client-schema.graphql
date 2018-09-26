@@ -1,6 +1,6 @@
 ##// Defines what we can query on the GraphQL client store
 ##
-##// TODO this typeDefs feature is broken. It is only used for
+##// TODO typeDefs feature is broken. It is only used for
 ##// introspection, not validation, and the introspection breaks in GraphiQL (but is still useful for apollo CLI)
 ##// for weird reasons: https://github.com/apollographql/apollo-client-devtools/issues/132
 ##
@@ -8,21 +8,19 @@
 ##
 ##// apollo-link-state docs: https://www.apollographql.com/docs/link/links/state.html
 ##// local state docs: https://www.apollographql.com/docs/react/essentials/local-state.html
-##export const typeDefs = `
-#
-#// Don't forget to include __typename in GraphiQL: https://github.com/apollographql/apollo-link-state/issues/239
-#
-#// apollo-link-state docs: https://www.apollographql.com/docs/link/links/state.html
-#// local state docs: https://www.apollographql.com/docs/react/essentials/local-state.html
 
 
 ##### Augmenting product with local information
 
-# This already exists remotely, but doesn't get downloaded because it's not used remotely (yet)
+# These enums already exist remotely, but don't get downloaded (because not used remotely yet?)
 enum FREQUENCY {
     DAILY
     WEEKLY
     MONTHLY
+}
+
+enum PRODUCT_QUANTITY_UNITS {
+    SERVINGS
 }
 
 type ClientCatalogProduct {
@@ -31,18 +29,6 @@ type ClientCatalogProduct {
     projectedRegimenCost: RegimenCost
     quantity: ProductQuantity!
     matchScore: Float!
-}
-
-extend type CatalogProduct {
-    cost: Cost!
-    projectedRegimenCost: RegimenCost
-    # default quantity will be 1 Daily if desiredIngredients not set
-    quantity: ProductQuantity!
-    matchScore: Float!
-}
-
-enum PRODUCT_QUANTITY_UNITS {
-    SERVINGS
 }
 
 type Cost {
