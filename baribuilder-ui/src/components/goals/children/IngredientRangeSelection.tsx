@@ -8,7 +8,7 @@ import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {IIngredientRange} from '../../../state/client-schema-types';
-import {GetIngredientTypes} from '../../../typings/gql/GetIngredientTypes';
+import {GetIngredientReferenceData} from '../../../typings/gql/GetIngredientReferenceData';
 import {Body} from '../../style/Typography';
 import {HandleChangeGoalFunc} from '../GoalsScreen';
 
@@ -17,19 +17,29 @@ interface IProps {
   onChange: HandleChangeGoalFunc,
 }
 
-const GET_INGREDIENT_TYPES = gql`
-    query GetIngredientTypes {
+const GET_INGREDIENT_REFERENCE_DATA = gql`
+    query GetIngredientReferenceData {
         allIngredientTypes {
             name
             defaultUnits
             synonyms
         }
+        FREQUENCIES: __type(name: "FREQUENCY") {
+            enumValues {
+                name
+            }
+        }
+        INGREDIENT_QUANTITY_UNITSES: __type(name: "INGREDIENT_QUANTITY_UNITS") {
+            enumValues {
+                name
+            }
+        }
     }
 `;
 
-type ReferenceDataOutputProps = ChildDataProps<IProps, GetIngredientTypes>;
+type ReferenceDataOutputProps = ChildDataProps<IProps, GetIngredientReferenceData>;
 
-const withReferenceData = graphql<IProps, GetIngredientTypes>(GET_INGREDIENT_TYPES);
+const withReferenceData = graphql<IProps, GetIngredientReferenceData>(GET_INGREDIENT_REFERENCE_DATA);
 
 const CenteredBody = styled(Body)`
   text-align: center;
@@ -38,27 +48,36 @@ const CenteredBody = styled(Body)`
 const ShadowedSelect = styled(Select)`
   && {
     box-shadow: 0px 1px 2px 0px ${Sketch.color.accent.grey};
-    font-weight: 800;
-    font-size: 1.5em;
     width: 100%;
     text-align: center;
     color: ${Sketch.color.accent.black};
   }
 `;
 
-const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingredientRange, onChange, data: {allIngredientTypes}}) => {
+const EmphasizedShadowedSelect = styled(ShadowedSelect)`
+  && {
+    font-weight: 800;
+    font-size: 1.5em;
+  }
+`;
+
+
+const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingredientRange, onChange, data: {allIngredientTypes, FREQUENCIES, INGREDIENT_QUANTITY_UNITSES}}) => {
   const handleChangeIngredientTypeName: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
     onChange(ingredientRange.ingredientTypeName, 'ingredientTypeName', event.target.value);
   };
+  const handleChangeUnits: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
+    onChange(ingredientRange.ingredientTypeName, 'units', event.target.value);
+  };
 
   return (
-    <Grid container direction='row'>
+    <Grid container direction='row' spacing={8}>
       <Grid item lg={2}>
-        <ShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
+        <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
           {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
             <MenuItem value={ingredientType.name}>{ingredientType.name}</MenuItem>
           )) : null}
-        </ShadowedSelect>
+        </EmphasizedShadowedSelect>
       </Grid>
       <Grid item lg={1} container direction='column' justify='center'>
         <Grid item>
@@ -74,8 +93,14 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       <Grid item lg={2}>
         {ingredientRange.maximumAmount}
       </Grid>
-      <Grid item lg={1}>
-        {ingredientRange.units}
+      <Grid item lg={1} container direction='column' justify='center'>
+        <Grid item>
+          <ShadowedSelect value={ingredientRange.units} onChange={handleChangeUnits}>
+            {INGREDIENT_QUANTITY_UNITSES && INGREDIENT_QUANTITY_UNITSES.enumValues ? INGREDIENT_QUANTITY_UNITSES.enumValues.map(units => (
+              <MenuItem value={units.name}>{units.name}</MenuItem>
+            )) : null}
+          </ShadowedSelect>
+        </Grid>
       </Grid>
       <Grid item container lg={3}>
         <Grid item lg={10}>
