@@ -42,6 +42,7 @@ const ShadowedSelect = styled(Select)`
     font-size: 1.5em;
     width: 100%;
     text-align: center;
+    color: ${Sketch.color.accent.black};
   }
 `;
 
@@ -72,6 +73,9 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2}>
         {ingredientRange.maximum ? ingredientRange.maximum.amount : 'none'}
+      </Grid>
+      <Grid item lg={1}>
+        {ingredientRange.minimum ? ingredientRange.minimum.units : ingredientRange.maximum ? ingredientRange.maximum.units : 'none'}
       </Grid>
       <Grid item container lg={3}>
         <Grid item lg={10}>
