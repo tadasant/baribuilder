@@ -64,7 +64,6 @@ const GET_PREFETCH_QUERY_CLIENT = gql`
 `;
 
 interface IState {
-  disableHeader: boolean;
   showMyProducts: boolean;
 }
 
@@ -72,15 +71,9 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      disableHeader: false,
       showMyProducts: true,
     };
-    this.setDisableHeader = this.setDisableHeader.bind(this);
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
-  }
-
-  setDisableHeader(disableHeader: boolean) {
-    this.setState({disableHeader});
   }
 
   setShowMyProducts(showMyProducts: boolean) {
@@ -105,8 +98,6 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
                     }
                     return (
                       <BuilderScreenPure
-                        disableHeader={this.state.disableHeader}
-                        setDisableHeader={this.setDisableHeader}
                         showMyProducts={this.state.showMyProducts}
                         setShowMyProducts={this.setShowMyProducts}
                       />

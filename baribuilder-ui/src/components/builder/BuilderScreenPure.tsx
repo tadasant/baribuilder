@@ -12,8 +12,6 @@ import BuilderMyProducts from './building/BuilderMyProducts';
 export type SetBuilderStateFunction = (value: boolean) => void;
 
 interface IProps {
-  disableHeader: boolean;
-  setDisableHeader: SetBuilderStateFunction;
   showMyProducts: boolean;
   setShowMyProducts: SetBuilderStateFunction;
 }
@@ -27,10 +25,10 @@ const TabGrid = styled(Grid)`
   top: 0;
 `;
 
-const BuilderScreenPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProducts}) => {
+const BuilderScreenPure: SFC<IProps> = ({showMyProducts, setShowMyProducts}) => {
   return (
     <Fragment>
-      <Header disableButtons={disableHeader} hideNavigation/>
+      <Header />
       {/*<DesiredIngredientsModal />*/}
       <BuilderHeader setShowMyProducts={setShowMyProducts} showMyProducts={showMyProducts}/>
       <Grid container>
