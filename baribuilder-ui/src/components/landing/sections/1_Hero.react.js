@@ -87,7 +87,7 @@ class Hero extends Component {
           <Grid item xs={1} lg={3}/>
           <Grid item xs={5} lg={3} container direction='row'>
             <Grid item xs={11}>
-              <Link to={'/builder'} onClick={generateTrackNavClick('Browse CTA')}>
+              <Link to={'/browse'} onClick={generateTrackNavClick('Browse CTA')}>
                 <CTANavButton variant='raised' fullWidth>
                   Browse Product Catalog
                 </CTANavButton>
@@ -98,7 +98,7 @@ class Hero extends Component {
           <Grid item xs={5} lg={3} container direction='row'>
             <Grid item xs={1}/>
             <Grid item xs={11}>
-              <Link to={'/builder?openMyRegimen=true'} onClick={generateTrackNavClick('Build CTA')}>
+              <Link to={'/build'} onClick={generateTrackNavClick('Build CTA')}>
                 <CTANavButton variant='raised' fullWidth>
                   Build Personal Regimen
                 </CTANavButton>

@@ -27,7 +27,7 @@ const TabGrid = styled(Grid)`
   top: 0;
 `;
 
-const BuilderPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProducts}) => {
+const BuilderScreenPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProducts}) => {
   return (
     <Fragment>
       <Header disableButtons={disableHeader} hideNavigation/>
@@ -51,4 +51,4 @@ const BuilderPure: SFC<IProps> = ({disableHeader, showMyProducts, setShowMyProdu
   );
 };
 
-export default BuilderPure;
+export default BuilderScreenPure;

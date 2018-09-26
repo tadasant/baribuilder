@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {Component} from 'react';
 import {Query} from 'react-apollo';
-import BuilderPure from './BuilderPure';
+import BuilderScreenPure from './BuilderScreenPure';
 
 const GET_PREFETCH_QUERY = gql`
     query GetCatalogProducts {
@@ -68,7 +68,7 @@ interface IState {
   showMyProducts: boolean;
 }
 
-class BuilderContainer extends Component<{}, Readonly<IState>> {
+class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -104,7 +104,7 @@ class BuilderContainer extends Component<{}, Readonly<IState>> {
                       return null;
                     }
                     return (
-                      <BuilderPure
+                      <BuilderScreenPure
                         disableHeader={this.state.disableHeader}
                         setDisableHeader={this.setDisableHeader}
                         showMyProducts={this.state.showMyProducts}
@@ -122,4 +122,4 @@ class BuilderContainer extends Component<{}, Readonly<IState>> {
   }
 }
 
-export default BuilderContainer;
+export default BuilderScreenContainer;

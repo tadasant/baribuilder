@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component} from 'react';
-import CurrentRegimenProducts from '../components/builder/building/myProducts/CurrentRegimenProducts';
+import GoalsScreen from '../components/goals/GoalsScreen';
 
 interface IState {
   value: number;
@@ -22,7 +22,7 @@ class Dev extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <CurrentRegimenProducts/>
+        <GoalsScreen/>
       </div>
     );
   }

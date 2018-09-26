@@ -7,7 +7,8 @@ import * as React from 'react';
 import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
 import {Route, Switch} from 'react-router-dom';
-import Builder from '../components/builder/Builder';
+import BuilderScreen from '../components/builder/BuilderScreen';
+import GoalsScreen from '../components/goals/GoalsScreen';
 import config, {isProduction} from '../config/config';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
@@ -55,7 +56,8 @@ class DynamicApp extends Component {
     return (
       <ApolloProvider client={client}>
         <Switch>
-          <Route exact path="/builder" component={Builder}/>
+          <Route exact path="/browse" component={BuilderScreen}/>
+          <Route exact path="/build" component={GoalsScreen}/>
           {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
           <Route component={NotFound}/>
         </Switch>

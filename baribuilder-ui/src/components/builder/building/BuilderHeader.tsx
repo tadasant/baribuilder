@@ -8,7 +8,7 @@ import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetProductsForBuilderHeader} from '../../../typings/gql/GetProductsForBuilderHeader';
-import {SetBuilderStateFunction} from '../BuilderPure';
+import {SetBuilderStateFunction} from '../BuilderScreenPure';
 
 export const builderHeaderHeight = '48px';
 

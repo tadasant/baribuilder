@@ -47,14 +47,14 @@ const HeaderPure: SFC<IProps> = props => {
         props.hideNavigation ? null :
           <Grid item xs={6} container alignItems='center' justify='flex-end'>
             <Grid item>
-              <Link to='/builder' onClick={generateTrackNavClick('Browse nav')}>
+              <Link to='/browse' onClick={generateTrackNavClick('Browse nav')}>
                 <WhiteNavButton fullWidth>
                   Browse
                 </WhiteNavButton>
               </Link>
             </Grid>
             <Grid item>
-              <Link to='/builder?openMyRegimen=true' onClick={generateTrackNavClick('Build nav')}>
+              <Link to='/build' onClick={generateTrackNavClick('Build nav')}>
                 <WhiteNavButton fullWidth>
                   Build
                 </WhiteNavButton>

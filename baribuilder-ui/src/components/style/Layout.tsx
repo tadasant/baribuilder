@@ -5,7 +5,7 @@ import { media } from './Core';
 
 
 interface IMarginProps {
-  mobile: string;
+  mobile?: string;
   tablet?: string;
   desktop?: string;
 }
