@@ -4,16 +4,12 @@ export const DESIRED_INGREDIENTS_QUERY = gql`
     query GetDesiredIngredients {
         desiredIngredients @client {
             ingredientRanges {
-                ingredientType {
-                    name
-                }
+                ingredientTypeName
                 minimum {
-                    id
                     amount
                     units
                 }
                 maximum {
-                    id
                     amount
                     units
                 }

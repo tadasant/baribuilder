@@ -27,7 +27,7 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   const results: IRegimenIngredient[] = [];
 
   desiredIngredientRanges.forEach(range => {
-    const result = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientType.name]);
+    const result = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientTypeName]);
     if (result !== null && result.amount > 0) {
       results.push(result)
     }
@@ -212,8 +212,8 @@ const subtractRegimenIngredientFromMinimumIngredient = (
   // Assume 0 minimum if not set
   const minimumIngredientQuantityAmount = minimum === null ? 0 : minimum.amount;
 
-  if (range.ingredientType.name !== regimenIngredient.ingredientTypeName) {
-    console.error(`${range.ingredientType.name} !== ${regimenIngredient.ingredientTypeName}. This shouldn't happen. Error code 489293.`);
+  if (range.ingredientTypeName !== regimenIngredient.ingredientTypeName) {
+    console.error(`${range.ingredientTypeName} !== ${regimenIngredient.ingredientTypeName}. This shouldn't happen. Error code 489293.`);
     return null;
   }
   if (range.frequency !== regimenIngredient.frequency) {

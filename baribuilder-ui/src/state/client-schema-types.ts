@@ -65,31 +65,14 @@ export interface IDesiredIngredients {
 
 export interface IIngredientRange {
   __typename: 'IngredientRange';
-  ingredientType: IIngredientType;
+  ingredientTypeName: string;
   minimum: IRangeIngredientQuantity | null;
   maximum: IRangeIngredientQuantity | null;
   frequency: FREQUENCY;
 }
 
-export type IProductCost = IRegimenCost | ICatalogProductCost;
-
-//// Server side duplicates
-
-// TODO this should be moved to central source of truth reference data concept
-export interface IIngredientType {
-  __typename: 'IngredientType';
-  name: string;
-}
-
 export interface IRangeIngredientQuantity {
   __typename: 'RangeIngredientQuantity';
-  id: string;
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
-}
-
-export interface IIngredient {
-  __typename: 'Ingredient';
-  quantity: IRangeIngredientQuantity;
-  ingredientType: IIngredientType;
 }

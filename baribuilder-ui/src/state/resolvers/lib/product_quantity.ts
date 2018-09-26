@@ -18,7 +18,7 @@ const deriveIdealQuantityViaLimitingMicros = (
   let maxBeforeExceed: number | undefined = undefined;
 
   targetIngredientRanges.forEach(ingredientRange => {
-    const ingredientName = ingredientRange.ingredientType.name;
+    const ingredientName = ingredientRange.ingredientTypeName;
     if (productIngredientsByName.hasOwnProperty(ingredientName)) {
       let smallestToFillIngredient: number | undefined = undefined;
       if (ingredientRange.minimum) {
@@ -60,7 +60,7 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
     currentRegimenProducts.forEach(product => {
       const productIngredients = productsById[product.catalogProductId].serving.ingredients || [];
       productIngredients.forEach((productIngredient: GetProductIngredients_CatalogProduct_serving_ingredients) => {
-        if (productIngredient.ingredientType.name === range.ingredientType.name) {
+        if (productIngredient.ingredientType.name === range.ingredientTypeName) {
           if ((range.maximum && productIngredient.quantity.units !== range.maximum.units) || (range.minimum && productIngredient.quantity.units !== range.minimum.units)) {
             console.warn(`Conversions not yet supported ${product.catalogProductId}, ${productIngredient.ingredientType.name}`);
           }

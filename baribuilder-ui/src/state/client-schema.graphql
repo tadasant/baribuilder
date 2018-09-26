@@ -75,15 +75,13 @@ type DesiredIngredients {
 }
 
 type IngredientRange {
-    ingredientType: IngredientType!
+    ingredientTypeName: String!
     minimum: RangeIngredientQuantity
     maximum: RangeIngredientQuantity
     frequency: FREQUENCY!
 }
 
 type RangeIngredientQuantity {
-    __typename: String!
-    id: String!
     amount: Float!
     units: INGREDIENT_QUANTITY_UNITS!
 }
