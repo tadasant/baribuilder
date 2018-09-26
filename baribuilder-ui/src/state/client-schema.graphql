@@ -86,8 +86,6 @@ type RangeIngredientQuantity {
     units: INGREDIENT_QUANTITY_UNITS!
 }
 
-union ProductCost = RegimenProductCost | CatalogProductCost
-
 ##### Queries and Mutations for local state
 
 extend type Query {
