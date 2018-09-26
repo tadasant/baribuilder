@@ -3,7 +3,7 @@ import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql
 
 import {GetProductIngredients_CatalogProduct_serving_ingredients} from '../../../typings/gql/GetProductIngredients';
 import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
-import {IIngredientRange, ICatalogProductQuantity, IRegimenProduct} from '../../client-schema-types';
+import {ICatalogProductQuantity, IIngredientRange, IRegimenProduct} from '../../client-schema-types';
 
 /**
  * Returns the ideal number of servings of this product for the given target

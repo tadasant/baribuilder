@@ -112,7 +112,7 @@ export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): IRegimenP
   };
 };
 
-export const sumCosts = (...costs: (ICatalogProductCost | IRegimenProductCost)[]): ICatalogProductCost => {
+export const sumCosts = (...costs: Array<ICatalogProductCost | IRegimenProductCost>): ICatalogProductCost => {
   if (costs.length === 0) {
     return {
       __typename: 'CatalogProductCost',
