@@ -4,7 +4,7 @@ export interface IClientCatalogProduct {
   __typename: 'ClientCatalogProduct';
   catalogProductId: string;
   cost: ICost;
-  projectedRegimenCost?: IRegimenCost;
+  projectedRegimenCost: IRegimenCost | null;
   quantity: IProductQuantity;
   matchScore: number;
 }

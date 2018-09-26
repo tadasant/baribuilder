@@ -7,40 +7,62 @@ import BuilderPure from './BuilderPure';
 const GET_PREFETCH_QUERY = gql`
     query GetCatalogProducts {
         allCatalogProducts {
-            # Prefetch data that'll be needed TODO replace with fragments
-            # Needed for avoiding cache miss, but seems to fail to optimize?
+            # Prefetch data that'll be needed for allClientCatalogProducts TODO replace with fragments
+            __typename
             id
+            
             listings {
-                __typename
                 price {
-                    __typename
                     amount
                 }
                 numServings
             }
             images {
-                __typename
                 url
             }
             serving {
-                __typename
                 size
                 units
                 ingredients {
-                    __typename
                     quantity {
-                        __typename
                         amount
                         units
                     }
                     ingredientType {
-                        __typename
                         name
                     }
                 }
             }
         }
     }
+`;
+
+const GET_PREFETCH_QUERY_CLIENT = gql`
+  query GetClientCatalogProducts {
+      allClientCatalogProducts @client {
+          # Prefetch data that'll be needed for individual ClientCatalogProducts TODO replace with fragments
+          __typename
+          catalogProductId
+          
+          cost {
+              money
+              frequency
+          }
+          projectedRegimenCost {
+              numRemainingProducts
+              cost {
+                  money
+                  frequency
+              }
+          }
+          quantity {
+              amount
+              units
+              frequency
+          }
+          matchScore
+      }
+  }
 `;
 
 interface IState {
@@ -68,6 +90,7 @@ class BuilderContainer extends Component<{}, Readonly<IState>> {
   }
 
   render() {
+    // TODO eventually abstract these away into simple wrapper components
     return (
       <Query query={GET_PREFETCH_QUERY}>
         {
@@ -76,12 +99,23 @@ class BuilderContainer extends Component<{}, Readonly<IState>> {
               return null;
             }
             return (
-              <BuilderPure
-                disableHeader={this.state.disableHeader}
-                setDisableHeader={this.setDisableHeader}
-                showMyProducts={this.state.showMyProducts}
-                setShowMyProducts={this.setShowMyProducts}
-              />
+              <Query query={GET_PREFETCH_QUERY_CLIENT}>
+                {
+                  (props) => {
+                    if (props.loading || !props.data) {
+                      return null;
+                    }
+                    return (
+                      <BuilderPure
+                        disableHeader={this.state.disableHeader}
+                        setDisableHeader={this.setDisableHeader}
+                        showMyProducts={this.state.showMyProducts}
+                        setShowMyProducts={this.setShowMyProducts}
+                      />
+                    )
+                  }
+                }
+              </Query>
             )
           }
         }

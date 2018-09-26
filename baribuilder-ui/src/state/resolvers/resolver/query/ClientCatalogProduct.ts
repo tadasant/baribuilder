@@ -20,7 +20,7 @@ const ClientCatalogProduct: TResolverFunc<{}, IClientCatalogProductArgs, IClient
       __typename: 'ClientCatalogProduct',
       catalogProductId: args.catalogProductId,
       cost,
-      projectedRegimenCost: projectedRegimenCost || undefined,
+      projectedRegimenCost,
       quantity,
       matchScore,
     }
