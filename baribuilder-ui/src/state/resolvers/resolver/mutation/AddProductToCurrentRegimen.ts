@@ -63,7 +63,11 @@ const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrent
       },
     })
   } else {
-    // update quantity TODO
+    if (args.frequency !== product.quantity.frequency || args.units !== product.quantity.units) {
+      console.warn('Conversions not yet implemented. Error code 348298');
+      return null;
+    }
+    product.quantity.amount += args.amount;
   }
 
   cache.writeQuery<GetCurrentRegimen>({
