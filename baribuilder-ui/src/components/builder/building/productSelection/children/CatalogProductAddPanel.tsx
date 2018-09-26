@@ -7,9 +7,9 @@ import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import {CURRENT_REGIMEN_PRODUCTS_QUERY} from '../../../../../state/resolvers/resolver/queries';
 import {
-  GetCatalogProductQuantities,
-  GetCatalogProductQuantitiesVariables
-} from '../../../../../typings/gql/GetCatalogProductQuantities';
+  GetClientCatalogProductQuantities,
+  GetClientCatalogProductQuantitiesVariables
+} from '../../../../../typings/gql/GetClientCatalogProductQuantities';
 import {GetCurrentRegimenProducts} from '../../../../../typings/gql/GetCurrentRegimenProducts';
 import {EmptyRow} from '../../../../style/Layout';
 
@@ -35,12 +35,10 @@ const ADD_PRODUCT_MUTATION = gql`
     }
 `;
 
-const GET_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
-    query GetCatalogProductQuantities($id: ID) {
-        CatalogProduct(id: $id) {
-            # ID required to reconcile @client queries
-            id
-            quantity @client {
+const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
+    query GetClientCatalogProductQuantities($catalogProductId: ID!) {
+        ClientCatalogProduct(catalogProductId: $catalogProductId) @client {
+            quantity {
                 amount
                 frequency
                 units
@@ -49,11 +47,11 @@ const GET_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
     }
 `;
 
-type DataOutputProps = ChildDataProps<IProps, GetCatalogProductQuantities, GetCatalogProductQuantitiesVariables>;
+type DataOutputProps = ChildDataProps<IProps, GetClientCatalogProductQuantities, GetClientCatalogProductQuantitiesVariables>;
 
-const data = graphql<IProps, GetCatalogProductQuantities, GetCatalogProductQuantitiesVariables, DataOutputProps>(GET_CATALOG_PRODUCT_QUANTITIES_QUERY, {
+const data = graphql<IProps, GetClientCatalogProductQuantities, GetClientCatalogProductQuantitiesVariables, DataOutputProps>(GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY, {
   options: ({catalogProductId}) => ({
-    variables: {id: catalogProductId},
+    variables: {catalogProductId},
   }),
 });
 
@@ -70,17 +68,17 @@ const OuterGrid = styled(Grid)`
 const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> = (event) => console.log(event.target.value);
 
 // Pure
-const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}}) => {
-  if (!CatalogProduct) {
+const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = ({data: {ClientCatalogProduct}, catalogProductId}) => {
+  if (!ClientCatalogProduct) {
     return null;
   }
-  const {id, quantity} = CatalogProduct;
+  const {quantity} = ClientCatalogProduct;
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>
       <Grid item lg={2}/>
       <Grid item lg={8}>
-        <TextField value={CatalogProduct.quantity.amount || ''} onChange={handleChange} fullWidth label='# servings'/>
+        <TextField value={ClientCatalogProduct.quantity.amount || ''} onChange={handleChange} fullWidth label='# servings'/>
       </Grid>
       <Grid item lg={2}/>
       <EmptyRow mobile='0px'/>
@@ -105,7 +103,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = ({data: {Catal
               fullWidth
               onClick={() => addProduct({
                 variables: {
-                  catalogProductId: id,
+                  catalogProductId,
                   amount: quantity.amount,
                   units: quantity.units,
                   frequency: quantity.frequency
