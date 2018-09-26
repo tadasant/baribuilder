@@ -21,7 +21,7 @@ const defaults: IApolloStateShape = {
           units: PRODUCT_QUANTITY_UNITS.SERVINGS,
         },
         cost: {
-          __typename: 'Cost',
+          __typename: 'RegimenProductCost',
           money: 50.4,
           frequency: FREQUENCY.MONTHLY,
         }

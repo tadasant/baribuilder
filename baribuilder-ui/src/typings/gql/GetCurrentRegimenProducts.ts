@@ -15,7 +15,7 @@ export interface GetCurrentRegimenProducts_currentRegimen_products_quantity {
 }
 
 export interface GetCurrentRegimenProducts_currentRegimen_products_cost {
-  __typename: "Cost";
+  __typename: "RegimenProductCost";
   money: number;
   frequency: FREQUENCY;
 }

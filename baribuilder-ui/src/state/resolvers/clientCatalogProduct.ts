@@ -1,4 +1,4 @@
-import {ICost, ICatalogProductQuantity, IRegimenCost} from '../client-schema-types';
+import {ICatalogProductCost, ICatalogProductQuantity, IRegimenCost} from '../client-schema-types';
 import {TResolverFunc} from '../resolvers';
 import costResolver from './resolver/clientCatalogProduct_cost';
 import matchScoreResolver from './resolver/clientCatalogProduct_matchScore';
@@ -27,7 +27,7 @@ export type TLocalCatalogProductResolverFunc<IRemoteObj, IResultData> = TResolve
  * Beware that most of these local resolvers require that certain remote data be present in the cache.
  */
 interface IClientCatalogProductResolvers {
-  cost: TLocalCatalogProductResolverFunc<IProductObj, ICost>;
+  cost: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProductCost>;
   projectedRegimenCost: TLocalCatalogProductResolverFunc<IProductObj, IRegimenCost>;
   quantity: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProductQuantity>;
   matchScore: TLocalCatalogProductResolverFunc<IProductObj, number>;

@@ -73,7 +73,11 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
       } else {
         currentRegimenProducts.push({
           ...p,
-          cost,
+          cost: {
+            __typename: 'RegimenProductCost',
+            frequency: cost.frequency,
+            money: cost.money,
+          },
         })
       }
     });

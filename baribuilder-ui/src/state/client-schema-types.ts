@@ -7,14 +7,14 @@ import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../t
 export interface IClientCatalogProduct {
   __typename: 'ClientCatalogProduct';
   catalogProductId: string;
-  cost: ICost;
+  cost: ICatalogProductCost;
   projectedRegimenCost: IRegimenCost | null;
   quantity: ICatalogProductQuantity;
   matchScore: number;
 }
 
-export interface ICost {
-  __typename: 'Cost';
+export interface ICatalogProductCost {
+  __typename: 'CatalogProductCost';
   money: number;
   frequency: FREQUENCY;
 }
@@ -42,13 +42,19 @@ export interface IRegimenProduct {
   __typename: 'RegimenProduct';
   catalogProductId: string;
   quantity: IRegimenProductQuantity;
-  cost: ICost;
+  cost: IRegimenProductCost;
 }
 
 export interface IRegimenProductQuantity {
   __typename: 'RegimenProductQuantity';
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
+  frequency: FREQUENCY;
+}
+
+export interface IRegimenProductCost {
+  __typename: 'RegimenProductCost';
+  money: number;
   frequency: FREQUENCY;
 }
 
@@ -76,6 +82,8 @@ export interface IIngredientRange {
 export interface IRegimenIngredient extends IIngredient {
   frequency: FREQUENCY;
 }
+
+export type IProductCost = IRegimenCost | ICatalogProductCost;
 
 //// Server side duplicates
 

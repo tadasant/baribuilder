@@ -1,9 +1,13 @@
 import {cloneDeep, keyBy} from 'lodash';
-import {
-  GetAllProductsIngredients_allCatalogProducts
-} from '../../../typings/gql/GetAllProductsIngredients';
+import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql/GetAllProductsIngredients';
 import {FREQUENCY} from '../../../typings/gql/globalTypes';
-import {ICost, IIngredientRange, IRegimenIngredient, IRegimenProduct} from '../../client-schema-types';
+import {
+  ICatalogProductCost,
+  IIngredientRange,
+  IRegimenIngredient,
+  IRegimenProduct,
+  IRegimenProductCost
+} from '../../client-schema-types';
 import {ingredientPricesByName} from '../data/ingredientPrices';
 
 // TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
@@ -62,7 +66,7 @@ export const subtractProductFromRegimenIngredients = (
 };
 
 // NB: "project" is a verb here
-export const projectCostOfIngredients = (ingredients: IRegimenIngredient[]): ICost => {
+export const projectCostOfIngredients = (ingredients: IRegimenIngredient[]): IRegimenProductCost => {
   let totalMoney = 0.0;
   const frequency = ingredients.length > 0 ? ingredients[0].frequency : FREQUENCY.DAILY;
 
@@ -83,13 +87,13 @@ export const projectCostOfIngredients = (ingredients: IRegimenIngredient[]): ICo
     }
   });
   return {
-    __typename: 'Cost',
+    __typename: 'RegimenProductCost',
     money: totalMoney,
     frequency,
   };
 };
 
-export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): ICost => {
+export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): IRegimenProductCost => {
   let totalMoney = 0.0;
   const frequency = regimenProducts.length > 0 ? regimenProducts[0].quantity.frequency : FREQUENCY.DAILY;
   regimenProducts.forEach(product => {
@@ -100,29 +104,34 @@ export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): ICost => 
     }
   });
   return {
-    __typename: 'Cost',
+    __typename: 'RegimenProductCost',
     money: totalMoney,
     frequency,
   };
 };
 
-export const sumCosts = (...costs: ICost[]): ICost => {
+export const sumCosts = (...costs: (ICatalogProductCost | IRegimenProductCost)[]): ICatalogProductCost => {
   if (costs.length === 0) {
     return {
-      __typename: 'Cost',
+      __typename: 'CatalogProductCost',
       money: 0.0,
       frequency: FREQUENCY.DAILY
     }
   } else if (costs.length === 1) {
-    return costs[0];
+    return {
+      __typename: 'CatalogProductCost',
+      money: costs[0].money,
+      frequency: costs[0].frequency,
+    };
   } else if (costs.length === 2) {
     if (costs[0].frequency !== costs[1].frequency) {
       console.warn('Frequency conversions unsupported. Error code 09204');
     }
 
     return {
-      ...cloneDeep(costs[0]),
+      __typename: 'CatalogProductCost',
       money: costs[0].money + costs[1].money,
+      frequency: costs[0].frequency,
     }
   }
 

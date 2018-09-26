@@ -1,5 +1,11 @@
 import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql/GetAllProductsIngredients';
-import {ICost, IIngredientRange, ICatalogProductQuantity, IRegimenCost, IRegimenProduct} from '../../client-schema-types';
+import {
+  ICatalogProductCost,
+  ICatalogProductQuantity,
+  IIngredientRange,
+  IRegimenCost,
+  IRegimenProduct
+} from '../../client-schema-types';
 import {
   projectCostOfIngredients,
   subtractProductFromRegimenIngredients,
@@ -10,7 +16,7 @@ import {
 
 
 export interface IProductForProjectedRegimenCost extends GetAllProductsIngredients_allCatalogProducts {
-  cost: ICost;
+  cost: ICatalogProductCost;
   quantity: ICatalogProductQuantity;
 }
 

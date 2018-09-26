@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import {GetProductForProductCost} from '../../../typings/gql/GetProductForProductCost';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
-import {ICost} from '../../client-schema-types';
+import {ICatalogProductCost} from '../../client-schema-types';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
 import calculateCost from '../lib/product_cost';
 import quantityResolver from './clientCatalogProduct_quantity';
@@ -22,7 +22,7 @@ const PRODUCT_QUERY = (id: string) => gql`
     }
 `;
 
-const costResolver: TLocalCatalogProductResolverFunc<IProductObj, ICost> = (obj, _, {cache}) => {
+const costResolver: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProductCost> = (obj, _, {cache}) => {
   const catalogProductId = 'id' in obj ? obj.id : obj.catalogProductId;
   // Grab data
   const productResult: GetProductForProductCost | null = cache.readQuery<any, GetProductIngredients>({

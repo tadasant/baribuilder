@@ -26,13 +26,13 @@ enum PRODUCT_QUANTITY_UNITS {
 
 type ClientCatalogProduct {
     catalogProductId: ID!
-    cost: Cost!
+    cost: CatalogProductCost!
     projectedRegimenCost: RegimenCost
     quantity: CatalogProductQuantity!
     matchScore: Float!
 }
 
-type Cost {
+type CatalogProductCost {
     money: Float!
     frequency: FREQUENCY!
 }
@@ -56,12 +56,17 @@ type Regimen {
 type RegimenProduct {
     catalogProductId: ID!
     quantity: RegimenProductQuantity!
-    cost: Cost!
+    cost: RegimenProductCost!
 }
 
 type RegimenProductQuantity {
     amount: Int!
     units: PRODUCT_QUANTITY_UNITS!
+    frequency: FREQUENCY!
+}
+
+type RegimenProductCost {
+    money: Float!
     frequency: FREQUENCY!
 }
 
@@ -82,6 +87,8 @@ type RangeIngredientQuantity {
     amount: Float!
     units: INGREDIENT_QUANTITY_UNITS!
 }
+
+union ProductCost = RegimenProductCost | CatalogProductCost
 
 ##### Queries and Mutations for local state
 
