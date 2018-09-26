@@ -6,19 +6,18 @@ import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import {
-  GetCatalogProductPrices,
-  GetCatalogProductPricesVariables
-} from '../../../../../typings/gql/GetCatalogProductPrices';
+  GetClientCatalogProductPrices,
+  GetClientCatalogProductPricesVariables
+} from '../../../../../typings/gql/GetClientCatalogProductPrices';
 
-const GET_CATALOG_PRODUCT_PRICES_QUERY = gql`
-    query GetCatalogProductPrices($id: ID) {
-        CatalogProduct(id: $id) {
-            id
-            cost @client {
+const GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY = gql`
+    query GetClientCatalogProductPrices($catalogProductId: ID!) {
+        ClientCatalogProduct(catalogProductId: $catalogProductId) @client {
+            cost {
                 money
                 frequency
             }
-            projectedRegimenCost @client {
+            projectedRegimenCost {
                 numRemainingProducts
                 cost {
                     money
@@ -33,11 +32,11 @@ interface IProps {
   catalogProductId: string;
 }
 
-type DataOutputProps = ChildDataProps<IProps, GetCatalogProductPrices, GetCatalogProductPricesVariables>;
+type DataOutputProps = ChildDataProps<IProps, GetClientCatalogProductPrices, GetClientCatalogProductPricesVariables>;
 
-const data = graphql<IProps, GetCatalogProductPrices, GetCatalogProductPricesVariables, DataOutputProps>(GET_CATALOG_PRODUCT_PRICES_QUERY, {
+const data = graphql<IProps, GetClientCatalogProductPrices, GetClientCatalogProductPricesVariables, DataOutputProps>(GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY, {
   options: ({catalogProductId}) => ({
-    variables: {id: catalogProductId},
+    variables: {catalogProductId},
   }),
 });
 
@@ -59,12 +58,12 @@ const PriceDescriptionText = styled(Typography)`
 `;
 
 // Pure
-const CatalogProductPricePure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}, catalogProductId}) => {
-  if (!CatalogProduct) {
+const CatalogProductPricePure: SFC<IProps & DataOutputProps> = ({data: {ClientCatalogProduct}}) => {
+  if (!ClientCatalogProduct) {
     return null;
   }
-  const price = CatalogProduct.projectedRegimenCost ? CatalogProduct.projectedRegimenCost.cost.money.toFixed(0) : CatalogProduct.cost.money.toFixed(2);
-  const subText = CatalogProduct.projectedRegimenCost ? 'Monthly Regimen Cost (Projected)' : 'Monthly Product Cost';
+  const price = ClientCatalogProduct.projectedRegimenCost ? ClientCatalogProduct.projectedRegimenCost.cost.money.toFixed(0) : ClientCatalogProduct.cost.money.toFixed(2);
+  const subText = ClientCatalogProduct.projectedRegimenCost ? 'Monthly Regimen Cost (Projected)' : 'Monthly Product Cost';
   return (
     <Fragment>
       <Grid container alignItems='center'>

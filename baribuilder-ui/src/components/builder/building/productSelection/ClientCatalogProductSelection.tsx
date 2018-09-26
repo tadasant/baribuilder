@@ -7,7 +7,7 @@ import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import {GetClientCatalogProductsForProductSelection} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
-// import Product from './CatalogProduct';
+import ClientCatalogProduct from './ClientCatalogProduct';
 
 // GraphQL HOC props (output)
 type DataOutputProps = ChildDataProps<{}, GetClientCatalogProductsForProductSelection>;
@@ -39,7 +39,7 @@ const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allClientCatalogProd
             <Grid item lg={12}>
               <Paper>
                 <PaddedDiv>
-                  {/*<Product id={product.id}/>*/}
+                  <ClientCatalogProduct id={product.catalogProductId}/>
                 </PaddedDiv>
               </Paper>
             </Grid>
