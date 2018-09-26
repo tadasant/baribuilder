@@ -34,7 +34,7 @@ interface IProps {
   showCheckout?: boolean;
 }
 
-const HeaderPure: SFC<IProps> = () => {
+const NavbarPure: SFC<IProps> = () => {
   return (
     <GridWithRaisedBackground container>
       <Grid item xs={6}>
@@ -63,4 +63,4 @@ const HeaderPure: SFC<IProps> = () => {
   )
 };
 
-export default HeaderPure;
+export default NavbarPure;

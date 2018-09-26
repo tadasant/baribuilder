@@ -7,6 +7,7 @@ const GoalsScreen: SFC = () => {
   return (
     <Grid container alignContent='flex-start'>
       <EmptyRow/>
+
       Title<br />
       Ingredient Range List<br />
       Add Ingredient<br />
