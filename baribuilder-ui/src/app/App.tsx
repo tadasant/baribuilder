@@ -1,10 +1,11 @@
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import 'npm-font-open-sans';
 import * as React from 'react';
-import {Component} from 'react';
+import {Component, Fragment} from 'react';
 import ReactPixel from 'react-facebook-pixel';
 import * as ReactGA from 'react-ga';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Header from '../components/Header';
 import config from '../config/config';
 import DynamicApp from './DynamicApp';
 import NotFound from './NotFound';
@@ -25,11 +26,14 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={StaticApp}/>
-            <Route component={DynamicApp}/>
-            <Route component={NotFound}/>
-          </Switch>
+          <Fragment>
+            <Header/>
+            <Switch>
+              <Route exact path="/" component={StaticApp}/>
+              <Route component={DynamicApp}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </Fragment>
         </BrowserRouter>
       </MuiThemeProvider>
     );

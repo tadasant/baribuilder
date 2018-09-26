@@ -3,7 +3,6 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
-import Header from '../Header';
 import BuilderHeader from './building/BuilderHeader';
 import BuilderLeftPanel from './building/BuilderLeftPanel';
 import BuilderMainPanel from './building/BuilderMainPanel';
@@ -28,8 +27,6 @@ const TabGrid = styled(Grid)`
 const BuilderScreenPure: SFC<IProps> = ({showMyProducts, setShowMyProducts}) => {
   return (
     <Fragment>
-      <Header />
-      {/*<DesiredIngredientsModal />*/}
       <BuilderHeader setShowMyProducts={setShowMyProducts} showMyProducts={showMyProducts}/>
       <Grid container>
         <Grid item lg={4}>
