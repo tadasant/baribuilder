@@ -1,8 +1,10 @@
 import gql from 'graphql-tag';
-import {FragExistingRegimenProductQuantity} from '../../../../typings/gql/FragExistingRegimenProductQuantity';
+import {GetCurrentRegimen} from '../../../../typings/gql/GetCurrentRegimen';
+import {GetCurrentRegimenProductQuantities} from '../../../../typings/gql/GetCurrentRegimenProductQuantities';
 import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
-import {IRegimenProduct} from '../../../client-schema-types';
+import {IRegimen} from '../../../client-schema-types';
 import {TResolverFunc} from '../../../resolvers';
+import costResolver from '../clientCatalogProduct_cost';
 
 interface IAddProductToCurrentRegimenArgs {
   catalogProductId: string;
@@ -11,50 +13,66 @@ interface IAddProductToCurrentRegimenArgs {
   frequency: FREQUENCY;
 }
 
-const REGIMEN_PRODUCT_QUANTITY_FRAGMENT = gql`
-    fragment FragExistingRegimenProductQuantity on RegimenProduct {
-        __typename
-        catalogProductId @client
-        quantity @client {
-            __typename
-            amount
-            units
-            frequency
+// Should contain entire aggregate
+const CURRENT_REGIMEN_QUERY = gql`
+    query GetCurrentRegimen {
+        currentRegimen @client {
+            products {
+                catalogProductId
+                quantity {
+                    amount
+                    units
+                    frequency
+                }
+                cost {
+                    money
+                    frequency
+                }
+            }
         }
     }
 `;
 
-const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrentRegimenArgs, FragExistingRegimenProductQuantity> = (obj, args, {cache}) => {
-  const product = cache.readFragment<FragExistingRegimenProductQuantity, IRegimenProduct>({
-    id: `RegimenProduct:${args.catalogProductId}`,
-    fragment: REGIMEN_PRODUCT_QUANTITY_FRAGMENT,
-  });
-
-  console.log(product);
-
-  if (!product) {
-    cache.writeFragment<FragExistingRegimenProductQuantity, IRegimenProduct>({
-      id: `RegimenProduct:${args.catalogProductId}`,
-      data: {
-        __typename: 'RegimenProduct',
-        catalogProductId: args.catalogProductId,
-        quantity: {
-          __typename: 'RegimenProductQuantity',
-          amount: args.amount,
-          units: args.units,
-          frequency: args.frequency,
-        },
-      },
-      fragment: REGIMEN_PRODUCT_QUANTITY_FRAGMENT,
-    })
-  } else {
-    // update quantity
+const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrentRegimenArgs, IRegimen> = (obj, args, {cache}) => {
+  const currentRegimenResult = cache.readQuery<GetCurrentRegimen>({query: CURRENT_REGIMEN_QUERY});
+  if (!currentRegimenResult) {
+    console.error('Failed to grab currentRegimen. Error code 348298');
+    return null;
   }
 
-  return product ? product : cache.readFragment<FragExistingRegimenProductQuantity, IRegimenProduct>({
-    id: `RegimenProduct:${args.catalogProductId}`,
-    fragment: REGIMEN_PRODUCT_QUANTITY_FRAGMENT,
+  const {currentRegimen} = currentRegimenResult;
+  const product = currentRegimen.products.find(product => product.catalogProductId === args.catalogProductId);
+  if (!product) {
+    const productCost = costResolver({catalogProductId: args.catalogProductId}, {}, {cache});
+    if (!productCost) {
+      console.error('Failed to resolve cost for new product. Error code 348298');
+      return null;
+    }
+    currentRegimen.products.push({
+      __typename: 'RegimenProduct',
+      catalogProductId: args.catalogProductId,
+      quantity: {
+        __typename: 'RegimenProductQuantity',
+        amount: args.amount,
+        frequency: args.frequency,
+        units: args.units
+      },
+      cost: {
+        __typename: 'RegimenProductCost',
+        frequency: productCost.frequency,
+        money: productCost.money,
+      },
+    })
+  } else {
+    // update quantity TODO
+  }
+
+  cache.writeQuery<GetCurrentRegimenProductQuantities>({
+    query: CURRENT_REGIMEN_QUERY,
+    data: {currentRegimen},
   });
+
+  return currentRegimen;
 };
 
 export default AddProductToCurrentRegimenResolver;
