@@ -4,6 +4,7 @@ import {Fragment, SFC} from 'react';
 import {IDesiredIngredients} from '../../state/client-schema-types';
 import {EmptyRow} from '../style/Layout';
 import {Header} from '../style/Typography';
+import IngredientRangeSelection from './children/IngredientRangeSelection';
 import {HandleChangeGoalFunc} from './GoalsScreen';
 
 interface IProps {
@@ -21,9 +22,12 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
       <EmptyRow mobile='20px'/>
       <Fragment>
         <Grid item lg={1}/>
-        <Grid item lg={10}>
-          Ingredients:
-          {props.desiredIngredients ? props.desiredIngredients.ingredientRanges.map(range => range.ingredientTypeName) : 'error'}
+        <Grid item container lg={10} alignContent='flex-start'>
+          {props.desiredIngredients ? props.desiredIngredients.ingredientRanges.map(ingredientRange => (
+            <Grid item lg={12}>
+              <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal}/>
+            </Grid>
+          )) : null}
         </Grid>
         <Grid item lg={1}/>
       </Fragment>
