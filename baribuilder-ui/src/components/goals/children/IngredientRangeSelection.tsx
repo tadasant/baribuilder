@@ -69,13 +69,16 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
   const handleChangeUnits: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
     onChange(ingredientRange.ingredientTypeName, 'units', event.target.value);
   };
+  const handleChangeFrequency: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
+    onChange(ingredientRange.ingredientTypeName, 'frequency', event.target.value);
+  };
 
   return (
     <Grid container direction='row' spacing={8}>
       <Grid item lg={2}>
         <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
           {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
-            <MenuItem value={ingredientType.name}>{ingredientType.name}</MenuItem>
+            <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientType.name}</MenuItem>
           )) : null}
         </EmphasizedShadowedSelect>
       </Grid>
@@ -87,8 +90,10 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       <Grid item lg={2}>
         {ingredientRange.minimumAmount}
       </Grid>
-      <Grid item lg={1}>
-        <CenteredBody dark>to</CenteredBody>
+      <Grid item lg={1} container direction='column' justify='center'>
+        <Grid item>
+          <CenteredBody dark>to</CenteredBody>
+        </Grid>
       </Grid>
       <Grid item lg={2}>
         {ingredientRange.maximumAmount}
@@ -97,14 +102,20 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         <Grid item>
           <ShadowedSelect value={ingredientRange.units} onChange={handleChangeUnits}>
             {INGREDIENT_QUANTITY_UNITSES && INGREDIENT_QUANTITY_UNITSES.enumValues ? INGREDIENT_QUANTITY_UNITSES.enumValues.map(units => (
-              <MenuItem value={units.name}>{units.name}</MenuItem>
+              <MenuItem value={units.name} key={units.name}>{units.name}</MenuItem>
             )) : null}
           </ShadowedSelect>
         </Grid>
       </Grid>
       <Grid item container lg={3}>
-        <Grid item lg={10}>
-          {ingredientRange.frequency}
+        <Grid item lg={10} container direction='column' justify='center'>
+          <Grid item>
+            <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
+              {FREQUENCIES && FREQUENCIES.enumValues ? FREQUENCIES.enumValues.map(frequency => (
+                <MenuItem value={frequency.name} key={frequency.name}>{frequency.name}</MenuItem>
+              )) : null}
+            </ShadowedSelect>
+          </Grid>
         </Grid>
         <Grid item lg={2}>
           x

@@ -73,3 +73,8 @@ type IngredientType @model {
     defaultUnits: INGREDIENT_QUANTITY_UNITS!
     ingredients: [ServingIngredient!]! @relation(name: "IngredientIngredientType")
 }
+
+type DummyFieldToForceFrequency @model {
+    id: ID! @isUnique
+    dummy: FREQUENCY!
+}
