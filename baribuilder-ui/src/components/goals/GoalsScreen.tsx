@@ -17,7 +17,7 @@ interface IState {
 }
 
 // TODO stricter `value`
-export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngredientRange, value: any) => void;
+export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngredientRange, value: string | undefined) => void;
 
 class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> {
   static getDerivedStateFromProps(props: DataOutputProps, state: IState) {
@@ -40,7 +40,7 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
 
   /**
    * @param ingredientTypeName Note odd situation where I'm somewhat keying the fields off of ingredientTypeName, but user might change ingredientTypeName
-   * @param key IngredientRange key e.g. ingreidentTypeName, minimum, maximum, frequency
+   * @param key IngredientRange key e.g. ingreidentTypeName, minimumAmount, maximumAmount, frequency, units
    * @param value value to set
    */
   handleChangeGoal: HandleChangeGoalFunc = (ingredientTypeName, key, value) => {
@@ -49,19 +49,19 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     }
 
     // Standardize types from UI to real data
-    let finalValue = value;
-    if (typeof value !== 'string') {
-      finalValue = {
-        amount: parseFloat(value.amount),
-        units: value.units
-      }
+    let finalValue: number | string | null;
+    switch (key) {
+      case 'minimumAmount': case 'maximumAmount': finalValue = value === undefined ? null : parseFloat(value); break;
+      default: finalValue = value || null;
     }
 
     const rangeIndex = this.state.desiredIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
     this.setState(update(this.state, {
       desiredIngredients: {
-        [rangeIndex]: {
-          [key]: {$set: finalValue}
+        ingredientRanges: {
+          [rangeIndex]: {
+            [key]: {$set: finalValue}
+          }
         }
       },
       didMakeClientSideChanges: {$set: true},
