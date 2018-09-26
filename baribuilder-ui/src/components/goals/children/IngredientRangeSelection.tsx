@@ -11,11 +11,12 @@ import XIcon from '../../../assets/icon/x.svg';
 import {IIngredientRange} from '../../../state/client-schema-types';
 import {GetIngredientReferenceData} from '../../../typings/gql/GetIngredientReferenceData';
 import {Body} from '../../style/Typography';
-import {HandleChangeGoalFunc} from '../GoalsScreen';
+import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from '../GoalsScreen';
 
 interface IProps {
-  ingredientRange: IIngredientRange,
-  onChange: HandleChangeGoalFunc,
+  ingredientRange: IIngredientRange;
+  onChange: HandleChangeGoalFunc;
+  onRemove: HandleRemoveGoalFunc;
 }
 
 const GET_INGREDIENT_REFERENCE_DATA = gql`
@@ -69,7 +70,7 @@ const XIconImg = styled.img`
 `;
 
 
-const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingredientRange, onChange, data: {allIngredientTypes, FREQUENCIES, INGREDIENT_QUANTITY_UNITSES}}) => {
+const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingredientRange, onChange, onRemove, data: {allIngredientTypes, FREQUENCIES, INGREDIENT_QUANTITY_UNITSES}}) => {
   const handleChangeIngredientTypeName: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
     onChange(ingredientRange.ingredientTypeName, 'ingredientTypeName', event.target.value);
   };
@@ -78,6 +79,9 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
   };
   const handleChangeFrequency: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
     onChange(ingredientRange.ingredientTypeName, 'frequency', event.target.value);
+  };
+  const handleRemove = (): void => {
+    onRemove(ingredientRange.ingredientTypeName);
   };
 
   return (
@@ -127,7 +131,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         <Grid item lg={2} container direction='column' justify='center'>
           <Grid item container direction='row' justify='center'>
             <Grid item>
-              <XIconImg src={XIcon}/>
+              <XIconImg src={XIcon} onClick={handleRemove}/>
             </Grid>
           </Grid>
         </Grid>

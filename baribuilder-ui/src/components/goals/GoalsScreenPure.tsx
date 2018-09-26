@@ -5,11 +5,12 @@ import {IDesiredIngredients} from '../../state/client-schema-types';
 import {EmptyRow} from '../style/Layout';
 import {Header} from '../style/Typography';
 import IngredientRangeSelection from './children/IngredientRangeSelection';
-import {HandleChangeGoalFunc} from './GoalsScreen';
+import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from './GoalsScreen';
 
 interface IProps {
-  desiredIngredients?: IDesiredIngredients,
-  onChangeGoal: HandleChangeGoalFunc,
+  desiredIngredients?: IDesiredIngredients;
+  onChangeGoal: HandleChangeGoalFunc;
+  onRemoveGoal: HandleRemoveGoalFunc;
 }
 
 const GoalsScreenPure: SFC<IProps> = (props) => {
@@ -25,7 +26,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
         <Grid item container lg={10} alignContent='flex-start'>
           {props.desiredIngredients ? props.desiredIngredients.ingredientRanges.map((ingredientRange, i) => (
             <Grid item lg={12} key={i}>
-              <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal}/>
+              <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal} onRemove={props.onRemoveGoal}/>
             </Grid>
           )) : null}
         </Grid>

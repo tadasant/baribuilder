@@ -16,8 +16,8 @@ interface IState {
   didMakeClientSideChanges: boolean; // Used for preventing remote changes from overwriting local ones
 }
 
-// TODO stricter `value`
 export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngredientRange, value: string | undefined) => void;
+export type HandleRemoveGoalFunc = (ingredientTypeName: string) => void;
 
 class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> {
   static getDerivedStateFromProps(props: DataOutputProps, state: IState) {
@@ -36,6 +36,7 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
   constructor(props: DataOutputProps) {
     super(props);
     this.handleChangeGoal = this.handleChangeGoal.bind(this);
+    this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
   }
 
   /**
@@ -68,11 +69,29 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     }));
   };
 
+  handleRemoveGoal: HandleRemoveGoalFunc = (ingredientTypeName) => {
+    if (!this.state.desiredIngredients) {
+      return;
+    }
+
+    const rangeIndex = this.state.desiredIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
+    // @ts-ignore Bug (doesn't figure out shape correctly)
+    this.setState(update(this.state, {
+      desiredIngredients: {
+        ingredientRanges: {
+          $unset: [rangeIndex],
+        }
+      },
+      didMakeClientSideChanges: {$set: true},
+    }));
+  };
+
   render() {
     return (
       <GoalsScreenPure
         desiredIngredients={this.state.desiredIngredients}
         onChangeGoal={this.handleChangeGoal}
+        onRemoveGoal={this.handleRemoveGoal}
       />
     );
   }
