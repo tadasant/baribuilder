@@ -27,7 +27,17 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
   const results: IRegimenIngredient[] = [];
 
   desiredIngredientRanges.forEach(range => {
-    const result = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientTypeName]);
+    let result: IRegimenIngredient | null = null;
+    if (regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName)) {
+      result = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientTypeName])
+    } else if (range.minimum) {
+      result = {
+        ingredientTypeName: range.ingredientTypeName,
+        units: range.minimum.units,
+        amount: range.minimum.amount,
+        frequency: range.frequency,
+      }
+    }
     if (result !== null && result.amount > 0) {
       results.push(result)
     }

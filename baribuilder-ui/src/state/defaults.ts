@@ -21,12 +21,12 @@ const defaults: IApolloStateShape = {
       maximum: {
         __typename: 'RangeIngredientQuantity',
         amount: 2.0,
-        units: INGREDIENT_QUANTITY_UNITS.G
+        units: INGREDIENT_QUANTITY_UNITS.IU
       },
       minimum: {
         __typename: 'RangeIngredientQuantity',
         amount: 1.0,
-        units: INGREDIENT_QUANTITY_UNITS.G
+        units: INGREDIENT_QUANTITY_UNITS.IU
       },
     }],
   },

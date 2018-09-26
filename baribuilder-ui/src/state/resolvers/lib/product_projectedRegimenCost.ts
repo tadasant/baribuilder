@@ -20,6 +20,7 @@ export interface IProductForProjectedRegimenCost extends GetAllProductsIngredien
   quantity: ICatalogProductQuantity;
 }
 
+// TODO bug: assumes exceeding is worse than not meeting. e.g. if I only want 1 IU, it will project cost 0 (but we should give priority to excess)
 const calculateProjectedRegimenCost = (
   product: IProductForProjectedRegimenCost,
   desiredIngredientRanges: IIngredientRange[],
