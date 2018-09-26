@@ -96,5 +96,5 @@ extend type Query {
 }
 
 extend type Mutation {
-    AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): RegimenProduct!
+    AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): Regimen!
 }
