@@ -18,16 +18,9 @@ const defaults: IApolloStateShape = {
       __typename: 'IngredientRange',
       ingredientTypeName: 'Vitamin A',
       frequency: FREQUENCY.DAILY,
-      maximum: {
-        __typename: 'RangeIngredientQuantity',
-        amount: 2.0,
-        units: INGREDIENT_QUANTITY_UNITS.IU
-      },
-      minimum: {
-        __typename: 'RangeIngredientQuantity',
-        amount: 1.0,
-        units: INGREDIENT_QUANTITY_UNITS.IU
-      },
+      maximumAmount: 2.0,
+      units: INGREDIENT_QUANTITY_UNITS.IU,
+      minimumAmount: 1.0,
     }],
   },
   clientCatalogProducts: [],

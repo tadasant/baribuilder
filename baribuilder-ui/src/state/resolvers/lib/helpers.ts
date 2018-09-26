@@ -30,11 +30,11 @@ export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
     let result: IRegimenIngredient | null = null;
     if (regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName)) {
       result = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientTypeName])
-    } else if (range.minimum) {
+    } else if (range.minimumAmount) {
       result = {
         ingredientTypeName: range.ingredientTypeName,
-        units: range.minimum.units,
-        amount: range.minimum.amount,
+        units: range.units,
+        amount: range.minimumAmount,
         frequency: range.frequency,
       }
     }
@@ -218,9 +218,9 @@ const subtractRegimenIngredientFromMinimumIngredient = (
   range: IIngredientRange,
   regimenIngredient: IRegimenIngredient
 ): IRegimenIngredient | null => {
-  const {minimum} = range;
+  const {minimumAmount} = range;
   // Assume 0 minimum if not set
-  const minimumIngredientQuantityAmount = minimum === null ? 0 : minimum.amount;
+  const minimumIngredientQuantityAmount = minimumAmount === null ? 0 : minimumAmount;
 
   if (range.ingredientTypeName !== regimenIngredient.ingredientTypeName) {
     console.error(`${range.ingredientTypeName} !== ${regimenIngredient.ingredientTypeName}. This shouldn't happen. Error code 489293.`);
@@ -230,8 +230,8 @@ const subtractRegimenIngredientFromMinimumIngredient = (
     console.warn('Frequency conversions unsupported. Error code 489293.');
     return null;
   }
-  if (minimum !== null) {
-    if (minimum.units !== regimenIngredient.units) {
+  if (minimumAmount !== null) {
+    if (range.units !== regimenIngredient.units) {
       console.warn('Ingredient conversions unsupported. Error code 489293.');
       return null;
     }

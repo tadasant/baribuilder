@@ -66,16 +66,16 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         </Grid>
       </Grid>
       <Grid item lg={2}>
-        {ingredientRange.minimum ? ingredientRange.minimum.amount : 'none'}
+        {ingredientRange.minimumAmount}
       </Grid>
       <Grid item lg={1}>
         <CenteredBody dark>to</CenteredBody>
       </Grid>
       <Grid item lg={2}>
-        {ingredientRange.maximum ? ingredientRange.maximum.amount : 'none'}
+        {ingredientRange.maximumAmount}
       </Grid>
       <Grid item lg={1}>
-        {ingredientRange.minimum ? ingredientRange.minimum.units : ingredientRange.maximum ? ingredientRange.maximum.units : 'none'}
+        {ingredientRange.units}
       </Grid>
       <Grid item container lg={3}>
         <Grid item lg={10}>

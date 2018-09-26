@@ -7,23 +7,12 @@ import { INGREDIENT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
 // GraphQL query operation: GetDesiredIngredients
 // ====================================================
 
-export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_minimum {
-  __typename: "RangeIngredientQuantity";
-  amount: number;
-  units: INGREDIENT_QUANTITY_UNITS;
-}
-
-export interface GetDesiredIngredients_desiredIngredients_ingredientRanges_maximum {
-  __typename: "RangeIngredientQuantity";
-  amount: number;
-  units: INGREDIENT_QUANTITY_UNITS;
-}
-
 export interface GetDesiredIngredients_desiredIngredients_ingredientRanges {
   __typename: "IngredientRange";
   ingredientTypeName: string;
-  minimum: GetDesiredIngredients_desiredIngredients_ingredientRanges_minimum | null;
-  maximum: GetDesiredIngredients_desiredIngredients_ingredientRanges_maximum | null;
+  minimumAmount: number | null;
+  maximumAmount: number | null;
+  units: INGREDIENT_QUANTITY_UNITS;
   frequency: FREQUENCY;
 }
 

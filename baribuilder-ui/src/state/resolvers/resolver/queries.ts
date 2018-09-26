@@ -6,14 +6,9 @@ export const DESIRED_INGREDIENTS_QUERY = gql`
         desiredIngredients @client {
             ingredientRanges {
                 ingredientTypeName
-                minimum {
-                    amount
-                    units
-                }
-                maximum {
-                    amount
-                    units
-                }
+                minimumAmount
+                maximumAmount
+                units
                 frequency
             }
         }

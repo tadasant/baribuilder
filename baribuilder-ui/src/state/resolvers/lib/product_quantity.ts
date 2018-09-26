@@ -21,14 +21,14 @@ const deriveIdealQuantityViaLimitingMicros = (
     const ingredientName = ingredientRange.ingredientTypeName;
     if (productIngredientsByName.hasOwnProperty(ingredientName)) {
       let smallestToFillIngredient: number | undefined = undefined;
-      if (ingredientRange.minimum) {
-        smallestToFillIngredient = ingredientRange.minimum.amount / productIngredientsByName[ingredientName].quantity.amount;
+      if (ingredientRange.minimumAmount !== null) {
+        smallestToFillIngredient = ingredientRange.minimumAmount / productIngredientsByName[ingredientName].quantity.amount;
         smallestToFillIngredient = smallestToFillIngredient % 1 > 0.001 ? Math.ceil(smallestToFillIngredient) : Math.floor(smallestToFillIngredient); // Don't round up if it's within .001
       }
 
       let maxBeforeExceedIngredient: number | undefined = undefined;
-      if (ingredientRange.maximum) {
-        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximum.amount / productIngredientsByName[ingredientName].quantity.amount);
+      if (ingredientRange.maximumAmount !== null) {
+        maxBeforeExceedIngredient = Math.floor(ingredientRange.maximumAmount / productIngredientsByName[ingredientName].quantity.amount);
       }
 
       if (smallestToFill === undefined || (smallestToFillIngredient !== undefined && smallestToFillIngredient > smallestToFill)) {
@@ -55,36 +55,27 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
 
   const targetIngredientRanges: IIngredientRange[] = [];
   desiredIngredientRanges.forEach(range => {
-    let newMax = range.maximum ? range.maximum.amount : undefined;
-    let newMin = range.minimum ? range.minimum.amount : undefined;
+    let newMax = range.maximumAmount !== null ? range.maximumAmount : undefined;
+    let newMin = range.minimumAmount !== null ? range.minimumAmount : undefined;
     currentRegimenProducts.forEach(product => {
       const productIngredients = productsById[product.catalogProductId].serving.ingredients || [];
       productIngredients.forEach((productIngredient: GetProductIngredients_CatalogProduct_serving_ingredients) => {
         if (productIngredient.ingredientType.name === range.ingredientTypeName) {
-          if ((range.maximum && productIngredient.quantity.units !== range.maximum.units) || (range.minimum && productIngredient.quantity.units !== range.minimum.units)) {
-            console.warn(`Conversions not yet supported ${product.catalogProductId}, ${productIngredient.ingredientType.name}`);
-          }
-          if (range.maximum && newMax !== undefined) {
+          if (range.maximumAmount !== null && newMax !== undefined) {
             newMax -= productIngredient.quantity.amount * product.quantity.amount;
           }
-          if (range.minimum && newMin !== undefined) {
+          if (range.minimumAmount !== null && newMin !== undefined) {
             newMin -= productIngredient.quantity.amount * product.quantity.amount;
           }
         }
       });
     });
     const result = {...range};
-    if (range.minimum && newMin !== undefined) {
-      result.minimum = {
-        ...range.minimum,
-        amount: newMin,
-      }
+    if (range.minimumAmount !== null && newMin !== undefined) {
+      result.minimumAmount = newMin;
     }
-    if (range.maximum && newMax !== undefined) {
-      result.maximum = {
-        ...range.maximum,
-        amount: newMax,
-      }
+    if (range.maximumAmount !== null && newMax !== undefined) {
+      result.maximumAmount = newMax;
     }
     targetIngredientRanges.push(result);
   });
