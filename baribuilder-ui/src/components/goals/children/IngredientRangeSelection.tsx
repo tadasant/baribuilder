@@ -1,6 +1,7 @@
 import {Grid} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
@@ -83,31 +84,43 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
   const handleRemove = (): void => {
     onRemove(ingredientRange.ingredientTypeName);
   };
+  const handleMinimumChange: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
+    onChange(ingredientRange.ingredientTypeName, 'minimumAmount', event.target.value);
+  };
+  const handleMaximumChange: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
+    onChange(ingredientRange.ingredientTypeName, 'maximumAmount', event.target.value);
+  };
 
   return (
     <Grid container direction='row' spacing={8}>
-      <Grid item lg={2}>
-        <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
-          {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
-            <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientType.name}</MenuItem>
-          )) : null}
-        </EmphasizedShadowedSelect>
+      <Grid item lg={2} container direction='column' justify='center'>
+        <Grid item>
+          <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
+            {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
+              <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientType.name}</MenuItem>
+            )) : null}
+          </EmphasizedShadowedSelect>
+        </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='center'>
         <Grid item>
           <CenteredBody dark>from</CenteredBody>
         </Grid>
       </Grid>
-      <Grid item lg={2}>
-        {ingredientRange.minimumAmount}
+      <Grid item lg={2} container direction='column' justify='center'>
+        <Grid item>
+          <TextField onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth label='Minimum'/>
+        </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='center'>
         <Grid item>
           <CenteredBody dark>to</CenteredBody>
         </Grid>
       </Grid>
-      <Grid item lg={2}>
-        {ingredientRange.maximumAmount}
+      <Grid item lg={2} container direction='column' justify='center'>
+        <Grid item>
+          <TextField onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth label='Maximum'/>
+        </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='center'>
         <Grid item>
