@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 import * as React from 'react';
 import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
+import {RouteComponentProps, withRouter} from 'react-router';
 import {compose} from "recompose";
 import {IDesiredIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
@@ -55,9 +56,10 @@ type MutationOutputProps =
 const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
 const withMutation = graphql<{}, SetDesiredIngredients>(DESIRED_INGREDIENTS_MUTATION);
 
-const enhance = compose<QueryOutputProps & MutationOutputProps, {}>(
+const enhance = compose<QueryOutputProps & MutationOutputProps & RouteComponentProps, {}>(
   withData,
   withMutation,
+  withRouter,
 );
 
 interface IState {
@@ -69,8 +71,10 @@ export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngr
 export type HandleRemoveGoalFunc = (ingredientTypeName: string) => void;
 export type HandleAddGoalFunc = () => void;
 
-class GoalsScreenContainer extends Component<QueryOutputProps & MutationOutputProps, Readonly<IState>> {
-  static getDerivedStateFromProps(props: QueryOutputProps & MutationOutputProps, state: IState) {
+type TProps = QueryOutputProps & MutationOutputProps & RouteComponentProps;
+
+class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
+  static getDerivedStateFromProps(props: TProps, state: IState) {
     if (!state.didMakeClientSideChanges) {
       return {
         desiredIngredients: props.data.desiredIngredients,
@@ -83,7 +87,7 @@ class GoalsScreenContainer extends Component<QueryOutputProps & MutationOutputPr
     didMakeClientSideChanges: false,
   };
 
-  constructor(props: QueryOutputProps & MutationOutputProps) {
+  constructor(props: TProps) {
     super(props);
     this.handleChangeGoal = this.handleChangeGoal.bind(this);
     this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
@@ -181,7 +185,8 @@ class GoalsScreenContainer extends Component<QueryOutputProps & MutationOutputPr
       variables: {
         desiredIngredients: this.state.desiredIngredients
       }
-    })
+    });
+    this.props.history.push('/browse');
   };
 
   render() {

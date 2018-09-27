@@ -75,6 +75,7 @@ const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrent
     data: {currentRegimen},
   });
 
+  // TODO needs to bust up LocalProductCatalog cache
   return currentRegimen;
 };
 
