@@ -10,7 +10,7 @@ export interface IResolverContext {
   cache: ApolloClient<IApolloStateShape>
 }
 
-export type TResolverFunc<TObj, TArgs, TData> = (obj: TObj, args: TArgs, context: IResolverContext) => TData | null;
+export type TResolverFunc<TObj, TArgs, TData> = (obj: TObj, args: TArgs, context: IResolverContext, info?: any) => TData | null;
 
 const resolvers = {
   Query: {

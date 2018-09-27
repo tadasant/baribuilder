@@ -10,6 +10,7 @@ import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetDesiredIngredients, SetDesiredIngredientsVariables} from '../../typings/gql/SetDesiredIngredients';
+import {GET_PREFETCH_QUERY_CLIENT} from '../builder/BuilderScreen';
 import GoalsScreenPure from './GoalsScreenPure';
 
 const GOALS_SCREEN_QUERY = gql`
@@ -54,7 +55,11 @@ type MutationOutputProps =
   & Partial<MutateProps<SetDesiredIngredients, SetDesiredIngredientsVariables>>;
 
 const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
-const withMutation = graphql<{}, SetDesiredIngredients>(DESIRED_INGREDIENTS_MUTATION);
+const withMutation = graphql<{}, SetDesiredIngredients>(DESIRED_INGREDIENTS_MUTATION, {
+  options: {
+    refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+  }
+});
 
 const enhance = compose<QueryOutputProps & MutationOutputProps & RouteComponentProps, {}>(
   withData,

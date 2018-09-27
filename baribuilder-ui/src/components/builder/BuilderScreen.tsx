@@ -37,10 +37,11 @@ const GET_PREFETCH_QUERY = gql`
     }
 `;
 
-const GET_PREFETCH_QUERY_CLIENT = gql`
+// TODO rename this so appropriate for re-use
+export const GET_PREFETCH_QUERY_CLIENT = gql`
   query GetClientCatalogProducts {
       allClientCatalogProducts @client {
-          # Prefetch data that'll be needed for individual ClientCatalogProducts TODO replace with fragments
+          # Prefetch data that'll be needed for individual ClientCatalogProducts
           __typename
           catalogProductId
           

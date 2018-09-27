@@ -5,8 +5,8 @@ interface ISetDesiredIngredientsArgs {
   desiredIngredients: IDesiredIngredients[];
 }
 
-const SetDesiredIngredientsResolver: TResolverFunc<{}, ISetDesiredIngredientsArgs, IDesiredIngredients[]> = (obj, args, {cache}) => {
-  cache.writeData({
+const SetDesiredIngredientsResolver: TResolverFunc<{}, ISetDesiredIngredientsArgs, IDesiredIngredients[]> = (obj, args, context) => {
+  context.cache.writeData({
     data: {
       desiredIngredients: args.desiredIngredients,
     }

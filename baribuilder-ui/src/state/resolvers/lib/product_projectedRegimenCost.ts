@@ -1,4 +1,5 @@
 import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql/GetAllProductsIngredients';
+import {FREQUENCY} from '../../../typings/gql/globalTypes';
 import {
   ICatalogProductCost,
   ICatalogProductQuantity,
@@ -32,6 +33,11 @@ const calculateProjectedRegimenCost = (
   const numRemainingProducts = remainingRegimenIngredients.length;
   const remainingProjectedCost = projectCostOfIngredients(remainingRegimenIngredients);
   const totalProjectedCost = sumCosts(product.cost, sumCostOfProducts(currentRegimenProducts), remainingProjectedCost);
+  // TODO more robust conversions
+  if (totalProjectedCost.frequency === FREQUENCY.DAILY) {
+    totalProjectedCost.money *= 30;
+    totalProjectedCost.frequency = FREQUENCY.MONTHLY;
+  }
   return {
     __typename: 'RegimenCost',
     numRemainingProducts,
