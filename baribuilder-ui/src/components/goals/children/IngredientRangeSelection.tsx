@@ -61,6 +61,10 @@ const EmphasizedShadowedSelect = styled(ShadowedSelect)`
   && {
     font-weight: 800;
     font-size: 1.5em;
+    
+    div {
+      padding-left: 8px;
+    }
   }
 `;
 
@@ -93,7 +97,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
 
   return (
     <Grid container direction='row' spacing={8}>
-      <Grid item lg={2} container direction='column' justify='flex-end'>
+      <Grid item lg={3} container direction='column' justify='flex-end'>
         <Grid item>
           <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
             {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
@@ -109,7 +113,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
-          <TextField onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth label='Minimum'/>
+          <TextField type='number' onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth label='Minimum'/>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
@@ -119,7 +123,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
-          <TextField onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth label='Maximum'/>
+          <TextField type='number' onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth label='Maximum'/>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
@@ -131,7 +135,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           </ShadowedSelect>
         </Grid>
       </Grid>
-      <Grid item container lg={3}>
+      <Grid item container lg={2}>
         <Grid item lg={10} container direction='column' justify='flex-end'>
           <Grid item>
             <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
