@@ -3,8 +3,9 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
+import {headerHeight} from '../Navbar';
 import BuilderFilterPanel from './building/BuilderFilterPanel';
-import BuilderHeader from './building/BuilderHeader';
+import BuilderHeader, {builderHeaderHeight} from './building/BuilderHeader';
 import BuilderMainPanel from './building/BuilderMainPanel';
 import BuilderMyProducts from './building/BuilderMyProducts';
 import BuilderMyRegimen from './building/BuilderMyRegimen';
@@ -21,8 +22,7 @@ interface IProps {
 const TabGrid = styled(Grid)`
   background-color: white;
   box-shadow: -2px 0px 4px 0px ${Sketch.color.accent.grey};
-  height: 100vh;
-  overflow-y: scroll;
+  height: calc(100vh - ${builderHeaderHeight} - ${headerHeight});
   position: sticky;
   top: 0;
 `;
@@ -49,10 +49,11 @@ const BuilderScreenPure: SFC<IProps> = props => {
           <BuilderMainPanel/>
         </Grid>
         {
-          !showMyRegimen || isMyRegimenOnRight ? null :
+          showMyRegimen && !isMyRegimenOnRight ? (
             <TabGrid item lg={4}>
               <BuilderMyRegimen/>
             </TabGrid>
+          ) : null
         }
         {
           !showMyProducts ? null :
@@ -61,10 +62,11 @@ const BuilderScreenPure: SFC<IProps> = props => {
             </TabGrid>
         }
         {
-          showMyRegimen && isMyRegimenOnRight ? null :
+          showMyRegimen && isMyRegimenOnRight ? (
             <TabGrid item lg={4}>
               <BuilderMyRegimen/>
             </TabGrid>
+          ) : null
         }
       </Grid>
     </Fragment>
