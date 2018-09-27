@@ -22,12 +22,14 @@ const allClientCatalogProducts: TResolverFunc<{}, {}, IClientCatalogProduct[]> =
   }
 
   const results: IClientCatalogProduct[] = [];
+  const t0 = performance.now(); // TODO delete
   queryResult.allCatalogProducts.forEach(product => {
     const clientCatalogProduct = ClientCatalogProductResolver(obj, {catalogProductId: product.id}, {cache});
     if (clientCatalogProduct) {
       results.push(clientCatalogProduct);
     }
   });
+  console.log("Call to resolve all products took " + (performance.now() - t0) + " milliseconds."); // TODO delete
   return results;
 };
 
