@@ -6,7 +6,11 @@ interface ISetDesiredIngredientsArgs {
 }
 
 const SetDesiredIngredientsResolver: TResolverFunc<{}, ISetDesiredIngredientsArgs, IDesiredIngredients[]> = (obj, args, {cache}) => {
-  console.log('resolver hit');
+  cache.writeData({
+    data: {
+      desiredIngredients: args.desiredIngredients,
+    }
+  });
   return args.desiredIngredients;
 };
 
