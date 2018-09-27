@@ -23,7 +23,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
       <EmptyRow mobile='20px'/>
       <Fragment>
         <Grid item lg={1}/>
-        <Grid item container lg={10} alignContent='flex-start'>
+        <Grid item container lg={10} alignContent='flex-start' spacing={8}>
           {props.desiredIngredients ? props.desiredIngredients.ingredientRanges.map((ingredientRange, i) => (
             <Grid item lg={12} key={i}>
               <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal} onRemove={props.onRemoveGoal}/>

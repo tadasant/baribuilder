@@ -93,7 +93,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
 
   return (
     <Grid container direction='row' spacing={8}>
-      <Grid item lg={2} container direction='column' justify='center'>
+      <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
           <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
             {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
@@ -102,27 +102,27 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           </EmphasizedShadowedSelect>
         </Grid>
       </Grid>
-      <Grid item lg={1} container direction='column' justify='center'>
+      <Grid item lg={1} container direction='column' justify='flex-end'>
         <Grid item>
           <CenteredBody dark>from</CenteredBody>
         </Grid>
       </Grid>
-      <Grid item lg={2} container direction='column' justify='center'>
+      <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
           <TextField onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth label='Minimum'/>
         </Grid>
       </Grid>
-      <Grid item lg={1} container direction='column' justify='center'>
+      <Grid item lg={1} container direction='column' justify='flex-end'>
         <Grid item>
           <CenteredBody dark>to</CenteredBody>
         </Grid>
       </Grid>
-      <Grid item lg={2} container direction='column' justify='center'>
+      <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
           <TextField onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth label='Maximum'/>
         </Grid>
       </Grid>
-      <Grid item lg={1} container direction='column' justify='center'>
+      <Grid item lg={1} container direction='column' justify='flex-end'>
         <Grid item>
           <ShadowedSelect value={ingredientRange.units} onChange={handleChangeUnits}>
             {INGREDIENT_QUANTITY_UNITSES && INGREDIENT_QUANTITY_UNITSES.enumValues ? INGREDIENT_QUANTITY_UNITSES.enumValues.map(units => (
@@ -132,7 +132,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         </Grid>
       </Grid>
       <Grid item container lg={3}>
-        <Grid item lg={10} container direction='column' justify='center'>
+        <Grid item lg={10} container direction='column' justify='flex-end'>
           <Grid item>
             <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
               {FREQUENCIES && FREQUENCIES.enumValues ? FREQUENCIES.enumValues.map(frequency => (
@@ -141,7 +141,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
             </ShadowedSelect>
           </Grid>
         </Grid>
-        <Grid item lg={2} container direction='column' justify='center'>
+        <Grid item lg={2} container direction='column' justify='flex-end'>
           <Grid item container direction='row' justify='center'>
             <Grid item>
               <XIconImg src={XIcon} onClick={handleRemove}/>

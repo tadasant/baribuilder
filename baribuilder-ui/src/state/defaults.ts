@@ -21,6 +21,13 @@ const defaults: IApolloStateShape = {
       maximumAmount: 2.0,
       units: INGREDIENT_QUANTITY_UNITS.IU,
       minimumAmount: 1.0,
+    }, {
+      __typename: 'IngredientRange',
+      ingredientTypeName: 'Vitamin D3',
+      frequency: FREQUENCY.DAILY,
+      maximumAmount: 2.0,
+      units: INGREDIENT_QUANTITY_UNITS.IU,
+      minimumAmount: 1.0,
     }],
   },
   clientCatalogProducts: [],
