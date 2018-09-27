@@ -108,39 +108,41 @@ const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
       </Grid>
       <Grid item lg={spacingColumnCount}/>
       {isMyRegimenOnRight ? null : <MyRegimenTabHeader {...props}/>}
-      <MyProductsTabHeader {...props}/>
-      {isMyRegimenOnRight ? <MyRegimenTabHeader {...props}/> : null}
+      <MyProductsTabHeader {...props} style={{zIndex: isMyRegimenOnRight ? 0 : 1}}/>
+      {isMyRegimenOnRight ? <MyRegimenTabHeader {...props} style={{zIndex: 1}}/> : null}
     </FixedGrid>
   )
 };
 
-const MyProductsTabHeader: SFC<IProps> = ({setShowMyProducts, showMyProducts}) => {
+// TODO remove ugly style hack
+const MyProductsTabHeader: SFC<IProps & {style?: any}> = ({setShowMyProducts, showMyProducts, style}) => {
   const handleMyProductsClick = () => setShowMyProducts(!showMyProducts);
   if (showMyProducts) {
     return (
-      <NavTabGrid item lg={3}>
+      <NavTabGrid item lg={3} style={style}>
         <NavTabButtonActive fullWidth onClick={handleMyProductsClick}>My Products</NavTabButtonActive>
       </NavTabGrid>
     );
   }
   return (
-    <NavTabGrid item lg={2}>
+    <NavTabGrid item lg={2} style={style}>
       <NavTabButton fullWidth onClick={handleMyProductsClick}>My Products</NavTabButton>
     </NavTabGrid>
   );
 };
 
-const MyRegimenTabHeader: SFC<IProps> = ({setShowMyRegimen, showMyRegimen}) => {
+// TODO remove ugly style hack
+const MyRegimenTabHeader: SFC<IProps & {style?: any}> = ({setShowMyRegimen, showMyRegimen, style}) => {
   const handleMyRegimenClick = () => setShowMyRegimen(!showMyRegimen);
   if (showMyRegimen) {
     return (
-      <NavTabGrid item lg={4}>
+      <NavTabGrid item lg={4} style={style}>
         <NavTabButtonActive fullWidth onClick={handleMyRegimenClick}>My Regimen</NavTabButtonActive>
       </NavTabGrid>
     );
   }
   return (
-    <NavTabGrid item lg={2}>
+    <NavTabGrid item lg={2} style={style}>
       <NavTabButton fullWidth onClick={handleMyRegimenClick}>My Regimen</NavTabButton>
     </NavTabGrid>
   );
