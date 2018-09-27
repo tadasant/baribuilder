@@ -79,7 +79,7 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     this.setState(update(this.state, {
       desiredIngredients: {
         ingredientRanges: {
-          $unset: [rangeIndex],
+          $splice: [[rangeIndex, 1]],
         }
       },
       didMakeClientSideChanges: {$set: true},
