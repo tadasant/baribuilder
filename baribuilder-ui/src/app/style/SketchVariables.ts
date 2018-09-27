@@ -18,6 +18,7 @@ const Sketch = {
     'background': { // light blue (use 10, 25, 50, 75 opacity)
       'transparent': '#49CBFF',
       'opaque': '#9DE3FF', // similar to transparent/50
+      'white': '#FFFFFF',
     }
   },
   'typography': {
