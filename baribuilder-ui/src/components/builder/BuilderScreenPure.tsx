@@ -7,6 +7,7 @@ import BuilderFilterPanel from './building/BuilderFilterPanel';
 import BuilderHeader from './building/BuilderHeader';
 import BuilderMainPanel from './building/BuilderMainPanel';
 import BuilderMyProducts from './building/BuilderMyProducts';
+import BuilderMyRegimen from './building/BuilderMyRegimen';
 
 export type SetBuilderStateFunction = (value: boolean) => void;
 
@@ -31,9 +32,10 @@ const BuilderScreenPure: SFC<IProps> = props => {
   const numColumnsForFilter = showMyProducts && showMyRegimen ? null : 2;
   // @ts-ignore can't figure out my math
   const numColumnsForMain: 10 | 7 | 6 | 5 = 10 - (showMyProducts ? 3 : 0) - (showMyRegimen ? 4 : 0) + (showMyProducts && showMyRegimen ? 2 : 0);
+  const isMyRegimenOnRight = !showMyProducts && showMyRegimen;
   return (
     <Fragment>
-      <BuilderHeader {...props} />
+      <BuilderHeader {...props} isMyRegimenOnRight={isMyRegimenOnRight}/>
       <Grid container spacing={0}>
         {
           numColumnsForFilter === null ? null : (
@@ -47,15 +49,21 @@ const BuilderScreenPure: SFC<IProps> = props => {
           <BuilderMainPanel/>
         </Grid>
         {
-          !showMyRegimen ? null :
+          !showMyRegimen || isMyRegimenOnRight ? null :
             <TabGrid item lg={4}>
-              <BuilderMyProducts/>
+              <BuilderMyRegimen/>
             </TabGrid>
         }
         {
           !showMyProducts ? null :
             <TabGrid item lg={3}>
               <BuilderMyProducts/>
+            </TabGrid>
+        }
+        {
+          showMyRegimen && isMyRegimenOnRight ? null :
+            <TabGrid item lg={4}>
+              <BuilderMyRegimen/>
             </TabGrid>
         }
       </Grid>

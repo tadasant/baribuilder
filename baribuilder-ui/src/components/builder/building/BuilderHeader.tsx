@@ -17,6 +17,7 @@ interface IProps {
   showMyProducts: boolean;
   setShowMyRegimen: SetBuilderStateFunction;
   showMyRegimen: boolean;
+  isMyRegimenOnRight: boolean;
 }
 
 // GraphQL HOC props (output)
@@ -83,7 +84,7 @@ const NavTabButtonActive = styled(NavTabButton)`
 
 // Pure
 const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
-  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen} = props;
+  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight} = props;
 
   const productCount = allCatalogProducts && !loading ? allCatalogProducts.length : undefined;
 
@@ -95,7 +96,6 @@ const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
   } else if (!showMyProducts && showMyRegimen) {
     spacingColumnCount = 2;
   }
-  const isMyRegimenOnRight = !showMyProducts && showMyRegimen;
 
   return (
     <FixedGrid container direction='row'>

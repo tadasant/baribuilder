@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component} from 'react';
-import GoalsScreen from '../components/goals/GoalsScreen';
+import BuilderMyRegimen from '../components/builder/building/BuilderMyRegimen';
 
 interface IState {
   value: number;
@@ -22,7 +22,7 @@ class Dev extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <GoalsScreen/>
+        <BuilderMyRegimen/>
       </div>
     );
   }
