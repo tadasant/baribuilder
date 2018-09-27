@@ -1,6 +1,5 @@
 import {Grid} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import gql from 'graphql-tag';
 import {upperFirst} from 'lodash';
@@ -8,10 +7,10 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
-import Sketch from '../../../app/style/SketchVariables';
 import XIcon from '../../../assets/icon/x.svg';
 import {IIngredientRange} from '../../../state/client-schema-types';
 import {GetIngredientReferenceData} from '../../../typings/gql/GetIngredientReferenceData';
+import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
 import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from '../GoalsScreen';
 
@@ -47,15 +46,6 @@ const withReferenceData = graphql<IProps, GetIngredientReferenceData>(GET_INGRED
 
 const CenteredBody = styled(Body)`
   text-align: center;
-`;
-
-const ShadowedSelect = styled(Select)`
-  && {
-    box-shadow: 0px 1px 2px 0px ${Sketch.color.accent.grey};
-    width: 100%;
-    text-align: center;
-    color: ${Sketch.color.accent.black};
-  }
 `;
 
 const EmphasizedShadowedSelect = styled(ShadowedSelect)`
@@ -100,7 +90,8 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
     <Grid container direction='row' spacing={8}>
       <Grid item lg={3} container direction='column' justify='flex-end'>
         <Grid item>
-          <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName} onChange={handleChangeIngredientTypeName}>
+          <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName}
+                                    onChange={handleChangeIngredientTypeName}>
             {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
               <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientType.name}</MenuItem>
             )) : null}
@@ -114,7 +105,8 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
-          <TextField type='number' onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth label='Minimum'/>
+          <TextField type='number' onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth
+                     label='Minimum'/>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
@@ -124,7 +116,8 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
-          <TextField type='number' onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth label='Maximum'/>
+          <TextField type='number' onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth
+                     label='Maximum'/>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
@@ -141,7 +134,8 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           <Grid item>
             <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
               {FREQUENCIES && FREQUENCIES.enumValues ? FREQUENCIES.enumValues.map(frequency => (
-                <MenuItem value={frequency.name} key={frequency.name}>{upperFirst(frequency.name.toLowerCase())}</MenuItem>
+                <MenuItem value={frequency.name}
+                          key={frequency.name}>{upperFirst(frequency.name.toLowerCase())}</MenuItem>
               )) : null}
             </ShadowedSelect>
           </Grid>

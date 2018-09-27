@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {EmptyRow} from '../../style/Layout';
+import CurrentRegimenCost from './myRegimen/CurrentRegimenCost';
 
 export const tabFooterHeight = '4em';
 
@@ -52,7 +53,7 @@ const BuilderMyRegimen: SFC = () => {
         <Grid item lg={1}/>
         <Grid item lg={10} container alignContent='flex-start'>
           <Grid item lg={12}>
-            Cost Panel
+            <CurrentRegimenCost />
           </Grid>
           <EmptyRow/>
           <BottomBorderedGrid item lg={12}/>
