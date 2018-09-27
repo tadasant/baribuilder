@@ -12,12 +12,6 @@
 
 ##### These enums already exist remotely, but don't get downloaded (because not used remotely yet?)
 
-enum FREQUENCY {
-    DAILY
-    WEEKLY
-    MONTHLY
-}
-
 enum PRODUCT_QUANTITY_UNITS {
     SERVINGS
 }

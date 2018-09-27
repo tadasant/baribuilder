@@ -7,12 +7,13 @@ import {IDesiredIngredients} from '../../state/client-schema-types';
 import {EmptyRow} from '../style/Layout';
 import {Caption, Header} from '../style/Typography';
 import IngredientRangeSelection from './children/IngredientRangeSelection';
-import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from './GoalsScreen';
+import {HandleAddGoalFunc, HandleChangeGoalFunc, HandleRemoveGoalFunc} from './GoalsScreen';
 
 interface IProps {
   desiredIngredients?: IDesiredIngredients;
   onChangeGoal: HandleChangeGoalFunc;
   onRemoveGoal: HandleRemoveGoalFunc;
+  onAddGoal: HandleAddGoalFunc;
 }
 
 const AddBoxGrid = styled(Grid)`
@@ -52,7 +53,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
         <Grid item lg={1}/>
         <AddBoxGrid item lg={10} container direction='column' justify='center'>
           <Grid item>
-            <GreyCaption>Click to add ingredient</GreyCaption>
+            <GreyCaption onClick={props.onAddGoal}>Click to add ingredient</GreyCaption>
           </Grid>
         </AddBoxGrid>
         <Grid item lg={1}/>

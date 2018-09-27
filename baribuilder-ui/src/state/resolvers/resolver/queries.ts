@@ -19,7 +19,7 @@ export const PRODUCT_INGREDIENTS_QUERY = (id: string) => gql`
     query GetProductIngredients {
         CatalogProduct(id: "${id}") {
             id
-            
+
             serving {
                 ingredients {
                     quantity {
@@ -40,7 +40,7 @@ export const ALL_PRODUCTS_INGREDIENTS_QUERY = gql`
         allCatalogProducts {
             __typename
             id
-            
+
             serving {
                 ingredients {
                     quantity {

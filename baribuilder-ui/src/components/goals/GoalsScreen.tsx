@@ -1,15 +1,36 @@
+import gql from 'graphql-tag';
 import update from 'immutability-helper';
 import * as React from 'react';
 import {Component} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {IDesiredIngredients, IIngredientRange} from '../../state/client-schema-types';
-import {DESIRED_INGREDIENTS_QUERY} from '../../state/resolvers/resolver/queries';
-import {GetDesiredIngredients} from '../../typings/gql/GetDesiredIngredients';
+import '../../state/fragments.graphql';
+import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
+import {FREQUENCY} from '../../typings/gql/globalTypes';
 import GoalsScreenPure from './GoalsScreenPure';
 
-type DataOutputProps = ChildDataProps<{}, GetDesiredIngredients>;
+type DataOutputProps = ChildDataProps<{}, GetGoalsScreenData>;
 
-const withData = graphql<{}, GetDesiredIngredients>(DESIRED_INGREDIENTS_QUERY);
+const GOALS_SCREEN_QUERY = gql`
+    query GetGoalsScreenData {
+        desiredIngredients @client {
+            ingredientRanges {
+                ingredientTypeName
+                minimumAmount
+                maximumAmount
+                units
+                frequency
+            }
+        }
+        allIngredientTypes {
+            name
+            defaultUnits
+            synonyms
+        }
+    }
+`;
+
+const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
 
 interface IState {
   desiredIngredients?: IDesiredIngredients;
@@ -18,6 +39,7 @@ interface IState {
 
 export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngredientRange, value: string | undefined) => void;
 export type HandleRemoveGoalFunc = (ingredientTypeName: string) => void;
+export type HandleAddGoalFunc = () => void;
 
 class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> {
   static getDerivedStateFromProps(props: DataOutputProps, state: IState) {
@@ -37,6 +59,7 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     super(props);
     this.handleChangeGoal = this.handleChangeGoal.bind(this);
     this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
+    this.handleAddGoal = this.handleAddGoal.bind(this);
   }
 
   /**
@@ -52,8 +75,12 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     // Standardize types from UI to real data
     let finalValue: number | string | null;
     switch (key) {
-      case 'minimumAmount': case 'maximumAmount': finalValue = value === undefined ? null : parseFloat(value); break;
-      default: finalValue = value || null;
+      case 'minimumAmount':
+      case 'maximumAmount':
+        finalValue = value === undefined ? null : parseFloat(value);
+        break;
+      default:
+        finalValue = value || null;
     }
 
     const rangeIndex = this.state.desiredIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
@@ -75,11 +102,40 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     }
 
     const rangeIndex = this.state.desiredIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
-    // @ts-ignore Bug (doesn't figure out shape correctly)
     this.setState(update(this.state, {
       desiredIngredients: {
         ingredientRanges: {
           $splice: [[rangeIndex, 1]],
+        }
+      },
+      didMakeClientSideChanges: {$set: true},
+    }));
+  };
+
+  handleAddGoal: HandleAddGoalFunc = () => {
+    if (!this.props.data || !this.props.data.allIngredientTypes) {
+      console.error('Failed to load ref data. Error code 392503122');
+      return;
+    }
+
+    const currentIngredientTypes = this.state.desiredIngredients ? this.state.desiredIngredients.ingredientRanges.map(range => range.ingredientTypeName) : [];
+    const ingredientType = this.props.data.allIngredientTypes.find(i => currentIngredientTypes.indexOf(i.name) === -1);
+    if (!ingredientType) {
+      console.warn('No more ingredients available. Error code 392503122');
+      return;
+    }
+
+    this.setState(update(this.state, {
+      desiredIngredients: {
+        ingredientRanges: {
+          $push: [{
+            __typename: 'IngredientRange',
+            ingredientTypeName: ingredientType.name,
+            minimumAmount: null,
+            maximumAmount: null,
+            units: ingredientType.defaultUnits,
+            frequency: FREQUENCY.DAILY,
+          }],
         }
       },
       didMakeClientSideChanges: {$set: true},
@@ -92,6 +148,7 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
         desiredIngredients={this.state.desiredIngredients}
         onChangeGoal={this.handleChangeGoal}
         onRemoveGoal={this.handleRemoveGoal}
+        onAddGoal={this.handleAddGoal}
       />
     );
   }

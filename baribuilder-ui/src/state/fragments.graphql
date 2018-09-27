@@ -1,0 +1,15 @@
+fragment DesiredIngredientsAggregate on DesiredIngredients {
+    ingredientRanges @client {
+        ingredientTypeName
+        minimumAmount
+        maximumAmount
+        units
+        frequency
+    }
+}
+
+fragment ReferenceIngredientTypes on IngredientType {
+    name
+    defaultUnits
+    synonyms
+}
