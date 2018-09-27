@@ -13,6 +13,7 @@ const Sketch = {
       'black': '#2D3239',
       'white': '#F2F2F2',
       'grey': '#D9D9D9',
+      'darkgrey': '#A6A6A6',
     },
     'background': { // light blue (use 10, 25, 50, 75 opacity)
       'transparent': '#49CBFF',

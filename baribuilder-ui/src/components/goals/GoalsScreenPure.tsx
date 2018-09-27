@@ -1,9 +1,11 @@
 import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
+import styled from 'styled-components';
+import Sketch from '../../app/style/SketchVariables';
 import {IDesiredIngredients} from '../../state/client-schema-types';
 import {EmptyRow} from '../style/Layout';
-import {Header} from '../style/Typography';
+import {Caption, Header} from '../style/Typography';
 import IngredientRangeSelection from './children/IngredientRangeSelection';
 import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from './GoalsScreen';
 
@@ -12,6 +14,18 @@ interface IProps {
   onChangeGoal: HandleChangeGoalFunc;
   onRemoveGoal: HandleRemoveGoalFunc;
 }
+
+const AddBoxGrid = styled(Grid)`
+  height: 3em;
+  border-color: ${Sketch.color.accent.darkgrey};
+  border-style: dashed;
+  border-width: 1px;
+  cursor: pointer;
+`;
+
+const GreyCaption = styled(Caption)`
+  color: ${Sketch.color.accent.darkgrey};
+`;
 
 const GoalsScreenPure: SFC<IProps> = (props) => {
   return (
@@ -26,17 +40,21 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
         <Grid item container lg={10} alignContent='flex-start' spacing={8}>
           {props.desiredIngredients ? props.desiredIngredients.ingredientRanges.map((ingredientRange, i) => (
             <Grid item lg={12} key={i}>
-              <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal} onRemove={props.onRemoveGoal}/>
+              <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal}
+                                        onRemove={props.onRemoveGoal}/>
             </Grid>
           )) : null}
         </Grid>
         <Grid item lg={1}/>
       </Fragment>
+      <EmptyRow/>
       <Fragment>
         <Grid item lg={1}/>
-        <Grid item lg={10}>
-          Add ingredient
-        </Grid>
+        <AddBoxGrid item lg={10} container direction='column' justify='center'>
+          <Grid item>
+            <GreyCaption>Click to add ingredient</GreyCaption>
+          </Grid>
+        </AddBoxGrid>
         <Grid item lg={1}/>
       </Fragment>
       <Grid item lg={12}>
