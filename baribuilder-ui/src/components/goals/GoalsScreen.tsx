@@ -67,6 +67,7 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
    * @param key IngredientRange key e.g. ingreidentTypeName, minimumAmount, maximumAmount, frequency, units
    * @param value value to set
    */
+  // TODO replace keying by name to use index instead
   handleChangeGoal: HandleChangeGoalFunc = (ingredientTypeName, key, value) => {
     if (!this.state.desiredIngredients) {
       return;

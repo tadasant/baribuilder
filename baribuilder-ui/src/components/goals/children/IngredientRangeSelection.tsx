@@ -3,6 +3,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import gql from 'graphql-tag';
+import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
@@ -130,7 +131,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         <Grid item>
           <ShadowedSelect value={ingredientRange.units} onChange={handleChangeUnits}>
             {INGREDIENT_QUANTITY_UNITSES && INGREDIENT_QUANTITY_UNITSES.enumValues ? INGREDIENT_QUANTITY_UNITSES.enumValues.map(units => (
-              <MenuItem value={units.name} key={units.name}>{units.name}</MenuItem>
+              <MenuItem value={units.name} key={units.name}>{units.name.toLowerCase()}</MenuItem>
             )) : null}
           </ShadowedSelect>
         </Grid>
@@ -140,7 +141,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           <Grid item>
             <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
               {FREQUENCIES && FREQUENCIES.enumValues ? FREQUENCIES.enumValues.map(frequency => (
-                <MenuItem value={frequency.name} key={frequency.name}>{frequency.name}</MenuItem>
+                <MenuItem value={frequency.name} key={frequency.name}>{upperFirst(frequency.name.toLowerCase())}</MenuItem>
               )) : null}
             </ShadowedSelect>
           </Grid>
