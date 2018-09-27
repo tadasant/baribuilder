@@ -18,7 +18,7 @@ const GoalsFooter: SFC<IProps> = (props) => {
     <Fragment>
       <Grid item lg={7}/>
       <Grid item lg={4}>
-        <RightOffsetButton variant='raised' color='secondary' fullWidth>
+        <RightOffsetButton variant='raised' color='secondary' fullWidth onClick={props.onClickSetAndBrowse}>
           Set Goals & Browse
         </RightOffsetButton>
       </Grid>

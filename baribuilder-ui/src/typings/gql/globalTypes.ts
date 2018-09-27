@@ -71,6 +71,18 @@ export enum SERVING_SIZE_UNITS {
   TABLET = "TABLET",
 }
 
+export interface DesiredIngredientsInput {
+  ingredientRanges: IngredientRangeInput[];
+}
+
+export interface IngredientRangeInput {
+  ingredientTypeName: string;
+  minimumAmount?: number | null;
+  maximumAmount?: number | null;
+  units: INGREDIENT_QUANTITY_UNITS;
+  frequency: FREQUENCY;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

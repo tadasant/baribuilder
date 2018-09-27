@@ -2,14 +2,14 @@ import gql from 'graphql-tag';
 import update from 'immutability-helper';
 import * as React from 'react';
 import {Component} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
+import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
+import {compose} from "recompose";
 import {IDesiredIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
+import {SetDesiredIngredients, SetDesiredIngredientsVariables} from '../../typings/gql/SetDesiredIngredients';
 import GoalsScreenPure from './GoalsScreenPure';
-
-type DataOutputProps = ChildDataProps<{}, GetGoalsScreenData>;
 
 const GOALS_SCREEN_QUERY = gql`
     query GetGoalsScreenData {
@@ -30,7 +30,35 @@ const GOALS_SCREEN_QUERY = gql`
     }
 `;
 
+const DESIRED_INGREDIENTS_MUTATION = gql`
+    mutation SetDesiredIngredients($desiredIngredients: DesiredIngredientsInput!) {
+        SetDesiredIngredients(
+            desiredIngredients: $desiredIngredients,
+        ) @client {
+            ingredientRanges {
+                ingredientTypeName
+                minimumAmount
+                maximumAmount
+                units
+                frequency
+            }
+        }
+    }
+`;
+
+type QueryOutputProps = ChildDataProps<{}, GetGoalsScreenData>;
+
+type MutationOutputProps =
+  Partial<DataProps<SetDesiredIngredients, SetDesiredIngredientsVariables>>
+  & Partial<MutateProps<SetDesiredIngredients, SetDesiredIngredientsVariables>>;
+
 const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
+const withMutation = graphql<{}, SetDesiredIngredients>(DESIRED_INGREDIENTS_MUTATION);
+
+const enhance = compose<QueryOutputProps & MutationOutputProps, {}>(
+  withData,
+  withMutation,
+);
 
 interface IState {
   desiredIngredients?: IDesiredIngredients;
@@ -41,8 +69,8 @@ export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngr
 export type HandleRemoveGoalFunc = (ingredientTypeName: string) => void;
 export type HandleAddGoalFunc = () => void;
 
-class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> {
-  static getDerivedStateFromProps(props: DataOutputProps, state: IState) {
+class GoalsScreenContainer extends Component<QueryOutputProps & MutationOutputProps, Readonly<IState>> {
+  static getDerivedStateFromProps(props: QueryOutputProps & MutationOutputProps, state: IState) {
     if (!state.didMakeClientSideChanges) {
       return {
         desiredIngredients: props.data.desiredIngredients,
@@ -55,11 +83,12 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     didMakeClientSideChanges: false,
   };
 
-  constructor(props: DataOutputProps) {
+  constructor(props: QueryOutputProps & MutationOutputProps) {
     super(props);
     this.handleChangeGoal = this.handleChangeGoal.bind(this);
     this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
     this.handleAddGoal = this.handleAddGoal.bind(this);
+    this.handleSetAndBrowse = this.handleSetAndBrowse.bind(this);
   }
 
   /**
@@ -143,6 +172,18 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
     }));
   };
 
+  handleSetAndBrowse = (): void => {
+    if (!this.props.mutate || !this.state.desiredIngredients) {
+      console.error('mutate or desiredIngredients undefined, error code 59329083');
+      return;
+    }
+    this.props.mutate({
+      variables: {
+        desiredIngredients: this.state.desiredIngredients
+      }
+    })
+  };
+
   render() {
     return (
       <GoalsScreenPure
@@ -150,9 +191,10 @@ class GoalsScreenContainer extends Component<DataOutputProps, Readonly<IState>> 
         onChangeGoal={this.handleChangeGoal}
         onRemoveGoal={this.handleRemoveGoal}
         onAddGoal={this.handleAddGoal}
+        onSetAndBrowse={this.handleSetAndBrowse}
       />
     );
   }
 }
 
-export default withData(GoalsScreenContainer);
+export default enhance(GoalsScreenContainer);

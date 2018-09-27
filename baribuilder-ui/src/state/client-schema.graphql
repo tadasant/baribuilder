@@ -68,7 +68,19 @@ type DesiredIngredients {
     ingredientRanges: [IngredientRange!]!
 }
 
+input DesiredIngredientsInput {
+    ingredientRanges: [IngredientRangeInput!]!
+}
+
 type IngredientRange {
+    ingredientTypeName: String!
+    minimumAmount: Float
+    maximumAmount: Float
+    units: INGREDIENT_QUANTITY_UNITS!
+    frequency: FREQUENCY!
+}
+
+input IngredientRangeInput {
     ingredientTypeName: String!
     minimumAmount: Float
     maximumAmount: Float
@@ -87,4 +99,5 @@ extend type Query {
 
 extend type Mutation {
     AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): Regimen!
+    SetDesiredIngredients(desiredIngredients: DesiredIngredientsInput!): DesiredIngredients!
 }
