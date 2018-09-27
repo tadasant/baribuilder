@@ -40,7 +40,7 @@ const InnerGrid = styled(Grid)`
 `;
 
 // Pure
-const BuilderLeftPanelPure: SFC<DataOutputProps> = ({data: {CATEGORY, FORMS}}) => {
+const BuilderFilterPanelPure: SFC<DataOutputProps> = ({data: {CATEGORY, FORMS}}) => {
   return (
     <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
@@ -72,4 +72,4 @@ const BuilderLeftPanelPure: SFC<DataOutputProps> = ({data: {CATEGORY, FORMS}}) =
   )
 };
 
-export default enhance(BuilderLeftPanelPure);
+export default enhance(BuilderFilterPanelPure);

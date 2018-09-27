@@ -2,7 +2,7 @@ import {Button, Grid, Typography} from '@material-ui/core';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 import gql from "graphql-tag";
 import * as React from 'react';
-import {Fragment, SFC} from 'react';
+import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
@@ -15,6 +15,8 @@ export const builderHeaderHeight = '48px';
 interface IProps {
   setShowMyProducts: SetBuilderStateFunction;
   showMyProducts: boolean;
+  setShowMyRegimen: SetBuilderStateFunction;
+  showMyRegimen: boolean;
 }
 
 // GraphQL HOC props (output)
@@ -47,10 +49,10 @@ const PaddedTypography = styled(Typography)`
   }
 `;
 
-const LeftMostNavTabGrid = styled(Grid)`
+const NavTabGrid = styled(Grid)`
   && {
     height: 100%;
-    box-shadow: -1px 0px 1px 0px ${Sketch.color.accent.grey};
+    box-shadow: -2px 0px 4px 0px ${Sketch.color.accent.grey};
   }
 `;
 
@@ -80,9 +82,21 @@ const NavTabButtonActive = styled(NavTabButton)`
 `;
 
 // Pure
-const BuilderHeaderPure: SFC<DataOutputProps & IProps> = ({data: {allCatalogProducts, loading}, setShowMyProducts, showMyProducts}) => {
-  const handleMyProductsClick = () => setShowMyProducts(!showMyProducts);
+const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
+  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen} = props;
+
   const productCount = allCatalogProducts && !loading ? allCatalogProducts.length : undefined;
+
+  let spacingColumnCount: 1 | 2 | 3 | 4 = 4; // !showMyProducts && !showMyRegimen
+  if (showMyProducts && !showMyRegimen) {
+    spacingColumnCount = 3;
+  } else if (showMyProducts && showMyRegimen) {
+    spacingColumnCount = 1;
+  } else if (!showMyProducts && showMyRegimen) {
+    spacingColumnCount = 2;
+  }
+  const isMyRegimenOnRight = !showMyProducts && showMyRegimen;
+
   return (
     <FixedGrid container direction='row'>
       <Grid item lg={4} container alignItems='center'>
@@ -92,23 +106,44 @@ const BuilderHeaderPure: SFC<DataOutputProps & IProps> = ({data: {allCatalogProd
           </PaddedTypography>
         </Grid>
       </Grid>
-      {showMyProducts ?
-        <Fragment>
-          <Grid item lg={5}/>
-          <LeftMostNavTabGrid item lg={3}>
-            <NavTabButtonActive fullWidth onClick={handleMyProductsClick}>My Products</NavTabButtonActive>
-          </LeftMostNavTabGrid>
-        </Fragment>
-        :
-        <Grid item lg={8} container alignItems='flex-end' direction='column'>
-          <LeftMostNavTabGrid item xs={12}>
-            <NavTabButton fullWidth onClick={handleMyProductsClick}>My Products</NavTabButton>
-          </LeftMostNavTabGrid>
-        </Grid>
-      }
-
+      <Grid item lg={spacingColumnCount}/>
+      {isMyRegimenOnRight ? null : <MyRegimenTabHeader {...props}/>}
+      <MyProductsTabHeader {...props}/>
+      {isMyRegimenOnRight ? <MyRegimenTabHeader {...props}/> : null}
     </FixedGrid>
   )
+};
+
+const MyProductsTabHeader: SFC<IProps> = ({setShowMyProducts, showMyProducts}) => {
+  const handleMyProductsClick = () => setShowMyProducts(!showMyProducts);
+  if (showMyProducts) {
+    return (
+      <NavTabGrid item lg={3}>
+        <NavTabButtonActive fullWidth onClick={handleMyProductsClick}>My Products</NavTabButtonActive>
+      </NavTabGrid>
+    );
+  }
+  return (
+    <NavTabGrid item lg={2}>
+      <NavTabButton fullWidth onClick={handleMyProductsClick}>My Products</NavTabButton>
+    </NavTabGrid>
+  );
+};
+
+const MyRegimenTabHeader: SFC<IProps> = ({setShowMyRegimen, showMyRegimen}) => {
+  const handleMyRegimenClick = () => setShowMyRegimen(!showMyRegimen);
+  if (showMyRegimen) {
+    return (
+      <NavTabGrid item lg={4}>
+        <NavTabButtonActive fullWidth onClick={handleMyRegimenClick}>My Regimen</NavTabButtonActive>
+      </NavTabGrid>
+    );
+  }
+  return (
+    <NavTabGrid item lg={2}>
+      <NavTabButton fullWidth onClick={handleMyRegimenClick}>My Regimen</NavTabButton>
+    </NavTabGrid>
+  );
 };
 
 export default enhance(BuilderHeaderPure);

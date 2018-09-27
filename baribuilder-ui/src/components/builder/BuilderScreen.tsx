@@ -66,6 +66,7 @@ export const GET_PREFETCH_QUERY_CLIENT = gql`
 
 interface IState {
   showMyProducts: boolean;
+  showMyRegimen: boolean;
 }
 
 class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
@@ -73,12 +74,18 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
     super(props);
     this.state = {
       showMyProducts: true,
+      showMyRegimen: true,
     };
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
+    this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
   }
 
   setShowMyProducts(showMyProducts: boolean) {
     this.setState({showMyProducts});
+  }
+
+  setShowMyRegimen(showMyRegimen: boolean) {
+    this.setState({showMyRegimen});
   }
 
   render() {
@@ -101,6 +108,8 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
                       <BuilderScreenPure
                         showMyProducts={this.state.showMyProducts}
                         setShowMyProducts={this.setShowMyProducts}
+                        showMyRegimen={this.state.showMyRegimen}
+                        setShowMyRegimen={this.setShowMyRegimen}
                       />
                     )
                   }
