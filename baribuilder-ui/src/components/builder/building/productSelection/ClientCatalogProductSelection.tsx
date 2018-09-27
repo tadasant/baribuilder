@@ -32,6 +32,8 @@ const PaddedDiv = styled.div`
 // Pure
 const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allClientCatalogProducts, loading}}) => {
   if (allClientCatalogProducts !== undefined && !loading) {
+    // TODO delete this in favor of e.g. paging or infinite scroll
+    allClientCatalogProducts.splice(25, allClientCatalogProducts.length - 25);
     return (
       <Grid container direction='row' alignItems='flex-start'>
         {allClientCatalogProducts.map(product => (
