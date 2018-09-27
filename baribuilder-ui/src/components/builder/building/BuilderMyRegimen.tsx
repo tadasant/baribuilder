@@ -12,7 +12,9 @@ const OuterGrid = styled(Grid)`
   && {
     padding-top: 16px;
     padding-bottom: 16px;
-    height: calc(100% - ${tabFooterHeight});
+    min-height: calc(100% - ${tabFooterHeight});
+    height: 100vh;
+    overflow-y: scroll;
   }
 `;
 
@@ -61,6 +63,7 @@ const BuilderMyRegimen: SFC = () => {
           </Grid>
         </Grid>
         <Grid item lg={1}/>
+        <EmptyRow mobile={tabFooterHeight}/>
       </OuterGrid>
       <Footer>
         <FooterGrid item lg={12} container direction='column' justify='center'>
