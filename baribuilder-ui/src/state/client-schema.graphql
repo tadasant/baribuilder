@@ -97,7 +97,7 @@ input IngredientRangeInput {
 ##### Queries and Mutations for local state
 
 extend type Query {
-    allClientCatalogProducts: [ClientCatalogProduct!]!
+    allClientCatalogProducts(category: CATEGORY): [ClientCatalogProduct!]!
     ClientCatalogProduct(catalogProductId: ID!): ClientCatalogProduct
     desiredIngredients: DesiredIngredients!
     currentRegimen: Regimen!
