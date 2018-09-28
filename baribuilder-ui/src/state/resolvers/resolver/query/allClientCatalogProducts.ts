@@ -19,7 +19,7 @@ interface IClientCatalogProductsArgs {
   category?: CATEGORY;
 }
 
-const allClientCatalogProducts: TResolverFunc<{}, IClientCatalogProductsArgs, IClientCatalogProduct[]> = (obj, args, {cache}) => {
+const allClientCatalogProducts: TResolverFunc<{}, IClientCatalogProductsArgs | null, IClientCatalogProduct[]> = (obj, args, {cache}) => {
   const queryResult = cache.readQuery<GetAllCatalogProductsForClientCatalogProducts>({
     query: ALL_CATALOG_PRODUCTS_QUERY,
   });
