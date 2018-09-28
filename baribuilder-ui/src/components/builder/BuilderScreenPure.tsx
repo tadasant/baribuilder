@@ -29,6 +29,15 @@ const TabGrid = styled(Grid)`
   top: 0;
 `;
 
+const getSelectedCategory = (pathname: string) => {
+  const pathnameTokens = pathname.split('/');
+  const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
+  if (!Object.values(CATEGORY).includes(selectedCategory) && selectedCategory !== ROOT_CATEGORY) {
+    return null;
+  }
+  return selectedCategory;
+};
+
 const BuilderScreenPure: SFC<IProps & RouteComponentProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
   const numColumnsForFilter = showMyProducts && showMyRegimen ? null : 2;
@@ -36,9 +45,8 @@ const BuilderScreenPure: SFC<IProps & RouteComponentProps> = props => {
   const numColumnsForMain: 10 | 7 | 6 | 5 = 10 - (showMyProducts ? 3 : 0) - (showMyRegimen ? 4 : 0) + (showMyProducts && showMyRegimen ? 2 : 0);
   const isMyRegimenOnRight = !showMyProducts && showMyRegimen;
 
-  const pathnameTokens = props.location.pathname.split('/');
-  const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
-  if (!Object.values(CATEGORY).includes(selectedCategory) && selectedCategory !== ROOT_CATEGORY) {
+  const selectedCategory = getSelectedCategory(props.location.pathname);
+  if (!selectedCategory) {
     props.history.push('/not-found');
     return null;
   }
