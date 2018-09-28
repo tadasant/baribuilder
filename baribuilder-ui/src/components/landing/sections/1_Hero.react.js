@@ -4,11 +4,11 @@ import Hidden from '@material-ui/core/Hidden';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 import React, {Component, Fragment} from 'react';
 import * as ReactGA from 'react-ga';
-import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
 import {generateTrackNavClick} from '../../../lib/gaHelper';
+import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
 import SignupForm from '../SignupForm';
@@ -87,22 +87,22 @@ class Hero extends Component {
           <Grid item xs={1} lg={3}/>
           <Grid item xs={5} lg={3} container direction='row'>
             <Grid item xs={11}>
-              <Link to={'/browse/all_products'} onClick={generateTrackNavClick('Browse CTA')}>
+              <UndecoratedLink to={'/browse/all_products'} onClick={generateTrackNavClick('Browse CTA')}>
                 <CTANavButton variant='raised' fullWidth>
                   Browse Product Catalog
                 </CTANavButton>
-              </Link>
+              </UndecoratedLink>
             </Grid>
             <Grid item xs={1}/>
           </Grid>
           <Grid item xs={5} lg={3} container direction='row'>
             <Grid item xs={1}/>
             <Grid item xs={11}>
-              <Link to={'/build'} onClick={generateTrackNavClick('Build CTA')}>
+              <UndecoratedLink to={'/build'} onClick={generateTrackNavClick('Build CTA')}>
                 <CTANavButton variant='raised' fullWidth>
                   Build Personal Regimen
                 </CTANavButton>
-              </Link>
+              </UndecoratedLink>
             </Grid>
           </Grid>
           <Grid item xs={1} lg={3}/>

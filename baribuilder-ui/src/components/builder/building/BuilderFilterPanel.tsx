@@ -9,6 +9,7 @@ import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetEnumValuesOfCategoriesAndForms} from '../../../typings/gql/GetEnumValuesOfCategoriesAndForms';
+import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Body} from '../../style/Typography';
 import {ROOT_CATEGORY} from '../BuilderScreen';
@@ -50,14 +51,12 @@ const SelectedCategoryFont = styled(Body)`
     text-align: left;
     font-weight: bold;
     font-size: ${Sketch.typography.caption.fontSize};
-    cursor: pointer;
   }
 `;
 
 const UnselectedCategoryFont = styled(Body)`
-   text-align: left;
-   font-size: ${Sketch.typography.caption.fontSize};
-   cursor: pointer;
+  text-align: left;
+  font-size: ${Sketch.typography.caption.fontSize};
 `;
 
 const prettifyEnumString = (s: string): string => {
@@ -84,21 +83,25 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
           </Grid>
           <EmptyRow mobile='0px'/>
           <Grid item lg={12}>
-            {selectedCategory === ROOT_CATEGORY
-              ? <SelectedCategoryFont dark>{prettifyEnumString(ROOT_CATEGORY)}</SelectedCategoryFont>
-              : <UnselectedCategoryFont dark>{prettifyEnumString(ROOT_CATEGORY)}</UnselectedCategoryFont>
-            }
+            <UndecoratedLink to={`/browse/${ROOT_CATEGORY.toLowerCase()}`}>
+              {selectedCategory === ROOT_CATEGORY
+                ? <SelectedCategoryFont dark>{prettifyEnumString(ROOT_CATEGORY)}</SelectedCategoryFont>
+                : <UnselectedCategoryFont dark>{prettifyEnumString(ROOT_CATEGORY)}</UnselectedCategoryFont>
+              }
+            </UndecoratedLink>
           </Grid>
           <Grid item container lg={12}>
             {CATEGORY && CATEGORY.enumValues ? CATEGORY.enumValues.map(category => (
               <Fragment key={category.name}>
                 <Grid item lg={1}/>
                 <Grid item lg={11}>
-                  {selectedCategory === category.name
-                    ? <SelectedCategoryFont
-                      dark>{prettifyEnumString(category.name)}</SelectedCategoryFont>
-                    : <UnselectedCategoryFont dark>{prettifyEnumString(category.name)}</UnselectedCategoryFont>
-                  }
+                  <UndecoratedLink to={`/browse/${category.name.toLowerCase()}`}>
+                    {selectedCategory === category.name
+                      ? <SelectedCategoryFont
+                        dark>{prettifyEnumString(category.name)}</SelectedCategoryFont>
+                      : <UnselectedCategoryFont dark>{prettifyEnumString(category.name)}</UnselectedCategoryFont>
+                    }
+                  </UndecoratedLink>
                 </Grid>
               </Fragment>
             )) : null}

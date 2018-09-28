@@ -2,11 +2,11 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import * as React from 'react';
 import {SFC} from 'react';
-import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Sketch from '../app/style/SketchVariables';
 import {generateTrackNavClick} from '../lib/gaHelper';
 import {fixedWidthImage} from '../lib/imageKitHelpers';
+import {UndecoratedLink} from './style/CustomMaterial';
 
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
 export const headerHeight = '64px';
@@ -38,24 +38,24 @@ const NavbarPure: SFC<IProps> = () => {
   return (
     <GridWithRaisedBackground container>
       <Grid item xs={6}>
-        <Link to='/' onClick={generateTrackNavClick('Header image')}>
+        <UndecoratedLink to='/' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
-        </Link>
+        </UndecoratedLink>
       </Grid>
       <Grid item xs={6} container alignItems='center' justify='flex-end'>
         <Grid item>
-          <Link to='/browse/all_products' onClick={generateTrackNavClick('Browse nav')}>
+          <UndecoratedLink to='/browse/all_products' onClick={generateTrackNavClick('Browse nav')}>
             <WhiteNavButton fullWidth>
               Browse
             </WhiteNavButton>
-          </Link>
+          </UndecoratedLink>
         </Grid>
         <Grid item>
-          <Link to='/build' onClick={generateTrackNavClick('Build nav')}>
+          <UndecoratedLink to='/build' onClick={generateTrackNavClick('Build nav')}>
             <WhiteNavButton fullWidth>
               Build
             </WhiteNavButton>
-          </Link>
+          </UndecoratedLink>
         </Grid>
       </Grid>
 
