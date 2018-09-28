@@ -122,24 +122,18 @@ interface IPropsForMicronutrientRow {
   percentOfGoal: number;
 }
 
-const RightAlignColoredBodyBold = styled(BoldBody)`
-  text-align: right;
-  
+const ColoredBodyBold = styled(BoldBody)`
   && {
     color: ${props => props.color};
   }
 `;
 
-const LeftAlignBodyBold = styled(BoldBody)`
-  text-align: left;
-`;
-
-const RightAlignBody = styled(Body)`
+const RightAlignPaddedGrid = styled(Grid)`
   text-align: right;
   padding-right: 4px;
 `;
 
-const LeftAlignBody = styled(Body)`
+const LeftAlignGrid = styled(Grid)`
   text-align: left;
 `;
 
@@ -149,20 +143,20 @@ const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
   const colorGoal = isExceeded ? Sketch.color.secondary.blue : isDeficient ? Sketch.color.accent.danger : Sketch.color.accent.black;
   return (
     <Fragment>
-      <Grid item lg={5}>
-        <LeftAlignBodyBold dark>{props.ingredientTypeName}</LeftAlignBodyBold>
-      </Grid>
-      <Grid item lg={3}>
-        <RightAlignBody dark>{props.amount}</RightAlignBody>
-      </Grid>
-      <Grid item lg={1}>
-        <LeftAlignBody dark>{props.units.toLowerCase()}</LeftAlignBody>
-      </Grid>
-      <Grid item lg={3}>
-        <RightAlignColoredBodyBold color={colorGoal}>
+      <LeftAlignGrid item lg={5}>
+        <BoldBody dark>{props.ingredientTypeName}</BoldBody>
+      </LeftAlignGrid>
+      <RightAlignPaddedGrid item lg={3}>
+        <Body dark>{props.amount}</Body>
+      </RightAlignPaddedGrid>
+      <LeftAlignGrid item lg={1}>
+        <Body dark>{props.units.toLowerCase()}</Body>
+      </LeftAlignGrid>
+      <RightAlignPaddedGrid item lg={3}>
+        <ColoredBodyBold color={colorGoal}>
           {props.percentOfGoal.toFixed(0)}%
-        </RightAlignColoredBodyBold>
-      </Grid>
+        </ColoredBodyBold>
+      </RightAlignPaddedGrid>
     </Fragment>
   )
 };

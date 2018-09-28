@@ -5,6 +5,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
+import styled from 'styled-components';
 import {CURRENT_REGIMEN_PRODUCTS_QUERY} from '../../../../state/resolvers/resolver/queries';
 import {
   GetCurrentRegimenProducts,
@@ -41,6 +42,10 @@ const calculateDailyRegimenCost = (products: GetCurrentRegimenProducts_currentRe
   return totalMoney;
 };
 
+const CenteredTextGrid = styled(Grid)`
+  text-align: center;
+`;
+
 // Pure
 const CurrentRegimenCostPure: SFC<DataOutputProps> = ({data: {currentRegimen, loading}}) => {
   if (currentRegimen && !loading) {
@@ -48,12 +53,12 @@ const CurrentRegimenCostPure: SFC<DataOutputProps> = ({data: {currentRegimen, lo
     const monthlyRegimenCost = calculateDailyRegimenCost(currentRegimen.products) * 30;
     return (
       <Grid container direction='row' alignItems='flex-start'>
-        <Grid item lg={12}>
+        <CenteredTextGrid item lg={12}>
           <Header2 dark>Regimen Cost</Header2>
-        </Grid>
-        <Grid item lg={12}>
+        </CenteredTextGrid>
+        <CenteredTextGrid item lg={12}>
           <Header2 dark>$<u>{monthlyRegimenCost.toFixed(2)}</u></Header2>
-        </Grid>
+        </CenteredTextGrid>
         <EmptyRow/>
         <Grid item lg={3} />
         <Grid item lg={6}>
