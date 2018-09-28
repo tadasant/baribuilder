@@ -11,6 +11,7 @@ const GET_PREFETCH_QUERY = gql`
             __typename
             id
             
+            category
             listings {
                 price {
                     amount
