@@ -1,14 +1,16 @@
 import {Grid, TextField} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
-import {SFC} from 'react';
+import {ChangeEvent, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
-import {compose, pure} from 'recompose';
+import {compose, pure, withState} from 'recompose';
 import styled from 'styled-components';
 import {
   GetClientCatalogProductQuantities,
+  GetClientCatalogProductQuantities_ClientCatalogProduct_quantity,
   GetClientCatalogProductQuantitiesVariables
 } from '../../../../../typings/gql/GetClientCatalogProductQuantities';
+import {FREQUENCY} from '../../../../../typings/gql/globalTypes';
 import {EmptyRow} from '../../../../style/Layout';
 import CatalogProductAddButton from './CatalogProductAddButton';
 
@@ -39,29 +41,51 @@ const data = graphql<IProps, GetClientCatalogProductQuantities, GetClientCatalog
 });
 
 
-const enhance = compose<IProps & DataOutputProps, IProps>(
+const enhance = compose<IProps & DataOutputProps & IPropsState, IProps>(
   data,
+  withState<DataOutputProps, number, 'quantityAmount', 'setQuantityAmount'>(
+    'quantityAmount',
+    'setQuantityAmount',
+    props => props.data.ClientCatalogProduct ? props.data.ClientCatalogProduct.quantity.amount : 0
+  ),
+  withState<DataOutputProps, FREQUENCY, 'quantityFrequency', 'setQuantityFrequency'>(
+    'quantityFrequency',
+    'setQuantityFrequency',
+    props => props.data.ClientCatalogProduct ? props.data.ClientCatalogProduct.quantity.frequency : FREQUENCY.DAILY,
+  ),
   pure,
 );
+
+interface IPropsState {
+  quantityAmount: number;
+  setQuantityAmount: (quantity: number) => number;
+  quantityFrequency: FREQUENCY;
+  setQuantityFrequency: (quantityFrequency: FREQUENCY) => FREQUENCY;
+}
 
 const OuterGrid = styled(Grid)`
   height: 100%;
 `;
 
-const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> = (event) => console.log(event.target.value);
-
 // Pure
-const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps> = ({data: {ClientCatalogProduct}, catalogProductId}) => {
+const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {ClientCatalogProduct}, catalogProductId, quantityAmount, setQuantityAmount, quantityFrequency}) => {
+  // TODO manage quantityFrequency
   if (!ClientCatalogProduct) {
     return null;
   }
-  const {quantity} = ClientCatalogProduct;
+  const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => setQuantityAmount(event.target.value ? parseInt(event.target.value, 10) : 0);
+  const quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_quantity = {
+    __typename: 'CatalogProductQuantity',
+    frequency: quantityFrequency,
+    units: ClientCatalogProduct.quantity.units,
+    amount: quantityAmount,
+  };
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>
       <Grid item lg={2}/>
       <Grid item lg={8}>
-        <TextField value={quantity.amount || ''} onChange={handleChange} fullWidth label='# servings'/>
+        <TextField value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth label='# servings'/>
       </Grid>
       <Grid item lg={2}/>
       <EmptyRow mobile='0px'/>

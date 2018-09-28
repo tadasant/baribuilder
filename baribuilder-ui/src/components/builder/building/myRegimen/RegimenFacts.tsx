@@ -242,7 +242,7 @@ const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatal
             </TitlesHeaderGrid>
             {
               micronutrientRowPropsList.map(rowProps => (
-                <Grid item lg={12} container>
+                <Grid item lg={12} container key={rowProps.ingredientTypeName}>
                   <MicronutrientRow {...rowProps}/>
                 </Grid>
               ))
