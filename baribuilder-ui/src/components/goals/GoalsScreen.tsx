@@ -80,6 +80,7 @@ type TProps = QueryOutputProps & MutationOutputProps & RouteComponentProps;
 
 class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
   static getDerivedStateFromProps(props: TProps, state: IState) {
+    // TODO consider replacing w/ key strategy https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html?no-cache=1#recommendation-fully-uncontrolled-component-with-a-key
     if (!state.didMakeClientSideChanges) {
       return {
         desiredIngredients: props.data.desiredIngredients,

@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {ChangeEvent, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
-import {compose, pure, withState} from 'recompose';
+import {compose, pure, withProps, withState} from 'recompose';
 import styled from 'styled-components';
 import {
   GetClientCatalogProductQuantities,
@@ -22,7 +22,7 @@ const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
     query GetClientCatalogProductQuantities($catalogProductId: ID!) {
         ClientCatalogProduct(catalogProductId: $catalogProductId) @client {
             catalogProductId # ensure cache hit
-            
+
             quantity {
                 amount
                 frequency
@@ -43,6 +43,16 @@ const data = graphql<IProps, GetClientCatalogProductQuantities, GetClientCatalog
 
 const enhance = compose<IProps & DataOutputProps & IPropsState, IProps>(
   data,
+  // Used to become fully controlled: https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html?no-cache=1#recommendation-fully-uncontrolled-component-with-a-key
+  withProps<{ key: string }, DataOutputProps>(
+    ({data: {ClientCatalogProduct}}) => (
+      {
+        key: ClientCatalogProduct
+          ? `${ClientCatalogProduct.quantity.frequency}_${ClientCatalogProduct.quantity.amount}_${ClientCatalogProduct.quantity.units}`
+          : 'no-data',
+      }
+    )
+  ),
   withState<DataOutputProps, number, 'quantityAmount', 'setQuantityAmount'>(
     'quantityAmount',
     'setQuantityAmount',
