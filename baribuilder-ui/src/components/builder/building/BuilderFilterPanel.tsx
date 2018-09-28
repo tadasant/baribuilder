@@ -18,7 +18,7 @@ interface IProps {
   selectedCategory: string;
 }
 
-type QueryOutputProps = ChildDataProps<{}, GetEnumValuesOfCategoriesAndForms>;
+type QueryOutputProps = ChildDataProps<IProps, GetEnumValuesOfCategoriesAndForms>;
 
 const withData = graphql<IProps, GetEnumValuesOfCategoriesAndForms>(gql`
     query GetEnumValuesOfCategoriesAndForms {
@@ -63,15 +63,13 @@ const prettifyEnumString = (s: string): string => {
   return s.toLowerCase().split('_').map(str => upperFirst(str)).join(' ');
 };
 
-const enhance = compose(
+const enhance = compose<IProps & QueryOutputProps, IProps>(
   withData,
   withRouter,
 );
 
 // Pure
-const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = ({data: {CATEGORY, FORMS}, location}) => {
-  const pathnameTokens = location.pathname.split('/');
-  const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
+const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = ({data: {CATEGORY, FORMS}, selectedCategory}) => {
   return (
     <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>

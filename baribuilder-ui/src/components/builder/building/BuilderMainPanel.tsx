@@ -3,7 +3,11 @@ import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
 import {EmptyRow} from '../../style/Layout';
-import ProductSelection from './productSelection/ClientCatalogProductSelection';
+import ClientCatalogProductSelection from './productSelection/ClientCatalogProductSelection';
+
+interface IProps {
+  selectedCategory: string;
+}
 
 const PaddedGrid = styled(Grid)`
   padding-left: 8px;
@@ -11,13 +15,13 @@ const PaddedGrid = styled(Grid)`
 `;
 
 // Pure
-const BuilderMainPanel: SFC = () => {
+const BuilderMainPanel: SFC<IProps> = ({selectedCategory}) => {
   return (
     <PaddedGrid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
       <Grid item container direction='row'>
         <Grid item lg={12}>
-          <ProductSelection/>
+          <ClientCatalogProductSelection selectedCategory={selectedCategory}/>
         </Grid>
       </Grid>
       <EmptyRow mobile='1px'/>

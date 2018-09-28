@@ -21,6 +21,7 @@ interface IProps {
   setShowMyRegimen: SetBuilderStateFunction;
   showMyRegimen: boolean;
   isMyRegimenOnRight: boolean;
+  selectedCategory: string;
 }
 
 // GraphQL HOC props (output)

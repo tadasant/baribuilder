@@ -7,21 +7,35 @@ import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import {GetClientCatalogProductsForProductSelection} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
+import {ROOT_CATEGORY} from '../../BuilderScreen';
 import ClientCatalogProduct from './ClientCatalogProduct';
+
+interface IProps {
+  selectedCategory: string;
+}
 
 // GraphQL HOC props (output)
 type DataOutputProps = ChildDataProps<{}, GetClientCatalogProductsForProductSelection>;
 
-const data = graphql<{}, GetClientCatalogProductsForProductSelection>(gql`
-    query GetClientCatalogProductsForProductSelection {
-        allClientCatalogProducts @client {
+const GET_PRODUCTS_QUERY = gql`
+    query GetClientCatalogProductsForProductSelection($category: FREQUENCY) {
+        allClientCatalogProducts(category: $category) @client {
             catalogProductId
         }
     }
-`);
+`;
 
-const enhance = compose<DataOutputProps, {}>(
-  data,
+const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GET_PRODUCTS_QUERY, {
+  options: ({selectedCategory}) => {
+    const category = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
+    return {
+      variables: {category},
+    };
+  }
+});
+
+const enhance = compose<DataOutputProps, IProps>(
+  withData,
   pure,
 );
 
