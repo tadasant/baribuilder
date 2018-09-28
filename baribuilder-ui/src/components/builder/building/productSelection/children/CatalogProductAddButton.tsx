@@ -20,20 +20,7 @@ const ADD_PRODUCT_MUTATION = gql`
             amount: $amount,
             frequency: $frequency,
             units: $units
-        ) @client {
-            products {
-                catalogProductId
-                quantity {
-                    amount
-                    units
-                    frequency
-                }
-                cost {
-                    money
-                    frequency
-                }
-            }
-        }
+        ) @client
     }
 `;
 

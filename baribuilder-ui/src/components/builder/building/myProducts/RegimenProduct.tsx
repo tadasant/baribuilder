@@ -31,6 +31,23 @@ const GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT = gql`
     }
 `;
 
+// const REGIMEN_PRODUCT_QUANTITY_MUTATION = gql`
+//     mutation SetCurrentRegimenProductQuantity($catalogProductId: ID!, $regimenProductQuantity: RegimenProductQuantityInput!) {
+//         SetCurrentRegimenProductQuantity(
+//             catalogProductId: $catalogProductId,
+//             regimenProductQuantity: $regimenProductQuantity,
+//         ) @client {
+//             ingredientRanges {
+//                 ingredientTypeName
+//                 minimumAmount
+//                 maximumAmount
+//                 units
+//                 frequency
+//             }
+//         }
+//     }
+// `;
+
 // GraphQL HOC props (output)
 type DataOutputProps = ChildDataProps<IProps, GetCatalogProductForRegimenProduct>;
 

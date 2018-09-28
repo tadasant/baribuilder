@@ -59,6 +59,12 @@ type RegimenProductQuantity {
     frequency: FREQUENCY!
 }
 
+input RegimenProductQuantityInput {
+    amount: Int!
+    units: PRODUCT_QUANTITY_UNITS!
+    frequency: FREQUENCY!
+}
+
 type RegimenProductCost {
     money: Float!
     frequency: FREQUENCY!
