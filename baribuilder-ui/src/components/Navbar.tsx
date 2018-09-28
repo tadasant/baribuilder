@@ -44,7 +44,7 @@ const NavbarPure: SFC<IProps> = () => {
       </Grid>
       <Grid item xs={6} container alignItems='center' justify='flex-end'>
         <Grid item>
-          <Link to='/browse' onClick={generateTrackNavClick('Browse nav')}>
+          <Link to='/browse/all_products' onClick={generateTrackNavClick('Browse nav')}>
             <WhiteNavButton fullWidth>
               Browse
             </WhiteNavButton>

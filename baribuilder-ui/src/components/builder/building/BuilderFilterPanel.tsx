@@ -4,11 +4,13 @@ import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
+import {RouteComponentProps, withRouter} from 'react-router';
+import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetEnumValuesOfCategoriesAndForms} from '../../../typings/gql/GetEnumValuesOfCategoriesAndForms';
 import {EmptyRow} from '../../style/Layout';
-import {Body, Subcaption} from '../../style/Typography';
+import {Body} from '../../style/Typography';
 import {ROOT_CATEGORY} from '../BuilderScreen';
 
 interface IProps {
@@ -43,25 +45,34 @@ const GreyLargeBody = styled(Body)`
 `;
 // TODO standardize this typography
 
-const LeftAlignBoldCaptionSizedBody = styled(Body)`
+const SelectedCategoryFont = styled(Body)`
   && {
     text-align: left;
     font-weight: bold;
     font-size: ${Sketch.typography.caption.fontSize};
+    cursor: pointer;
   }
 `;
 
-const LeftAlignCaption = styled(Subcaption)`
-  text-align: left;
+const UnselectedCategoryFont = styled(Body)`
+   text-align: left;
+   font-size: ${Sketch.typography.caption.fontSize};
+   cursor: pointer;
 `;
 
 const prettifyEnumString = (s: string): string => {
   return s.toLowerCase().split('_').map(str => upperFirst(str)).join(' ');
 };
 
-// Pure
-const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps> = ({data: {CATEGORY, FORMS}, selectedCategory}) => {
+const enhance = compose(
+  withData,
+  withRouter,
+);
 
+// Pure
+const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = ({data: {CATEGORY, FORMS}, location}) => {
+  const pathnameTokens = location.pathname.split('/');
+  const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
   return (
     <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
@@ -73,10 +84,9 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps> = ({data: {CATEGORY
           </Grid>
           <EmptyRow mobile='0px'/>
           <Grid item lg={12}>
-            {
-              selectedCategory === ROOT_CATEGORY
-                ? <LeftAlignBoldCaptionSizedBody dark>{prettifyEnumString(ROOT_CATEGORY)}</LeftAlignBoldCaptionSizedBody>
-                : <LeftAlignCaption dark>{prettifyEnumString(ROOT_CATEGORY)}</LeftAlignCaption>
+            {selectedCategory === ROOT_CATEGORY
+              ? <SelectedCategoryFont dark>{prettifyEnumString(ROOT_CATEGORY)}</SelectedCategoryFont>
+              : <UnselectedCategoryFont dark>{prettifyEnumString(ROOT_CATEGORY)}</UnselectedCategoryFont>
             }
           </Grid>
           <Grid item container lg={12}>
@@ -84,10 +94,10 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps> = ({data: {CATEGORY
               <Fragment key={category.name}>
                 <Grid item lg={1}/>
                 <Grid item lg={11}>
-                  {
-                    selectedCategory === category.name
-                      ? <LeftAlignBoldCaptionSizedBody dark>{prettifyEnumString(category.name)}</LeftAlignBoldCaptionSizedBody>
-                      : <LeftAlignCaption dark>{prettifyEnumString(category.name)}</LeftAlignCaption>
+                  {selectedCategory === category.name
+                    ? <SelectedCategoryFont
+                      dark>{prettifyEnumString(category.name)}</SelectedCategoryFont>
+                    : <UnselectedCategoryFont dark>{prettifyEnumString(category.name)}</UnselectedCategoryFont>
                   }
                 </Grid>
               </Fragment>
@@ -101,4 +111,4 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps> = ({data: {CATEGORY
   )
 };
 
-export default withData(BuilderFilterPanelPure);
+export default enhance(BuilderFilterPanelPure);

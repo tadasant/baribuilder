@@ -192,7 +192,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
         desiredIngredients: this.state.desiredIngredients
       }
     });
-    this.props.history.push('/browse');
+    this.props.history.push('/browse/all_products');
   };
 
   render() {

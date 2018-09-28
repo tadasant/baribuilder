@@ -56,7 +56,7 @@ class DynamicApp extends Component {
     return (
       <ApolloProvider client={client}>
         <Switch>
-          <Route exact path="/browse" component={BuilderScreen}/>
+          <Route path="/browse" component={BuilderScreen}/>
           <Route exact path="/build" component={GoalsScreen}/>
           {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
           <Route component={NotFound}/>

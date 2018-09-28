@@ -7,9 +7,9 @@ interface ITypographyProps {
   dark?: boolean
 }
 
-const div: StyledFunction<ITypographyProps & HTMLProps<HTMLInputElement>> = styled.div;
+const span: StyledFunction<ITypographyProps & HTMLProps<HTMLInputElement>> = styled.span;
 
-export const Header = div`
+export const Header = span`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.header.textAlign};
@@ -23,7 +23,7 @@ export const Header = div`
   `}
 `;
 
-export const Header2 = div`
+export const Header2 = span`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.header2.textAlign};
@@ -37,7 +37,7 @@ export const Header2 = div`
   `}
 `;
 
-export const BoldBody = div`
+export const BoldBody = span`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.bodybold.textAlign};
@@ -50,7 +50,7 @@ export const BoldBody = div`
   `}
 `;
 
-export const Body = div`
+export const Body = span`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.body.fontSize};
@@ -60,7 +60,7 @@ export const Body = div`
   `}
 `;
 
-export const Caption = div`
+export const Caption = span`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.caption.fontSize};
@@ -70,7 +70,7 @@ export const Caption = div`
   vertical-align: ${Sketch.typography.caption.verticalAlign};
 `;
 
-export const Subcaption = div`
+export const Subcaption = span`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   font-size: ${Sketch.typography.subcaption.fontSize};

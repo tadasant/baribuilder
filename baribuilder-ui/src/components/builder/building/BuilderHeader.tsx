@@ -5,6 +5,7 @@ import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
+import {RouteComponentProps, withRouter} from 'react-router';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
@@ -20,7 +21,6 @@ interface IProps {
   setShowMyRegimen: SetBuilderStateFunction;
   showMyRegimen: boolean;
   isMyRegimenOnRight: boolean;
-  selectedCategory: string;
 }
 
 // GraphQL HOC props (output)
@@ -37,6 +37,7 @@ const data = graphql<{}, GetProductsForBuilderHeader>(gql`
 
 const enhance = compose<DataOutputProps, IProps>(
   data,
+  withRouter,
   pure,
 );
 
@@ -85,8 +86,10 @@ const NavTabButtonActive = styled(NavTabButton)`
 `;
 
 // Pure
-const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
-  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight, selectedCategory} = props;
+const BuilderHeaderPure: SFC<DataOutputProps & IProps & RouteComponentProps> = props => {
+  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
+  const pathnameTokens = location.pathname.split('/');
+  const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
 
   const productCount = allCatalogProducts && !loading ? allCatalogProducts.length : undefined;
 
@@ -104,8 +107,8 @@ const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
       <Grid item lg={4} container alignItems='center'>
         <Grid item>
           <PaddedCaptionSizedBody dark>
-            Showing{productCount ? ` ${productCount} ` : ' '}results in
-            &nbsp;<b>{selectedCategory.split('_').map(c => upperFirst(c.toLowerCase())).join(' ')}</b>
+            Showing{productCount ? ` ${productCount} ` : ' '}results in&nbsp;
+            <b>{selectedCategory.split('_').map(c => upperFirst(c.toLowerCase())).join(' ')}</b>
           </PaddedCaptionSizedBody>
         </Grid>
       </Grid>

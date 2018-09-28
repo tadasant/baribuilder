@@ -87,7 +87,7 @@ class Hero extends Component {
           <Grid item xs={1} lg={3}/>
           <Grid item xs={5} lg={3} container direction='row'>
             <Grid item xs={11}>
-              <Link to={'/browse'} onClick={generateTrackNavClick('Browse CTA')}>
+              <Link to={'/browse/all_products'} onClick={generateTrackNavClick('Browse CTA')}>
                 <CTANavButton variant='raised' fullWidth>
                   Browse Product Catalog
                 </CTANavButton>
