@@ -1,4 +1,4 @@
-import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
+import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 import {IClientCatalogProduct, IDesiredIngredients, IRegimen} from './client-schema-types';
 
 export interface IApolloStateShape {
@@ -10,7 +10,21 @@ export interface IApolloStateShape {
 const defaults: IApolloStateShape = {
   currentRegimen: {
     __typename: 'Regimen',
-    products: [],
+    products: [{
+      __typename: 'RegimenProduct',
+      quantity: {
+        __typename: 'RegimenProductQuantity',
+        amount: 1,
+        frequency: FREQUENCY.DAILY,
+        units: PRODUCT_QUANTITY_UNITS.SERVINGS
+      },
+      catalogProductId: 'cjm0tbtko00560179xhyj5uju',
+      cost: {
+        money: 100.0,
+        frequency: FREQUENCY.DAILY,
+        __typename: 'RegimenProductCost',
+      }
+    }],
   },
   desiredIngredients: {
     __typename: 'DesiredIngredients',

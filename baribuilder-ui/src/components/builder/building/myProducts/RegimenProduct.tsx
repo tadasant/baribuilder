@@ -1,8 +1,8 @@
-import {Grid} from '@material-ui/core';
+import {Grid, TextField} from '@material-ui/core';
 import gql from 'graphql-tag';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
-import {SFC} from 'react';
+import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ import {
   GetCurrentRegimenProducts_currentRegimen_products_cost,
   GetCurrentRegimenProducts_currentRegimen_products_quantity,
 } from '../../../../typings/gql/GetCurrentRegimenProducts';
-import {Body, BodyBold, Caption} from '../../../style/Typography';
+import {BodyBold, Caption} from '../../../style/Typography';
 
 interface IProps {
   catalogProductId: string;
@@ -53,6 +53,7 @@ const CenteredTextGrid = styled(Grid)`
 const RegimenProductPure: SFC<DataOutputProps> = ({data: {CatalogProduct, loading}, quantity}) => {
   if (CatalogProduct && !loading) {
 
+    const handleChangeQuantity = () => console.log('changed');
     return (
       <Grid item container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>
@@ -61,12 +62,13 @@ const RegimenProductPure: SFC<DataOutputProps> = ({data: {CatalogProduct, loadin
         <CenteredTextGrid item lg={12}>
           <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>
         </CenteredTextGrid>
-        <CenteredTextGrid item lg={12}>
-          <Body dark>{quantity.amount}</Body>
-        </CenteredTextGrid>
-        <CenteredTextGrid item lg={12}>
-          <Caption dark># daily servings</Caption>
-        </CenteredTextGrid>
+        <Fragment>
+          <Grid item lg={4} />
+          <Grid item lg={4}>
+            <TextField value={quantity.amount || ''} onChange={handleChangeQuantity} fullWidth helperText='servings/day'/>
+          </Grid>
+          <Grid item lg={4} />
+        </Fragment>
       </Grid>
     );
   }
