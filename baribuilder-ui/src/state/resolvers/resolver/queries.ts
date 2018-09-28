@@ -74,3 +74,23 @@ export const CURRENT_REGIMEN_PRODUCTS_QUERY = gql`
         }
     }
 `;
+
+// Should contain entire aggregate TODO probably dedupe w/ above
+export const CURRENT_REGIMEN_QUERY = gql`
+    query GetCurrentRegimen {
+        currentRegimen @client {
+            products {
+                catalogProductId
+                quantity {
+                    amount
+                    units
+                    frequency
+                }
+                cost {
+                    money
+                    frequency
+                }
+            }
+        }
+    }
+`;

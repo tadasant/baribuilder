@@ -23,6 +23,7 @@ const resolvers = {
   Mutation: {
     AddProductToCurrentRegimen,
     SetDesiredIngredients,
+    SetCurrentRegimenProductQuantity,
   // RemoveProductFromCurrentRegimen(id, qty, units)
   // SetDesiredIngredientRanges(...: I)
   },

@@ -1,9 +1,9 @@
-import gql from 'graphql-tag';
 import {GetCurrentRegimen} from '../../../../typings/gql/GetCurrentRegimen';
 import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
 import {IRegimen} from '../../../client-schema-types';
 import {TResolverFunc} from '../../../resolvers';
 import costResolver from '../clientCatalogProduct_cost';
+import {CURRENT_REGIMEN_QUERY} from '../queries';
 
 interface IAddProductToCurrentRegimenArgs {
   catalogProductId: string;
@@ -11,26 +11,6 @@ interface IAddProductToCurrentRegimenArgs {
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
 }
-
-// Should contain entire aggregate
-const CURRENT_REGIMEN_QUERY = gql`
-    query GetCurrentRegimen {
-        currentRegimen @client {
-            products {
-                catalogProductId
-                quantity {
-                    amount
-                    units
-                    frequency
-                }
-                cost {
-                    money
-                    frequency
-                }
-            }
-        }
-    }
-`;
 
 const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrentRegimenArgs, IRegimen> = (obj, args, {cache}) => {
   const currentRegimenResult = cache.readQuery<GetCurrentRegimen>({query: CURRENT_REGIMEN_QUERY});
@@ -75,7 +55,6 @@ const AddProductToCurrentRegimenResolver: TResolverFunc<{}, IAddProductToCurrent
     data: {currentRegimen},
   });
 
-  // TODO needs to bust up LocalProductCatalog cache
   return currentRegimen;
 };
 

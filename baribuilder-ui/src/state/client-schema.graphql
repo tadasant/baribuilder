@@ -106,4 +106,5 @@ extend type Query {
 extend type Mutation {
     AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): Regimen!
     SetDesiredIngredients(desiredIngredients: DesiredIngredientsInput!): DesiredIngredients!
+    SetCurrentRegimenProductQuantity(catalogProductId: ID!, regimenProductQuantity: RegimenProductQuantityInput!): Regimen!
 }

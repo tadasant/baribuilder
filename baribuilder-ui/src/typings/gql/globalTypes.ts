@@ -83,6 +83,12 @@ export interface IngredientRangeInput {
   frequency: FREQUENCY;
 }
 
+export interface RegimenProductQuantityInput {
+  amount: number;
+  units: PRODUCT_QUANTITY_UNITS;
+  frequency: FREQUENCY;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {Fragment, KeyboardEvent, SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
+import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import {GetCatalogProductForRegimenProduct} from '../../../../typings/gql/GetCatalogProductForRegimenProduct';
@@ -11,7 +11,10 @@ import {
   GetCurrentRegimenProducts_currentRegimen_products_cost,
   GetCurrentRegimenProducts_currentRegimen_products_quantity,
 } from '../../../../typings/gql/GetCurrentRegimenProducts';
+import {GetGoalsScreenData} from '../../../../typings/gql/GetGoalsScreenData';
+import {SetDesiredIngredients, SetDesiredIngredientsVariables} from '../../../../typings/gql/SetDesiredIngredients';
 import {BodyBold, Caption} from '../../../style/Typography';
+import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
 
 interface IProps {
   catalogProductId: string;
@@ -31,34 +34,39 @@ const GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT = gql`
     }
 `;
 
-// const REGIMEN_PRODUCT_QUANTITY_MUTATION = gql`
-//     mutation SetCurrentRegimenProductQuantity($catalogProductId: ID!, $regimenProductQuantity: RegimenProductQuantityInput!) {
-//         SetCurrentRegimenProductQuantity(
-//             catalogProductId: $catalogProductId,
-//             regimenProductQuantity: $regimenProductQuantity,
-//         ) @client {
-//             ingredientRanges {
-//                 ingredientTypeName
-//                 minimumAmount
-//                 maximumAmount
-//                 units
-//                 frequency
-//             }
-//         }
-//     }
-// `;
+const REGIMEN_PRODUCT_QUANTITY_MUTATION = gql`
+    mutation SetCurrentRegimenProductQuantity($catalogProductId: ID!, $regimenProductQuantity: RegimenProductQuantityInput!) {
+        SetCurrentRegimenProductQuantity(
+            catalogProductId: $catalogProductId,
+            regimenProductQuantity: $regimenProductQuantity,
+        ) @client {
+            products {
+                catalogProductId
+            }
+        }
+    }
+`;
 
-// GraphQL HOC props (output)
-type DataOutputProps = ChildDataProps<IProps, GetCatalogProductForRegimenProduct>;
+type QueryOutputProps = ChildDataProps<{}, GetCatalogProductForRegimenProduct>;
 
-const data = graphql<IProps, GetCatalogProductForRegimenProduct>(GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT, {
+type MutationOutputProps =
+  Partial<DataProps<SetCurrentRegimenProductQuantity, SetCurrentRegimenProductQuantityVariables>>
+  & Partial<MutateProps<SetCurrentRegimenProductQuantity, SetCurrentRegimenProductQuantityVariables>>;
+
+const withData = graphql<IProps, GetCatalogProductForRegimenProduct>(GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT, {
   options: ({catalogProductId}) => ({
     variables: {id: catalogProductId},
   }),
 });
 
-const enhance = compose<IProps & DataOutputProps, IProps>(
-  data,
+const withMutation = graphql<{}, SetCurrentRegimenProductQuantity>(REGIMEN_PRODUCT_QUANTITY_MUTATION, {
+  options: {
+    refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+  }
+});
+
+const enhance = compose<IProps & QueryOutputProps, IProps>(
+  withData,
   pure,
 );
 
@@ -67,7 +75,7 @@ const CenteredTextGrid = styled(Grid)`
 `;
 
 // Pure
-const RegimenProductPure: SFC<DataOutputProps> = ({data: {CatalogProduct, loading}, quantity}) => {
+const RegimenProductPure: SFC<QueryOutputProps> = ({data: {CatalogProduct, loading}, quantity}) => {
   if (CatalogProduct && !loading) {
 
     const handleChangeQuantity = () => console.log('changed');
