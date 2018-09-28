@@ -2,7 +2,7 @@ import {Grid, TextField} from '@material-ui/core';
 import gql from 'graphql-tag';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
-import {Fragment, KeyboardEvent, SFC} from 'react';
+import {ChangeEvent, Fragment, KeyboardEvent, SFC} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
@@ -11,8 +11,10 @@ import {
   GetCurrentRegimenProducts_currentRegimen_products_cost,
   GetCurrentRegimenProducts_currentRegimen_products_quantity,
 } from '../../../../typings/gql/GetCurrentRegimenProducts';
-import {GetGoalsScreenData} from '../../../../typings/gql/GetGoalsScreenData';
-import {SetDesiredIngredients, SetDesiredIngredientsVariables} from '../../../../typings/gql/SetDesiredIngredients';
+import {
+  SetCurrentRegimenProductQuantity,
+  SetCurrentRegimenProductQuantityVariables
+} from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
 import {BodyBold, Caption} from '../../../style/Typography';
 import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
 
@@ -47,7 +49,7 @@ const REGIMEN_PRODUCT_QUANTITY_MUTATION = gql`
     }
 `;
 
-type QueryOutputProps = ChildDataProps<{}, GetCatalogProductForRegimenProduct>;
+type QueryOutputProps = ChildDataProps<IProps, GetCatalogProductForRegimenProduct>;
 
 type MutationOutputProps =
   Partial<DataProps<SetCurrentRegimenProductQuantity, SetCurrentRegimenProductQuantityVariables>>
@@ -67,6 +69,7 @@ const withMutation = graphql<{}, SetCurrentRegimenProductQuantity>(REGIMEN_PRODU
 
 const enhance = compose<IProps & QueryOutputProps, IProps>(
   withData,
+  withMutation,
   pure,
 );
 
@@ -75,11 +78,26 @@ const CenteredTextGrid = styled(Grid)`
 `;
 
 // Pure
-const RegimenProductPure: SFC<QueryOutputProps> = ({data: {CatalogProduct, loading}, quantity}) => {
-  if (CatalogProduct && !loading) {
+const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: {CatalogProduct, loading}, quantity, catalogProductId, mutate}) => {
+  if (CatalogProduct && !loading && mutate) {
 
-    const handleChangeQuantity = () => console.log('changed');
-    const handleQuantityKeyPress = (event: KeyboardEvent) => event.key === 'Enter' ? handleChangeQuantity() : null;
+    const mutateAmount = (amount: number) => mutate({
+      variables: {
+        catalogProductId,
+        regimenProductQuantity: {
+          amount,
+          frequency: quantity.frequency,
+          units: quantity.units,
+        }
+      },
+      refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+    });
+
+    const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => mutateAmount(event.target.value ? parseInt(event.target.value, 10) : 0);
+    const handleQuantityKeyPress = (event: KeyboardEvent) =>
+      // @ts-ignore For some reason doesn't recognize presence of .value
+      event.key === 'Enter' ? mutateAmount(event.target.value ? parseInt(event.target.value, 10) : 0) : null;
+
     return (
       <Grid item container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>

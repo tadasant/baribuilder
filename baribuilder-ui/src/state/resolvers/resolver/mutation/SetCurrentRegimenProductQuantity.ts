@@ -22,7 +22,7 @@ const SetCurrentRegimenProductQuantityResolver: TResolverFunc<{}, ISetCurrentReg
       console.warn('Conversions not yet implemented. Error code 5829233');
       return null;
     }
-    product.quantity.amount += args.regimenProductQuantity.amount;
+    product.quantity.amount = args.regimenProductQuantity.amount;
   } else {
     console.error('Couldn\'t find edited product. Error code 5829233');
     return null;
