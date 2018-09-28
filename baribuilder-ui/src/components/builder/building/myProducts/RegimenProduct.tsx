@@ -2,7 +2,7 @@ import {Grid, TextField} from '@material-ui/core';
 import gql from 'graphql-tag';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
-import {Fragment, SFC} from 'react';
+import {Fragment, KeyboardEvent, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
@@ -54,6 +54,7 @@ const RegimenProductPure: SFC<DataOutputProps> = ({data: {CatalogProduct, loadin
   if (CatalogProduct && !loading) {
 
     const handleChangeQuantity = () => console.log('changed');
+    const handleQuantityKeyPress = (event: KeyboardEvent) => event.key === 'Enter' ? handleChangeQuantity() : null;
     return (
       <Grid item container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>
@@ -65,7 +66,7 @@ const RegimenProductPure: SFC<DataOutputProps> = ({data: {CatalogProduct, loadin
         <Fragment>
           <Grid item lg={4} />
           <Grid item lg={4}>
-            <TextField value={quantity.amount || ''} onChange={handleChangeQuantity} fullWidth helperText='servings/day'/>
+            <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
           </Grid>
           <Grid item lg={4} />
         </Fragment>
