@@ -67,14 +67,18 @@ export const GET_PREFETCH_QUERY_CLIENT = gql`
 interface IState {
   showMyProducts: boolean;
   showMyRegimen: boolean;
+  selectedCategory: string;
 }
+
+export const ROOT_CATEGORY = 'ALL_PRODUCTS';
 
 class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      showMyProducts: true,
-      showMyRegimen: true,
+      showMyProducts: false,
+      showMyRegimen: false,
+      selectedCategory: ROOT_CATEGORY,
     };
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
     this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
@@ -110,6 +114,7 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
                         setShowMyProducts={this.setShowMyProducts}
                         showMyRegimen={this.state.showMyRegimen}
                         setShowMyRegimen={this.setShowMyRegimen}
+                        selectedCategory={this.state.selectedCategory}
                       />
                     )
                   }

@@ -16,6 +16,7 @@ interface IProps {
   setShowMyProducts: SetBuilderStateFunction;
   showMyRegimen: boolean;
   setShowMyRegimen: SetBuilderStateFunction;
+  selectedCategory: string;
 }
 
 const TabGrid = styled(Grid)`
@@ -39,7 +40,7 @@ const BuilderScreenPure: SFC<IProps> = props => {
         {
           numColumnsForFilter === null ? null : (
             <Grid item lg={numColumnsForFilter}>
-              <BuilderFilterPanel/>
+              <BuilderFilterPanel selectedCategory={props.selectedCategory}/>
             </Grid>
           )
         }

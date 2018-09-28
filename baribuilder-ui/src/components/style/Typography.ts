@@ -37,7 +37,7 @@ export const Header2 = div`
   `}
 `;
 
-export const BodyBold = div`
+export const BoldBody = div`
   color: ${(props: ITypographyProps) => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
   font-family: ${Sketch.typography.fontFamily};
   text-align: ${Sketch.typography.bodybold.textAlign};

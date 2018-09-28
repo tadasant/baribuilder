@@ -35,7 +35,7 @@ const Sketch = {
     },
     'header2': { // bold
       'textAlign': 'center',
-      'fontSize': '24px',
+      'fontSize': '36px',
       'fontWeight': 600,
       'tablet': {
         'fontSize': '36px',

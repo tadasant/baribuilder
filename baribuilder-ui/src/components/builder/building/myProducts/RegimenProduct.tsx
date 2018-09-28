@@ -15,7 +15,7 @@ import {
   SetCurrentRegimenProductQuantity,
   SetCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
-import {BodyBold, Caption} from '../../../style/Typography';
+import {BoldBody, Caption} from '../../../style/Typography';
 import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
 
 interface IProps {
@@ -101,7 +101,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
     return (
       <Grid item container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>
-          <BodyBold dark>{CatalogProduct.name}</BodyBold>
+          <BoldBody dark>{CatalogProduct.name}</BoldBody>
         </CenteredTextGrid>
         <CenteredTextGrid item lg={12}>
           <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>

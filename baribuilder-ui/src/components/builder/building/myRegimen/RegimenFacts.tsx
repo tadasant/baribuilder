@@ -18,7 +18,7 @@ import {
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
 import {ShadowedSelect} from '../../../style/CustomMaterial';
 import {EmptyRow} from '../../../style/Layout';
-import {Body, BodyBold, Header2} from '../../../style/Typography';
+import {Body, BoldBody, Header2} from '../../../style/Typography';
 
 const REGIMEN_FACTS_QUERY = gql`
     query GetDataForRegimenFacts {
@@ -122,7 +122,7 @@ interface IPropsForMicronutrientRow {
   percentOfGoal: number;
 }
 
-const RightAlignColoredBodyBold = styled(BodyBold)`
+const RightAlignColoredBodyBold = styled(BoldBody)`
   text-align: right;
   
   && {
@@ -130,7 +130,7 @@ const RightAlignColoredBodyBold = styled(BodyBold)`
   }
 `;
 
-const LeftAlignBodyBold = styled(BodyBold)`
+const LeftAlignBodyBold = styled(BoldBody)`
   text-align: left;
 `;
 

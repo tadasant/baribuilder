@@ -1,6 +1,4 @@
-import {Typography} from '@material-ui/core';
 import {createMuiTheme} from '@material-ui/core/styles';
-import styled from 'styled-components';
 import Sketch from './SketchVariables';
 
 const fontFamily = [
@@ -37,13 +35,5 @@ const theme = createMuiTheme({
     fontFamily,
   },
 });
-
-export const TypographyHeaderGrey = styled(Typography)`
-  && {
-    font-size: 24px;
-    font-weight: 500;
-    font-color: #767676;
-  }
-`;
 
 export default theme;

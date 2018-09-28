@@ -1,6 +1,7 @@
-import {Button, Grid, Typography} from '@material-ui/core';
+import {Button, Grid} from '@material-ui/core';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 import gql from "graphql-tag";
+import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
@@ -8,6 +9,7 @@ import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetProductsForBuilderHeader} from '../../../typings/gql/GetProductsForBuilderHeader';
+import {Body} from '../../style/Typography';
 import {SetBuilderStateFunction} from '../BuilderScreenPure';
 
 export const builderHeaderHeight = '48px';
@@ -18,6 +20,7 @@ interface IProps {
   setShowMyRegimen: SetBuilderStateFunction;
   showMyRegimen: boolean;
   isMyRegimenOnRight: boolean;
+  selectedCategory: string;
 }
 
 // GraphQL HOC props (output)
@@ -44,10 +47,9 @@ const FixedGrid = styled(Grid)`
   }
 `;
 
-const PaddedTypography = styled(Typography)`
-  && {
-    margin-left: 10px;
-  }
+const PaddedCaptionSizedBody = styled(Body)`
+  font-size: ${Sketch.typography.caption.fontSize};
+  margin-left: 10px;
 `;
 
 const NavTabGrid = styled(Grid)`
@@ -84,7 +86,7 @@ const NavTabButtonActive = styled(NavTabButton)`
 
 // Pure
 const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
-  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight} = props;
+  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight, selectedCategory} = props;
 
   const productCount = allCatalogProducts && !loading ? allCatalogProducts.length : undefined;
 
@@ -101,9 +103,10 @@ const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
     <FixedGrid container direction='row'>
       <Grid item lg={4} container alignItems='center'>
         <Grid item>
-          <PaddedTypography variant='body1'>
-            Showing{productCount ? ` ${productCount} ` : ' '}results
-          </PaddedTypography>
+          <PaddedCaptionSizedBody dark>
+            Showing{productCount ? ` ${productCount} ` : ' '}results in
+            &nbsp;<b>{selectedCategory.split('_').map(c => upperFirst(c.toLowerCase())).join(' ')}</b>
+          </PaddedCaptionSizedBody>
         </Grid>
       </Grid>
       <Grid item lg={spacingColumnCount}/>
@@ -115,7 +118,7 @@ const BuilderHeaderPure: SFC<DataOutputProps & IProps> = props => {
 };
 
 // TODO remove ugly style hack
-const MyProductsTabHeader: SFC<IProps & {style?: any}> = ({setShowMyProducts, showMyProducts, style}) => {
+const MyProductsTabHeader: SFC<IProps & { style?: any }> = ({setShowMyProducts, showMyProducts, style}) => {
   const handleMyProductsClick = () => setShowMyProducts(!showMyProducts);
   if (showMyProducts) {
     return (
@@ -132,7 +135,7 @@ const MyProductsTabHeader: SFC<IProps & {style?: any}> = ({setShowMyProducts, sh
 };
 
 // TODO remove ugly style hack
-const MyRegimenTabHeader: SFC<IProps & {style?: any}> = ({setShowMyRegimen, showMyRegimen, style}) => {
+const MyRegimenTabHeader: SFC<IProps & { style?: any }> = ({setShowMyRegimen, showMyRegimen, style}) => {
   const handleMyRegimenClick = () => setShowMyRegimen(!showMyRegimen);
   if (showMyRegimen) {
     return (
