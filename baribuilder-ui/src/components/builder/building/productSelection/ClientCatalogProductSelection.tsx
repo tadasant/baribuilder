@@ -17,7 +17,7 @@ interface IProps {
 // GraphQL HOC props (output)
 type DataOutputProps = ChildDataProps<{}, GetClientCatalogProductsForProductSelection>;
 
-const GET_PRODUCTS_QUERY = gql`
+export const GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY = gql`
     query GetClientCatalogProductsForProductSelection($category: FREQUENCY) {
         allClientCatalogProducts(category: $category) @client {
             catalogProductId
@@ -25,7 +25,7 @@ const GET_PRODUCTS_QUERY = gql`
     }
 `;
 
-const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GET_PRODUCTS_QUERY, {
+const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY, {
   options: ({selectedCategory}) => {
     const category = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
     return {

@@ -1,6 +1,5 @@
 import {Button, Grid} from '@material-ui/core';
 import {fade} from '@material-ui/core/styles/colorManipulator';
-import gql from "graphql-tag";
 import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
@@ -9,9 +8,11 @@ import {RouteComponentProps, withRouter} from 'react-router';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
-import {GetProductsForBuilderHeader} from '../../../typings/gql/GetProductsForBuilderHeader';
+import {GetClientCatalogProductsForProductSelection} from '../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {Body} from '../../style/Typography';
+import {ROOT_CATEGORY} from '../BuilderScreen';
 import {SetBuilderStateFunction} from '../BuilderScreenPure';
+import {GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY} from './productSelection/ClientCatalogProductSelection';
 
 export const builderHeaderHeight = '48px';
 
@@ -25,19 +26,20 @@ interface IProps {
 }
 
 // GraphQL HOC props (output)
-type DataOutputProps = ChildDataProps<IProps, GetProductsForBuilderHeader>;
+type QueryOutputProps = ChildDataProps<IProps, GetClientCatalogProductsForProductSelection>;
 
 // TODO eventually pass filters & selected category into this query
-const data = graphql<{}, GetProductsForBuilderHeader>(gql`
-    query GetProductsForBuilderHeader {
-        allCatalogProducts {
-            id
-        }
-    }
-`);
+const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY, {
+  options: ({selectedCategory}) => {
+    const category = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
+    return {
+      variables: {category},
+    };
+  }
+});
 
-const enhance = compose<DataOutputProps, IProps>(
-  data,
+const enhance = compose<QueryOutputProps, IProps>(
+  withData,
   withRouter,
   pure,
 );
@@ -87,12 +89,12 @@ const NavTabButtonActive = styled(NavTabButton)`
 `;
 
 // Pure
-const BuilderHeaderPure: SFC<DataOutputProps & IProps & RouteComponentProps> = props => {
-  const {data: {allCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
+const BuilderHeaderPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = props => {
+  const {data: {allClientCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
   const pathnameTokens = location.pathname.split('/');
   const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
 
-  const productCount = allCatalogProducts && !loading ? allCatalogProducts.length : undefined;
+  const productCount = allClientCatalogProducts && !loading ? allClientCatalogProducts.length : undefined;
 
   let spacingColumnCount: 1 | 2 | 3 | 4 = 4; // !showMyProducts && !showMyRegimen
   if (showMyProducts && !showMyRegimen) {
