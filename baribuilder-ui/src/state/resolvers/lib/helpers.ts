@@ -7,7 +7,7 @@ import {ingredientPricesByName} from '../data/ingredientPrices';
 // TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
 
 // Holds the amount of an ingredient aggregated across a regimen
-interface IRegimenIngredient {
+export interface IRegimenIngredient {
   frequency: FREQUENCY;
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
@@ -158,7 +158,7 @@ interface IRegimenIngredientsByName {
   [key: string]: IRegimenIngredient;
 }
 
-const calculateRegimenIngredients = (
+export const calculateRegimenIngredients = (
   regimenProducts: IRegimenProduct[],
   catalogProducts: GetAllProductsIngredients_allCatalogProducts[]
 ): IRegimenIngredientsByName => {

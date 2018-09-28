@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {EmptyRow} from '../../style/Layout';
 import CurrentRegimenCost from './myRegimen/CurrentRegimenCost';
+import RegimenFacts from './myRegimen/RegimenFacts';
 
 export const tabFooterHeight = '4em';
 
@@ -58,12 +59,12 @@ const BuilderMyRegimen: SFC = () => {
           <EmptyRow/>
           <BottomBorderedGrid item lg={12}/>
           <EmptyRow/>
-          <Grid item lg={12}>
-            Supplement Facts Panel
+          <Grid item container lg={12}>
+            <RegimenFacts />
           </Grid>
         </Grid>
         <Grid item lg={1}/>
-        <EmptyRow mobile={`calc(${tabFooterHeight} * 2)`}/> {/* Hack for spacing UX */}
+        <EmptyRow mobile={`calc(${tabFooterHeight} * 1.5)`}/> {/* Hack for spacing UX */}
       </OuterGrid>
       <Footer>
         <FooterGrid item lg={12} container direction='column' justify='center'>
