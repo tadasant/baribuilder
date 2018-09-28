@@ -2,6 +2,8 @@ import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
+// TODO move this to styled components
+import '../../../rc-pagination.css';
 import {EmptyRow} from '../../style/Layout';
 import ClientCatalogProductSelection from './productSelection/ClientCatalogProductSelection';
 

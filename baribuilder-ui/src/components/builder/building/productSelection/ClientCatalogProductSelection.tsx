@@ -1,9 +1,10 @@
 import {Grid, Paper} from '@material-ui/core';
 import gql from "graphql-tag";
+import Pagination from "rc-pagination";
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
-import {compose, pure} from 'recompose';
+import {compose, pure, withState} from 'recompose';
 import styled from 'styled-components';
 import {GetClientCatalogProductsForProductSelection} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
@@ -36,6 +37,11 @@ const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GE
 
 const enhance = compose<DataOutputProps, IProps>(
   withData,
+  withState<IProps, number, 'currentPage', 'setCurrentPage'>(
+    'currentPage',
+    'setCurrentPage',
+    1
+  ),
   pure,
 );
 
@@ -43,14 +49,25 @@ const PaddedDiv = styled.div`
   padding: 8px 8px;
 `;
 
+const FloatRightPagination = styled(Pagination)`
+  float: right;
+`;
+
+interface IPropsState {
+  currentPage: number;
+  setCurrentPage: (page: number) => number;
+}
+
 // Pure
-const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allClientCatalogProducts, loading}}) => {
+const ProductSelectionPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {allClientCatalogProducts, loading}, currentPage, setCurrentPage}) => {
   if (allClientCatalogProducts !== undefined && !loading) {
-    // TODO delete this in favor of e.g. paging or infinite scroll
-    allClientCatalogProducts.splice(25, allClientCatalogProducts.length - 25);
+    const pageSize = 10;
+    const productsToDisplay = allClientCatalogProducts.slice((currentPage - 1) * pageSize, (currentPage * pageSize) - 1);
+
+    const onPaginationChange = (current: number) => setCurrentPage(current);
     return (
       <Grid container direction='row' alignItems='flex-start'>
-        {allClientCatalogProducts.map(product => (
+        {productsToDisplay.map(product => (
           <Fragment key={product.catalogProductId}>
             <Grid item lg={12}>
               <Paper>
@@ -62,6 +79,11 @@ const ProductSelectionPure: SFC<DataOutputProps> = ({data: {allClientCatalogProd
             <EmptyRow mobile='0px'/>
           </Fragment>
         ))}
+        <Grid item lg={12} container direction='column' alignContent='flex-end'>
+          <Grid item>
+            <FloatRightPagination hideOnSinglePage onChange={onPaginationChange} current={currentPage} defaultPageSize={10} total={allClientCatalogProducts.length}/>
+          </Grid>
+        </Grid>
       </Grid>
     );
   }
