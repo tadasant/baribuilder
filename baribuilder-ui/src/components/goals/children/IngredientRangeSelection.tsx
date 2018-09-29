@@ -13,6 +13,7 @@ import {GetIngredientReferenceData} from '../../../typings/gql/GetIngredientRefe
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
 import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from '../GoalsScreen';
+import {CenteredTextGrid} from '../GoalsScreenPure';
 
 interface IProps {
   ingredientRange: IIngredientRange;
@@ -43,10 +44,6 @@ const GET_INGREDIENT_REFERENCE_DATA = gql`
 type ReferenceDataOutputProps = ChildDataProps<IProps, GetIngredientReferenceData>;
 
 const withReferenceData = graphql<IProps, GetIngredientReferenceData>(GET_INGREDIENT_REFERENCE_DATA);
-
-const CenteredBody = styled(Body)`
-  text-align: center;
-`;
 
 const EmphasizedShadowedSelect = styled(ShadowedSelect)`
   && {
@@ -99,9 +96,9 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
-        <Grid item>
-          <CenteredBody dark>from</CenteredBody>
-        </Grid>
+        <CenteredTextGrid item>
+          <Body dark>from</Body>
+        </CenteredTextGrid>
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
@@ -110,9 +107,9 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
-        <Grid item>
-          <CenteredBody dark>to</CenteredBody>
-        </Grid>
+        <CenteredTextGrid item>
+          <Body dark>to</Body>
+        </CenteredTextGrid>
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>

@@ -51,14 +51,18 @@ const FooterGrid = styled(Grid)`
   }
 `;
 
+export const CenteredTextGrid = styled(Grid)`
+  text-align: center;
+`;
+
 const GoalsScreenPure: SFC<IProps> = (props) => {
   return (
     <Fragment>
       <OuterGrid container alignContent='flex-start'>
         <EmptyRow/>
-        <Grid item lg={12}>
+        <CenteredTextGrid item lg={12}>
           <Header dark>What are your ingredient goals?</Header>
-        </Grid>
+        </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
         <Fragment>
           <Grid item lg={1}/>
