@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {Caption, Subcaption} from '../../style/Typography';
 import Grid from '@material-ui/core/Grid';
 import Sketch from '../../../app/style/SketchVariables';
@@ -64,7 +65,7 @@ class Footer extends Component {
                 <EmptyRow tablet='1px'/>
                 <Subcaption>© Vita.G, LLC 2018</Subcaption>
               </Grid>
-              <Grid item sm={3} container>
+              <CenteredTextGrid item sm={3} container>
                 <Grid item sm={12}>
                   <a href='mailto:feedback@vitaglab.com' onClick={this.generateHandleLinkClick('email')}><Subcaption>feedback@vitaglab.com</Subcaption></a>
                 </Grid>
@@ -92,12 +93,12 @@ class Footer extends Component {
                     />
                   </a>
                 </Grid>
-              </Grid>
+              </CenteredTextGrid>
             </Hidden>
             <Hidden smUp>
-              <Grid item xs={12}>
+              <CenteredTextGrid item xs={12}>
                 <a href='mailto:feedback@vitaglab.com' onClick={this.generateHandleLinkClick('email')}><Subcaption>feedback@vitaglab.com</Subcaption></a>
-              </Grid>
+              </CenteredTextGrid>
               <EmptyRow mobile='1px'/>
               <Fragment>
                 <Grid item xs={3}/>
