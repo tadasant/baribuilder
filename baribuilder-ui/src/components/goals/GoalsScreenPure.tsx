@@ -55,6 +55,10 @@ export const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
+const CenteredTextGridWithPointer = styled(CenteredTextGrid)`
+  cursor: pointer;
+`;
+
 const GoalsScreenPure: SFC<IProps> = (props) => {
   return (
     <Fragment>
@@ -80,9 +84,9 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
         <Fragment>
           <Grid item lg={1}/>
           <AddBoxGrid item lg={10} container direction='column' justify='center'>
-            <Grid item>
-              <GreyCaption onClick={props.onAddGoal}>Click to add ingredient</GreyCaption>
-            </Grid>
+            <CenteredTextGridWithPointer item onClick={props.onAddGoal}>
+              <GreyCaption>Click to add ingredient</GreyCaption>
+            </CenteredTextGridWithPointer>
           </AddBoxGrid>
           <Grid item lg={1}/>
         </Fragment>
