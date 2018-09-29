@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
+import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
 import StepOval from './StepOval.react';
 import {EmptyRow} from '../../../style/Layout';
 import styled from 'styled-components';
@@ -34,9 +35,9 @@ const Step4 = () => (
         </Grid>
         <Grid item xs={1}/>
         <EmptyRow mobile='1px'/>
-        <Grid item xs={12}>
+        <CenteredTextGrid item xs={12}>
           <Header dark>YOU.</Header>
-        </Grid>
+        </CenteredTextGrid>
       </Grid>
       <Hidden only='xs'>
         <Grid item sm={1}/>
@@ -70,8 +71,10 @@ const Step4 = () => (
         <Grid item lg={12}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
           <EmptyRow desktop='1px'/>
-          <Header dark>YOU.</Header>
         </Grid>
+        <CenteredTextGrid item lg={12}>
+          <Header dark>YOU.</Header>
+        </CenteredTextGrid>
       </Grid>
       <Grid item lg={1} />
       <Grid item lg={4}>

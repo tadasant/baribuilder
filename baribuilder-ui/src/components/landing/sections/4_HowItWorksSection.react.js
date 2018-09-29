@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {Header} from '../../style/Typography';
 import {EmptyRow} from '../../style/Layout';
 import Step1 from './steps/Step1.react';
@@ -11,9 +12,9 @@ class HowItWorksSection extends Component {
   render() {
     return (
       <Fragment>
-        <Grid item xs={12}>
+        <CenteredTextGrid item xs={12}>
           <Header dark>How it works</Header>
-        </Grid>
+        </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
         <Step1/>
         <EmptyRow mobile='40px'/>

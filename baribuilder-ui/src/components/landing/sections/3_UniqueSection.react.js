@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {Body, Header} from '../../style/Typography';
 import {EmptyRow} from '../../style/Layout';
 import styled from 'styled-components';
@@ -28,9 +29,9 @@ class UniqueSection extends Component {
   render() {
     return (
       <Fragment>
-        <Grid item xs={12}>
+        <CenteredTextGrid item xs={12}>
           <Header dark><BlueText>You</BlueText> are unique</Header>
-        </Grid>
+        </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
         <Fragment>
           <Hidden only='xs'>
@@ -59,9 +60,9 @@ class UniqueSection extends Component {
                 </CenterTextUntilDesktop>
               </Body>
             </Grid>
-            <Grid item xs={12}>
+            <CenteredTextGrid item xs={12}>
               <Header><BlueText>YOU.</BlueText></Header>
-            </Grid>
+            </CenteredTextGrid>
             <Hidden mdDown>
               {/* Padding hack to adjust for the container's forced too-large height on above item */}
               <EmptyRow desktop='90px'/>

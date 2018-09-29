@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {Header} from '../../style/Typography';
 import Grid from '@material-ui/core/Grid';
 import Sketch from '../../../app/style/SketchVariables';
@@ -51,9 +52,9 @@ class BottomCTABanner extends Component {
           <EmptyRow mobile='20px' tablet='65px'/>
           <Grid item xs={12} container>
             <Grid item xs={2} lg={1} />
-            <Grid item xs={8} lg={10}>
+            <CenteredTextGrid item xs={8} lg={10}>
               <HeaderWithHeader2MobileSize dark>Find your personalized vitamins.</HeaderWithHeader2MobileSize>
-            </Grid>
+            </CenteredTextGrid>
             <Grid item xs={2} lg={1}/>
           </Grid>
           <EmptyRow mobile='20px' tablet='65px'/>

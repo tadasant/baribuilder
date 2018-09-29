@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {Header} from '../../style/Typography';
 import {EmptyRow} from '../../style/Layout';
 import styled from 'styled-components';
@@ -17,9 +18,9 @@ class PriceSection extends Component {
   render() {
     return (
       <Fragment>
-        <Grid item xs={12}>
+        <CenteredTextGrid item xs={12}>
           <Header dark>Transparent <LightText>prices.</LightText></Header>
-        </Grid>
+        </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
         <Fragment>
           <Grid item xs={1} lg={3}/>
@@ -35,9 +36,9 @@ class PriceSection extends Component {
           <Grid item xs={1} lg={3}/>
         </Fragment>
         <EmptyRow mobile='20px'/>
-        <Grid item xs={12}>
+        <CenteredTextGrid item xs={12}>
           <Header dark>Low <LightText>prices.*</LightText></Header>
-        </Grid>
+        </CenteredTextGrid>
       </Fragment>
     );
   }

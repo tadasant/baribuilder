@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
 import {generateTrackNavClick} from '../../../lib/gaHelper';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
@@ -73,9 +74,9 @@ class Hero extends Component {
           <Hidden only='xs' lgUp>
             <Grid item sm={1}/>
           </Hidden>
-          <Grid item xs={12} sm={10} lg={12}>
+          <CenteredTextGrid item xs={12} sm={10} lg={12}>
             <Header dark>Find the bariatric vitamins best for <u>you</u>.</Header>
-          </Grid>
+          </CenteredTextGrid>
           <Hidden only='xs' lgUp>
             <Grid item sm={1}/>
           </Hidden>
