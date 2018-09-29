@@ -33,10 +33,10 @@
     "styled-components": "^3.4.6"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "start": "./node_modules/react-scripts-ts/bin/react-scripts-ts.js start",
+    "build": "./node_modules/react-scripts-ts/bin/react-scripts-ts.js build",
+    "test": "./node_modules/react-scripts-ts/bin/react-scripts-ts.js test --env=jsdom",
+    "eject": "./node_modules/react-scripts-ts/bin/react-scripts-ts.js eject"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
