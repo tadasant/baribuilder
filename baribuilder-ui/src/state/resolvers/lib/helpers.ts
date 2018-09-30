@@ -169,10 +169,9 @@ export const calculateRegimenIngredients = (
     const ingredients = productsById[product.catalogProductId].serving.ingredients;
     if (ingredients !== null) {
       ingredients.forEach(ingredient => {
-        // TODO types are all wrong
         const regimenIngredient: IRegimenIngredient = {
           ingredientTypeName: ingredient.ingredientType.name,
-          amount: ingredient.quantity.amount,
+          amount: ingredient.quantity.amount * product.quantity.amount,
           units: ingredient.quantity.units,
           frequency: product.quantity.frequency,
         };

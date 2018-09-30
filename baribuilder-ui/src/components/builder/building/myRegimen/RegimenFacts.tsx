@@ -89,7 +89,7 @@ const ServingsHeaderGrid = styled(Grid)`
   border-bottom: 18px solid ${Sketch.color.accent.black};
 `;
 
-const BodyRightAlign = styled(Body)`
+const RightAlignGrid = styled(Grid)`
   text-align: right;
 `;
 
@@ -186,7 +186,7 @@ const calculateMicronutrientRowPropsList = (
 
 const calculatePercentageOfGoal = (
   desiredRange: GetDataForRegimenFacts_desiredIngredients_ingredientRanges,
-  currentIngredient: IRegimenIngredient | null
+  currentIngredient: IRegimenIngredient | null,
 ): number | null => {
   if (currentIngredient === null) {
     if (desiredRange.minimumAmount) {
@@ -199,9 +199,9 @@ const calculatePercentageOfGoal = (
   let percentOfGoal = 100;
   if (desiredRange.units === currentIngredient.units) {
     if (desiredRange.minimumAmount && currentIngredient.amount < desiredRange.minimumAmount) {
-      percentOfGoal = desiredRange.minimumAmount / currentIngredient.amount;
+      percentOfGoal = currentIngredient.amount * 100 / desiredRange.minimumAmount;
     } else if (desiredRange.maximumAmount && currentIngredient.amount > desiredRange.maximumAmount) {
-      percentOfGoal = desiredRange.maximumAmount / currentIngredient.amount;
+      percentOfGoal = currentIngredient.amount * 100 /  desiredRange.maximumAmount;
     }
 
   } else {
@@ -230,9 +230,9 @@ const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatal
               <Grid item lg={6}>
                 <Body dark>Amount per day</Body>
               </Grid>
-              <Grid item lg={6}>
-                <BodyRightAlign dark>% of goal</BodyRightAlign>
-              </Grid>
+              <RightAlignGrid item lg={6}>
+                <Body dark>% of goal</Body>
+              </RightAlignGrid>
             </TitlesHeaderGrid>
             {
               micronutrientRowPropsList.map(rowProps => (
