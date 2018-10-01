@@ -1,7 +1,11 @@
+import {Grid} from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import gql from 'graphql-tag';
 import * as React from 'react';
-import {Component} from 'react';
+import {Component, SFC} from 'react';
 import {Query} from 'react-apollo';
+import styled from 'styled-components';
+import {navbarHeight} from '../Navbar';
 import BuilderScreenPure from './BuilderScreenPure';
 
 const GET_PREFETCH_QUERY = gql`
@@ -10,7 +14,7 @@ const GET_PREFETCH_QUERY = gql`
             # Prefetch data that'll be needed for allClientCatalogProducts TODO replace with fragments
             __typename
             id
-            
+
             category
             listings {
                 price {
@@ -40,29 +44,29 @@ const GET_PREFETCH_QUERY = gql`
 
 // TODO rename this so appropriate for re-use
 export const GET_PREFETCH_QUERY_CLIENT = gql`
-  query GetClientCatalogProducts {
-      allClientCatalogProducts @client {
-          # Prefetch data that'll be needed for individual ClientCatalogProducts
-          __typename
-          catalogProductId
-          
-          cost {
-              money
-              frequency
-          }
-          projectedRegimenCost {
-              numRemainingProducts
-              money
-              frequency
-          }
-          defaultQuantity {
-              amount
-              units
-              frequency
-          }
-          matchScore
-      }
-  }
+    query GetClientCatalogProducts {
+        allClientCatalogProducts @client {
+            # Prefetch data that'll be needed for individual ClientCatalogProducts
+            __typename
+            catalogProductId
+
+            cost {
+                money
+                frequency
+            }
+            projectedRegimenCost {
+                numRemainingProducts
+                money
+                frequency
+            }
+            defaultQuantity {
+                amount
+                units
+                frequency
+            }
+            matchScore
+        }
+    }
 `;
 
 interface IState {
@@ -71,6 +75,18 @@ interface IState {
 }
 
 export const ROOT_CATEGORY = 'ALL_PRODUCTS';
+
+const LargePaddedSpinner = styled(CircularProgress)`
+  padding: 16px;
+`;
+
+const CenteredSpinner: SFC = () => (
+  <Grid container justify='center'>
+    <Grid item>
+      <LargePaddedSpinner size={`calc(100vh - ${navbarHeight} - 32px)`}/>
+    </Grid>
+  </Grid>
+);
 
 class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
   constructor(props: {}) {
@@ -98,14 +114,14 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
         {
           ({loading, error, data}) => {
             if (loading || !data) {
-              return null;
+              return loading ? <CenteredSpinner /> : null;
             }
             return (
               <Query query={GET_PREFETCH_QUERY_CLIENT}>
                 {
                   (props) => {
                     if (props.loading || !props.data) {
-                      return null;
+                      return props.loading ? <CenteredSpinner /> : null;
                     }
                     return (
                       <BuilderScreenPure
