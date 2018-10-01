@@ -23,8 +23,6 @@ functions:
 # Read more here:
 # https://www.graph.cool/docs/reference/auth/authorization/overview-iegoo0heez
 permissions:
-  - operation: "*"
-    authenticated: true
   - operation: AffiliateLink.read
   - operation: Listing.read
   - operation: Price.read
