@@ -55,7 +55,7 @@ export const GET_PREFETCH_QUERY_CLIENT = gql`
               money
               frequency
           }
-          quantity {
+          defaultQuantity {
               amount
               units
               frequency

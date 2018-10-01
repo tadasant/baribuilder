@@ -5,12 +5,12 @@ import {SFC} from 'react';
 import {DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import {AddProduct, AddProductVariables} from '../../../../../typings/gql/AddProduct';
-import {GetClientCatalogProductQuantities_ClientCatalogProduct_quantity} from '../../../../../typings/gql/GetClientCatalogProductQuantities';
+import {GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity} from '../../../../../typings/gql/GetClientCatalogProductQuantities';
 import {GET_PREFETCH_QUERY_CLIENT} from '../../../BuilderScreen';
 
 interface IProps {
   catalogProductId: string;
-  quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_quantity;
+  quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity;
 }
 
 const ADD_PRODUCT_MUTATION = gql`

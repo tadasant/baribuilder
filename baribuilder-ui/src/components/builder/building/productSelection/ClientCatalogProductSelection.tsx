@@ -19,7 +19,7 @@ interface IProps {
 type DataOutputProps = ChildDataProps<{}, GetClientCatalogProductsForProductSelection>;
 
 export const GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY = gql`
-    query GetClientCatalogProductsForProductSelection($category: FREQUENCY) {
+    query GetClientCatalogProductsForProductSelection($category: CATEGORY) {
         allClientCatalogProducts(category: $category) @client {
             catalogProductId
         }

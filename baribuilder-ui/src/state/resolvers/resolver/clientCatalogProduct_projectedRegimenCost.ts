@@ -5,7 +5,7 @@ import {IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
 import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/product_projectedRegimenCost';
 import costResolver from './clientCatalogProduct_cost';
-import quantityResolver from './clientCatalogProduct_quantity';
+import quantityResolver from './clientCatalogProduct_defaultQuantity';
 /**
  * Query fields need to be prefetched into cache.
  */

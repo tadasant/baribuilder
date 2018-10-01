@@ -7,7 +7,7 @@ import {compose, pure, withProps, withState} from 'recompose';
 import styled from 'styled-components';
 import {
   GetClientCatalogProductQuantities,
-  GetClientCatalogProductQuantities_ClientCatalogProduct_quantity,
+  GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity,
   GetClientCatalogProductQuantitiesVariables
 } from '../../../../../typings/gql/GetClientCatalogProductQuantities';
 import {FREQUENCY} from '../../../../../typings/gql/globalTypes';
@@ -23,7 +23,7 @@ const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
         ClientCatalogProduct(catalogProductId: $catalogProductId) @client {
             catalogProductId # ensure cache hit
 
-            quantity {
+            defaultQuantity {
                 amount
                 frequency
                 units
@@ -48,7 +48,7 @@ const enhance = compose<IProps & DataOutputProps & IPropsState, IProps>(
     ({data: {ClientCatalogProduct}}) => (
       {
         key: ClientCatalogProduct
-          ? `${ClientCatalogProduct.quantity.frequency}_${ClientCatalogProduct.quantity.amount}_${ClientCatalogProduct.quantity.units}`
+          ? `${ClientCatalogProduct.defaultQuantity.frequency}_${ClientCatalogProduct.defaultQuantity.amount}_${ClientCatalogProduct.defaultQuantity.units}`
           : 'no-data',
       }
     )
@@ -56,12 +56,12 @@ const enhance = compose<IProps & DataOutputProps & IPropsState, IProps>(
   withState<DataOutputProps, number, 'quantityAmount', 'setQuantityAmount'>(
     'quantityAmount',
     'setQuantityAmount',
-    props => props.data.ClientCatalogProduct ? props.data.ClientCatalogProduct.quantity.amount : 0
+    props => props.data.ClientCatalogProduct ? props.data.ClientCatalogProduct.defaultQuantity.amount : 0
   ),
   withState<DataOutputProps, FREQUENCY, 'quantityFrequency', 'setQuantityFrequency'>(
     'quantityFrequency',
     'setQuantityFrequency',
-    props => props.data.ClientCatalogProduct ? props.data.ClientCatalogProduct.quantity.frequency : FREQUENCY.DAILY,
+    props => props.data.ClientCatalogProduct ? props.data.ClientCatalogProduct.defaultQuantity.frequency : FREQUENCY.DAILY,
   ),
   pure,
 );
@@ -84,10 +84,10 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
     return null;
   }
   const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => setQuantityAmount(event.target.value ? parseInt(event.target.value, 10) : 0);
-  const quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_quantity = {
+  const quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity = {
     __typename: 'CatalogProductQuantity',
     frequency: quantityFrequency,
-    units: ClientCatalogProduct.quantity.units,
+    units: ClientCatalogProduct.defaultQuantity.units,
     amount: quantityAmount,
   };
 

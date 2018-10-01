@@ -7,7 +7,7 @@ import { FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 // GraphQL query operation: GetClientCatalogProductQuantities
 // ====================================================
 
-export interface GetClientCatalogProductQuantities_ClientCatalogProduct_quantity {
+export interface GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity {
   __typename: "CatalogProductQuantity";
   amount: number;
   frequency: FREQUENCY;
@@ -17,7 +17,7 @@ export interface GetClientCatalogProductQuantities_ClientCatalogProduct_quantity
 export interface GetClientCatalogProductQuantities_ClientCatalogProduct {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
-  quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_quantity;
+  defaultQuantity: GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity;
 }
 
 export interface GetClientCatalogProductQuantities {

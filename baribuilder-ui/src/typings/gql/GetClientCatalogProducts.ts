@@ -20,7 +20,7 @@ export interface GetClientCatalogProducts_allClientCatalogProducts_projectedRegi
   frequency: FREQUENCY;
 }
 
-export interface GetClientCatalogProducts_allClientCatalogProducts_quantity {
+export interface GetClientCatalogProducts_allClientCatalogProducts_defaultQuantity {
   __typename: "CatalogProductQuantity";
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
@@ -32,7 +32,7 @@ export interface GetClientCatalogProducts_allClientCatalogProducts {
   catalogProductId: string;
   cost: GetClientCatalogProducts_allClientCatalogProducts_cost;
   projectedRegimenCost: GetClientCatalogProducts_allClientCatalogProducts_projectedRegimenCost | null;
-  quantity: GetClientCatalogProducts_allClientCatalogProducts_quantity;
+  defaultQuantity: GetClientCatalogProducts_allClientCatalogProducts_defaultQuantity;
   matchScore: number;
 }
 

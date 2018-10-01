@@ -22,7 +22,7 @@ type ClientCatalogProduct {
     catalogProductId: ID!
     cost: CatalogProductCost!
     projectedRegimenCost: RegimenCost
-    quantity: CatalogProductQuantity!
+    defaultQuantity: CatalogProductQuantity!
     matchScore: Float!
 }
 

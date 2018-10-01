@@ -16,9 +16,7 @@ import {
 } from './queries';
 
 
-const quantityResolver: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProductQuantity> = (obj, _, {cache}) => {
-  // TODO return non-default quantity if exists
-
+const defaultQuantityResolver: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProductQuantity> = (obj, _, {cache}) => {
   //// Grab data
   const catalogProductId = 'id' in obj ? obj.id : obj.catalogProductId;
   const productResult = cache.readQuery<GetProductIngredients>({
@@ -62,4 +60,4 @@ const quantityResolver: TLocalCatalogProductResolverFunc<IProductObj, ICatalogPr
   // TODO write quantity to the cache
 };
 
-export default quantityResolver;
+export default defaultQuantityResolver;

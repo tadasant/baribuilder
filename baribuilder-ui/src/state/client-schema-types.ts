@@ -9,7 +9,7 @@ export interface IClientCatalogProduct {
   catalogProductId: string;
   cost: ICatalogProductCost;
   projectedRegimenCost: IRegimenCost | null;
-  quantity: ICatalogProductQuantity;
+  defaultQuantity: ICatalogProductQuantity;
   matchScore: number;
 }
 
