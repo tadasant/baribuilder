@@ -24,11 +24,20 @@ functions:
 # https://www.graph.cool/docs/reference/auth/authorization/overview-iegoo0heez
 permissions:
   - operation: "*"
-
+    authenticated: true
+  - operation: AffiliateLink.read
+  - operation: Listing.read
+  - operation: Price.read
+  - operation: CatalogProduct.read
+  - operation: Image.read
+  - operation: Serving.read
+  - operation: ServingIngredient.read
+  - operation: ServingIngredientQuantity.read
+  - operation: IngredientType.read
 
 # Your root tokens used for functions to get full access to the API
 # Read more here:
 # https://www.graph.cool/docs/reference/auth/authentication/authentication-tokens-eip7ahqu5o
-# rootTokens:
-#   - mytoken
+rootTokens:
+  - scriptToken
 
