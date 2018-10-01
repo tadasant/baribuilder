@@ -30,7 +30,7 @@ const GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT = gql`
         CatalogProduct(id: $id) {
             __typename
             id
-            
+
             name
             brand
         }
@@ -108,14 +108,16 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
           <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>
         </CenteredTextGrid>
         <Fragment>
-          <Grid item lg={4} />
+          <Grid item lg={4}/>
           <Grid item lg={3}>
-            <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
+            <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth
+                       helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
           </Grid>
-          <Grid item lg={1}>
+          <Grid item lg={1} container justify='center'>
+            {/* TODO can't figure out how to v-center this */}
             <XRegimenProductIcon catalogProductId={catalogProductId}/>
           </Grid>
-          <Grid item lg={4} />
+          <Grid item lg={4}/>
         </Fragment>
       </Grid>
     );
