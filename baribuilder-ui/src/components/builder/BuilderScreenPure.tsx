@@ -64,7 +64,8 @@ const BuilderScreenPure: SFC<IProps & RouteComponentProps> = props => {
         }
         {/* @ts-ignore Can't figure out my math*/}
         <Grid item lg={numColumnsForMain}>
-          <BuilderMainPanel selectedCategory={selectedCategory}/>
+          {/* key used for force re-render on category change */}
+          <BuilderMainPanel selectedCategory={selectedCategory} key={selectedCategory}/>
         </Grid>
         {
           showMyRegimen && !isMyRegimenOnRight ? (
