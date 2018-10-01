@@ -16,6 +16,7 @@ import {
   GetDataForRegimenFacts_goalIngredients_ingredientRanges
 } from '../../../../typings/gql/GetDataForRegimenFacts';
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
+import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
 import {ShadowedSelect} from '../../../style/CustomMaterial';
 import {EmptyRow} from '../../../style/Layout';
 import {Body, BoldBody, Header2} from '../../../style/Typography';
@@ -119,7 +120,7 @@ interface IPropsForMicronutrientRow {
   ingredientTypeName: string;
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
-  percentOfGoal: number;
+  percentOfGoal?: number;
 }
 
 const ColoredBodyBold = styled(BoldBody)`
@@ -137,9 +138,13 @@ const LeftAlignGrid = styled(Grid)`
   text-align: left;
 `;
 
+const GreyHeader2 = styled(Header2)`
+  color: ${Sketch.color.accent.grey};
+`;
+
 const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
-  const isExceeded = props.percentOfGoal > 100;
-  const isDeficient = props.percentOfGoal < 100;
+  const isExceeded = props.percentOfGoal !== undefined && props.percentOfGoal > 100;
+  const isDeficient = props.percentOfGoal !== undefined && props.percentOfGoal < 100;
   const colorGoal = isExceeded ? Sketch.color.secondary.blue : isDeficient ? Sketch.color.accent.danger : Sketch.color.accent.black;
   return (
     <Fragment>
@@ -152,11 +157,17 @@ const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
       <LeftAlignGrid item lg={1}>
         <Body dark>{props.units.toLowerCase()}</Body>
       </LeftAlignGrid>
-      <RightAlignPaddedGrid item lg={3}>
-        <ColoredBodyBold color={colorGoal}>
-          {props.percentOfGoal.toFixed(0)}%
-        </ColoredBodyBold>
-      </RightAlignPaddedGrid>
+      {
+        props.percentOfGoal !== undefined
+          ? (
+            <RightAlignPaddedGrid item lg={3}>
+              <ColoredBodyBold color={colorGoal}>
+                {props.percentOfGoal.toFixed(0)}%
+              </ColoredBodyBold>
+            </RightAlignPaddedGrid>
+          )
+          : null
+      }
     </Fragment>
   )
 };
@@ -168,19 +179,28 @@ const calculateMicronutrientRowPropsList = (
 ): IPropsForMicronutrientRow[] => {
   const regimenIngredientsByName = calculateRegimenIngredients(currentRegimenProducts, allCatalogProducts);
   const results: IPropsForMicronutrientRow[] = [];
-  goalIngredientRanges.forEach(range => {
-    const currentRegimenIngredient = regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName) ? regimenIngredientsByName[range.ingredientTypeName] : null;
-    const percentOfGoal = calculatePercentageOfGoal(range, currentRegimenIngredient);
-    if (percentOfGoal !== null) {
+  if (goalIngredientRanges.length > 0) {
+    goalIngredientRanges.forEach(range => {
+      const currentRegimenIngredient = regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName) ? regimenIngredientsByName[range.ingredientTypeName] : null;
+      const percentOfGoal = calculatePercentageOfGoal(range, currentRegimenIngredient);
+      if (percentOfGoal !== null) {
+        results.push({
+          ingredientTypeName: range.ingredientTypeName,
+          amount: currentRegimenIngredient ? currentRegimenIngredient.amount : 0,
+          units: range.units,
+          percentOfGoal,
+        })
+      }
+    });
+  } else {
+    Object.values(regimenIngredientsByName).forEach(regimenIngredient => {
       results.push({
-        ingredientTypeName: range.ingredientTypeName,
-        amount: currentRegimenIngredient ? currentRegimenIngredient.amount : 0,
-        units: range.units,
-        percentOfGoal,
+        ingredientTypeName: regimenIngredient.ingredientTypeName,
+        amount: regimenIngredient.amount,
+        units: regimenIngredient.units,
       })
-    }
-  });
-
+    })
+  }
   return results;
 };
 
@@ -201,7 +221,7 @@ const calculatePercentageOfGoal = (
     if (goalRange.minimumAmount && currentIngredient.amount < goalRange.minimumAmount) {
       percentOfGoal = currentIngredient.amount * 100 / goalRange.minimumAmount;
     } else if (goalRange.maximumAmount && currentIngredient.amount > goalRange.maximumAmount) {
-      percentOfGoal = currentIngredient.amount * 100 /  goalRange.maximumAmount;
+      percentOfGoal = currentIngredient.amount * 100 / goalRange.maximumAmount;
     }
 
   } else {
@@ -216,6 +236,15 @@ const calculatePercentageOfGoal = (
 const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogProducts, goalIngredients, loading}}) => {
   if (currentRegimen && allCatalogProducts && goalIngredients && !loading) {
     const micronutrientRowPropsList = calculateMicronutrientRowPropsList(currentRegimen.products, allCatalogProducts, goalIngredients.ingredientRanges);
+    if (micronutrientRowPropsList.length === 0) {
+      return (
+        <CenteredTextGrid>
+          <GreyHeader2 dark>
+            You haven't added any products to your regimen! Add some from the left.
+          </GreyHeader2>
+        </CenteredTextGrid>
+      )
+    }
     return (
       <Fragment>
         <OuterGrid container>
@@ -230,9 +259,15 @@ const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatal
               <Grid item lg={6}>
                 <Body dark>Amount per day</Body>
               </Grid>
-              <RightAlignGrid item lg={6}>
-                <Body dark>% of goal</Body>
-              </RightAlignGrid>
+              {
+                goalIngredients.ingredientRanges.length > 0
+                  ? (
+                    <RightAlignGrid item lg={6}>
+                      <Body dark>% of goal</Body>
+                    </RightAlignGrid>
+                  )
+                  : null
+              }
             </TitlesHeaderGrid>
             {
               micronutrientRowPropsList.map(rowProps => (
