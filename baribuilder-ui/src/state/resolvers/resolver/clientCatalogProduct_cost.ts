@@ -3,7 +3,7 @@ import {GetProductForProductCost} from '../../../typings/gql/GetProductForProduc
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {ICatalogProductCost} from '../../client-schema-types';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
-import calculateCost from '../lib/product_cost';
+import calculateCost from '../lib/clientCatalogProduct_cost';
 import quantityResolver from './clientCatalogProduct_defaultQuantity';
 
 /**

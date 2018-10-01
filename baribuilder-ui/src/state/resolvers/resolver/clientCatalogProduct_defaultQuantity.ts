@@ -4,7 +4,7 @@ import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients'
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {ICatalogProductQuantity} from '../../client-schema-types';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
-import {calculateDefaultQuantity} from '../lib/product_quantity';
+import {calculateDefaultQuantity} from '../lib/clientCatalogProduct_defaultQuantity';
 /**
  * Query fields need to be prefetched into cache.
  */
