@@ -7,11 +7,17 @@ import { BRAND } from "./globalTypes";
 // GraphQL query operation: GetCatalogProductForRegimenProduct
 // ====================================================
 
+export interface GetCatalogProductForRegimenProduct_CatalogProduct_listings {
+  __typename: "Listing";
+  url: string;
+}
+
 export interface GetCatalogProductForRegimenProduct_CatalogProduct {
   __typename: "CatalogProduct";
   id: string;
   name: string;
   brand: BRAND;
+  listings: GetCatalogProductForRegimenProduct_CatalogProduct_listings[] | null;
 }
 
 export interface GetCatalogProductForRegimenProduct {

@@ -33,6 +33,9 @@ const GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT = gql`
 
             name
             brand
+            listings {
+                url
+            }
         }
     }
 `;
@@ -80,7 +83,7 @@ const CenteredTextGrid = styled(Grid)`
 
 // Pure
 const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: {CatalogProduct, loading}, quantity, catalogProductId, mutate}) => {
-  if (CatalogProduct && !loading && mutate) {
+  if (CatalogProduct && !loading && mutate && CatalogProduct.listings) {
 
     const mutateAmount = (amount: number) => mutate({
       variables: {
@@ -102,7 +105,8 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
     return (
       <Grid item container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>
-          <BoldBody dark>{CatalogProduct.name}</BoldBody>
+          {/* TODO remove url bit when checkout page complete */}
+          <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody dark>{CatalogProduct.name}</BoldBody></a>
         </CenteredTextGrid>
         <CenteredTextGrid item lg={12}>
           <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>
