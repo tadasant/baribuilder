@@ -2,6 +2,7 @@ import ApolloClient from 'apollo-client/ApolloClient';
 import {IApolloStateShape} from './defaults';
 import localProductResolvers from './resolvers/clientCatalogProduct';
 import AddProductToCurrentRegimen from './resolvers/resolver/mutation/AddProductToCurrentRegimen';
+import DeleteCurrentRegimenProductQuantity from './resolvers/resolver/mutation/DeleteCurrentRegimenProductQuantity';
 import SetCurrentRegimenProductQuantity from './resolvers/resolver/mutation/SetCurrentRegimenProductQuantity';
 import SetGoalIngredients from './resolvers/resolver/mutation/SetGoalIngredients';
 import allClientCatalogProducts from './resolvers/resolver/query/allClientCatalogProducts';
@@ -25,7 +26,7 @@ const resolvers = {
     AddProductToCurrentRegimen,
     SetGoalIngredients,
     SetCurrentRegimenProductQuantity,
-  // RemoveProductFromCurrentRegimen(id, qty, units)
+    DeleteCurrentRegimenProductQuantity,
   },
 };
 

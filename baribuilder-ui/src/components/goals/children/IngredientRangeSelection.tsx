@@ -56,7 +56,7 @@ const EmphasizedShadowedSelect = styled(ShadowedSelect)`
   }
 `;
 
-const XIconImg = styled.img`
+export const XIconImg = styled.img`
   max-height: 16px;
   text-align: center;
   cursor: pointer;

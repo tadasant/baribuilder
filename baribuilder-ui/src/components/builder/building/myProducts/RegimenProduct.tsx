@@ -17,6 +17,7 @@ import {
 } from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
 import {BoldBody, Caption} from '../../../style/Typography';
 import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
+import XRegimenProductIcon from './XRegimenProductIcon';
 
 interface IProps {
   catalogProductId: string;
@@ -108,8 +109,11 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
         </CenteredTextGrid>
         <Fragment>
           <Grid item lg={4} />
-          <Grid item lg={4}>
+          <Grid item lg={3}>
             <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
+          </Grid>
+          <Grid item lg={1}>
+            <XRegimenProductIcon catalogProductId={catalogProductId}/>
           </Grid>
           <Grid item lg={4} />
         </Fragment>

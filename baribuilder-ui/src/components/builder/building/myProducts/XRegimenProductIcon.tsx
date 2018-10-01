@@ -1,0 +1,57 @@
+import gql from 'graphql-tag';
+import * as React from 'react';
+import {SFC} from 'react';
+import {DataProps, graphql, MutateProps} from 'react-apollo';
+import {compose, pure} from "recompose";
+import XIcon from '../../../../assets/icon/x.svg';
+import {
+  DeleteCurrentRegimenProductQuantity,
+  DeleteCurrentRegimenProductQuantityVariables
+} from '../../../../typings/gql/DeleteCurrentRegimenProductQuantity';
+import {XIconImg} from '../../../goals/children/IngredientRangeSelection';
+import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
+
+interface IProps {
+  catalogProductId: string;
+}
+
+
+const REGIMEN_PRODUCT_QUANTITY_DELETE_MUTATION = gql`
+    mutation DeleteCurrentRegimenProductQuantity($catalogProductId: ID!) {
+        DeleteCurrentRegimenProductQuantity(
+            catalogProductId: $catalogProductId,
+        ) @client {
+            products {
+                catalogProductId
+            }
+        }
+    }
+`;
+
+type MutationOutputProps =
+  Partial<DataProps<DeleteCurrentRegimenProductQuantity, DeleteCurrentRegimenProductQuantityVariables>>
+  & Partial<MutateProps<DeleteCurrentRegimenProductQuantity, DeleteCurrentRegimenProductQuantityVariables>>;
+
+const withMutation = graphql<IProps, DeleteCurrentRegimenProductQuantity>(REGIMEN_PRODUCT_QUANTITY_DELETE_MUTATION, {
+  options: ({catalogProductId}) => ({
+    variables: {catalogProductId},
+    refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+  }),
+});
+
+const enhance = compose<IProps & MutationOutputProps, IProps>(
+  withMutation,
+  pure,
+);
+
+
+const XRegimenProductIcon: SFC<MutationOutputProps & IProps> = ({mutate}) => {
+  if (!mutate) {
+    console.warn('Mutate unavailable. Error code 952838.');
+    return null;
+  }
+  const handleClick = () => mutate();
+  return <XIconImg src={XIcon} onClick={handleClick}/>;
+};
+
+export default enhance(XRegimenProductIcon);

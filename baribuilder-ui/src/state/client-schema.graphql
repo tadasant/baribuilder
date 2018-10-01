@@ -107,4 +107,5 @@ extend type Mutation {
     AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): Regimen!
     SetGoalIngredients(goalIngredients: GoalIngredientsInput!): GoalIngredients!
     SetCurrentRegimenProductQuantity(catalogProductId: ID!, regimenProductQuantity: RegimenProductQuantityInput!): Regimen!
+    DeleteCurrentRegimenProductQuantity(catalogProductId: ID!): Regimen!
 }
