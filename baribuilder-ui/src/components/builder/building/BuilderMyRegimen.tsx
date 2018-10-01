@@ -14,7 +14,7 @@ const OuterGrid = styled(Grid)`
   && {
     padding-top: 16px;
     padding-bottom: 16px;
-    height: calc(100vh - ${tabFooterHeight});;
+    height: calc(100vh - ${tabFooterHeight});
     overflow-y: scroll;
   }
 `;

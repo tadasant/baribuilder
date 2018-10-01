@@ -8,6 +8,8 @@ import CurrentRegimenProducts from './myProducts/CurrentRegimenProducts';
 const PaddedGrid = styled(Grid)`
   padding-left: 8px;
   padding-right: 8px;
+  height: 100vh;
+  overflow-y: scroll;
 `;
 
 // Pure
