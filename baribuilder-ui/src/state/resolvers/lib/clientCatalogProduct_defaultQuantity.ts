@@ -90,9 +90,10 @@ export const calculateDefaultQuantity = (
   currentRegimenProducts: IRegimenProduct[]
 ): ICatalogProductQuantity => {
   const targetIngredientRanges = calculateTargetIngredientRanges(goalIngredientRanges, currentRegimenProducts, products);
+  const amount = deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges)
   return {
     __typename: 'CatalogProductQuantity',
-    amount: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),
+    amount: amount > 0 ? amount : 1,
     units: PRODUCT_QUANTITY_UNITS.SERVINGS,
     frequency: FREQUENCY.DAILY,
   };
