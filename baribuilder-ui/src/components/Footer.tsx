@@ -3,10 +3,11 @@ import Hidden from '@material-ui/core/Hidden';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
-import {generateTrackExternalLinkClick} from '../lib/gaHelper';
+import {generateTrackExternalLinkClick, generateTrackNavClick} from '../lib/gaHelper';
 import Sketch from './../app/style/SketchVariables';
 import {CenteredTextGrid} from './goals/GoalsScreenPure';
 import {media} from './style/Core';
+import {UndecoratedLink} from './style/CustomMaterial';
 import {EmptyRow} from './style/Layout';
 import {Caption, Subcaption} from './style/Typography';
 
@@ -25,6 +26,15 @@ const DisclaimerCaption = styled(Caption)`
 
 const RightAlignTextGrid = styled(Grid)`
   text-align: right;
+`;
+
+const WhiteUndecoratedLink = styled(UndecoratedLink)`
+  color: ${Sketch.color.accent.white};
+`;
+
+const WhiteUndecoratedAnchor = styled.a`
+  color: ${Sketch.color.accent.white};
+  text-decoration: unset;
 `;
 
 interface IProps {
@@ -58,15 +68,19 @@ const Footer: SFC<IProps> = props => {
               <EmptyRow tablet='1px'/>
               <Subcaption>© Vita.G, LLC 2018 |&nbsp;</Subcaption>
               <Subcaption>
-                <a href='https://www.iubenda.com/privacy-policy/25172832'
+                <WhiteUndecoratedAnchor href='https://www.iubenda.com/privacy-policy/25172832'
                    target='_blank'
                    rel='noopener noreferrer nofollow'
                    onClick={generateTrackExternalLinkClick('footer privacy policy')}>
                   Privacy Policy
-                </a>
+                </WhiteUndecoratedAnchor>
                 &nbsp;|&nbsp;
               </Subcaption>
-              <Subcaption>Terms & Conditions</Subcaption>
+              <Subcaption>
+                <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('footer t&c')}>
+                  Terms & Conditions
+                </WhiteUndecoratedLink>
+              </Subcaption>
             </Grid>
             <CenteredTextGrid item sm={3} container>
               <Grid item sm={12}>
@@ -107,16 +121,18 @@ const Footer: SFC<IProps> = props => {
               <Grid item xs={1}/>
               <Grid item xs={5}>
                 <Subcaption>
-                  <a href='https://www.iubenda.com/privacy-policy/25172832'
+                  <WhiteUndecoratedAnchor href='https://www.iubenda.com/privacy-policy/25172832'
                      target='_blank'
                      rel='noopener noreferrer nofollow'
                      onClick={generateTrackExternalLinkClick('footer privacy policy')}>
                     Privacy Policy
-                  </a>
+                  </WhiteUndecoratedAnchor>
                 </Subcaption>
               </Grid>
               <RightAlignTextGrid item xs={5}>
-                <Subcaption>Terms & Conditions</Subcaption>
+                <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('footer t&c')}>
+                  Terms & Conditions
+                </WhiteUndecoratedLink>
               </RightAlignTextGrid>
               <Grid item xs={1}/>
             </Fragment>

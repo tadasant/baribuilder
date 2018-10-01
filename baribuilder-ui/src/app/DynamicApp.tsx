@@ -10,6 +10,7 @@ import {Route, Switch} from 'react-router-dom';
 import BuilderScreen from '../components/builder/BuilderScreen';
 import Footer from '../components/Footer';
 import GoalsScreen from '../components/goals/GoalsScreen';
+import TermsAndConditions from '../components/TermsAndConditions';
 import config, {isProduction} from '../config/config';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
@@ -24,14 +25,15 @@ const cache = new InMemoryCache({
       case 'ClientCatalogProduct': return `ClientCatalogProduct:${object.catalogProductId}`;
       // @ts-ignore Bug
       case 'IngredientType': return `IngredientType:${object.name}`;
-      default: return defaultDataIdFromObject(object);
+      default:
+        return defaultDataIdFromObject(object);
     }
   },
   // Prevent unnecessary cache misses https://www.apollographql.com/docs/react/advanced/caching.html#cacheRedirect
   cacheRedirects: {
     Query: {
       CatalogProduct: (_, args, myCache) =>
-        myCache.getCacheKey({ __typename: 'CatalogProduct', id: args.id }),
+        myCache.getCacheKey({__typename: 'CatalogProduct', id: args.id}),
     },
   },
 });
@@ -62,6 +64,7 @@ class DynamicApp extends Component {
         <Switch>
           <Route path="/browse" component={BuilderScreen}/>
           <Route exact path="/build" component={GoalsScreen}/>
+          <Route exact path="/terms-and-conditions" component={TermsAndConditions}/>
           {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
           <Route component={NotFound}/>
         </Switch>
