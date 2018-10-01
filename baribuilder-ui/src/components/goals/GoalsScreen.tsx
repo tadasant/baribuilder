@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import update from 'immutability-helper';
+import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
@@ -89,16 +90,23 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     return null;
   }
 
-  state: IState = {
-    didMakeClientSideChanges: false,
-  };
-
   constructor(props: TProps) {
     super(props);
+    this.state = this.deriveStateFromQueryParams();
     this.handleChangeGoal = this.handleChangeGoal.bind(this);
     this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
     this.handleAddGoal = this.handleAddGoal.bind(this);
     this.handleSetAndBrowse = this.handleSetAndBrowse.bind(this);
+  }
+
+  deriveStateFromQueryParams(): IState {
+    const queryString = this.props.location.search;
+    if (!queryString) {
+      return {
+        didMakeClientSideChanges: false,
+      };
+    }
+    return qs.parse(queryString.slice(1));
   }
 
   /**
@@ -218,7 +226,11 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
 
   handleCopyURL = (): void => {
     // TODO construct real URL, do a copy instead of log
-    const url = 'baribuilder.com';
+    const stateAsQueryString = qs.stringify({
+      ...this.state,
+      didMakeClientSideChanges: false,
+    });
+    const url = this.props.location.pathname + `?${stateAsQueryString}`;
     console.log(url);
   };
 
