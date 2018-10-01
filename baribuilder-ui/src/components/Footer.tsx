@@ -23,6 +23,10 @@ const DisclaimerCaption = styled(Caption)`
   `}
 `;
 
+const RightAlignTextGrid = styled(Grid)`
+  text-align: right;
+`;
+
 interface IProps {
   disclaimerText?: string;
 }
@@ -31,8 +35,8 @@ const Footer: SFC<IProps> = props => {
   return (
     <BlackGrid item container direction='row'>
       <EmptyRow mobile='5px'/>
-      <Grid item xs={1} sm={2}/>
-      <Grid item container xs={10} sm={8}>
+      <Grid item xs={1}/>
+      <Grid item container xs={10}>
         {props.disclaimerText
           ? (
             <CenteredTextGrid item xs={12}>
@@ -52,7 +56,17 @@ const Footer: SFC<IProps> = props => {
                 />
               </a>
               <EmptyRow tablet='1px'/>
-              <Subcaption>© Vita.G, LLC 2018</Subcaption>
+              <Subcaption>© Vita.G, LLC 2018 |&nbsp;</Subcaption>
+              <Subcaption>
+                <a href='https://www.iubenda.com/privacy-policy/25172832'
+                   target='_blank'
+                   rel='noopener noreferrer nofollow'
+                   onClick={generateTrackExternalLinkClick('footer privacy policy')}>
+                  Privacy Policy
+                </a>
+                &nbsp;|&nbsp;
+              </Subcaption>
+              <Subcaption>Terms & Conditions</Subcaption>
             </Grid>
             <CenteredTextGrid item sm={3} container>
               <Grid item sm={12}>
@@ -89,6 +103,24 @@ const Footer: SFC<IProps> = props => {
             </CenteredTextGrid>
           </Hidden>
           <Hidden smUp>
+            <Fragment>
+              <Grid item xs={1}/>
+              <Grid item xs={5}>
+                <Subcaption>
+                  <a href='https://www.iubenda.com/privacy-policy/25172832'
+                     target='_blank'
+                     rel='noopener noreferrer nofollow'
+                     onClick={generateTrackExternalLinkClick('footer privacy policy')}>
+                    Privacy Policy
+                  </a>
+                </Subcaption>
+              </Grid>
+              <RightAlignTextGrid item xs={5}>
+                <Subcaption>Terms & Conditions</Subcaption>
+              </RightAlignTextGrid>
+              <Grid item xs={1}/>
+            </Fragment>
+            <EmptyRow/>
             <CenteredTextGrid item xs={12}>
               <a href='mailto:feedback@vitaglab.com'
                  onClick={generateTrackExternalLinkClick('footer email')}><Subcaption>feedback@vitaglab.com</Subcaption></a>
@@ -144,7 +176,7 @@ const Footer: SFC<IProps> = props => {
           </Hidden>
         </Grid>
       </Grid>
-      <Grid item xs={1} sm={2}/>
+      <Grid item xs={1}/>
       <EmptyRow mobile='5px'/>
     </BlackGrid>
   );
