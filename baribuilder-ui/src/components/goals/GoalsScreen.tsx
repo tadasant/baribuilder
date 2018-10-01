@@ -124,7 +124,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     }
 
     const rangeIndex = this.state.desiredIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
-    this.setState(update(this.state, {
+    const updatedState = {
       desiredIngredients: {
         ingredientRanges: {
           [rangeIndex]: {
@@ -133,7 +133,28 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
         }
       },
       didMakeClientSideChanges: {$set: true},
-    }));
+    };
+
+    if (key === 'ingredientTypeName') {
+      // Reset the whole row since we're effectively changing the "PK"
+      if (!this.props.data.allIngredientTypes) {
+        console.warn('allIngredientTypes not loaded. Error code 13873');
+        return;
+      }
+      const ingredientType = this.props.data.allIngredientTypes.find(i => i.name === value);
+      if (!ingredientType) {
+        console.warn('ingredientType key not found. Error code 13873');
+        return;
+      }
+      updatedState.desiredIngredients.ingredientRanges[rangeIndex] = {
+        minimumAmount: {$set: null},
+        maximumAmount: {$set: null},
+        units: {$set: ingredientType.defaultUnits},
+        frequency: {$set: FREQUENCY.DAILY},
+      }
+    }
+
+    this.setState(update(this.state, updatedState));
   };
 
   handleRemoveGoal: HandleRemoveGoalFunc = (ingredientTypeName) => {
