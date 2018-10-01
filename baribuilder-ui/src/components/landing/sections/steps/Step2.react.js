@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
+import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
 import StepOval from './StepOval.react';
 import {EmptyRow} from '../../../style/Layout';
 import styled from 'styled-components';
@@ -68,9 +69,9 @@ const Step2 = () => (
         <Grid item xs={1} sm={2} />
         <Grid item xs={10} sm={8} container justify='center'>
           <EmptyRow mobile='10px'/>
-          <Grid item lg={12}>
+          <CenteredTextGrid item lg={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
-          </Grid>
+          </CenteredTextGrid>
           <Grid item xs={12}>
             <OptionPill value={optionsCopy[0]} />
             <OptionPill value={optionsCopy[1]} />

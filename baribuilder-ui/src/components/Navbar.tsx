@@ -9,7 +9,7 @@ import {fixedWidthImage} from '../lib/imageKitHelpers';
 import {UndecoratedLink} from './style/CustomMaterial';
 
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
-export const headerHeight = '64px';
+export const navbarHeight = '64px';
 
 const PaddedImg = styled.img`
   height: 80%;
@@ -19,7 +19,7 @@ const PaddedImg = styled.img`
 const GridWithRaisedBackground = styled(Grid)`
   background-color: ${Sketch.color.accent.black};
   box-shadow: 0px 2px 4px 0px;
-  height: ${headerHeight};
+  height: ${navbarHeight};
   z-index: 2;
   position: relative;
 `;

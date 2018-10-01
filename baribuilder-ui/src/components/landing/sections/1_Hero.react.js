@@ -9,13 +9,14 @@ import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
 import {generateTrackNavClick} from '../../../lib/gaHelper';
 import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
+import {navbarHeight} from '../../Navbar';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
 import SignupForm from '../SignupForm';
 
 const HeroGrid = styled(Grid)`
-  height: 100vh;
+  height: calc(100vh - ${navbarHeight});
 
   background-image: url('${images.hero.mobile}');
   background-repeat: no-repeat;

@@ -1,13 +1,14 @@
-import React, {Fragment} from 'react';
-import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
-import StepOval from './StepOval.react';
-import {EmptyRow} from '../../../style/Layout';
+import Hidden from '@material-ui/core/Hidden';
+import React, {Fragment} from 'react';
 import styled from 'styled-components';
-import {Body, Header2} from '../../../style/Typography';
-import OptionPill from './OptionPill.react';
 import Sketch from '../../../../app/style/SketchVariables';
 import images from '../../../../constants/images';
+import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
+import {EmptyRow} from '../../../style/Layout';
+import {Body, Header2} from '../../../style/Typography';
+import OptionPill from './OptionPill.react';
+import StepOval from './StepOval.react';
 
 const LeftAlignHeader2 = styled(Header2)`
   text-align: left;
@@ -51,7 +52,7 @@ const Step1 = () => (
       </Hidden>
       <EmptyRow mobile='5px'/>
       <Hidden only='xs'>
-        <Grid item sm={1} />
+        <Grid item sm={1}/>
       </Hidden>
       <Grid item xs={12} sm={10}>
         <FullWidthImg
@@ -63,27 +64,27 @@ const Step1 = () => (
         />
       </Grid>
       <Hidden only='xs'>
-        <Grid item sm={1} />
+        <Grid item sm={1}/>
       </Hidden>
       <Fragment>
-        <Grid item xs={1} sm={2} />
+        <Grid item xs={1} sm={2}/>
         <Grid item xs={10} sm={8} container justify='center'>
           <EmptyRow mobile='10px'/>
-          <Grid item lg={12}>
+          <CenteredTextGrid item lg={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
-          </Grid>
+          </CenteredTextGrid>
           <Grid item xs={12}>
-            <OptionPill value={optionsCopy[0]} />
-            <OptionPill value={optionsCopy[1]} />
-            <OptionPill value={optionsCopy[2]} />
+            <OptionPill value={optionsCopy[0]}/>
+            <OptionPill value={optionsCopy[1]}/>
+            <OptionPill value={optionsCopy[2]}/>
           </Grid>
         </Grid>
-        <Grid item xs={1} sm={2} />
+        <Grid item xs={1} sm={2}/>
       </Fragment>
     </Hidden>
     {/* Desktop */}
     <Hidden mdDown>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
       <Grid item lg={1} container>
         <Grid item lg={12}>
           <StepOval value='1'/>
@@ -92,21 +93,23 @@ const Step1 = () => (
       <Grid item lg={4} container>
         <Grid item lg={12}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
-          <EmptyRow desktop='20px'/>
-          <CenteredBody dark>{subInstructionCopy}</CenteredBody>
-          <OptionPill value={optionsCopy[0]} />
-          <OptionPill value={optionsCopy[1]} />
-          <OptionPill value={optionsCopy[2]} />
         </Grid>
+        <EmptyRow desktop='20px'/>
+        <CenteredTextGrid item lg={12}>
+          <CenteredBody dark>{subInstructionCopy}</CenteredBody>
+          <OptionPill value={optionsCopy[0]}/>
+          <OptionPill value={optionsCopy[1]}/>
+          <OptionPill value={optionsCopy[2]}/>
+        </CenteredTextGrid>
       </Grid>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
       <Grid item lg={4}>
         <FullWidthImg
           src={images.step1.tablet}
           alt='Step 1: Enter Your Desired Dosages Image'
         />
       </Grid>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
     </Hidden>
   </Fragment>
 );
