@@ -27,6 +27,7 @@ const TabGrid = styled(Grid)`
   max-height: 100vh;
   position: sticky;
   top: 0;
+  overflow-y: scroll;
 `;
 
 const getSelectedCategory = (pathname: string) => {
