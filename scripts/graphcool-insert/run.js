@@ -1,7 +1,7 @@
 import {fromEvent} from 'graphcool-lib';
-import data from './input/productNames';
+import data from './input/imageURLs';
 
-const pat = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MzgzOTA3NjAsImNsaWVudElkIjoiY2psemtzaHB0MTB0czAxNDIybDlzM2pkbyIsInByb2plY3RJZCI6ImNqbHpxdmF3dDFpYjAwMTA3ZzNuZnIwNGkiLCJwZXJtYW5lbnRBdXRoVG9rZW5JZCI6ImNqbXE2NHptajJ5bGcwMTMwbzFsenhjbGMifQ.17q8GNMZI8r53I3QfgQhlkumnbZQRezevQ_L7NE0pHA';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MzgzOTA3NjAsImNsaWVudElkIjoiY2psemtzaHB0MTB0czAxNDIybDlzM2pkbyIsInByb2plY3RJZCI6ImNqbHpxdmF3dDFpYjAwMTA3ZzNuZnIwNGkiLCJwZXJtYW5lbnRBdXRoVG9rZW5JZCI6ImNqbXE2NHptajJ5bGcwMTMwbzFsenhjbGMifQ.17q8GNMZI8r53I3QfgQhlkumnbZQRezevQ_L7NE0pHA';
 const projectId = 'cjlzqvawt1ib00107g3nfr04i';
 
 const event = {
@@ -9,7 +9,7 @@ const event = {
     graphcool: {
       projectId,
       // include a PAT if you need full read/write access on the server-side
-      pat,
+      rootToken: token,
     }
   }
 };
@@ -62,6 +62,13 @@ const catalogProductRecordToEntry = (record) => {
   }
 };
 
+const imageURLRecordToEntry = (record) => {
+  return {
+    'productId': `"${record['id']}"`, // string
+    'url': `"${record['url']}"`, // string
+  }
+};
+
 // inserting ingredient types
 // const run = () => {
 //   const dataType = data['typeName'];
@@ -76,14 +83,26 @@ const catalogProductRecordToEntry = (record) => {
 //   });
 // };
 
+// updating product names
+// const run = () => {
+//   data.forEach(record => {
+//     const entry = catalogProductRecordToEntry(record);
+//     const query = generateUpdateMutation('CatalogProduct', entry);
+//     api
+//       .request(query)
+//       .then(data => console.log(data))
+//   });
+// };
+
 const run = () => {
   data.forEach(record => {
-    const entry = catalogProductRecordToEntry(record);
-    const query = generateUpdateMutation('CatalogProduct', entry);
+    const entry = imageURLRecordToEntry(record);
+    const query = generateCreateMutation('Image', entry);
+    // console.log(query);
     api
       .request(query)
       .then(data => console.log(data))
   });
 };
 
-// run();
+run();

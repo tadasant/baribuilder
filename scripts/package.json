@@ -3,6 +3,7 @@
     "set": "babel-node graphcool-set/run.js",
     "set-ingr-qty": "babel-node graphcool-set-ingr-qty/run.js",
     "insert": "babel-node graphcool-insert/run.js",
+    "delete": "babel-node graphcool-delete/run.js",
     "import": "babel-node graphcms-to-graphcool/run.js"
   },
   "dependencies": {
