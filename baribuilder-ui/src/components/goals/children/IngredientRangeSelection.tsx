@@ -63,7 +63,7 @@ const XIconImg = styled.img`
 `;
 
 
-const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingredientRange, onChange, onRemove, data: {allIngredientTypes, FREQUENCIES, INGREDIENT_QUANTITY_UNITSES}}) => {
+const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingredientRange, onChange, onRemove, data: {allIngredientTypes}}) => {
   const handleChangeIngredientTypeName: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
     onChange(ingredientRange.ingredientTypeName, 'ingredientTypeName', event.target.value);
   };
@@ -120,9 +120,11 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       <Grid item lg={1} container direction='column' justify='flex-end'>
         <Grid item>
           <ShadowedSelect value={ingredientRange.units} onChange={handleChangeUnits}>
-            {INGREDIENT_QUANTITY_UNITSES && INGREDIENT_QUANTITY_UNITSES.enumValues ? INGREDIENT_QUANTITY_UNITSES.enumValues.map(units => (
-              <MenuItem value={units.name} key={units.name}>{units.name.toLowerCase()}</MenuItem>
-            )) : null}
+            {/* Disabling while feature unimplemented */}
+            {/*{INGREDIENT_QUANTITY_UNITSES && INGREDIENT_QUANTITY_UNITSES.enumValues ? INGREDIENT_QUANTITY_UNITSES.enumValues.map(units => (*/}
+              {/*<MenuItem value={units.name} key={units.name}>{units.name.toLowerCase()}</MenuItem>*/}
+            {/*)) : null}*/}
+            <MenuItem value={ingredientRange.units} key={ingredientRange.units}>{ingredientRange.units.toLowerCase()}</MenuItem>
           </ShadowedSelect>
         </Grid>
       </Grid>
@@ -130,10 +132,12 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
         <Grid item lg={10} container direction='column' justify='flex-end'>
           <Grid item>
             <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
-              {FREQUENCIES && FREQUENCIES.enumValues ? FREQUENCIES.enumValues.map(frequency => (
-                <MenuItem value={frequency.name}
-                          key={frequency.name}>{upperFirst(frequency.name.toLowerCase())}</MenuItem>
-              )) : null}
+              {/* Disabling while feature unimplemented */}
+              {/*{FREQUENCIES && FREQUENCIES.enumValues ? FREQUENCIES.enumValues.map(frequency => (*/}
+                {/*<MenuItem value={frequency.name}*/}
+                          {/*key={frequency.name}>{upperFirst(frequency.name.toLowerCase())}</MenuItem>*/}
+              {/*)) : null}*/}
+              <MenuItem value={ingredientRange.frequency} key={ingredientRange.frequency}>{upperFirst(ingredientRange.frequency.toLowerCase())}</MenuItem>
             </ShadowedSelect>
           </Grid>
         </Grid>
