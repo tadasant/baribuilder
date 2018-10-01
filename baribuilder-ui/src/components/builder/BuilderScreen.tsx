@@ -77,7 +77,7 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
     super(props);
     this.state = {
       showMyProducts: false,
-      showMyRegimen: false,
+      showMyRegimen: true,
     };
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
     this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
