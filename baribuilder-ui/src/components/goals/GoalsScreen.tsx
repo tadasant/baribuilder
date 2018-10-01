@@ -106,7 +106,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
    * @param key IngredientRange key e.g. ingreidentTypeName, minimumAmount, maximumAmount, frequency, units
    * @param value value to set
    */
-  // TODO replace keying by name to use index instead
+    // TODO replace keying by name to use index instead
   handleChangeGoal: HandleChangeGoalFunc = (ingredientTypeName, key, value) => {
     if (!this.state.goalIngredients) {
       return;
@@ -154,7 +154,6 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
         frequency: {$set: FREQUENCY.DAILY},
       }
     }
-
     this.setState(update(this.state, updatedState));
   };
 
@@ -217,6 +216,12 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     this.props.history.push('/browse/all_products');
   };
 
+  handleCopyURL = (): void => {
+    // TODO construct real URL, do a copy instead of log
+    const url = 'baribuilder.com';
+    console.log(url);
+  };
+
   render() {
     return (
       <GoalsScreenPure
@@ -225,6 +230,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
         onRemoveGoal={this.handleRemoveGoal}
         onAddGoal={this.handleAddGoal}
         onSetAndBrowse={this.handleSetAndBrowse}
+        onCopyURL={this.handleCopyURL}
       />
     );
   }

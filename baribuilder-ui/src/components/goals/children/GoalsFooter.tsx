@@ -5,18 +5,31 @@ import styled from 'styled-components';
 
 interface IProps {
   onClickSetAndBrowse: () => void;
+  onClickCopyURL: () => void;
 }
 
 const RightOffsetButton = styled(Button)`
   && {
-    margin-left: 10%;
+    left: 10%;
+  }
+`;
+
+const LeftOffsetButton = styled(Button)`
+  && {
+    right: 10%;
   }
 `;
 
 const GoalsFooter: SFC<IProps> = (props) => {
   return (
     <Fragment>
-      <Grid item lg={7}/>
+      <Grid item lg={1}/>
+      <Grid item lg={4}>
+        <LeftOffsetButton variant='raised' color='default' fullWidth onClick={props.onClickCopyURL}>
+          Copy URL to this page with goals
+        </LeftOffsetButton>
+      </Grid>
+      <Grid item lg={2}/>
       <Grid item lg={4}>
         <RightOffsetButton variant='raised' color='secondary' fullWidth onClick={props.onClickSetAndBrowse}>
           Set Goals & Browse

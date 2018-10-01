@@ -16,6 +16,7 @@ interface IProps {
   onRemoveGoal: HandleRemoveGoalFunc;
   onAddGoal: HandleAddGoalFunc;
   onSetAndBrowse: () => void;
+  onCopyURL: () => void;
 }
 
 const AddBoxGrid = styled(Grid)`
@@ -94,7 +95,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
       <Footer>
         <FooterGrid container direction='column' justify='center'>
           <Grid item container>
-            <GoalsFooter onClickSetAndBrowse={props.onSetAndBrowse}/>
+            <GoalsFooter onClickSetAndBrowse={props.onSetAndBrowse} onClickCopyURL={props.onCopyURL}/>
           </Grid>
         </FooterGrid>
       </Footer>
