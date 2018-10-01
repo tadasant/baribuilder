@@ -11,7 +11,6 @@ const SetGoalIngredientsResolver: TResolverFunc<{}, ISetGoalIngredientsArgs, IGo
       goalIngredients: args.goalIngredients,
     }
   });
-  // TODO needs to bust up LocalProductCatalog cache
   return args.goalIngredients;
 };
 

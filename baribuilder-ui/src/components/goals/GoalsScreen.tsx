@@ -147,6 +147,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
         return;
       }
       updatedState.goalIngredients.ingredientRanges[rangeIndex] = {
+        ...updatedState.goalIngredients.ingredientRanges[rangeIndex],
         minimumAmount: {$set: null},
         maximumAmount: {$set: null},
         units: {$set: ingredientType.defaultUnits},

@@ -1,9 +1,9 @@
 import {Button, Grid} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
-import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
+import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import CurrentRegimenCost from './myRegimen/CurrentRegimenCost';
 import RegimenFacts from './myRegimen/RegimenFacts';
@@ -38,7 +38,7 @@ const FooterGrid = styled(Grid)`
   }
 `;
 
-const WideLink = styled(Link)`
+const WideLink = styled(UndecoratedLink)`
   && {
     width: 100%;
     padding-left: 16px;
@@ -54,13 +54,13 @@ const BuilderMyRegimen: SFC = () => {
         <Grid item lg={1}/>
         <Grid item lg={10} container alignContent='flex-start'>
           <Grid item lg={12}>
-            <CurrentRegimenCost />
+            <CurrentRegimenCost/>
           </Grid>
           <EmptyRow/>
           <BottomBorderedGrid item lg={12}/>
           <EmptyRow/>
           <Grid item container lg={12}>
-            <RegimenFacts />
+            <RegimenFacts/>
           </Grid>
         </Grid>
         <Grid item lg={1}/>
