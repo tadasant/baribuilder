@@ -1,14 +1,15 @@
-import React, {Component, Fragment} from 'react';
-import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
-import {Header} from '../../style/Typography';
+import {Button} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Sketch from '../../../app/style/SketchVariables';
-import styled from 'styled-components';
-import {EmptyRow} from '../../style/Layout';
-import {media} from '../../style/Core';
-import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import ReactGA from 'react-ga';
+import React, {Component, Fragment} from 'react';
+import styled from 'styled-components';
+import Sketch from '../../../app/style/SketchVariables';
+import {generateTrackNavClick} from '../../../lib/gaHelper';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
+import {media} from '../../style/Core';
+import {UndecoratedLink} from '../../style/CustomMaterial';
+import {EmptyRow} from '../../style/Layout';
+import {Header} from '../../style/Typography';
 
 const BoxedBlueShadowHangingGrid = styled(Grid)`
   && {
@@ -51,7 +52,7 @@ class BottomCTABanner extends Component {
         <BoxedBlueShadowHangingGrid item xs={10} sm={8} container>
           <EmptyRow mobile='20px' tablet='65px'/>
           <Grid item xs={12} container>
-            <Grid item xs={2} lg={1} />
+            <Grid item xs={2} lg={1}/>
             <CenteredTextGrid item xs={8} lg={10}>
               <HeaderWithHeader2MobileSize dark>Find your personalized vitamins.</HeaderWithHeader2MobileSize>
             </CenteredTextGrid>
@@ -61,13 +62,11 @@ class BottomCTABanner extends Component {
           <Fragment>
             <Grid item xs={2} sm={3} lg={4}/>
             <Grid item xs={8} sm={6} lg={4}>
-              <Button
-                color='secondary'
-                fullWidth
-                variant='raised'
-                onClick={this.handleCTAClick}>
-                Join Waitlist
-              </Button>
+              <UndecoratedLink to={'/browse/all_products'} onClick={generateTrackNavClick('Browse CTA')}>
+                <Button variant='raised' fullWidth color='secondary'>
+                  Browse Product Catalog
+                </Button>
+              </UndecoratedLink>
             </Grid>
             <Grid item xs={2} sm={3} lg={4}/>
           </Fragment>
