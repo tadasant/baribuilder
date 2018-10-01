@@ -6,7 +6,7 @@ import {EmptyRow} from '../style/Layout';
 import UniqueSection from './sections/3_UniqueSection.react';
 import HowItWorksSection from './sections/4_HowItWorksSection.react';
 import BottomCTABanner from './sections/5_BottomCTABanner.react';
-import Footer from './sections/Footer.react.js';
+import Footer from './sections/LandingFooter.react.js';
 import styled from 'styled-components';
 import ScrollPercentage from 'react-scroll-percentage';
 import ReactGA from 'react-ga';

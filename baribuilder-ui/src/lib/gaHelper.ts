@@ -7,3 +7,11 @@ export const generateTrackNavClick = (label: string): (() => void) => {
     label,
   });
 };
+
+export const generateTrackExternalLinkClick = (label: string): (() => void) => {
+  return () => ReactGA.event({
+    category: 'Outbound Link',
+    action: 'click',
+    label,
+  });
+};
