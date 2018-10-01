@@ -1,7 +1,9 @@
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
 import * as React from 'react';
 import {SFC} from 'react';
+import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import Sketch from '../app/style/SketchVariables';
 import {generateTrackNavClick} from '../lib/gaHelper';
@@ -30,11 +32,8 @@ const WhiteNavButton = styled(Button)`
   }
 `;
 
-interface IProps {
-  showCheckout?: boolean;
-}
-
-const NavbarPure: SFC<IProps> = () => {
+const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
+  const showCheckout = location.pathname.startsWith('/browse');
   return (
     <GridWithRaisedBackground container>
       <Grid item xs={6}>
@@ -43,6 +42,17 @@ const NavbarPure: SFC<IProps> = () => {
         </UndecoratedLink>
       </Grid>
       <Grid item xs={6} container alignItems='center' justify='flex-end'>
+        {showCheckout
+          ? (
+            <Grid item>
+              <Tooltip
+                title={'Sorry, checkout is not yet available. To buy products on Amazon, open "My Products" and click the name of each product you\'ve added to your regimen.'}>
+                <Button color='primary' variant='raised'>Checkout</Button>
+              </Tooltip>
+            </Grid>
+          )
+          : null
+        }
         <Grid item>
           <UndecoratedLink to='/browse/all_products' onClick={generateTrackNavClick('Browse nav')}>
             <WhiteNavButton fullWidth>
@@ -63,4 +73,4 @@ const NavbarPure: SFC<IProps> = () => {
   )
 };
 
-export default NavbarPure;
+export default withRouter(NavbarPure);
