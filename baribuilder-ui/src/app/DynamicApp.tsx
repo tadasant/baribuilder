@@ -8,6 +8,7 @@ import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
 import {Route, Switch} from 'react-router-dom';
 import BuilderScreen from '../components/builder/BuilderScreen';
+import Footer from '../components/Footer';
 import GoalsScreen from '../components/goals/GoalsScreen';
 import config, {isProduction} from '../config/config';
 import defaults from '../state/defaults';
@@ -51,6 +52,9 @@ const client = new ApolloClient({
   cache,
 });
 
+const disclaimerText = 'The information on this website is not medical advice. Please consult your medical provider ' +
+  'before making any changes to your supplementation regimen.';
+
 class DynamicApp extends Component {
   render() {
     return (
@@ -61,6 +65,7 @@ class DynamicApp extends Component {
           {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
           <Route component={NotFound}/>
         </Switch>
+        <Footer disclaimerText={disclaimerText}/>
       </ApolloProvider>
     );
   }

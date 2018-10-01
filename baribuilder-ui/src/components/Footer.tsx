@@ -10,7 +10,7 @@ import {media} from './style/Core';
 import {EmptyRow} from './style/Layout';
 import {Caption, Subcaption} from './style/Typography';
 
-const BlackGrid = styled(Grid)`
+export const BlackGrid = styled(Grid)`
   background-color: ${Sketch.color.accent.black};
 `;
 
@@ -30,18 +30,18 @@ interface IProps {
 const Footer: SFC<IProps> = props => {
   return (
     <BlackGrid item container direction='row'>
-      <EmptyRow mobile='115px' tablet='140px'/>
+      <EmptyRow mobile='5px'/>
       <Grid item xs={1} sm={2}/>
       <Grid item container xs={10} sm={8}>
         {props.disclaimerText
           ? (
-            <Grid item xs={12}>
+            <CenteredTextGrid item xs={12}>
               <DisclaimerCaption>{props.disclaimerText}</DisclaimerCaption>
-            </Grid>
+            </CenteredTextGrid>
           )
           : null
         }
-        <EmptyRow mobile='5px' tablet='40px'/>
+        <EmptyRow mobile='5px'/>
         <Grid item container direction='row'>
           <Hidden only='xs'>
             <Grid item sm={9} container>
@@ -138,14 +138,14 @@ const Footer: SFC<IProps> = props => {
               </a>
             </Grid>
             <EmptyRow mobile='1px'/>
-            <Grid item xs={12}>
+            <CenteredTextGrid item xs={12}>
               <Subcaption>© Vita.G, LLC 2018</Subcaption>
-            </Grid>
+            </CenteredTextGrid>
           </Hidden>
         </Grid>
       </Grid>
       <Grid item xs={1} sm={2}/>
-      <EmptyRow mobile='5px' tablet='40px'/>
+      <EmptyRow mobile='5px'/>
     </BlackGrid>
   );
 };
