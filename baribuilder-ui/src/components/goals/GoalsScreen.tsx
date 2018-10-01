@@ -1,3 +1,4 @@
+import * as copy from 'copy-to-clipboard';
 import gql from 'graphql-tag';
 import update from 'immutability-helper';
 import * as qs from 'qs';
@@ -225,13 +226,12 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
   };
 
   handleCopyURL = (): void => {
-    // TODO construct real URL, do a copy instead of log
     const stateAsQueryString = qs.stringify({
       ...this.state,
       didMakeClientSideChanges: false,
     });
-    const url = this.props.location.pathname + `?${stateAsQueryString}`;
-    console.log(url);
+    const url = `${window.location.host}${this.props.location.pathname}?${stateAsQueryString}`;
+    copy(url);
   };
 
   render() {
