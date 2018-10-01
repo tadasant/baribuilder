@@ -1,6 +1,6 @@
 import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngredients';
 import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenProducts';
-import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
+import {GetGoalIngredients} from '../../../typings/gql/GetGoalIngredients';
 import {GetProductIngredients} from '../../../typings/gql/GetProductIngredients';
 import {ICatalogProductQuantity} from '../../client-schema-types';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
@@ -11,7 +11,7 @@ import {calculateDefaultQuantity} from '../lib/clientCatalogProduct_defaultQuant
 import {
   ALL_PRODUCTS_INGREDIENTS_QUERY,
   CURRENT_REGIMEN_PRODUCTS_QUERY,
-  DESIRED_INGREDIENTS_QUERY,
+  GOAL_INGREDIENTS_QUERY,
   PRODUCT_INGREDIENTS_QUERY
 } from './queries';
 
@@ -25,8 +25,8 @@ const defaultQuantityResolver: TLocalCatalogProductResolverFunc<IProductObj, ICa
   const allProductsResult = cache.readQuery<GetAllProductsIngredients>({
     query: ALL_PRODUCTS_INGREDIENTS_QUERY
   });
-  const desiredIngredientsResult = cache.readQuery<GetDesiredIngredients>({
-    query: DESIRED_INGREDIENTS_QUERY
+  const goalIngredientsResult = cache.readQuery<GetGoalIngredients>({
+    query: GOAL_INGREDIENTS_QUERY
   });
   const regimenResult = cache.readQuery<GetCurrentRegimenProducts>({
     query: CURRENT_REGIMEN_PRODUCTS_QUERY
@@ -41,8 +41,8 @@ const defaultQuantityResolver: TLocalCatalogProductResolverFunc<IProductObj, ICa
     console.warn('allProductsResult falsey');
     return null;
   }
-  if (!desiredIngredientsResult || !desiredIngredientsResult.desiredIngredients || !desiredIngredientsResult.desiredIngredients.ingredientRanges) {
-    console.warn('desiredIngredientRanges falsey');
+  if (!goalIngredientsResult || !goalIngredientsResult.goalIngredients || !goalIngredientsResult.goalIngredients.ingredientRanges) {
+    console.warn('goalIngredientRanges falsey');
     return null;
   }
   if (!regimenResult || !regimenResult.currentRegimen) {
@@ -54,7 +54,7 @@ const defaultQuantityResolver: TLocalCatalogProductResolverFunc<IProductObj, ICa
   return calculateDefaultQuantity(
     productResult.CatalogProduct.serving.ingredients,
     allProductsResult.allCatalogProducts,
-    desiredIngredientsResult.desiredIngredients.ingredientRanges,
+    goalIngredientsResult.goalIngredients.ingredientRanges,
     regimenResult.currentRegimen.products,
   );
   // TODO write quantity to the cache

@@ -15,18 +15,18 @@ export interface IRegimenIngredient {
 }
 
 /**
- * Returns non-range ingredients with the minimum desired as a reference point. If the existing exceeds the
+ * Returns non-range ingredients with the minimum goal as a reference point. If the existing exceeds the
  * minimum, will omit from the results. Assumes minimum of 0 if not set.
  */
-export const subtractRegimenIngredientsFromDesiredIngredientRanges = (
+export const subtractRegimenIngredientsFromGoalIngredientRanges = (
   regimenProducts: IRegimenProduct[],
-  desiredIngredientRanges: IIngredientRange[],
+  goalIngredientRanges: IIngredientRange[],
   products: GetAllProductsIngredients_allCatalogProducts[],
 ): IRegimenIngredient[] => {
   const regimenIngredientsByName = calculateRegimenIngredients(regimenProducts, products);
   const results: IRegimenIngredient[] = [];
 
-  desiredIngredientRanges.forEach(range => {
+  goalIngredientRanges.forEach(range => {
     let result: IRegimenIngredient | null = null;
     if (regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName)) {
       result = subtractRegimenIngredientFromMinimumIngredient(range, regimenIngredientsByName[range.ingredientTypeName])

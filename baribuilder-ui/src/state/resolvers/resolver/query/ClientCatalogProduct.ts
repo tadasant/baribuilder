@@ -1,9 +1,9 @@
 import {IClientCatalogProduct} from '../../../client-schema-types';
 import {TResolverFunc} from '../../../resolvers';
 import costResolver from '../clientCatalogProduct_cost';
+import defaultQuantityResolver from '../clientCatalogProduct_defaultQuantity';
 import matchScoreResolver from '../clientCatalogProduct_matchScore';
 import projectedRegimenCostResolver from '../clientCatalogProduct_projectedRegimenCost';
-import defaultQuantityResolver from '../clientCatalogProduct_defaultQuantity';
 
 interface IClientCatalogProductArgs {
   catalogProductId: string;

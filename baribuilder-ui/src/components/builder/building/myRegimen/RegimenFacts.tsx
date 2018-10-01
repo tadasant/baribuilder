@@ -13,7 +13,7 @@ import {
   GetDataForRegimenFacts,
   GetDataForRegimenFacts_allCatalogProducts,
   GetDataForRegimenFacts_currentRegimen_products,
-  GetDataForRegimenFacts_desiredIngredients_ingredientRanges
+  GetDataForRegimenFacts_goalIngredients_ingredientRanges
 } from '../../../../typings/gql/GetDataForRegimenFacts';
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
 import {ShadowedSelect} from '../../../style/CustomMaterial';
@@ -50,7 +50,7 @@ const REGIMEN_FACTS_QUERY = gql`
                 }
             }
         }
-        desiredIngredients @client {
+        goalIngredients @client {
             ingredientRanges {
                 ingredientTypeName
                 minimumAmount
@@ -164,11 +164,11 @@ const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
 const calculateMicronutrientRowPropsList = (
   currentRegimenProducts: GetDataForRegimenFacts_currentRegimen_products[],
   allCatalogProducts: GetDataForRegimenFacts_allCatalogProducts[],
-  desiredIngredientRanges: GetDataForRegimenFacts_desiredIngredients_ingredientRanges[]
+  goalIngredientRanges: GetDataForRegimenFacts_goalIngredients_ingredientRanges[]
 ): IPropsForMicronutrientRow[] => {
   const regimenIngredientsByName = calculateRegimenIngredients(currentRegimenProducts, allCatalogProducts);
   const results: IPropsForMicronutrientRow[] = [];
-  desiredIngredientRanges.forEach(range => {
+  goalIngredientRanges.forEach(range => {
     const currentRegimenIngredient = regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName) ? regimenIngredientsByName[range.ingredientTypeName] : null;
     const percentOfGoal = calculatePercentageOfGoal(range, currentRegimenIngredient);
     if (percentOfGoal !== null) {
@@ -185,11 +185,11 @@ const calculateMicronutrientRowPropsList = (
 };
 
 const calculatePercentageOfGoal = (
-  desiredRange: GetDataForRegimenFacts_desiredIngredients_ingredientRanges,
+  goalRange: GetDataForRegimenFacts_goalIngredients_ingredientRanges,
   currentIngredient: IRegimenIngredient | null,
 ): number | null => {
   if (currentIngredient === null) {
-    if (desiredRange.minimumAmount) {
+    if (goalRange.minimumAmount) {
       return 0;
     } else {
       return 100;
@@ -197,11 +197,11 @@ const calculatePercentageOfGoal = (
   }
 
   let percentOfGoal = 100;
-  if (desiredRange.units === currentIngredient.units) {
-    if (desiredRange.minimumAmount && currentIngredient.amount < desiredRange.minimumAmount) {
-      percentOfGoal = currentIngredient.amount * 100 / desiredRange.minimumAmount;
-    } else if (desiredRange.maximumAmount && currentIngredient.amount > desiredRange.maximumAmount) {
-      percentOfGoal = currentIngredient.amount * 100 /  desiredRange.maximumAmount;
+  if (goalRange.units === currentIngredient.units) {
+    if (goalRange.minimumAmount && currentIngredient.amount < goalRange.minimumAmount) {
+      percentOfGoal = currentIngredient.amount * 100 / goalRange.minimumAmount;
+    } else if (goalRange.maximumAmount && currentIngredient.amount > goalRange.maximumAmount) {
+      percentOfGoal = currentIngredient.amount * 100 /  goalRange.maximumAmount;
     }
 
   } else {
@@ -213,9 +213,9 @@ const calculatePercentageOfGoal = (
 };
 
 // Pure
-const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogProducts, desiredIngredients, loading}}) => {
-  if (currentRegimen && allCatalogProducts && desiredIngredients && !loading) {
-    const micronutrientRowPropsList = calculateMicronutrientRowPropsList(currentRegimen.products, allCatalogProducts, desiredIngredients.ingredientRanges);
+const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogProducts, goalIngredients, loading}}) => {
+  if (currentRegimen && allCatalogProducts && goalIngredients && !loading) {
+    const micronutrientRowPropsList = calculateMicronutrientRowPropsList(currentRegimen.products, allCatalogProducts, goalIngredients.ingredientRanges);
     return (
       <Fragment>
         <OuterGrid container>

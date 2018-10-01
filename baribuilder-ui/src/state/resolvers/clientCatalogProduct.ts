@@ -1,9 +1,9 @@
 import {ICatalogProductCost, ICatalogProductQuantity, IRegimenCost} from '../client-schema-types';
 import {TResolverFunc} from '../resolvers';
 import costResolver from './resolver/clientCatalogProduct_cost';
+import quantityResolver from './resolver/clientCatalogProduct_defaultQuantity';
 import matchScoreResolver from './resolver/clientCatalogProduct_matchScore';
 import projectedRegimenCostResolver from './resolver/clientCatalogProduct_projectedRegimenCost';
-import quantityResolver from './resolver/clientCatalogProduct_defaultQuantity';
 
 /**
  * Used for ensuring that the @client resolvers (presumably called after the remote ones) have access to

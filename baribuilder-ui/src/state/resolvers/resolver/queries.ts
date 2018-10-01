@@ -1,9 +1,9 @@
 import gql from 'graphql-tag';
 
 // Should contain entire aggregate
-export const DESIRED_INGREDIENTS_QUERY = gql`
-    query GetDesiredIngredients {
-        desiredIngredients @client {
+export const GOAL_INGREDIENTS_QUERY = gql`
+    query GetGoalIngredients {
+        goalIngredients @client {
             ingredientRanges {
                 ingredientTypeName
                 minimumAmount

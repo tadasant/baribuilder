@@ -10,7 +10,7 @@ import {
 import {
   projectCostOfIngredients,
   subtractProductFromRegimenIngredients,
-  subtractRegimenIngredientsFromDesiredIngredientRanges,
+  subtractRegimenIngredientsFromGoalIngredientRanges,
   sumCostOfProducts,
   sumCosts
 } from './helpers';
@@ -24,11 +24,11 @@ export interface IProductForProjectedRegimenCost extends GetAllProductsIngredien
 // TODO bug: assumes exceeding is worse than not meeting. e.g. if I only want 1 IU, it will project cost 0 (but we should give priority to excess)
 const calculateProjectedRegimenCost = (
   product: IProductForProjectedRegimenCost,
-  desiredIngredientRanges: IIngredientRange[],
+  goalIngredientRanges: IIngredientRange[],
   currentRegimenProducts: IRegimenProduct[],
   products: GetAllProductsIngredients_allCatalogProducts[],
 ): IRegimenCost => {
-  const targetRegimenIngredients = subtractRegimenIngredientsFromDesiredIngredientRanges(currentRegimenProducts, desiredIngredientRanges, products);
+  const targetRegimenIngredients = subtractRegimenIngredientsFromGoalIngredientRanges(currentRegimenProducts, goalIngredientRanges, products);
   const remainingRegimenIngredients = subtractProductFromRegimenIngredients(targetRegimenIngredients, product);
   const numRemainingProducts = remainingRegimenIngredients.length;
   const remainingProjectedCost = projectCostOfIngredients(remainingRegimenIngredients);

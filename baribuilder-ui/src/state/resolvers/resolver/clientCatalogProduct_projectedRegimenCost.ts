@@ -1,6 +1,6 @@
 import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngredients';
 import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenProducts';
-import {GetDesiredIngredients} from '../../../typings/gql/GetDesiredIngredients';
+import {GetGoalIngredients} from '../../../typings/gql/GetGoalIngredients';
 import {IRegimenCost, IRegimenProduct} from '../../client-schema-types';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
 import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/clientCatalogProduct_projectedRegimenCost';
@@ -9,7 +9,7 @@ import quantityResolver from './clientCatalogProduct_defaultQuantity';
 /**
  * Query fields need to be prefetched into cache.
  */
-import {ALL_PRODUCTS_INGREDIENTS_QUERY, CURRENT_REGIMEN_PRODUCTS_QUERY, DESIRED_INGREDIENTS_QUERY} from './queries';
+import {ALL_PRODUCTS_INGREDIENTS_QUERY, CURRENT_REGIMEN_PRODUCTS_QUERY, GOAL_INGREDIENTS_QUERY} from './queries';
 
 
 const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj, IRegimenCost> = (obj, _, {cache}) => {
@@ -19,8 +19,8 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
     });
     const productQuantity = quantityResolver(obj, _, {cache});
     const productCost = costResolver(obj, _, {cache});
-    const desiredIngredientsResult = cache.readQuery<GetDesiredIngredients>({
-      query: DESIRED_INGREDIENTS_QUERY
+    const goalIngredientsResult = cache.readQuery<GetGoalIngredients>({
+      query: GOAL_INGREDIENTS_QUERY
     });
     const currentRegimenProductsResult = cache.readQuery<GetCurrentRegimenProducts>({
       query: CURRENT_REGIMEN_PRODUCTS_QUERY
@@ -45,8 +45,8 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
       console.warn('productCost for projection failed');
       return null;
     }
-    if (!desiredIngredientsResult || !desiredIngredientsResult.desiredIngredients) {
-      console.warn('desiredIngredientsResult falsey');
+    if (!goalIngredientsResult || !goalIngredientsResult.goalIngredients) {
+      console.warn('goalIngredientsResult falsey');
       return null;
     }
     if (!currentRegimenProductsResult || !currentRegimenProductsResult.currentRegimen) {
@@ -54,8 +54,8 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
       return null;
     }
 
-    if (desiredIngredientsResult.desiredIngredients.ingredientRanges.length === 0) {
-      // Can't predict a regimen cost without desiredIngredients
+    if (goalIngredientsResult.goalIngredients.ingredientRanges.length === 0) {
+      // Can't predict a regimen cost without goalIngredients
       return null;
     }
 
@@ -84,7 +84,7 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
 
     return calculateProjectedRegimenCost(
       productForProjectedRegimenCost,
-      desiredIngredientsResult.desiredIngredients.ingredientRanges,
+      goalIngredientsResult.goalIngredients.ingredientRanges,
       currentRegimenProducts,
       allCatalogProductsResult.allCatalogProducts,
     );

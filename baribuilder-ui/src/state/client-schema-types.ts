@@ -58,8 +58,8 @@ export interface IRegimenProductCost {
   frequency: FREQUENCY;
 }
 
-export interface IDesiredIngredients {
-  __typename: 'DesiredIngredients';
+export interface IGoalIngredients {
+  __typename: 'GoalIngredients';
   ingredientRanges: IIngredientRange[];
 }
 

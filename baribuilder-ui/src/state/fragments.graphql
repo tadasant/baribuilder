@@ -1,4 +1,4 @@
-fragment DesiredIngredientsAggregate on DesiredIngredients {
+fragment GoalIngredientsAggregate on GoalIngredients {
     ingredientRanges @client {
         ingredientTypeName
         minimumAmount

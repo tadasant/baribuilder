@@ -70,11 +70,11 @@ type RegimenProductCost {
     frequency: FREQUENCY!
 }
 
-type DesiredIngredients {
+type GoalIngredients {
     ingredientRanges: [IngredientRange!]!
 }
 
-input DesiredIngredientsInput {
+input GoalIngredientsInput {
     ingredientRanges: [IngredientRangeInput!]!
 }
 
@@ -99,12 +99,12 @@ input IngredientRangeInput {
 extend type Query {
     allClientCatalogProducts(category: CATEGORY): [ClientCatalogProduct!]!
     ClientCatalogProduct(catalogProductId: ID!): ClientCatalogProduct
-    desiredIngredients: DesiredIngredients!
+    goalIngredients: GoalIngredients!
     currentRegimen: Regimen!
 }
 
 extend type Mutation {
     AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): Regimen!
-    SetDesiredIngredients(desiredIngredients: DesiredIngredientsInput!): DesiredIngredients!
+    SetGoalIngredients(goalIngredients: GoalIngredientsInput!): GoalIngredients!
     SetCurrentRegimenProductQuantity(catalogProductId: ID!, regimenProductQuantity: RegimenProductQuantityInput!): Regimen!
 }

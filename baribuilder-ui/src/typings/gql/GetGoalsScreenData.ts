@@ -7,7 +7,7 @@ import { INGREDIENT_QUANTITY_UNITS, FREQUENCY } from "./globalTypes";
 // GraphQL query operation: GetGoalsScreenData
 // ====================================================
 
-export interface GetGoalsScreenData_desiredIngredients_ingredientRanges {
+export interface GetGoalsScreenData_goalIngredients_ingredientRanges {
   __typename: "IngredientRange";
   ingredientTypeName: string;
   minimumAmount: number | null;
@@ -16,9 +16,9 @@ export interface GetGoalsScreenData_desiredIngredients_ingredientRanges {
   frequency: FREQUENCY;
 }
 
-export interface GetGoalsScreenData_desiredIngredients {
-  __typename: "DesiredIngredients";
-  ingredientRanges: GetGoalsScreenData_desiredIngredients_ingredientRanges[];
+export interface GetGoalsScreenData_goalIngredients {
+  __typename: "GoalIngredients";
+  ingredientRanges: GetGoalsScreenData_goalIngredients_ingredientRanges[];
 }
 
 export interface GetGoalsScreenData_allIngredientTypes {
@@ -29,6 +29,6 @@ export interface GetGoalsScreenData_allIngredientTypes {
 }
 
 export interface GetGoalsScreenData {
-  desiredIngredients: GetGoalsScreenData_desiredIngredients;
+  goalIngredients: GetGoalsScreenData_goalIngredients;
   allIngredientTypes: GetGoalsScreenData_allIngredientTypes[];
 }

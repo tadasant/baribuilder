@@ -60,7 +60,7 @@ export interface GetDataForRegimenFacts_currentRegimen {
   products: GetDataForRegimenFacts_currentRegimen_products[];
 }
 
-export interface GetDataForRegimenFacts_desiredIngredients_ingredientRanges {
+export interface GetDataForRegimenFacts_goalIngredients_ingredientRanges {
   __typename: "IngredientRange";
   ingredientTypeName: string;
   minimumAmount: number | null;
@@ -69,13 +69,13 @@ export interface GetDataForRegimenFacts_desiredIngredients_ingredientRanges {
   frequency: FREQUENCY;
 }
 
-export interface GetDataForRegimenFacts_desiredIngredients {
-  __typename: "DesiredIngredients";
-  ingredientRanges: GetDataForRegimenFacts_desiredIngredients_ingredientRanges[];
+export interface GetDataForRegimenFacts_goalIngredients {
+  __typename: "GoalIngredients";
+  ingredientRanges: GetDataForRegimenFacts_goalIngredients_ingredientRanges[];
 }
 
 export interface GetDataForRegimenFacts {
   allCatalogProducts: GetDataForRegimenFacts_allCatalogProducts[];
   currentRegimen: GetDataForRegimenFacts_currentRegimen;
-  desiredIngredients: GetDataForRegimenFacts_desiredIngredients;
+  goalIngredients: GetDataForRegimenFacts_goalIngredients;
 }

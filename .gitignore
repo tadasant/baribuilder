@@ -12,7 +12,7 @@ pids
 *.pid.lock
 
 # UI Distribution
-**/build/dist
+**/build
 
 # IDEA files
 baribuilder.iml

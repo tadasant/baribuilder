@@ -43,10 +43,10 @@ const deriveIdealQuantityViaLimitingMicros = (
 };
 
 // TODO break this out into more steps (very confusing logic)
-const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], catalogProducts: GetAllProductsIngredients_allCatalogProducts[]): IIngredientRange[] => {
+const calculateTargetIngredientRanges = (goalIngredientRanges: IIngredientRange[], currentRegimenProducts: IRegimenProduct[], catalogProducts: GetAllProductsIngredients_allCatalogProducts[]): IIngredientRange[] => {
   // TODO quantity units need to implemented somewhere here
   const productsById = keyBy(catalogProducts, product => product.id);
-  const allRangesDaily = desiredIngredientRanges.every(range => range.frequency === 'DAILY');
+  const allRangesDaily = goalIngredientRanges.every(range => range.frequency === 'DAILY');
   const allRegimenProductIngredientsDaily = currentRegimenProducts.every(product => product.quantity.frequency === 'DAILY');
   if (!allRangesDaily || !allRegimenProductIngredientsDaily) {
     console.warn('Not all frequencies are DAILY. Error 38239');
@@ -54,7 +54,7 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
   }
 
   const targetIngredientRanges: IIngredientRange[] = [];
-  desiredIngredientRanges.forEach(range => {
+  goalIngredientRanges.forEach(range => {
     let newMax = range.maximumAmount !== null ? range.maximumAmount : undefined;
     let newMin = range.minimumAmount !== null ? range.minimumAmount : undefined;
     currentRegimenProducts.forEach(product => {
@@ -86,10 +86,10 @@ const calculateTargetIngredientRanges = (desiredIngredientRanges: IIngredientRan
 export const calculateDefaultQuantity = (
   productIngredients: GetProductIngredients_CatalogProduct_serving_ingredients[],
   products: GetAllProductsIngredients_allCatalogProducts[],
-  desiredIngredientRanges: IIngredientRange[],
+  goalIngredientRanges: IIngredientRange[],
   currentRegimenProducts: IRegimenProduct[]
 ): ICatalogProductQuantity => {
-  const targetIngredientRanges = calculateTargetIngredientRanges(desiredIngredientRanges, currentRegimenProducts, products);
+  const targetIngredientRanges = calculateTargetIngredientRanges(goalIngredientRanges, currentRegimenProducts, products);
   return {
     __typename: 'CatalogProductQuantity',
     amount: deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges),

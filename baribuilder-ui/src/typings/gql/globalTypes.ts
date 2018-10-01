@@ -103,7 +103,7 @@ export enum SERVING_SIZE_UNITS {
   TABLET = "TABLET",
 }
 
-export interface DesiredIngredientsInput {
+export interface GoalIngredientsInput {
   ingredientRanges: IngredientRangeInput[];
 }
 

@@ -5,17 +5,17 @@ import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {compose} from "recompose";
-import {IDesiredIngredients, IIngredientRange} from '../../state/client-schema-types';
+import {IGoalIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
-import {SetDesiredIngredients, SetDesiredIngredientsVariables} from '../../typings/gql/SetDesiredIngredients';
+import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
 import {GET_PREFETCH_QUERY_CLIENT} from '../builder/BuilderScreen';
 import GoalsScreenPure from './GoalsScreenPure';
 
 const GOALS_SCREEN_QUERY = gql`
     query GetGoalsScreenData {
-        desiredIngredients @client {
+        goalIngredients @client {
             ingredientRanges {
                 ingredientTypeName
                 minimumAmount
@@ -32,10 +32,10 @@ const GOALS_SCREEN_QUERY = gql`
     }
 `;
 
-const DESIRED_INGREDIENTS_MUTATION = gql`
-    mutation SetDesiredIngredients($desiredIngredients: DesiredIngredientsInput!) {
-        SetDesiredIngredients(
-            desiredIngredients: $desiredIngredients,
+const GOAL_INGREDIENTS_MUTATION = gql`
+    mutation SetGoalIngredients($goalIngredients: GoalIngredientsInput!) {
+        SetGoalIngredients(
+            goalIngredients: $goalIngredients,
         ) @client {
             ingredientRanges {
                 ingredientTypeName
@@ -51,11 +51,11 @@ const DESIRED_INGREDIENTS_MUTATION = gql`
 type QueryOutputProps = ChildDataProps<{}, GetGoalsScreenData>;
 
 type MutationOutputProps =
-  Partial<DataProps<SetDesiredIngredients, SetDesiredIngredientsVariables>>
-  & Partial<MutateProps<SetDesiredIngredients, SetDesiredIngredientsVariables>>;
+  Partial<DataProps<SetGoalIngredients, SetGoalIngredientsVariables>>
+  & Partial<MutateProps<SetGoalIngredients, SetGoalIngredientsVariables>>;
 
 const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
-const withMutation = graphql<{}, SetDesiredIngredients>(DESIRED_INGREDIENTS_MUTATION, {
+const withMutation = graphql<{}, SetGoalIngredients>(GOAL_INGREDIENTS_MUTATION, {
   options: {
     refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
   }
@@ -68,7 +68,7 @@ const enhance = compose<QueryOutputProps & MutationOutputProps & RouteComponentP
 );
 
 interface IState {
-  desiredIngredients?: IDesiredIngredients;
+  goalIngredients?: IGoalIngredients;
   didMakeClientSideChanges: boolean; // Used for preventing remote changes from overwriting local ones
 }
 
@@ -83,7 +83,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     // TODO consider replacing w/ key strategy https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html?no-cache=1#recommendation-fully-uncontrolled-component-with-a-key
     if (!state.didMakeClientSideChanges) {
       return {
-        desiredIngredients: props.data.desiredIngredients,
+        goalIngredients: props.data.goalIngredients,
       }
     }
     return null;
@@ -108,7 +108,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
    */
   // TODO replace keying by name to use index instead
   handleChangeGoal: HandleChangeGoalFunc = (ingredientTypeName, key, value) => {
-    if (!this.state.desiredIngredients) {
+    if (!this.state.goalIngredients) {
       return;
     }
 
@@ -123,9 +123,9 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
         finalValue = value || null;
     }
 
-    const rangeIndex = this.state.desiredIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
+    const rangeIndex = this.state.goalIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
     const updatedState = {
-      desiredIngredients: {
+      goalIngredients: {
         ingredientRanges: {
           [rangeIndex]: {
             [key]: {$set: finalValue}
@@ -146,7 +146,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
         console.warn('ingredientType key not found. Error code 13873');
         return;
       }
-      updatedState.desiredIngredients.ingredientRanges[rangeIndex] = {
+      updatedState.goalIngredients.ingredientRanges[rangeIndex] = {
         minimumAmount: {$set: null},
         maximumAmount: {$set: null},
         units: {$set: ingredientType.defaultUnits},
@@ -158,13 +158,13 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
   };
 
   handleRemoveGoal: HandleRemoveGoalFunc = (ingredientTypeName) => {
-    if (!this.state.desiredIngredients) {
+    if (!this.state.goalIngredients) {
       return;
     }
 
-    const rangeIndex = this.state.desiredIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
+    const rangeIndex = this.state.goalIngredients.ingredientRanges.findIndex(range => range.ingredientTypeName === ingredientTypeName);
     this.setState(update(this.state, {
-      desiredIngredients: {
+      goalIngredients: {
         ingredientRanges: {
           $splice: [[rangeIndex, 1]],
         }
@@ -179,7 +179,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
       return;
     }
 
-    const currentIngredientTypes = this.state.desiredIngredients ? this.state.desiredIngredients.ingredientRanges.map(range => range.ingredientTypeName) : [];
+    const currentIngredientTypes = this.state.goalIngredients ? this.state.goalIngredients.ingredientRanges.map(range => range.ingredientTypeName) : [];
     const ingredientType = this.props.data.allIngredientTypes.find(i => currentIngredientTypes.indexOf(i.name) === -1);
     if (!ingredientType) {
       console.warn('No more ingredients available. Error code 392503122');
@@ -187,7 +187,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     }
 
     this.setState(update(this.state, {
-      desiredIngredients: {
+      goalIngredients: {
         ingredientRanges: {
           $push: [{
             __typename: 'IngredientRange',
@@ -204,13 +204,13 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
   };
 
   handleSetAndBrowse = (): void => {
-    if (!this.props.mutate || !this.state.desiredIngredients) {
-      console.error('mutate or desiredIngredients undefined, error code 59329083');
+    if (!this.props.mutate || !this.state.goalIngredients) {
+      console.error('mutate or goalIngredients undefined, error code 59329083');
       return;
     }
     this.props.mutate({
       variables: {
-        desiredIngredients: this.state.desiredIngredients
+        goalIngredients: this.state.goalIngredients
       }
     });
     this.props.history.push('/browse/all_products');
@@ -219,7 +219,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
   render() {
     return (
       <GoalsScreenPure
-        desiredIngredients={this.state.desiredIngredients}
+        goalIngredients={this.state.goalIngredients}
         onChangeGoal={this.handleChangeGoal}
         onRemoveGoal={this.handleRemoveGoal}
         onAddGoal={this.handleAddGoal}
