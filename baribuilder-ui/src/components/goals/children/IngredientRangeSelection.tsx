@@ -8,6 +8,7 @@ import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import XIcon from '../../../assets/icon/x.svg';
+import {compareIngredientTypeNames} from '../../../lib/constants';
 import {IIngredientRange} from '../../../state/client-schema-types';
 import {GetIngredientReferenceData} from '../../../typings/gql/GetIngredientReferenceData';
 import {ShadowedSelect} from '../../style/CustomMaterial';
@@ -82,6 +83,10 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
   const handleMaximumChange: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
     onChange(ingredientRange.ingredientTypeName, 'maximumAmount', event.target.value);
   };
+
+  if (allIngredientTypes) {
+    allIngredientTypes.sort((t1, t2) => compareIngredientTypeNames(t1.name, t2.name));
+  }
 
   return (
     <Grid container direction='row' spacing={8}>

@@ -3,7 +3,6 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
-import {compareIngredientTypeNames} from '../../lib/constants';
 import {IGoalIngredients} from '../../state/client-schema-types';
 import {EmptyRow} from '../style/Layout';
 import {Caption, Header} from '../style/Typography';
@@ -62,9 +61,6 @@ const CenteredTextGridWithPointer = styled(CenteredTextGrid)`
 `;
 
 const GoalsScreenPure: SFC<IProps> = (props) => {
-  if (props.goalIngredients) {
-    props.goalIngredients.ingredientRanges.sort((r1, r2) => compareIngredientTypeNames(r1.ingredientTypeName, r2.ingredientTypeName));
-  }
   return (
     <Fragment>
       <OuterGrid container alignContent='flex-start'>
