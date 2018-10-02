@@ -4,7 +4,6 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from 'recompose';
-import {CURRENT_REGIMEN_PRODUCTS_QUERY} from '../../../../../state/resolvers/resolver/queries';
 import {AddProduct, AddProductVariables} from '../../../../../typings/gql/AddProduct';
 import {GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity} from '../../../../../typings/gql/GetClientCatalogProductQuantities';
 import {GET_PREFETCH_QUERY_CLIENT} from '../../../BuilderScreen';

@@ -153,7 +153,7 @@ const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
         <BoldBody dark>{props.ingredientTypeName}</BoldBody>
       </LeftAlignGrid>
       <RightAlignPaddedGrid item lg={3}>
-        <Body dark>{props.amount}</Body>
+        <Body dark>{props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)}</Body>
       </RightAlignPaddedGrid>
       <LeftAlignGrid item lg={1}>
         <Body dark>{props.units.toLowerCase()}</Body>

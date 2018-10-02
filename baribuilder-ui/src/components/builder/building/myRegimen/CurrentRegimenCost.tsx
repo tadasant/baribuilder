@@ -31,11 +31,11 @@ const calculateDailyRegimenCost = (products: GetCurrentRegimenProducts_currentRe
   let totalMoney = 0.0;
   if (products.length > 0) {
     products.forEach(product => {
-      if (product.cost.frequency !== FREQUENCY.DAILY) {
+      if (product.cost.frequency !== FREQUENCY.DAILY || product.quantity.frequency !== FREQUENCY.DAILY) {
         console.warn('Frequency conversions still unsupported. Error code 3828325.');
       }
 
-      totalMoney += product.cost.money;
+      totalMoney += (product.cost.money * product.quantity.amount);
     })
   }
 
