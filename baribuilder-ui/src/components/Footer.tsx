@@ -3,6 +3,7 @@ import Hidden from '@material-ui/core/Hidden';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
+import GraphcoolLogo from '../assets/graphcool-logo.svg';
 import {generateTrackExternalLinkClick, generateTrackNavClick} from '../lib/gaHelper';
 import Sketch from './../app/style/SketchVariables';
 import {CenteredTextGrid} from './goals/GoalsScreenPure';
@@ -37,6 +38,10 @@ const WhiteUndecoratedAnchor = styled.a`
   text-decoration: unset;
 `;
 
+const CreditBannerImg = styled.img`
+  height: 32px;
+`;
+
 interface IProps {
   disclaimerText?: string;
 }
@@ -69,9 +74,9 @@ const Footer: SFC<IProps> = props => {
               <Subcaption>© Vita.G, LLC 2018 |&nbsp;</Subcaption>
               <Subcaption>
                 <WhiteUndecoratedAnchor href='https://www.iubenda.com/privacy-policy/25172832'
-                   target='_blank'
-                   rel='noopener noreferrer nofollow'
-                   onClick={generateTrackExternalLinkClick('footer privacy policy')}>
+                                        target='_blank'
+                                        rel='noopener noreferrer nofollow'
+                                        onClick={generateTrackExternalLinkClick('footer privacy policy')}>
                   Privacy Policy
                 </WhiteUndecoratedAnchor>
                 &nbsp;|&nbsp;
@@ -87,6 +92,7 @@ const Footer: SFC<IProps> = props => {
                 <a href='mailto:feedback@vitaglab.com'
                    onClick={generateTrackExternalLinkClick('footer email')}><Subcaption>feedback@vitaglab.com</Subcaption></a>
               </Grid>
+              <EmptyRow/>
               <Grid item sm={4} container alignItems='flex-start' justify='center'>
                 <a href='https://www.facebook.com/vitaglab/' target='_blank' rel='noopener noreferrer'
                    onClick={generateTrackExternalLinkClick('footer facebook')}>
@@ -114,6 +120,13 @@ const Footer: SFC<IProps> = props => {
                   />
                 </a>
               </Grid>
+              <EmptyRow/>
+              <Grid item sm={12} lg={6}>
+                <CreditBannerImg src={GraphcoolLogo}/>
+              </Grid>
+              <CenteredTextGrid item sm={12} lg={6}>
+                <Subcaption>Icons by <WhiteUndecoratedAnchor href='https://fontawesome.com/license'><u>Font Awesome</u></WhiteUndecoratedAnchor></Subcaption>
+              </CenteredTextGrid>
             </CenteredTextGrid>
           </Hidden>
           <Hidden smUp>
@@ -122,17 +135,19 @@ const Footer: SFC<IProps> = props => {
               <Grid item xs={5}>
                 <Subcaption>
                   <WhiteUndecoratedAnchor href='https://www.iubenda.com/privacy-policy/25172832'
-                     target='_blank'
-                     rel='noopener noreferrer nofollow'
-                     onClick={generateTrackExternalLinkClick('footer privacy policy')}>
+                                          target='_blank'
+                                          rel='noopener noreferrer nofollow'
+                                          onClick={generateTrackExternalLinkClick('footer privacy policy')}>
                     Privacy Policy
                   </WhiteUndecoratedAnchor>
                 </Subcaption>
               </Grid>
               <RightAlignTextGrid item xs={5}>
-                <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('footer t&c')}>
-                  Terms & Conditions
-                </WhiteUndecoratedLink>
+                <Subcaption>
+                  <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('footer t&c')}>
+                    Terms & Conditions
+                  </WhiteUndecoratedLink>
+                </Subcaption>
               </RightAlignTextGrid>
               <Grid item xs={1}/>
             </Fragment>
@@ -172,6 +187,15 @@ const Footer: SFC<IProps> = props => {
                     />
                   </a>
                 </Grid>
+                <EmptyRow />
+                <CenteredTextGrid item xs={12}>
+                  <CreditBannerImg src={GraphcoolLogo}/>
+                </CenteredTextGrid>
+                <EmptyRow />
+                <CenteredTextGrid item xs={12}>
+                  <Subcaption>Icons by <WhiteUndecoratedAnchor href='https://fontawesome.com/license'><u>Font
+                    Awesome</u></WhiteUndecoratedAnchor></Subcaption>
+                </CenteredTextGrid>
               </Grid>
               <Grid item xs={3}/>
             </Fragment>
