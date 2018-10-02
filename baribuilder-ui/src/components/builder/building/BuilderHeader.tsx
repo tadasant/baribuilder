@@ -1,4 +1,5 @@
 import {Button, Grid} from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
@@ -9,6 +10,7 @@ import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetClientCatalogProductsForProductSelection} from '../../../typings/gql/GetClientCatalogProductsForProductSelection';
+import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
 import {ROOT_CATEGORY} from '../BuilderScreen';
 import {SetBuilderStateFunction} from '../BuilderScreenPure';
@@ -54,6 +56,7 @@ const FixedGrid = styled(Grid)`
 const PaddedCaptionSizedBody = styled(Body)`
   font-size: ${Sketch.typography.caption.fontSize};
   margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const NavTabGrid = styled(Grid)`
@@ -88,6 +91,18 @@ const NavTabButtonActive = styled(NavTabButton)`
   }
 `;
 
+const ShadowedSelectWithPadding = styled(ShadowedSelect)`
+  && {
+    margin-left: 8px;
+  }
+`;
+
+const RightPaddedGrid = styled(Grid)`
+  && {
+    padding-right: 16px;
+  }
+`;
+
 // Pure
 const BuilderHeaderPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = props => {
   const {data: {allClientCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
@@ -96,18 +111,18 @@ const BuilderHeaderPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = 
 
   const productCount = allClientCatalogProducts && !loading ? allClientCatalogProducts.length : undefined;
 
-  let spacingColumnCount: 1 | 2 | 3 | 4 = 4; // !showMyProducts && !showMyRegimen
+  let sortColumnCount: 2 | 3 | 4 | 5 = 5; // !showMyProducts && !showMyRegimen
   if (showMyProducts && !showMyRegimen) {
-    spacingColumnCount = 3;
+    sortColumnCount = 4;
   } else if (showMyProducts && showMyRegimen) {
-    spacingColumnCount = 1;
+    sortColumnCount = 2;
   } else if (!showMyProducts && showMyRegimen) {
-    spacingColumnCount = 2;
+    sortColumnCount = 3;
   }
 
   return (
     <FixedGrid container direction='row'>
-      <Grid item lg={4} container alignItems='center'>
+      <Grid item lg={3} container alignItems='center'>
         <Grid item>
           <PaddedCaptionSizedBody dark>
             Showing{productCount ? ` ${productCount} ` : ' '}results in&nbsp;
@@ -115,7 +130,15 @@ const BuilderHeaderPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = 
           </PaddedCaptionSizedBody>
         </Grid>
       </Grid>
-      <Grid item lg={spacingColumnCount}/>
+      <RightPaddedGrid item lg={sortColumnCount} container alignItems='center' justify='flex-end'>
+        <Grid item>
+          {/* TODO replace w/ enum, ability to change */}
+          <ShadowedSelectWithPadding value='cost'>
+            <MenuItem value='cost'
+                      key='cost'>{upperFirst('COST (low to high)'.toLowerCase())}</MenuItem>
+          </ShadowedSelectWithPadding>
+        </Grid>
+      </RightPaddedGrid>
       {isMyRegimenOnRight ? null : <MyRegimenTabHeader {...props}/>}
       <MyProductsTabHeader {...props} style={{zIndex: isMyRegimenOnRight ? 0 : 1}}/>
       {isMyRegimenOnRight ? <MyRegimenTabHeader {...props} style={{zIndex: 1}}/> : null}
