@@ -83,7 +83,7 @@ class DynamicApp extends Component {
           <Grid container>
             <EmptyRow/>
             <Grid xs={1} />
-            <CenteredTextGrid xs={10}>
+            <CenteredTextGrid item xs={10}>
               <Header dark>
                 Sorry, BariBuilder Beta is not yet available on smaller screens.<br /><br />
 
