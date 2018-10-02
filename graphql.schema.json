@@ -2291,24 +2291,25 @@
             "deprecationReason": null
           },
           {
-            "name": "allProductsAndScores",
-            "description": "score",
-            "args": [
-              {
-                "name": "name",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
+            "name": "sortedIngredientTypes",
+            "description": "sorted-ingredient-types",
+            "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "ProductAndScore",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "SortedIngredientType",
+                    "ofType": null
+                  }
+                }
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -9772,11 +9773,11 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProductAndScore",
-        "description": "ProductAndScore",
+        "name": "SortedIngredientType",
+        "description": "SortedIngredientType",
         "fields": [
           {
-            "name": "test",
+            "name": "name",
             "description": null,
             "args": [],
             "type": {
@@ -9786,6 +9787,30 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "synonyms",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,

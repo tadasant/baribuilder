@@ -12,11 +12,11 @@ types: [./model/enums.graphql, ./model/types.graphql]
 
 
 functions:
-  score:
+  sorted-ingredient-types:
     handler:
-      code: src/score.js
+      code: src/sorted-ingredient-types.ts
     type: resolver
-    schema: src/score.graphql
+    schema: src/sorted-ingredient-types.graphql
 
 
 # Model/Relation permissions are used to limit the API access

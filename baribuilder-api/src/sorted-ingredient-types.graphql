@@ -1,0 +1,8 @@
+type SortedIngredientType {
+    name: String!
+    synonyms: [String!]!
+}
+
+extend type Query {
+    sortedIngredientTypes: [SortedIngredientType!]!
+}

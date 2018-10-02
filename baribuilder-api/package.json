@@ -1,5 +1,9 @@
 {
   "name": "baribuilder-api",
   "version": "0.0.1",
-  "description": "BariBuilder API"
+  "description": "BariBuilder API",
+  "dependencies": {
+    "graphcool-lib": "^0.1.4",
+    "graphql-request": "^1.8.2"
+  }
 }
