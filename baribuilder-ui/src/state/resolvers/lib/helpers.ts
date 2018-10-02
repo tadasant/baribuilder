@@ -107,7 +107,7 @@ export const sumCostOfProducts = (regimenProducts: IRegimenProduct[]): IRegimenP
   const frequency = regimenProducts.length > 0 ? regimenProducts[0].quantity.frequency : FREQUENCY.DAILY;
   regimenProducts.forEach(product => {
     if (product.quantity.frequency === frequency) {
-      totalMoney += product.quantity.amount;
+      totalMoney += (product.cost.money * product.quantity.amount);
     } else {
       console.warn('Frequency conversions unsupported. Error code 69821.');
     }
