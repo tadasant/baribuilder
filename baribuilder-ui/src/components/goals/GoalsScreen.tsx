@@ -7,6 +7,7 @@ import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {compose} from "recompose";
+import {compareIngredientTypeNames} from '../../lib/constants';
 import {IGoalIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
@@ -235,6 +236,9 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
   };
 
   render() {
+    if (this.props.data.allIngredientTypes) {
+      this.props.data.allIngredientTypes.sort((i1, i2) => compareIngredientTypeNames(i1.name, i2.name));
+    }
     return (
       <GoalsScreenPure
         goalIngredients={this.state.goalIngredients}

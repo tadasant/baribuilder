@@ -8,6 +8,7 @@ import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
+import {compareIngredientTypeNames} from '../../../../lib/constants';
 import {calculateRegimenIngredients, IRegimenIngredient} from '../../../../state/resolvers/lib/helpers';
 import {
   GetDataForRegimenFacts,
@@ -236,6 +237,7 @@ const calculatePercentageOfGoal = (
 const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogProducts, goalIngredients, loading}}) => {
   if (currentRegimen && allCatalogProducts && goalIngredients && !loading) {
     const micronutrientRowPropsList = calculateMicronutrientRowPropsList(currentRegimen.products, allCatalogProducts, goalIngredients.ingredientRanges);
+    micronutrientRowPropsList.sort((p1, p2) => compareIngredientTypeNames(p1.ingredientTypeName, p2.ingredientTypeName));
     if (micronutrientRowPropsList.length === 0) {
       return (
         <CenteredTextGrid>

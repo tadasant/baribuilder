@@ -1,6 +1,8 @@
 import {fromEvent, FunctionEvent} from 'graphcool-lib'
 import {GraphQLClient} from 'graphql-request'
 
+// Don't need to be doing this on the backend. TODO remove
+
 // From https://www.fda.gov/Food/GuidanceRegulation/GuidanceDocumentsRegulatoryInformation/LabelingNutrition/ucm513734.htm#collapseOne
 // Scroll to "General order for listing..."
 

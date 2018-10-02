@@ -59,7 +59,7 @@ const CatalogProductPricePure: SFC<IProps & DataOutputProps> = ({data: {ClientCa
   const headerText = ClientCatalogProduct.projectedRegimenCost ? 'If you add this product...' : null;
   const price = ClientCatalogProduct.projectedRegimenCost ? ClientCatalogProduct.projectedRegimenCost.money.toFixed(0) : ClientCatalogProduct.cost.money.toFixed(2);
   const subText = ClientCatalogProduct.projectedRegimenCost ? 'Monthly Regimen Cost (Projected)' : 'Monthly Product Cost';
-  const subSubText = ClientCatalogProduct.projectedRegimenCost ? `(with ${ClientCatalogProduct.projectedRegimenCost.numRemainingProducts} more products)` : null;
+  const subSubText = ClientCatalogProduct.projectedRegimenCost ? `(with ${ClientCatalogProduct.projectedRegimenCost.numRemainingProducts} more product${ClientCatalogProduct.projectedRegimenCost.numRemainingProducts === 1 ? '' : 's'})` : null;
   return (
     <Fragment>
       <Grid container alignItems='center'>
