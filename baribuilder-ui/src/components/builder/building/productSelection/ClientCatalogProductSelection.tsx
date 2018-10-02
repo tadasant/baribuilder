@@ -4,7 +4,7 @@ import Pagination from "rc-pagination";
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
-import {compose, pure, withState} from 'recompose';
+import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import {
   GetClientCatalogProductsForProductSelection,
@@ -50,7 +50,6 @@ const enhance = compose<DataOutputProps, IProps>(
     'setCurrentPage',
     1
   ),
-  pure,
 );
 
 const PaddedDiv = styled.div`
@@ -105,7 +104,8 @@ const ProductSelectionPure: SFC<IProps & DataOutputProps & IPropsState> = ({data
         ))}
         <Grid item lg={12} container direction='column' alignContent='flex-end'>
           <Grid item>
-            <FloatRightPagination hideOnSinglePage onChange={onPaginationChange} current={currentPage} defaultPageSize={10} total={allClientCatalogProducts.length}/>
+            <FloatRightPagination hideOnSinglePage onChange={onPaginationChange} current={currentPage}
+                                  defaultPageSize={10} total={allClientCatalogProducts.length}/>
           </Grid>
         </Grid>
       </Grid>

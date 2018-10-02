@@ -64,17 +64,14 @@ export const subtractProductFromRegimenIngredients = (
       if (regimenIngredient.units === productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.units) {
         return {
           ...regimenIngredient,
-          quantity: {
-            ...regimenIngredient,
-            amount: regimenIngredient.amount - productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.amount,
-          }
+          amount: regimenIngredient.amount - productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.amount,
         }
       } else {
         console.warn('Unit conversions unsupported. Error code 58938238');
       }
     }
     return regimenIngredient;
-  })
+  }).filter(regimenIngredient => regimenIngredient.amount > 0)
 };
 
 // NB: "project" is a verb here

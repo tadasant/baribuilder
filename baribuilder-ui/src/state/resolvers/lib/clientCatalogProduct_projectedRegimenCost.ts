@@ -22,6 +22,8 @@ export interface IProductForProjectedRegimenCost extends GetAllProductsIngredien
 }
 
 // TODO bug: assumes exceeding is worse than not meeting. e.g. if I only want 1 IU, it will project cost 0 (but we should give priority to excess)
+// TODO bigger bug: i probably should be accounting for quantity of product here. but I can't do that unless I store quantity in store
+//    reasonable alternative would be to just use defaultQuantity instead of the current quantity
 const calculateProjectedRegimenCost = (
   product: IProductForProjectedRegimenCost,
   goalIngredientRanges: IIngredientRange[],
