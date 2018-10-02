@@ -125,7 +125,9 @@ const Footer: SFC<IProps> = props => {
                 <CreditBannerImg src={GraphcoolLogo}/>
               </Grid>
               <CenteredTextGrid item sm={12} lg={6}>
-                <Subcaption>Icons by <WhiteUndecoratedAnchor href='https://fontawesome.com/license'><u>Font Awesome</u></WhiteUndecoratedAnchor></Subcaption>
+                <Subcaption>Icons by <WhiteUndecoratedAnchor href='https://fontawesome.com/license' target='_blank'
+                                                             rel='noopener noreferrer nofollow'><u>Font
+                  Awesome</u></WhiteUndecoratedAnchor></Subcaption>
               </CenteredTextGrid>
             </CenteredTextGrid>
           </Hidden>
@@ -187,13 +189,15 @@ const Footer: SFC<IProps> = props => {
                     />
                   </a>
                 </Grid>
-                <EmptyRow />
+                <EmptyRow/>
                 <CenteredTextGrid item xs={12}>
                   <CreditBannerImg src={GraphcoolLogo}/>
                 </CenteredTextGrid>
-                <EmptyRow />
+                <EmptyRow/>
                 <CenteredTextGrid item xs={12}>
-                  <Subcaption>Icons by <WhiteUndecoratedAnchor href='https://fontawesome.com/license'><u>Font
+                  <Subcaption>Icons by <WhiteUndecoratedAnchor target='_blank'
+                                                               rel='noopener noreferrer nofollow'
+                                                               href='https://fontawesome.com/license'><u>Font
                     Awesome</u></WhiteUndecoratedAnchor></Subcaption>
                 </CenteredTextGrid>
               </Grid>
