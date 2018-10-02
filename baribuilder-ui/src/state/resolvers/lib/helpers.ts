@@ -68,6 +68,7 @@ export const subtractProductFromRegimenIngredients = (
         }
       } else {
         console.warn('Unit conversions unsupported. Error code 58938238');
+        console.warn(`Product ID: ${product.id}. Ingredient: ${regimenIngredient.ingredientTypeName}. ${regimenIngredient.units} vs. ${productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.units}`)
       }
     }
     return regimenIngredient;
