@@ -13,10 +13,17 @@ export interface GetClientCatalogProductsForProductSelection_allClientCatalogPro
   frequency: FREQUENCY;
 }
 
+export interface GetClientCatalogProductsForProductSelection_allClientCatalogProducts_projectedRegimenCost {
+  __typename: "RegimenCost";
+  money: number;
+  frequency: FREQUENCY;
+}
+
 export interface GetClientCatalogProductsForProductSelection_allClientCatalogProducts {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
   cost: GetClientCatalogProductsForProductSelection_allClientCatalogProducts_cost;
+  projectedRegimenCost: GetClientCatalogProductsForProductSelection_allClientCatalogProducts_projectedRegimenCost | null;
 }
 
 export interface GetClientCatalogProductsForProductSelection {

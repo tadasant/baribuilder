@@ -30,6 +30,10 @@ export const GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY = gql`
                 money
                 frequency
             }
+            projectedRegimenCost {
+                money
+                frequency
+            }
         }
     }
 `;
@@ -71,11 +75,13 @@ const sortClientCatalogProducts = (
 ): void => {
   if (sortingStrategy === SORTING_STRATEGY.COST_ASC) {
     clientCatalogProducts.sort((p1, p2) => {
-      if (p1.cost.frequency !== p2.cost.frequency) {
+      const p1Cost = p1.projectedRegimenCost === null ? p1.cost : p1.projectedRegimenCost;
+      const p2Cost = p2.projectedRegimenCost === null ? p2.cost : p2.projectedRegimenCost;
+      if (p1Cost.frequency !== p2Cost.frequency) {
         console.warn('Cost conversions not supported yet. Error code 010249.');
         return 0;
       }
-      return p1.cost.money - p2.cost.money;
+      return p1Cost.money - p2Cost.money;
     })
   }
 };
