@@ -115,7 +115,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
           <Grid item lg={4}/>
           <Grid item lg={3}>
             <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth
-                       helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
+                       key={quantity.amount} helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
           </Grid>
           <Grid item lg={1} container justify='center'>
             {/* TODO can't figure out how to v-center this */}
