@@ -82,7 +82,7 @@ class DynamicApp extends Component {
         <Hidden lgUp>
           <Grid container>
             <EmptyRow/>
-            <Grid xs={1} />
+            <Grid item xs={1} />
             <CenteredTextGrid item xs={10}>
               <Header dark>
                 Sorry, BariBuilder Beta is not yet available on smaller screens.<br /><br />
@@ -90,7 +90,7 @@ class DynamicApp extends Component {
                 Please visit this page on a desktop with a screen at least 1280 pixels wide.
               </Header>
             </CenteredTextGrid>
-            <Grid xs={1} />
+            <Grid item xs={1} />
           </Grid>
         </Hidden>
       </Fragment>
