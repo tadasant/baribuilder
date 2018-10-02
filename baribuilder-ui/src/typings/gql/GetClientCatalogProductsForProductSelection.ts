@@ -1,15 +1,22 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { CATEGORY } from "./globalTypes";
+import { CATEGORY, FREQUENCY } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetClientCatalogProductsForProductSelection
 // ====================================================
 
+export interface GetClientCatalogProductsForProductSelection_allClientCatalogProducts_cost {
+  __typename: "CatalogProductCost";
+  money: number;
+  frequency: FREQUENCY;
+}
+
 export interface GetClientCatalogProductsForProductSelection_allClientCatalogProducts {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
+  cost: GetClientCatalogProductsForProductSelection_allClientCatalogProducts_cost;
 }
 
 export interface GetClientCatalogProductsForProductSelection {

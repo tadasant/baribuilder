@@ -72,6 +72,7 @@ export const GET_PREFETCH_QUERY_CLIENT = gql`
 interface IState {
   showMyProducts: boolean;
   showMyRegimen: boolean;
+  sortingStrategy: SORTING_STRATEGY;
 }
 
 export const ROOT_CATEGORY = 'ALL_PRODUCTS';
@@ -88,12 +89,17 @@ const CenteredSpinner: SFC = () => (
   </Grid>
 );
 
+export enum SORTING_STRATEGY {
+  COST_ASC = "COST_ASC",
+}
+
 class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
   constructor(props: {}) {
     super(props);
     this.state = {
       showMyProducts: false,
       showMyRegimen: true,
+      sortingStrategy: SORTING_STRATEGY.COST_ASC,
     };
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
     this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
@@ -129,6 +135,7 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
                         setShowMyProducts={this.setShowMyProducts}
                         showMyRegimen={this.state.showMyRegimen}
                         setShowMyRegimen={this.setShowMyRegimen}
+                        sortingStrategy={this.state.sortingStrategy}
                       />
                     )
                   }

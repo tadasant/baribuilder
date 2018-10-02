@@ -5,7 +5,7 @@ import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import {CATEGORY} from '../../typings/gql/globalTypes';
-import {ROOT_CATEGORY} from './BuilderScreen';
+import {ROOT_CATEGORY, SORTING_STRATEGY} from './BuilderScreen';
 import BuilderFilterPanel from './building/BuilderFilterPanel';
 import BuilderHeader from './building/BuilderHeader';
 import BuilderMainPanel from './building/BuilderMainPanel';
@@ -19,6 +19,7 @@ interface IProps {
   setShowMyProducts: SetBuilderStateFunction;
   showMyRegimen: boolean;
   setShowMyRegimen: SetBuilderStateFunction;
+  sortingStrategy: SORTING_STRATEGY;
 }
 
 const TabGrid = styled(Grid)`
@@ -65,7 +66,7 @@ const BuilderScreenPure: SFC<IProps & RouteComponentProps> = props => {
         {/* @ts-ignore Can't figure out my math*/}
         <Grid item lg={numColumnsForMain}>
           {/* key used for force re-render on category change */}
-          <BuilderMainPanel selectedCategory={selectedCategory} key={selectedCategory}/>
+          <BuilderMainPanel selectedCategory={selectedCategory} key={selectedCategory} sortingStrategy={props.sortingStrategy}/>
         </Grid>
         {
           showMyRegimen && !isMyRegimenOnRight ? (

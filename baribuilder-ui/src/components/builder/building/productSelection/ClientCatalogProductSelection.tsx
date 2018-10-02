@@ -6,13 +6,17 @@ import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure, withState} from 'recompose';
 import styled from 'styled-components';
-import {GetClientCatalogProductsForProductSelection} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
+import {
+  GetClientCatalogProductsForProductSelection,
+  GetClientCatalogProductsForProductSelection_allClientCatalogProducts
+} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
-import {ROOT_CATEGORY} from '../../BuilderScreen';
+import {ROOT_CATEGORY, SORTING_STRATEGY} from '../../BuilderScreen';
 import ClientCatalogProduct from './ClientCatalogProduct';
 
 interface IProps {
   selectedCategory: string;
+  sortingStrategy: SORTING_STRATEGY;
 }
 
 // GraphQL HOC props (output)
@@ -22,6 +26,10 @@ export const GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY = gql`
     query GetClientCatalogProductsForProductSelection($category: CATEGORY) {
         allClientCatalogProducts(category: $category) @client {
             catalogProductId
+            cost {
+                money
+                frequency
+            }
         }
     }
 `;
@@ -58,10 +66,26 @@ interface IPropsState {
   setCurrentPage: (page: number) => number;
 }
 
+const sortClientCatalogProducts = (
+  clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[],
+  sortingStrategy: SORTING_STRATEGY
+): void => {
+  if (sortingStrategy === SORTING_STRATEGY.COST_ASC) {
+    clientCatalogProducts.sort((p1, p2) => {
+      if (p1.cost.frequency !== p2.cost.frequency) {
+        console.warn('Cost conversions not supported yet. Error code 010249.');
+        return 0;
+      }
+      return p1.cost.money - p2.cost.money;
+    })
+  }
+};
+
 // Pure
-const ProductSelectionPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {allClientCatalogProducts, loading}, currentPage, setCurrentPage}) => {
+const ProductSelectionPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {allClientCatalogProducts, loading}, currentPage, setCurrentPage, sortingStrategy}) => {
   if (allClientCatalogProducts !== undefined && !loading) {
     const pageSize = 10;
+    sortClientCatalogProducts(allClientCatalogProducts, sortingStrategy);
     const productsToDisplay = allClientCatalogProducts.slice((currentPage - 1) * pageSize, (currentPage * pageSize) - 1);
 
     const onPaginationChange = (current: number) => setCurrentPage(current);
