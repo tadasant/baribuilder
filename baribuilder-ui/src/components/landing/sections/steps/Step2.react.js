@@ -69,7 +69,7 @@ const Step2 = () => (
         <Grid item xs={1} sm={2} />
         <Grid item xs={10} sm={8} container justify='center'>
           <EmptyRow mobile='10px'/>
-          <CenteredTextGrid item lg={12}>
+          <CenteredTextGrid item xs={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
           </CenteredTextGrid>
           <Grid item xs={12}>
@@ -92,9 +92,13 @@ const Step2 = () => (
         <Grid item lg={12}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
           <EmptyRow desktop='20px'/>
-          <CenteredBody dark>{subInstructionCopy}</CenteredBody>
-          <OptionPill value={optionsCopy[0]} />
-          <OptionPill value={optionsCopy[1]} />
+          <CenteredTextGrid item lg={12}>
+            <CenteredBody dark>{subInstructionCopy}</CenteredBody>
+          </CenteredTextGrid>
+          <Grid item xs={12}>
+            <OptionPill value={optionsCopy[0]} />
+            <OptionPill value={optionsCopy[1]} />
+          </Grid>
         </Grid>
       </Grid>
       <Grid item lg={1} />
