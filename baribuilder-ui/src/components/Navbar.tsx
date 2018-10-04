@@ -32,15 +32,19 @@ const WhiteNavButton = styled(Button)`
   }
 `;
 
+const FullHeightGrid = styled(Grid)`
+  height: 100%;
+`;
+
 const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
   const showCheckout = location.pathname.startsWith('/browse');
   return (
     <GridWithRaisedBackground container>
-      <Grid item xs={6}>
+      <FullHeightGrid item xs={6}>
         <UndecoratedLink to='/' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
         </UndecoratedLink>
-      </Grid>
+      </FullHeightGrid>
       <Grid item xs={6} container alignItems='center' justify='flex-end'>
         {showCheckout
           ? (
