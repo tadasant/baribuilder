@@ -5,7 +5,7 @@ import * as React from 'react';
 import {Component, SFC} from 'react';
 import {Query} from 'react-apollo';
 import styled from 'styled-components';
-import {navbarHeight} from '../Navbar';
+import {navbarHeight} from '../navbar/Navbar';
 import BuilderScreenPure from './BuilderScreenPure';
 
 const GET_PREFETCH_QUERY = gql`

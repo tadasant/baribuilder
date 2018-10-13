@@ -9,7 +9,7 @@ import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
 import {generateTrackNavClick} from '../../../lib/gaHelper';
 import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
-import {navbarHeight} from '../../Navbar';
+import {navbarHeight} from '../../navbar/Navbar';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
