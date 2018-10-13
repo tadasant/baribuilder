@@ -43,5 +43,5 @@ Troubleshooting:
 
 No good way to track the extensions of remote schema (`state/resolvers.ts`)
 
-No good way to track cache redirect keys (`DynamicApp.tsx`)
+No good way to track cache redirect keys (`BuilderApp.tsx`)
 
