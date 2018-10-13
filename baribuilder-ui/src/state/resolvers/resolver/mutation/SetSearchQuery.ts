@@ -1,16 +1,23 @@
+import {ISearchQuery} from '../../../client-schema-types';
 import {TResolverFunc} from '../../../resolvers';
 
-interface ISetSearchQuery {
+interface ISetSearchQueryArgs {
   searchQuery: string;
 }
 
-const SetSearchQueryResolver: TResolverFunc<{}, ISetSearchQuery, string> = (obj, args, context) => {
+const SetSearchQueryResolver: TResolverFunc<{}, ISetSearchQueryArgs, ISearchQuery> = (obj, args, context) => {
   context.cache.writeData({
     data: {
-      searchQuery: args.searchQuery,
+      searchQuery: {
+        __typename: 'SearchQuery',
+        value: args.searchQuery,
+      }
     }
   });
-  return args.searchQuery;
+  return {
+    __typename: 'SearchQuery',
+    value: args.searchQuery,
+  };
 };
 
 export default SetSearchQueryResolver;

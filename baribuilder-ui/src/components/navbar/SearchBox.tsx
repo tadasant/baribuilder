@@ -27,7 +27,9 @@ const SEARCH_QUERY_MUTATION = gql`
     mutation SetSearchQuery($searchQuery: String!) {
         SetSearchQuery(
             searchQuery: $searchQuery,
-        ) @client
+        ) @client {
+            value
+        }
     }
 `;
 
