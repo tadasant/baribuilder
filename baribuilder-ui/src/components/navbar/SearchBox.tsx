@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {KeyboardEvent, SFC} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
+import {RouteComponentProps, withRouter} from 'react-router';
 import {compose, withState} from "recompose";
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
@@ -52,7 +53,8 @@ const enhance = compose<IPropsState & QueryOutputProps & MutationOutputProps, {}
     '',
   ),
   withData,
-  withMutation
+  withMutation,
+  withRouter
 );
 
 interface IPropsState {
@@ -60,17 +62,22 @@ interface IPropsState {
   setSearchQuery: (state: string) => string
 }
 
-// TODO invocation should bounce you to /browse/all_products if not already in /browse
-
-const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps> = ({searchQuery, setSearchQuery, mutate, data}) => {
+const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps & RouteComponentProps> = ({searchQuery, setSearchQuery, mutate, data, location, history}) => {
   if (!mutate) {
     console.error('Something went wrong with mutate. Error code 3922358184.');
     return null;
   }
 
+  const mutateAndRedirect = () => {
+    mutate({variables: {searchQuery}});
+    if (!location.pathname.includes('/browse')) {
+      history.push('/browse/all_products');
+    }
+  };
+
   const handleSearchKeyPress = (event: KeyboardEvent) =>
     // @ts-ignore For some reason doesn't recognize presence of .value
-    event.key === 'Enter' ? mutate({variables: {searchQuery}}) : null;
+    event.key === 'Enter' ? mutateAndRedirect() : null;
 
   return (
     <FullHeightGrid item container alignItems='center'>
@@ -84,7 +91,7 @@ const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps> = ({s
         />
       </Grid>
       <Grid item lg={2}>
-        <LogoImg src={searchIcon} onClick={() => mutate({variables: {searchQuery}})}/>
+        <LogoImg src={searchIcon} onClick={() => mutateAndRedirect()}/>
       </Grid>
     </FullHeightGrid>
   );
