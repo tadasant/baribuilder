@@ -78,8 +78,4 @@ class BottomCTABanner extends Component {
   }
 }
 
-BottomCTABanner.propTypes = {
-  onCTAClick: PropTypes.func.isRequired,
-};
-
 export default BottomCTABanner;

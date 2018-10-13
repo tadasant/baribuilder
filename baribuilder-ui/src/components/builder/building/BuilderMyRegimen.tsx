@@ -69,7 +69,7 @@ const BuilderMyRegimen: SFC = () => {
       <Footer>
         <FooterGrid item lg={12} container direction='column' justify='center'>
           <Grid item container>
-            <WideLink to='/build'>
+            <WideLink to='/goals'>
               <Button variant='raised' color='secondary' fullWidth>
                 Edit Goal Ingredients
               </Button>

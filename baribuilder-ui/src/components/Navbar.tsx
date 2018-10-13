@@ -65,9 +65,9 @@ const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
           </UndecoratedLink>
         </Grid>
         <Grid item>
-          <UndecoratedLink to='/build' onClick={generateTrackNavClick('Build nav')}>
+          <UndecoratedLink to='/goals' onClick={generateTrackNavClick('Goals nav')}>
             <WhiteNavButton fullWidth>
-              Build
+              Goals
             </WhiteNavButton>
           </UndecoratedLink>
         </Grid>

@@ -74,7 +74,7 @@ class Landing extends Component {
               <EmptyRow mobile='65px' tablet='90px'/>
               <HowItWorksSection/>
               <EmptyRow mobile='65px' tablet='90px'/>
-              <BottomCTABanner onCTAClick={this.handleCTAClick}/>
+              <BottomCTABanner/>
             </GutteredGrid>
             <Footer/>
           </Grid>
