@@ -48,7 +48,7 @@ const GET_PREFETCH_QUERY = gql`
 
 // TODO rename this so appropriate for re-use
 export const GET_PREFETCH_QUERY_CLIENT = gql`
-    query GetClientCatalogProducts($category: String!) {
+    query GetClientCatalogProducts($category: CATEGORY!) {
         allClientCatalogProducts(category: $category) @client {
             # Prefetch data that'll be needed for individual ClientCatalogProducts
             __typename

@@ -2,7 +2,6 @@ import {Hidden} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
-import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
@@ -13,19 +12,12 @@ import Sketch from '../../app/style/SketchVariables';
 import {generateTrackNavClick} from '../../lib/gaHelper';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
+import {SEARCH_QUERY_QUERY} from '../builder/queries';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import SearchBox from './SearchBox';
 
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
 export const navbarHeight = '64px';
-
-export const SEARCH_QUERY_QUERY = gql`
-    query GetSearchQuery {
-        searchQuery @client {
-            value
-        }
-    }
-`;
 
 type QueryOutputProps = ChildDataProps<{}, GetSearchQuery>;
 
