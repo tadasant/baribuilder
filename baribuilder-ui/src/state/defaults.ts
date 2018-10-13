@@ -4,6 +4,8 @@ export interface IApolloStateShape {
   currentRegimen: IRegimen;
   goalIngredients: IGoalIngredients;
   clientCatalogProducts: IClientCatalogProduct[];
+  // Navigation / builder filter
+  searchQuery: string;
 }
 
 const defaults: IApolloStateShape = {
@@ -16,6 +18,7 @@ const defaults: IApolloStateShape = {
     ingredientRanges: [],
   },
   clientCatalogProducts: [],
+  searchQuery: '',
 };
 
 export default defaults;

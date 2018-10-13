@@ -101,6 +101,7 @@ extend type Query {
     ClientCatalogProduct(catalogProductId: ID!): ClientCatalogProduct
     goalIngredients: GoalIngredients!
     currentRegimen: Regimen!
+    searchQuery: String!
 }
 
 extend type Mutation {
@@ -108,4 +109,5 @@ extend type Mutation {
     SetGoalIngredients(goalIngredients: GoalIngredientsInput!): GoalIngredients!
     SetCurrentRegimenProductQuantity(catalogProductId: ID!, regimenProductQuantity: RegimenProductQuantityInput!): Regimen!
     DeleteCurrentRegimenProductQuantity(catalogProductId: ID!): Regimen!
+    SetSearchQuery(searchQuery: String!): String!
 }
