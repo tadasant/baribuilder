@@ -54,6 +54,9 @@ interface IPropsState {
   setSearchQuery: (state: string) => string
 }
 
+// TODO invoke on enter
+// TODO invocation should bounce you to /browse/all_products (maybe keeps you in same category in the future)
+
 const SearchBox: SFC<IPropsState & MutationOutputProps> = ({searchQuery, setSearchQuery, mutate}) => {
   if (!mutate) {
     console.error('Something went wrong with mutate. Error code 3922358184.');

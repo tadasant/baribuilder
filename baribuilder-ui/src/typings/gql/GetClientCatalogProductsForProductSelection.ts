@@ -26,8 +26,14 @@ export interface GetClientCatalogProductsForProductSelection_allClientCatalogPro
   projectedRegimenCost: GetClientCatalogProductsForProductSelection_allClientCatalogProducts_projectedRegimenCost | null;
 }
 
+export interface GetClientCatalogProductsForProductSelection_searchQuery {
+  __typename: "SearchQuery";
+  value: string;
+}
+
 export interface GetClientCatalogProductsForProductSelection {
   allClientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
+  searchQuery: GetClientCatalogProductsForProductSelection_searchQuery;
 }
 
 export interface GetClientCatalogProductsForProductSelectionVariables {
