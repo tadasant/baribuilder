@@ -4,7 +4,7 @@ import {SFC} from 'react';
 import styled from 'styled-components';
 // TODO move this to styled components
 import '../../../rc-pagination.css';
-import {GetClientCatalogProductsForProductSelection_allClientCatalogProducts} from '../../../typings/gql/GetClientCatalogProductsForProductSelection';
+import {GetClientCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetClientCatalogProducts';
 import {EmptyRow} from '../../style/Layout';
 import {SORTING_STRATEGY} from '../BuilderScreen';
 import ClientCatalogProductSelection from './productSelection/ClientCatalogProductSelection';
@@ -12,7 +12,7 @@ import ClientCatalogProductSelection from './productSelection/ClientCatalogProdu
 interface IProps {
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
-  filteredClientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
+  filteredClientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[];
 }
 
 const PaddedGrid = styled(Grid)`

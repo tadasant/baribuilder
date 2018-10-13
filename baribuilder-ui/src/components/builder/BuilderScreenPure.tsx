@@ -4,12 +4,11 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
-import {CatalogProducts_allCatalogProducts} from '../../typings/gql/CatalogProducts';
 import {GetCatalogProducts_allCatalogProducts} from '../../typings/gql/GetCatalogProducts';
 import {
-  GetClientCatalogProductsForProductSelection_allClientCatalogProducts,
-  GetClientCatalogProductsForProductSelection_searchQuery
-} from '../../typings/gql/GetClientCatalogProductsForProductSelection';
+  GetClientCatalogProducts_allClientCatalogProducts,
+  GetClientCatalogProducts_searchQuery
+} from '../../typings/gql/GetClientCatalogProducts';
 import {SORTING_STRATEGY} from './BuilderScreen';
 import BuilderFilterPanel from './building/BuilderFilterPanel';
 import BuilderHeader from './building/BuilderHeader';
@@ -25,9 +24,9 @@ interface IProps {
   showMyRegimen: boolean;
   setShowMyRegimen: SetBuilderStateFunction;
   sortingStrategy: SORTING_STRATEGY;
-  searchQuery: GetClientCatalogProductsForProductSelection_searchQuery;
+  searchQuery: GetClientCatalogProducts_searchQuery;
   allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
-  clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
+  clientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[];
   selectedCategory: string;
 }
 
@@ -40,10 +39,10 @@ const TabGrid = styled(Grid)`
 `;
 
 const filterClientCatalogProducts = (
-  clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[],
-  searchQuery: GetClientCatalogProductsForProductSelection_searchQuery | undefined,
-  allCatalogProducts: CatalogProducts_allCatalogProducts[] | undefined
-): GetClientCatalogProductsForProductSelection_allClientCatalogProducts[] => {
+  clientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[],
+  searchQuery: GetClientCatalogProducts_searchQuery | undefined,
+  allCatalogProducts: GetCatalogProducts_allCatalogProducts[] | undefined
+): GetClientCatalogProducts_allClientCatalogProducts[] => {
   if (searchQuery && searchQuery.value) {
     const lowercaseSearchQuery = searchQuery.value.toLowerCase();
     const catalogProductsById = keyBy(allCatalogProducts, product => product.id);

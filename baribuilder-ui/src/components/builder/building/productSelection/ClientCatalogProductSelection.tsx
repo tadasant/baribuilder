@@ -4,7 +4,7 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
-import {GetClientCatalogProductsForProductSelection_allClientCatalogProducts} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
+import {GetClientCatalogProducts_allClientCatalogProducts} from '../../../../typings/gql/GetClientCatalogProducts';
 import {EmptyRow} from '../../../style/Layout';
 import {SORTING_STRATEGY} from '../../BuilderScreen';
 import ClientCatalogProduct from './ClientCatalogProduct';
@@ -13,7 +13,7 @@ interface IProps {
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
   // Can't be in this component's query because it creates breaking dependency
-  filteredClientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
+  filteredClientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[];
 }
 
 const enhance = compose<IPropsState, IProps>(
@@ -38,7 +38,7 @@ interface IPropsState {
 }
 
 const sortClientCatalogProducts = (
-  clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[],
+  clientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[],
   sortingStrategy: SORTING_STRATEGY
 ): void => {
   if (sortingStrategy === SORTING_STRATEGY.COST_ASC) {
