@@ -1,9 +1,11 @@
-import {IClientCatalogProduct, IGoalIngredients, IRegimen} from './client-schema-types';
+import {IClientCatalogProduct, IGoalIngredients, IRegimen, ISearchQuery} from './client-schema-types';
 
 export interface IApolloStateShape {
   currentRegimen: IRegimen;
   goalIngredients: IGoalIngredients;
   clientCatalogProducts: IClientCatalogProduct[];
+  // Navigation / builder filter
+  searchQuery: ISearchQuery;
 }
 
 const defaults: IApolloStateShape = {
@@ -16,6 +18,10 @@ const defaults: IApolloStateShape = {
     ingredientRanges: [],
   },
   clientCatalogProducts: [],
+  searchQuery: {
+    __typename: 'SearchQuery',
+    value: '',
+  },
 };
 
 export default defaults;

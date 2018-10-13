@@ -1,54 +1,22 @@
 import {Grid, Paper} from '@material-ui/core';
-import gql from "graphql-tag";
 import Pagination from "rc-pagination";
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
-import {
-  GetClientCatalogProductsForProductSelection,
-  GetClientCatalogProductsForProductSelection_allClientCatalogProducts
-} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
+import {GetClientCatalogProductsForProductSelection_allClientCatalogProducts} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
-import {ROOT_CATEGORY, SORTING_STRATEGY} from '../../BuilderScreen';
+import {SORTING_STRATEGY} from '../../BuilderScreen';
 import ClientCatalogProduct from './ClientCatalogProduct';
 
 interface IProps {
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
+  // Can't be in this component's query because it creates breaking dependency
+  filteredClientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
 }
 
-// GraphQL HOC props (output)
-type DataOutputProps = ChildDataProps<{}, GetClientCatalogProductsForProductSelection>;
-
-export const GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY = gql`
-    query GetClientCatalogProductsForProductSelection($category: CATEGORY) {
-        allClientCatalogProducts(category: $category) @client {
-            catalogProductId
-            cost {
-                money
-                frequency
-            }
-            projectedRegimenCost {
-                money
-                frequency
-            }
-        }
-    }
-`;
-
-const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY, {
-  options: ({selectedCategory}) => {
-    const category = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
-    return {
-      variables: {category},
-    };
-  }
-});
-
-const enhance = compose<DataOutputProps, IProps>(
-  withData,
+const enhance = compose<IPropsState, IProps>(
   withState<IProps, number, 'currentPage', 'setCurrentPage'>(
     'currentPage',
     'setCurrentPage',
@@ -87,31 +55,36 @@ const sortClientCatalogProducts = (
 };
 
 // Pure
-const ProductSelectionPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {allClientCatalogProducts, loading}, currentPage, setCurrentPage, sortingStrategy}) => {
-  if (allClientCatalogProducts !== undefined && !loading) {
+const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogProducts, currentPage, setCurrentPage, sortingStrategy}) => {
+  if (filteredClientCatalogProducts) {
     const pageSize = 10;
-    sortClientCatalogProducts(allClientCatalogProducts, sortingStrategy);
-    const productsToDisplay = allClientCatalogProducts.slice((currentPage - 1) * pageSize, (currentPage * pageSize) - 1);
+    sortClientCatalogProducts(filteredClientCatalogProducts, sortingStrategy);
+    const productsToDisplay = filteredClientCatalogProducts.slice((currentPage - 1) * pageSize, (currentPage * pageSize) - 1);
 
     const onPaginationChange = (current: number) => setCurrentPage(current);
     return (
-      <Grid container direction='row' alignItems='flex-start'>
-        {productsToDisplay.map(product => (
-          <Fragment key={product.catalogProductId}>
-            <Grid item lg={12}>
-              <Paper>
-                <PaddedDiv>
-                  <ClientCatalogProduct id={product.catalogProductId}/>
-                </PaddedDiv>
-              </Paper>
-            </Grid>
-            <EmptyRow mobile='0px'/>
-          </Fragment>
-        ))}
+      <Grid
+        container
+        direction='row'
+        alignItems='flex-start'>
+        {
+          productsToDisplay.map(product => (
+            <Fragment key={product.catalogProductId}>
+              <Grid item lg={12}>
+                <Paper>
+                  <PaddedDiv>
+                    <ClientCatalogProduct id={product.catalogProductId}/>
+                  </PaddedDiv>
+                </Paper>
+              </Grid>
+              <EmptyRow mobile='0px'/>
+            </Fragment>
+          ))
+        }
         <Grid item lg={12} container direction='column' alignContent='flex-end'>
           <Grid item>
             <FloatRightPagination hideOnSinglePage onChange={onPaginationChange} current={currentPage}
-                                  defaultPageSize={10} total={allClientCatalogProducts.length}/>
+                                  defaultPageSize={10} total={filteredClientCatalogProducts.length}/>
           </Grid>
         </Grid>
       </Grid>

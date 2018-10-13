@@ -10,6 +10,7 @@ pids
 *.pid
 *.seed
 *.pid.lock
+**/.DS_Store
 
 # UI Distribution
 **/build
@@ -18,6 +19,7 @@ pids
 baribuilder.iml
 misc.xml
 modules.xml
+workspace.xml
 
 # Dependency directories
 **/node_modules/

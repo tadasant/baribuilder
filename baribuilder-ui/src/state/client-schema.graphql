@@ -94,6 +94,10 @@ input IngredientRangeInput {
     frequency: FREQUENCY!
 }
 
+type SearchQuery {
+    value: String!
+}
+
 ##### Queries and Mutations for local state
 
 extend type Query {
@@ -101,6 +105,7 @@ extend type Query {
     ClientCatalogProduct(catalogProductId: ID!): ClientCatalogProduct
     goalIngredients: GoalIngredients!
     currentRegimen: Regimen!
+    searchQuery: SearchQuery!
 }
 
 extend type Mutation {
@@ -108,4 +113,5 @@ extend type Mutation {
     SetGoalIngredients(goalIngredients: GoalIngredientsInput!): GoalIngredients!
     SetCurrentRegimenProductQuantity(catalogProductId: ID!, regimenProductQuantity: RegimenProductQuantityInput!): Regimen!
     DeleteCurrentRegimenProductQuantity(catalogProductId: ID!): Regimen!
+    SetSearchQuery(searchQuery: String!): SearchQuery!
 }

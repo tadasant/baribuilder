@@ -4,17 +4,13 @@ import {fade} from '@material-ui/core/styles/colorManipulator';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
-import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
-import {GetClientCatalogProductsForProductSelection} from '../../../typings/gql/GetClientCatalogProductsForProductSelection';
+import {GetClientCatalogProductsForProductSelection_allClientCatalogProducts} from '../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
-import {ROOT_CATEGORY} from '../BuilderScreen';
 import {SetBuilderStateFunction} from '../BuilderScreenPure';
-import {GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY} from './productSelection/ClientCatalogProductSelection';
 
 export const builderHeaderHeight = '48px';
 
@@ -25,26 +21,8 @@ interface IProps {
   showMyRegimen: boolean;
   isMyRegimenOnRight: boolean;
   selectedCategory: string;
+  filteredClientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
 }
-
-// GraphQL HOC props (output)
-type QueryOutputProps = ChildDataProps<IProps, GetClientCatalogProductsForProductSelection>;
-
-// TODO eventually pass filters & selected category into this query
-const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY, {
-  options: ({selectedCategory}) => {
-    const category = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
-    return {
-      variables: {category},
-    };
-  }
-});
-
-const enhance = compose<QueryOutputProps, IProps>(
-  withData,
-  withRouter,
-  pure,
-);
 
 const FixedGrid = styled(Grid)`
   && {
@@ -104,12 +82,12 @@ const RightPaddedGrid = styled(Grid)`
 `;
 
 // Pure
-const BuilderHeaderPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = props => {
-  const {data: {allClientCatalogProducts, loading}, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
+const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
+  const {filteredClientCatalogProducts, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
   const pathnameTokens = location.pathname.split('/');
   const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
 
-  const productCount = allClientCatalogProducts && !loading ? allClientCatalogProducts.length : undefined;
+  const productCount = filteredClientCatalogProducts ? filteredClientCatalogProducts.length : undefined;
 
   let sortColumnCount: 2 | 3 | 4 | 5 = 5; // !showMyProducts && !showMyRegimen
   if (showMyProducts && !showMyRegimen) {
@@ -180,4 +158,4 @@ const MyRegimenTabHeader: SFC<IProps & { style?: any }> = ({setShowMyRegimen, sh
   );
 };
 
-export default enhance(BuilderHeaderPure);
+export default withRouter(BuilderHeaderPure);

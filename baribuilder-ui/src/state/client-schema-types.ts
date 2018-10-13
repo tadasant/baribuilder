@@ -71,3 +71,8 @@ export interface IIngredientRange {
   units: INGREDIENT_QUANTITY_UNITS;
   frequency: FREQUENCY;
 }
+
+export interface ISearchQuery {
+  __typename: 'SearchQuery';
+  value: string;
+}

@@ -9,7 +9,7 @@ import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
 import {generateTrackNavClick} from '../../../lib/gaHelper';
 import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
-import {navbarHeight} from '../../Navbar';
+import {navbarHeight} from '../../navbar/Navbar';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
@@ -53,7 +53,7 @@ class Hero extends Component {
 
   handleLogoClick() {
     ReactGA.event({
-      category: 'Outbound Link',
+      category: 'Internal Link',
       action: 'click',
       label: 'Hero Logo Click'
     });
@@ -87,8 +87,8 @@ class Hero extends Component {
         <EmptyRow mobile='15px'/>
         <Fragment>
           <Grid item xs={1} lg={3}/>
-          <Grid item xs={5} lg={3} container direction='row'>
-            <Grid item xs={11}>
+          <Grid item xs={10} lg={6} container direction='row'>
+            <Grid item xs={12}>
               <UndecoratedLink to={'/browse/all_products'} onClick={generateTrackNavClick('Browse CTA')}>
                 <CTANavButton variant='raised' fullWidth>
                   Browse Product Catalog
@@ -96,16 +96,6 @@ class Hero extends Component {
               </UndecoratedLink>
             </Grid>
             <Grid item xs={1}/>
-          </Grid>
-          <Grid item xs={5} lg={3} container direction='row'>
-            <Grid item xs={1}/>
-            <Grid item xs={11}>
-              <UndecoratedLink to={'/build'} onClick={generateTrackNavClick('Build CTA')}>
-                <CTANavButton variant='raised' fullWidth>
-                  Build Personal Regimen
-                </CTANavButton>
-              </UndecoratedLink>
-            </Grid>
           </Grid>
           <Grid item xs={1} lg={3}/>
         </Fragment>

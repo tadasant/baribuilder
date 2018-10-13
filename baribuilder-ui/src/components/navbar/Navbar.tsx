@@ -1,17 +1,32 @@
+import {Hidden} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 import * as React from 'react';
 import {SFC} from 'react';
+import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {compose} from 'recompose';
 import styled from 'styled-components';
-import Sketch from '../app/style/SketchVariables';
-import {generateTrackNavClick} from '../lib/gaHelper';
-import {fixedWidthImage} from '../lib/imageKitHelpers';
-import {UndecoratedLink} from './style/CustomMaterial';
+import Sketch from '../../app/style/SketchVariables';
+import {generateTrackNavClick} from '../../lib/gaHelper';
+import {fixedWidthImage} from '../../lib/imageKitHelpers';
+import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
+import {SEARCH_QUERY_QUERY} from '../builder/queries';
+import {UndecoratedLink} from '../style/CustomMaterial';
+import SearchBox from './SearchBox';
 
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
 export const navbarHeight = '64px';
+
+type QueryOutputProps = ChildDataProps<{}, GetSearchQuery>;
+
+const data = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
+
+const enhance = compose<QueryOutputProps & RouteComponentProps, {}>(
+  data,
+  withRouter,
+);
 
 const PaddedImg = styled.img`
   height: 80%;
@@ -36,15 +51,20 @@ const FullHeightGrid = styled(Grid)`
   height: 100%;
 `;
 
-const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
+const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data: {searchQuery}}) => {
   const showCheckout = location.pathname.startsWith('/browse');
   return (
     <GridWithRaisedBackground container>
-      <FullHeightGrid item xs={6}>
+      <FullHeightGrid item xs={6} lg={3}>
         <UndecoratedLink to='/' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
         </UndecoratedLink>
       </FullHeightGrid>
+      <Hidden mdDown>
+        <Grid item lg={3} container alignItems='center'>
+          <SearchBox key={searchQuery ? searchQuery.value : ''}/>
+        </Grid>
+      </Hidden>
       <Grid item xs={6} container alignItems='center' justify='flex-end'>
         {showCheckout
           ? (
@@ -65,9 +85,9 @@ const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
           </UndecoratedLink>
         </Grid>
         <Grid item>
-          <UndecoratedLink to='/build' onClick={generateTrackNavClick('Build nav')}>
+          <UndecoratedLink to='/goals' onClick={generateTrackNavClick('Goals nav')}>
             <WhiteNavButton fullWidth>
-              Build
+              Goals
             </WhiteNavButton>
           </UndecoratedLink>
         </Grid>
@@ -77,4 +97,4 @@ const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
   )
 };
 
-export default withRouter(NavbarPure);
+export default enhance(NavbarPure);

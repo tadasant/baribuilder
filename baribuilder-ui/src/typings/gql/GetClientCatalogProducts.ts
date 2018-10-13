@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
+import { CATEGORY, FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetClientCatalogProducts
@@ -36,6 +36,16 @@ export interface GetClientCatalogProducts_allClientCatalogProducts {
   matchScore: number;
 }
 
+export interface GetClientCatalogProducts_searchQuery {
+  __typename: "SearchQuery";
+  value: string;
+}
+
 export interface GetClientCatalogProducts {
   allClientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[];
+  searchQuery: GetClientCatalogProducts_searchQuery;
+}
+
+export interface GetClientCatalogProductsVariables {
+  category: CATEGORY;
 }

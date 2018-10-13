@@ -4,8 +4,10 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {Component, SFC} from 'react';
 import {Query} from 'react-apollo';
+import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
-import {navbarHeight} from '../Navbar';
+import {CATEGORY} from '../../typings/gql/globalTypes';
+import {navbarHeight} from '../navbar/Navbar';
 import BuilderScreenPure from './BuilderScreenPure';
 
 const GET_PREFETCH_QUERY = gql`
@@ -15,6 +17,8 @@ const GET_PREFETCH_QUERY = gql`
             __typename
             id
 
+            name
+            brand
             category
             listings {
                 price {
@@ -44,8 +48,8 @@ const GET_PREFETCH_QUERY = gql`
 
 // TODO rename this so appropriate for re-use
 export const GET_PREFETCH_QUERY_CLIENT = gql`
-    query GetClientCatalogProducts {
-        allClientCatalogProducts @client {
+    query GetClientCatalogProducts($category: CATEGORY!) {
+        allClientCatalogProducts(category: $category) @client {
             # Prefetch data that'll be needed for individual ClientCatalogProducts
             __typename
             catalogProductId
@@ -65,6 +69,9 @@ export const GET_PREFETCH_QUERY_CLIENT = gql`
                 frequency
             }
             matchScore
+        }
+        searchQuery @client {
+            value
         }
     }
 `;
@@ -93,8 +100,17 @@ export enum SORTING_STRATEGY {
   COST_ASC = "COST_ASC",
 }
 
-class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
-  constructor(props: {}) {
+const getSelectedCategory = (pathname: string) => {
+  const pathnameTokens = pathname.split('/');
+  const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
+  if (!Object.values(CATEGORY).includes(selectedCategory) && selectedCategory !== ROOT_CATEGORY) {
+    return null;
+  }
+  return selectedCategory;
+};
+
+class BuilderScreenContainer extends Component<RouteComponentProps, Readonly<IState>> {
+  constructor(props: RouteComponentProps) {
     super(props);
     this.state = {
       showMyProducts: false,
@@ -114,23 +130,34 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
   }
 
   render() {
+    const selectedCategory = getSelectedCategory(this.props.location.pathname);
+    if (!selectedCategory) {
+      this.props.history.push('/not-found');
+      return null;
+    }
+
     // TODO eventually abstract these away into simple wrapper components
+    const categoryVariable = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
     return (
       <Query query={GET_PREFETCH_QUERY}>
         {
           ({loading, error, data}) => {
-            if (loading || !data) {
+            if (loading || !data || !data.allCatalogProducts) {
               return loading ? <CenteredSpinner /> : null;
             }
             return (
-              <Query query={GET_PREFETCH_QUERY_CLIENT}>
+              <Query query={GET_PREFETCH_QUERY_CLIENT} variables={{category: categoryVariable}}>
                 {
                   (props) => {
-                    if (props.loading || !props.data) {
+                    if (props.loading || !props.data || !props.data.searchQuery || !props.data.allClientCatalogProducts) {
                       return props.loading ? <CenteredSpinner /> : null;
                     }
                     return (
                       <BuilderScreenPure
+                        selectedCategory={selectedCategory}
+                        allCatalogProducts={data.allCatalogProducts}
+                        clientCatalogProducts={props.data.allClientCatalogProducts}
+                        searchQuery={props.data.searchQuery}
                         showMyProducts={this.state.showMyProducts}
                         setShowMyProducts={this.setShowMyProducts}
                         showMyRegimen={this.state.showMyRegimen}
@@ -149,4 +176,4 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
   }
 }
 
-export default BuilderScreenContainer;
+export default withRouter(BuilderScreenContainer);

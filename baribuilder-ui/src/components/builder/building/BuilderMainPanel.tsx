@@ -4,6 +4,7 @@ import {SFC} from 'react';
 import styled from 'styled-components';
 // TODO move this to styled components
 import '../../../rc-pagination.css';
+import {GetClientCatalogProductsForProductSelection_allClientCatalogProducts} from '../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../style/Layout';
 import {SORTING_STRATEGY} from '../BuilderScreen';
 import ClientCatalogProductSelection from './productSelection/ClientCatalogProductSelection';
@@ -11,6 +12,7 @@ import ClientCatalogProductSelection from './productSelection/ClientCatalogProdu
 interface IProps {
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
+  filteredClientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
 }
 
 const PaddedGrid = styled(Grid)`
@@ -19,13 +21,14 @@ const PaddedGrid = styled(Grid)`
 `;
 
 // Pure
-const BuilderMainPanel: SFC<IProps> = ({selectedCategory, sortingStrategy}) => {
+const BuilderMainPanel: SFC<IProps> = ({selectedCategory, sortingStrategy, filteredClientCatalogProducts}) => {
   return (
     <PaddedGrid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
       <Grid item container direction='row'>
         <Grid item lg={12}>
-          <ClientCatalogProductSelection selectedCategory={selectedCategory} sortingStrategy={sortingStrategy}/>
+          <ClientCatalogProductSelection selectedCategory={selectedCategory} sortingStrategy={sortingStrategy}
+                                         filteredClientCatalogProducts={filteredClientCatalogProducts}/>
         </Grid>
       </Grid>
       <EmptyRow mobile='1px'/>
