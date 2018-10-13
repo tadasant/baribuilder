@@ -15,6 +15,8 @@ const GET_PREFETCH_QUERY = gql`
             __typename
             id
 
+            name
+            brand
             category
             listings {
                 price {
@@ -65,6 +67,9 @@ export const GET_PREFETCH_QUERY_CLIENT = gql`
                 frequency
             }
             matchScore
+        }
+        searchQuery @client {
+            value
         }
     }
 `;
@@ -119,18 +124,21 @@ class BuilderScreenContainer extends Component<{}, Readonly<IState>> {
       <Query query={GET_PREFETCH_QUERY}>
         {
           ({loading, error, data}) => {
-            if (loading || !data) {
+            if (loading || !data || !data.allCatalogProducts) {
               return loading ? <CenteredSpinner /> : null;
             }
             return (
               <Query query={GET_PREFETCH_QUERY_CLIENT}>
                 {
                   (props) => {
-                    if (props.loading || !props.data) {
+                    if (props.loading || !props.data || !props.data.searchQuery || !props.data.allClientCatalogProducts) {
                       return props.loading ? <CenteredSpinner /> : null;
                     }
                     return (
                       <BuilderScreenPure
+                        allCatalogProducts={data.allCatalogProducts}
+                        clientCatalogProducts={props.data.allClientCatalogProducts}
+                        searchQuery={props.data.searchQuery}
                         showMyProducts={this.state.showMyProducts}
                         setShowMyProducts={this.setShowMyProducts}
                         showMyRegimen={this.state.showMyRegimen}

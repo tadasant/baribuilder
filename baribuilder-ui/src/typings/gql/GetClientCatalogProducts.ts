@@ -36,6 +36,12 @@ export interface GetClientCatalogProducts_allClientCatalogProducts {
   matchScore: number;
 }
 
+export interface GetClientCatalogProducts_searchQuery {
+  __typename: "SearchQuery";
+  value: string;
+}
+
 export interface GetClientCatalogProducts {
   allClientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[];
+  searchQuery: GetClientCatalogProducts_searchQuery;
 }

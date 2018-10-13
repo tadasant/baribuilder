@@ -1,62 +1,22 @@
 import {Grid, Paper} from '@material-ui/core';
-import gql from "graphql-tag";
-import {keyBy} from 'lodash';
 import Pagination from "rc-pagination";
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
-import {CatalogProducts_allCatalogProducts} from '../../../../typings/gql/CatalogProducts';
-import {
-  GetClientCatalogProductsForProductSelection,
-  GetClientCatalogProductsForProductSelection_allClientCatalogProducts,
-  GetClientCatalogProductsForProductSelection_searchQuery
-} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
+import {GetClientCatalogProductsForProductSelection_allClientCatalogProducts} from '../../../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {EmptyRow} from '../../../style/Layout';
-import {ROOT_CATEGORY, SORTING_STRATEGY} from '../../BuilderScreen';
+import {SORTING_STRATEGY} from '../../BuilderScreen';
 import ClientCatalogProduct from './ClientCatalogProduct';
 
 interface IProps {
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
   // Can't be in this component's query because it creates breaking dependency
-  allCatalogProducts: CatalogProducts_allCatalogProducts[];
+  filteredClientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
 }
 
-// GraphQL HOC props (output)
-type DataOutputProps = ChildDataProps<{}, GetClientCatalogProductsForProductSelection>;
-
-export const GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY = gql`
-    query GetClientCatalogProductsForProductSelection($category: CATEGORY) {
-        allClientCatalogProducts(category: $category) @client {
-            catalogProductId
-            cost {
-                money
-                frequency
-            }
-            projectedRegimenCost {
-                money
-                frequency
-            }
-        }
-        searchQuery @client {
-            value
-        }
-    }
-`;
-
-const withData = graphql<IProps, GetClientCatalogProductsForProductSelection>(GET_CLIENT_CATALOG_PRODUCT_IDS_QUERY, {
-  options: ({selectedCategory}) => {
-    const category = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
-    return {
-      variables: {category},
-    };
-  }
-});
-
-const enhance = compose<DataOutputProps, IProps>(
-  withData,
+const enhance = compose<IPropsState, IProps>(
   withState<IProps, number, 'currentPage', 'setCurrentPage'>(
     'currentPage',
     'setCurrentPage',
@@ -77,22 +37,6 @@ interface IPropsState {
   setCurrentPage: (page: number) => number;
 }
 
-const filterClientCatalogProducts = (
-  clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[],
-  searchQuery: GetClientCatalogProductsForProductSelection_searchQuery | undefined,
-  allCatalogProducts: CatalogProducts_allCatalogProducts[] | undefined
-): GetClientCatalogProductsForProductSelection_allClientCatalogProducts[] => {
-  if (searchQuery && searchQuery.value) {
-    const lowercaseSearchQuery = searchQuery.value.toLowerCase();
-    const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
-    return clientCatalogProducts.filter(product => (
-      catalogProductsById[product.catalogProductId].name.toLowerCase().includes(lowercaseSearchQuery) ||
-      catalogProductsById[product.catalogProductId].brand.toLowerCase().includes(lowercaseSearchQuery)
-    ));
-  }
-  return clientCatalogProducts;
-};
-
 const sortClientCatalogProducts = (
   clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[],
   sortingStrategy: SORTING_STRATEGY
@@ -111,12 +55,11 @@ const sortClientCatalogProducts = (
 };
 
 // Pure
-const ProductSelectionPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {searchQuery, loading, allClientCatalogProducts}, allCatalogProducts, currentPage, setCurrentPage, sortingStrategy}) => {
-  if (allClientCatalogProducts !== undefined && !loading) {
+const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogProducts, currentPage, setCurrentPage, sortingStrategy}) => {
+  if (filteredClientCatalogProducts) {
     const pageSize = 10;
-    allClientCatalogProducts = filterClientCatalogProducts(allClientCatalogProducts, searchQuery, allCatalogProducts);
-    sortClientCatalogProducts(allClientCatalogProducts, sortingStrategy);
-    const productsToDisplay = allClientCatalogProducts.slice((currentPage - 1) * pageSize, (currentPage * pageSize) - 1);
+    sortClientCatalogProducts(filteredClientCatalogProducts, sortingStrategy);
+    const productsToDisplay = filteredClientCatalogProducts.slice((currentPage - 1) * pageSize, (currentPage * pageSize) - 1);
 
     const onPaginationChange = (current: number) => setCurrentPage(current);
     return (
@@ -141,7 +84,7 @@ const ProductSelectionPure: SFC<IProps & DataOutputProps & IPropsState> = ({data
         <Grid item lg={12} container direction='column' alignContent='flex-end'>
           <Grid item>
             <FloatRightPagination hideOnSinglePage onChange={onPaginationChange} current={currentPage}
-                                  defaultPageSize={10} total={allClientCatalogProducts.length}/>
+                                  defaultPageSize={10} total={filteredClientCatalogProducts.length}/>
           </Grid>
         </Grid>
       </Grid>

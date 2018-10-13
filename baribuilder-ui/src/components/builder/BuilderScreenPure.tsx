@@ -1,9 +1,16 @@
 import {Grid} from '@material-ui/core';
+import {keyBy} from 'lodash';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
+import {CatalogProducts_allCatalogProducts} from '../../typings/gql/CatalogProducts';
+import {GetCatalogProducts_allCatalogProducts} from '../../typings/gql/GetCatalogProducts';
+import {
+  GetClientCatalogProductsForProductSelection_allClientCatalogProducts,
+  GetClientCatalogProductsForProductSelection_searchQuery
+} from '../../typings/gql/GetClientCatalogProductsForProductSelection';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {ROOT_CATEGORY, SORTING_STRATEGY} from './BuilderScreen';
 import BuilderFilterPanel from './building/BuilderFilterPanel';
@@ -20,6 +27,9 @@ interface IProps {
   showMyRegimen: boolean;
   setShowMyRegimen: SetBuilderStateFunction;
   sortingStrategy: SORTING_STRATEGY;
+  searchQuery: GetClientCatalogProductsForProductSelection_searchQuery;
+  allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
+  clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[];
 }
 
 const TabGrid = styled(Grid)`
@@ -39,6 +49,22 @@ const getSelectedCategory = (pathname: string) => {
   return selectedCategory;
 };
 
+const filterClientCatalogProducts = (
+  clientCatalogProducts: GetClientCatalogProductsForProductSelection_allClientCatalogProducts[],
+  searchQuery: GetClientCatalogProductsForProductSelection_searchQuery | undefined,
+  allCatalogProducts: CatalogProducts_allCatalogProducts[] | undefined
+): GetClientCatalogProductsForProductSelection_allClientCatalogProducts[] => {
+  if (searchQuery && searchQuery.value) {
+    const lowercaseSearchQuery = searchQuery.value.toLowerCase();
+    const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
+    return clientCatalogProducts.filter(product => (
+      catalogProductsById[product.catalogProductId].name.toLowerCase().includes(lowercaseSearchQuery) ||
+      catalogProductsById[product.catalogProductId].brand.toLowerCase().includes(lowercaseSearchQuery)
+    ));
+  }
+  return clientCatalogProducts;
+};
+
 const BuilderScreenPure: SFC<IProps & RouteComponentProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
   const numColumnsForFilter = showMyProducts && showMyRegimen ? null : 2;
@@ -52,9 +78,16 @@ const BuilderScreenPure: SFC<IProps & RouteComponentProps> = props => {
     return null;
   }
 
+  const filteredClientCatalogProducts = filterClientCatalogProducts(props.clientCatalogProducts, props.searchQuery, props.allCatalogProducts);
+
   return (
     <Fragment>
-      <BuilderHeader {...props} isMyRegimenOnRight={isMyRegimenOnRight} selectedCategory={selectedCategory}/>
+      <BuilderHeader
+        {...props}
+        isMyRegimenOnRight={isMyRegimenOnRight}
+        selectedCategory={selectedCategory}
+        filteredClientCatalogProducts={filteredClientCatalogProducts}
+      />
       <Grid container spacing={0}>
         {
           numColumnsForFilter === null ? null : (
@@ -65,8 +98,12 @@ const BuilderScreenPure: SFC<IProps & RouteComponentProps> = props => {
         }
         {/* @ts-ignore Can't figure out my math*/}
         <Grid item lg={numColumnsForMain}>
-          {/* key used for force re-render on category change */}
-          <BuilderMainPanel selectedCategory={selectedCategory} key={selectedCategory} sortingStrategy={props.sortingStrategy}/>
+          <BuilderMainPanel
+            selectedCategory={selectedCategory}
+            key={selectedCategory}
+            sortingStrategy={props.sortingStrategy}
+            filteredClientCatalogProducts={filteredClientCatalogProducts}
+          />
         </Grid>
         {
           showMyRegimen && !isMyRegimenOnRight ? (

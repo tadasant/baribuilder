@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { CATEGORY, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
+import { BRAND, CATEGORY, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCatalogProducts
@@ -50,6 +50,8 @@ export interface GetCatalogProducts_allCatalogProducts_serving {
 export interface GetCatalogProducts_allCatalogProducts {
   __typename: "CatalogProduct";
   id: string;
+  name: string;
+  brand: BRAND;
   category: CATEGORY;
   listings: GetCatalogProducts_allCatalogProducts_listings[] | null;
   images: GetCatalogProducts_allCatalogProducts_images[] | null;
