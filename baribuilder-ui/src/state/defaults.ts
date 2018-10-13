@@ -20,7 +20,7 @@ const defaults: IApolloStateShape = {
   clientCatalogProducts: [],
   searchQuery: {
     __typename: 'SearchQuery',
-    value: 'bleh',
+    value: '',
   },
 };
 

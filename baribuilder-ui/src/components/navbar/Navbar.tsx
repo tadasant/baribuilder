@@ -2,18 +2,39 @@ import {Hidden} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
+import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
+import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import {generateTrackNavClick} from '../../lib/gaHelper';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
+import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import SearchBox from './SearchBox';
 
 const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
 export const navbarHeight = '64px';
+
+export const SEARCH_QUERY_QUERY = gql`
+    query GetSearchQuery {
+        searchQuery @client {
+            value
+        }
+    }
+`;
+
+type QueryOutputProps = ChildDataProps<{}, GetSearchQuery>;
+
+const data = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
+
+const enhance = compose<QueryOutputProps & RouteComponentProps, {}>(
+  data,
+  withRouter,
+);
 
 const PaddedImg = styled.img`
   height: 80%;
@@ -38,7 +59,7 @@ const FullHeightGrid = styled(Grid)`
   height: 100%;
 `;
 
-const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
+const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data: {searchQuery}}) => {
   const showCheckout = location.pathname.startsWith('/browse');
   return (
     <GridWithRaisedBackground container>
@@ -49,7 +70,7 @@ const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
       </FullHeightGrid>
       <Hidden mdDown>
         <Grid item lg={3} container alignItems='center'>
-          <SearchBox />
+          <SearchBox key={searchQuery ? searchQuery.value : ''}/>
         </Grid>
       </Hidden>
       <Grid item xs={6} container alignItems='center' justify='flex-end'>
@@ -84,4 +105,4 @@ const NavbarPure: SFC<RouteComponentProps> = ({location}) => {
   )
 };
 
-export default withRouter(NavbarPure);
+export default enhance(NavbarPure);
