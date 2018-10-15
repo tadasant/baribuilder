@@ -12,64 +12,7 @@ export interface IApolloStateShape {
 const defaults: IApolloStateShape = {
   currentRegimen: {
     __typename: 'Regimen',
-    products: [{
-      __typename: 'RegimenProduct',
-      cost: {
-        __typename: 'RegimenProductCost',
-        frequency: FREQUENCY.DAILY,
-        money: 1.0
-      },
-      quantity: {
-        __typename: 'RegimenProductQuantity',
-        amount: 5,
-        units: PRODUCT_QUANTITY_UNITS.SERVINGS,
-        frequency: FREQUENCY.DAILY
-      },
-      catalogProductId: 'cjm0tbtko00560179xhyj5uju',
-    },{
-      __typename: 'RegimenProduct',
-      cost: {
-        __typename: 'RegimenProductCost',
-        frequency: FREQUENCY.DAILY,
-        money: 1.0
-      },
-      quantity: {
-        __typename: 'RegimenProductQuantity',
-        amount: 5,
-        units: PRODUCT_QUANTITY_UNITS.SERVINGS,
-        frequency: FREQUENCY.DAILY
-      },
-      catalogProductId: 'cjm0tbtko00560179xhyj5uju',
-    },
-      {
-        __typename: 'RegimenProduct',
-        cost: {
-          __typename: 'RegimenProductCost',
-          frequency: FREQUENCY.DAILY,
-          money: 1.0
-        },
-        quantity: {
-          __typename: 'RegimenProductQuantity',
-          amount: 5,
-          units: PRODUCT_QUANTITY_UNITS.SERVINGS,
-          frequency: FREQUENCY.DAILY
-        },
-        catalogProductId: 'cjm0tbtko00560179xhyj5uju',
-      },{
-        __typename: 'RegimenProduct',
-        cost: {
-          __typename: 'RegimenProductCost',
-          frequency: FREQUENCY.DAILY,
-          money: 1.0
-        },
-        quantity: {
-          __typename: 'RegimenProductQuantity',
-          amount: 5,
-          units: PRODUCT_QUANTITY_UNITS.SERVINGS,
-          frequency: FREQUENCY.DAILY
-        },
-        catalogProductId: 'cjm0tbtko00560179xhyj5uju',
-      }],
+    products: [],
   },
   goalIngredients: {
     __typename: 'GoalIngredients',
