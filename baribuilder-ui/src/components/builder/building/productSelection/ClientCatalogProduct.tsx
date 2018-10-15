@@ -12,7 +12,7 @@ import {Caption} from '../../../style/Typography';
 import {prettifyEnumString} from '../BuilderFilterPanel';
 import CatalogProductAddPanel from './children/CatalogProductAddPanel';
 import CatalogProductPrice from './children/CatalogProductPrice';
-import MainProductImage from './children/MainProductImage';
+import MainProductImageWithPopover from './children/MainProductImageWithPopover';
 
 interface IProps {
   id: string
@@ -50,10 +50,6 @@ const LeftBorderGrid = styled(Grid)`
   border-left: 1px solid ${Sketch.color.accent.grey};
 `;
 
-const MainImage = styled(MainProductImage)`
-  max-height: 100px;
-`;
-
 // Pure
 const ProductPure: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}}) => {
   if (CatalogProduct && CatalogProduct.listings) {
@@ -70,7 +66,7 @@ const ProductPure: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}
             </Grid>
             <EmptyRow/>
             <Grid item lg={4}>
-              <MainImage productId={id}/>
+              <MainProductImageWithPopover catalogProductId={id}/>
             </Grid>
             <Grid item lg={8} container justify='center'>
               <CatalogProductPrice catalogProductId={id}/>
