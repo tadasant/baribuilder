@@ -58,13 +58,15 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
       <Fragment>
         <CenteredTextGrid item lg={3}>
           <MainImage productId={catalogProductId}/>
-          <Subcaption dark>{quantityCaption}</Subcaption>
         </CenteredTextGrid>
-        <Grid item container direction='column' lg={9} justify='center'>
+        <CenteredTextGrid item container direction='column' lg={9} justify='center'>
           <Grid item>
             <Body dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Body>
           </Grid>
-        </Grid>
+          <Grid item>
+            <Subcaption dark>{quantityCaption}</Subcaption>
+          </Grid>
+        </CenteredTextGrid>
       </Fragment>
     );
   }

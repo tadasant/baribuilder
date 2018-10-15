@@ -1,21 +1,46 @@
-import {Grid} from '@material-ui/core';
+import {Button, Grid} from '@material-ui/core';
 import * as React from 'react';
 import {SFC} from 'react';
+import styled from 'styled-components';
+import CurrentRegimenCost from '../builder/building/myRegimen/CurrentRegimenCost';
 import RegimenFacts from '../builder/building/myRegimen/RegimenFacts';
+import {UndecoratedLink} from '../style/CustomMaterial';
 import {EmptyRow} from '../style/Layout';
 import SelectedProductListings from './children/SelectedProductListings';
+
+const WideUndecoratedLink = styled(UndecoratedLink)`
+  && {
+    width: 100%;
+  }
+`;
 
 const PurchaseScreenPure: SFC = () => {
   return (
     <Grid container>
       <EmptyRow/>
       <Grid item lg={1}/>
-      <Grid container item lg={5}>
+      <Grid container item lg={5} alignContent='flex-start'>
         <SelectedProductListings/>
       </Grid>
       <Grid item lg={1}/>
-      <Grid item container lg={4}>
-        <RegimenFacts/>
+      <Grid item container alignContent='flex-start' lg={4}>
+        <Grid item lg={1}/>
+        <Grid item lg={10} container alignContent='flex-start'>
+          <Grid item lg={12}>
+            <CurrentRegimenCost/>
+          </Grid>
+          <EmptyRow/>
+          <Grid item container lg={12}>
+            <RegimenFacts/>
+          </Grid>
+        </Grid>
+        <Grid item lg={1}/>
+        <EmptyRow/>
+        <WideUndecoratedLink to='/goals'>
+          <Button variant='raised' color='secondary' fullWidth>
+            Edit Goal Ingredients
+          </Button>
+        </WideUndecoratedLink>
       </Grid>
       <Grid item lg={1}/>
       <EmptyRow/>
