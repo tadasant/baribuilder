@@ -1,4 +1,3 @@
-import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../typings/gql/globalTypes';
 import {IClientCatalogProduct, IGoalIngredients, IRegimen, ISearchQuery} from './client-schema-types';
 
 export interface IApolloStateShape {
