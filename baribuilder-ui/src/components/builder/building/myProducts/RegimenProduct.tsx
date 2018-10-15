@@ -16,7 +16,7 @@ import {
   SetCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
 import {BoldBody, Caption} from '../../../style/Typography';
-import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../../BuilderScreen';
 import XRegimenProductIcon from './XRegimenProductIcon';
 
 interface IProps {
@@ -67,7 +67,7 @@ const withData = graphql<IProps, GetCatalogProductForRegimenProduct>(GET_CATALOG
 
 const withMutation = graphql<{}, SetCurrentRegimenProductQuantity>(REGIMEN_PRODUCT_QUANTITY_MUTATION, {
   options: {
-    refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
   }
 });
 
@@ -94,7 +94,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
           units: quantity.units,
         }
       },
-      refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+      refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
     });
 
     const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => mutateAmount(event.target.value ? parseInt(event.target.value, 10) : 0);

@@ -13,7 +13,7 @@ import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
-import {GET_PREFETCH_QUERY_CLIENT} from '../builder/BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../builder/BuilderScreen';
 import GoalsScreenPure from './GoalsScreenPure';
 
 const GOALS_SCREEN_QUERY = gql`
@@ -60,7 +60,7 @@ type MutationOutputProps =
 const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
 const withMutation = graphql<{}, SetGoalIngredients>(GOAL_INGREDIENTS_MUTATION, {
   options: {
-    refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
   }
 });
 
