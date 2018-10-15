@@ -55,8 +55,10 @@ const BorderedTable = styled(Table)`
   border: 1px solid ${Sketch.color.accent.grey};
 `;
 
+export const productPopoverHeight = '500px';
+
 const MaxWidthGrid = styled(Grid)`
-  max-width: 500px;
+  max-width: ${productPopoverHeight};
 `;
 
 const MinHeightTableRow = styled(TableRow)`

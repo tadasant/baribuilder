@@ -1,10 +1,16 @@
 import * as React from 'react';
 import {Component} from 'react';
-import ProductPopover from '../components/builder/building/popover/ProductPopover';
+import styled from 'styled-components';
+import MainProductImageWithPopover
+  from '../components/builder/building/productSelection/children/MainProductImageWithPopover';
 
 interface IState {
   value: number;
 }
+
+const MainImage = styled(MainProductImageWithPopover)`
+  height: 100px;
+`;
 
 class Dev extends Component<{}, IState> {
   constructor(props: {}) {
@@ -22,7 +28,7 @@ class Dev extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <ProductPopover catalogProductId='cjm0tbtko00560179xhyj5uju'/>
+        <MainImage catalogProductId='cjm0tbtko00560179xhyj5uju' anchorSide='left'/>
       </div>
     );
   }

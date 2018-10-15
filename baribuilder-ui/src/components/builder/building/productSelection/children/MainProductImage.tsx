@@ -1,7 +1,7 @@
 import {Grid} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
-import {SFC} from 'react';
+import {HTMLAttributes, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
@@ -14,7 +14,7 @@ const GET_IMAGES_QUERY = gql`
     query GetCatalogProductImages($id: ID) {
         CatalogProduct(id: $id) {
             id # ensure cache hit
-            
+
             images {
                 url
             }
@@ -35,7 +35,7 @@ const data = graphql<IProps, GetCatalogProductImages, GetCatalogProductImagesVar
   }),
 });
 
-const enhance = compose<IProps & DataOutputProps, IProps>(
+const enhance = compose<HTMLAttributes<HTMLImageElement> & IProps & DataOutputProps, IProps>(
   data,
   pure,
 );
@@ -49,11 +49,12 @@ const CenteredImage = styled.img`
 `;
 
 // Pure
-const MainProductImagePure: SFC<IProps & DataOutputProps> = ({data: {CatalogProduct}, className}) => {
+const MainProductImagePure: SFC<HTMLAttributes<HTMLImageElement> & IProps & DataOutputProps> = (props) => {
+  const {data: {CatalogProduct}, className} = props;
   const productImageUrl = CatalogProduct ? CatalogProduct.images ? CatalogProduct.images.length > 0 ? CatalogProduct.images[0].url : null : null : null;
   return (
     <Grid>
-      <CenteredImage className={className} src={productImageUrl || noProductImageUrl}/>
+      <CenteredImage className={className} src={productImageUrl || noProductImageUrl} {...props}/>
     </Grid>
   );
 };

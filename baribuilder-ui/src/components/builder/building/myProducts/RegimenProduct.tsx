@@ -17,6 +17,7 @@ import {
 } from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
 import {BoldBody, Caption} from '../../../style/Typography';
 import {PREFETCH_GET_CLIENT_CATALOG} from '../../BuilderScreen';
+import MainProductImageWithPopover from '../productSelection/children/MainProductImageWithPopover';
 import XRegimenProductIcon from './XRegimenProductIcon';
 
 interface IProps {
@@ -81,6 +82,10 @@ const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
+const MainImage = styled(MainProductImageWithPopover)`
+  height: 100px;
+`;
+
 // Pure
 const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: {CatalogProduct, loading}, quantity, catalogProductId, mutate}) => {
   if (CatalogProduct && !loading && mutate && CatalogProduct.listings) {
@@ -103,26 +108,32 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
       event.key === 'Enter' ? mutateAmount(event.target.value ? parseInt(event.target.value, 10) : 0) : null;
 
     return (
-      <Grid item container direction='row' alignItems='flex-start'>
-        <CenteredTextGrid item lg={12}>
-          {/* TODO remove url bit when local detail page complete */}
-          <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody dark>{CatalogProduct.name}</BoldBody></a>
-        </CenteredTextGrid>
-        <CenteredTextGrid item lg={12}>
-          <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>
-        </CenteredTextGrid>
-        <Fragment>
-          <Grid item lg={4}/>
-          <Grid item lg={3}>
-            <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth
-                       key={quantity.amount} helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
-          </Grid>
-          <Grid item lg={1} container justify='center'>
-            {/* TODO can't figure out how to v-center this */}
-            <XRegimenProductIcon catalogProductId={catalogProductId}/>
-          </Grid>
-          <Grid item lg={4}/>
-        </Fragment>
+      <Grid item container alignItems='center'>
+        <Grid item lg={4}>
+          <MainImage catalogProductId={catalogProductId} anchorSide='left'/>
+        </Grid>
+        <Grid item container lg={8} alignContent='flex-start'>
+          <CenteredTextGrid item lg={12}>
+            {/* TODO remove url bit when local detail page complete */}
+            <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody
+              dark>{CatalogProduct.name}</BoldBody></a>
+          </CenteredTextGrid>
+          <CenteredTextGrid item lg={12}>
+            <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>
+          </CenteredTextGrid>
+          <Fragment>
+            <Grid item lg={4}/>
+            <Grid item lg={3}>
+              <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth
+                         key={quantity.amount} helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
+            </Grid>
+            <Grid item lg={1} container justify='center'>
+              {/* TODO can't figure out how to v-center this */}
+              <XRegimenProductIcon catalogProductId={catalogProductId}/>
+            </Grid>
+            <Grid item lg={4}/>
+          </Fragment>
+        </Grid>
       </Grid>
     );
   }

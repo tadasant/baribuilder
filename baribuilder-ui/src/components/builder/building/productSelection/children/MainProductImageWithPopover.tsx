@@ -1,5 +1,4 @@
 import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
 import * as React from 'react';
 import {ReactEventHandler, SFC} from 'react';
 import {compose, withState} from 'recompose';
@@ -38,14 +37,11 @@ const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductI
 
   return (
     <div>
-      <Typography
-        aria-owns={open ? 'mouse-over-popover' : undefined}
-        aria-haspopup
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
-        <MainImage productId={catalogProductId}/>
-      </Typography>
+      <MainImage productId={catalogProductId} aria-owns={open ? 'mouse-over-popover' : undefined}
+                 aria-haspopup
+                 // @ts-ignore TODO something wrong with onMouseEnter prop?
+                 onMouseEnter={handlePopoverOpen}
+                 onMouseLeave={handlePopoverClose}/>
       <NoPointerEventsPopover
         anchorOrigin={{
           vertical: 'top',
