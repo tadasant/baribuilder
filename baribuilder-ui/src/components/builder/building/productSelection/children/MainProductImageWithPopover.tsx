@@ -9,6 +9,7 @@ import MainProductImage from './MainProductImage';
 
 interface IProps {
   catalogProductId: string;
+  anchorSide?: 'left' | 'right';
 }
 
 interface IPropsState {
@@ -24,7 +25,7 @@ const NoPointerEventsPopover = styled(Popover)`
   pointer-events: none;
 `;
 
-const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductId, anchorEl, setAnchorEl}) => {
+const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductId, anchorEl, setAnchorEl, anchorSide}) => {
   const handlePopoverOpen: ReactEventHandler<HTMLElement> = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -48,13 +49,12 @@ const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductI
       <NoPointerEventsPopover
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'right',
+          horizontal: anchorSide || 'right',
         }}
         open={open}
         anchorEl={anchorEl}
         onClose={handlePopoverClose}
         disableRestoreFocus
-        style={{zIndex: 5}}
       >
         <ProductPopover catalogProductId={catalogProductId}/>
       </NoPointerEventsPopover>

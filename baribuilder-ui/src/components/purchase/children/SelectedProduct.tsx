@@ -6,7 +6,7 @@ import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
 import {prettifyEnumString} from '../../builder/building/BuilderFilterPanel';
-import MainProductImage from '../../builder/building/productSelection/children/MainProductImage';
+import MainProductImageWithPopover from '../../builder/building/productSelection/children/MainProductImageWithPopover';
 import {Body, BoldBody} from '../../style/Typography';
 
 interface IProps {
@@ -44,7 +44,7 @@ const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
-const MainImage = styled(MainProductImage)`
+const MainImage = styled(MainProductImageWithPopover)`
   height: 200px;
 `;
 
@@ -57,7 +57,7 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
     return (
       <Fragment>
         <CenteredTextGrid item lg={3}>
-          <MainImage productId={catalogProductId}/>
+          <MainImage catalogProductId={catalogProductId}/>
         </CenteredTextGrid>
         <CenteredTextGrid item container direction='column' lg={9} justify='center'>
           <Grid item>
