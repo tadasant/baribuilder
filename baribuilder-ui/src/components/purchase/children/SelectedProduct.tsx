@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
 import {prettifyEnumString} from '../../builder/building/BuilderFilterPanel';
 import MainProductImage from '../../builder/building/productSelection/children/MainProductImage';
-import {Body, Subcaption} from '../../style/Typography';
+import {Body, BoldBody} from '../../style/Typography';
 
 interface IProps {
   catalogProductId: string;
@@ -52,7 +52,7 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
   if (CatalogProduct && CatalogProduct.listings && currentRegimen && !loading) {
     const regimenProduct = currentRegimen.products.find(product => product.catalogProductId === catalogProductId);
     const quantityCaption = regimenProduct
-      ? `${regimenProduct.quantity.amount} ${regimenProduct.quantity.units.toLowerCase()} ${regimenProduct.quantity.frequency.toLowerCase()}`
+      ? `Take ${regimenProduct.quantity.amount} ${regimenProduct.quantity.units.toLowerCase()} ${regimenProduct.quantity.frequency.toLowerCase()}`
       : null;
     return (
       <Fragment>
@@ -62,11 +62,11 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
         <CenteredTextGrid item container direction='column' lg={9} justify='center'>
           <Grid item>
             <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
-              <Body dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Body>
+              <BoldBody dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</BoldBody>
             </a>
           </Grid>
           <Grid item>
-            <Subcaption dark>{quantityCaption}</Subcaption>
+            <Body dark>{quantityCaption}</Body>
           </Grid>
         </CenteredTextGrid>
       </Fragment>

@@ -8,7 +8,7 @@ import RegimenFacts from '../builder/building/myRegimen/RegimenFacts';
 import {CenteredTextGrid} from '../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import {EmptyRow} from '../style/Layout';
-import {Header} from '../style/Typography';
+import {Caption, Header} from '../style/Typography';
 import SelectedProductListings from './children/SelectedProductListings';
 
 const WideUndecoratedLink = styled(UndecoratedLink)`
@@ -24,6 +24,12 @@ const RightBorderGrid = styled(Grid)`
 const PurchaseScreenPure: SFC = () => {
   return (
     <Grid container>
+      <EmptyRow/>
+      <CenteredTextGrid item lg={12}>
+        <Caption dark>
+          Checkout out directly on BariBuilder is not yet available. Make purchases on Amazon by clicking the name of each product next to its image.
+        </Caption>
+      </CenteredTextGrid>
       <EmptyRow/>
       <Grid item lg={1}/>
       <Grid container item lg={4} alignContent='flex-start'>
