@@ -105,7 +105,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
     return (
       <Grid item container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>
-          {/* TODO remove url bit when checkout page complete */}
+          {/* TODO remove url bit when local detail page complete */}
           <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody dark>{CatalogProduct.name}</BoldBody></a>
         </CenteredTextGrid>
         <CenteredTextGrid item lg={12}>

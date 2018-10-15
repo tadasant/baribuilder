@@ -59,7 +59,7 @@ const UnselectedCategoryFont = styled(Body)`
   font-size: ${Sketch.typography.caption.fontSize};
 `;
 
-const prettifyEnumString = (s: string): string => {
+export const prettifyEnumString = (s: string): string => {
   return s.toLowerCase().split('_').map(str => upperFirst(str)).join(' ');
 };
 

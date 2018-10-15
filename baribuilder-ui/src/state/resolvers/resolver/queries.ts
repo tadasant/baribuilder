@@ -1,5 +1,7 @@
 import gql from 'graphql-tag';
 
+// TODO in most cases, probably shouldn't be sharing queries. One component - one query. Do research.
+
 // Should contain entire aggregate
 export const GOAL_INGREDIENTS_QUERY = gql`
     query GetGoalIngredients {
