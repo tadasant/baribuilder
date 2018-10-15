@@ -61,7 +61,9 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
         </CenteredTextGrid>
         <CenteredTextGrid item container direction='column' lg={9} justify='center'>
           <Grid item>
-            <Body dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Body>
+            <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
+              <Body dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Body>
+            </a>
           </Grid>
           <Grid item>
             <Subcaption dark>{quantityCaption}</Subcaption>

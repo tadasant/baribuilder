@@ -8,7 +8,8 @@ import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
 import {GetCatalogProduct, GetCatalogProductVariables} from '../../../../typings/gql/GetCatalogProduct';
 import {EmptyRow} from '../../../style/Layout';
-import {Caption, Subcaption} from '../../../style/Typography';
+import {Caption} from '../../../style/Typography';
+import {prettifyEnumString} from '../BuilderFilterPanel';
 import CatalogProductAddPanel from './children/CatalogProductAddPanel';
 import CatalogProductPrice from './children/CatalogProductPrice';
 import MainProductImage from './children/MainProductImage';
@@ -24,6 +25,9 @@ const GET_CATALOG_PRODUCT = gql`
 
             name
             brand
+            listings {
+                url
+            }
         }
     }
 `;
@@ -52,15 +56,17 @@ const MainImage = styled(MainProductImage)`
 
 // Pure
 const ProductPure: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}}) => {
-  if (CatalogProduct) {
+  if (CatalogProduct && CatalogProduct.listings) {
     return (
       <Grid container direction='row'>
         <EmptyRow mobile='-20px'/>
         <Grid container direction='row'>
           <Grid item lg={9} container>
             <Grid item lg={12}>
-              <Caption dark>{CatalogProduct.name}</Caption>
-              &nbsp;<Subcaption dark>{CatalogProduct.brand}</Subcaption>
+              {/* TODO remove url bit when local detail page complete */}
+              <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
+                <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
+              </a>
             </Grid>
             <EmptyRow/>
             <Grid item lg={4}>
