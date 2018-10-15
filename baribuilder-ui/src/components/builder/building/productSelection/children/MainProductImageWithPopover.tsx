@@ -4,6 +4,7 @@ import * as React from 'react';
 import {ReactEventHandler, SFC} from 'react';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
+import ProductPopover from '../../popover/ProductPopover';
 import MainProductImage from './MainProductImage';
 
 interface IProps {
@@ -28,7 +29,7 @@ const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductI
     setAnchorEl(event.currentTarget);
   };
 
-  const handlePopoverClose: ReactEventHandler<HTMLElement> = event => {
+  const handlePopoverClose: ReactEventHandler<HTMLElement> = () => {
     setAnchorEl(null);
   };
 
@@ -55,7 +56,7 @@ const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductI
         disableRestoreFocus
         style={{zIndex: 5}}
       >
-        Pops
+        <ProductPopover catalogProductId={catalogProductId}/>
       </NoPointerEventsPopover>
     </div>
   );

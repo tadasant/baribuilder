@@ -55,10 +55,20 @@ const BorderedTable = styled(Table)`
   border: 1px solid ${Sketch.color.accent.grey};
 `;
 
+const MaxWidthGrid = styled(Grid)`
+  max-width: 500px;
+`;
+
+const MinHeightTableRow = styled(TableRow)`
+  && {
+    height: unset;
+  }
+`;
+
 const ProductPopover: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct, loading}}) => {
   if (CatalogProduct && CatalogProduct.serving.ingredients && !loading) {
     return (
-      <Grid container>
+      <MaxWidthGrid container>
         <CenteredTextGrid item lg={12}>
           <Header2 dark>{CatalogProduct.name}</Header2>
         </CenteredTextGrid>
@@ -75,7 +85,7 @@ const ProductPopover: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct, 
         <Fragment>
           <Grid item lg={1}/>
           <Grid item lg={10}>
-            <BorderedTable>
+            <BorderedTable padding='dense'>
               <TableHead>
                 <TableRow>
                   <CenteredTextTableCell colSpan={3}>
@@ -85,11 +95,11 @@ const ProductPopover: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct, 
               </TableHead>
               <TableBody>
                 {CatalogProduct.serving.ingredients.map(ingredient => (
-                  <TableRow key={ingredient.ingredientType.name}>
+                  <MinHeightTableRow key={ingredient.ingredientType.name}>
                     <TableCell>{ingredient.ingredientType.name}</TableCell>
-                    <TableCell>{ingredient.quantity.amount}</TableCell>
-                    <TableCell>{ingredient.quantity.units}</TableCell>
-                  </TableRow>
+                    <TableCell numeric>{ingredient.quantity.amount}</TableCell>
+                    <TableCell>{ingredient.quantity.units.toLowerCase()}</TableCell>
+                  </MinHeightTableRow>
                 ))}
               </TableBody>
             </BorderedTable>
@@ -97,7 +107,7 @@ const ProductPopover: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct, 
           <Grid item lg={1}/>
         </Fragment>
         <EmptyRow/>
-      </Grid>
+      </MaxWidthGrid>
     );
   }
   return null;
