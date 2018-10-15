@@ -34,6 +34,12 @@ const PurchaseScreenPure: SFC = () => {
       <Grid item lg={1}/>
       <Grid container item lg={4} alignContent='flex-start'>
         <SelectedProductListings/>
+        <EmptyRow/>
+        <WideUndecoratedLink to='/browse/all_products'>
+          <Button variant='raised' color='secondary' fullWidth>
+            Edit Selections
+          </Button>
+        </WideUndecoratedLink>
       </Grid>
       <RightBorderGrid item lg={1}/>
       <Grid item lg={1}/>
