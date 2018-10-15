@@ -234,7 +234,7 @@ const calculatePercentageOfGoal = (
 };
 
 // Pure
-const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogProducts, goalIngredients, loading}}) => {
+const RegimenFacts: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogProducts, goalIngredients, loading}}) => {
   if (currentRegimen && allCatalogProducts && goalIngredients && !loading) {
     const micronutrientRowPropsList = calculateMicronutrientRowPropsList(currentRegimen.products, allCatalogProducts, goalIngredients.ingredientRanges);
     micronutrientRowPropsList.sort((p1, p2) => compareIngredientTypeNames(p1.ingredientTypeName, p2.ingredientTypeName));
@@ -242,7 +242,7 @@ const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatal
       return (
         <CenteredTextGrid>
           <GreyHeader2 dark>
-            You haven't added any products to your regimen! Add some from the left.
+            You haven't added any products to your regimen yet!
           </GreyHeader2>
         </CenteredTextGrid>
       )
@@ -296,4 +296,4 @@ const RegimenFactsPure: SFC<DataOutputProps> = ({data: {currentRegimen, allCatal
   return null;
 };
 
-export default enhance(RegimenFactsPure);
+export default enhance(RegimenFacts);
