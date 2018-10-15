@@ -16,7 +16,7 @@ import {
   SetCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
 import {BoldBody, Caption} from '../../../style/Typography';
-import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../../BuilderScreen';
 import XRegimenProductIcon from './XRegimenProductIcon';
 
 interface IProps {
@@ -67,7 +67,7 @@ const withData = graphql<IProps, GetCatalogProductForRegimenProduct>(GET_CATALOG
 
 const withMutation = graphql<{}, SetCurrentRegimenProductQuantity>(REGIMEN_PRODUCT_QUANTITY_MUTATION, {
   options: {
-    refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
   }
 });
 
@@ -94,7 +94,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
           units: quantity.units,
         }
       },
-      refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+      refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
     });
 
     const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => mutateAmount(event.target.value ? parseInt(event.target.value, 10) : 0);
@@ -105,7 +105,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
     return (
       <Grid item container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>
-          {/* TODO remove url bit when checkout page complete */}
+          {/* TODO remove url bit when local detail page complete */}
           <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody dark>{CatalogProduct.name}</BoldBody></a>
         </CenteredTextGrid>
         <CenteredTextGrid item lg={12}>

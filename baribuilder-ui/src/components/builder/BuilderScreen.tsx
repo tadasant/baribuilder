@@ -10,7 +10,7 @@ import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
 import BuilderScreenPure from './BuilderScreenPure';
 
-const GET_PREFETCH_QUERY = gql`
+const PREFETCH_GET_CATALOG = gql`
     query GetCatalogProducts {
         allCatalogProducts {
             # Prefetch data that'll be needed for allClientCatalogProducts TODO replace with fragments
@@ -46,8 +46,7 @@ const GET_PREFETCH_QUERY = gql`
     }
 `;
 
-// TODO rename this so appropriate for re-use
-export const GET_PREFETCH_QUERY_CLIENT = gql`
+export const PREFETCH_GET_CLIENT_CATALOG = gql`
     query GetClientCatalogProducts($category: CATEGORY!) {
         allClientCatalogProducts(category: $category) @client {
             # Prefetch data that'll be needed for individual ClientCatalogProducts
@@ -139,14 +138,14 @@ class BuilderScreenContainer extends Component<RouteComponentProps, Readonly<ISt
     // TODO eventually abstract these away into simple wrapper components
     const categoryVariable = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
     return (
-      <Query query={GET_PREFETCH_QUERY}>
+      <Query query={PREFETCH_GET_CATALOG}>
         {
           ({loading, error, data}) => {
             if (loading || !data || !data.allCatalogProducts) {
               return loading ? <CenteredSpinner /> : null;
             }
             return (
-              <Query query={GET_PREFETCH_QUERY_CLIENT} variables={{category: categoryVariable}}>
+              <Query query={PREFETCH_GET_CLIENT_CATALOG} variables={{category: categoryVariable}}>
                 {
                   (props) => {
                     if (props.loading || !props.data || !props.data.searchQuery || !props.data.allClientCatalogProducts) {

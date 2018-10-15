@@ -9,7 +9,7 @@ import {
   DeleteCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/DeleteCurrentRegimenProductQuantity';
 import {XIconImg} from '../../../goals/children/IngredientRangeSelection';
-import {GET_PREFETCH_QUERY_CLIENT} from '../../BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../../BuilderScreen';
 
 interface IProps {
   catalogProductId: string;
@@ -35,7 +35,7 @@ type MutationOutputProps =
 const withMutation = graphql<IProps, DeleteCurrentRegimenProductQuantity>(REGIMEN_PRODUCT_QUANTITY_DELETE_MUTATION, {
   options: ({catalogProductId}) => ({
     variables: {catalogProductId},
-    refetchQueries: [{query: GET_PREFETCH_QUERY_CLIENT}],
+    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
   }),
 });
 

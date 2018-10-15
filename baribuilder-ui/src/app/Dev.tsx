@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component} from 'react';
-import BuilderMyProducts from '../components/builder/building/BuilderMyProducts';
+import PurchaseScreen from '../components/purchase/PurchaseScreen';
 
 interface IState {
   value: number;
@@ -22,7 +22,7 @@ class Dev extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <BuilderMyProducts/>
+        <PurchaseScreen/>
       </div>
     );
   }

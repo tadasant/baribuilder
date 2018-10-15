@@ -1,7 +1,6 @@
 import {Hidden} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
@@ -69,10 +68,9 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data
         {showCheckout
           ? (
             <Grid item>
-              <Tooltip
-                title={'Sorry, checkout is not yet available. To buy products on Amazon, open "My Products" and click the name of each product you\'ve added to your regimen.'}>
+              <UndecoratedLink to='/purchase'>
                 <Button color='primary' variant='raised'>Checkout</Button>
-              </Tooltip>
+              </UndecoratedLink>
             </Grid>
           )
           : null
