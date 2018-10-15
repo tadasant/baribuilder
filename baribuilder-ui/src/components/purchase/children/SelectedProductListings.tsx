@@ -29,7 +29,7 @@ const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen}}
   return (
     <Fragment>
       <CenteredTextGrid item lg={12}>
-        <Header dark>Selected Products</Header>
+        <Header dark>Selections</Header>
       </CenteredTextGrid>
       <EmptyRow/>
       {
