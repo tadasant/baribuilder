@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component} from 'react';
-import PurchaseScreen from '../components/purchase/PurchaseScreen';
+import ProductPopover from '../components/builder/building/popover/ProductPopover';
 
 interface IState {
   value: number;
@@ -22,7 +22,7 @@ class Dev extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <PurchaseScreen/>
+        <ProductPopover catalogProductId='cjm0tbtko00560179xhyj5uju'/>
       </div>
     );
   }
