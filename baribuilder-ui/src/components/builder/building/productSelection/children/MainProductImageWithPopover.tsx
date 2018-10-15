@@ -47,6 +47,10 @@ const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductI
           vertical: 'top',
           horizontal: anchorSide || 'right',
         }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: anchorSide === 'left' ? 'right' : 'left',
+        }}
         open={open}
         anchorEl={anchorEl}
         onClose={handlePopoverClose}
