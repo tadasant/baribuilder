@@ -13,7 +13,7 @@ import {
 import {FREQUENCY} from '../../../../../typings/gql/globalTypes';
 import {CenteredTextGrid} from '../../../../goals/GoalsScreenPure';
 import {EmptyRow} from '../../../../style/Layout';
-import {Header2, Subcaption} from '../../../../style/Typography';
+import {Body, Subcaption} from '../../../../style/Typography';
 import CatalogProductAddButton from './CatalogProductAddButton';
 
 interface IProps {
@@ -113,11 +113,11 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
       <Grid item lg={4}/>
       <EmptyRow mobile='0px'/>
       {
-        fullfilledIngredientCount
+        fullfilledIngredientCount !== null
           ? (
             <Fragment>
               <CenteredTextGrid item lg={12}>
-                <Header2 dark>{fullfilledIngredientCount} of {ingredientGoalCount}</Header2>
+                <Body dark>{fullfilledIngredientCount} of {ingredientGoalCount}</Body>
               </CenteredTextGrid>
               <CenteredTextGrid item lg={12}>
                 <Subcaption dark>ingredients fulfilled</Subcaption>
