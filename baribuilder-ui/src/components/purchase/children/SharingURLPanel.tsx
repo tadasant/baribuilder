@@ -1,9 +1,10 @@
 import {Button, Grid, TextField} from '@material-ui/core';
+import * as copy from 'copy-to-clipboard';
 import gql from 'graphql-tag';
 import * as qs from 'qs';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
-import {ChildDataProps, DataProps, graphql} from 'react-apollo';
+import {ChildDataProps, DataValue, graphql} from 'react-apollo';
 import {compose} from 'recompose';
 import styled from 'styled-components';
 import {GetStoreToShare} from '../../../typings/gql/GetStoreToShare';
@@ -39,7 +40,7 @@ const STORE_TO_SHARE_QUERY = gql`
 
 type QueryOutputProps = ChildDataProps<{}, GetStoreToShare>;
 
-const dataToShareableURL = ({data: {currentRegimen, goalIngredients}}: DataProps<GetStoreToShare>) => {
+const dataToShareableURL = ({currentRegimen, goalIngredients}: DataValue<GetStoreToShare, {}>) => {
   const queryString = qs.stringify({
     currentRegimen,
     goalIngredients
@@ -47,15 +48,19 @@ const dataToShareableURL = ({data: {currentRegimen, goalIngredients}}: DataProps
   return `${window.location.host}/share?${queryString}`;
 };
 
-// TODO toaster for successful copy
-
 const HorizontalPaddedGrid = styled(Grid)`
   padding-left: 8px;
   padding-right: 8px;
 `;
 
 const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
-  // TODO copy functionality
+
+  // TODO toaster for successful copy
+  const performCopy = () => {
+    copy(dataToShareableURL(data));
+    console.log('copied');
+  };
+
   if (data) {
     return (
       <Fragment>
@@ -65,12 +70,12 @@ const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
               <BoldBody dark>URL to share:</BoldBody>
             </Grid>
             <Grid item lg>
-              <TextField fullWidth value={dataToShareableURL({data})}/>
+              <TextField fullWidth value={dataToShareableURL(data)}/>
             </Grid>
           </Grid>
         </HorizontalPaddedGrid>
         <HorizontalPaddedGrid item lg={2}>
-          <Button color='primary' variant='raised' fullWidth>Copy</Button>
+          <Button color='primary' variant='raised' fullWidth onClick={performCopy}>Copy</Button>
         </HorizontalPaddedGrid>
       </Fragment>
     );
