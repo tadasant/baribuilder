@@ -16,7 +16,7 @@ import {
   SetCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
 import {BoldBody, Caption} from '../../../style/Typography';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../../BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../../CatalogScreen';
 import MainProductImageWithPopover from '../productSelection/children/MainProductImageWithPopover';
 import XRegimenProductIcon from './XRegimenProductIcon';
 

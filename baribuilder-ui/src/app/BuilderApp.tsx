@@ -2,7 +2,7 @@ import {Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Component, Fragment} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import BuilderScreen from '../components/builder/BuilderScreen';
+import CatalogScreen from '../components/catalog/CatalogScreen';
 import Footer from '../components/Footer';
 import GoalsScreen from '../components/goals/GoalsScreen';
 import {CenteredTextGrid} from '../components/goals/GoalsScreenPure';
@@ -25,7 +25,7 @@ class BuilderApp extends Component {
       <Fragment>
         <Hidden mdDown>
           <Switch>
-            <Route path="/browse" component={BuilderScreen}/>
+            <Route path="/browse" component={CatalogScreen}/>
             <Route exact path="/goals" component={GoalsScreen}/>
             <Route exact path="/purchase" component={PurchaseScreen}/>
             <Route exact path="/share" component={ShareScreen}/>

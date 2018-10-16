@@ -5,8 +5,8 @@ import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
-import {prettifyEnumString} from '../../builder/building/BuilderFilterPanel';
-import MainProductImageWithPopover from '../../builder/building/productSelection/children/MainProductImageWithPopover';
+import {prettifyEnumString} from '../../catalog/children/BuilderFilterPanel';
+import MainProductImageWithPopover from '../../catalog/children/productSelection/children/MainProductImageWithPopover';
 import {Body, BoldBody} from '../../style/Typography';
 
 interface IProps {

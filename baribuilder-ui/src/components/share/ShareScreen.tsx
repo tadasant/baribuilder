@@ -9,7 +9,7 @@ import {compose} from 'recompose';
 import {DeleteCurrentRegimenProductQuantity} from '../../typings/gql/DeleteCurrentRegimenProductQuantity';
 import {GetStoreToShare} from '../../typings/gql/GetStoreToShare';
 import {ShareStoreMutation, ShareStoreMutationVariables} from '../../typings/gql/ShareStoreMutation';
-import {CenteredSpinner, PREFETCH_GET_CATALOG, PREFETCH_GET_CLIENT_CATALOG} from '../builder/BuilderScreen';
+import {CenteredSpinner, PREFETCH_GET_CATALOG, PREFETCH_GET_CLIENT_CATALOG} from '../catalog/CatalogScreen';
 
 const SHARE_STORE_MUTATION = gql`
     mutation ShareStoreMutation($currentRegimen: RegimenInput!, $goalIngredients: GoalIngredientsInput!) {

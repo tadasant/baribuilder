@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Component} from 'react';
 import styled from 'styled-components';
 import MainProductImageWithPopover
-  from '../components/builder/building/productSelection/children/MainProductImageWithPopover';
+  from '../components/catalog/children/productSelection/children/MainProductImageWithPopover';
 
 interface IState {
   value: number;

@@ -11,7 +11,7 @@ import Sketch from '../../app/style/SketchVariables';
 import {generateTrackNavClick} from '../../lib/gaHelper';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
-import {SEARCH_QUERY_QUERY} from '../builder/queries';
+import {SEARCH_QUERY_QUERY} from '../catalog/queries';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import SearchBox from './SearchBox';
 

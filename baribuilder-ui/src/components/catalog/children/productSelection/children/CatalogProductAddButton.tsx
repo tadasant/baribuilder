@@ -6,7 +6,7 @@ import {DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import {AddProduct, AddProductVariables} from '../../../../../typings/gql/AddProduct';
 import {GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity} from '../../../../../typings/gql/GetClientCatalogProductQuantities';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../../../BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../../../CatalogScreen';
 
 interface IProps {
   catalogProductId: string;

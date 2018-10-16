@@ -10,7 +10,7 @@ import Sketch from '../../../app/style/SketchVariables';
 import {GetClientCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetClientCatalogProducts';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
-import {SetBuilderStateFunction} from '../BuilderScreenPure';
+import {SetBuilderStateFunction} from '../CatalogScreenPure';
 
 export const builderHeaderHeight = '48px';
 

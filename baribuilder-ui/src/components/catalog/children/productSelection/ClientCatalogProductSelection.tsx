@@ -6,7 +6,7 @@ import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import {GetClientCatalogProducts_allClientCatalogProducts} from '../../../../typings/gql/GetClientCatalogProducts';
 import {EmptyRow} from '../../../style/Layout';
-import {SORTING_STRATEGY} from '../../BuilderScreen';
+import {SORTING_STRATEGY} from '../../CatalogScreen';
 import ClientCatalogProduct from './ClientCatalogProduct';
 
 interface IProps {

@@ -8,7 +8,7 @@ import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
-import BuilderScreenPure from './BuilderScreenPure';
+import CatalogScreenPure from './CatalogScreenPure';
 
 // TODO I probably need to move this prefetching up to BuilderApp
 
@@ -110,7 +110,7 @@ const getSelectedCategory = (pathname: string) => {
   return selectedCategory;
 };
 
-class BuilderScreenContainer extends Component<RouteComponentProps, Readonly<IState>> {
+class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
   constructor(props: RouteComponentProps) {
     super(props);
     this.state = {
@@ -154,7 +154,7 @@ class BuilderScreenContainer extends Component<RouteComponentProps, Readonly<ISt
                       return props.loading ? <CenteredSpinner /> : null;
                     }
                     return (
-                      <BuilderScreenPure
+                      <CatalogScreenPure
                         selectedCategory={selectedCategory}
                         allCatalogProducts={data.allCatalogProducts}
                         clientCatalogProducts={props.data.allClientCatalogProducts}
@@ -177,4 +177,4 @@ class BuilderScreenContainer extends Component<RouteComponentProps, Readonly<ISt
   }
 }
 
-export default withRouter(BuilderScreenContainer);
+export default withRouter(CatalogScreen);

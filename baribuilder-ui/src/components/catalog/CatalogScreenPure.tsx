@@ -9,12 +9,12 @@ import {
   GetClientCatalogProducts_allClientCatalogProducts,
   GetClientCatalogProducts_searchQuery
 } from '../../typings/gql/GetClientCatalogProducts';
-import {SORTING_STRATEGY} from './BuilderScreen';
-import BuilderFilterPanel from './building/BuilderFilterPanel';
-import BuilderHeader from './building/BuilderHeader';
-import BuilderMainPanel from './building/BuilderMainPanel';
-import BuilderMyProducts from './building/BuilderMyProducts';
-import BuilderMyRegimen from './building/BuilderMyRegimen';
+import {SORTING_STRATEGY} from './CatalogScreen';
+import BuilderFilterPanel from './children/BuilderFilterPanel';
+import BuilderHeader from './children/BuilderHeader';
+import BuilderMainPanel from './children/BuilderMainPanel';
+import BuilderMyProducts from './children/BuilderMyProducts';
+import BuilderMyRegimen from './children/BuilderMyRegimen';
 
 export type SetBuilderStateFunction = (value: boolean) => void;
 
@@ -54,7 +54,7 @@ const filterClientCatalogProducts = (
   return clientCatalogProducts;
 };
 
-const BuilderScreenPure: SFC<IProps> = props => {
+const CatalogScreenPure: SFC<IProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
   const numColumnsForFilter = showMyProducts && showMyRegimen ? null : 2;
   // @ts-ignore can't figure out my math
@@ -113,4 +113,4 @@ const BuilderScreenPure: SFC<IProps> = props => {
   );
 };
 
-export default BuilderScreenPure;
+export default CatalogScreenPure;

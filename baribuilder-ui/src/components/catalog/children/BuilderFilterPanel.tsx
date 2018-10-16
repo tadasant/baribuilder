@@ -12,7 +12,7 @@ import {GetEnumValuesOfCategoriesAndForms} from '../../../typings/gql/GetEnumVal
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Body} from '../../style/Typography';
-import {ROOT_CATEGORY} from '../BuilderScreen';
+import {ROOT_CATEGORY} from '../CatalogScreen';
 
 interface IProps {
   selectedCategory: string;

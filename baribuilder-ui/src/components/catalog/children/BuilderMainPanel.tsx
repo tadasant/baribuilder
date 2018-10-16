@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import '../../../rc-pagination.css';
 import {GetClientCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetClientCatalogProducts';
 import {EmptyRow} from '../../style/Layout';
-import {SORTING_STRATEGY} from '../BuilderScreen';
+import {SORTING_STRATEGY} from '../CatalogScreen';
 import ClientCatalogProductSelection from './productSelection/ClientCatalogProductSelection';
 
 interface IProps {

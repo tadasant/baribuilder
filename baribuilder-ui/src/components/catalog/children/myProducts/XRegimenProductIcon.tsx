@@ -9,7 +9,7 @@ import {
   DeleteCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/DeleteCurrentRegimenProductQuantity';
 import {XIconImg} from '../../../goals/children/IngredientRangeSelection';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../../BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../../CatalogScreen';
 
 interface IProps {
   catalogProductId: string;

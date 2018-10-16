@@ -11,7 +11,7 @@ import Sketch from '../../app/style/SketchVariables';
 import searchIcon from '../../assets/icon/search.svg';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SetSearchQuery} from '../../typings/gql/SetSearchQuery';
-import {SEARCH_QUERY_QUERY} from '../builder/queries';
+import {SEARCH_QUERY_QUERY} from '../catalog/queries';
 
 const NearFullWidthTextField = styled(TextField)`
   width: 95%;

@@ -13,7 +13,7 @@ import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../builder/BuilderScreen';
+import {PREFETCH_GET_CLIENT_CATALOG} from '../catalog/CatalogScreen';
 import GoalsScreenPure from './GoalsScreenPure';
 
 const GOALS_SCREEN_QUERY = gql`
