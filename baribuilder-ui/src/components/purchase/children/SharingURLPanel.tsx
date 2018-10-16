@@ -1,8 +1,9 @@
 import {Button, Grid, TextField} from '@material-ui/core';
 import gql from 'graphql-tag';
+import * as qs from 'qs';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
+import {ChildDataProps, DataProps, graphql} from 'react-apollo';
 import {compose} from 'recompose';
 import styled from 'styled-components';
 import {GetStoreToShare} from '../../../typings/gql/GetStoreToShare';
@@ -38,7 +39,13 @@ const STORE_TO_SHARE_QUERY = gql`
 
 type QueryOutputProps = ChildDataProps<{}, GetStoreToShare>;
 
-// TODO helper funcs for wrangling url params
+const dataToShareableURL = ({data: {currentRegimen, goalIngredients}}: DataProps<GetStoreToShare>) => {
+  const queryString = qs.stringify({
+    currentRegimen,
+    goalIngredients
+  });
+  return `${window.location.host}/share?${queryString}`;
+};
 
 // TODO toaster for successful copy
 
@@ -47,25 +54,28 @@ const HorizontalPaddedGrid = styled(Grid)`
   padding-right: 8px;
 `;
 
-const SharingURLPanel: SFC<QueryOutputProps> = ({data: {currentRegimen, goalIngredients}}) => {
+const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
   // TODO copy functionality
-  return (
-    <Fragment>
-      <HorizontalPaddedGrid item container lg={10}>
-        <Grid container spacing={8} alignItems='flex-end'>
-          <Grid item>
-            <BoldBody dark>URL to share:</BoldBody>
+  if (data) {
+    return (
+      <Fragment>
+        <HorizontalPaddedGrid item container lg={10}>
+          <Grid container spacing={8} alignItems='flex-end'>
+            <Grid item>
+              <BoldBody dark>URL to share:</BoldBody>
+            </Grid>
+            <Grid item lg>
+              <TextField fullWidth value={dataToShareableURL({data})}/>
+            </Grid>
           </Grid>
-          <Grid item lg>
-            <TextField fullWidth/>
-          </Grid>
-        </Grid>
-      </HorizontalPaddedGrid>
-      <HorizontalPaddedGrid item lg={2}>
-        <Button color='primary' variant='raised' fullWidth>Copy</Button>
-      </HorizontalPaddedGrid>
-    </Fragment>
-  )
+        </HorizontalPaddedGrid>
+        <HorizontalPaddedGrid item lg={2}>
+          <Button color='primary' variant='raised' fullWidth>Copy</Button>
+        </HorizontalPaddedGrid>
+      </Fragment>
+    );
+  }
+  return null;
 };
 
 const withData = graphql<{}, GetStoreToShare>(STORE_TO_SHARE_QUERY);
