@@ -1,15 +1,15 @@
+import {Paper} from '@material-ui/core';
 import * as React from 'react';
 import {Component} from 'react';
 import styled from 'styled-components';
-import MainProductImageWithPopover
-  from '../components/catalog/children/productSelection/children/MainProductImageWithPopover';
+import ClientCatalogProduct from '../components/catalog/children/productSelection/ClientCatalogProduct';
 
 interface IState {
   value: number;
 }
 
-const MainImage = styled(MainProductImageWithPopover)`
-  height: 100px;
+const PaddedDiv = styled.div`
+  padding: 8px 8px;
 `;
 
 class Dev extends Component<{}, IState> {
@@ -28,7 +28,11 @@ class Dev extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <MainImage catalogProductId='cjm0tbtko00560179xhyj5uju' anchorSide='left'/>
+        <Paper>
+          <PaddedDiv>
+            <ClientCatalogProduct id='cjm0tbtko00560179xhyj5uju'/>
+          </PaddedDiv>
+        </Paper>
       </div>
     );
   }

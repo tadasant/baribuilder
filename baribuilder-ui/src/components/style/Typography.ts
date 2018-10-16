@@ -79,3 +79,11 @@ export const Subcaption = span`
   text-align: ${Sketch.typography.subcaption.textAlign};
   vertical-align: ${Sketch.typography.subcaption.verticalAlign};
 `;
+
+export const GreyHeader2 = styled(Header2)`
+  color: ${Sketch.color.accent.grey};
+`;
+
+export const GreyBody = styled(Body)`
+  color: ${Sketch.color.accent.grey};
+`;

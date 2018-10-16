@@ -14,7 +14,10 @@ export const ShadowedSelect = styled(Select)`
 `;
 
 export const UndecoratedLink = styled(Link)`
-  text-decoration: unset;
+  && {
+    text-decoration: unset;
+    color: inherit;
+  }
 `;
 
 export const NearFullWidthTextField = styled(TextField)`

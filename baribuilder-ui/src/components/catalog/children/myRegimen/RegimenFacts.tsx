@@ -20,7 +20,7 @@ import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../.
 import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
 import {ShadowedSelect} from '../../../style/CustomMaterial';
 import {EmptyRow} from '../../../style/Layout';
-import {Body, BoldBody, Header2} from '../../../style/Typography';
+import {Body, BoldBody, GreyHeader2, Header2} from '../../../style/Typography';
 
 const REGIMEN_FACTS_QUERY = gql`
     query GetDataForRegimenFacts {
@@ -139,10 +139,6 @@ const LeftAlignGrid = styled(Grid)`
   text-align: left;
 `;
 
-const GreyHeader2 = styled(Header2)`
-  color: ${Sketch.color.accent.grey};
-`;
-
 const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
   const isExceeded = props.percentOfGoal !== undefined && props.percentOfGoal > 100;
   const isDeficient = props.percentOfGoal !== undefined && props.percentOfGoal < 100;
@@ -241,7 +237,7 @@ const RegimenFacts: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogPr
     if (micronutrientRowPropsList.length === 0) {
       return (
         <CenteredTextGrid>
-          <GreyHeader2 dark>
+          <GreyHeader2>
             You haven't added any products to your regimen yet!
           </GreyHeader2>
         </CenteredTextGrid>

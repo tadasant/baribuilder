@@ -10,8 +10,8 @@ import {GetCatalogProduct, GetCatalogProductVariables} from '../../../../typings
 import {EmptyRow} from '../../../style/Layout';
 import {Caption} from '../../../style/Typography';
 import {prettifyEnumString} from '../BuilderFilterPanel';
+import CatalogContextPanel from './children/CatalogContextPanel';
 import CatalogProductAddPanel from './children/CatalogProductAddPanel';
-import CatalogProductPrice from './children/CatalogProductPrice';
 import MainProductImageWithPopover from './children/MainProductImageWithPopover';
 
 interface IProps {
@@ -51,13 +51,13 @@ const LeftBorderGrid = styled(Grid)`
 `;
 
 // Pure
-const ProductPure: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}}) => {
+const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}}) => {
   if (CatalogProduct && CatalogProduct.listings) {
     return (
       <Grid container direction='row'>
         <EmptyRow mobile='-20px'/>
         <Grid container direction='row'>
-          <Grid item lg={9} container>
+          <Grid item lg={7} container>
             <Grid item lg={12}>
               {/* TODO remove url bit when local detail page complete */}
               <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
@@ -69,11 +69,11 @@ const ProductPure: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}
               <MainProductImageWithPopover catalogProductId={id}/>
             </Grid>
             <Grid item lg={8} container justify='center'>
-              <CatalogProductPrice catalogProductId={id}/>
+              <CatalogProductAddPanel catalogProductId={id}/>
             </Grid>
           </Grid>
-          <LeftBorderGrid item lg={3}>
-            <CatalogProductAddPanel catalogProductId={id}/>
+          <LeftBorderGrid item lg={5}>
+            <CatalogContextPanel catalogProductId={id}/>
           </LeftBorderGrid>
         </Grid>
         <EmptyRow mobile='-20px'/>
@@ -83,4 +83,4 @@ const ProductPure: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}
   return null;
 };
 
-export default enhance(ProductPure);
+export default enhance(ClientCatalogProduct);
