@@ -64,7 +64,7 @@ const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
     return (
       <Fragment>
         <HorizontalPaddedGrid item container lg={10}>
-          <Grid container spacing={8} alignItems='flex-end'>
+          <Grid container spacing={8} justify='flex-end'>
             <Grid item>
               <BoldBody dark>URL to share:</BoldBody>
             </Grid>
