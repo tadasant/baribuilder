@@ -4,6 +4,7 @@ import * as React from 'react';
 import {Component} from 'react';
 import {DataProps, DataValue, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {toast} from 'react-toastify';
 import {compose} from 'recompose';
 import {DeleteCurrentRegimenProductQuantity} from '../../typings/gql/DeleteCurrentRegimenProductQuantity';
 import {GetStoreToShare} from '../../typings/gql/GetStoreToShare';
@@ -46,6 +47,11 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
     }
     const storeValues = this.deriveStoreFromQueryParams();
     if (!storeValues || !storeValues.currentRegimen || !storeValues.goalIngredients) {
+      toast.error(`Error loading shared URL! Please contact feedback@vitaglab.com if you think this is a mistake. Error 01987 @ ${(new Date).getTime()}`, {
+        autoClose: false,
+        closeOnClick: false,
+      });
+      this.props.history.push('/');
       return;
     }
     this.props.mutate({
@@ -53,17 +59,23 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
         currentRegimen: storeValues.currentRegimen,
         goalIngredients: storeValues.goalIngredients
       }
-    }).then(({errors, data}) => {
-      console.log(errors);
-      console.log(data);
-      // toast success or error message
-      // push user to /purchase if success
-      // push user to root if failure
-    })
+    }).then(({errors}) => {
+      if (errors) {
+        toast.error(`Error loading shared URL! Please contact feedback@vitaglab.com if you think this is a mistake. Error 01988 @ ${(new Date).getTime()}`, {
+          autoClose: false,
+          closeOnClick: false,
+        });
+        this.props.history.push('/');
+      } else {
+        toast.success('Loaded shared selections & products successfully!');
+        this.props.history.push('/purchase');
+      }
+    });
+
   }
 
   render() {
-    return <CenteredSpinner />;
+    return <CenteredSpinner/>;
   }
 }
 

@@ -37,7 +37,7 @@ const PurchaseScreenPure: SFC = () => {
       <EmptyRow/>
       <CenteredTextGrid item lg={12}>
         <Caption dark>
-          Checkout out directly on BariBuilder is not yet available. Make purchases on Amazon by clicking the name of
+          Checkout directly on BariBuilder is not yet available. Make purchases on Amazon by clicking the name of
           each product next to its image.
         </Caption>
       </CenteredTextGrid>
