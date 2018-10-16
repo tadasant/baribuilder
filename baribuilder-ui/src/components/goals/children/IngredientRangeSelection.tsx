@@ -1,4 +1,4 @@
-import {Grid} from '@material-ui/core';
+import {Grid, Tooltip} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import gql from 'graphql-tag';
@@ -53,10 +53,6 @@ const EmphasizedShadowedSelect = styled(ShadowedSelect)`
   && {
     font-weight: 800;
     font-size: 1.5em;
-    
-    div {
-      padding-left: 8px;
-    }
   }
 `;
 
@@ -98,16 +94,21 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
     allIngredientTypes.sort((t1, t2) => compareIngredientTypeNames(t1.name, t2.name));
   }
 
+  const currentIngredientType = allIngredientTypes ? allIngredientTypes.find(ingredientType => ingredientType.name === ingredientRange.ingredientTypeName) : undefined;
+  const tooltipText = currentIngredientType ?  ingredientNameWithSynonymsDisplay(currentIngredientType) : undefined;
+
   return (
     <Grid container direction='row' spacing={8}>
       <Grid item lg={3} container direction='column' justify='flex-end'>
         <Grid item>
-          <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName}
-                                    onChange={handleChangeIngredientTypeName}>
-            {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
-              <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientNameWithSynonymsDisplay(ingredientType)}</MenuItem>
-            )) : null}
-          </EmphasizedShadowedSelect>
+          <Tooltip title={tooltipText}>
+            <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName}
+                                      onChange={handleChangeIngredientTypeName}>
+              {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
+                <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientNameWithSynonymsDisplay(ingredientType)}</MenuItem>
+              )) : null}
+            </EmphasizedShadowedSelect>
+          </Tooltip>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
