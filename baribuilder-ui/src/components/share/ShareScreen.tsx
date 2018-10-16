@@ -69,7 +69,7 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
         this.props.history.push('/');
       } else {
         toast.success('Loaded shared selections & products successfully!');
-        // this.props.history.push('/goals');
+        this.props.history.push('/purchase');
       }
     });
 
