@@ -7,7 +7,7 @@ import {SFC} from 'react';
 import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
-import {GetClientCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetClientCatalogProducts';
+import {GetCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetCatalogProducts';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
 import {SetBuilderStateFunction} from '../CatalogScreenPure';
@@ -21,7 +21,7 @@ interface IProps {
   showMyRegimen: boolean;
   isMyRegimenOnRight: boolean;
   selectedCategory: string;
-  filteredClientCatalogProducts: GetClientCatalogProducts_allClientCatalogProducts[];
+  filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
 }
 
 const FixedGrid = styled(Grid)`

@@ -100,19 +100,24 @@ class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
 
     return (
       <Query query={CATALOG_PRODUCTS_QUERY}>
-        {({data: {allCatalogProducts, allClientCatalogProducts, searchQuery}}) => (
-          <CatalogScreenPure
-            selectedCategory={selectedCategory}
-            allCatalogProducts={allCatalogProducts}
-            clientCatalogProducts={allClientCatalogProducts}
-            searchQuery={searchQuery}
-            showMyProducts={this.state.showMyProducts}
-            setShowMyProducts={this.setShowMyProducts}
-            showMyRegimen={this.state.showMyRegimen}
-            setShowMyRegimen={this.setShowMyRegimen}
-            sortingStrategy={this.state.sortingStrategy}
-          />
-        )}
+        {({data: {allCatalogProducts, allClientCatalogProducts, searchQuery}, loading}) => {
+          if (loading || !allCatalogProducts || !allClientCatalogProducts) {
+            return null;
+          }
+          return (
+            <CatalogScreenPure
+              selectedCategory={selectedCategory}
+              allCatalogProducts={allCatalogProducts}
+              clientCatalogProducts={allClientCatalogProducts}
+              searchQuery={searchQuery}
+              showMyProducts={this.state.showMyProducts}
+              setShowMyProducts={this.setShowMyProducts}
+              showMyRegimen={this.state.showMyRegimen}
+              setShowMyRegimen={this.setShowMyRegimen}
+              sortingStrategy={this.state.sortingStrategy}
+            />
+          );
+        }}
       </Query>
 
     )
