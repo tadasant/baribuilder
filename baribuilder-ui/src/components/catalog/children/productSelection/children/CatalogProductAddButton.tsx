@@ -58,7 +58,7 @@ const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate})
       color='default'
       fullWidth
       onClick={handleClick}>
-      Add
+      Add To Regimen
     </Button>
   );
 };

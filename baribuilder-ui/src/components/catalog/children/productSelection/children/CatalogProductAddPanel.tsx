@@ -93,17 +93,17 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>
-      <Grid item lg={2}/>
-      <Grid item lg={8}>
-        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth label='servings/day'/>
-      </Grid>
-      <Grid item lg={2}/>
-      <EmptyRow mobile='0px'/>
       <Grid item lg={4}/>
       <Grid item lg={4}>
-        <CatalogProductAddButton catalogProductId={catalogProductId} quantity={quantity}/>
+        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth label='servings/day'/>
       </Grid>
       <Grid item lg={4}/>
+      <EmptyRow mobile='0px'/>
+      <Grid item lg={2}/>
+      <Grid item lg={8}>
+        <CatalogProductAddButton catalogProductId={catalogProductId} quantity={quantity}/>
+      </Grid>
+      <Grid item lg={2}/>
     </OuterGrid>
   );
 };
