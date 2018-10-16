@@ -5,6 +5,7 @@ import AddProductToCurrentRegimen from './resolvers/resolver/mutation/AddProduct
 import DeleteCurrentRegimenProductQuantity from './resolvers/resolver/mutation/DeleteCurrentRegimenProductQuantity';
 import SetCurrentRegimenProductQuantity from './resolvers/resolver/mutation/SetCurrentRegimenProductQuantity';
 import SetGoalIngredients from './resolvers/resolver/mutation/SetGoalIngredients';
+import SetCurrentRegimen from './resolvers/resolver/mutation/SetCurrentRegimen';
 import SetSearchQuery from './resolvers/resolver/mutation/SetSearchQuery';
 import allClientCatalogProducts from './resolvers/resolver/query/allClientCatalogProducts';
 import ClientCatalogProduct from './resolvers/resolver/query/ClientCatalogProduct';
@@ -26,6 +27,7 @@ const resolvers = {
   Mutation: {
     AddProductToCurrentRegimen,
     SetGoalIngredients,
+    SetCurrentRegimen,
     SetCurrentRegimenProductQuantity,
     DeleteCurrentRegimenProductQuantity,
     SetSearchQuery,

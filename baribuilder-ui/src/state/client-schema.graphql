@@ -47,10 +47,20 @@ type Regimen {
     products: [RegimenProduct!]!
 }
 
+input RegimenInput {
+    products: [RegimenProductInput!]!
+}
+
 type RegimenProduct {
     catalogProductId: ID!
     quantity: RegimenProductQuantity!
     cost: RegimenProductCost!
+}
+
+input RegimenProductInput {
+    catalogProductId: ID!
+    quantity: RegimenProductQuantityInput!
+    cost: RegimenProductCostInput!
 }
 
 type RegimenProductQuantity {
@@ -66,6 +76,11 @@ input RegimenProductQuantityInput {
 }
 
 type RegimenProductCost {
+    money: Float!
+    frequency: FREQUENCY!
+}
+
+input RegimenProductCostInput {
     money: Float!
     frequency: FREQUENCY!
 }
@@ -111,6 +126,7 @@ extend type Query {
 extend type Mutation {
     AddProductToCurrentRegimen(catalogProductId: ID!, amount: Int!, frequency: FREQUENCY!, units: PRODUCT_QUANTITY_UNITS!): Regimen!
     SetGoalIngredients(goalIngredients: GoalIngredientsInput!): GoalIngredients!
+    SetCurrentRegimen(currentRegimen: RegimenInput!): Regimen!
     SetCurrentRegimenProductQuantity(catalogProductId: ID!, regimenProductQuantity: RegimenProductQuantityInput!): Regimen!
     DeleteCurrentRegimenProductQuantity(catalogProductId: ID!): Regimen!
     SetSearchQuery(searchQuery: String!): SearchQuery!

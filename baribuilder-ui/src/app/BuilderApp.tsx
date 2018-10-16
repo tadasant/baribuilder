@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import GoalsScreen from '../components/goals/GoalsScreen';
 import {CenteredTextGrid} from '../components/goals/GoalsScreenPure';
 import PurchaseScreen from '../components/purchase/PurchaseScreen';
+import ShareScreen from '../components/share/ShareScreen';
 import {EmptyRow} from '../components/style/Layout';
 import {Header} from '../components/style/Typography';
 import TermsAndConditions from '../components/TermsAndConditions';
@@ -27,6 +28,7 @@ class BuilderApp extends Component {
             <Route path="/browse" component={BuilderScreen}/>
             <Route exact path="/goals" component={GoalsScreen}/>
             <Route exact path="/purchase" component={PurchaseScreen}/>
+            <Route exact path="/share" component={ShareScreen}/>
             <Route exact path="/terms-and-conditions" component={TermsAndConditions}/>
             {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
             <Route component={NotFound}/>

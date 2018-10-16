@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Component} from 'react';
-import '../../state/fragments.graphql';
 import PurchaseScreenPure from './PurchaseScreenPure';
 
 // TODO will need state for storing number of days, etc.

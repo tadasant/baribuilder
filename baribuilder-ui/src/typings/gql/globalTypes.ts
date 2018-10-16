@@ -115,6 +115,21 @@ export interface IngredientRangeInput {
   frequency: FREQUENCY;
 }
 
+export interface RegimenInput {
+  products: RegimenProductInput[];
+}
+
+export interface RegimenProductCostInput {
+  money: number;
+  frequency: FREQUENCY;
+}
+
+export interface RegimenProductInput {
+  catalogProductId: string;
+  quantity: RegimenProductQuantityInput;
+  cost: RegimenProductCostInput;
+}
+
 export interface RegimenProductQuantityInput {
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;

@@ -10,7 +10,9 @@ import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
 import BuilderScreenPure from './BuilderScreenPure';
 
-const PREFETCH_GET_CATALOG = gql`
+// TODO I probably need to move this prefetching up to BuilderApp
+
+export const PREFETCH_GET_CATALOG = gql`
     query GetCatalogProducts {
         allCatalogProducts {
             # Prefetch data that'll be needed for allClientCatalogProducts TODO replace with fragments
@@ -87,7 +89,7 @@ const LargePaddedSpinner = styled(CircularProgress)`
   padding: 16px;
 `;
 
-const CenteredSpinner: SFC = () => (
+export const CenteredSpinner: SFC = () => (
   <Grid container justify='center'>
     <Grid item>
       <LargePaddedSpinner size={`calc(100vh - ${navbarHeight} - 32px)`}/>
