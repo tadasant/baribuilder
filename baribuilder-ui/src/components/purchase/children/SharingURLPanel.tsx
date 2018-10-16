@@ -5,6 +5,7 @@ import * as qs from 'qs';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, DataValue, graphql} from 'react-apollo';
+import {toast} from 'react-toastify';
 import {compose} from 'recompose';
 import styled from 'styled-components';
 import {GetStoreToShare} from '../../../typings/gql/GetStoreToShare';
@@ -54,11 +55,9 @@ const HorizontalPaddedGrid = styled(Grid)`
 `;
 
 const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
-
-  // TODO toaster for successful copy
   const performCopy = () => {
     copy(dataToShareableURL(data));
-    console.log('copied');
+    toast.success('Successfully copied URL to clipboard');
   };
 
   if (data) {

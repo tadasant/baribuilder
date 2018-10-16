@@ -11,6 +11,8 @@ import {ApolloProvider} from 'react-apollo';
 import ReactPixel from 'react-facebook-pixel';
 import * as ReactGA from 'react-ga';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import Navbar from '../components/navbar/Navbar';
 import config from '../config/config';
 import defaults from '../state/defaults';
@@ -74,6 +76,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <ApolloProvider client={client}>
+            <ToastContainer autoClose={2000}/>
             <Navbar/>
             <Switch>
               <Route exact path="/" component={StaticApp}/>
