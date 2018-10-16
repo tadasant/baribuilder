@@ -1,4 +1,5 @@
 import Select from '@material-ui/core/Select/Select';
+import TextField from '@material-ui/core/TextField/TextField';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
@@ -14,4 +15,8 @@ export const ShadowedSelect = styled(Select)`
 
 export const UndecoratedLink = styled(Link)`
   text-decoration: unset;
+`;
+
+export const NearFullWidthTextField = styled(TextField)`
+  width: 95%;
 `;

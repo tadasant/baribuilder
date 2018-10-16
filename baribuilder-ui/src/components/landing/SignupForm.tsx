@@ -1,13 +1,8 @@
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid/Grid';
-import TextField from '@material-ui/core/TextField/TextField';
 import * as React from 'react';
 import {Component, Fragment} from 'react';
-import styled from 'styled-components';
-
-const NearFullWidthTextField = styled(TextField)`
-  width: 95%;
-`;
+import {NearFullWidthTextField} from '../style/CustomMaterial';
 
 const postToMailchimp = (email: string) => {
   const path = "https://baribuilder.us18.list-manage.com/subscribe/post?u=cfcfc2dfdd3593e3bb9d472f0&amp;id=c1667f6a02";

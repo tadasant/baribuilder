@@ -1,4 +1,4 @@
-import {Button, Grid} from '@material-ui/core';
+import {Button, Grid, TextField} from '@material-ui/core';
 import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import RegimenFacts from '../builder/building/myRegimen/RegimenFacts';
 import {CenteredTextGrid} from '../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import {EmptyRow} from '../style/Layout';
-import {Caption, Header} from '../style/Typography';
+import {BoldBody, Caption, Header} from '../style/Typography';
 import SelectedProductListings from './children/SelectedProductListings';
 
 const WideUndecoratedLink = styled(UndecoratedLink)`
@@ -21,15 +21,43 @@ const RightBorderGrid = styled(Grid)`
   border-right: 1px solid ${Sketch.color.accent.grey};
 `;
 
+const PaperGrid = styled(Grid)`
+  box-shadow: 2px 0px 4px 0px ${Sketch.color.accent.darkgrey};
+  height: 64px;
+  padding: 16px 0px 16px;
+`;
+
+const HorizontalPaddedGrid = styled(Grid)`
+  padding-left: 8px;
+  padding-right: 8px;
+`;
+
 const PurchaseScreenPure: SFC = () => {
   return (
     <Grid container>
+      <PaperGrid container justify='flex-end'>
+        <HorizontalPaddedGrid item container lg={10}>
+          <Grid container spacing={8} alignItems='flex-end'>
+            <Grid item>
+              <BoldBody dark>URL to share:</BoldBody>
+            </Grid>
+            <Grid item lg>
+              <TextField fullWidth/>
+            </Grid>
+          </Grid>
+        </HorizontalPaddedGrid>
+        <HorizontalPaddedGrid item lg={2}>
+          <Button color='primary' variant='raised' fullWidth>Copy</Button>
+        </HorizontalPaddedGrid>
+      </PaperGrid>
       <EmptyRow/>
       <CenteredTextGrid item lg={12}>
         <Caption dark>
-          Checkout out directly on BariBuilder is not yet available. Make purchases on Amazon by clicking the name of each product next to its image.
+          Checkout out directly on BariBuilder is not yet available. Make purchases on Amazon by clicking the name of
+          each product next to its image.
         </Caption>
       </CenteredTextGrid>
+      <EmptyRow/>
       <EmptyRow/>
       <Grid item lg={1}/>
       <Grid container item lg={4} alignContent='flex-start'>
