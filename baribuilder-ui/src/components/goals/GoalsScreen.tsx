@@ -7,7 +7,6 @@ import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {compose} from "recompose";
-import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../app/BuilderApp';
 import {compareIngredientTypeNames} from '../../lib/constants';
 import {IGoalIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
@@ -60,7 +59,7 @@ type MutationOutputProps =
 const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
 const withMutation = graphql<{}, SetGoalIngredients>(GOAL_INGREDIENTS_MUTATION, {
   options: {
-    refetchQueries: [{query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
+    refetchQueries: ['PrefetchClientCatalogProducts'],
   }
 });
 
@@ -116,7 +115,6 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
    * @param key IngredientRange key e.g. ingreidentTypeName, minimumAmount, maximumAmount, frequency, units
    * @param value value to set
    */
-    // TODO replace keying by name to use index instead
   handleChangeGoal: HandleChangeGoalFunc = (ingredientTypeName, key, value) => {
     if (!this.state.goalIngredients) {
       return;

@@ -1,9 +1,9 @@
 import {Grid, TextField} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
-import {ChangeEvent, SFC} from 'react';
+import {ChangeEvent, Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
-import {compose, pure, withProps, withState} from 'recompose';
+import {compose, withProps, withState} from 'recompose';
 import styled from 'styled-components';
 import {
   GetClientCatalogProductQuantities,
@@ -11,7 +11,9 @@ import {
   GetClientCatalogProductQuantitiesVariables
 } from '../../../../../typings/gql/GetClientCatalogProductQuantities';
 import {FREQUENCY} from '../../../../../typings/gql/globalTypes';
+import {CenteredTextGrid} from '../../../../goals/GoalsScreenPure';
 import {EmptyRow} from '../../../../style/Layout';
+import {Header2, Subcaption} from '../../../../style/Typography';
 import CatalogProductAddButton from './CatalogProductAddButton';
 
 interface IProps {
@@ -28,13 +30,21 @@ const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
                 frequency
                 units
             }
+            projectedRegimenCost {
+                numRemainingProducts
+            }
+        }
+        goalIngredients @client {
+            ingredientRanges {
+                ingredientTypeName
+            }
         }
     }
 `;
 
 type DataOutputProps = ChildDataProps<IProps, GetClientCatalogProductQuantities, GetClientCatalogProductQuantitiesVariables>;
 
-const data = graphql<IProps, GetClientCatalogProductQuantities, GetClientCatalogProductQuantitiesVariables, DataOutputProps>(GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY, {
+const withData = graphql<IProps, GetClientCatalogProductQuantities, GetClientCatalogProductQuantitiesVariables, DataOutputProps>(GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY, {
   options: ({catalogProductId}) => ({
     variables: {catalogProductId},
   }),
@@ -42,7 +52,7 @@ const data = graphql<IProps, GetClientCatalogProductQuantities, GetClientCatalog
 
 
 const enhance = compose<IProps & DataOutputProps & IPropsState, IProps>(
-  data,
+  withData,
   // Used to become fully controlled: https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html?no-cache=1#recommendation-fully-uncontrolled-component-with-a-key
   withProps<{ key: string }, DataOutputProps>(
     ({data: {ClientCatalogProduct}}) => (
@@ -63,7 +73,6 @@ const enhance = compose<IProps & DataOutputProps & IPropsState, IProps>(
     'setQuantityFrequency',
     props => props.data.ClientCatalogProduct ? props.data.ClientCatalogProduct.defaultQuantity.frequency : FREQUENCY.DAILY,
   ),
-  pure,
 );
 
 interface IPropsState {
@@ -78,9 +87,9 @@ const OuterGrid = styled(Grid)`
 `;
 
 // Pure
-const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {ClientCatalogProduct}, catalogProductId, quantityAmount, setQuantityAmount, quantityFrequency}) => {
+const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {ClientCatalogProduct, goalIngredients}, catalogProductId, quantityAmount, setQuantityAmount, quantityFrequency}) => {
   // TODO manage frequency, maybe units
-  if (!ClientCatalogProduct) {
+  if (!ClientCatalogProduct || !goalIngredients) {
     return null;
   }
   const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => setQuantityAmount(event.target.value ? parseInt(event.target.value, 10) : 0);
@@ -91,14 +100,33 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
     amount: quantityAmount,
   };
 
+  const ingredientGoalCount = goalIngredients.ingredientRanges.length;
+  const fullfilledIngredientCount = ClientCatalogProduct.projectedRegimenCost ? ingredientGoalCount - ClientCatalogProduct.projectedRegimenCost.numRemainingProducts : null;
+
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>
       <Grid item lg={4}/>
       <Grid item lg={4}>
-        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth label='servings/day'/>
+        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth
+                   label='servings/day'/>
       </Grid>
       <Grid item lg={4}/>
       <EmptyRow mobile='0px'/>
+      {
+        fullfilledIngredientCount
+          ? (
+            <Fragment>
+              <CenteredTextGrid item lg={12}>
+                <Header2 dark>{fullfilledIngredientCount} of {ingredientGoalCount}</Header2>
+              </CenteredTextGrid>
+              <CenteredTextGrid item lg={12}>
+                <Subcaption dark>ingredients fulfilled</Subcaption>
+              </CenteredTextGrid>
+              <EmptyRow mobile='0px'/>
+            </Fragment>
+          )
+          : null
+      }
       <Grid item lg={2}/>
       <Grid item lg={8}>
         <CatalogProductAddButton catalogProductId={catalogProductId} quantity={quantity}/>

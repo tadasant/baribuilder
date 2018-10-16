@@ -63,6 +63,7 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
         }
       </CenteredTextGrid>
       <CenteredTextGrid item lg={12}>
+        {/* TODO don't hardcode / mo. */}
         <Header2 dark>${price} / mo.</Header2>
       </CenteredTextGrid>
       <CenteredTextGrid item lg={12}>

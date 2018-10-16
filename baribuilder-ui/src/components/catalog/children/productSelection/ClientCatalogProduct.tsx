@@ -57,13 +57,13 @@ const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {Catalo
       <Grid container direction='row'>
         <EmptyRow mobile='-20px'/>
         <Grid container direction='row'>
-          <Grid item lg={7} container>
-            <Grid item lg={12}>
-              {/* TODO remove url bit when local detail page complete */}
-              <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
-                <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
-              </a>
-            </Grid>
+          <Grid item lg={12}>
+            {/* TODO remove url bit when local detail page complete */}
+            <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
+              <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
+            </a>
+          </Grid>
+          <Grid item lg={7} container alignItems='center'>
             <EmptyRow/>
             <Grid item lg={4}>
               <MainProductImageWithPopover catalogProductId={id}/>

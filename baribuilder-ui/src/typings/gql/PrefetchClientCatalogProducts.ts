@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { CATEGORY, FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
+import { FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: PrefetchClientCatalogProducts
@@ -44,8 +44,4 @@ export interface PrefetchClientCatalogProducts_searchQuery {
 export interface PrefetchClientCatalogProducts {
   allClientCatalogProducts: PrefetchClientCatalogProducts_allClientCatalogProducts[];
   searchQuery: PrefetchClientCatalogProducts_searchQuery;
-}
-
-export interface PrefetchClientCatalogProductsVariables {
-  category: CATEGORY;
 }

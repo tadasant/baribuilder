@@ -14,6 +14,7 @@ export interface PrefetchCatalogProducts_allCatalogProducts_listings_price {
 
 export interface PrefetchCatalogProducts_allCatalogProducts_listings {
   __typename: "Listing";
+  url: string;
   price: PrefetchCatalogProducts_allCatalogProducts_listings_price;
   numServings: number;
 }
@@ -58,6 +59,14 @@ export interface PrefetchCatalogProducts_allCatalogProducts {
   serving: PrefetchCatalogProducts_allCatalogProducts_serving;
 }
 
+export interface PrefetchCatalogProducts_allIngredientTypes {
+  __typename: "IngredientType";
+  name: string;
+  defaultUnits: INGREDIENT_QUANTITY_UNITS;
+  synonyms: string[] | null;
+}
+
 export interface PrefetchCatalogProducts {
   allCatalogProducts: PrefetchCatalogProducts_allCatalogProducts[];
+  allIngredientTypes: PrefetchCatalogProducts_allIngredientTypes[];
 }
