@@ -50,7 +50,7 @@ const filterClientCatalogProducts = (
     const lowercaseSearchQuery = searchQuery.value.toLowerCase();
     return clientCatalogProducts.filter(product => (
       // category & search
-      selectedCategory === ROOT_CATEGORY || catalogProductsById[product.catalogProductId].category === selectedCategory
+      (selectedCategory === ROOT_CATEGORY || catalogProductsById[product.catalogProductId].category === selectedCategory)
       && (
         catalogProductsById[product.catalogProductId].name.toLowerCase().includes(lowercaseSearchQuery) ||
         catalogProductsById[product.catalogProductId].brand.toLowerCase().includes(lowercaseSearchQuery)

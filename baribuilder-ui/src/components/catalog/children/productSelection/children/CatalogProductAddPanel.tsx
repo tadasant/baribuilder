@@ -107,8 +107,10 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
     <OuterGrid item container direction='row' justify='space-evenly'>
       <Grid item lg={4}/>
       <Grid item lg={4}>
-        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth
-                   label='servings/day'/>
+        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth/>
+        <CenteredTextGrid item lg={12}>
+          <Subcaption dark>daily servings</Subcaption>
+        </CenteredTextGrid>
       </Grid>
       <Grid item lg={4}/>
       <EmptyRow mobile='0px'/>
