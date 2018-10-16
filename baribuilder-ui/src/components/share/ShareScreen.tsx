@@ -2,11 +2,12 @@ import gql from 'graphql-tag';
 import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
-import {DataProps, DataValue, graphql, MutateProps} from 'react-apollo';
+import {DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {toast} from 'react-toastify';
 import {compose} from 'recompose';
 import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../app/BuilderApp';
+import {IGoalIngredients, IIngredientRange, IRegimen, IRegimenProduct} from '../../state/client-schema-types';
 import {DeleteCurrentRegimenProductQuantity} from '../../typings/gql/DeleteCurrentRegimenProductQuantity';
 import {GetStoreToShare} from '../../typings/gql/GetStoreToShare';
 import {ShareStoreMutation, ShareStoreMutationVariables} from '../../typings/gql/ShareStoreMutation';
@@ -31,11 +32,51 @@ type MutationOutputProps =
   Partial<DataProps<ShareStoreMutation, ShareStoreMutationVariables>>
   & Partial<MutateProps<ShareStoreMutation, ShareStoreMutationVariables>>;
 
+/* Assume parsedStore is correct, and morph it into type. This function should be surrounded with a try/catch. */
+const stringifiedStoreToStore = (parsedStore: any): Partial<GetStoreToShare> => {
+  const currentRegimenProducts: IRegimenProduct[] = [];
+  if (parsedStore.currentRegimen.products) {
+    parsedStore.currentRegimen.products.forEach((product: any) => {
+      currentRegimenProducts.push({
+        ...product,
+        quantity: {
+          ...product.quantity,
+          amount: parseInt(product.quantity.amount, 10),
+        },
+        cost: {
+          ...product.cost,
+          money: parseFloat(product.cost.money),
+        }
+      })
+    });
+  }
+  const currentRegimen: IRegimen = {
+    __typename: 'Regimen',
+    products: currentRegimenProducts,
+  };
+
+  const goalIngredientRanges: IIngredientRange[] = [];
+  if (parsedStore.goalIngredients.ingredientRanges) {
+    parsedStore.goalIngredients.ingredientRanges.forEach((ingredientRange: any) => {
+      goalIngredientRanges.push({
+        ...ingredientRange,
+        maximumAmount: ingredientRange.maximumAmount ? parseFloat(ingredientRange.maximumAmount) : null,
+        minimumAmount: ingredientRange.minimumAmount ? parseFloat(ingredientRange.minimumAmount) : null,
+      })
+    });
+  }
+  const goalIngredients: IGoalIngredients = {
+    __typename: 'GoalIngredients',
+    ingredientRanges: goalIngredientRanges,
+  };
+  return {currentRegimen, goalIngredients};
+};
+
 class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
-  deriveStoreFromQueryParams(): DataValue<GetStoreToShare, {}> | null {
+  deriveStoreFromQueryParams(): Partial<GetStoreToShare> | null {
     const queryString = this.props.location.search;
     try {
-      return qs.parse(queryString.slice(1));
+      return stringifiedStoreToStore(qs.parse(queryString.slice(1)));
     } catch {
       console.error('Failed to parse share URL. Error code 5682873');
       return null;
