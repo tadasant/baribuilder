@@ -101,7 +101,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
     <Grid container direction='row' spacing={8}>
       <Grid item lg={3} container direction='column' justify='flex-end'>
         <Grid item>
-          <Tooltip title={tooltipText}>
+          <Tooltip title={tooltipText || ''}>
             <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName}
                                       onChange={handleChangeIngredientTypeName}>
               {allIngredientTypes ? allIngredientTypes.map(ingredientType => (

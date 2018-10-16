@@ -45,3 +45,9 @@ No good way to track the extensions of remote schema (`state/resolvers.ts`)
 
 No good way to track cache redirect keys (`BuilderApp.tsx`)
 
+## Bugs / inconveniences to look into
+
+Problem: When making a local & remote combined query, if the remote bit is not in the cache, the result will return the remote bit and just the default value for the local bit.
+
+Solution: @client directive should result in ALWAYS cache hit for that piece of the query.
+

@@ -50,6 +50,8 @@ const cache = new InMemoryCache({
     Query: {
       CatalogProduct: (_, args, myCache) =>
         myCache.getCacheKey({__typename: 'CatalogProduct', id: args.id}),
+      IngredientType: (_, args, myCache) =>
+        myCache.getCacheKey({__typename: 'IngredientType', id: args.name}),
     },
   },
 });

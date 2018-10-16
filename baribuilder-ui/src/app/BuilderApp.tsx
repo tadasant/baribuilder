@@ -38,6 +38,11 @@ export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
                 }
             }
         }
+        allIngredientTypes {
+            name
+            defaultUnits
+            synonyms
+        }
     }
 `;
 
