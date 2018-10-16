@@ -8,7 +8,7 @@ import BuilderAppPure from './BuilderAppPure';
 export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
     query PrefetchCatalogProducts {
         allCatalogProducts {
-            # Prefetch data that'll be needed for allClientCatalogProducts TODO replace with fragments
+            # Prefetch data that'll be needed for allClientCatalogProducts
             __typename
             id
 
@@ -42,8 +42,8 @@ export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
 `;
 
 export const PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY = gql`
-    query PrefetchClientCatalogProducts($category: CATEGORY!) {
-        allClientCatalogProducts(category: $category) @client {
+    query PrefetchClientCatalogProducts {
+        allClientCatalogProducts @client {
             # Prefetch data that'll be needed for individual ClientCatalogProducts
             __typename
             catalogProductId
