@@ -6,6 +6,7 @@ import {ChangeEvent, Fragment, KeyboardEvent, SFC} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
+import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../../../app/BuilderApp';
 import {GetCatalogProductForRegimenProduct} from '../../../../typings/gql/GetCatalogProductForRegimenProduct';
 import {
   GetCurrentRegimenProducts_currentRegimen_products_cost,
@@ -16,7 +17,6 @@ import {
   SetCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/SetCurrentRegimenProductQuantity';
 import {BoldBody, Caption} from '../../../style/Typography';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../../CatalogScreen';
 import MainProductImageWithPopover from '../productSelection/children/MainProductImageWithPopover';
 import XRegimenProductIcon from './XRegimenProductIcon';
 
@@ -68,7 +68,7 @@ const withData = graphql<IProps, GetCatalogProductForRegimenProduct>(GET_CATALOG
 
 const withMutation = graphql<{}, SetCurrentRegimenProductQuantity>(REGIMEN_PRODUCT_QUANTITY_MUTATION, {
   options: {
-    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
+    refetchQueries: [{query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
   }
 });
 
@@ -99,7 +99,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
           units: quantity.units,
         }
       },
-      refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
+      refetchQueries: [{query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
     });
 
     const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => mutateAmount(event.target.value ? parseInt(event.target.value, 10) : 0);

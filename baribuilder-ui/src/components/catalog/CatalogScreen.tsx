@@ -10,49 +10,19 @@ import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
 import CatalogScreenPure from './CatalogScreenPure';
 
-// TODO I probably need to move this prefetching up to BuilderApp
-
-export const PREFETCH_GET_CATALOG = gql`
+export const CATALOG_PRODUCTS_QUERY = gql`
     query GetCatalogProducts {
         allCatalogProducts {
-            # Prefetch data that'll be needed for allClientCatalogProducts TODO replace with fragments
-            __typename
             id
 
             name
             brand
             category
-            listings {
-                price {
-                    amount
-                }
-                numServings
-            }
-            images {
-                url
-            }
-            serving {
-                size
-                units
-                ingredients {
-                    quantity {
-                        amount
-                        units
-                    }
-                    ingredientType {
-                        name
-                    }
-                }
-            }
         }
-    }
-`;
-
-export const PREFETCH_GET_CLIENT_CATALOG = gql`
-    query GetClientCatalogProducts($category: CATEGORY!) {
-        allClientCatalogProducts(category: $category) @client {
-            # Prefetch data that'll be needed for individual ClientCatalogProducts
-            __typename
+        searchQuery @client {
+            value
+        }
+        allClientCatalogProducts @client {
             catalogProductId
 
             cost {
@@ -64,15 +34,6 @@ export const PREFETCH_GET_CLIENT_CATALOG = gql`
                 money
                 frequency
             }
-            defaultQuantity {
-                amount
-                units
-                frequency
-            }
-            matchScore
-        }
-        searchQuery @client {
-            value
         }
     }
 `;
@@ -137,43 +98,24 @@ class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
       return null;
     }
 
-    // TODO eventually abstract these away into simple wrapper components
-    const categoryVariable = selectedCategory === ROOT_CATEGORY ? undefined : selectedCategory;
     return (
-      <Query query={PREFETCH_GET_CATALOG}>
-        {
-          ({loading, error, data}) => {
-            if (loading || !data || !data.allCatalogProducts) {
-              return loading ? <CenteredSpinner /> : null;
-            }
-            return (
-              <Query query={PREFETCH_GET_CLIENT_CATALOG} variables={{category: categoryVariable}}>
-                {
-                  (props) => {
-                    if (props.loading || !props.data || !props.data.searchQuery || !props.data.allClientCatalogProducts) {
-                      return props.loading ? <CenteredSpinner /> : null;
-                    }
-                    return (
-                      <CatalogScreenPure
-                        selectedCategory={selectedCategory}
-                        allCatalogProducts={data.allCatalogProducts}
-                        clientCatalogProducts={props.data.allClientCatalogProducts}
-                        searchQuery={props.data.searchQuery}
-                        showMyProducts={this.state.showMyProducts}
-                        setShowMyProducts={this.setShowMyProducts}
-                        showMyRegimen={this.state.showMyRegimen}
-                        setShowMyRegimen={this.setShowMyRegimen}
-                        sortingStrategy={this.state.sortingStrategy}
-                      />
-                    )
-                  }
-                }
-              </Query>
-            )
-          }
-        }
+      <Query query={CATALOG_PRODUCTS_QUERY}>
+        {({data: {allCatalogProducts, allClientCatalogProducts, searchQuery}}) => (
+          <CatalogScreenPure
+            selectedCategory={selectedCategory}
+            allCatalogProducts={allCatalogProducts}
+            clientCatalogProducts={allClientCatalogProducts}
+            searchQuery={searchQuery}
+            showMyProducts={this.state.showMyProducts}
+            setShowMyProducts={this.setShowMyProducts}
+            showMyRegimen={this.state.showMyRegimen}
+            setShowMyRegimen={this.setShowMyRegimen}
+            sortingStrategy={this.state.sortingStrategy}
+          />
+        )}
       </Query>
-    );
+
+    )
   }
 }
 

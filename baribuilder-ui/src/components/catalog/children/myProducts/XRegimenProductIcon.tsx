@@ -3,13 +3,13 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from "recompose";
+import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../../../app/BuilderApp';
 import XIcon from '../../../../assets/icon/x.svg';
 import {
   DeleteCurrentRegimenProductQuantity,
   DeleteCurrentRegimenProductQuantityVariables
 } from '../../../../typings/gql/DeleteCurrentRegimenProductQuantity';
 import {XIconImg} from '../../../goals/children/IngredientRangeSelection';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../../CatalogScreen';
 
 interface IProps {
   catalogProductId: string;
@@ -35,7 +35,7 @@ type MutationOutputProps =
 const withMutation = graphql<IProps, DeleteCurrentRegimenProductQuantity>(REGIMEN_PRODUCT_QUANTITY_DELETE_MUTATION, {
   options: ({catalogProductId}) => ({
     variables: {catalogProductId},
-    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
+    refetchQueries: [{query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
   }),
 });
 

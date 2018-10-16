@@ -1,55 +1,101 @@
-import {Grid, Hidden} from '@material-ui/core';
+import gql from 'graphql-tag';
 import * as React from 'react';
-import {Component, Fragment} from 'react';
-import {Route, Switch} from 'react-router-dom';
-import CatalogScreen from '../components/catalog/CatalogScreen';
-import Footer from '../components/Footer';
-import GoalsScreen from '../components/goals/GoalsScreen';
-import {CenteredTextGrid} from '../components/goals/GoalsScreenPure';
-import PurchaseScreen from '../components/purchase/PurchaseScreen';
-import ShareScreen from '../components/share/ShareScreen';
-import {EmptyRow} from '../components/style/Layout';
-import {Header} from '../components/style/Typography';
-import TermsAndConditions from '../components/TermsAndConditions';
-import {isProduction} from '../config/config';
-import Dev from './Dev';
-import NotFound from './NotFound';
+import {Component} from 'react';
+import {Query} from 'react-apollo';
+import {CenteredSpinner} from '../components/catalog/CatalogScreen';
+import BuilderAppPure from './BuilderAppPure';
 
+export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
+    query PrefetchCatalogProducts {
+        allCatalogProducts {
+            # Prefetch data that'll be needed for allClientCatalogProducts TODO replace with fragments
+            __typename
+            id
 
-const disclaimerText = 'The information on this website is not medical advice. Please consult your medical provider ' +
-  'before making any changes to your supplementation regimen.';
+            name
+            brand
+            category
+            listings {
+                price {
+                    amount
+                }
+                numServings
+            }
+            images {
+                url
+            }
+            serving {
+                size
+                units
+                ingredients {
+                    quantity {
+                        amount
+                        units
+                    }
+                    ingredientType {
+                        name
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export const PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY = gql`
+    query PrefetchClientCatalogProducts($category: CATEGORY!) {
+        allClientCatalogProducts(category: $category) @client {
+            # Prefetch data that'll be needed for individual ClientCatalogProducts
+            __typename
+            catalogProductId
+
+            cost {
+                money
+                frequency
+            }
+            projectedRegimenCost {
+                numRemainingProducts
+                money
+                frequency
+            }
+            defaultQuantity {
+                amount
+                units
+                frequency
+            }
+            matchScore
+        }
+        searchQuery @client {
+            value
+        }
+    }
+`;
 
 class BuilderApp extends Component {
   render() {
     return (
-      <Fragment>
-        <Hidden mdDown>
-          <Switch>
-            <Route path="/browse" component={CatalogScreen}/>
-            <Route exact path="/goals" component={GoalsScreen}/>
-            <Route exact path="/purchase" component={PurchaseScreen}/>
-            <Route exact path="/share" component={ShareScreen}/>
-            <Route exact path="/terms-and-conditions" component={TermsAndConditions}/>
-            {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
-            <Route component={NotFound}/>
-          </Switch>
-          <Footer disclaimerText={disclaimerText}/>
-        </Hidden>
-        <Hidden lgUp>
-          <Grid container>
-            <EmptyRow/>
-            <Grid item xs={1}/>
-            <CenteredTextGrid item xs={10}>
-              <Header dark>
-                Sorry, BariBuilder Beta is not yet available on smaller screens.<br/><br/>
-
-                Please visit this page on a desktop with a screen at least 1280 pixels wide.
-              </Header>
-            </CenteredTextGrid>
-            <Grid item xs={1}/>
-          </Grid>
-        </Hidden>
-      </Fragment>
+      <Query query={PREFETCH_CATALOG_PRODUCTS_QUERY}>
+        {
+          ({loading, error, data}) => {
+            if (loading || !data || !data.allCatalogProducts) {
+              return loading ? <CenteredSpinner/> : null;
+            }
+            return (
+              <Query query={PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}>
+                {
+                  (props) => {
+                    if (props.loading || !props.data || !props.data.searchQuery || !props.data.allClientCatalogProducts) {
+                      return props.loading ? <CenteredSpinner/> : null;
+                    }
+                    return (
+                      <BuilderAppPure/>
+                    )
+                  }
+                }
+              </Query>
+            )
+          }
+        }
+      </Query>
     );
   }
 }

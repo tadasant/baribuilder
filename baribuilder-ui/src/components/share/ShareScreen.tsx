@@ -6,10 +6,11 @@ import {DataProps, DataValue, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {toast} from 'react-toastify';
 import {compose} from 'recompose';
+import {PREFETCH_CATALOG_PRODUCTS_QUERY, PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../app/BuilderApp';
 import {DeleteCurrentRegimenProductQuantity} from '../../typings/gql/DeleteCurrentRegimenProductQuantity';
 import {GetStoreToShare} from '../../typings/gql/GetStoreToShare';
 import {ShareStoreMutation, ShareStoreMutationVariables} from '../../typings/gql/ShareStoreMutation';
-import {CenteredSpinner, PREFETCH_GET_CATALOG, PREFETCH_GET_CLIENT_CATALOG} from '../catalog/CatalogScreen';
+import {CenteredSpinner} from '../catalog/CatalogScreen';
 
 const SHARE_STORE_MUTATION = gql`
     mutation ShareStoreMutation($currentRegimen: RegimenInput!, $goalIngredients: GoalIngredientsInput!) {
@@ -81,7 +82,7 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
 
 const withMutation = graphql<{}, DeleteCurrentRegimenProductQuantity>(SHARE_STORE_MUTATION, {
   options: () => ({
-    refetchQueries: [{query: PREFETCH_GET_CATALOG}, {query: PREFETCH_GET_CLIENT_CATALOG}],
+    refetchQueries: [{query: PREFETCH_CATALOG_PRODUCTS_QUERY}, {query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
   }),
 });
 

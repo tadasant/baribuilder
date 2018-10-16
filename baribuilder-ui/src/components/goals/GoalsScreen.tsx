@@ -7,13 +7,13 @@ import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {compose} from "recompose";
+import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../app/BuilderApp';
 import {compareIngredientTypeNames} from '../../lib/constants';
 import {IGoalIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../catalog/CatalogScreen';
 import GoalsScreenPure from './GoalsScreenPure';
 
 const GOALS_SCREEN_QUERY = gql`
@@ -60,7 +60,7 @@ type MutationOutputProps =
 const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
 const withMutation = graphql<{}, SetGoalIngredients>(GOAL_INGREDIENTS_MUTATION, {
   options: {
-    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
+    refetchQueries: [{query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
   }
 });
 

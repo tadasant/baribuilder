@@ -4,9 +4,9 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {DataProps, graphql, MutateProps} from 'react-apollo';
 import {compose, pure} from 'recompose';
+import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../../../../app/BuilderApp';
 import {AddProduct, AddProductVariables} from '../../../../../typings/gql/AddProduct';
 import {GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity} from '../../../../../typings/gql/GetClientCatalogProductQuantities';
-import {PREFETCH_GET_CLIENT_CATALOG} from '../../../CatalogScreen';
 
 interface IProps {
   catalogProductId: string;
@@ -40,7 +40,7 @@ const withAddMutation = graphql<IProps, AddProduct, AddProductVariables, Graphql
       frequency,
       units,
     },
-    refetchQueries: [{query: PREFETCH_GET_CLIENT_CATALOG}],
+    refetchQueries: [{query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
   }),
 });
 
