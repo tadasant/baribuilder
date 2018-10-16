@@ -10,7 +10,10 @@ import styled from 'styled-components';
 import XIcon from '../../../assets/icon/x.svg';
 import {compareIngredientTypeNames} from '../../../lib/constants';
 import {IIngredientRange} from '../../../state/client-schema-types';
-import {GetIngredientReferenceData} from '../../../typings/gql/GetIngredientReferenceData';
+import {
+  GetIngredientReferenceData,
+  GetIngredientReferenceData_allIngredientTypes
+} from '../../../typings/gql/GetIngredientReferenceData';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
 import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from '../GoalsScreen';
@@ -63,6 +66,13 @@ export const XIconImg = styled.img`
   cursor: pointer;
 `;
 
+const ingredientNameWithSynonymsDisplay = (ingredientType: GetIngredientReferenceData_allIngredientTypes) => {
+  if (!ingredientType.synonyms || ingredientType.synonyms.length === 0) {
+    return ingredientType.name;
+  }
+  const synonymDisplay = ingredientType.synonyms.map(s => upperFirst(s)).join(', ');
+  return `${ingredientType.name} (${synonymDisplay})`
+};
 
 const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingredientRange, onChange, onRemove, data: {allIngredientTypes}}) => {
   const handleChangeIngredientTypeName: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
@@ -95,7 +105,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName}
                                     onChange={handleChangeIngredientTypeName}>
             {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
-              <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientType.name}</MenuItem>
+              <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientNameWithSynonymsDisplay(ingredientType)}</MenuItem>
             )) : null}
           </EmphasizedShadowedSelect>
         </Grid>
