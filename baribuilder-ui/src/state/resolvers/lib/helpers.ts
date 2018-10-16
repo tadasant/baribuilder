@@ -1,8 +1,9 @@
 import {cloneDeep, keyBy} from 'lodash';
 import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql/GetAllProductsIngredients';
-import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
+import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
 import {ICatalogProductCost, IIngredientRange, IRegimenProduct, IRegimenProductCost} from '../../client-schema-types';
 import {ingredientPricesByName} from '../data/ingredientPrices';
+import {IProductForProjectedRegimenCost} from './clientCatalogProduct_projectedRegimenCost';
 
 // TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
 
@@ -51,7 +52,7 @@ export const subtractRegimenIngredientsFromGoalIngredientRanges = (
  */
 export const subtractProductFromRegimenIngredients = (
   regimenIngredients: IRegimenIngredient[],
-  product: GetAllProductsIngredients_allCatalogProducts,
+  product: IProductForProjectedRegimenCost,
 ): IRegimenIngredient[] => {
   if (product.serving.ingredients === null) {
     console.warn(`Ingredients shouldn\'t be null. Error code 58938238. Product ID: ${product.id}`);
@@ -62,9 +63,18 @@ export const subtractProductFromRegimenIngredients = (
   return regimenIngredients.map(regimenIngredient => {
     if (productIngredientsByName.hasOwnProperty(regimenIngredient.ingredientTypeName)) {
       if (regimenIngredient.units === productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.units) {
-        return {
-          ...regimenIngredient,
-          amount: regimenIngredient.amount - productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.amount,
+        if (product.quantity.units === PRODUCT_QUANTITY_UNITS.SERVINGS) {
+          if (product.quantity.frequency === regimenIngredient.frequency) {
+            return {
+              ...regimenIngredient,
+              amount: regimenIngredient.amount - (productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.amount * product.quantity.amount),
+            }
+          } else {
+            console.warn('Frequency conversions unsupported. Error code 58938238');
+            console.warn(`Product ID: ${product.id}. Ingredient: ${regimenIngredient.ingredientTypeName}. ${regimenIngredient.frequency} vs. ${product.quantity.frequency}`)
+          }
+        } else {
+          console.warn('Quantity unit conversions unsupported. Error code 58938238');
         }
       } else {
         console.warn('Unit conversions unsupported. Error code 58938238');
