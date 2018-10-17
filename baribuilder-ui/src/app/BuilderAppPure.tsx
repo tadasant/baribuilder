@@ -42,7 +42,7 @@ const BuilderAppPure: SFC = () => {
             <Header dark>
               Sorry, BariBuilder Beta is not yet available on smaller screens.<br/><br/>
 
-              Please visit this page on a desktop with a screen at least 1280 pixels wide.
+              Please visit this page on a desktop with a screen at least 1000 pixels wide.
             </Header>
           </CenteredTextGrid>
           <Grid item xs={1}/>
