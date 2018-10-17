@@ -123,13 +123,14 @@ export const calculateDefaultQuantity = (
   currentRegimenProducts: IRegimenProduct[]
 ): ICatalogProductQuantity => {
   const targetIngredientRanges = calculateTargetIngredientRanges(goalIngredientRanges, currentRegimenProducts, products);
-  const amount = deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges);
+  const calculatedAmount = deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges);
+  const amount = calculatedAmount > 0 ? calculatedAmount : 1;
   const frequency = FREQUENCY.DAILY;
   const units = PRODUCT_QUANTITY_UNITS.SERVINGS;
   const remainingUnfilledIngredientCount = calculateRemainingUnfilledIngredientCount(currentRegimenProducts, goalIngredientRanges, products, productIngredients, amount, frequency, units, catalogProductId);
   return {
     __typename: 'CatalogProductQuantity',
-    amount: amount > 0 ? amount : 1,
+    amount,
     units,
     frequency,
     remainingUnfilledIngredientCount,

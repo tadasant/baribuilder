@@ -29,12 +29,14 @@ const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
                 amount
                 frequency
                 units
+                remainingUnfilledIngredientCount
             }
         }
         goalIngredients @client {
             ingredientRanges {
                 ingredientTypeName
             }
+            unfilledIngredientCount
         }
     }
 `;
@@ -86,7 +88,7 @@ const OuterGrid = styled(Grid)`
 // Pure
 const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {ClientCatalogProduct, goalIngredients}, catalogProductId, quantityAmount, setQuantityAmount, quantityFrequency}) => {
   // TODO manage frequency, maybe units
-  if (!ClientCatalogProduct || !goalIngredients) {
+  if (!ClientCatalogProduct || !goalIngredients || !goalIngredients.unfilledIngredientCount || !ClientCatalogProduct.defaultQuantity.remainingUnfilledIngredientCount) {
     return null;
   }
   const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => setQuantityAmount(event.target.value ? parseInt(event.target.value, 10) : 0);
@@ -95,10 +97,10 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
     frequency: quantityFrequency,
     units: ClientCatalogProduct.defaultQuantity.units,
     amount: quantityAmount,
+    remainingUnfilledIngredientCount: null,
   };
 
-  const ingredientGoalCount = goalIngredients.ingredientRanges.length;
-  const fullfilledIngredientCount = ingredientGoalCount;
+  const fullfilledIngredientCount = goalIngredients.unfilledIngredientCount - ClientCatalogProduct.defaultQuantity.remainingUnfilledIngredientCount;
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>
@@ -116,7 +118,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
           ? (
             <Fragment>
               <CenteredTextGrid item lg={12}>
-                <Body dark>fills {fullfilledIngredientCount} of {ingredientGoalCount}</Body>
+                <Body dark>fills {fullfilledIngredientCount} of {goalIngredients.unfilledIngredientCount}</Body>
               </CenteredTextGrid>
               <CenteredTextGrid item lg={12}>
                 <Subcaption dark>remaining regimen ingredients</Subcaption>

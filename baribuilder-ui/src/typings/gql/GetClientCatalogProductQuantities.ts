@@ -12,6 +12,7 @@ export interface GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQ
   amount: number;
   frequency: FREQUENCY;
   units: PRODUCT_QUANTITY_UNITS;
+  remainingUnfilledIngredientCount: number | null;
 }
 
 export interface GetClientCatalogProductQuantities_ClientCatalogProduct {
@@ -28,6 +29,7 @@ export interface GetClientCatalogProductQuantities_goalIngredients_ingredientRan
 export interface GetClientCatalogProductQuantities_goalIngredients {
   __typename: "GoalIngredients";
   ingredientRanges: GetClientCatalogProductQuantities_goalIngredients_ingredientRanges[];
+  unfilledIngredientCount: number | null;
 }
 
 export interface GetClientCatalogProductQuantities {
