@@ -34,9 +34,11 @@ const GreyCaption = styled(Caption)`
   color: ${Sketch.color.accent.darkgrey};
 `;
 
+const footerHeight = '5em';
+
 const Footer = styled.div`
   box-shadow: 0px -2px 4px 0px ${Sketch.color.accent.grey};
-  height: 5em;
+  height: ${footerHeight};
   position: sticky;
   bottom: 0;
   width: 100%;
@@ -82,13 +84,14 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
             <Body dark>Start with a template:&nbsp;</Body>
           </RightAlignTextGrid>
           <Grid item lg>
-            <TemplateSelect selectedTemplateName={props.selectedTemplateName} onChangeTemplate={props.onChangeTemplate}/>
+            <TemplateSelect selectedTemplateName={props.selectedTemplateName}
+                            onChangeTemplate={props.onChangeTemplate}/>
           </Grid>
           <Grid item lg={2}/>
         </Grid>
         <EmptyRow mobile='20px'/>
         <CenteredTextGrid item lg={12}>
-          <Body dark>Make changes to reflect your medical provider's recommendations below.</Body>
+          <Body dark>If needed, make changes to reflect your medical provider's recommendations below.</Body>
         </CenteredTextGrid>
         <EmptyRow/>
         <Fragment>
@@ -114,6 +117,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
           <Grid item lg={1}/>
         </Fragment>
       </OuterGrid>
+      <EmptyRow mobile={`calc(${footerHeight} * 1.5)`}/> {/* Hack for spacing UX */}
       <Footer>
         <FooterGrid container direction='column' justify='center'>
           <Grid item container>

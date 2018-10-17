@@ -15,6 +15,7 @@ import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
 import GoalsScreenPure from './GoalsScreenPure';
+import {CUSTOM_TEMPLATE_NAME} from './templates/CustomTemplate';
 import templatesByName, {DEFAULT_TEMPLATE_NAME} from './templates/templates';
 
 const GOALS_SCREEN_QUERY = gql`
@@ -131,6 +132,9 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
           }
         }
       },
+      selectedTemplateName: {
+        $set: CUSTOM_TEMPLATE_NAME
+      }
     };
 
     if (key === 'ingredientTypeName') {
@@ -167,6 +171,9 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
           $splice: [[rangeIndex, 1]],
         }
       },
+      selectedTemplateName: {
+        $set: CUSTOM_TEMPLATE_NAME
+      }
     }));
   };
 
@@ -195,6 +202,9 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
             frequency: FREQUENCY.DAILY,
           }],
         }
+      },
+      selectedTemplateName: {
+        $set: CUSTOM_TEMPLATE_NAME
       },
     }));
   };
