@@ -98,7 +98,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
   };
 
   const ingredientGoalCount = goalIngredients.ingredientRanges.length;
-  const fullfilledIngredientCount = ClientCatalogProduct.projectedRegimenCost ? ingredientGoalCount : null;
+  const fullfilledIngredientCount = ingredientGoalCount;
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>

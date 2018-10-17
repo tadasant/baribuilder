@@ -86,6 +86,7 @@ input RegimenProductCostInput {
 
 type GoalIngredients {
     ingredientRanges: [IngredientRange!]!
+    unfilledIngredientCount: Int
 }
 
 input GoalIngredientsInput {

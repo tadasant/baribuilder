@@ -60,6 +60,7 @@ export interface IRegimenProductCost {
 export interface IGoalIngredients {
   __typename: 'GoalIngredients';
   ingredientRanges: IIngredientRange[];
+  unfilledIngredientCount?: number;
 }
 
 export interface IIngredientRange {

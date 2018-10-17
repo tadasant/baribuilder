@@ -8,9 +8,10 @@ import SetCurrentRegimen from './resolvers/resolver/mutation/SetCurrentRegimen';
 import SetCurrentRegimenProductQuantity from './resolvers/resolver/mutation/SetCurrentRegimenProductQuantity';
 import SetGoalIngredients from './resolvers/resolver/mutation/SetGoalIngredients';
 import SetSearchQuery from './resolvers/resolver/mutation/SetSearchQuery';
-import {CURRENT_REGIMEN_QUERY, GOAL_INGREDIENTS_QUERY} from './resolvers/resolver/queries';
+import {CURRENT_REGIMEN_QUERY} from './resolvers/resolver/queries';
 import allClientCatalogProducts from './resolvers/resolver/query/allClientCatalogProducts';
 import ClientCatalogProduct from './resolvers/resolver/query/ClientCatalogProduct';
+import goalIngredients from './resolvers/resolver/query/goalIngredients';
 
 export interface IResolverContext {
   cache: ApolloClient<IApolloStateShape>
@@ -22,10 +23,7 @@ const resolvers = {
   Query: {
     allClientCatalogProducts,
     ClientCatalogProduct,
-    // @ts-ignore forces unnecessary nullchecks
-    goalIngredients: (obj, args, {cache}) => {
-      return cache.readQuery({query: GOAL_INGREDIENTS_QUERY}).goalIngredients;
-    },
+    goalIngredients,
     // @ts-ignore forces unnecessary nullchecks
     currentRegimen: (obj, args, {cache}) => {
       return cache.readQuery({query: CURRENT_REGIMEN_QUERY}).currentRegimen;
