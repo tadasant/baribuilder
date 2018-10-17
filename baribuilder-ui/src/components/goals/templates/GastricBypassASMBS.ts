@@ -2,7 +2,6 @@ import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalT
 import {IGoalsScreenState} from '../GoalsScreen';
 
 const state: IGoalsScreenState = {
-  "didMakeClientSideChanges": false,
   "selectedTemplateName": 'Gastric Bypass - ASMBS',
   "goalIngredients": {
     "ingredientRanges": [

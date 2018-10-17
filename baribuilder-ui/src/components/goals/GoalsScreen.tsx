@@ -74,7 +74,6 @@ const enhance = compose<QueryOutputProps & MutationOutputProps & RouteComponentP
 export interface IGoalsScreenState {
   goalIngredients?: IGoalIngredients;
   selectedTemplateName: string;
-  didMakeClientSideChanges: boolean; // Used for preventing remote changes from overwriting local ones
 }
 
 export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngredientRange, value: string | undefined) => void;
@@ -85,14 +84,6 @@ export type HandleAddGoalFunc = () => void;
 type TProps = QueryOutputProps & MutationOutputProps & RouteComponentProps;
 
 class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>> {
-  static getDerivedStateFromProps(props: TProps, state: IGoalsScreenState) {
-    // TODO consider replacing w/ key strategy https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html?no-cache=1#recommendation-fully-uncontrolled-component-with-a-key
-    if (!state.didMakeClientSideChanges) {
-      return templatesByName[DEFAULT_TEMPLATE_NAME];
-    }
-    return null;
-  }
-
   constructor(props: TProps) {
     super(props);
     this.state = this.deriveStateFromQueryParams();
@@ -140,7 +131,6 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
           }
         }
       },
-      didMakeClientSideChanges: {$set: true},
     };
 
     if (key === 'ingredientTypeName') {
@@ -177,7 +167,6 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
           $splice: [[rangeIndex, 1]],
         }
       },
-      didMakeClientSideChanges: {$set: true},
     }));
   };
 
@@ -207,7 +196,6 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
           }],
         }
       },
-      didMakeClientSideChanges: {$set: true},
     }));
   };
 
@@ -235,14 +223,12 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
   handleCopyURL = (): void => {
     const stateAsQueryString = qs.stringify({
       ...this.state,
-      didMakeClientSideChanges: false,
     });
     const url = `${window.location.host}${this.props.location.pathname}?${stateAsQueryString}`;
     copy(url);
   };
 
   handleChangeTemplate = (templateName: string): void => {
-    console.log(this.state);
     this.setState(templatesByName[templateName]);
   };
 
