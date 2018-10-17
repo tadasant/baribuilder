@@ -10,6 +10,8 @@ import {
 import {CenteredTextGrid} from '../../../../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../../../../style/CustomMaterial';
 import {Body, GreyBody, Header2, Subcaption} from '../../../../style/Typography';
+import HelpIcon from '../../lib/HelpIcon';
+
 
 const GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY = gql`
     query GetClientCatalogProductPrices($catalogProductId: ID!) {
@@ -34,11 +36,8 @@ interface IProps {
 
 type DataOutputProps = ChildDataProps<IProps, GetClientCatalogProductPrices, GetClientCatalogProductPricesVariables>;
 
-const withData = graphql<IProps, GetClientCatalogProductPrices, GetClientCatalogProductPricesVariables, DataOutputProps>(GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY, {
-  options: ({catalogProductId}) => ({
-    variables: {catalogProductId},
-  }),
-});
+const helpText = 'This is what we project your TOTAL regimen will cost IF you add this product. In other words, ' +
+  'products that give you "more value per dollar" will have LOWER projected total regimen cost.';
 
 const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalogProduct}}) => {
   if (!ClientCatalogProduct) {
@@ -53,7 +52,7 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
       <CenteredTextGrid item lg={12}>
         {
           goalsSet
-            ? <Body dark>Effect on <b>My Regimen</b></Body>
+            ? <Body dark>Effect on <b>My Regimen</b> <HelpIcon tooltipText={helpText} height='16px'/></Body>
             : (
               <GreyBody>
                 <UndecoratedLink to='/goals'><u>Set your goals</u></UndecoratedLink> to see better information here.
@@ -71,5 +70,11 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
     </Grid>
   );
 };
+
+const withData = graphql<IProps, GetClientCatalogProductPrices, GetClientCatalogProductPricesVariables, DataOutputProps>(GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY, {
+  options: ({catalogProductId}) => ({
+    variables: {catalogProductId},
+  }),
+});
 
 export default withData(CatalogContextPanel);
