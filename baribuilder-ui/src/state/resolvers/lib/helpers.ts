@@ -209,7 +209,7 @@ const sumRegimenIngredients = (baseIngredient: IRegimenIngredient, ...ingredient
       console.error(`${baseIngredient.ingredientTypeName} !== ${ingredients[0].ingredientTypeName}. This shouldn't happen. Error code 434829.`);
     }
     if (baseIngredient.units !== ingredients[0].units) {
-      console.warn('Unit conversions unsupported. Error code 434829');
+      console.warn(`Unit conversions unsupported (${baseIngredient.units} vs. ${ingredients[0].units} for ${baseIngredient.ingredientTypeName}). Error code 434829`);
     }
 
     return {
