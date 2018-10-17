@@ -4,38 +4,23 @@ import update from 'immutability-helper';
 import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
-import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
+import {DataProps, DataValue, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {toast} from 'react-toastify';
 import {compose} from "recompose";
 import {compareIngredientTypeNames} from '../../lib/constants';
 import {IGoalIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
-import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
+import {GetGoalsScreenContainerData} from '../../typings/gql/GetGoalsScreenContainerData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
 import GoalsScreenPure from './GoalsScreenPure';
 import {CUSTOM_TEMPLATE_NAME} from './templates/CustomTemplate';
 import templatesByName, {DEFAULT_TEMPLATE_NAME} from './templates/templates';
 
-const GOALS_SCREEN_QUERY = gql`
-    query GetGoalsScreenData {
-        goalIngredients @client {
-            ingredientRanges {
-                ingredientTypeName
-                minimumAmount
-                maximumAmount
-                units
-                frequency
-            }
-        }
-        allIngredientTypes {
-            name
-            defaultUnits
-            synonyms
-        }
-    }
-`;
+interface IProps {
+  data: DataValue<GetGoalsScreenContainerData, {}>
+}
 
 const GOAL_INGREDIENTS_MUTATION = gql`
     mutation SetGoalIngredients($goalIngredients: GoalIngredientsInput!) {
@@ -53,24 +38,9 @@ const GOAL_INGREDIENTS_MUTATION = gql`
     }
 `;
 
-type QueryOutputProps = ChildDataProps<{}, GetGoalsScreenData>;
-
 type MutationOutputProps =
   Partial<DataProps<SetGoalIngredients, SetGoalIngredientsVariables>>
   & Partial<MutateProps<SetGoalIngredients, SetGoalIngredientsVariables>>;
-
-const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
-const withMutation = graphql<{}, SetGoalIngredients>(GOAL_INGREDIENTS_MUTATION, {
-  options: {
-    refetchQueries: ['PrefetchClientCatalogProducts'],
-  }
-});
-
-const enhance = compose<QueryOutputProps & MutationOutputProps & RouteComponentProps, {}>(
-  withData,
-  withMutation,
-  withRouter,
-);
 
 export interface IGoalsScreenState {
   goalIngredients?: IGoalIngredients;
@@ -82,9 +52,9 @@ export type HandleRemoveGoalFunc = (ingredientTypeName: string) => void;
 export type HandleChangeTemplate = (templateName: string) => void;
 export type HandleAddGoalFunc = () => void;
 
-type TProps = QueryOutputProps & MutationOutputProps & RouteComponentProps;
+type TProps = IProps & MutationOutputProps & RouteComponentProps;
 
-class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>> {
+class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
   constructor(props: TProps) {
     super(props);
     this.state = this.deriveStateFromQueryParams();
@@ -261,4 +231,15 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
   }
 }
 
-export default enhance(GoalsScreenContainer);
+const withMutation = graphql<{}, SetGoalIngredients>(GOAL_INGREDIENTS_MUTATION, {
+  options: {
+    refetchQueries: ['PrefetchClientCatalogProducts'],
+  }
+});
+
+const enhance = compose<IProps & MutationOutputProps & RouteComponentProps, IProps>(
+  withMutation,
+  withRouter,
+);
+
+export default enhance(GoalsScreen);

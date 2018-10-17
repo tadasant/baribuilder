@@ -4,7 +4,7 @@ import {Fragment, SFC} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import CatalogScreen from '../components/catalog/CatalogScreen';
 import Footer from '../components/Footer';
-import GoalsScreen from '../components/goals/GoalsScreen';
+import GoalsScreen from '../components/goals/GoalsScreenContainer';
 import {CenteredTextGrid} from '../components/goals/GoalsScreenPure';
 import PurchaseScreen from '../components/purchase/PurchaseScreen';
 import ShareScreen from '../components/share/ShareScreen';

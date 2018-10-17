@@ -24,6 +24,7 @@ export interface PrefetchClientCatalogProducts_allClientCatalogProducts_defaultQ
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
+  remainingUnfilledIngredientCount: number | null;
 }
 
 export interface PrefetchClientCatalogProducts_allClientCatalogProducts {
@@ -40,7 +41,13 @@ export interface PrefetchClientCatalogProducts_searchQuery {
   value: string;
 }
 
+export interface PrefetchClientCatalogProducts_goalIngredients {
+  __typename: "GoalIngredients";
+  unfilledIngredientCount: number | null;
+}
+
 export interface PrefetchClientCatalogProducts {
   allClientCatalogProducts: PrefetchClientCatalogProducts_allClientCatalogProducts[];
   searchQuery: PrefetchClientCatalogProducts_searchQuery;
+  goalIngredients: PrefetchClientCatalogProducts_goalIngredients;
 }
