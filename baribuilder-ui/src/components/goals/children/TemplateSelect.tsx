@@ -1,25 +1,25 @@
 import {MenuItem} from '@material-ui/core';
 import * as React from 'react';
 import {SFC} from 'react';
+import {HandleChangeTemplate} from '../GoalsScreen';
 import templatesByName from '../templates/templates';
 import {EmphasizedShadowedSelect} from './IngredientRangeSelection';
 
 interface IProps {
-  replaceGoalsState: () => void; // correct type
+  templateName: string;
+  onChangeTemplate: HandleChangeTemplate; // correct type
 }
 
-const defaultTemplate = Object.keys(templatesByName).find(name => name.toLowerCase().includes('bypass'));
-
-const TemplateSelect: SFC<IProps> = ({replaceGoalsState}) => {
+const TemplateSelect: SFC<IProps> = ({templateName, onChangeTemplate}) => {
   const handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
-    // replaceGoalsState(ingredientRange.ingredientTypeName, 'ingredientTypeName', event.target.value);
+    onChangeTemplate(event.target.value);
   };
 
   return (
-    <EmphasizedShadowedSelect value={defaultTemplate} onChange={handleChange}>
-      {Object.keys(templatesByName).map(templateName => (
-        <MenuItem value={templateName} key={templateName}>
-          {templateName}
+    <EmphasizedShadowedSelect value={templateName} onChange={handleChange}>
+      {Object.keys(templatesByName).map(name => (
+        <MenuItem value={name} key={name}>
+          {name}
         </MenuItem>
       ))}
     </EmphasizedShadowedSelect>

@@ -15,6 +15,7 @@ import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
 import GoalsScreenPure from './GoalsScreenPure';
+import templatesByName, {defaultTemplateName} from './templates/templates';
 
 const GOALS_SCREEN_QUERY = gql`
     query GetGoalsScreenData {
@@ -72,11 +73,13 @@ const enhance = compose<QueryOutputProps & MutationOutputProps & RouteComponentP
 
 interface IState {
   goalIngredients?: IGoalIngredients;
+  selectedTemplateName: string;
   didMakeClientSideChanges: boolean; // Used for preventing remote changes from overwriting local ones
 }
 
 export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngredientRange, value: string | undefined) => void;
 export type HandleRemoveGoalFunc = (ingredientTypeName: string) => void;
+export type HandleChangeTemplate = (templateName: string) => void;
 export type HandleAddGoalFunc = () => void;
 
 type TProps = QueryOutputProps & MutationOutputProps & RouteComponentProps;
@@ -87,6 +90,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     if (!state.didMakeClientSideChanges) {
       return {
         goalIngredients: props.data.goalIngredients,
+        selectedTemplateName: defaultTemplateName,
       }
     }
     return null;
@@ -106,6 +110,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     if (!queryString) {
       return {
         didMakeClientSideChanges: false,
+        selectedTemplateName: defaultTemplateName,
       };
     }
     return qs.parse(queryString.slice(1));
@@ -242,6 +247,10 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     copy(url);
   };
 
+  handleChangeTemplate = (templateName: string): void => {
+    this.setState(templatesByName[templateName]);
+  };
+
   render() {
     if (this.props.data.allIngredientTypes) {
       this.props.data.allIngredientTypes.sort((i1, i2) => compareIngredientTypeNames(i1.name, i2.name));
@@ -249,6 +258,8 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     return (
       <GoalsScreenPure
         goalIngredients={this.state.goalIngredients}
+        selectedTemplateName={this.state.selectedTemplateName}
+        onChangeTemplate={this.handleChangeTemplate}
         onChangeGoal={this.handleChangeGoal}
         onRemoveGoal={this.handleRemoveGoal}
         onAddGoal={this.handleAddGoal}

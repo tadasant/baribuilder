@@ -9,13 +9,15 @@ import {Body, Caption, Header} from '../style/Typography';
 import GoalsFooter from './children/GoalsFooter';
 import IngredientRangeSelection from './children/IngredientRangeSelection';
 import TemplateSelect from './children/TemplateSelect';
-import {HandleAddGoalFunc, HandleChangeGoalFunc, HandleRemoveGoalFunc} from './GoalsScreen';
+import {HandleAddGoalFunc, HandleChangeGoalFunc, HandleChangeTemplate, HandleRemoveGoalFunc} from './GoalsScreen';
 
 interface IProps {
   goalIngredients?: IGoalIngredients;
   onChangeGoal: HandleChangeGoalFunc;
   onRemoveGoal: HandleRemoveGoalFunc;
   onAddGoal: HandleAddGoalFunc;
+  selectedTemplateName: string;
+  onChangeTemplate: HandleChangeTemplate;
   onSetAndBrowse: () => void;
   onCopyURL: () => void;
 }
@@ -80,8 +82,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
             <Body dark>Start with a template:&nbsp;</Body>
           </RightAlignTextGrid>
           <Grid item lg>
-            {/* TODO */}
-            <TemplateSelect replaceGoalsState={() => console.log('clicked')}/>
+            <TemplateSelect templateName={props.selectedTemplateName} onChangeTemplate={props.onChangeTemplate}/>
           </Grid>
           <Grid item lg={2}/>
         </Grid>

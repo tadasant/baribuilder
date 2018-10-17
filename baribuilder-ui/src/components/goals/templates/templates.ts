@@ -1,7 +1,13 @@
-import CustomTemplate from './CustomTemplate.json';
-import GastricBypass from './GastricBypassASMBS.json';
+import CustomTemplate from './CustomTemplate';
+import GastricBypass from './GastricBypassASMBS';
 
-export default {
+const CUSTOM_TEMPLATE_NAME = 'Custom...';
+
+const templatesByName = {
   'Gastric Bypass - ASMBS': GastricBypass,
-  'Custom...': CustomTemplate,
+  [CUSTOM_TEMPLATE_NAME]: CustomTemplate,
 };
+
+export const defaultTemplateName = Object.keys(templatesByName).find(name => name.toLowerCase().includes('bypass')) || CUSTOM_TEMPLATE_NAME;
+
+export default templatesByName;

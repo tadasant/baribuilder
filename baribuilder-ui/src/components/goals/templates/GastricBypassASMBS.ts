@@ -1,4 +1,4 @@
-{
+const state = {
   "didMakeClientSideChanges": "false",
   "goalIngredients": {
     "ingredientRanges": [
@@ -93,4 +93,6 @@
     ],
     "__typename": "GoalIngredients"
   }
-}
+};
+
+export default state;
