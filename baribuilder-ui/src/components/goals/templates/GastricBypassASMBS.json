@@ -1,0 +1,96 @@
+{
+  "didMakeClientSideChanges": "false",
+  "goalIngredients": {
+    "ingredientRanges": [
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Vitamin A",
+        "minimumAmount": "5000",
+        "maximumAmount": "10000",
+        "units": "IU",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Vitamin D3",
+        "minimumAmount": "3000",
+        "maximumAmount": "3001",
+        "units": "IU",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Vitamin E",
+        "minimumAmount": "22",
+        "maximumAmount": "23",
+        "units": "IU",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Vitamin K1",
+        "minimumAmount": "90",
+        "maximumAmount": "120",
+        "units": "MCG",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Thiamine",
+        "minimumAmount": "12",
+        "maximumAmount": "100",
+        "units": "MG",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Folic Acid",
+        "minimumAmount": "400",
+        "maximumAmount": "1000",
+        "units": "MCG",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Vitamin B12",
+        "minimumAmount": "350",
+        "maximumAmount": "500",
+        "units": "MCG",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Calcium",
+        "minimumAmount": "1200",
+        "maximumAmount": "1500",
+        "units": "MG",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Iron",
+        "minimumAmount": "45",
+        "maximumAmount": "60",
+        "units": "MG",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Zinc",
+        "minimumAmount": "8",
+        "maximumAmount": "22",
+        "units": "MG",
+        "frequency": "DAILY"
+      },
+      {
+        "__typename": "IngredientRange",
+        "ingredientTypeName": "Copper",
+        "minimumAmount": "1",
+        "maximumAmount": "2",
+        "units": "MG",
+        "frequency": "DAILY"
+      }
+    ],
+    "__typename": "GoalIngredients"
+  }
+}

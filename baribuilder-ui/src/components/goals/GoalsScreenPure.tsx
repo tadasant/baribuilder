@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import {IGoalIngredients} from '../../state/client-schema-types';
 import {EmptyRow} from '../style/Layout';
-import {Caption, Header} from '../style/Typography';
+import {Body, Caption, Header} from '../style/Typography';
 import GoalsFooter from './children/GoalsFooter';
 import IngredientRangeSelection from './children/IngredientRangeSelection';
+import TemplateSelect from './children/TemplateSelect';
 import {HandleAddGoalFunc, HandleChangeGoalFunc, HandleRemoveGoalFunc} from './GoalsScreen';
 
 interface IProps {
@@ -56,6 +57,10 @@ export const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
+const RightAlignTextGrid = styled(Grid)`
+  text-align: right;
+`;
+
 const CenteredTextGridWithPointer = styled(CenteredTextGrid)`
   cursor: pointer;
 `;
@@ -69,6 +74,22 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
           <Header dark>What are your ingredient goals?</Header>
         </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
+        <Grid item lg={12} container alignItems='center'>
+          <Grid item lg={2}/>
+          <RightAlignTextGrid item>
+            <Body dark>Start with a template:&nbsp;</Body>
+          </RightAlignTextGrid>
+          <Grid item lg>
+            {/* TODO */}
+            <TemplateSelect replaceGoalsState={() => console.log('clicked')}/>
+          </Grid>
+          <Grid item lg={2}/>
+        </Grid>
+        <EmptyRow mobile='20px'/>
+        <CenteredTextGrid item lg={12}>
+          <Body dark>Make changes to reflect your medical provider's recommendations below.</Body>
+        </CenteredTextGrid>
+        <EmptyRow/>
         <Fragment>
           <Grid item lg={1}/>
           <Grid item container lg={10} alignContent='flex-start' spacing={8}>

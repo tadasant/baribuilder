@@ -40,6 +40,7 @@ type CatalogProductQuantity {
     amount: Int!
     units: PRODUCT_QUANTITY_UNITS!
     frequency: FREQUENCY!
+    #   TODO This shouldn't be optional, but I want to reuse the type when building, hmm
     remainingUnfilledIngredientCount: Int
 }
 
@@ -87,6 +88,7 @@ input RegimenProductCostInput {
 
 type GoalIngredients {
     ingredientRanges: [IngredientRange!]!
+    #   TODO This shouldn't be optional, but I want to reuse the type when building, hmm
     unfilledIngredientCount: Int
 }
 

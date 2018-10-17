@@ -49,7 +49,7 @@ type ReferenceDataOutputProps = ChildDataProps<IProps, GetIngredientReferenceDat
 
 const withReferenceData = graphql<IProps, GetIngredientReferenceData>(GET_INGREDIENT_REFERENCE_DATA);
 
-const EmphasizedShadowedSelect = styled(ShadowedSelect)`
+export const EmphasizedShadowedSelect = styled(ShadowedSelect)`
   && {
     font-weight: 800;
     font-size: 1.5em;
