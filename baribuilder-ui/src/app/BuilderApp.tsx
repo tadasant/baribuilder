@@ -66,11 +66,15 @@ export const PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY = gql`
                 amount
                 units
                 frequency
+                remainingUnfilledIngredientCount
             }
             matchScore
         }
         searchQuery @client {
             value
+        }
+        goalIngredients @client {
+            unfilledIngredientCount
         }
     }
 `;

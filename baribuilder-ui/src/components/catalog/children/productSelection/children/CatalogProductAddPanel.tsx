@@ -88,7 +88,7 @@ const OuterGrid = styled(Grid)`
 // Pure
 const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {ClientCatalogProduct, goalIngredients}, catalogProductId, quantityAmount, setQuantityAmount, quantityFrequency}) => {
   // TODO manage frequency, maybe units
-  if (!ClientCatalogProduct || !goalIngredients || !goalIngredients.unfilledIngredientCount || !ClientCatalogProduct.defaultQuantity.remainingUnfilledIngredientCount) {
+  if (!ClientCatalogProduct || !goalIngredients || goalIngredients.unfilledIngredientCount === null || ClientCatalogProduct.defaultQuantity.remainingUnfilledIngredientCount === null) {
     return null;
   }
   const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => setQuantityAmount(event.target.value ? parseInt(event.target.value, 10) : 0);
