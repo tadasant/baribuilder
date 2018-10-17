@@ -6,17 +6,17 @@ import templatesByName from '../templates/templates';
 import {EmphasizedShadowedSelect} from './IngredientRangeSelection';
 
 interface IProps {
-  templateName: string;
-  onChangeTemplate: HandleChangeTemplate; // correct type
+  selectedTemplateName: string;
+  onChangeTemplate: HandleChangeTemplate;
 }
 
-const TemplateSelect: SFC<IProps> = ({templateName, onChangeTemplate}) => {
+const TemplateSelect: SFC<IProps> = ({selectedTemplateName, onChangeTemplate}) => {
   const handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void = (event) => {
     onChangeTemplate(event.target.value);
   };
 
   return (
-    <EmphasizedShadowedSelect value={templateName} onChange={handleChange}>
+    <EmphasizedShadowedSelect value={selectedTemplateName} onChange={handleChange}>
       {Object.keys(templatesByName).map(name => (
         <MenuItem value={name} key={name}>
           {name}

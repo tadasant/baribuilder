@@ -15,7 +15,7 @@ import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
 import GoalsScreenPure from './GoalsScreenPure';
-import templatesByName, {defaultTemplateName} from './templates/templates';
+import templatesByName, {DEFAULT_TEMPLATE_NAME} from './templates/templates';
 
 const GOALS_SCREEN_QUERY = gql`
     query GetGoalsScreenData {
@@ -71,7 +71,7 @@ const enhance = compose<QueryOutputProps & MutationOutputProps & RouteComponentP
   withRouter,
 );
 
-interface IState {
+export interface IGoalsScreenState {
   goalIngredients?: IGoalIngredients;
   selectedTemplateName: string;
   didMakeClientSideChanges: boolean; // Used for preventing remote changes from overwriting local ones
@@ -84,14 +84,11 @@ export type HandleAddGoalFunc = () => void;
 
 type TProps = QueryOutputProps & MutationOutputProps & RouteComponentProps;
 
-class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
-  static getDerivedStateFromProps(props: TProps, state: IState) {
+class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>> {
+  static getDerivedStateFromProps(props: TProps, state: IGoalsScreenState) {
     // TODO consider replacing w/ key strategy https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html?no-cache=1#recommendation-fully-uncontrolled-component-with-a-key
     if (!state.didMakeClientSideChanges) {
-      return {
-        goalIngredients: props.data.goalIngredients,
-        selectedTemplateName: defaultTemplateName,
-      }
+      return templatesByName[DEFAULT_TEMPLATE_NAME];
     }
     return null;
   }
@@ -105,13 +102,10 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
     this.handleSetAndBrowse = this.handleSetAndBrowse.bind(this);
   }
 
-  deriveStateFromQueryParams(): IState {
+  deriveStateFromQueryParams(): IGoalsScreenState {
     const queryString = this.props.location.search;
     if (!queryString) {
-      return {
-        didMakeClientSideChanges: false,
-        selectedTemplateName: defaultTemplateName,
-      };
+      return templatesByName[DEFAULT_TEMPLATE_NAME];
     }
     return qs.parse(queryString.slice(1));
   }

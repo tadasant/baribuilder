@@ -82,7 +82,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
             <Body dark>Start with a template:&nbsp;</Body>
           </RightAlignTextGrid>
           <Grid item lg>
-            <TemplateSelect templateName={props.selectedTemplateName} onChangeTemplate={props.onChangeTemplate}/>
+            <TemplateSelect selectedTemplateName={props.selectedTemplateName} onChangeTemplate={props.onChangeTemplate}/>
           </Grid>
           <Grid item lg={2}/>
         </Grid>

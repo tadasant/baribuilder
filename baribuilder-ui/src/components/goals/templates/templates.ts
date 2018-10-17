@@ -1,13 +1,11 @@
-import CustomTemplate from './CustomTemplate';
+import {keyBy} from 'lodash';
+import CustomTemplate, {CUSTOM_TEMPLATE_NAME} from './CustomTemplate';
 import GastricBypass from './GastricBypassASMBS';
 
-const CUSTOM_TEMPLATE_NAME = 'Custom...';
+const templates = [CustomTemplate, GastricBypass];
 
-const templatesByName = {
-  'Gastric Bypass - ASMBS': GastricBypass,
-  [CUSTOM_TEMPLATE_NAME]: CustomTemplate,
-};
+const templatesByName = keyBy(templates, template => template.selectedTemplateName);
 
-export const defaultTemplateName = Object.keys(templatesByName).find(name => name.toLowerCase().includes('bypass')) || CUSTOM_TEMPLATE_NAME;
+export const DEFAULT_TEMPLATE_NAME = Object.keys(templatesByName).find(name => name.toLowerCase().includes('bypass')) || CUSTOM_TEMPLATE_NAME;
 
 export default templatesByName;
