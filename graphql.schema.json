@@ -4803,7 +4803,13 @@
             "deprecationReason": null
           },
           {
-            "name": "COMPLEX",
+            "name": "B_COMPLEX",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MISCELLANEOUS",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4821,25 +4827,37 @@
             "deprecationReason": null
           },
           {
+            "name": "VITAMIN_D3",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "VITAMIN_E",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "VITAMIN_B1",
+            "name": "VITAMIN_K1",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "VITAMIN_B2",
+            "name": "THIAMINE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "VITAMIN_B3",
+            "name": "RIBOFLAVIN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NIACIN",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4851,7 +4869,7 @@
             "deprecationReason": null
           },
           {
-            "name": "VITAMIN_B9",
+            "name": "FOLIC_ACID",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4863,13 +4881,13 @@
             "deprecationReason": null
           },
           {
-            "name": "VITAMIN_B7",
+            "name": "BIOTIN",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "VITAMIN_B5",
+            "name": "PANTOTHENIC_ACID",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4935,37 +4953,25 @@
             "deprecationReason": null
           },
           {
-            "name": "SODIUM",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "MOLYBDENUM",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "VITAMIN_D2",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "VITAMIN_D3",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "VITAMIN_K1",
+            "name": "SODIUM",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "VITAMIN_K2",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "VITAMIN_D2",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
