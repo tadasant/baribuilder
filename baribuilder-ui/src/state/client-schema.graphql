@@ -40,6 +40,7 @@ type CatalogProductQuantity {
     amount: Int!
     units: PRODUCT_QUANTITY_UNITS!
     frequency: FREQUENCY!
+    remainingUnfilledIngredientCount: Int
 }
 
 type Regimen {

@@ -52,6 +52,7 @@ const defaultQuantityResolver: TLocalCatalogProductResolverFunc<IProductObj, ICa
 
   //// Perform transformation
   return calculateDefaultQuantity(
+    productResult.CatalogProduct.id,
     productResult.CatalogProduct.serving.ingredients,
     allProductsResult.allCatalogProducts,
     goalIngredientsResult.goalIngredients.ingredientRanges,

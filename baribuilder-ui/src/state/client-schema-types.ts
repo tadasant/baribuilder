@@ -30,6 +30,7 @@ export interface ICatalogProductQuantity {
   amount: number;
   units: PRODUCT_QUANTITY_UNITS;
   frequency: FREQUENCY;
+  remainingUnfilledIngredientCount?: number;
 }
 
 export interface IRegimen {

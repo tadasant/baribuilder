@@ -4,6 +4,7 @@ import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql
 import {GetProductIngredients_CatalogProduct_serving_ingredients} from '../../../typings/gql/GetProductIngredients';
 import {FREQUENCY, PRODUCT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
 import {ICatalogProductQuantity, IIngredientRange, IRegimenProduct} from '../../client-schema-types';
+import {subtractRegimenIngredientsFromGoalIngredientRanges} from './helpers';
 
 /**
  * Returns the ideal number of servings of this product for the given target
@@ -83,18 +84,54 @@ const calculateTargetIngredientRanges = (goalIngredientRanges: IIngredientRange[
   return targetIngredientRanges;
 };
 
+const calculateRemainingUnfilledIngredientCount = (
+  currentRegimenProducts: IRegimenProduct[],
+  goalIngredientRanges: IIngredientRange[],
+  allCatalogProducts: GetAllProductsIngredients_allCatalogProducts[],
+  productIngredients: GetProductIngredients_CatalogProduct_serving_ingredients[],
+  productCount: number,
+  frequency: FREQUENCY,
+  units: PRODUCT_QUANTITY_UNITS,
+  catalogProductId: string,
+): number => {
+  const additionalProduct: IRegimenProduct = {
+    __typename: 'RegimenProduct',
+    catalogProductId,
+    quantity: {
+      __typename: 'RegimenProductQuantity',
+      amount: productCount,
+      frequency,
+      units,
+    },
+    // cost won't be used in this prospective calculation
+    cost: {
+      __typename: 'RegimenProductCost',
+      money: 0.0,
+      frequency: FREQUENCY.DAILY,
+    },
+  };
+  const targetRegimenIngredients = subtractRegimenIngredientsFromGoalIngredientRanges([...currentRegimenProducts, additionalProduct], goalIngredientRanges, allCatalogProducts);
+  const remainingRegimenIngredients = targetRegimenIngredients.filter(ingredient => ingredient.amount > 0);
+  return remainingRegimenIngredients.length;
+};
+
 export const calculateDefaultQuantity = (
+  catalogProductId: string,
   productIngredients: GetProductIngredients_CatalogProduct_serving_ingredients[],
   products: GetAllProductsIngredients_allCatalogProducts[],
   goalIngredientRanges: IIngredientRange[],
   currentRegimenProducts: IRegimenProduct[]
 ): ICatalogProductQuantity => {
   const targetIngredientRanges = calculateTargetIngredientRanges(goalIngredientRanges, currentRegimenProducts, products);
-  const amount = deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges)
+  const amount = deriveIdealQuantityViaLimitingMicros(productIngredients, targetIngredientRanges);
+  const frequency = FREQUENCY.DAILY;
+  const units = PRODUCT_QUANTITY_UNITS.SERVINGS;
+  const remainingUnfilledIngredientCount = calculateRemainingUnfilledIngredientCount(currentRegimenProducts, goalIngredientRanges, products, productIngredients, amount, frequency, units, catalogProductId);
   return {
     __typename: 'CatalogProductQuantity',
     amount: amount > 0 ? amount : 1,
-    units: PRODUCT_QUANTITY_UNITS.SERVINGS,
-    frequency: FREQUENCY.DAILY,
+    units,
+    frequency,
+    remainingUnfilledIngredientCount,
   };
 };
