@@ -4,14 +4,14 @@ import update from 'immutability-helper';
 import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
-import {DataProps, DataValue, graphql, MutateProps} from 'react-apollo';
+import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {toast} from 'react-toastify';
 import {compose} from "recompose";
 import {compareIngredientTypeNames} from '../../lib/constants';
 import {IGoalIngredients, IIngredientRange} from '../../state/client-schema-types';
 import '../../state/fragments.graphql';
-import {GetGoalsScreenContainerData} from '../../typings/gql/GetGoalsScreenContainerData';
+import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
 import GoalsScreenPure from './GoalsScreenPure';
@@ -19,8 +19,18 @@ import {CUSTOM_TEMPLATE_NAME} from './templates/CustomTemplate';
 import templatesByName, {DEFAULT_TEMPLATE_NAME} from './templates/templates';
 
 interface IProps {
-  data: DataValue<GetGoalsScreenContainerData, {}>
+  initialState?: IGoalsScreenState
 }
+
+const GOALS_SCREEN_QUERY = gql`
+    query GetGoalsScreenData {
+        allIngredientTypes {
+            name
+            defaultUnits
+            synonyms
+        }
+    }
+`;
 
 const GOAL_INGREDIENTS_MUTATION = gql`
     mutation SetGoalIngredients($goalIngredients: GoalIngredientsInput!) {
@@ -38,6 +48,8 @@ const GOAL_INGREDIENTS_MUTATION = gql`
     }
 `;
 
+type QueryOutputProps = ChildDataProps<{}, GetGoalsScreenData>;
+
 type MutationOutputProps =
   Partial<DataProps<SetGoalIngredients, SetGoalIngredientsVariables>>
   & Partial<MutateProps<SetGoalIngredients, SetGoalIngredientsVariables>>;
@@ -52,24 +64,16 @@ export type HandleRemoveGoalFunc = (ingredientTypeName: string) => void;
 export type HandleChangeTemplate = (templateName: string) => void;
 export type HandleAddGoalFunc = () => void;
 
-type TProps = IProps & MutationOutputProps & RouteComponentProps;
+type TProps = IProps & QueryOutputProps & MutationOutputProps & RouteComponentProps;
 
 class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
   constructor(props: TProps) {
     super(props);
-    this.state = this.deriveStateFromQueryParams();
+    this.state = props.initialState || templatesByName[DEFAULT_TEMPLATE_NAME];
     this.handleChangeGoal = this.handleChangeGoal.bind(this);
     this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
     this.handleAddGoal = this.handleAddGoal.bind(this);
     this.handleSetAndBrowse = this.handleSetAndBrowse.bind(this);
-  }
-
-  deriveStateFromQueryParams(): IGoalsScreenState {
-    const queryString = this.props.location.search;
-    if (!queryString) {
-      return templatesByName[DEFAULT_TEMPLATE_NAME];
-    }
-    return qs.parse(queryString.slice(1));
   }
 
   /**
@@ -231,13 +235,16 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
   }
 }
 
+const withData = graphql<{}, GetGoalsScreenData>(GOALS_SCREEN_QUERY);
+
 const withMutation = graphql<{}, SetGoalIngredients>(GOAL_INGREDIENTS_MUTATION, {
   options: {
     refetchQueries: ['PrefetchClientCatalogProducts'],
   }
 });
 
-const enhance = compose<IProps & MutationOutputProps & RouteComponentProps, IProps>(
+const enhance = compose<TProps, IProps>(
+  withData,
   withMutation,
   withRouter,
 );

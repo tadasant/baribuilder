@@ -4,7 +4,8 @@ import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import '../../state/fragments.graphql';
 import {GetGoalsScreenContainerData} from '../../typings/gql/GetGoalsScreenContainerData';
-import GoalsScreen from './GoalsScreen';
+import GoalsScreen, {IGoalsScreenState} from './GoalsScreen';
+import {CUSTOM_TEMPLATE_NAME} from './templates/CustomTemplate';
 
 const GOALS_SCREEN_CONTAINER_QUERY = gql`
     query GetGoalsScreenContainerData {
@@ -17,21 +18,27 @@ const GOALS_SCREEN_CONTAINER_QUERY = gql`
                 frequency
             }
         }
-        allIngredientTypes {
-            name
-            defaultUnits
-            synonyms
-        }
     }
 `;
 
 type QueryOutputProps = ChildDataProps<{}, GetGoalsScreenContainerData>;
 
 const GoalsScreenContainer: SFC<QueryOutputProps> = ({data}) => {
-  if (!data || data.loading) {
+  if (!data || !data.goalIngredients || data.loading) {
     return null;
   }
-  return <GoalsScreen data={data} key={data.toString()}/>;
+  // TODO refactor this full-state hack to be a robust templating system. Probably when/if I break out templating to be user-oriented
+  let initialGoalsState: IGoalsScreenState | undefined = undefined;
+  let key = 'default';
+  if (data.goalIngredients.ingredientRanges.length > 0) {
+    initialGoalsState = {
+      selectedTemplateName: CUSTOM_TEMPLATE_NAME,
+      goalIngredients: data.goalIngredients
+    };
+    key = `fromstore_${initialGoalsState.toString()}`;
+  }
+  // using keys to re-render child when store has changed
+  return <GoalsScreen initialState={initialGoalsState} key={key}/>;
 };
 
 const withData = graphql<{}, GetGoalsScreenContainerData>(GOALS_SCREEN_CONTAINER_QUERY);
