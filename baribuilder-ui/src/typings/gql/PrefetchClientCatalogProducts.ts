@@ -15,7 +15,6 @@ export interface PrefetchClientCatalogProducts_allClientCatalogProducts_cost {
 
 export interface PrefetchClientCatalogProducts_allClientCatalogProducts_projectedRegimenCost {
   __typename: "RegimenCost";
-  numRemainingProducts: number;
   money: number;
   frequency: FREQUENCY;
 }

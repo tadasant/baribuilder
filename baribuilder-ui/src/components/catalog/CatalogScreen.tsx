@@ -30,7 +30,6 @@ export const CATALOG_PRODUCTS_QUERY = gql`
                 frequency
             }
             projectedRegimenCost {
-                numRemainingProducts
                 money
                 frequency
             }

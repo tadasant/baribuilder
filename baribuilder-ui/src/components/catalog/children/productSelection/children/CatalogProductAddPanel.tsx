@@ -30,9 +30,6 @@ const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
                 frequency
                 units
             }
-            projectedRegimenCost {
-                numRemainingProducts
-            }
         }
         goalIngredients @client {
             ingredientRanges {
@@ -101,7 +98,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
   };
 
   const ingredientGoalCount = goalIngredients.ingredientRanges.length;
-  const fullfilledIngredientCount = ClientCatalogProduct.projectedRegimenCost ? ingredientGoalCount - ClientCatalogProduct.projectedRegimenCost.numRemainingProducts : null;
+  const fullfilledIngredientCount = ClientCatalogProduct.projectedRegimenCost ? ingredientGoalCount : null;
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>

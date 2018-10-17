@@ -59,7 +59,6 @@ export const PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY = gql`
                 frequency
             }
             projectedRegimenCost {
-                numRemainingProducts
                 money
                 frequency
             }

@@ -21,7 +21,6 @@ const GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY = gql`
                 frequency
             }
             projectedRegimenCost {
-                numRemainingProducts
                 money
                 frequency
             }

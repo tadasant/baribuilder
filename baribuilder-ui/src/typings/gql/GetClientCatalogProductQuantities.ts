@@ -14,16 +14,10 @@ export interface GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQ
   units: PRODUCT_QUANTITY_UNITS;
 }
 
-export interface GetClientCatalogProductQuantities_ClientCatalogProduct_projectedRegimenCost {
-  __typename: "RegimenCost";
-  numRemainingProducts: number;
-}
-
 export interface GetClientCatalogProductQuantities_ClientCatalogProduct {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
   defaultQuantity: GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity;
-  projectedRegimenCost: GetClientCatalogProductQuantities_ClientCatalogProduct_projectedRegimenCost | null;
 }
 
 export interface GetClientCatalogProductQuantities_goalIngredients_ingredientRanges {

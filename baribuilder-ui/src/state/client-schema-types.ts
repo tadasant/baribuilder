@@ -21,7 +21,6 @@ export interface ICatalogProductCost {
 
 export interface IRegimenCost {
   __typename: 'RegimenCost';
-  numRemainingProducts: number;
   money: number;
   frequency: FREQUENCY;
 }

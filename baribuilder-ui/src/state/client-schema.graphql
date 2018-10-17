@@ -32,7 +32,6 @@ type CatalogProductCost {
 }
 
 type RegimenCost {
-    numRemainingProducts: Int!
     frequency: FREQUENCY!
     money: Float!
 }

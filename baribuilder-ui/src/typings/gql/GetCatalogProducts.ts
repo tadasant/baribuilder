@@ -28,7 +28,6 @@ export interface GetCatalogProducts_allClientCatalogProducts_cost {
 
 export interface GetCatalogProducts_allClientCatalogProducts_projectedRegimenCost {
   __typename: "RegimenCost";
-  numRemainingProducts: number;
   money: number;
   frequency: FREQUENCY;
 }

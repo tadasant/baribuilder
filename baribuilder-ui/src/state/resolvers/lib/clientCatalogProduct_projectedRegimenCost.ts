@@ -31,7 +31,6 @@ const calculateProjectedRegimenCost = (
 ): IRegimenCost => {
   const targetRegimenIngredients = subtractRegimenIngredientsFromGoalIngredientRanges(currentRegimenProducts, goalIngredientRanges, products);
   const remainingRegimenIngredients = subtractProductFromRegimenIngredients(targetRegimenIngredients, product);
-  const numRemainingProducts = remainingRegimenIngredients.length;
   const remainingProjectedCost = projectCostOfIngredients(remainingRegimenIngredients);
   const totalProjectedCost = sumCosts(product.cost, sumCostOfProducts(currentRegimenProducts), remainingProjectedCost);
   // TODO more robust conversions
@@ -41,7 +40,6 @@ const calculateProjectedRegimenCost = (
   }
   return {
     __typename: 'RegimenCost',
-    numRemainingProducts,
     money: totalProjectedCost.money,
     frequency: totalProjectedCost.frequency,
   }
