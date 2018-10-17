@@ -2,14 +2,14 @@ import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalT
 import {IGoalsScreenState} from '../GoalsScreen';
 
 const state: IGoalsScreenState = {
-  "selectedTemplateName": 'Gastric Bypass (RNY) - ASMBS',
+  "selectedTemplateName": 'Gastric Sleeve (VSG) - ASMBS',
   "goalIngredients": {
     "ingredientRanges": [
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Vitamin A",
         "minimumAmount": 5000,
-        "maximumAmount": 10000,
+        "maximumAmount": 5001,
         "units": INGREDIENT_QUANTITY_UNITS.IU,
         "frequency": FREQUENCY.DAILY
       },
@@ -72,8 +72,8 @@ const state: IGoalsScreenState = {
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Iron",
-        "minimumAmount": 45,
-        "maximumAmount": 60,
+        "minimumAmount": 18,
+        "maximumAmount": 19,
         "units": INGREDIENT_QUANTITY_UNITS.MG,
         "frequency": FREQUENCY.DAILY
       },
@@ -81,7 +81,7 @@ const state: IGoalsScreenState = {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Zinc",
         "minimumAmount": 8,
-        "maximumAmount": 22,
+        "maximumAmount": 11,
         "units": INGREDIENT_QUANTITY_UNITS.MG,
         "frequency": FREQUENCY.DAILY
       },

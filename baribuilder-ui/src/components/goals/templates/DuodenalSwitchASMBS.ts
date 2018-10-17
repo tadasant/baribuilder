@@ -2,14 +2,14 @@ import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalT
 import {IGoalsScreenState} from '../GoalsScreen';
 
 const state: IGoalsScreenState = {
-  "selectedTemplateName": 'Gastric Bypass (RNY) - ASMBS',
+  "selectedTemplateName": 'Duodenal Switch (BPD/DS) - ASMBS',
   "goalIngredients": {
     "ingredientRanges": [
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Vitamin A",
-        "minimumAmount": 5000,
-        "maximumAmount": 10000,
+        "minimumAmount": 10000,
+        "maximumAmount": 20000,
         "units": INGREDIENT_QUANTITY_UNITS.IU,
         "frequency": FREQUENCY.DAILY
       },
@@ -32,15 +32,15 @@ const state: IGoalsScreenState = {
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Vitamin K1",
-        "minimumAmount": 90,
-        "maximumAmount": 120,
+        "minimumAmount": 300,
+        "maximumAmount": 301,
         "units": INGREDIENT_QUANTITY_UNITS.MCG,
         "frequency": FREQUENCY.DAILY
       },
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Thiamine",
-        "minimumAmount": 12,
+        "minimumAmount": 50,
         "maximumAmount": 100,
         "units": INGREDIENT_QUANTITY_UNITS.MG,
         "frequency": FREQUENCY.DAILY
@@ -48,8 +48,8 @@ const state: IGoalsScreenState = {
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Folic Acid",
-        "minimumAmount": 400,
-        "maximumAmount": 1000,
+        "minimumAmount": 1000,
+        "maximumAmount": 1001,
         "units": INGREDIENT_QUANTITY_UNITS.MCG,
         "frequency": FREQUENCY.DAILY
       },
@@ -64,8 +64,8 @@ const state: IGoalsScreenState = {
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Calcium",
-        "minimumAmount": 1200,
-        "maximumAmount": 1500,
+        "minimumAmount": 1800,
+        "maximumAmount": 2400,
         "units": INGREDIENT_QUANTITY_UNITS.MG,
         "frequency": FREQUENCY.DAILY
       },
@@ -80,7 +80,7 @@ const state: IGoalsScreenState = {
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Zinc",
-        "minimumAmount": 8,
+        "minimumAmount": 16,
         "maximumAmount": 22,
         "units": INGREDIENT_QUANTITY_UNITS.MG,
         "frequency": FREQUENCY.DAILY
@@ -88,8 +88,8 @@ const state: IGoalsScreenState = {
       {
         "__typename": "IngredientRange",
         "ingredientTypeName": "Copper",
-        "minimumAmount": 1,
-        "maximumAmount": 2,
+        "minimumAmount": 2,
+        "maximumAmount": 3,
         "units": INGREDIENT_QUANTITY_UNITS.MG,
         "frequency": FREQUENCY.DAILY
       }
