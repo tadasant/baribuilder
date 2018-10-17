@@ -9,7 +9,8 @@ import {
 } from '../../../../../typings/gql/GetClientCatalogProductPrices';
 import {CenteredTextGrid} from '../../../../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../../../../style/CustomMaterial';
-import {Body, GreyBody, Header2, Subcaption} from '../../../../style/Typography';
+import {EmptyRow} from '../../../../style/Layout';
+import {Body, GreyBody, Subcaption} from '../../../../style/Typography';
 import HelpIcon from '../../lib/HelpIcon';
 
 
@@ -27,6 +28,9 @@ const GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY = gql`
                 frequency
             }
         }
+        goalIngredients @client {
+            unfilledIngredientCount
+        }
     }
 `;
 
@@ -36,17 +40,17 @@ interface IProps {
 
 type DataOutputProps = ChildDataProps<IProps, GetClientCatalogProductPrices, GetClientCatalogProductPricesVariables>;
 
-const helpText = 'This is what we project your TOTAL regimen will cost IF you add this product. In other words, ' +
-  'products that give you "more value per dollar" will have LOWER projected total regimen cost.';
+const helpText = 'This is what we estimate your TOTAL regimen will cost IF you add this product. In other words, ' +
+  'products that give you "more value per dollar" will have LOWER estimated regimen cost.';
 
-const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalogProduct}}) => {
-  if (!ClientCatalogProduct) {
+const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalogProduct, goalIngredients}}) => {
+  if (!ClientCatalogProduct || !goalIngredients || goalIngredients.unfilledIngredientCount === null) {
     return null;
   }
   // TODO replace this with an actual check on goals
   const goalsSet = Boolean(ClientCatalogProduct.projectedRegimenCost);
   const price = goalsSet && ClientCatalogProduct.projectedRegimenCost ? ClientCatalogProduct.projectedRegimenCost.money.toFixed(0) : ClientCatalogProduct.cost.money.toFixed(2);
-  const subText = goalsSet ? 'projected total cost' : 'product cost';
+  const subText = goalsSet ? `estimated regimen cost with all ${goalIngredients.unfilledIngredientCount} of ${goalIngredients.unfilledIngredientCount} ingredients` : 'product cost';
   return (
     <Grid container justify='flex-start'>
       <CenteredTextGrid item lg={12}>
@@ -60,9 +64,10 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
             )
         }
       </CenteredTextGrid>
+      <EmptyRow/>
       <CenteredTextGrid item lg={12}>
         {/* TODO don't hardcode / mo. */}
-        <Header2 dark>${price} / mo.</Header2>
+        <Body dark>${price} / mo.</Body>
       </CenteredTextGrid>
       <CenteredTextGrid item lg={12}>
         <Subcaption dark>{subText}</Subcaption>

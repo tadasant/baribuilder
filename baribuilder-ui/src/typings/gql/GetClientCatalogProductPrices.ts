@@ -26,8 +26,14 @@ export interface GetClientCatalogProductPrices_ClientCatalogProduct {
   projectedRegimenCost: GetClientCatalogProductPrices_ClientCatalogProduct_projectedRegimenCost | null;
 }
 
+export interface GetClientCatalogProductPrices_goalIngredients {
+  __typename: "GoalIngredients";
+  unfilledIngredientCount: number | null;
+}
+
 export interface GetClientCatalogProductPrices {
   ClientCatalogProduct: GetClientCatalogProductPrices_ClientCatalogProduct | null;
+  goalIngredients: GetClientCatalogProductPrices_goalIngredients;
 }
 
 export interface GetClientCatalogProductPricesVariables {

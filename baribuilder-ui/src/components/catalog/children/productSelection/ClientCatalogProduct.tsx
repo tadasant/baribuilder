@@ -48,6 +48,8 @@ const enhance = compose<IProps & QueryOutputProps, IProps>(
 
 const LeftBorderGrid = styled(Grid)`
   border-left: 1px solid ${Sketch.color.accent.grey};
+  padding-left: 16px;
+  padding-right: 16px;
 `;
 
 // Pure
@@ -64,7 +66,6 @@ const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {Catalo
             </a>
           </Grid>
           <Grid item lg={7} container alignItems='center'>
-            <EmptyRow/>
             <Grid item lg={4}>
               <MainProductImageWithPopover catalogProductId={id}/>
             </Grid>
