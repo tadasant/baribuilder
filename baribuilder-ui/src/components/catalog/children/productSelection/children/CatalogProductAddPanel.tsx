@@ -119,10 +119,10 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
           ? (
             <Fragment>
               <CenteredTextGrid item lg={12}>
-                <Body dark>{fullfilledIngredientCount} of {ingredientGoalCount}</Body>
+                <Body dark>fills {fullfilledIngredientCount} of {ingredientGoalCount}</Body>
               </CenteredTextGrid>
               <CenteredTextGrid item lg={12}>
-                <Subcaption dark>remaining ingredients fulfilled</Subcaption>
+                <Subcaption dark>remaining regimen ingredients</Subcaption>
               </CenteredTextGrid>
               <EmptyRow mobile='0px'/>
             </Fragment>
