@@ -242,6 +242,7 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IGoalsScreenState>
   };
 
   handleChangeTemplate = (templateName: string): void => {
+    console.log(this.state);
     this.setState(templatesByName[templateName]);
   };
 
