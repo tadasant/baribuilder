@@ -51,3 +51,5 @@ Problem: When making a local & remote combined query, if the remote bit is not i
 
 Solution: @client directive should result in ALWAYS cache hit for that piece of the query.
 
+Update: not entirely sure if this is a real problem or I was doing something wrong by relying on default resolvers too heavily
+

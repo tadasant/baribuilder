@@ -6,6 +6,7 @@ import * as React from 'react';
 import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {toast} from 'react-toastify';
 import {compose} from "recompose";
 import {compareIngredientTypeNames} from '../../lib/constants';
 import {IGoalIngredients, IIngredientRange} from '../../state/client-schema-types';
@@ -220,8 +221,16 @@ class GoalsScreenContainer extends Component<TProps, Readonly<IState>> {
       variables: {
         goalIngredients: this.state.goalIngredients
       }
+    }).then(({errors}) => {
+      if (errors) {
+        toast.error(`Error setting goals! Please contact feedback@vitaglab.com if you think this is a mistake. Error 96572 @ ${(new Date).getTime()}`, {
+          autoClose: false,
+          closeOnClick: false,
+        });
+      } else {
+        this.props.history.push('/browse/all_products');
+      }
     });
-    this.props.history.push('/browse/all_products');
   };
 
   handleCopyURL = (): void => {
