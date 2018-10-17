@@ -114,7 +114,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
       <Grid item lg={4}/>
       <EmptyRow mobile='0px'/>
       {
-        fullfilledIngredientCount !== null
+        fullfilledIngredientCount !== null && goalIngredients.unfilledIngredientCount !== 0
           ? (
             <Fragment>
               <CenteredTextGrid item lg={12}>
