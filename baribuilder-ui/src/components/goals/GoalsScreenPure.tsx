@@ -19,7 +19,6 @@ interface IProps {
   selectedTemplateName: string;
   onChangeTemplate: HandleChangeTemplate;
   onSetAndBrowse: () => void;
-  onCopyURL: () => void;
 }
 
 const AddBoxGrid = styled(Grid)`
@@ -121,7 +120,7 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
       <Footer>
         <FooterGrid container direction='column' justify='center'>
           <Grid item container>
-            <GoalsFooter onClickSetAndBrowse={props.onSetAndBrowse} onClickCopyURL={props.onCopyURL}/>
+            <GoalsFooter onClickSetAndBrowse={props.onSetAndBrowse}/>
           </Grid>
         </FooterGrid>
       </Footer>

@@ -1,7 +1,5 @@
-import * as copy from 'copy-to-clipboard';
 import gql from 'graphql-tag';
 import update from 'immutability-helper';
-import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
@@ -204,14 +202,6 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
     });
   };
 
-  handleCopyURL = (): void => {
-    const stateAsQueryString = qs.stringify({
-      ...this.state,
-    });
-    const url = `${window.location.host}${this.props.location.pathname}?${stateAsQueryString}`;
-    copy(url);
-  };
-
   handleChangeTemplate = (templateName: string): void => {
     this.setState(templatesByName[templateName]);
   };
@@ -229,7 +219,6 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
         onRemoveGoal={this.handleRemoveGoal}
         onAddGoal={this.handleAddGoal}
         onSetAndBrowse={this.handleSetAndBrowse}
-        onCopyURL={this.handleCopyURL}
       />
     );
   }

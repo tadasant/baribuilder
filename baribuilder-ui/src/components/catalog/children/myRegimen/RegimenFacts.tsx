@@ -121,7 +121,7 @@ interface IPropsForMicronutrientRow {
   ingredientTypeName: string;
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
-  percentOfGoal?: number;
+  goal?: number;
 }
 
 const ColoredBodyBold = styled(BoldBody)`
@@ -139,32 +139,40 @@ const LeftAlignGrid = styled(Grid)`
   text-align: left;
 `;
 
+const LeftAlignPaddedGrid = styled(Grid)`
+  && {
+    text-align: left;
+    padding-right: 4px;
+  }
+`;
+
 const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
-  const isExceeded = props.percentOfGoal !== undefined && props.percentOfGoal > 100;
-  const isDeficient = props.percentOfGoal !== undefined && props.percentOfGoal < 100;
+  const isExceeded = props.goal !== undefined && props.amount > props.goal;
+  const isDeficient = props.goal !== undefined && props.amount < props.goal;
   const colorGoal = isExceeded ? Sketch.color.secondary.blue : isDeficient ? Sketch.color.accent.danger : Sketch.color.accent.black;
   return (
     <Fragment>
       <LeftAlignGrid item lg={5}>
         <BoldBody dark>{props.ingredientTypeName}</BoldBody>
       </LeftAlignGrid>
-      <RightAlignPaddedGrid item lg={3}>
-        <Body dark>{props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)}</Body>
-      </RightAlignPaddedGrid>
-      <LeftAlignGrid item lg={1}>
-        <Body dark>{props.units.toLowerCase()}</Body>
-      </LeftAlignGrid>
       {
-        props.percentOfGoal !== undefined
+        props.goal !== undefined
           ? (
-            <RightAlignPaddedGrid item lg={3}>
+            <RightAlignPaddedGrid item lg={5}>
               <ColoredBodyBold color={colorGoal}>
-                {props.percentOfGoal.toFixed(0)}%
+                {props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)} of {props.goal}
               </ColoredBodyBold>
             </RightAlignPaddedGrid>
           )
-          : null
+          : (
+            <RightAlignPaddedGrid item lg={5}>
+              <Body dark>{props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)}</Body>
+            </RightAlignPaddedGrid>
+          )
       }
+      <LeftAlignPaddedGrid item lg={2}>
+        <Body dark>{props.units.toLowerCase()}</Body>
+      </LeftAlignPaddedGrid>
     </Fragment>
   )
 };
@@ -179,13 +187,13 @@ const calculateMicronutrientRowPropsList = (
   if (goalIngredientRanges.length > 0) {
     goalIngredientRanges.forEach(range => {
       const currentRegimenIngredient = regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName) ? regimenIngredientsByName[range.ingredientTypeName] : null;
-      const percentOfGoal = calculatePercentageOfGoal(range, currentRegimenIngredient);
-      if (percentOfGoal !== null) {
+      const specificGoal = calculateSpecificGoal(range, currentRegimenIngredient);
+      if (specificGoal !== null) {
         results.push({
           ingredientTypeName: range.ingredientTypeName,
           amount: currentRegimenIngredient ? currentRegimenIngredient.amount : 0,
           units: range.units,
-          percentOfGoal,
+          goal: specificGoal,
         })
       }
     });
@@ -201,32 +209,28 @@ const calculateMicronutrientRowPropsList = (
   return results;
 };
 
-const calculatePercentageOfGoal = (
+/* Returns an appropriate goal to display */
+const calculateSpecificGoal = (
   goalRange: GetDataForRegimenFacts_goalIngredients_ingredientRanges,
   currentIngredient: IRegimenIngredient | null,
 ): number | null => {
   if (currentIngredient === null) {
-    if (goalRange.minimumAmount) {
-      return 0;
-    } else {
-      return 100;
-    }
+    return goalRange.minimumAmount;
   }
 
-  let percentOfGoal = 100;
+  let result = goalRange.minimumAmount;
   if (goalRange.units === currentIngredient.units) {
     if (goalRange.minimumAmount && currentIngredient.amount < goalRange.minimumAmount) {
-      percentOfGoal = currentIngredient.amount * 100 / goalRange.minimumAmount;
+      result = goalRange.minimumAmount;
     } else if (goalRange.maximumAmount && currentIngredient.amount > goalRange.maximumAmount) {
-      percentOfGoal = currentIngredient.amount * 100 / goalRange.maximumAmount;
+      result = goalRange.maximumAmount;
     }
-
   } else {
     console.warn('Unit conversions not yet supported. Error code 592013');
     return null;
   }
 
-  return percentOfGoal;
+  return result;
 };
 
 // Pure
@@ -261,7 +265,7 @@ const RegimenFacts: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogPr
                 goalIngredients.ingredientRanges.length > 0
                   ? (
                     <RightAlignGrid item lg={6}>
-                      <Body dark>% of goal</Body>
+                      <Body dark>of goal</Body>
                     </RightAlignGrid>
                   )
                   : null
