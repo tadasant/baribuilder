@@ -52,6 +52,12 @@ const Footer: SFC<IProps> = props => {
       <EmptyRow mobile='5px'/>
       <Grid item xs={1}/>
       <Grid item container xs={10}>
+        <CenteredTextGrid item xs={12}>
+          <DisclaimerCaption>
+            As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
+          </DisclaimerCaption>
+        </CenteredTextGrid>
+        <EmptyRow/>
         {props.disclaimerText
           ? (
             <CenteredTextGrid item xs={12}>
