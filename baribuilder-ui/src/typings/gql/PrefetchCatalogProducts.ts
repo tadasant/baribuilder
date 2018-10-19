@@ -13,7 +13,7 @@ export interface PrefetchCatalogProducts_allCatalogProducts_listings_price {
 }
 
 export interface PrefetchCatalogProducts_allCatalogProducts_listings {
-  __typename: "Listing";
+  __typename: "PackageListing";
   url: string;
   price: PrefetchCatalogProducts_allCatalogProducts_listings_price;
   numServings: number;

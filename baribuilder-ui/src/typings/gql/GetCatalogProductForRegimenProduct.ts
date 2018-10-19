@@ -8,7 +8,7 @@ import { BRAND } from "./globalTypes";
 // ====================================================
 
 export interface GetCatalogProductForRegimenProduct_CatalogProduct_listings {
-  __typename: "Listing";
+  __typename: "PackageListing";
   url: string;
 }
 

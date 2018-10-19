@@ -11,7 +11,7 @@ export interface GetProductForProductCost_CatalogProduct_listings_price {
 }
 
 export interface GetProductForProductCost_CatalogProduct_listings {
-  __typename: "Listing";
+  __typename: "PackageListing";
   price: GetProductForProductCost_CatalogProduct_listings_price;
   numServings: number;
 }

@@ -8,7 +8,7 @@ import { BRAND, FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 // ====================================================
 
 export interface GetSelectedProduct_CatalogProduct_listings {
-  __typename: "Listing";
+  __typename: "PackageListing";
   url: string;
 }
 
