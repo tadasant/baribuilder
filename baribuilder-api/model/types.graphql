@@ -5,19 +5,19 @@ type User @model {
 type AffiliateLink @model {
     id: ID! @isUnique
     url: String!
-    source: AFFILIATE_PLATFORM! @default(value: "AMAZON")
-    listing: PackageListing! @relation(name: "PackageListingAffiliateLink", oldName: "ListingAffiliateLink")
+    source: AFFILIATE_PLATFORM!
+    listing: PackageListing! @relation(name: "PackageListingAffiliateLink")
 }
 
-type PackageListing @rename(oldName: "Listing") @model {
+type PackageListing @model {
     id: ID! @isUnique
     url: String! @isUnique
     asin: String
     numServings: Int!
-    retailerName: RETAILER! @default(value: "AMAZON")
-    affiliateLink: AffiliateLink @relation(name: "PackageListingAffiliateLink", oldName: "ListingAffiliateLink")
-    price: Price! @relation(name: "PackageListingPrice", oldName: "ListingPrice")
-    product: CatalogProduct! @relation(name: "CatalogProductPackageListings", oldName: "CatalogProductListings")
+    retailerName: RETAILER!
+    affiliateLink: AffiliateLink @relation(name: "PackageListingAffiliateLink")
+    price: Price! @relation(name: "PackageListingPrice")
+    product: CatalogProduct! @relation(name: "CatalogProductPackageListings")
     package: ProductPackage @relation(name: "ProductPackagePackageListings")
 }
 
@@ -26,7 +26,7 @@ type Price @model {
     createdAt: DateTime!
     updatedAt: DateTime!
     amount: Float!
-    listing: PackageListing! @relation(name: "PackageListingPrice", oldName: "ListingPrice")
+    listing: PackageListing! @relation(name: "PackageListingPrice")
 }
 
 type ProductPackage @model {
@@ -51,7 +51,7 @@ type CatalogProduct @model {
     flavor: FLAVOR
     category: CATEGORY!
     form: FORM!
-    listings: [PackageListing!]! @relation(name: "CatalogProductPackageListings", oldName: "CatalogProductListings")
+    listings: [PackageListing!]! @relation(name: "CatalogProductPackageListings")
     packages: [ProductPackage!]! @relation(name: "CatalogProductProductPackages")
     images: [Image!]! @relation(name: "CatalogProductImages")
     serving: Serving! @relation(name: "CatalogProductServing")
