@@ -24,7 +24,9 @@ functions:
 # https://www.graph.cool/docs/reference/auth/authorization/overview-iegoo0heez
 permissions:
   - operation: AffiliateLink.read
-  - operation: Listing.read
+  - operation: PackageListing.read
+  - operation: ProductPackage.read
+  - operation: PackageIdentifier.read
   - operation: Price.read
   - operation: CatalogProduct.read
   - operation: Image.read

@@ -34,7 +34,7 @@ type ProductPackage @model {
     numServings: Int!
     identifiers: [PackageIdentifier!]! @relation(name: "ProductPackagePackageIdentifiers")
     listings: [PackageListing!]! @relation(name: "ProductPackagePackageListings")
-    products: [CatalogProduct!]! @relation(name: "CatalogProductProductPackages")
+    product: CatalogProduct! @relation(name: "CatalogProductProductPackages")
 }
 
 type PackageIdentifier @model {
