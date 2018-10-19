@@ -107,3 +107,17 @@ enum FREQUENCY {
     WEEKLY
     MONTHLY
 }
+
+enum RETAILER {
+    AMAZON
+}
+
+enum AFFILIATE_PLATFORM {
+    AMAZON
+}
+
+enum PACKAGE_IDENTIFIER_TYPE {
+    UPC
+    ASIN
+    EAN
+}

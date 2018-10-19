@@ -5,17 +5,20 @@ type User @model {
 type AffiliateLink @model {
     id: ID! @isUnique
     url: String!
-    listing: Listing! @relation(name: "ListingAffiliateLink")
+    source: AFFILIATE_PLATFORM! @default(value: "AMAZON")
+    listing: PackageListing! @relation(name: "PackageListingAffiliateLink", oldName: "ListingAffiliateLink")
 }
 
-type Listing @model {
+type PackageListing @rename(oldName: "Listing") @model {
     id: ID! @isUnique
     url: String! @isUnique
     asin: String
     numServings: Int!
-    affiliateLink: AffiliateLink @relation(name: "ListingAffiliateLink")
-    price: Price! @relation(name: "ListingPrice")
-    product: CatalogProduct! @relation(name: "CatalogProductListings")
+    retailerName: RETAILER! @default(value: "AMAZON")
+    affiliateLink: AffiliateLink @relation(name: "PackageListingAffiliateLink", oldName: "ListingAffiliateLink")
+    price: Price! @relation(name: "PackageListingPrice", oldName: "ListingPrice")
+    product: CatalogProduct! @relation(name: "CatalogProductPackageListings", oldName: "CatalogProductListings")
+    package: ProductPackage @relation(name: "ProductPackagePackageListings")
 }
 
 type Price @model {
@@ -23,7 +26,22 @@ type Price @model {
     createdAt: DateTime!
     updatedAt: DateTime!
     amount: Float!
-    listing: Listing! @relation(name: "ListingPrice")
+    listing: PackageListing! @relation(name: "PackageListingPrice", oldName: "ListingPrice")
+}
+
+type ProductPackage @model {
+    id: ID! @isUnique
+    numServings: Int!
+    identifiers: [PackageIdentifier!]! @relation(name: "ProductPackagePackageIdentifiers")
+    listings: [PackageListing!]! @relation(name: "ProductPackagePackageListings")
+    products: [CatalogProduct!]! @relation(name: "CatalogProductProductPackages")
+}
+
+type PackageIdentifier @model {
+    id: ID! @isUnique
+    value: String!
+    type: PACKAGE_IDENTIFIER_TYPE!
+    packages: [ProductPackage!]! @relation(name: "ProductPackagePackageIdentifiers")
 }
 
 type CatalogProduct @model {
@@ -33,7 +51,8 @@ type CatalogProduct @model {
     flavor: FLAVOR
     category: CATEGORY!
     form: FORM!
-    listings: [Listing!]! @relation(name: "CatalogProductListings")
+    listings: [PackageListing!]! @relation(name: "CatalogProductPackageListings", oldName: "CatalogProductListings")
+    packages: [ProductPackage!]! @relation(name: "CatalogProductProductPackages")
     images: [Image!]! @relation(name: "CatalogProductImages")
     serving: Serving! @relation(name: "CatalogProductServing")
 }
