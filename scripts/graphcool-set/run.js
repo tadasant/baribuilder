@@ -10,23 +10,22 @@ const getPackageListings = () => {
   return client.request(`
     {
       allPackageListings {
-        id
-        numServings
-        product {
+        package {
           id
         }
+        asin
       }
     }
   `);
 };
 
-const createProductPackage = (listingId, numServings, productId) => {
+const createPackageIdentifier = (asin, packageId) => {
   return client.request(`
     mutation {
-      updateNutritionFacts(
-        id: "${id}",
-        size: ${size},
-        units: ${units}
+      createPackageIdentifier(
+        type: ASIN,
+        value: "${asin}",
+        packagesIds: ["${packageId}"]
       ) {
         id
       }
@@ -34,13 +33,13 @@ const createProductPackage = (listingId, numServings, productId) => {
   `);
 };
 
-getNutritionFactses()
-  .then(data => {
-    const nutritionFactses = data.allNutritionFactses;
-    nutritionFactses.forEach(nutritionFacts => {
-      const {id} = nutritionFacts;
-      const {size, units} = nutritionFacts['serving'];
-      setServingStuff(id, size, units).then(data => console.log(data));
-    });
-  })
-  .catch(error => console.log(error));
+// getPackageListings()
+//   .then(data => {
+//     const packageListings = data.allPackageListings;
+//     packageListings.forEach(packageListing => {
+//       const {asin} = packageListing;
+//       const packageId = packageListing['package']['id'];
+//       createPackageIdentifier(asin, packageId).then(data => console.log(data));
+//     });
+//   })
+//   .catch(error => console.log(error));
