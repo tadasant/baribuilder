@@ -35,8 +35,8 @@ const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen}}
       {
         currentRegimen
           ? currentRegimen.products.map(product => (
-            <Fragment>
-              <SelectedProductListing key={product.catalogProductId} catalogProductId={product.catalogProductId}/>
+            <Fragment key={product.catalogProductId}>
+              <SelectedProductListing catalogProductId={product.catalogProductId}/>
               <EmptyRow/>
             </Fragment>
           ))

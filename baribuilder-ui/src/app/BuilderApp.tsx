@@ -16,6 +16,7 @@ export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
             brand
             category
             packages {
+                id
                 listings {
                     url
                     price {

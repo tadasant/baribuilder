@@ -20,6 +20,7 @@ export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings {
 
 export interface PrefetchCatalogProducts_allCatalogProducts_packages {
   __typename: "ProductPackage";
+  id: string;
   listings: PrefetchCatalogProducts_allCatalogProducts_packages_listings[] | null;
   numServings: number;
 }
