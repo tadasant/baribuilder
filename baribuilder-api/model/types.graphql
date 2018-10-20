@@ -13,12 +13,10 @@ type PackageListing @model {
     id: ID! @isUnique
     url: String! @isUnique
     asin: String
-    numServings: Int!
     retailerName: RETAILER!
     affiliateLink: AffiliateLink @relation(name: "PackageListingAffiliateLink")
     price: Price! @relation(name: "PackageListingPrice")
-    product: CatalogProduct! @relation(name: "CatalogProductPackageListings")
-    package: ProductPackage @relation(name: "ProductPackagePackageListings")
+    package: ProductPackage! @relation(name: "ProductPackagePackageListings")
 }
 
 type Price @model {
@@ -51,7 +49,6 @@ type CatalogProduct @model {
     flavor: FLAVOR
     category: CATEGORY!
     form: FORM!
-    listings: [PackageListing!]! @relation(name: "CatalogProductPackageListings")
     packages: [ProductPackage!]! @relation(name: "CatalogProductProductPackages")
     images: [Image!]! @relation(name: "CatalogProductImages")
     serving: Serving! @relation(name: "CatalogProductServing")
