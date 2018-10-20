@@ -7,9 +7,14 @@ import { BRAND } from "./globalTypes";
 // GraphQL query operation: GetCatalogProduct
 // ====================================================
 
+export interface GetCatalogProduct_CatalogProduct_packages_listings_affiliateLink {
+  __typename: "AffiliateLink";
+  url: string;
+}
+
 export interface GetCatalogProduct_CatalogProduct_packages_listings {
   __typename: "PackageListing";
-  url: string;
+  affiliateLink: GetCatalogProduct_CatalogProduct_packages_listings_affiliateLink | null;
 }
 
 export interface GetCatalogProduct_CatalogProduct_packages {

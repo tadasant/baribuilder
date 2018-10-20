@@ -27,7 +27,9 @@ const GET_CATALOG_PRODUCT = gql`
             brand
             packages {
                 listings {
-                    url
+                    affiliateLink {
+                        url
+                    }
                 }
             }
         }
@@ -63,13 +65,19 @@ const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {Catalo
       // TypeScript doesn't handle this correctly otherwise
       return null;
     }
+    const {affiliateLink} = listings[0];
+    if (!affiliateLink) {
+      // TypeScript doesn't handle this correctly otherwise
+      return null;
+    }
+
     return (
       <Grid container direction='row'>
         <EmptyRow mobile='-20px'/>
         <Grid container direction='row'>
           <Grid item lg={12}>
             {/* TODO remove url bit when local detail page complete */}
-            <a href={listings[0].url} target='__blank' rel='noopener nofollower norefer'>
+            <a href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'>
               <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
             </a>
           </Grid>

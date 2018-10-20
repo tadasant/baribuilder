@@ -7,6 +7,11 @@ import { BRAND, CATEGORY, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "
 // GraphQL query operation: PrefetchCatalogProducts
 // ====================================================
 
+export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings_affiliateLink {
+  __typename: "AffiliateLink";
+  url: string;
+}
+
 export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings_price {
   __typename: "Price";
   amount: number;
@@ -14,7 +19,7 @@ export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings_pr
 
 export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings {
   __typename: "PackageListing";
-  url: string;
+  affiliateLink: PrefetchCatalogProducts_allCatalogProducts_packages_listings_affiliateLink | null;
   price: PrefetchCatalogProducts_allCatalogProducts_packages_listings_price;
 }
 

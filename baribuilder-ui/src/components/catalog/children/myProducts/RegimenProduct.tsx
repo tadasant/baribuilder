@@ -36,7 +36,9 @@ const GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT = gql`
             brand
             packages {
                 listings {
-                    url
+                    affiliateLink {
+                        url
+                    }
                 }
             }
         }
@@ -96,6 +98,11 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
     if (!listings) {
       return null;
     }
+    const {affiliateLink} = listings[0];
+    if (!affiliateLink) {
+      // TypeScript doesn't handle this correctly otherwise
+      return null;
+    }
 
     const mutateAmount = (amount: number) => mutate({
       variables: {
@@ -122,7 +129,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
         <Grid item container lg={8} alignContent='flex-start'>
           <CenteredTextGrid item lg={12}>
             {/* TODO remove url bit when local detail page complete */}
-            <a href={listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody
+            <a href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'><BoldBody
               dark>{CatalogProduct.name}</BoldBody></a>
           </CenteredTextGrid>
           <CenteredTextGrid item lg={12}>

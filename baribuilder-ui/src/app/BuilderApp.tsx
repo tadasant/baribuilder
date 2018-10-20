@@ -18,7 +18,9 @@ export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
             packages {
                 id
                 listings {
-                    url
+                    affiliateLink {
+                        url
+                    }
                     price {
                         amount
                     }

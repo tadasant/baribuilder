@@ -23,7 +23,9 @@ const GET_SELECTED_PRODUCT_LISTING = gql`
             brand
             packages {
                 listings {
-                    url
+                    affiliateLink {
+                        url
+                    }
                 }
             }
         }
@@ -58,6 +60,11 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
       // TypeScript doesn't handle this correctly otherwise
       return null;
     }
+    const {affiliateLink} = listings[0];
+    if (!affiliateLink) {
+      // TypeScript doesn't handle this correctly otherwise
+      return null;
+    }
 
     const regimenProduct = currentRegimen.products.find(product => product.catalogProductId === catalogProductId);
     const quantityCaption = regimenProduct
@@ -70,7 +77,7 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
         </CenteredTextGrid>
         <CenteredTextGrid item container direction='column' lg={9} justify='center'>
           <Grid item>
-            <a href={listings[0].url} target='__blank' rel='noopener nofollower norefer'>
+            <a href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'>
               <BoldBody dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</BoldBody>
             </a>
           </Grid>

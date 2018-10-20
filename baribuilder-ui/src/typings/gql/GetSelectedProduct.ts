@@ -7,9 +7,14 @@ import { BRAND, FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 // GraphQL query operation: GetSelectedProduct
 // ====================================================
 
+export interface GetSelectedProduct_CatalogProduct_packages_listings_affiliateLink {
+  __typename: "AffiliateLink";
+  url: string;
+}
+
 export interface GetSelectedProduct_CatalogProduct_packages_listings {
   __typename: "PackageListing";
-  url: string;
+  affiliateLink: GetSelectedProduct_CatalogProduct_packages_listings_affiliateLink | null;
 }
 
 export interface GetSelectedProduct_CatalogProduct_packages {
