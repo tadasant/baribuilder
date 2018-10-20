@@ -6,26 +6,29 @@ const client = new GraphQLClient('https://api.graph.cool/simple/v1/cjlzqvawt1ib0
   },
 });
 
-const getPackageListings = () => {
+const getProductPackages = () => {
   return client.request(`
     {
-      allPackageListings {
-        package {
+      allProductPackages {
+        identifiers {
+          value
+        }
+        listings {
           id
         }
-        asin
       }
     }
   `);
 };
 
-const createPackageIdentifier = (asin, packageId) => {
+const createAffiliateLink = (asin, listingId) => {
+  const url = `https://www.amazon.com/dp/${asin}/?tag=baribuilder-20`;
   return client.request(`
     mutation {
-      createPackageIdentifier(
-        type: ASIN,
-        value: "${asin}",
-        packagesIds: ["${packageId}"]
+      createAffiliateLink(
+        source: AMAZON,
+        url: "${url}",
+        listingId: "${listingId}"
       ) {
         id
       }
@@ -33,13 +36,13 @@ const createPackageIdentifier = (asin, packageId) => {
   `);
 };
 
-// getPackageListings()
+// getProductPackages()
 //   .then(data => {
-//     const packageListings = data.allPackageListings;
-//     packageListings.forEach(packageListing => {
-//       const {asin} = packageListing;
-//       const packageId = packageListing['package']['id'];
-//       createPackageIdentifier(asin, packageId).then(data => console.log(data));
+//     const productPackages = data.allProductPackages;
+//     productPackages.forEach(productPackage => {
+//       const asin = productPackage.identifiers[0].value;
+//       const listingId = productPackage.listings[0].id;
+//       createAffiliateLink(asin, listingId).then(data => console.log(data));
 //     });
 //   })
 //   .catch(error => console.log(error));
