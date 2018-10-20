@@ -34,8 +34,10 @@ const GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT = gql`
 
             name
             brand
-            listings {
-                url
+            packages {
+                listings {
+                    url
+                }
             }
         }
     }
@@ -88,7 +90,12 @@ const MainImage = styled(MainProductImageWithPopover)`
 
 // Pure
 const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: {CatalogProduct, loading}, quantity, catalogProductId, mutate}) => {
-  if (CatalogProduct && !loading && mutate && CatalogProduct.listings) {
+  if (CatalogProduct && !loading && mutate && CatalogProduct.packages) {
+    // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
+    const {listings} = CatalogProduct.packages[0];
+    if (!listings) {
+      return null;
+    }
 
     const mutateAmount = (amount: number) => mutate({
       variables: {
@@ -115,7 +122,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
         <Grid item container lg={8} alignContent='flex-start'>
           <CenteredTextGrid item lg={12}>
             {/* TODO remove url bit when local detail page complete */}
-            <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody
+            <a href={listings[0].url} target='__blank' rel='noopener nofollower norefer'><BoldBody
               dark>{CatalogProduct.name}</BoldBody></a>
           </CenteredTextGrid>
           <CenteredTextGrid item lg={12}>

@@ -14,9 +14,12 @@ const PRODUCT_QUERY = (id: string) => gql`
         CatalogProduct(id: "${id}"){
             id
             
-            listings {
-                price {
-                    amount
+            packages {
+                id
+                listings {
+                    price {
+                        amount
+                    }
                 }
                 numServings
             }
@@ -33,7 +36,7 @@ const costResolver: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProduc
   const quantity = quantityResolver(obj, _, {cache});
 
   //// Verify required data is present
-  if (!productResult || !productResult.CatalogProduct || !productResult.CatalogProduct.listings) {
+  if (!productResult || !productResult.CatalogProduct || !productResult.CatalogProduct.packages) {
     console.warn('productResult falsey');
     return null;
   }
@@ -43,7 +46,7 @@ const costResolver: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProduc
   }
 
   //// Perform transformation
-  return calculateCost(productResult.CatalogProduct.listings, quantity);
+  return calculateCost(productResult.CatalogProduct.packages, quantity);
 };
 
 export default costResolver;

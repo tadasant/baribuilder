@@ -15,10 +15,12 @@ export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
             name
             brand
             category
-            listings {
-                url
-                price {
-                    amount
+            packages {
+                listings {
+                    url
+                    price {
+                        amount
+                    }
                 }
                 numServings
             }

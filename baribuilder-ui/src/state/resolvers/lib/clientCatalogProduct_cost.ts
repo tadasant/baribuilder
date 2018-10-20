@@ -1,11 +1,15 @@
-import {GetProductForProductCost_CatalogProduct_listings} from '../../../typings/gql/GetProductForProductCost';
+import {GetProductForProductCost_CatalogProduct_packages} from '../../../typings/gql/GetProductForProductCost';
 import {ICatalogProductCost, ICatalogProductQuantity} from '../../client-schema-types';
 
-const calculateCheapestCostPerServing = (listings: GetProductForProductCost_CatalogProduct_listings[]): number => {
+const calculateCheapestCostPerServing = (packages: GetProductForProductCost_CatalogProduct_packages[]): number => {
   let cheapestCostPerServing: number | undefined = undefined;
 
-  listings.forEach(listing => {
-    const nextCostPerServing = listing.price.amount / listing.numServings;
+  packages.forEach(pkg => {
+    if (!pkg.listings || pkg.listings.length !== 1) {
+      console.warn(`Unexpected length of listings (${pkg.id}). Error code 95921893`);
+      return;
+    }
+    const nextCostPerServing = pkg.listings[0].price.amount / pkg.numServings;
     if (cheapestCostPerServing === undefined || nextCostPerServing < cheapestCostPerServing) {
       cheapestCostPerServing = nextCostPerServing;
     }
@@ -14,8 +18,8 @@ const calculateCheapestCostPerServing = (listings: GetProductForProductCost_Cata
   return cheapestCostPerServing || 0;
 };
 
-const calculateCost = (listings: GetProductForProductCost_CatalogProduct_listings[], quantity: ICatalogProductQuantity): ICatalogProductCost => {
-  if (listings.length === 0) {
+const calculateCost = (packages: GetProductForProductCost_CatalogProduct_packages[], quantity: ICatalogProductQuantity): ICatalogProductCost => {
+  if (packages.length === 0) {
     return {
       __typename: 'CatalogProductCost',
       money: 0.0,
@@ -23,7 +27,7 @@ const calculateCost = (listings: GetProductForProductCost_CatalogProduct_listing
     }
   }
 
-  const cheapestCostPerServing = calculateCheapestCostPerServing(listings);
+  const cheapestCostPerServing = calculateCheapestCostPerServing(packages);
 
   // Use qty to calculate the amount
   return {

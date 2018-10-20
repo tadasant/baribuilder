@@ -21,8 +21,10 @@ const GET_SELECTED_PRODUCT_LISTING = gql`
 
             name
             brand
-            listings {
-                url
+            packages {
+                listings {
+                    url
+                }
             }
         }
         currentRegimen @client {
@@ -49,7 +51,14 @@ const MainImage = styled(MainProductImageWithPopover)`
 `;
 
 const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct, currentRegimen, loading}, catalogProductId}) => {
-  if (CatalogProduct && CatalogProduct.listings && currentRegimen && !loading) {
+  if (CatalogProduct && CatalogProduct.packages && currentRegimen && !loading) {
+    // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
+    const {listings} = CatalogProduct.packages[0];
+    if (!listings) {
+      // TypeScript doesn't handle this correctly otherwise
+      return null;
+    }
+
     const regimenProduct = currentRegimen.products.find(product => product.catalogProductId === catalogProductId);
     const quantityCaption = regimenProduct
       ? `Take ${regimenProduct.quantity.amount} ${regimenProduct.quantity.units.toLowerCase()} ${regimenProduct.quantity.frequency.toLowerCase()}`
@@ -61,7 +70,7 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
         </CenteredTextGrid>
         <CenteredTextGrid item container direction='column' lg={9} justify='center'>
           <Grid item>
-            <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
+            <a href={listings[0].url} target='__blank' rel='noopener nofollower norefer'>
               <BoldBody dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</BoldBody>
             </a>
           </Grid>

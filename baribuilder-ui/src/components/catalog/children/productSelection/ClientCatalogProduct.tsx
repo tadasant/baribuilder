@@ -25,8 +25,10 @@ const GET_CATALOG_PRODUCT = gql`
 
             name
             brand
-            listings {
-                url
+            packages {
+                listings {
+                    url
+                }
             }
         }
     }
@@ -54,14 +56,20 @@ const LeftBorderGrid = styled(Grid)`
 
 // Pure
 const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}}) => {
-  if (CatalogProduct && CatalogProduct.listings) {
+  // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
+  if (CatalogProduct && CatalogProduct.packages && CatalogProduct.packages.length === 1 && CatalogProduct.packages[0].listings) {
+    const {listings} = CatalogProduct.packages[0];
+    if (!listings) {
+      // TypeScript doesn't handle this correctly otherwise
+      return null;
+    }
     return (
       <Grid container direction='row'>
         <EmptyRow mobile='-20px'/>
         <Grid container direction='row'>
           <Grid item lg={12}>
             {/* TODO remove url bit when local detail page complete */}
-            <a href={CatalogProduct.listings[0].url} target='__blank' rel='noopener nofollower norefer'>
+            <a href={listings[0].url} target='__blank' rel='noopener nofollower norefer'>
               <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
             </a>
           </Grid>
