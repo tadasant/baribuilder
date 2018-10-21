@@ -12,7 +12,6 @@ type AffiliateLink @model {
 type PackageListing @model {
     id: ID! @isUnique
     url: String! @isUnique
-    asin: String
     retailerName: RETAILER!
     affiliateLink: AffiliateLink @relation(name: "PackageListingAffiliateLink")
     price: Price! @relation(name: "PackageListingPrice")
