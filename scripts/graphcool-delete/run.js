@@ -24,11 +24,19 @@ const client = new GraphQLClient(`https://api.graph.cool/simple/v1/${projectId}`
 });
 
 
-function getAllImages() {
+function getCatalogProduct() {
   return client.request(`
     {
-      allImages {
-        id
+      CatalogProduct(id: "cjnjghuuo0ej9012431g5hy2w") {
+        serving {
+          id
+          ingredients {
+            id
+            quantity {
+              id
+            }
+          }
+        }
       }
     }
   `)
@@ -49,7 +57,7 @@ const generateDeleteMutation = (dataType, entry) => {
   `
 };
 
-const imageRecordToEntry = (record) => {
+const recordToEntry = (record) => {
   return {
     'id': `"${record['id']}"`, // string
   }
@@ -57,14 +65,21 @@ const imageRecordToEntry = (record) => {
 
 
 const run = () => {
-  getAllImages()
+  getCatalogProduct()
     .then(response => {
-      const imageRecords = response.allImages;
-      imageRecords.forEach(record => {
-        const query = generateDeleteMutation('Image', imageRecordToEntry(record));
+      const product = response.CatalogProduct;
+      console.log(product)
+      product.serving.ingredients.forEach(ingredient => {
+        const quantityQuery = generateDeleteMutation('ServingIngredientQuantity', recordToEntry(ingredient.quantity))
         api
-          .request(query)
-          .then(data => console.log(data))
+          .request(quantityQuery)
+          .then(data => {
+            const query = generateDeleteMutation('ServingIngredient', recordToEntry(ingredient));
+            api
+              .request(query)
+              .then(data => console.log(data))
+          })
+
       })
     })
 };
