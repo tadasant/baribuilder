@@ -23,10 +23,7 @@ const GET_CLIENT_CATALOG_PRODUCT_PRICES_QUERY = gql`
                 money
                 frequency
             }
-            projectedRegimenCost {
-                money
-                frequency
-            }
+            costEffectivenessRating
         }
         goalIngredients @client {
             unfilledIngredientCount
@@ -48,15 +45,13 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
     return null;
   }
   // TODO replace this with an actual check on goals
-  const goalsSet = Boolean(ClientCatalogProduct.projectedRegimenCost);
-  const price = goalsSet && ClientCatalogProduct.projectedRegimenCost ? ClientCatalogProduct.projectedRegimenCost.money : ClientCatalogProduct.cost.money;
-  // TODO refactor projectedRegimenCost so that stays server side i.e. change the value to directly be costEffectivenessRating
-  const costEffectivenessRating = goalsSet ? (150 - price) / 15 : null;
+  const price = ClientCatalogProduct.cost.money;
+  // TODO refactor costEffectivenessRating so that stays server side i.e. change the value to directly be costEffectivenessRating
   return (
     <Grid container justify='flex-start'>
       <CenteredTextGrid item lg={12}>
         {
-          costEffectivenessRating !== null
+          ClientCatalogProduct.costEffectivenessRating !== null
             ? <Body dark>Cost Effectiveness Rating &nbsp;<HelpIcon tooltipText={helpText} height='16px'/></Body>
             : (
               <GreyBody>
@@ -67,10 +62,10 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
       </CenteredTextGrid>
       <EmptyRow/>
       {
-        costEffectivenessRating !== null
+        ClientCatalogProduct.costEffectivenessRating !== null
           ? (
             <CenteredTextGrid item lg={12}>
-              <BoldBody dark>{costEffectivenessRating.toFixed(1)} / 10</BoldBody>
+              <BoldBody dark>{ClientCatalogProduct.costEffectivenessRating.toFixed(1)} / 10</BoldBody>
             </CenteredTextGrid>
           ) : (
             <Fragment>

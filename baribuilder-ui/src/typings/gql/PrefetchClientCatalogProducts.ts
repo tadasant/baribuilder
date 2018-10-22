@@ -13,12 +13,6 @@ export interface PrefetchClientCatalogProducts_allClientCatalogProducts_cost {
   frequency: FREQUENCY;
 }
 
-export interface PrefetchClientCatalogProducts_allClientCatalogProducts_projectedRegimenCost {
-  __typename: "RegimenCost";
-  money: number;
-  frequency: FREQUENCY;
-}
-
 export interface PrefetchClientCatalogProducts_allClientCatalogProducts_defaultQuantity {
   __typename: "CatalogProductQuantity";
   amount: number;
@@ -31,7 +25,7 @@ export interface PrefetchClientCatalogProducts_allClientCatalogProducts {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
   cost: PrefetchClientCatalogProducts_allClientCatalogProducts_cost;
-  projectedRegimenCost: PrefetchClientCatalogProducts_allClientCatalogProducts_projectedRegimenCost | null;
+  costEffectivenessRating: number | null;
   defaultQuantity: PrefetchClientCatalogProducts_allClientCatalogProducts_defaultQuantity;
   matchScore: number;
 }

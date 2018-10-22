@@ -8,19 +8,13 @@ export interface IClientCatalogProduct {
   __typename: 'ClientCatalogProduct';
   catalogProductId: string;
   cost: ICatalogProductCost;
-  projectedRegimenCost: IRegimenCost | null;
+  costEffectivenessRating: number | null;
   defaultQuantity: ICatalogProductQuantity;
   matchScore: number;
 }
 
 export interface ICatalogProductCost {
   __typename: 'CatalogProductCost';
-  money: number;
-  frequency: FREQUENCY;
-}
-
-export interface IRegimenCost {
-  __typename: 'RegimenCost';
   money: number;
   frequency: FREQUENCY;
 }

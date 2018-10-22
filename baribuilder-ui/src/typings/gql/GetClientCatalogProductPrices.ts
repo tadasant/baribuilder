@@ -13,17 +13,11 @@ export interface GetClientCatalogProductPrices_ClientCatalogProduct_cost {
   frequency: FREQUENCY;
 }
 
-export interface GetClientCatalogProductPrices_ClientCatalogProduct_projectedRegimenCost {
-  __typename: "RegimenCost";
-  money: number;
-  frequency: FREQUENCY;
-}
-
 export interface GetClientCatalogProductPrices_ClientCatalogProduct {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
   cost: GetClientCatalogProductPrices_ClientCatalogProduct_cost;
-  projectedRegimenCost: GetClientCatalogProductPrices_ClientCatalogProduct_projectedRegimenCost | null;
+  costEffectivenessRating: number | null;
 }
 
 export interface GetClientCatalogProductPrices_goalIngredients {

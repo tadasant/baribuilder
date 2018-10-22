@@ -29,10 +29,7 @@ export const CATALOG_PRODUCTS_QUERY = gql`
                 money
                 frequency
             }
-            projectedRegimenCost {
-                money
-                frequency
-            }
+            costEffectivenessRating
         }
     }
 `;

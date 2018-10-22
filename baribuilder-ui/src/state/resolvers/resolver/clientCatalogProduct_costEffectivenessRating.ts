@@ -1,9 +1,9 @@
 import {GetAllProductsIngredients} from '../../../typings/gql/GetAllProductsIngredients';
 import {GetCurrentRegimenProducts} from '../../../typings/gql/GetCurrentRegimenProducts';
 import {GetGoalIngredients} from '../../../typings/gql/GetGoalIngredients';
-import {IRegimenCost, IRegimenProduct} from '../../client-schema-types';
+import {IRegimenProduct} from '../../client-schema-types';
 import {IProductObj, TLocalCatalogProductResolverFunc} from '../clientCatalogProduct';
-import calculateProjectedRegimenCost, {IProductForProjectedRegimenCost} from '../lib/clientCatalogProduct_projectedRegimenCost';
+import calculateCostEffectivenessRating, {IProductForCostEffectivenessRating} from '../lib/clientCatalogProduct_costEffectivenessRating';
 import costResolver from './clientCatalogProduct_cost';
 import quantityResolver from './clientCatalogProduct_defaultQuantity';
 /**
@@ -12,7 +12,7 @@ import quantityResolver from './clientCatalogProduct_defaultQuantity';
 import {ALL_PRODUCTS_INGREDIENTS_QUERY, CURRENT_REGIMEN_PRODUCTS_QUERY, GOAL_INGREDIENTS_QUERY} from './queries';
 
 
-const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj, IRegimenCost> = (obj, _, {cache}) => {
+const costEffectivenessRatingResolver: TLocalCatalogProductResolverFunc<IProductObj, number> = (obj, _, {cache}) => {
     //// Grab data
     const allCatalogProductsResult = cache.readQuery<GetAllProductsIngredients>({
       query: ALL_PRODUCTS_INGREDIENTS_QUERY
@@ -60,7 +60,7 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
     }
 
     //// Perform transformation
-    const productForProjectedRegimenCost: IProductForProjectedRegimenCost = {
+    const productForcostEffectivenessRating: IProductForCostEffectivenessRating = {
       ...product,
       cost: productCost,
       quantity: productQuantity,
@@ -82,8 +82,8 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
       }
     });
 
-    return calculateProjectedRegimenCost(
-      productForProjectedRegimenCost,
+    return calculateCostEffectivenessRating(
+      productForcostEffectivenessRating,
       goalIngredientsResult.goalIngredients.ingredientRanges,
       currentRegimenProducts,
       allCatalogProductsResult.allCatalogProducts,
@@ -91,4 +91,4 @@ const projectedRegimenCostResolver: TLocalCatalogProductResolverFunc<IProductObj
   }
 ;
 
-export default projectedRegimenCostResolver;
+export default costEffectivenessRatingResolver;

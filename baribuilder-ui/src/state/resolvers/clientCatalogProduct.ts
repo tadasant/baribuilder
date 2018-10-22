@@ -1,9 +1,9 @@
-import {ICatalogProductCost, ICatalogProductQuantity, IRegimenCost} from '../client-schema-types';
+import {ICatalogProductCost, ICatalogProductQuantity} from '../client-schema-types';
 import {TResolverFunc} from '../resolvers';
 import costResolver from './resolver/clientCatalogProduct_cost';
+import costEffectivenessRatingResolver from './resolver/clientCatalogProduct_costEffectivenessRating';
 import quantityResolver from './resolver/clientCatalogProduct_defaultQuantity';
 import matchScoreResolver from './resolver/clientCatalogProduct_matchScore';
-import projectedRegimenCostResolver from './resolver/clientCatalogProduct_projectedRegimenCost';
 
 /**
  * Used for ensuring that the @client resolvers (presumably called after the remote ones) have access to
@@ -28,7 +28,7 @@ export type TLocalCatalogProductResolverFunc<IRemoteObj, IResultData> = TResolve
  */
 interface IClientCatalogProductResolvers {
   cost: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProductCost>;
-  projectedRegimenCost: TLocalCatalogProductResolverFunc<IProductObj, IRegimenCost>;
+  costEffectivenessRating: TLocalCatalogProductResolverFunc<IProductObj, number>;
   quantity: TLocalCatalogProductResolverFunc<IProductObj, ICatalogProductQuantity>;
   matchScore: TLocalCatalogProductResolverFunc<IProductObj, number>;
 }
@@ -36,7 +36,7 @@ interface IClientCatalogProductResolvers {
 
 const resolvers: IClientCatalogProductResolvers = {
   cost: costResolver,
-  projectedRegimenCost: projectedRegimenCostResolver,
+  costEffectivenessRating: costEffectivenessRatingResolver,
   quantity: quantityResolver,
   matchScore: matchScoreResolver,
 };

@@ -3,7 +3,7 @@ import {GetAllProductsIngredients_allCatalogProducts} from '../../../typings/gql
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
 import {ICatalogProductCost, IIngredientRange, IRegimenProduct, IRegimenProductCost} from '../../client-schema-types';
 import {ingredientPricesByName} from '../data/ingredientPrices';
-import {IProductForProjectedRegimenCost} from './clientCatalogProduct_projectedRegimenCost';
+import {IProductForCostEffectivenessRating} from './clientCatalogProduct_costEffectivenessRating';
 
 // TODO some sort of standardization for unexpected input handling (e.g. propogate toErrorBoundary)
 
@@ -52,7 +52,7 @@ export const subtractRegimenIngredientsFromGoalIngredientRanges = (
  */
 export const subtractProductFromRegimenIngredients = (
   regimenIngredients: IRegimenIngredient[],
-  product: IProductForProjectedRegimenCost,
+  product: IProductForCostEffectivenessRating,
 ): IRegimenIngredient[] => {
   if (product.serving.ingredients === null) {
     console.warn(`Ingredients shouldn\'t be null. Error code 58938238. Product ID: ${product.id}`);

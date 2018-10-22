@@ -26,17 +26,11 @@ export interface GetCatalogProducts_allClientCatalogProducts_cost {
   frequency: FREQUENCY;
 }
 
-export interface GetCatalogProducts_allClientCatalogProducts_projectedRegimenCost {
-  __typename: "RegimenCost";
-  money: number;
-  frequency: FREQUENCY;
-}
-
 export interface GetCatalogProducts_allClientCatalogProducts {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
   cost: GetCatalogProducts_allClientCatalogProducts_cost;
-  projectedRegimenCost: GetCatalogProducts_allClientCatalogProducts_projectedRegimenCost | null;
+  costEffectivenessRating: number | null;
 }
 
 export interface GetCatalogProducts {

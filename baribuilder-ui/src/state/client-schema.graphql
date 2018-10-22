@@ -21,7 +21,7 @@ enum PRODUCT_QUANTITY_UNITS {
 type ClientCatalogProduct {
     catalogProductId: ID!
     cost: CatalogProductCost!
-    projectedRegimenCost: RegimenCost
+    costEffectivenessRating: Float
     defaultQuantity: CatalogProductQuantity!
     matchScore: Float!
 }
@@ -29,11 +29,6 @@ type ClientCatalogProduct {
 type CatalogProductCost {
     money: Float!
     frequency: FREQUENCY!
-}
-
-type RegimenCost {
-    frequency: FREQUENCY!
-    money: Float!
 }
 
 type CatalogProductQuantity {
