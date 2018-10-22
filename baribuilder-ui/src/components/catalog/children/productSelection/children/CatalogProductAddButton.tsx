@@ -11,6 +11,7 @@ import {GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity} 
 interface IProps {
   catalogProductId: string;
   quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity;
+  onAddToRegimen: () => void;
 }
 
 const ADD_PRODUCT_MUTATION = gql`
@@ -50,8 +51,15 @@ const enhance = compose<IProps & GraphqlOutputProps, IProps>(
 );
 
 // Pure
-const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate}) => {
-  const handleClick = mutate || (() => console.error('mutate undefined'));
+const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate, onAddToRegimen}) => {
+  const handleClick = () => {
+    if (mutate) {
+      mutate();
+      onAddToRegimen();
+    } else {
+      console.error('mutate undefined')
+    }
+  };
   return (
     <Button
       variant='raised'

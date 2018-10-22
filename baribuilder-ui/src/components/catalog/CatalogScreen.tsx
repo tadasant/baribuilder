@@ -41,6 +41,7 @@ interface IState {
   showMyProducts: boolean;
   showMyRegimen: boolean;
   sortingStrategy: SORTING_STRATEGY;
+  hasOpenedMyProducts: boolean;
 }
 
 export const ROOT_CATEGORY = 'ALL_PRODUCTS';
@@ -77,17 +78,29 @@ class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
       showMyProducts: false,
       showMyRegimen: true,
       sortingStrategy: SORTING_STRATEGY.COST_ASC,
+      hasOpenedMyProducts: false,
     };
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
     this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
+    this.handleAddToRegimen = this.handleAddToRegimen.bind(this);
   }
 
   setShowMyProducts(showMyProducts: boolean) {
-    this.setState({showMyProducts});
+    this.setState(prevState => ({
+      showMyProducts,
+      hasOpenedMyProducts: showMyProducts || prevState.hasOpenedMyProducts,
+    }));
   }
 
   setShowMyRegimen(showMyRegimen: boolean) {
     this.setState({showMyRegimen});
+  }
+
+  handleAddToRegimen() {
+    this.setState(prevState => ({
+      showMyProducts: prevState.hasOpenedMyProducts ? prevState.showMyProducts : true,
+      hasOpenedMyProducts: true,
+    }));
   }
 
   render() {
@@ -114,6 +127,7 @@ class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
               showMyRegimen={this.state.showMyRegimen}
               setShowMyRegimen={this.setShowMyRegimen}
               sortingStrategy={this.state.sortingStrategy}
+              onAddToRegimen={this.handleAddToRegimen}
             />
           );
         }}

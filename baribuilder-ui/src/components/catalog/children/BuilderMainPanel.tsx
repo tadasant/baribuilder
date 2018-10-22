@@ -13,6 +13,7 @@ interface IProps {
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
+  onAddToRegimen: () => void;
 }
 
 const PaddedGrid = styled(Grid)`
@@ -21,14 +22,18 @@ const PaddedGrid = styled(Grid)`
 `;
 
 // Pure
-const BuilderMainPanel: SFC<IProps> = ({selectedCategory, sortingStrategy, filteredClientCatalogProducts}) => {
+const BuilderMainPanel: SFC<IProps> = ({selectedCategory, sortingStrategy, filteredClientCatalogProducts, onAddToRegimen}) => {
   return (
     <PaddedGrid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
       <Grid item container direction='row'>
         <Grid item lg={12}>
-          <ClientCatalogProductSelection selectedCategory={selectedCategory} sortingStrategy={sortingStrategy}
-                                         filteredClientCatalogProducts={filteredClientCatalogProducts}/>
+          <ClientCatalogProductSelection
+            selectedCategory={selectedCategory}
+            sortingStrategy={sortingStrategy}
+            filteredClientCatalogProducts={filteredClientCatalogProducts}
+            onAddToRegimen={onAddToRegimen}
+          />
         </Grid>
       </Grid>
       <EmptyRow mobile='1px'/>

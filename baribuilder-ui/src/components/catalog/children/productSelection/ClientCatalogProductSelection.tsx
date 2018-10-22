@@ -14,6 +14,7 @@ interface IProps {
   sortingStrategy: SORTING_STRATEGY;
   // Can't be in this component's query because it creates breaking dependency
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
+  onAddToRegimen: () => void;
 }
 
 const enhance = compose<IPropsState, IProps>(
@@ -55,7 +56,7 @@ const sortClientCatalogProducts = (
 };
 
 // Pure
-const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogProducts, currentPage, setCurrentPage, sortingStrategy}) => {
+const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogProducts, currentPage, setCurrentPage, sortingStrategy, onAddToRegimen}) => {
   if (filteredClientCatalogProducts) {
     const pageSize = 10;
     sortClientCatalogProducts(filteredClientCatalogProducts, sortingStrategy);
@@ -73,7 +74,7 @@ const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogP
               <Grid item lg={12}>
                 <Paper>
                   <PaddedDiv>
-                    <ClientCatalogProduct id={product.catalogProductId}/>
+                    <ClientCatalogProduct id={product.catalogProductId} onAddToRegimen={onAddToRegimen}/>
                   </PaddedDiv>
                 </Paper>
               </Grid>

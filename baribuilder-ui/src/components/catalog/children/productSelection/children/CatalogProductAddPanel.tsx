@@ -18,6 +18,7 @@ import CatalogProductAddButton from './CatalogProductAddButton';
 
 interface IProps {
   catalogProductId: string;
+  onAddToRegimen: () => void;
 }
 
 const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`
@@ -86,7 +87,7 @@ const OuterGrid = styled(Grid)`
 `;
 
 // Pure
-const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {ClientCatalogProduct, goalIngredients}, catalogProductId, quantityAmount, setQuantityAmount, quantityFrequency}) => {
+const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = ({data: {ClientCatalogProduct, goalIngredients}, catalogProductId, quantityAmount, setQuantityAmount, quantityFrequency, onAddToRegimen}) => {
   // TODO manage frequency, maybe units
   if (!ClientCatalogProduct || !goalIngredients || goalIngredients.unfilledIngredientCount === null || ClientCatalogProduct.defaultQuantity.remainingUnfilledIngredientCount === null) {
     return null;
@@ -130,7 +131,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
       }
       <Grid item lg={2}/>
       <Grid item lg={8}>
-        <CatalogProductAddButton catalogProductId={catalogProductId} quantity={quantity}/>
+        <CatalogProductAddButton catalogProductId={catalogProductId} quantity={quantity} onAddToRegimen={onAddToRegimen}/>
       </Grid>
       <Grid item lg={2}/>
     </OuterGrid>

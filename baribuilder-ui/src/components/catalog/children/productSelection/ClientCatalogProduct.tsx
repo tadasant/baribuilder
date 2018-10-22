@@ -16,6 +16,7 @@ import MainProductImageWithPopover from './children/MainProductImageWithPopover'
 
 interface IProps {
   id: string
+  onAddToRegimen: () => void
 }
 
 const GET_CATALOG_PRODUCT = gql`
@@ -57,7 +58,7 @@ const LeftBorderGrid = styled(Grid)`
 `;
 
 // Pure
-const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}}) => {
+const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}, onAddToRegimen}) => {
   // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
   if (CatalogProduct && CatalogProduct.packages && CatalogProduct.packages.length === 1 && CatalogProduct.packages[0].listings) {
     const {listings} = CatalogProduct.packages[0];
@@ -86,7 +87,7 @@ const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {Catalo
               <MainProductImageWithPopover catalogProductId={id}/>
             </Grid>
             <Grid item lg={8} container justify='center'>
-              <CatalogProductAddPanel catalogProductId={id}/>
+              <CatalogProductAddPanel catalogProductId={id} onAddToRegimen={onAddToRegimen}/>
             </Grid>
           </Grid>
           <LeftBorderGrid item lg={5}>

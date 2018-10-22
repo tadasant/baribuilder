@@ -28,6 +28,7 @@ interface IProps {
   allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
   clientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
   selectedCategory: string;
+  onAddToRegimen: () => void;
 }
 
 const TabGrid = styled(Grid)`
@@ -96,6 +97,7 @@ const CatalogScreenPure: SFC<IProps> = props => {
             key={props.selectedCategory}
             sortingStrategy={props.sortingStrategy}
             filteredClientCatalogProducts={filteredClientCatalogProducts}
+            onAddToRegimen={props.onAddToRegimen}
           />
         </Grid>
         {

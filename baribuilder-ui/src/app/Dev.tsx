@@ -30,7 +30,7 @@ class Dev extends Component<{}, IState> {
       <div className="App">
         <Paper>
           <PaddedDiv>
-            <ClientCatalogProduct id='cjm0tbtko00560179xhyj5uju'/>
+            <ClientCatalogProduct id='cjm0tbtko00560179xhyj5uju' onAddToRegimen={() => console.log('click')}/>
           </PaddedDiv>
         </Paper>
       </div>
