@@ -121,7 +121,9 @@ interface IPropsForMicronutrientRow {
   ingredientTypeName: string;
   amount: number;
   units: INGREDIENT_QUANTITY_UNITS;
-  goal?: number;
+  goalToDisplay?: number;
+  minimumGoal?: number;
+  maximumGoal?: number;
 }
 
 const ColoredBodyBold = styled(BoldBody)`
@@ -147,8 +149,8 @@ const LeftAlignPaddedGrid = styled(Grid)`
 `;
 
 const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
-  const isExceeded = props.goal !== undefined && props.amount > props.goal;
-  const isDeficient = props.goal !== undefined && props.amount < props.goal;
+  const isExceeded = props.goalToDisplay !== undefined && props.maximumGoal !== undefined && props.amount > props.maximumGoal;
+  const isDeficient = props.goalToDisplay !== undefined && props.minimumGoal !== undefined && props.amount < props.minimumGoal;
   const colorGoal = isExceeded ? Sketch.color.secondary.blue : isDeficient ? Sketch.color.accent.danger : Sketch.color.accent.black;
   return (
     <Fragment>
@@ -156,11 +158,11 @@ const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
         <BoldBody dark>{props.ingredientTypeName}</BoldBody>
       </LeftAlignGrid>
       {
-        props.goal !== undefined
+        props.goalToDisplay !== undefined
           ? (
             <RightAlignPaddedGrid item lg={5}>
               <ColoredBodyBold color={colorGoal}>
-                {props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)} of {props.goal}
+                {props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)} of {props.goalToDisplay}
               </ColoredBodyBold>
             </RightAlignPaddedGrid>
           )
@@ -187,13 +189,15 @@ const calculateMicronutrientRowPropsList = (
   if (goalIngredientRanges.length > 0) {
     goalIngredientRanges.forEach(range => {
       const currentRegimenIngredient = regimenIngredientsByName.hasOwnProperty(range.ingredientTypeName) ? regimenIngredientsByName[range.ingredientTypeName] : null;
-      const specificGoal = calculateSpecificGoal(range, currentRegimenIngredient);
+      const specificGoal = calculateGoalToDisplay(range, currentRegimenIngredient);
       if (specificGoal !== null) {
         results.push({
           ingredientTypeName: range.ingredientTypeName,
           amount: currentRegimenIngredient ? currentRegimenIngredient.amount : 0,
           units: range.units,
-          goal: specificGoal,
+          minimumGoal: range.minimumAmount || undefined,
+          maximumGoal: range.maximumAmount || undefined,
+          goalToDisplay: specificGoal
         })
       }
     });
@@ -210,7 +214,7 @@ const calculateMicronutrientRowPropsList = (
 };
 
 /* Returns an appropriate goal to display */
-const calculateSpecificGoal = (
+const calculateGoalToDisplay = (
   goalRange: GetDataForRegimenFacts_goalIngredients_ingredientRanges,
   currentIngredient: IRegimenIngredient | null,
 ): number | null => {
@@ -218,19 +222,28 @@ const calculateSpecificGoal = (
     return goalRange.minimumAmount;
   }
 
-  let result = goalRange.minimumAmount;
   if (goalRange.units === currentIngredient.units) {
-    if (goalRange.minimumAmount && currentIngredient.amount < goalRange.minimumAmount) {
-      result = goalRange.minimumAmount;
-    } else if (goalRange.maximumAmount && currentIngredient.amount > goalRange.maximumAmount) {
-      result = goalRange.maximumAmount;
+    if (goalRange.minimumAmount) {
+      if (goalRange.maximumAmount) {
+        if (currentIngredient.amount < goalRange.minimumAmount) {
+          return goalRange.minimumAmount;
+        } else {
+          return goalRange.maximumAmount;
+        }
+      } else {
+        return goalRange.minimumAmount;
+      }
+    } else {
+      if (goalRange.maximumAmount) {
+        return goalRange.maximumAmount;
+      } else {
+        return null;
+      }
     }
   } else {
     console.warn('Unit conversions not yet supported. Error code 592013');
     return null;
   }
-
-  return result;
 };
 
 // Pure
