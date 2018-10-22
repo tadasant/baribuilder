@@ -1,12 +1,16 @@
 import {Button, Grid} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import {fade} from '@material-ui/core/styles/colorManipulator';
+import gql from 'graphql-tag';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
+import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
+import {GetBuilderHeaderData} from '../../../typings/gql/GetBuilderHeaderData';
 import {GetCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetCatalogProducts';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
@@ -23,6 +27,18 @@ interface IProps {
   selectedCategory: string;
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
 }
+
+const BUILDER_HEADER_DATA_QUERY = gql`
+    query GetBuilderHeaderData {
+        goalIngredients @client {
+            ingredientRanges {
+                ingredientTypeName
+            }
+        }
+    }
+`;
+
+type QueryOutputProps = ChildDataProps<IProps, GetBuilderHeaderData>;
 
 const FixedGrid = styled(Grid)`
   && {
@@ -82,7 +98,7 @@ const RightPaddedGrid = styled(Grid)`
 `;
 
 // Pure
-const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
+const BuilderHeaderPure: SFC<IProps & RouteComponentProps & QueryOutputProps> = props => {
   const {filteredClientCatalogProducts, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
   const pathnameTokens = location.pathname.split('/');
   const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
@@ -97,6 +113,9 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
   } else if (!showMyProducts && showMyRegimen) {
     sortColumnCount = 3;
   }
+
+  // TODO this cost vs. cost effectiveness is very hacky
+  const costSortName = props.data.goalIngredients && props.data.goalIngredients.ingredientRanges.length > 0 ? 'Cost effectiveness (high to low)' : 'Cost (low to high)'
 
   return (
     <FixedGrid container direction='row'>
@@ -113,7 +132,7 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
           {/* TODO replace w/ enum, ability to change */}
           <ShadowedSelectWithPadding value='cost'>
             <MenuItem value='cost'
-                      key='cost'>{upperFirst('COST (low to high)'.toLowerCase())}</MenuItem>
+                      key='cost'>{costSortName}</MenuItem>
           </ShadowedSelectWithPadding>
         </Grid>
       </RightPaddedGrid>
@@ -158,4 +177,11 @@ const MyRegimenTabHeader: SFC<IProps & { style?: any }> = ({setShowMyRegimen, sh
   );
 };
 
-export default withRouter(BuilderHeaderPure);
+const withData = graphql<IProps, GetBuilderHeaderData>(BUILDER_HEADER_DATA_QUERY);
+
+const enhance = compose<IProps & RouteComponentProps & QueryOutputProps, IProps>(
+  withData,
+  withRouter
+);
+
+export default enhance(BuilderHeaderPure);
