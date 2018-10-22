@@ -112,17 +112,16 @@ const calculateRemainingUnfilledIngredientCount = (
     },
   };
   // TODO this is horribly inefficient, looping so many times
-  const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
+  const targetRegimenIngredientsWithoutProduct = subtractRegimenIngredientsFromGoalIngredientRanges(currentRegimenProducts, goalIngredientRanges, allCatalogProducts);
   const targetRegimenIngredients = subtractRegimenIngredientsFromGoalIngredientRanges([...currentRegimenProducts, additionalProduct], goalIngredientRanges, allCatalogProducts);
   const remainingRegimenIngredients = targetRegimenIngredients.filter(ingredient => ingredient.amount > 0);
   let remainingCount = 0;
   remainingRegimenIngredients.forEach(ingredient => {
-    const goalReference = goalIngredientRanges.find(range => range.ingredientTypeName === ingredient.ingredientTypeName);
-    const productIngredients = catalogProductsById[catalogProductId].serving.ingredients;
-    const productContainsIngredient = Boolean(productIngredients && productIngredients.find(i => i.ingredientType.name === ingredient.ingredientTypeName));
+    const goalReference = targetRegimenIngredientsWithoutProduct.find(regIngredient => regIngredient.ingredientTypeName === ingredient.ingredientTypeName);
+    const productContainsIngredient = Boolean(productIngredients.find(i => i.ingredientType.name === ingredient.ingredientTypeName));
     if (goalReference && productContainsIngredient) {
-      const minimumReference = goalReference.minimumAmount || 1; // should be >0 i.e. || 1 should never be invoked
-      remainingCount += ingredient.amount / minimumReference;
+      const reference = goalReference.amount;
+      remainingCount += ingredient.amount / reference;
     } else {
       remainingCount += 1;
     }
