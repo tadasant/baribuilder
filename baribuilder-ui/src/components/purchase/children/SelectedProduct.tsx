@@ -1,4 +1,4 @@
-import {Grid} from '@material-ui/core';
+import {Button, Grid} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
@@ -48,8 +48,11 @@ const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
-const MainImage = styled(MainProductImageWithPopover)`
-  height: 200px;
+const UndecoratedAnchor = styled.a`
+  && {
+    text-decoration: unset;
+    color: inherit;
+  }
 `;
 
 const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct, currentRegimen, loading}, catalogProductId}) => {
@@ -73,9 +76,9 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
     return (
       <Fragment>
         <CenteredTextGrid item lg={3}>
-          <MainImage catalogProductId={catalogProductId}/>
+          <MainProductImageWithPopover catalogProductId={catalogProductId}/>
         </CenteredTextGrid>
-        <CenteredTextGrid item container direction='column' lg={9} justify='center'>
+        <CenteredTextGrid item container direction='column' lg={9} justify='center' spacing={8}>
           <Grid item>
             <a href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'>
               <BoldBody dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</BoldBody>
@@ -83,6 +86,11 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
           </Grid>
           <Grid item>
             <Body dark>{quantityCaption}</Body>
+          </Grid>
+          <Grid item>
+            <UndecoratedAnchor href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'>
+              <Button fullWidth variant='raised' color='default'>Buy on Amazon</Button>
+            </UndecoratedAnchor>
           </Grid>
         </CenteredTextGrid>
       </Fragment>

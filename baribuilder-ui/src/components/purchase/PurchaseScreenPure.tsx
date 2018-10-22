@@ -8,7 +8,7 @@ import RegimenFacts from '../catalog/children/myRegimen/RegimenFacts';
 import {CenteredTextGrid} from '../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import {EmptyRow} from '../style/Layout';
-import {Caption, Header} from '../style/Typography';
+import {Header} from '../style/Typography';
 import SelectedProductListings from './children/SelectedProductListings';
 import SharingURLPanel from './children/SharingURLPanel';
 
@@ -34,14 +34,6 @@ const PurchaseScreenPure: SFC = () => {
       <PaperGrid container justify='flex-end'>
         <SharingURLPanel/>
       </PaperGrid>
-      <EmptyRow/>
-      <CenteredTextGrid item lg={12}>
-        <Caption dark>
-          Checkout directly on BariBuilder is not yet available. Make purchases on Amazon by clicking the name of
-          each product next to its image.
-        </Caption>
-      </CenteredTextGrid>
-      <EmptyRow/>
       <EmptyRow/>
       <Grid item lg={1}/>
       <Grid container item lg={4} alignContent='flex-start'>
