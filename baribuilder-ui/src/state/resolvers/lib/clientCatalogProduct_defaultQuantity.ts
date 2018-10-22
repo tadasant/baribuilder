@@ -84,6 +84,7 @@ const calculateTargetIngredientRanges = (goalIngredientRanges: IIngredientRange[
   return targetIngredientRanges;
 };
 
+// TODO this concept is misnamed; it's the unfilled ingredient count PLUS filled ingredients irrelevant to the product
 const calculateRemainingUnfilledIngredientCount = (
   currentRegimenProducts: IRegimenProduct[],
   goalIngredientRanges: IIngredientRange[],
@@ -110,14 +111,20 @@ const calculateRemainingUnfilledIngredientCount = (
       frequency: FREQUENCY.DAILY,
     },
   };
+  // TODO this is horribly inefficient, looping so many times
+  const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
   const targetRegimenIngredients = subtractRegimenIngredientsFromGoalIngredientRanges([...currentRegimenProducts, additionalProduct], goalIngredientRanges, allCatalogProducts);
   const remainingRegimenIngredients = targetRegimenIngredients.filter(ingredient => ingredient.amount > 0);
   let remainingCount = 0;
   remainingRegimenIngredients.forEach(ingredient => {
     const goalReference = goalIngredientRanges.find(range => range.ingredientTypeName === ingredient.ingredientTypeName);
-    if (goalReference) {
+    const productIngredients = catalogProductsById[catalogProductId].serving.ingredients;
+    const productContainsIngredient = Boolean(productIngredients && productIngredients.find(i => i.ingredientType.name === ingredient.ingredientTypeName));
+    if (goalReference && productContainsIngredient) {
       const minimumReference = goalReference.minimumAmount || 1; // should be >0 i.e. || 1 should never be invoked
       remainingCount += ingredient.amount / minimumReference;
+    } else {
+      remainingCount += 1;
     }
   });
   return remainingCount;
