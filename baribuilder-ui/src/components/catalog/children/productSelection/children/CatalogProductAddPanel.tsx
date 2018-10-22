@@ -100,7 +100,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
     remainingUnfilledIngredientCount: null,
   };
 
-  const fullfilledIngredientCount = goalIngredients.unfilledIngredientCount - ClientCatalogProduct.defaultQuantity.remainingUnfilledIngredientCount;
+  const fullfilledIngredientPercentage = goalIngredients.unfilledIngredientCount !== 0 ? (goalIngredients.unfilledIngredientCount - ClientCatalogProduct.defaultQuantity.remainingUnfilledIngredientCount) * 100 / goalIngredients.unfilledIngredientCount : null;
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>
@@ -114,11 +114,11 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
       <Grid item lg={4}/>
       <EmptyRow mobile='0px'/>
       {
-        fullfilledIngredientCount !== null && goalIngredients.unfilledIngredientCount !== 0
+        fullfilledIngredientPercentage !== null && goalIngredients.unfilledIngredientCount !== 0
           ? (
             <Fragment>
               <CenteredTextGrid item lg={12}>
-                <Body dark>fills {fullfilledIngredientCount} of {goalIngredients.unfilledIngredientCount}</Body>
+                <Body dark>fills {fullfilledIngredientPercentage.toFixed(0)}% of {goalIngredients.unfilledIngredientCount}</Body>
               </CenteredTextGrid>
               <CenteredTextGrid item lg={12}>
                 <Subcaption dark>remaining regimen ingredients</Subcaption>

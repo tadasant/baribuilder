@@ -112,7 +112,15 @@ const calculateRemainingUnfilledIngredientCount = (
   };
   const targetRegimenIngredients = subtractRegimenIngredientsFromGoalIngredientRanges([...currentRegimenProducts, additionalProduct], goalIngredientRanges, allCatalogProducts);
   const remainingRegimenIngredients = targetRegimenIngredients.filter(ingredient => ingredient.amount > 0);
-  return remainingRegimenIngredients.length;
+  let remainingCount = 0;
+  remainingRegimenIngredients.forEach(ingredient => {
+    const goalReference = goalIngredientRanges.find(range => range.ingredientTypeName === ingredient.ingredientTypeName);
+    if (goalReference) {
+      const minimumReference = goalReference.minimumAmount || 1; // should be >0 i.e. || 1 should never be invoked
+      remainingCount += ingredient.amount / minimumReference;
+    }
+  });
+  return remainingCount;
 };
 
 export const calculateDefaultQuantity = (

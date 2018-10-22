@@ -41,7 +41,7 @@ type CatalogProductQuantity {
     units: PRODUCT_QUANTITY_UNITS!
     frequency: FREQUENCY!
     #   TODO This shouldn't be optional, but I want to reuse the type when building, hmm
-    remainingUnfilledIngredientCount: Int
+    remainingUnfilledIngredientCount: Float
 }
 
 type Regimen {
