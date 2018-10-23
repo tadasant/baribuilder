@@ -14,6 +14,7 @@ pids
 
 # Distribution / Build files
 **/build
+**/dst
 
 # Log files
 **/log

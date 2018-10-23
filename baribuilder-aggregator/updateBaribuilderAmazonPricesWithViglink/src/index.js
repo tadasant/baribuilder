@@ -1,4 +1,4 @@
-const updateBaribuilderAmazonPricesWithViglink = require('./src/updateBaribuilderAmazonPricesWithViglink');
+const updateBaribuilderAmazonPricesWithViglink = require('./updateBaribuilderAmazonPricesWithViglink');
 
 exports.handler = function(event, context, callback) {
   updateBaribuilderAmazonPricesWithViglink.run();

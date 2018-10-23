@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "chmod 777 updateBaribuilderAmazonPricesWithViglink/* && rm ./build/updateBaribuilderAmazonPricesWithViglink.zip && zip -r ./build/updateBaribuilderAmazonPricesWithViglink.zip ./updateBaribuilderAmazonPricesWithViglink/*",
+    "clean": "mkdir -p build && rm ./build/updateBaribuilderAmazonPricesWithViglink.zip && rm -r updateBaribuilderAmazonPricesWithViglink/dst",
+    "build": "mkdir -p updateBaribuilderAmazonPricesWithViglink/dst && chmod 777 updateBaribuilderAmazonPricesWithViglink/** && cp -r updateBaribuilderAmazonPricesWithViglink/node_modules updateBaribuilderAmazonPricesWithViglink/dst/node_modules && babel updateBaribuilderAmazonPricesWithViglink/src -d updateBaribuilderAmazonPricesWithViglink/dst && cd updateBaribuilderAmazonPricesWithViglink/dst && zip -r ../../build/updateBaribuilderAmazonPricesWithViglink.zip *",
     "deploy": "aws lambda update-function-code --function-name updateBaribuilderAmazonPricesWithViglink --zip-file fileb://build/updateBaribuilderAmazonPricesWithViglink.zip",
     "invoke": "aws lambda invoke --function-name updateBaribuilderAmazonPricesWithViglink log/log.txt"
   }

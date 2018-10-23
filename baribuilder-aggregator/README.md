@@ -2,11 +2,13 @@
 
 `aws lambda list-functions`
 
-`yarn run build`
+`yarn clean`
 
-`yarn run deploy`
+`yarn build`
 
-`yarn run invoke`
+`yarn deploy`
+
+`yarn invoke`
 
 # Feature Ideas
 
