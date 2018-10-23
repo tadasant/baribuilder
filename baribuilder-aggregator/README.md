@@ -6,6 +6,8 @@
 
 `yarn run deploy`
 
+`yarn run invoke`
+
 # Feature Ideas
 
 Retry if viglink returns failure

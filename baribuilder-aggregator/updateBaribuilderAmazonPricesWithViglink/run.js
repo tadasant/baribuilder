@@ -124,4 +124,7 @@ const generateUpdateMutation = (dataType, entry) => {
   `
 };
 
-export default run;
+exports.updateBaribuilderAmazonPricesWithViglink = (event, context, callback) => {
+  run();
+  callback(null, 'Successfully invoked!');
+};

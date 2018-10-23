@@ -12,8 +12,11 @@ pids
 *.pid.lock
 **/.DS_Store
 
-# UI Distribution
+# Distribution / Build files
 **/build
+
+# Log files
+**/log
 
 # IDEA files
 baribuilder.iml
