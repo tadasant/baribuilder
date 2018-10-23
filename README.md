@@ -1,7 +1,7 @@
 # baribuilder
 BariBuilder Monorepo
 
-## Graphcool
+## baribuilder-api (Graphcool)
 
 `npm install -g graphcool`
 
@@ -12,8 +12,6 @@ BariBuilder Monorepo
 Don't forget to redownload the new schema if trying to create types.
 
 `graphcool playground`
-
-## baribuilder-api
 
 GraphQL Endpoint: https://api.graph.cool/simple/v1/cjlzqvawt1ib00107g3nfr04i
 
@@ -39,17 +37,25 @@ Troubleshooting:
 * `TypeError: Cannot read property 'getQueryType' of undefined`
     * You might have the wrong path to your schema 
 
-## Shortcomings of Typescript for being a catchall
+### Shortcomings of Typescript for being a catchall
 
 No good way to track the extensions of remote schema (`state/resolvers.ts`)
 
 No good way to track cache redirect keys (`BuilderApp.tsx`)
 
-## Bugs / inconveniences to look into
+### Bugs / inconveniences to look into
 
 Problem: When making a local & remote combined query, if the remote bit is not in the cache, the result will return the remote bit and just the default value for the local bit.
 
 Solution: @client directive should result in ALWAYS cache hit for that piece of the query.
 
 Update: not entirely sure if this is a real problem or I was doing something wrong by relying on default resolvers too heavily
+
+## baribuilder-aggregator
+
+AWS Lambda function that should run periodically to keep the product catalog fresh
+
+## gql-scripts
+
+Utilities for performing operations on the database
 
