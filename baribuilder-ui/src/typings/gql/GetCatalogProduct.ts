@@ -7,27 +7,11 @@ import { BRAND } from "./globalTypes";
 // GraphQL query operation: GetCatalogProduct
 // ====================================================
 
-export interface GetCatalogProduct_CatalogProduct_packages_listings_affiliateLink {
-  __typename: "AffiliateLink";
-  url: string;
-}
-
-export interface GetCatalogProduct_CatalogProduct_packages_listings {
-  __typename: "PackageListing";
-  affiliateLink: GetCatalogProduct_CatalogProduct_packages_listings_affiliateLink | null;
-}
-
-export interface GetCatalogProduct_CatalogProduct_packages {
-  __typename: "ProductPackage";
-  listings: GetCatalogProduct_CatalogProduct_packages_listings[] | null;
-}
-
 export interface GetCatalogProduct_CatalogProduct {
   __typename: "CatalogProduct";
   id: string;
   name: string;
   brand: BRAND;
-  packages: GetCatalogProduct_CatalogProduct_packages[] | null;
 }
 
 export interface GetCatalogProduct {

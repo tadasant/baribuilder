@@ -34,13 +34,6 @@ const GET_CATALOG_PRODUCT_FOR_REGIMEN_PRODUCT = gql`
 
             name
             brand
-            packages {
-                listings {
-                    affiliateLink {
-                        url
-                    }
-                }
-            }
         }
     }
 `;
@@ -128,9 +121,7 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
         </Grid>
         <Grid item container lg={8} alignContent='flex-start'>
           <CenteredTextGrid item lg={12}>
-            {/* TODO remove url bit when local detail page complete */}
-            <a href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'><BoldBody
-              dark>{CatalogProduct.name}</BoldBody></a>
+            <BoldBody dark>{CatalogProduct.name}</BoldBody>
           </CenteredTextGrid>
           <CenteredTextGrid item lg={12}>
             <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>

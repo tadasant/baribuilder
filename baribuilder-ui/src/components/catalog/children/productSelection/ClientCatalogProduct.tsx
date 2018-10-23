@@ -26,13 +26,6 @@ const GET_CATALOG_PRODUCT = gql`
 
             name
             brand
-            packages {
-                listings {
-                    affiliateLink {
-                        url
-                    }
-                }
-            }
         }
     }
 `;
@@ -77,10 +70,7 @@ const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {Catalo
         <EmptyRow mobile='-20px'/>
         <Grid container direction='row'>
           <Grid item lg={12}>
-            {/* TODO remove url bit when local detail page complete */}
-            <a href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'>
-              <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
-            </a>
+            <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
           </Grid>
           <Grid item lg={7} container alignItems='center'>
             <Grid item lg={4}>
