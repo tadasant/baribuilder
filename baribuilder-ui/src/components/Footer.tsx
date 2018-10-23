@@ -49,14 +49,9 @@ interface IProps {
 const Footer: SFC<IProps> = props => {
   return (
     <BlackGrid item container direction='row'>
-      <EmptyRow mobile='5px'/>
+      <EmptyRow mobile='-20px'/>
       <Grid item xs={1}/>
       <Grid item container xs={10}>
-        <CenteredTextGrid item xs={12}>
-          <DisclaimerCaption>
-            As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
-          </DisclaimerCaption>
-        </CenteredTextGrid>
         <EmptyRow/>
         {props.disclaimerText
           ? (

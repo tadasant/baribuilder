@@ -53,18 +53,7 @@ const LeftBorderGrid = styled(Grid)`
 // Pure
 const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}, onAddToRegimen}) => {
   // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
-  if (CatalogProduct && CatalogProduct.packages && CatalogProduct.packages.length === 1 && CatalogProduct.packages[0].listings) {
-    const {listings} = CatalogProduct.packages[0];
-    if (!listings) {
-      // TypeScript doesn't handle this correctly otherwise
-      return null;
-    }
-    const {affiliateLink} = listings[0];
-    if (!affiliateLink) {
-      // TypeScript doesn't handle this correctly otherwise
-      return null;
-    }
-
+  if (CatalogProduct) {
     return (
       <Grid container direction='row'>
         <EmptyRow mobile='-20px'/>

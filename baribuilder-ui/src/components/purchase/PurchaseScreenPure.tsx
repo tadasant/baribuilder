@@ -8,7 +8,7 @@ import RegimenFacts from '../catalog/children/myRegimen/RegimenFacts';
 import {CenteredTextGrid} from '../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import {EmptyRow} from '../style/Layout';
-import {Header} from '../style/Typography';
+import {Caption, Header} from '../style/Typography';
 import SelectedProductListings from './children/SelectedProductListings';
 import SharingURLPanel from './children/SharingURLPanel';
 
@@ -34,6 +34,13 @@ const PurchaseScreenPure: SFC = () => {
       <PaperGrid container justify='flex-end'>
         <SharingURLPanel/>
       </PaperGrid>
+      <EmptyRow/>
+      <CenteredTextGrid item lg={12}>
+        <Caption dark>
+          As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
+        </Caption>
+      </CenteredTextGrid>
+      <EmptyRow/>
       <EmptyRow/>
       <Grid item lg={1}/>
       <Grid container item lg={4} alignContent='flex-start'>

@@ -85,18 +85,7 @@ const MainImage = styled(MainProductImageWithPopover)`
 
 // Pure
 const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: {CatalogProduct, loading}, quantity, catalogProductId, mutate}) => {
-  if (CatalogProduct && !loading && mutate && CatalogProduct.packages) {
-    // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
-    const {listings} = CatalogProduct.packages[0];
-    if (!listings) {
-      return null;
-    }
-    const {affiliateLink} = listings[0];
-    if (!affiliateLink) {
-      // TypeScript doesn't handle this correctly otherwise
-      return null;
-    }
-
+  if (CatalogProduct && !loading && mutate) {
     const mutateAmount = (amount: number) => mutate({
       variables: {
         catalogProductId,
