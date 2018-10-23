@@ -79,7 +79,6 @@ const updatePackagePrice = (pkg) => {
       console.error(`Failed to grab metadata for "${name}" (id: ${id}) at ${url}.`);
       console.error(error);
     })
-  // TODO consider sending email update when a price has changed
 };
 
 const getProductMetadata = (productUrl) => {
@@ -125,4 +124,4 @@ const generateUpdateMutation = (dataType, entry) => {
   `
 };
 
-run();
+export default run;

@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "update-prices": "babel-node run.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "graphcool-lib": "^0.1.4",
+    "graphql-request": "^1.8.2"
+  }
+}
