@@ -22,10 +22,10 @@ const graphcoolApi = fromEvent(event).api('simple/v1');
 const run = () => {
   getAllPackageListings()
     .then(data => {
-      console.info('Grabbing all package listings...');
+      console.log('Grabbing all package listings...');
       const packages = data.allPackageListings;
       let nextDelay = 0;
-      console.info('Iterating over listings...');
+      console.log('Iterating over listings...');
       packages.forEach(pkg => {
         if (pkg.retailerName === "AMAZON") {
           setTimeout(() => updatePackagePrice(pkg), nextDelay);
@@ -59,25 +59,25 @@ const getAllPackageListings = () => {
 
 const updatePackagePrice = (pkg) => {
   const {url, price, package: {product: {id, name}}} = pkg;
-  console.info(`Getting metadata for ${url}`);
+  console.log(`Getting metadata for ${url}`);
   getProductMetadata(url)
     .then(response => {
       const {data} = response;
       try {
         const newPriceAsFloat = parseFloat(data.price.replace('$', ''));
         if (newPriceAsFloat !== price.amount) {
-          console.log(`Listing ${name} (${id}) has new price $${newPriceAsFloat} (prior: $${price.amount}).`);
+          console.info(`Listing ${name} (${id}) has new price $${newPriceAsFloat} (prior: $${price.amount}).`);
           updatePrice(price.id, price.amount);
         } else {
-          console.log(`Listing ${name} (${id}) has same price $${newPriceAsFloat}`);
+          console.info(`Listing ${name} (${id}) has same price $${newPriceAsFloat}`);
         }
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     })
     .catch(error => {
-      console.log(`Failed to grab metadata for "${name}" (id: ${id}) at ${url}.`);
-      console.log(error);
+      console.error(`Failed to grab metadata for "${name}" (id: ${id}) at ${url}.`);
+      console.error(error);
     })
   // TODO consider sending email update when a price has changed
 };
@@ -103,7 +103,7 @@ const updatePrice = (priceId, priceAmount) => {
     .request(query)
     .then((data) => {
       if (data.error) {
-        console.log(`Failed to upload price for ${priceId} at $${priceAmount}.`)
+        console.error(`Failed to upload price for ${priceId} at $${priceAmount}.`)
       } else {
         console.log(`Uploaded successfully to ${data.updatePrice.id}}`)
       }
