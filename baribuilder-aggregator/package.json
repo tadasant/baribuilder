@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "zip -r ./build/updateBaribuilderAmazonPricesWithViglink.zip ./updateBaribuilderAmazonPricesWithViglink",
+    "build": "rm ./build/updateBaribuilderAmazonPricesWithViglink.zip && zip -r ./build/updateBaribuilderAmazonPricesWithViglink.zip ./updateBaribuilderAmazonPricesWithViglink/*",
     "deploy": "aws lambda update-function-code --function-name updateBaribuilderAmazonPricesWithViglink --zip-file fileb://build/updateBaribuilderAmazonPricesWithViglink.zip",
     "invoke": "aws lambda invoke --function-name updateBaribuilderAmazonPricesWithViglink log/log.txt"
   }
