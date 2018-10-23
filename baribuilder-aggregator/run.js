@@ -1,8 +1,3 @@
-// https://www.amazon.com/gp/product/B001FY1KAE
-// API: acbd58153445ac1640082974c1fe0f93
-
-// https://rest.viglink.com/api/product/metadata
-
 import axios from 'axios';
 import {fromEvent} from 'graphcool-lib';
 
@@ -22,15 +17,22 @@ const event = {
 
 const graphcoolApi = fromEvent(event).api('simple/v1');
 
-const getProductMetadata = (productUrl) => {
-  return axios.get(productApiUrl, {
-    params: {
-      url: productUrl
-    },
-    headers: {
-      'Authorization': viglinkSecretToken,
-    }
-  })
+/* Business logic begins */
+
+const run = () => {
+  getAllPackageListings()
+    .then(data => {
+      console.info('Grabbing all package listings...');
+      const packages = data.allPackageListings;
+      let nextDelay = 0;
+      console.info('Iterating over listings...');
+      packages.forEach(pkg => {
+        if (pkg.retailerName === "AMAZON") {
+          setTimeout(() => updatePackagePrice(pkg), nextDelay);
+          nextDelay += 2000;
+        }
+      });
+    })
 };
 
 const getAllPackageListings = () => {
@@ -55,12 +57,6 @@ const getAllPackageListings = () => {
   return graphcoolApi.request(query)
 };
 
-const updatePrice = (priceId, priceAmount) => {
-  // TODO
-  console.log('send request to graphcool');
-};
-
-
 const updatePackagePrice = (pkg) => {
   const {url, price, package: {product: {id, name}}} = pkg;
   console.info(`Getting metadata for ${url}`);
@@ -68,12 +64,14 @@ const updatePackagePrice = (pkg) => {
     .then(response => {
       const {data} = response;
       try {
-        const newPriceAsFloat = parseFloat(data.price.replace('$',''));
+        const newPriceAsFloat = parseFloat(data.price.replace('$', ''));
         if (newPriceAsFloat !== price.amount) {
-          console.log(`Listing ${name} (${id}) has new price $${newPriceAsFloat} (prior: $${price.amount}).`)
+          console.log(`Listing ${name} (${id}) has new price $${newPriceAsFloat} (prior: $${price.amount}).`);
           updatePrice(price.id, price.amount);
+        } else {
+          console.log(`Listing ${name} (${id}) has same price $${newPriceAsFloat}`);
         }
-      } catch(err) {
+      } catch (err) {
         console.log(err);
       }
     })
@@ -84,20 +82,47 @@ const updatePackagePrice = (pkg) => {
   // TODO consider sending email update when a price has changed
 };
 
-const run = () => {
-  getAllPackageListings()
-    .then(data => {
-      console.info('Grabbing all package listings...');
-      const packages = data.allPackageListings;
-      let nextDelay = 0;
-      console.info('Iterating over listings...');
-      packages.forEach(pkg => {
-        if (pkg.retailerName === "AMAZON") {
-          setTimeout(() => updatePackagePrice(pkg), nextDelay);
-          nextDelay += 2000;
-        }
-      });
-    })
+const getProductMetadata = (productUrl) => {
+  return axios.get(productApiUrl, {
+    params: {
+      url: productUrl
+    },
+    headers: {
+      'Authorization': viglinkSecretToken,
+    }
+  })
+};
+
+const updatePrice = (priceId, priceAmount) => {
+  const query = generateUpdateMutation('Price', {
+    id: `"${priceId}"`,
+    amount: priceAmount
+  });
+  console.log(`Updating price in database...`);
+  graphcoolApi
+    .request(query)
+    .then((data) => {
+      if (data.error) {
+        console.log(`Failed to upload price for ${priceId} at $${priceAmount}.`)
+      } else {
+        console.log(`Uploaded successfully to ${data.updatePrice.id}}`)
+      }
+    });
+};
+
+const generateUpdateMutation = (dataType, entry) => {
+  const args = Object.keys(entry).map(key =>
+    `${key}: ${entry[key]}`
+  ).join(',\n');
+  return `
+    mutation {
+      update${dataType}(
+        ${args}
+      ) {
+        id
+      }
+    }
+  `
 };
 
 run();
