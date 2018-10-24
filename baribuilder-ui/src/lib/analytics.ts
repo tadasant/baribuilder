@@ -1,6 +1,10 @@
+export const defaultFields = {
+  versionNumber: require('../../package.json').version
+};
+
 export const generateTrackNavClick = (label: string): (() => void) => {
   // TODO segment
-  return () => console.log('event');
+  return () => console.log(defaultFields);
   // return () => ReactGA.event({
   //   category: 'Internal Link',
   //   action: 'click',

@@ -18,6 +18,7 @@
     "member-access": ["no-public"],
     "no-unnecessary-initializer": false,
     "jsx-boolean-value": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "interface-name": false
   }
 }
