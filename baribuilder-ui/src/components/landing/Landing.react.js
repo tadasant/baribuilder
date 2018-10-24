@@ -4,6 +4,7 @@ import React, {Component, Fragment} from 'react';
 import {withRouter} from 'react-router-dom';
 import ScrollPercentage from 'react-scroll-percentage';
 import styled from 'styled-components';
+import {trackScrollPercent} from '../../lib/analytics';
 import {EmptyRow} from '../style/Layout';
 import Hero from './sections/1_Hero.react';
 import PriceSection from './sections/2_PriceSection.react';
@@ -28,30 +29,15 @@ class Landing extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.maxScrolled < 25 && this.state.maxScrolled > 25) {
-      // TODO segment
-      // ReactGA.event({
-      //   category: 'Landing Page',
-      //   action: 'scroll',
-      //   label: 'Scroll 25%'
-      // });
+      trackScrollPercent('Landing Page', 25);
     }
 
     if (prevState.maxScrolled < 50 && this.state.maxScrolled > 50) {
-      // TODO segment
-      // ReactGA.event({
-      //   category: 'Landing Page',
-      //   action: 'scroll',
-      //   label: 'Scroll 50%'
-      // });
+      trackScrollPercent('Landing Page', 50);
     }
 
     if (prevState.maxScrolled < 70 && this.state.maxScrolled > 70) {
-      // TODO segment
-      // ReactGA.event({
-      //   category: 'Landing Page',
-      //   action: 'scroll',
-      //   label: 'Scroll 70%'
-      // });
+      trackScrollPercent('Landing Page', 70);
     }
   }
 

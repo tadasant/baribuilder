@@ -83,7 +83,7 @@ const Footer: SFC<IProps> = props => {
                 &nbsp;|&nbsp;
               </Subcaption>
               <Subcaption>
-                <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('footer t&c')}>
+                <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('Footer T&C')}>
                   Terms & Conditions
                 </WhiteUndecoratedLink>
               </Subcaption>
@@ -147,7 +147,7 @@ const Footer: SFC<IProps> = props => {
               </Grid>
               <RightAlignTextGrid item xs={5}>
                 <Subcaption>
-                  <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('footer t&c')}>
+                  <WhiteUndecoratedLink to='/terms-and-conditions' onClick={generateTrackNavClick('Footer T&C')}>
                     Terms & Conditions
                   </WhiteUndecoratedLink>
                 </Subcaption>

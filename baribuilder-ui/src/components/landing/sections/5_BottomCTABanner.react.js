@@ -1,4 +1,3 @@
-import {Button} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import React, {Component, Fragment} from 'react';
 import styled from 'styled-components';
@@ -53,7 +52,7 @@ class BottomCTABanner extends Component {
           <Grid item xs={12} container>
             <Grid item xs={2} lg={1}/>
             <CenteredTextGrid item xs={8} lg={10}>
-              <HeaderWithHeader2MobileSize dark>Find your personalized vitamins.</HeaderWithHeader2MobileSize>
+              <HeaderWithHeader2MobileSize dark>Start building your personalized regimen.</HeaderWithHeader2MobileSize>
             </CenteredTextGrid>
             <Grid item xs={2} lg={1}/>
           </Grid>
@@ -61,10 +60,10 @@ class BottomCTABanner extends Component {
           <Fragment>
             <Grid item xs={2} sm={3} lg={4}/>
             <Grid item xs={8} sm={6} lg={4}>
-              <UndecoratedLink to={'/browse/all_products'} onClick={generateTrackNavClick('Browse CTA')}>
-                <Button variant='raised' fullWidth color='secondary'>
-                  Browse Product Catalog
-                </Button>
+              <UndecoratedLink to={'/goals'} onClick={generateTrackNavClick('Bottom Build CTA')}>
+                <CTANavButton variant='raised' fullWidth>
+                  Build Personal Regimen
+                </CTANavButton>
               </UndecoratedLink>
             </Grid>
             <Grid item xs={2} sm={3} lg={4}/>

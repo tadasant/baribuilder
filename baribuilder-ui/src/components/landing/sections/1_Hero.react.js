@@ -88,7 +88,7 @@ class Hero extends Component {
           <Grid item xs={1} lg={3}/>
           <Grid item xs={10} lg={6} container direction='row'>
             <Grid item xs={12}>
-              <UndecoratedLink to={'/goals'} onClick={generateTrackNavClick('Build CTA')}>
+              <UndecoratedLink to={'/goals'} onClick={generateTrackNavClick('Top Build CTA')}>
                 <CTANavButton variant='raised' fullWidth>
                   Build Personal Regimen
                 </CTANavButton>

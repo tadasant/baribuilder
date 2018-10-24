@@ -1,25 +1,27 @@
 export const defaultFields = {
-  versionNumber: require('../../package.json').version
+  appVersionNumber: require('../../package.json').version
 };
 
 export const generateTrackNavClick = (label: string): (() => void) => {
-  // TODO segment
-  return () => console.log(defaultFields);
-  // return () => ReactGA.event({
-  //   category: 'Internal Link',
-  //   action: 'click',
-  //   label,
-  // });
+  return () => analytics.track('Clicked Internal Link', {
+    ...defaultFields,
+    label
+  });
 };
 
 export const generateTrackExternalLinkClick = (label: string): (() => void) => {
-  // TODO segment
-  return () => console.log('event');
-  // return () => ReactGA.event({
-  //   category: 'Outbound Link',
-  //   action: 'click',
-  //   label,
-  // });
+  return () => analytics.track('Clicked Outbound Link', {
+    ...defaultFields,
+    label
+  });
+};
+
+export const trackScrollPercent = (screenName: string, percentScrolled: number) => {
+  analytics.track('Scrolled Screen', {
+    ...defaultFields,
+    screenName,
+    percentScrolled
+  })
 };
 
 // Initialized in index.html's <head>
