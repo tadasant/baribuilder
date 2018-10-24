@@ -4,6 +4,7 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
+import {generateTrackAffiliateLinkClick} from '../../../lib/analytics';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
 import {prettifyEnumString} from '../../catalog/children/BuilderFilterPanel';
 import MainProductImageWithPopover from '../../catalog/children/productSelection/children/MainProductImageWithPopover';
@@ -23,7 +24,10 @@ const GET_SELECTED_PRODUCT_LISTING = gql`
             brand
             packages {
                 listings {
+                    id
+                    retailerName
                     affiliateLink {
+                        source
                         url
                     }
                 }
@@ -80,7 +84,10 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
         </CenteredTextGrid>
         <CenteredTextGrid item container direction='column' lg={9} justify='center' spacing={8}>
           <Grid item>
-            <a href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'>
+            <a
+              href={affiliateLink.url}
+              target='__blank' rel='noopener nofollower norefer'
+              onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
               <BoldBody dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</BoldBody>
             </a>
           </Grid>
@@ -88,7 +95,11 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
             <Body dark>{quantityCaption}</Body>
           </Grid>
           <Grid item>
-            <UndecoratedAnchor href={affiliateLink.url} target='__blank' rel='noopener nofollower norefer'>
+            <UndecoratedAnchor
+              href={affiliateLink.url}
+              target='__blank'
+              rel='noopener nofollower norefer'
+              onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
               <Button fullWidth variant='raised' color='default'>Buy on Amazon</Button>
             </UndecoratedAnchor>
           </Grid>

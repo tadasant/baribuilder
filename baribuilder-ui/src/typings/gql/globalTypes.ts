@@ -5,6 +5,10 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum AFFILIATE_PLATFORM {
+  AMAZON = "AMAZON",
+}
+
 export enum BRAND {
   ADVANCE_PHARMACEUTICAL = "ADVANCE_PHARMACEUTICAL",
   BARIATRIC_ADVANTAGE = "BARIATRIC_ADVANTAGE",
@@ -90,6 +94,10 @@ export enum INGREDIENT_QUANTITY_UNITS {
 
 export enum PRODUCT_QUANTITY_UNITS {
   SERVINGS = "SERVINGS",
+}
+
+export enum RETAILER {
+  AMAZON = "AMAZON",
 }
 
 export enum SERVING_SIZE_UNITS {

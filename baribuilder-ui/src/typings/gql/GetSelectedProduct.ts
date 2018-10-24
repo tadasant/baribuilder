@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { BRAND, FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
+import { BRAND, RETAILER, AFFILIATE_PLATFORM, FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetSelectedProduct
@@ -9,11 +9,14 @@ import { BRAND, FREQUENCY, PRODUCT_QUANTITY_UNITS } from "./globalTypes";
 
 export interface GetSelectedProduct_CatalogProduct_packages_listings_affiliateLink {
   __typename: "AffiliateLink";
+  source: AFFILIATE_PLATFORM;
   url: string;
 }
 
 export interface GetSelectedProduct_CatalogProduct_packages_listings {
   __typename: "PackageListing";
+  id: string;
+  retailerName: RETAILER;
   affiliateLink: GetSelectedProduct_CatalogProduct_packages_listings_affiliateLink | null;
 }
 

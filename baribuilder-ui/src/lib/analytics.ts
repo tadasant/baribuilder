@@ -16,6 +16,16 @@ export const generateTrackExternalLinkClick = (label: string): (() => void) => {
   });
 };
 
+export const generateTrackAffiliateLinkClick = (listingId: string, retailerName: string, affiliateSource: string, productId: string): (() => void) => {
+  return () => analytics.track('Clicked Affiliate Link', {
+    ...defaultFields,
+    productId,
+    listingId,
+    retailerName,
+    affiliateSource
+  });
+};
+
 export const trackScrollPercent = (screenName: string, percentScrolled: number) => {
   analytics.track('Scrolled Screen', {
     ...defaultFields,
