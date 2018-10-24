@@ -1,10 +1,9 @@
 import {Button} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
-import {generateTrackNavClick} from '../../../lib/gaHelper';
+import {generateTrackNavClick} from '../../../lib/analyticsHelper';
 import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {media} from '../../style/Core';
 import {UndecoratedLink} from '../../style/CustomMaterial';

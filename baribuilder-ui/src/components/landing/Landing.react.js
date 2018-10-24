@@ -1,17 +1,16 @@
-import React, {Component, Fragment} from 'react';
-import Hero from './sections/1_Hero.react';
 import Grid from '@material-ui/core/Grid';
-import PriceSection from './sections/2_PriceSection.react';
+import PropTypes from 'prop-types';
+import React, {Component, Fragment} from 'react';
+import {withRouter} from 'react-router-dom';
+import ScrollPercentage from 'react-scroll-percentage';
+import styled from 'styled-components';
 import {EmptyRow} from '../style/Layout';
+import Hero from './sections/1_Hero.react';
+import PriceSection from './sections/2_PriceSection.react';
 import UniqueSection from './sections/3_UniqueSection.react';
 import HowItWorksSection from './sections/4_HowItWorksSection.react';
 import BottomCTABanner from './sections/5_BottomCTABanner.react';
 import Footer from './sections/LandingFooter.react.js';
-import styled from 'styled-components';
-import ScrollPercentage from 'react-scroll-percentage';
-import ReactGA from 'react-ga';
-import {withRouter} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 const GutteredGrid = styled(Grid)`
   margin: 8px;
@@ -29,27 +28,30 @@ class Landing extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.maxScrolled < 25 && this.state.maxScrolled > 25) {
-      ReactGA.event({
-        category: 'Landing Page',
-        action: 'scroll',
-        label: 'Scroll 25%'
-      });
+      // TODO segment
+      // ReactGA.event({
+      //   category: 'Landing Page',
+      //   action: 'scroll',
+      //   label: 'Scroll 25%'
+      // });
     }
 
     if (prevState.maxScrolled < 50 && this.state.maxScrolled > 50) {
-      ReactGA.event({
-        category: 'Landing Page',
-        action: 'scroll',
-        label: 'Scroll 50%'
-      });
+      // TODO segment
+      // ReactGA.event({
+      //   category: 'Landing Page',
+      //   action: 'scroll',
+      //   label: 'Scroll 50%'
+      // });
     }
 
     if (prevState.maxScrolled < 70 && this.state.maxScrolled > 70) {
-      ReactGA.event({
-        category: 'Landing Page',
-        action: 'scroll',
-        label: 'Scroll 70%'
-      });
+      // TODO segment
+      // ReactGA.event({
+      //   category: 'Landing Page',
+      //   action: 'scroll',
+      //   label: 'Scroll 70%'
+      // });
     }
   }
 
