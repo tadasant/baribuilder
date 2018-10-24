@@ -8,8 +8,6 @@ import 'npm-font-open-sans';
 import * as React from 'react';
 import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
-import ReactPixel from 'react-facebook-pixel';
-import * as ReactGA from 'react-ga';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -21,15 +19,6 @@ import BuilderApp from './BuilderApp';
 import NotFound from './NotFound';
 import StaticApp from './StaticApp';
 import theme from './style/MuiTheming';
-
-// Initialize FB Pixel
-const advancedMatching = {};
-ReactPixel.init(config.fbPixel.key, advancedMatching, config.fbPixel.settings);
-ReactPixel.pageView();
-
-// Initialize Google Analytics
-ReactGA.initialize(config.ga.key as string, config.ga.settings);
-ReactGA.pageview(window.location.pathname + window.location.search);
 
 // Apollo initialization
 const cache = new InMemoryCache({

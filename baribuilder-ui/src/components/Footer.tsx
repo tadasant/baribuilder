@@ -4,7 +4,7 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import GraphcoolLogo from '../assets/graphcool-logo.svg';
-import {generateTrackExternalLinkClick, generateTrackNavClick} from '../lib/gaHelper';
+import {generateTrackExternalLinkClick, generateTrackNavClick} from '../lib/analyticsHelper';
 import Sketch from './../app/style/SketchVariables';
 import {CenteredTextGrid} from './goals/GoalsScreenPure';
 import {media} from './style/Core';
