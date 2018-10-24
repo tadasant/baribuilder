@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import React, {Component, Fragment} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
-import {generateTrackNavClick} from '../../../lib/analyticsHelper';
+import {generateTrackNavClick} from '../../../lib/analytics';
 import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {media} from '../../style/Core';
 import {UndecoratedLink} from '../../style/CustomMaterial';

@@ -17,3 +17,12 @@ export const generateTrackExternalLinkClick = (label: string): (() => void) => {
   //   label,
   // });
 };
+
+// Initialized in index.html's <head>
+declare global {
+  interface Window {
+    analytics: SegmentAnalytics.AnalyticsJS;
+  }
+}
+
+export default window.analytics;

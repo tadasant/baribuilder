@@ -8,7 +8,7 @@ import {RouteComponentProps, withRouter} from 'react-router';
 import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
-import {generateTrackNavClick} from '../../lib/analyticsHelper';
+import {generateTrackNavClick} from '../../lib/analytics';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SEARCH_QUERY_QUERY} from '../catalog/queries';
