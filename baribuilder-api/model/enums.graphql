@@ -102,6 +102,7 @@ enum INGREDIENT_QUANTITY_UNITS {
     G
     MG
     MCG
+    NONE
 }
 
 enum FREQUENCY {
