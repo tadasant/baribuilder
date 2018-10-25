@@ -1,5 +1,9 @@
+const appVersionTokens = require('../../package.json').version.split('.');
+
 export const defaultFields = {
-  appVersionNumber: require('../../package.json').version
+  appMajorVersion: appVersionTokens[0],
+  appMinorVersion: appVersionTokens[1],
+  appPatchVersion: appVersionTokens[2]
 };
 
 export const generateTrackNavClick = (label: string): (() => void) => {
