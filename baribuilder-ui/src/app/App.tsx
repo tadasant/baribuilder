@@ -11,9 +11,11 @@ import {ApolloProvider} from 'react-apollo';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import * as uuid from 'uuid/v4';
 import Navbar from '../components/navbar/Navbar';
 import config from '../config/config';
 import {defaultFields} from '../lib/analytics';
+import {getLocalStorage, setLocalStorage} from '../lib/localStorage';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
@@ -64,6 +66,12 @@ const client = new ApolloClient({
 
 class App extends Component {
   componentDidMount() {
+    let anonymousUserId = getLocalStorage('anonymousUserId');
+    if (!anonymousUserId) {
+      anonymousUserId = uuid();
+      setLocalStorage('anonymousUserId', anonymousUserId);
+    }
+    analytics.identify(anonymousUserId);
     analytics.page('Loaded App', defaultFields);
   }
 
