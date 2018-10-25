@@ -107,7 +107,7 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
     <OuterGrid item container direction='row' justify='space-evenly'>
       <Grid item lg={4}/>
       <Grid item lg={4}>
-        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth data-hj-whitelist/>
+        <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth inputProps={{dataHjWhitelist: true}}/>
         <CenteredTextGrid item lg={12}>
           <Subcaption dark>daily servings</Subcaption>
         </CenteredTextGrid>

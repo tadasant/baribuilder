@@ -88,7 +88,7 @@ const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps & Rout
           defaultValue={data ? data.searchQuery ? data.searchQuery.value : '' : ''}
           onKeyPress={handleSearchKeyPress}
           onChange={(event) => setSearchQuery(event.target.value || '')}
-          data-hj-whitelist
+          inputProps={{dataHjWhitelist: true}}
         />
       </Grid>
       <Grid item lg={2}>

@@ -119,7 +119,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
           <TextField type='number' onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth
-                     label='Minimum' data-hj-whitelist/>
+                     label='Minimum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
@@ -130,7 +130,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
           <TextField type='number' onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth
-                     label='Maximum' data-hj-whitelist/>
+                     label='Maximum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
