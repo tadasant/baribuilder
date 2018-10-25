@@ -8,6 +8,7 @@ import {media} from '../../style/Core';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
+import {CTANavButton} from './1_Hero.react';
 
 const BoxedBlueShadowHangingGrid = styled(Grid)`
   && {

@@ -13,6 +13,7 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Navbar from '../components/navbar/Navbar';
 import config from '../config/config';
+import {defaultFields} from '../lib/analytics';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
@@ -62,6 +63,10 @@ const client = new ApolloClient({
 });
 
 class App extends Component {
+  componentDidMount() {
+    analytics.page('Loaded App', defaultFields);
+  }
+
   public render() {
     return (
       <MuiThemeProvider theme={theme}>

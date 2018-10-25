@@ -32,7 +32,7 @@ const HeroGrid = styled(Grid)`
   }
 `;
 
-const CTANavButton = styled(Button)`
+export const CTANavButton = styled(Button)`
   && {
     color: ${Sketch.color.accent.white};
     background-color: ${Sketch.color.accent.black};
