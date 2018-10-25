@@ -1,6 +1,9 @@
 # baribuilder
 BariBuilder Monorepo
 
+Production: https://baribuilder.com/
+Development: https://dev.baribuilder.com/
+
 ## baribuilder-api (Graphcool)
 
 `npm install -g graphcool`
