@@ -84,11 +84,10 @@ const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps & Rout
       <Grid item lg={10}>
         <NearFullWidthTextField
           placeholder='Search'
-          inputProps={{style: {color: Sketch.color.accent.white}}}
+          inputProps={{style: {color: Sketch.color.accent.white}, dataHjWhitelist: true}}
           defaultValue={data ? data.searchQuery ? data.searchQuery.value : '' : ''}
           onKeyPress={handleSearchKeyPress}
           onChange={(event) => setSearchQuery(event.target.value || '')}
-          inputProps={{dataHjWhitelist: true}}
         />
       </Grid>
       <Grid item lg={2}>
