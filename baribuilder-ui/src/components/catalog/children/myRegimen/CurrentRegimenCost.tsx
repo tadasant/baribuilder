@@ -1,5 +1,4 @@
 import {Grid} from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
@@ -12,7 +11,6 @@ import {
   GetCurrentRegimenProducts_currentRegimen_products
 } from '../../../../typings/gql/GetCurrentRegimenProducts';
 import {FREQUENCY} from '../../../../typings/gql/globalTypes';
-import {ShadowedSelect} from '../../../style/CustomMaterial';
 import {EmptyRow} from '../../../style/Layout';
 import {Header2} from '../../../style/Typography';
 
@@ -54,7 +52,7 @@ const CurrentRegimenCostPure: SFC<DataOutputProps> = ({data: {currentRegimen, lo
     return (
       <Grid container direction='row' alignItems='flex-start'>
         <CenteredTextGrid item lg={12}>
-          <Header2 dark>Regimen Cost</Header2>
+          <Header2 dark>Total {upperFirst(FREQUENCY.MONTHLY.toLowerCase())} Regimen Cost</Header2>
         </CenteredTextGrid>
         <CenteredTextGrid item lg={12}>
           <Header2 dark>$<u>{monthlyRegimenCost.toFixed(2)}</u></Header2>
@@ -62,9 +60,10 @@ const CurrentRegimenCostPure: SFC<DataOutputProps> = ({data: {currentRegimen, lo
         <EmptyRow/>
         <Grid item lg={3} />
         <Grid item lg={6}>
-          <ShadowedSelect value={FREQUENCY.MONTHLY}>
-            <MenuItem value={FREQUENCY.MONTHLY} key={FREQUENCY.MONTHLY}>{upperFirst(FREQUENCY.MONTHLY.toLowerCase())}</MenuItem>
-          </ShadowedSelect>
+          {/*/!* TODO enable options; don't forget to change hardcoded header as well *!/*/}
+          {/*<ShadowedSelect value={FREQUENCY.MONTHLY}>*/}
+          {/*<MenuItem value={FREQUENCY.MONTHLY} key={FREQUENCY.MONTHLY}>{upperFirst(FREQUENCY.MONTHLY.toLowerCase())}</MenuItem>*/}
+          {/*</ShadowedSelect>*/}
         </Grid>
         <Grid item lg={3} />
       </Grid>
