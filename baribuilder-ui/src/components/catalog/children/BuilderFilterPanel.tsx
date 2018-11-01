@@ -5,7 +5,7 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
-import {compose} from 'recompose';
+import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetEnumValuesOfCategoriesAndForms} from '../../../typings/gql/GetEnumValuesOfCategoriesAndForms';
@@ -66,6 +66,10 @@ const UnselectedCategoryFont = styled(Body)`
   font-size: ${Sketch.typography.caption.fontSize};
 `;
 
+const UnselectedCategoryFontWithPointer = styled(UnselectedCategoryFont)`
+  cursor: pointer;
+`;
+
 const Chips = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -79,13 +83,23 @@ export const prettifyEnumString = (s: string): string => {
   return s.toLowerCase().split('_').map(str => upperFirst(str)).join(' ');
 };
 
-const enhance = compose<IProps & QueryOutputProps, IProps>(
+const enhance = compose<IProps & QueryOutputProps & IPropsState & RouteComponentProps, IProps>(
+  withState<IProps, boolean, 'showAllCategories', 'setShowAllCategories'>(
+    'showAllCategories',
+    'setShowAllCategories',
+    false,
+  ),
   withData,
   withRouter,
 );
 
-// Pure
-const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = ({data: {CATEGORIES, FORMS, BRANDS}, selectedCategory, activeFilters, setFilters}) => {
+interface IPropsState {
+  showAllCategories: boolean
+  setShowAllCategories: (state: boolean) => boolean
+}
+
+const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps & IPropsState> = ({data: {CATEGORIES, FORMS, BRANDS}, selectedCategory, activeFilters, setFilters, showAllCategories, setShowAllCategories}) => {
+  const categoriesToShow = CATEGORIES && CATEGORIES.enumValues ? showAllCategories ? CATEGORIES.enumValues : CATEGORIES.enumValues.slice(0, 5) : [];
   return (
     <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
@@ -105,7 +119,7 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
             </UndecoratedLink>
           </Grid>
           <Grid item container lg={12}>
-            {CATEGORIES && CATEGORIES.enumValues ? CATEGORIES.enumValues.map(category => (
+            {categoriesToShow.map(category => (
               <Fragment key={category.name}>
                 <Grid item lg={1}/>
                 <Grid item lg={11}>
@@ -118,7 +132,19 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
                   </UndecoratedLink>
                 </Grid>
               </Fragment>
-            )) : null}
+            ))}
+            {
+              showAllCategories
+                ? null
+                : (
+                  <Fragment>
+                    <Grid item lg={1}/>
+                    <Grid item lg={11}>
+                      <UnselectedCategoryFontWithPointer dark onClick={() => setShowAllCategories(true)}>...</UnselectedCategoryFontWithPointer>
+                    </Grid>
+                  </Fragment>
+                )
+            }
           </Grid>
           <EmptyRow/>
           <Grid item lg={12}>
