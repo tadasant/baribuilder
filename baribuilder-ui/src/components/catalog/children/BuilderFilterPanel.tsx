@@ -126,14 +126,11 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
           </Grid>
           <EmptyRow/>
           <Grid item lg={12}>
-            <UnselectedCategoryFont dark>Pill Form</UnselectedCategoryFont>
+            <UnselectedCategoryFont dark>Pill Forms</UnselectedCategoryFont>
             <FullWidthSelect
               multiple
               value={activeFilters.FORM}
               variant='outlined'
-              inputProps={{
-                name: 'Pill Form'
-              }}
               MenuProps={{
                 anchorOrigin: {
                   vertical: "top",
@@ -160,6 +157,43 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
               {FORMS && FORMS.enumValues ? FORMS.enumValues.map(form => (
                 <MenuItem key={form.name} value={form.name}>
                   {prettifyEnumString(form.name)}
+                </MenuItem>
+              )) : null}
+            </FullWidthSelect>
+          </Grid>
+          <EmptyRow/>
+          <Grid item lg={12}>
+            <UnselectedCategoryFont dark>Brands</UnselectedCategoryFont>
+            <FullWidthSelect
+              multiple
+              value={activeFilters.BRAND}
+              variant='outlined'
+              MenuProps={{
+                anchorOrigin: {
+                  vertical: "top",
+                  horizontal: "right"
+                },
+                transformOrigin: {
+                  vertical: "top",
+                  horizontal: "left"
+                },
+                getContentAnchorEl: null
+              }}
+              // @ts-ignore mis-typing on possibility for array
+              onChange={(event) => setFilters('BRAND', event.target.value)}
+              renderValue={() => {
+                return (
+                  <Chips>
+                    {activeFilters.BRAND.map(name => (
+                      <Chip key={name} label={prettifyEnumString(name)}/>
+                    ))}
+                  </Chips>
+                );
+              }}
+            >
+              {BRANDS && BRANDS.enumValues ? BRANDS.enumValues.map(brand => (
+                <MenuItem key={brand.name} value={brand.name}>
+                  {prettifyEnumString(brand.name)}
                 </MenuItem>
               )) : null}
             </FullWidthSelect>
