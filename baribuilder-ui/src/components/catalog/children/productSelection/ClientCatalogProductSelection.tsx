@@ -1,9 +1,10 @@
-import {Grid, Paper} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import Pagination from "rc-pagination";
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
+import Sketch from '../../../../app/style/SketchVariables';
 import {GetCatalogProducts_allClientCatalogProducts} from '../../../../typings/gql/GetCatalogProducts';
 import {EmptyRow} from '../../../style/Layout';
 import {SORTING_STRATEGY} from '../../CatalogScreen';
@@ -61,6 +62,10 @@ const sortClientCatalogProducts = (
   }
 };
 
+const GridWithBottomBorder = styled(Grid)`
+  border-bottom: 1px solid ${Sketch.color.accent.grey};
+`;
+
 // Pure
 const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogProducts, currentPage, setCurrentPage, sortingStrategy, onAddToRegimen}) => {
   if (filteredClientCatalogProducts) {
@@ -77,13 +82,11 @@ const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogP
         {
           productsToDisplay.map(product => (
             <Fragment key={product.catalogProductId}>
-              <Grid item lg={12}>
-                <Paper>
-                  <PaddedDiv>
-                    <ClientCatalogProduct id={product.catalogProductId} onAddToRegimen={onAddToRegimen}/>
-                  </PaddedDiv>
-                </Paper>
-              </Grid>
+              <GridWithBottomBorder item lg={12}>
+                <PaddedDiv>
+                  <ClientCatalogProduct id={product.catalogProductId} onAddToRegimen={onAddToRegimen}/>
+                </PaddedDiv>
+              </GridWithBottomBorder>
               <EmptyRow mobile='0px'/>
             </Fragment>
           ))
