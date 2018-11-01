@@ -87,9 +87,9 @@ const filterClientCatalogProducts = (
 
 const CatalogScreenPure: SFC<IProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
-  const numColumnsForFilter = showMyProducts && showMyRegimen ? null : 2;
+  const numColumnsForFilter = 2;
   // @ts-ignore can't figure out my math
-  const numColumnsForMain: 10 | 7 | 6 | 5 = 10 - (showMyProducts ? 3 : 0) - (showMyRegimen ? 4 : 0) + (showMyProducts && showMyRegimen ? 2 : 0);
+  const numColumnsForMain: 10 | 8 | 6 | 4 = 10 - (showMyProducts ? 2 : 0) - (showMyRegimen ? 4 : 0);
   const isMyRegimenOnRight = !showMyProducts && showMyRegimen;
 
   const filteredClientCatalogProducts = filterClientCatalogProducts(props.clientCatalogProducts, props.searchQuery, props.allCatalogProducts, props.selectedCategory, props.activeFilters);
@@ -133,7 +133,7 @@ const CatalogScreenPure: SFC<IProps> = props => {
         }
         {
           !showMyProducts ? null :
-            <TabGrid item lg={3}>
+            <TabGrid item lg={2}>
               <BuilderMyProducts/>
             </TabGrid>
         }

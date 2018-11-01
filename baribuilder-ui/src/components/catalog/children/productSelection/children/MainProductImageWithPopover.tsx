@@ -18,6 +18,7 @@ interface IPropsState {
 
 const MainImage = styled(MainProductImage)`
   max-height: 100px;
+  max-width: 100%;
 `;
 
 const NoPointerEventsPopover = styled(Popover)`

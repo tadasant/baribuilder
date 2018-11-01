@@ -55,7 +55,7 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
             ? <Body dark>Cost Effectiveness Rating &nbsp;<HelpIcon tooltipText={helpText} height='16px'/></Body>
             : (
               <GreyBody>
-                <UndecoratedLink to='/goals'><u>Set your goals</u></UndecoratedLink> to see better information here.
+                <UndecoratedLink to='/goals'><u>Set your goals</u></UndecoratedLink> to see better info here.
               </GreyBody>
             )
         }

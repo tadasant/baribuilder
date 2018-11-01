@@ -94,9 +94,9 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
 
   let sortColumnCount: 2 | 3 | 4 | 5 = 5; // !showMyProducts && !showMyRegimen
   if (showMyProducts && !showMyRegimen) {
-    sortColumnCount = 4;
+    sortColumnCount = 5;
   } else if (showMyProducts && showMyRegimen) {
-    sortColumnCount = 2;
+    sortColumnCount = 3;
   } else if (!showMyProducts && showMyRegimen) {
     sortColumnCount = 3;
   }
@@ -147,7 +147,7 @@ const MyProductsTabHeader: SFC<IProps & { style?: any }> = ({setShowMyProducts, 
   const handleMyProductsClick = () => setShowMyProducts(!showMyProducts);
   if (showMyProducts) {
     return (
-      <NavTabGrid item lg={3} style={style}>
+      <NavTabGrid item lg={2} style={style}>
         <NavTabButtonActive fullWidth onClick={handleMyProductsClick}>My Products</NavTabButtonActive>
       </NavTabGrid>
     );
