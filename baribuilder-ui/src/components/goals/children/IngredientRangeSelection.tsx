@@ -65,7 +65,7 @@ const ingredientNameWithSynonymsDisplay = (ingredientType: GetIngredientReferenc
   if (!ingredientType.synonyms || ingredientType.synonyms.length === 0) {
     return ingredientType.name;
   }
-  const synonymDisplay = ingredientType.synonyms.map(s => upperFirst(s)).join(', ');
+  const synonymDisplay = ingredientType.synonyms.slice(0, 2).map(s => upperFirst(s)).join(', ');
   return `${ingredientType.name} (${synonymDisplay})`
 };
 
@@ -101,8 +101,20 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       <Grid item lg={3} container direction='column' justify='flex-end'>
         <Grid item>
           <Tooltip title={tooltipText || ''}>
-            <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName}
-                                      onChange={handleChangeIngredientTypeName}>
+            <EmphasizedShadowedSelect
+              value={ingredientRange.ingredientTypeName}
+              onChange={handleChangeIngredientTypeName}
+              MenuProps={{
+                anchorOrigin: {
+                  vertical: "top",
+                  horizontal: "right"
+                },
+                transformOrigin: {
+                  vertical: "top",
+                  horizontal: "left"
+                },
+                getContentAnchorEl: null
+              }}>
               {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
                 <MenuItem value={ingredientType.name}
                           key={ingredientType.name}>{ingredientNameWithSynonymsDisplay(ingredientType)}</MenuItem>
