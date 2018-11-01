@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
 import {DataProps, graphql, MutateProps} from 'react-apollo';
+import {toast} from 'react-toastify';
 import {compose, pure} from "recompose";
 import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../../../app/BuilderApp';
 import XIcon from '../../../../assets/icon/x.svg';
@@ -50,7 +51,14 @@ const XRegimenProductIcon: SFC<MutationOutputProps & IProps> = ({mutate}) => {
     console.warn('Mutate unavailable. Error code 952838.');
     return null;
   }
-  const handleClick = () => mutate();
+  const handleClick = () => {
+    mutate()
+      .then(response => {
+        if (response && !response.errors) {
+          toast.success(`Removed product.`);
+        }
+      });
+  }
   return <XIconImg src={XIcon} onClick={handleClick}/>;
 };
 

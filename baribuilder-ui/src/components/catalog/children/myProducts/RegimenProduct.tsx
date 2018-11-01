@@ -4,6 +4,7 @@ import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {ChangeEvent, Fragment, KeyboardEvent, SFC} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
+import {toast} from 'react-toastify';
 import {compose, pure} from 'recompose';
 import styled from 'styled-components';
 import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../../../app/BuilderApp';
@@ -96,6 +97,10 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
         }
       },
       refetchQueries: [{query: PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY}],
+    }).then(response => {
+      if (response && !response.errors) {
+        toast.success(`Product quantity updated`);
+      }
     });
 
     const handleChangeQuantity = (event: ChangeEvent<HTMLInputElement>) => mutateAmount(event.target.value ? parseInt(event.target.value, 10) : 0);

@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
 import {DataProps, graphql, MutateProps} from 'react-apollo';
+import {toast} from 'react-toastify';
 import {compose, pure} from 'recompose';
 import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../../../../app/BuilderApp';
 import {AddProduct, AddProductVariables} from '../../../../../typings/gql/AddProduct';
@@ -51,10 +52,15 @@ const enhance = compose<IProps & GraphqlOutputProps, IProps>(
 );
 
 // Pure
-const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate, onAddToRegimen}) => {
+const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate, onAddToRegimen, quantity}) => {
   const handleClick = () => {
     if (mutate) {
-      mutate();
+      mutate()
+        .then(response => {
+          if (response && !response.errors) {
+            toast.success(`${quantity.amount} ${quantity.units.toLowerCase()} of product added.`);
+          }
+        });
       onAddToRegimen();
     } else {
       console.error('mutate undefined')

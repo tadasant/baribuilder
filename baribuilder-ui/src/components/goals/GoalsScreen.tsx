@@ -198,6 +198,7 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
         });
       } else {
         this.props.history.push('/browse/all_products');
+        toast.success('Goals successfully set.');
       }
     });
   };
