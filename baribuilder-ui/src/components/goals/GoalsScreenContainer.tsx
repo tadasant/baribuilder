@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
+import {compose, lifecycle} from 'recompose';
 import '../../state/fragments.graphql';
 import {GetGoalsScreenContainerData} from '../../typings/gql/GetGoalsScreenContainerData';
 import GoalsScreen, {IGoalsScreenState} from './GoalsScreen';
@@ -43,4 +44,13 @@ const GoalsScreenContainer: SFC<QueryOutputProps> = ({data}) => {
 
 const withData = graphql<{}, GetGoalsScreenContainerData>(GOALS_SCREEN_CONTAINER_QUERY);
 
-export default withData(GoalsScreenContainer);
+const enhance = compose<QueryOutputProps, {}>(
+  lifecycle({
+    componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }),
+  withData
+);
+
+export default enhance(GoalsScreenContainer);

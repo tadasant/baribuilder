@@ -5,7 +5,7 @@ import * as React from 'react';
 import {Component, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
-import {compose, withProps} from 'recompose';
+import {compose, lifecycle, withProps} from 'recompose';
 import styled from 'styled-components';
 import {GetCatalogProductVariables} from '../../typings/gql/GetCatalogProduct';
 import {GetCatalogProducts} from '../../typings/gql/GetCatalogProducts';
@@ -193,7 +193,12 @@ const enhance = compose<QueryOutputProps & RouteComponentProps & IDerivedProps, 
     const goalsSet = !props.data.loading && props.data.goalIngredients ? Boolean(props.data.goalIngredients.ingredientRanges.length) : false;
     // Force re-construct when goals are set
     return {key: goalsSet ? 'goalsSet' : 'goalsNotSet', goalsSet};
-  })
+  }),
+  lifecycle({
+    componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }),
 );
 
 interface IDerivedProps {
