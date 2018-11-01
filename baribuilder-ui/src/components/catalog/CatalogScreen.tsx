@@ -96,6 +96,7 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
     this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
     this.handleAddToRegimen = this.handleAddToRegimen.bind(this);
+    this.setSortingStrategy = this.setSortingStrategy.bind(this);
   }
 
   setShowMyProducts(showMyProducts: boolean) {
@@ -114,6 +115,12 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
       showMyProducts: prevState.hasOpenedMyProducts ? prevState.showMyProducts : true,
       hasOpenedMyProducts: true,
     }));
+  }
+
+  setSortingStrategy(sortingStrategy: SORTING_STRATEGY) {
+    this.setState({
+      sortingStrategy
+    })
   }
 
   render() {
@@ -139,6 +146,7 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
         showMyRegimen={this.state.showMyRegimen}
         setShowMyRegimen={this.setShowMyRegimen}
         sortingStrategy={this.state.sortingStrategy}
+        setSortingStrategy={this.setSortingStrategy}
         onAddToRegimen={this.handleAddToRegimen}
         goalsSet={this.props.goalsSet}
       />

@@ -24,6 +24,7 @@ interface IProps {
   showMyRegimen: boolean;
   setShowMyRegimen: SetBuilderStateFunction;
   sortingStrategy: SORTING_STRATEGY;
+  setSortingStrategy: (strategy: SORTING_STRATEGY) => void;
   searchQuery: GetCatalogProducts_searchQuery;
   allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
   clientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];

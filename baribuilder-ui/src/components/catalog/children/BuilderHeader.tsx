@@ -23,6 +23,7 @@ interface IProps {
   isMyRegimenOnRight: boolean;
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
+  setSortingStrategy: (strategy: SORTING_STRATEGY) => void
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
   goalsSet: boolean;
 }
@@ -100,6 +101,10 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
     sortColumnCount = 3;
   }
 
+  const handleChangeSortingStrategy: React.ChangeEventHandler<HTMLSelectElement> = event => {
+    props.setSortingStrategy(SORTING_STRATEGY[event.target.value]);
+  };
+
   const validSortValues = Object.keys(SORTING_STRATEGY).filter(key => {
     // Shouldn't show Cost Effectiveness if goals aren't set
     return !(key === SORTING_STRATEGY.COST_EFFECTIVENESS_DESC && !props.goalsSet);
@@ -117,8 +122,7 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
       </Grid>
       <RightPaddedGrid item lg={sortColumnCount} container alignItems='center' justify='flex-end'>
         <Grid item>
-          {/* TODO replace w/ enum, ability to change */}
-          <ShadowedSelectWithPadding value={props.sortingStrategy}>
+          <ShadowedSelectWithPadding value={props.sortingStrategy} onChange={handleChangeSortingStrategy}>
             {
               validSortValues.map(key => (
                 <MenuItem
