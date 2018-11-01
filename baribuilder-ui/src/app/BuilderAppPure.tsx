@@ -1,7 +1,7 @@
 import {Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom';
 import CatalogScreen from '../components/catalog/CatalogScreen';
 import Footer from '../components/Footer';
 import GoalsScreen from '../components/goals/GoalsScreenContainer';
@@ -19,11 +19,11 @@ import NotFound from './NotFound';
 const disclaimerText = 'The information on this website is not medical advice. Please consult your medical provider ' +
   'before making any changes to your supplementation regimen.';
 
-const BuilderAppPure: SFC = () => {
+const BuilderAppPure: SFC<RouteComponentProps> = ({location}) => {
   return (
     <Fragment>
       <Hidden mdDown>
-        <Switch>
+        <Switch key={location.pathname}>
           <Route path="/browse" component={CatalogScreen}/>
           <Route exact path="/goals" component={GoalsScreen}/>
           <Route exact path="/purchase" component={PurchaseScreen}/>
@@ -52,4 +52,4 @@ const BuilderAppPure: SFC = () => {
   );
 };
 
-export default BuilderAppPure;
+export default withRouter(BuilderAppPure);
