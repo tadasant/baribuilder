@@ -70,6 +70,11 @@ export enum SORTING_STRATEGY {
   COST_EFFECTIVENESS_DESC = "COST_EFFECTIVENESS_DESC"
 }
 
+export const sortStrategyDisplayByEnum: { [x in SORTING_STRATEGY]: string } = {
+  [SORTING_STRATEGY.COST_ASC]: 'Cost (low to high)',
+  [SORTING_STRATEGY.COST_EFFECTIVENESS_DESC]: 'Cost effectiveness (high to low)',
+};
+
 const getSelectedCategory = (pathname: string) => {
   const pathnameTokens = pathname.split('/');
   const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();

@@ -10,7 +10,7 @@ import Sketch from '../../../app/style/SketchVariables';
 import {GetCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetCatalogProducts';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
-import {SORTING_STRATEGY} from '../CatalogScreen';
+import {SORTING_STRATEGY, sortStrategyDisplayByEnum} from '../CatalogScreen';
 import {SetBuilderStateFunction} from '../CatalogScreenPure';
 
 export const builderHeaderHeight = '48px';
@@ -84,11 +84,6 @@ const RightPaddedGrid = styled(Grid)`
   }
 `;
 
-const sortStrategyDisplayByEnum: { [x in SORTING_STRATEGY]: string } = {
-  [SORTING_STRATEGY.COST_ASC]: 'Cost (low to high)',
-  [SORTING_STRATEGY.COST_EFFECTIVENESS_DESC]: 'Cost effectiveness (high to low)',
-};
-
 const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
   const {filteredClientCatalogProducts, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
   const pathnameTokens = location.pathname.split('/');
@@ -105,6 +100,11 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
     sortColumnCount = 3;
   }
 
+  const validSortValues = Object.keys(SORTING_STRATEGY).filter(key => {
+    // Shouldn't show Cost Effectiveness if goals aren't set
+    return !(key === SORTING_STRATEGY.COST_EFFECTIVENESS_DESC && !props.goalsSet);
+  });
+
   return (
     <FixedGrid container direction='row'>
       <Grid item lg={3} container alignItems='center'>
@@ -120,7 +120,7 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
           {/* TODO replace w/ enum, ability to change */}
           <ShadowedSelectWithPadding value={props.sortingStrategy}>
             {
-              Object.keys(SORTING_STRATEGY).map(key => (
+              validSortValues.map(key => (
                 <MenuItem
                   value={SORTING_STRATEGY[key]}
                   key={SORTING_STRATEGY[key]}>
