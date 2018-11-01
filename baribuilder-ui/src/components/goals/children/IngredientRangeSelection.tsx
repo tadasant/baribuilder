@@ -8,7 +8,6 @@ import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import XIcon from '../../../assets/icon/x.svg';
-import {compareIngredientTypeNames} from '../../../lib/constants';
 import {IIngredientRange} from '../../../state/client-schema-types';
 import {
   GetIngredientReferenceData,
@@ -91,7 +90,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
   };
 
   if (allIngredientTypes) {
-    allIngredientTypes.sort((t1, t2) => compareIngredientTypeNames(t1.name, t2.name));
+    allIngredientTypes.sort((t1, t2) => t1.name.localeCompare(t2.name));
   }
 
   const currentIngredientType = allIngredientTypes ? allIngredientTypes.find(ingredientType => ingredientType.name === ingredientRange.ingredientTypeName) : undefined;
