@@ -41,12 +41,21 @@ const FooterGrid = styled(Grid)`
 const WideLink = styled(UndecoratedLink)`
   && {
     width: 100%;
-    padding-left: 16px;
-    padding-right: 16px;
   }
 `;
 
-// Pure
+const NoMarginGrid = styled(Grid)`
+  && {
+    margin: 0;
+  }
+`;
+
+const HPaddedGrid = styled(Grid)`
+  && {
+    padding: 0px 8px 0px 8px;
+  }
+`;
+
 const BuilderMyRegimen: SFC = () => {
   return (
     <Fragment>
@@ -68,13 +77,22 @@ const BuilderMyRegimen: SFC = () => {
       </OuterGrid>
       <Footer>
         <FooterGrid item lg={12} container direction='column' justify='center'>
-          <Grid item container>
-            <WideLink to='/goals'>
-              <Button variant='raised' color='secondary' fullWidth>
-                Edit Goal Ingredients
-              </Button>
-            </WideLink>
-          </Grid>
+          <NoMarginGrid item container>
+            <HPaddedGrid item lg={6}>
+              <WideLink to='/purchase'>
+                <Button variant='raised' color='primary' fullWidth>
+                  Checkout
+                </Button>
+              </WideLink>
+            </HPaddedGrid>
+            <HPaddedGrid item lg={6}>
+              <WideLink to='/goals'>
+                <Button variant='raised' color='secondary' fullWidth>
+                  Edit Goals
+                </Button>
+              </WideLink>
+            </HPaddedGrid>
+          </NoMarginGrid>
         </FooterGrid>
       </Footer>
     </Fragment>
