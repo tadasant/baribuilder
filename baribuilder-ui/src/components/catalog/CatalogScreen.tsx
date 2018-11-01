@@ -3,14 +3,17 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {Component, SFC} from 'react';
-import {Query} from 'react-apollo';
+import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {compose, withProps} from 'recompose';
 import styled from 'styled-components';
+import {GetCatalogProductVariables} from '../../typings/gql/GetCatalogProduct';
+import {GetCatalogProducts} from '../../typings/gql/GetCatalogProducts';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
 import CatalogScreenPure from './CatalogScreenPure';
 
-export const CATALOG_PRODUCTS_QUERY = gql`
+export const GET_CATALOG_PRODUCTS = gql`
     query GetCatalogProducts {
         allCatalogProducts {
             id
@@ -31,8 +34,15 @@ export const CATALOG_PRODUCTS_QUERY = gql`
             }
             costEffectivenessRating
         }
+        goalIngredients @client {
+            ingredientRanges {
+                ingredientTypeName
+            }
+        }
     }
 `;
+
+type QueryOutputProps = ChildDataProps<{}, GetCatalogProducts, GetCatalogProductVariables>;
 
 interface IState {
   showMyProducts: boolean;
@@ -57,6 +67,7 @@ export const CenteredSpinner: SFC = () => (
 
 export enum SORTING_STRATEGY {
   COST_ASC = "COST_ASC",
+  COST_EFFECTIVENESS_DESC = "COST_EFFECTIVENESS_DESC"
 }
 
 const getSelectedCategory = (pathname: string) => {
@@ -68,13 +79,13 @@ const getSelectedCategory = (pathname: string) => {
   return selectedCategory;
 };
 
-class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
-  constructor(props: RouteComponentProps) {
+class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & IDerivedProps, Readonly<IState>> {
+  constructor(props: QueryOutputProps & RouteComponentProps & IDerivedProps) {
     super(props);
     this.state = {
       showMyProducts: false,
       showMyRegimen: true,
-      sortingStrategy: SORTING_STRATEGY.COST_ASC,
+      sortingStrategy: props.goalsSet ? SORTING_STRATEGY.COST_EFFECTIVENESS_DESC : SORTING_STRATEGY.COST_ASC,
       hasOpenedMyProducts: false,
     };
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
@@ -101,6 +112,11 @@ class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
   }
 
   render() {
+    const {data: {loading, allCatalogProducts, allClientCatalogProducts, searchQuery}} = this.props;
+    if (loading || !allCatalogProducts || !allClientCatalogProducts || !searchQuery) {
+      return null;
+    }
+
     const selectedCategory = getSelectedCategory(this.props.location.pathname);
     if (!selectedCategory) {
       this.props.history.push('/not-found');
@@ -108,30 +124,37 @@ class CatalogScreen extends Component<RouteComponentProps, Readonly<IState>> {
     }
 
     return (
-      <Query query={CATALOG_PRODUCTS_QUERY}>
-        {({data: {allCatalogProducts, allClientCatalogProducts, searchQuery}, loading}) => {
-          if (loading || !allCatalogProducts || !allClientCatalogProducts) {
-            return null;
-          }
-          return (
-            <CatalogScreenPure
-              selectedCategory={selectedCategory}
-              allCatalogProducts={allCatalogProducts}
-              clientCatalogProducts={allClientCatalogProducts}
-              searchQuery={searchQuery}
-              showMyProducts={this.state.showMyProducts}
-              setShowMyProducts={this.setShowMyProducts}
-              showMyRegimen={this.state.showMyRegimen}
-              setShowMyRegimen={this.setShowMyRegimen}
-              sortingStrategy={this.state.sortingStrategy}
-              onAddToRegimen={this.handleAddToRegimen}
-            />
-          );
-        }}
-      </Query>
-
-    )
+      <CatalogScreenPure
+        selectedCategory={selectedCategory}
+        allCatalogProducts={allCatalogProducts}
+        clientCatalogProducts={allClientCatalogProducts}
+        searchQuery={searchQuery}
+        showMyProducts={this.state.showMyProducts}
+        setShowMyProducts={this.setShowMyProducts}
+        showMyRegimen={this.state.showMyRegimen}
+        setShowMyRegimen={this.setShowMyRegimen}
+        sortingStrategy={this.state.sortingStrategy}
+        onAddToRegimen={this.handleAddToRegimen}
+        goalsSet={this.props.goalsSet}
+      />
+    );
   }
 }
 
-export default withRouter(CatalogScreen);
+const withData = graphql<{}, GetCatalogProducts>(GET_CATALOG_PRODUCTS);
+
+const enhance = compose<QueryOutputProps & RouteComponentProps & IDerivedProps, {}>(
+  withData,
+  withRouter,
+  withProps((props: QueryOutputProps & RouteComponentProps) => {
+    const goalsSet = !props.data.loading && props.data.goalIngredients ? Boolean(props.data.goalIngredients.ingredientRanges.length) : false;
+    // Force re-construct when goals are set
+    return {key: goalsSet ? 'goalsSet' : 'goalsNotSet', goalsSet};
+  })
+);
+
+interface IDerivedProps {
+  goalsSet: boolean;
+}
+
+export default enhance(CatalogScreen);

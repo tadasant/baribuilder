@@ -29,6 +29,7 @@ interface IProps {
   clientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
   selectedCategory: string;
   onAddToRegimen: () => void;
+  goalsSet: boolean;
 }
 
 const TabGrid = styled(Grid)`

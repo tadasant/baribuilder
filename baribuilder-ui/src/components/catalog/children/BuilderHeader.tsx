@@ -1,19 +1,16 @@
 import {Button, Grid} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import {fade} from '@material-ui/core/styles/colorManipulator';
-import gql from 'graphql-tag';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
-import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
-import {GetBuilderHeaderData} from '../../../typings/gql/GetBuilderHeaderData';
 import {GetCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetCatalogProducts';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
+import {SORTING_STRATEGY} from '../CatalogScreen';
 import {SetBuilderStateFunction} from '../CatalogScreenPure';
 
 export const builderHeaderHeight = '48px';
@@ -25,20 +22,10 @@ interface IProps {
   showMyRegimen: boolean;
   isMyRegimenOnRight: boolean;
   selectedCategory: string;
+  sortingStrategy: SORTING_STRATEGY;
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
+  goalsSet: boolean;
 }
-
-const BUILDER_HEADER_DATA_QUERY = gql`
-    query GetBuilderHeaderData {
-        goalIngredients @client {
-            ingredientRanges {
-                ingredientTypeName
-            }
-        }
-    }
-`;
-
-type QueryOutputProps = ChildDataProps<IProps, GetBuilderHeaderData>;
 
 const FixedGrid = styled(Grid)`
   && {
@@ -97,8 +84,12 @@ const RightPaddedGrid = styled(Grid)`
   }
 `;
 
-// Pure
-const BuilderHeaderPure: SFC<IProps & RouteComponentProps & QueryOutputProps> = props => {
+const sortStrategyDisplayByEnum: { [x in SORTING_STRATEGY]: string } = {
+  [SORTING_STRATEGY.COST_ASC]: 'Cost (low to high)',
+  [SORTING_STRATEGY.COST_EFFECTIVENESS_DESC]: 'Cost effectiveness (high to low)',
+};
+
+const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
   const {filteredClientCatalogProducts, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
   const pathnameTokens = location.pathname.split('/');
   const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
@@ -114,9 +105,6 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps & QueryOutputProps> = 
     sortColumnCount = 3;
   }
 
-  // TODO this cost vs. cost effectiveness is very hacky
-  const costSortName = props.data.goalIngredients && props.data.goalIngredients.ingredientRanges.length > 0 ? 'Cost effectiveness (high to low)' : 'Cost (low to high)'
-
   return (
     <FixedGrid container direction='row'>
       <Grid item lg={3} container alignItems='center'>
@@ -130,9 +118,16 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps & QueryOutputProps> = 
       <RightPaddedGrid item lg={sortColumnCount} container alignItems='center' justify='flex-end'>
         <Grid item>
           {/* TODO replace w/ enum, ability to change */}
-          <ShadowedSelectWithPadding value='cost'>
-            <MenuItem value='cost'
-                      key='cost'>{costSortName}</MenuItem>
+          <ShadowedSelectWithPadding value={props.sortingStrategy}>
+            {
+              Object.keys(SORTING_STRATEGY).map(key => (
+                <MenuItem
+                  value={SORTING_STRATEGY[key]}
+                  key={SORTING_STRATEGY[key]}>
+                  {sortStrategyDisplayByEnum[SORTING_STRATEGY[key]]}
+                </MenuItem>
+              ))
+            }
           </ShadowedSelectWithPadding>
         </Grid>
       </RightPaddedGrid>
@@ -177,11 +172,4 @@ const MyRegimenTabHeader: SFC<IProps & { style?: any }> = ({setShowMyRegimen, sh
   );
 };
 
-const withData = graphql<IProps, GetBuilderHeaderData>(BUILDER_HEADER_DATA_QUERY);
-
-const enhance = compose<IProps & RouteComponentProps & QueryOutputProps, IProps>(
-  withData,
-  withRouter
-);
-
-export default enhance(BuilderHeaderPure);
+export default withRouter(BuilderHeaderPure);

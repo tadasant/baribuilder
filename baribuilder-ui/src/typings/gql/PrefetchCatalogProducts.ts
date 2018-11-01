@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { BRAND, CATEGORY, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
+import { BRAND, CATEGORY, RETAILER, AFFILIATE_PLATFORM, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: PrefetchCatalogProducts
@@ -9,6 +9,7 @@ import { BRAND, CATEGORY, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "
 
 export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings_affiliateLink {
   __typename: "AffiliateLink";
+  source: AFFILIATE_PLATFORM;
   url: string;
 }
 
@@ -19,6 +20,8 @@ export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings_pr
 
 export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings {
   __typename: "PackageListing";
+  id: string;
+  retailerName: RETAILER;
   affiliateLink: PrefetchCatalogProducts_allCatalogProducts_packages_listings_affiliateLink | null;
   price: PrefetchCatalogProducts_allCatalogProducts_packages_listings_price;
 }

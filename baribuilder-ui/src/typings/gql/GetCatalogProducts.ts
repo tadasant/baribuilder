@@ -33,8 +33,19 @@ export interface GetCatalogProducts_allClientCatalogProducts {
   costEffectivenessRating: number | null;
 }
 
+export interface GetCatalogProducts_goalIngredients_ingredientRanges {
+  __typename: "IngredientRange";
+  ingredientTypeName: string;
+}
+
+export interface GetCatalogProducts_goalIngredients {
+  __typename: "GoalIngredients";
+  ingredientRanges: GetCatalogProducts_goalIngredients_ingredientRanges[];
+}
+
 export interface GetCatalogProducts {
   allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
   searchQuery: GetCatalogProducts_searchQuery;
   allClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
+  goalIngredients: GetCatalogProducts_goalIngredients;
 }
