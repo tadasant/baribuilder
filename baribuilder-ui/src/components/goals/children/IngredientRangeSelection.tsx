@@ -95,7 +95,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
   }
 
   const currentIngredientType = allIngredientTypes ? allIngredientTypes.find(ingredientType => ingredientType.name === ingredientRange.ingredientTypeName) : undefined;
-  const tooltipText = currentIngredientType ?  ingredientNameWithSynonymsDisplay(currentIngredientType) : undefined;
+  const tooltipText = currentIngredientType ? ingredientNameWithSynonymsDisplay(currentIngredientType) : undefined;
 
   return (
     <Grid container direction='row' spacing={8}>
@@ -105,7 +105,8 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
             <EmphasizedShadowedSelect value={ingredientRange.ingredientTypeName}
                                       onChange={handleChangeIngredientTypeName}>
               {allIngredientTypes ? allIngredientTypes.map(ingredientType => (
-                <MenuItem value={ingredientType.name} key={ingredientType.name}>{ingredientNameWithSynonymsDisplay(ingredientType)}</MenuItem>
+                <MenuItem value={ingredientType.name}
+                          key={ingredientType.name}>{ingredientNameWithSynonymsDisplay(ingredientType)}</MenuItem>
               )) : null}
             </EmphasizedShadowedSelect>
           </Tooltip>
@@ -118,8 +119,9 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
-          <TextField type='number' onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth
-                     label='Minimum' inputProps={{dataHjWhitelist: true}}/>
+          <TextField
+            onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth
+            label='Minimum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
       <Grid item lg={1} container direction='column' justify='flex-end'>
@@ -129,7 +131,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
-          <TextField type='number' onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth
+          <TextField onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth
                      label='Maximum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
@@ -138,9 +140,10 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           <ShadowedSelect value={ingredientRange.units} onChange={handleChangeUnits}>
             {/* Disabling while feature unimplemented */}
             {/*{INGREDIENT_QUANTITY_UNITSES && INGREDIENT_QUANTITY_UNITSES.enumValues ? INGREDIENT_QUANTITY_UNITSES.enumValues.map(units => (*/}
-              {/*<MenuItem value={units.name} key={units.name}>{units.name.toLowerCase()}</MenuItem>*/}
+            {/*<MenuItem value={units.name} key={units.name}>{units.name.toLowerCase()}</MenuItem>*/}
             {/*)) : null}*/}
-            <MenuItem value={ingredientRange.units} key={ingredientRange.units}>{ingredientRange.units.toLowerCase()}</MenuItem>
+            <MenuItem value={ingredientRange.units}
+                      key={ingredientRange.units}>{ingredientRange.units.toLowerCase()}</MenuItem>
           </ShadowedSelect>
         </Grid>
       </Grid>
@@ -150,10 +153,11 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
             <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
               {/* Disabling while feature unimplemented */}
               {/*{FREQUENCIES && FREQUENCIES.enumValues ? FREQUENCIES.enumValues.map(frequency => (*/}
-                {/*<MenuItem value={frequency.name}*/}
-                          {/*key={frequency.name}>{upperFirst(frequency.name.toLowerCase())}</MenuItem>*/}
+              {/*<MenuItem value={frequency.name}*/}
+              {/*key={frequency.name}>{upperFirst(frequency.name.toLowerCase())}</MenuItem>*/}
               {/*)) : null}*/}
-              <MenuItem value={ingredientRange.frequency} key={ingredientRange.frequency}>{upperFirst(ingredientRange.frequency.toLowerCase())}</MenuItem>
+              <MenuItem value={ingredientRange.frequency}
+                        key={ingredientRange.frequency}>{upperFirst(ingredientRange.frequency.toLowerCase())}</MenuItem>
             </ShadowedSelect>
           </Grid>
         </Grid>
