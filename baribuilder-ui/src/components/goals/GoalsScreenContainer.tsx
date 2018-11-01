@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
-import '../../state/fragments.graphql';
 import {GetGoalsScreenContainerData} from '../../typings/gql/GetGoalsScreenContainerData';
 import GoalsScreen, {IGoalsScreenState} from './GoalsScreen';
 import {CUSTOM_TEMPLATE_NAME} from './templates/CustomTemplate';

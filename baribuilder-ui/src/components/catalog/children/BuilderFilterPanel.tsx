@@ -68,8 +68,8 @@ const enhance = compose<IProps & QueryOutputProps, IProps>(
   withRouter,
 );
 
-// Pure
-const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = ({data: {CATEGORY, FORMS}, selectedCategory}) => {
+export const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = (props) => {
+  const {data: {CATEGORY}, selectedCategory} = props;
   return (
     <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
