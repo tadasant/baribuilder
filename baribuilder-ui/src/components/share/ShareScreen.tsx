@@ -101,8 +101,8 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
         currentRegimen: storeValues.currentRegimen,
         goalIngredients: storeValues.goalIngredients
       }
-    }).then(({errors}) => {
-      if (errors) {
+    }).then((response) => {
+      if (response && response.errors) {
         toast.error(`Error loading shared URL! Please contact feedback@vitaglab.com if you think this is a mistake. Error 01988 @ ${(new Date).getTime()}`, {
           autoClose: false,
           closeOnClick: false,

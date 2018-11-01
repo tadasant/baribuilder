@@ -1,4 +1,4 @@
-import {Grid} from '@material-ui/core';
+import {Chip, Grid, MenuItem, Select} from '@material-ui/core';
 import gql from "graphql-tag";
 import {upperFirst} from 'lodash';
 import * as React from 'react';
@@ -12,22 +12,29 @@ import {GetEnumValuesOfCategoriesAndForms} from '../../../typings/gql/GetEnumVal
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Body} from '../../style/Typography';
-import {ROOT_CATEGORY} from '../CatalogScreen';
+import {IFilters, ROOT_CATEGORY, TSetFiltersFunc} from '../CatalogScreen';
 
 interface IProps {
   selectedCategory: string;
+  activeFilters: IFilters;
+  setFilters: TSetFiltersFunc;
 }
 
 type QueryOutputProps = ChildDataProps<IProps, GetEnumValuesOfCategoriesAndForms>;
 
 const withData = graphql<IProps, GetEnumValuesOfCategoriesAndForms>(gql`
     query GetEnumValuesOfCategoriesAndForms {
-        CATEGORY: __type(name: "CATEGORY") {
+        CATEGORIES: __type(name: "CATEGORY") {
             enumValues {
                 name
             }
         }
         FORMS: __type(name: "FORM") {
+            enumValues {
+                name
+            }
+        }
+        BRANDS: __type(name: "BRAND") {
             enumValues {
                 name
             }
@@ -59,6 +66,15 @@ const UnselectedCategoryFont = styled(Body)`
   font-size: ${Sketch.typography.caption.fontSize};
 `;
 
+const Chips = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const FullWidthSelect = styled(Select)`
+  width: 100%;
+`;
+
 export const prettifyEnumString = (s: string): string => {
   return s.toLowerCase().split('_').map(str => upperFirst(str)).join(' ');
 };
@@ -69,7 +85,7 @@ const enhance = compose<IProps & QueryOutputProps, IProps>(
 );
 
 // Pure
-const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = ({data: {CATEGORY, FORMS}, selectedCategory}) => {
+const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProps> = ({data: {CATEGORIES, FORMS, BRANDS}, selectedCategory, activeFilters, setFilters}) => {
   return (
     <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
@@ -89,7 +105,7 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
             </UndecoratedLink>
           </Grid>
           <Grid item container lg={12}>
-            {CATEGORY && CATEGORY.enumValues ? CATEGORY.enumValues.map(category => (
+            {CATEGORIES && CATEGORIES.enumValues ? CATEGORIES.enumValues.map(category => (
               <Fragment key={category.name}>
                 <Grid item lg={1}/>
                 <Grid item lg={11}>
@@ -103,6 +119,50 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
                 </Grid>
               </Fragment>
             )) : null}
+          </Grid>
+          <EmptyRow/>
+          <Grid item lg={12}>
+            <GreyLargeBody>Filters</GreyLargeBody>
+          </Grid>
+          <EmptyRow/>
+          <Grid item lg={12}>
+            <UnselectedCategoryFont dark>Pill Form</UnselectedCategoryFont>
+            <FullWidthSelect
+              multiple
+              value={activeFilters.FORM}
+              variant='outlined'
+              inputProps={{
+                name: 'Pill Form'
+              }}
+              MenuProps={{
+                anchorOrigin: {
+                  vertical: "top",
+                  horizontal: "right"
+                },
+                transformOrigin: {
+                  vertical: "top",
+                  horizontal: "left"
+                },
+                getContentAnchorEl: null
+              }}
+              // @ts-ignore mis-typing on possibility for array
+              onChange={(event) => setFilters('FORM', event.target.value)}
+              renderValue={() => {
+                return (
+                  <Chips>
+                    {activeFilters.FORM.map(name => (
+                      <Chip key={name} label={prettifyEnumString(name)}/>
+                    ))}
+                  </Chips>
+                );
+              }}
+            >
+              {FORMS && FORMS.enumValues ? FORMS.enumValues.map(form => (
+                <MenuItem key={form.name} value={form.name}>
+                  {prettifyEnumString(form.name)}
+                </MenuItem>
+              )) : null}
+            </FullWidthSelect>
           </Grid>
         </Grid>
         <Grid item lg={1}/>

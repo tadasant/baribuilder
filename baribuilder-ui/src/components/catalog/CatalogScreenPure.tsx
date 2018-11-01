@@ -9,7 +9,7 @@ import {
   GetCatalogProducts_allClientCatalogProducts,
   GetCatalogProducts_searchQuery
 } from '../../typings/gql/GetCatalogProducts';
-import {ROOT_CATEGORY, SORTING_STRATEGY} from './CatalogScreen';
+import {IFilters, ROOT_CATEGORY, SORTING_STRATEGY, TSetFiltersFunc} from './CatalogScreen';
 import BuilderFilterPanel from './children/BuilderFilterPanel';
 import BuilderHeader from './children/BuilderHeader';
 import BuilderMainPanel from './children/BuilderMainPanel';
@@ -31,6 +31,8 @@ interface IProps {
   selectedCategory: string;
   onAddToRegimen: () => void;
   goalsSet: boolean;
+  activeFilters: IFilters;
+  setFilters: TSetFiltersFunc;
 }
 
 const TabGrid = styled(Grid)`
@@ -88,7 +90,11 @@ const CatalogScreenPure: SFC<IProps> = props => {
         {
           numColumnsForFilter === null ? null : (
             <Grid item lg={numColumnsForFilter}>
-              <BuilderFilterPanel selectedCategory={props.selectedCategory}/>
+              <BuilderFilterPanel
+                selectedCategory={props.selectedCategory}
+                activeFilters={props.activeFilters}
+                setFilters={props.setFilters}
+              />
             </Grid>
           )
         }

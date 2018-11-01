@@ -20,6 +20,7 @@ export const UndecoratedLink = styled(Link)`
   }
 `;
 
-export const NearFullWidthTextField = styled(TextField)`
+// TODO something wrong with typescript def
+export const NearFullWidthTextField: any = styled(TextField)`
   width: 95%;
 `;

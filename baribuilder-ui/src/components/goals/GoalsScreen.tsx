@@ -190,8 +190,8 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
       variables: {
         goalIngredients: this.state.goalIngredients
       }
-    }).then(({errors}) => {
-      if (errors) {
+    }).then((response) => {
+      if (response && response.errors) {
         toast.error(`Error setting goals! Please contact feedback@vitaglab.com if you think this is a mistake. Error 96572 @ ${(new Date).getTime()}`, {
           autoClose: false,
           closeOnClick: false,

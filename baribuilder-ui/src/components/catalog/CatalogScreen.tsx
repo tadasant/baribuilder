@@ -47,12 +47,20 @@ export const GET_CATALOG_PRODUCTS = gql`
 
 type QueryOutputProps = ChildDataProps<{}, GetCatalogProducts, GetCatalogProductVariables>;
 
+export interface IFilters {
+  FORM: string[]
+  BRAND: string[]
+}
+
 interface IState {
   showMyProducts: boolean;
   showMyRegimen: boolean;
   sortingStrategy: SORTING_STRATEGY;
   hasOpenedMyProducts: boolean;
+  filters: IFilters;
 }
+
+export type TSetFiltersFunc = (variant: keyof IFilters, value: string[] | undefined) => void;
 
 export const ROOT_CATEGORY = 'ALL_PRODUCTS';
 
@@ -97,11 +105,16 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
       showMyRegimen: true,
       sortingStrategy: props.goalsSet ? SORTING_STRATEGY.COST_EFFECTIVENESS_DESC : SORTING_STRATEGY.COST_ASC,
       hasOpenedMyProducts: false,
+      filters: {
+        FORM: [],
+        BRAND: [],
+      },
     };
     this.setShowMyProducts = this.setShowMyProducts.bind(this);
     this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
     this.handleAddToRegimen = this.handleAddToRegimen.bind(this);
     this.setSortingStrategy = this.setSortingStrategy.bind(this);
+    this.setFilters = this.setFilters.bind(this);
   }
 
   setShowMyProducts(showMyProducts: boolean) {
@@ -127,6 +140,15 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
       sortingStrategy
     })
   }
+
+  setFilters: TSetFiltersFunc = (variant, value) => {
+    this.setState((prevState => ({
+      filters: {
+        ...prevState.filters,
+        [variant]: value || []
+      }
+    })))
+  };
 
   render() {
     const {data: {loading, allCatalogProducts, allClientCatalogProducts, searchQuery}} = this.props;
@@ -154,6 +176,8 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
         setSortingStrategy={this.setSortingStrategy}
         onAddToRegimen={this.handleAddToRegimen}
         goalsSet={this.props.goalsSet}
+        setFilters={this.setFilters}
+        activeFilters={this.state.filters}
       />
     );
   }

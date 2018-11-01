@@ -2,7 +2,7 @@ import Grid from '@material-ui/core/Grid/Grid';
 import TextField from '@material-ui/core/TextField/TextField';
 import gql from 'graphql-tag';
 import * as React from 'react';
-import {KeyboardEvent, SFC} from 'react';
+import {ChangeEvent, KeyboardEvent, SFC} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {compose, withState} from "recompose";
@@ -13,7 +13,8 @@ import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SetSearchQuery} from '../../typings/gql/SetSearchQuery';
 import {SEARCH_QUERY_QUERY} from '../catalog/queries';
 
-const NearFullWidthTextField = styled(TextField)`
+// TODO something wrong with typescript def
+const NearFullWidthTextField: any = styled(TextField)`
   width: 95%;
 `;
 
@@ -87,7 +88,7 @@ const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps & Rout
           inputProps={{style: {color: Sketch.color.accent.white}, dataHjWhitelist: true}}
           defaultValue={data ? data.searchQuery ? data.searchQuery.value : '' : ''}
           onKeyPress={handleSearchKeyPress}
-          onChange={(event) => setSearchQuery(event.target.value || '')}
+          onChange={(event: ChangeEvent<HTMLSelectElement>) => setSearchQuery(event.target.value || '')}
         />
       </Grid>
       <Grid item lg={2}>
