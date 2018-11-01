@@ -22,18 +22,10 @@ const RightBorderGrid = styled(Grid)`
   border-right: 1px solid ${Sketch.color.accent.grey};
 `;
 
-const PaperGrid = styled(Grid)`
-  box-shadow: 2px 0px 4px 0px ${Sketch.color.accent.darkgrey};
-  height: 64px;
-  padding: 16px 0px 16px;
-`;
-
 const PurchaseScreenPure: SFC = () => {
   return (
     <Grid container>
-      <PaperGrid container justify='flex-end'>
-        <SharingURLPanel/>
-      </PaperGrid>
+      <SharingURLPanel vStickyOffset='0'/>
       <EmptyRow/>
       <CenteredTextGrid item lg={12}>
         <Caption dark>

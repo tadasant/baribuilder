@@ -3,11 +3,12 @@ import * as copy from 'copy-to-clipboard';
 import gql from 'graphql-tag';
 import * as qs from 'qs';
 import * as React from 'react';
-import {Fragment, SFC} from 'react';
+import {SFC} from 'react';
 import {ChildDataProps, DataValue, graphql} from 'react-apollo';
 import {toast} from 'react-toastify';
 import {compose} from 'recompose';
 import styled from 'styled-components';
+import Sketch from '../../../app/style/SketchVariables';
 import {GetStoreToShare} from '../../../typings/gql/GetStoreToShare';
 import {BoldBody} from '../../style/Typography';
 
@@ -41,6 +42,10 @@ const STORE_TO_SHARE_QUERY = gql`
 
 type QueryOutputProps = ChildDataProps<{}, GetStoreToShare>;
 
+interface IProps {
+  vStickyOffset: string
+}
+
 const dataToShareableURL = ({currentRegimen, goalIngredients}: DataValue<GetStoreToShare, {}>) => {
   const queryString = qs.stringify({
     currentRegimen,
@@ -54,7 +59,18 @@ const HorizontalPaddedGrid = styled(Grid)`
   padding-right: 8px;
 `;
 
-const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
+const PaperGrid = styled(Grid)`
+  box-shadow: 2px 0px 4px 0px ${Sketch.color.accent.darkgrey};
+  height: 64px;
+  padding: 16px 0px 16px;
+  background-color: white;
+  position: sticky;
+  top: ${(props: IProps) => props.vStickyOffset};
+`;
+
+const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {
+  const {data} = props;
+
   const performCopy = () => {
     copy(dataToShareableURL(data));
     toast.success('Successfully copied URL to clipboard');
@@ -62,7 +78,7 @@ const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
 
   if (data) {
     return (
-      <Fragment>
+      <PaperGrid container justify='flex-end' {...props}>
         <HorizontalPaddedGrid item container lg={10}>
           <Grid container spacing={8} justify='flex-end'>
             <Grid item>
@@ -76,7 +92,7 @@ const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
         <HorizontalPaddedGrid item lg={2}>
           <Button color='primary' variant='raised' fullWidth onClick={performCopy}>Copy</Button>
         </HorizontalPaddedGrid>
-      </Fragment>
+      </PaperGrid>
     );
   }
   return null;
@@ -84,7 +100,7 @@ const SharingURLPanel: SFC<QueryOutputProps> = ({data}) => {
 
 const withData = graphql<{}, GetStoreToShare>(STORE_TO_SHARE_QUERY);
 
-const enhance = compose<QueryOutputProps, {}>(
+const enhance = compose<QueryOutputProps & IProps, IProps>(
   withData
 );
 
