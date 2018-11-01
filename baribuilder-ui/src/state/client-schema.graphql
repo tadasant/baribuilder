@@ -35,7 +35,7 @@ type CatalogProductQuantity {
     amount: Int!
     units: PRODUCT_QUANTITY_UNITS!
     frequency: FREQUENCY!
-    #   TODO This shouldn't be optional, but I want to reuse the type when building, hmm
+    #   TODO This shouldn't be optional, but I want to reuse the type when building --> I need to use Partial<> when building
     remainingUnfilledIngredientCount: Float
 }
 

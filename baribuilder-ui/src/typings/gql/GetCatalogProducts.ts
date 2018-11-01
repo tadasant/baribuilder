@@ -26,11 +26,17 @@ export interface GetCatalogProducts_allClientCatalogProducts_cost {
   frequency: FREQUENCY;
 }
 
+export interface GetCatalogProducts_allClientCatalogProducts_defaultQuantity {
+  __typename: "CatalogProductQuantity";
+  remainingUnfilledIngredientCount: number | null;
+}
+
 export interface GetCatalogProducts_allClientCatalogProducts {
   __typename: "ClientCatalogProduct";
   catalogProductId: string;
   cost: GetCatalogProducts_allClientCatalogProducts_cost;
   costEffectivenessRating: number | null;
+  defaultQuantity: GetCatalogProducts_allClientCatalogProducts_defaultQuantity;
 }
 
 export interface GetCatalogProducts_goalIngredients_ingredientRanges {

@@ -33,6 +33,9 @@ export const GET_CATALOG_PRODUCTS = gql`
                 frequency
             }
             costEffectivenessRating
+            defaultQuantity {
+                remainingUnfilledIngredientCount
+            }
         }
         goalIngredients @client {
             ingredientRanges {
@@ -67,12 +70,14 @@ export const CenteredSpinner: SFC = () => (
 
 export enum SORTING_STRATEGY {
   COST_ASC = "COST_ASC",
-  COST_EFFECTIVENESS_DESC = "COST_EFFECTIVENESS_DESC"
+  COST_EFFECTIVENESS_DESC = "COST_EFFECTIVENESS_DESC",
+  FILL_DESC = "FILL_DESC",
 }
 
 export const sortStrategyDisplayByEnum: { [x in SORTING_STRATEGY]: string } = {
   [SORTING_STRATEGY.COST_ASC]: 'Cost (low to high)',
   [SORTING_STRATEGY.COST_EFFECTIVENESS_DESC]: 'Cost effectiveness (high to low)',
+  [SORTING_STRATEGY.FILL_DESC]: 'Fill % (high to low)'
 };
 
 const getSelectedCategory = (pathname: string) => {

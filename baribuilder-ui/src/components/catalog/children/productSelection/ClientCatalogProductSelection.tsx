@@ -54,6 +54,10 @@ const sortClientCatalogProducts = (
     clientCatalogProducts.sort((p1, p2) => {
       return (p2.costEffectivenessRating || 0) - (p1.costEffectivenessRating || 0);
     })
+  } else if (sortingStrategy === SORTING_STRATEGY.FILL_DESC) {
+    clientCatalogProducts.sort((p1, p2) => {
+      return (p1.defaultQuantity.remainingUnfilledIngredientCount || 0) - (p2.defaultQuantity.remainingUnfilledIngredientCount || 0)
+    })
   }
 };
 
