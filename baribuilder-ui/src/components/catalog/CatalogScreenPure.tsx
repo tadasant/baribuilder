@@ -51,22 +51,28 @@ const filterClientCatalogProducts = (
   selectedCategory: string,
 ): GetCatalogProducts_allClientCatalogProducts[] => {
   const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
+  const conditionFunctions: Array<(productId: string) => boolean> = [];
+
+  // category
+  conditionFunctions.push(
+    (productId: string) => selectedCategory === ROOT_CATEGORY || catalogProductsById[productId].category === selectedCategory
+  );
+
+  // search
   if (searchQuery && searchQuery.value) {
     const lowercaseSearchQuery = searchQuery.value.toLowerCase();
-    return clientCatalogProducts.filter(product => (
-      // category & search
-      (selectedCategory === ROOT_CATEGORY || catalogProductsById[product.catalogProductId].category === selectedCategory)
-      && (
-        catalogProductsById[product.catalogProductId].name.toLowerCase().includes(lowercaseSearchQuery) ||
-        catalogProductsById[product.catalogProductId].brand.toLowerCase().includes(lowercaseSearchQuery)
-      )
-    ));
-  } else {
-    return clientCatalogProducts.filter(product => (
-      // just search
-      selectedCategory === ROOT_CATEGORY || catalogProductsById[product.catalogProductId].category === selectedCategory
-    ));
+    conditionFunctions.push(
+      (productId: string) => catalogProductsById[productId].name.toLowerCase().includes(lowercaseSearchQuery) ||
+        catalogProductsById[productId].brand.toLowerCase().includes(lowercaseSearchQuery)
+    )
   }
+
+  // filters
+  // TODO
+
+  return clientCatalogProducts.filter(product =>
+    conditionFunctions.every(f => f(product.catalogProductId))
+  );
 };
 
 const CatalogScreenPure: SFC<IProps> = props => {
