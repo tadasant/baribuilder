@@ -78,7 +78,7 @@ const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {
 
   if (data) {
     return (
-      <PaperGrid container justify='flex-end' {...props}>
+      <PaperGrid container justify='flex-end' vStickyOffset={props.vStickyOffset}>
         <HorizontalPaddedGrid item container lg={10}>
           <Grid container spacing={8} justify='flex-end'>
             <Grid item>
