@@ -4,14 +4,18 @@ import {fade} from '@material-ui/core/styles/colorManipulator';
 import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
+import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetCatalogProducts';
+import {GetSearchQuery} from '../../../typings/gql/GetSearchQuery';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
 import {SORTING_STRATEGY, sortStrategyDisplayByEnum} from '../CatalogScreen';
 import {SetBuilderStateFunction} from '../CatalogScreenPure';
+import {SEARCH_QUERY_QUERY} from '../queries';
 
 export const builderHeaderHeight = '48px';
 
@@ -28,6 +32,8 @@ interface IProps {
   goalsSet: boolean;
 }
 
+type QueryOutputProps = ChildDataProps<{}, GetSearchQuery>;
+
 const FixedGrid = styled(Grid)`
   && {
     height: ${builderHeaderHeight};
@@ -37,6 +43,7 @@ const FixedGrid = styled(Grid)`
 
 const PaddedCaptionSizedBody = styled(Body)`
   font-size: ${Sketch.typography.caption.fontSize};
+  box-decoration-break: clone;
   margin-left: 10px;
   margin-right: 10px;
 `;
@@ -85,7 +92,7 @@ const RightPaddedGrid = styled(Grid)`
   }
 `;
 
-const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
+const BuilderHeaderPure: SFC<IProps & RouteComponentProps & QueryOutputProps> = props => {
   const {filteredClientCatalogProducts, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
   const pathnameTokens = location.pathname.split('/');
   const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
@@ -110,6 +117,8 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
     return !(key === SORTING_STRATEGY.COST_EFFECTIVENESS_DESC && !props.goalsSet);
   });
 
+  const searchQuery = props.data.searchQuery ? props.data.searchQuery.value : '';
+
   return (
     <FixedGrid container direction='row'>
       <Grid item lg={3} container alignItems='center'>
@@ -117,6 +126,7 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps> = props => {
           <PaddedCaptionSizedBody dark>
             Showing{productCount ? ` ${productCount} ` : ' '}results in&nbsp;
             <b>{selectedCategory.split('_').map(c => upperFirst(c.toLowerCase())).join(' ')}</b>
+            {searchQuery ? ` for "${searchQuery}"`: null}
           </PaddedCaptionSizedBody>
         </Grid>
       </Grid>
@@ -176,4 +186,11 @@ const MyRegimenTabHeader: SFC<IProps & { style?: any }> = ({setShowMyRegimen, sh
   );
 };
 
-export default withRouter(BuilderHeaderPure);
+const withData = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
+
+const enhance = compose<QueryOutputProps & IProps, IProps>(
+  withData,
+  withRouter,
+);
+
+export default enhance(BuilderHeaderPure);
