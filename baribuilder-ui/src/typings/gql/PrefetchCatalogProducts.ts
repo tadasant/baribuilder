@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { BRAND, CATEGORY, RETAILER, AFFILIATE_PLATFORM, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
+import { BRAND, CATEGORY, FORM, RETAILER, AFFILIATE_PLATFORM, SERVING_SIZE_UNITS, INGREDIENT_QUANTITY_UNITS } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: PrefetchCatalogProducts
@@ -68,6 +68,7 @@ export interface PrefetchCatalogProducts_allCatalogProducts {
   name: string;
   brand: BRAND;
   category: CATEGORY;
+  form: FORM;
   packages: PrefetchCatalogProducts_allCatalogProducts_packages[] | null;
   images: PrefetchCatalogProducts_allCatalogProducts_images[] | null;
   serving: PrefetchCatalogProducts_allCatalogProducts_serving;

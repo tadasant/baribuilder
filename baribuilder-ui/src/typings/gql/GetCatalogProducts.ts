@@ -1,7 +1,7 @@
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
-import { BRAND, CATEGORY, FREQUENCY } from "./globalTypes";
+import { BRAND, CATEGORY, FORM, FREQUENCY } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCatalogProducts
@@ -13,6 +13,7 @@ export interface GetCatalogProducts_allCatalogProducts {
   name: string;
   brand: BRAND;
   category: CATEGORY;
+  form: FORM;
 }
 
 export interface GetCatalogProducts_searchQuery {

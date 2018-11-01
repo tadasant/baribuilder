@@ -10,7 +10,7 @@ import {
   GetCatalogProducts_searchQuery
 } from '../../typings/gql/GetCatalogProducts';
 import {IFilters, ROOT_CATEGORY, SORTING_STRATEGY, TSetFiltersFunc} from './CatalogScreen';
-import BuilderFilterPanel from './children/BuilderFilterPanel';
+import BuilderFilterPanel, {prettifyEnumString} from './children/BuilderFilterPanel';
 import BuilderHeader from './children/BuilderHeader';
 import BuilderMainPanel from './children/BuilderMainPanel';
 import BuilderMyProducts from './children/BuilderMyProducts';
@@ -49,26 +49,36 @@ const filterClientCatalogProducts = (
   searchQuery: GetCatalogProducts_searchQuery | undefined,
   allCatalogProducts: GetCatalogProducts_allCatalogProducts[] | undefined,
   selectedCategory: string,
+  filters: IFilters,
 ): GetCatalogProducts_allClientCatalogProducts[] => {
   const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
   const conditionFunctions: Array<(productId: string) => boolean> = [];
 
   // category
   conditionFunctions.push(
-    (productId: string) => selectedCategory === ROOT_CATEGORY || catalogProductsById[productId].category === selectedCategory
+    productId => selectedCategory === ROOT_CATEGORY || catalogProductsById[productId].category === selectedCategory
   );
 
   // search
   if (searchQuery && searchQuery.value) {
     const lowercaseSearchQuery = searchQuery.value.toLowerCase();
     conditionFunctions.push(
-      (productId: string) => catalogProductsById[productId].name.toLowerCase().includes(lowercaseSearchQuery) ||
-        catalogProductsById[productId].brand.toLowerCase().includes(lowercaseSearchQuery)
+      productId => catalogProductsById[productId].name.toLowerCase().includes(lowercaseSearchQuery) ||
+        prettifyEnumString(catalogProductsById[productId].brand).toLowerCase().includes(lowercaseSearchQuery)
     )
   }
 
   // filters
-  // TODO
+  if (filters.FORM.length > 0) {
+    conditionFunctions.push(
+      productId => filters.FORM.includes(catalogProductsById[productId].form)
+    )
+  }
+  if (filters.BRAND.length > 0) {
+    conditionFunctions.push(
+      productId => filters.BRAND.includes(catalogProductsById[productId].brand)
+    )
+  }
 
   return clientCatalogProducts.filter(product =>
     conditionFunctions.every(f => f(product.catalogProductId))
@@ -82,7 +92,7 @@ const CatalogScreenPure: SFC<IProps> = props => {
   const numColumnsForMain: 10 | 7 | 6 | 5 = 10 - (showMyProducts ? 3 : 0) - (showMyRegimen ? 4 : 0) + (showMyProducts && showMyRegimen ? 2 : 0);
   const isMyRegimenOnRight = !showMyProducts && showMyRegimen;
 
-  const filteredClientCatalogProducts = filterClientCatalogProducts(props.clientCatalogProducts, props.searchQuery, props.allCatalogProducts, props.selectedCategory);
+  const filteredClientCatalogProducts = filterClientCatalogProducts(props.clientCatalogProducts, props.searchQuery, props.allCatalogProducts, props.selectedCategory, props.activeFilters);
 
   return (
     <Fragment>

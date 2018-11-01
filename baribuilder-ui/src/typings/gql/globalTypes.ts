@@ -79,6 +79,16 @@ export enum CATEGORY {
   ZINC = "ZINC",
 }
 
+export enum FORM {
+  CAPSULE = "CAPSULE",
+  CHEWABLE = "CHEWABLE",
+  GUMMY = "GUMMY",
+  LOZENGE = "LOZENGE",
+  MELTING_TABLET = "MELTING_TABLET",
+  POWDER = "POWDER",
+  TABLET = "TABLET",
+}
+
 export enum FREQUENCY {
   DAILY = "DAILY",
   MONTHLY = "MONTHLY",

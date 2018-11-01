@@ -21,6 +21,7 @@ export const GET_CATALOG_PRODUCTS = gql`
             name
             brand
             category
+            form
         }
         searchQuery @client {
             value
