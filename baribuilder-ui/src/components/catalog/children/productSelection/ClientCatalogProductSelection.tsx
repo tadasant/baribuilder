@@ -44,15 +44,15 @@ const sortClientCatalogProducts = (
 ): void => {
   if (sortingStrategy === SORTING_STRATEGY.COST_ASC) {
     clientCatalogProducts.sort((p1, p2) => {
-      if (p1.costEffectivenessRating === null || p2.costEffectivenessRating === null) {
-        if (p1.cost.frequency !== p2.cost.frequency) {
-          console.warn('Cost conversions not supported yet. Error code 010249.');
-          return 0;
-        }
-        return p1.cost.money - p2.cost.money;
-      } else {
-        return p2.costEffectivenessRating - p1.costEffectivenessRating;
+      if (p1.cost.frequency !== p2.cost.frequency) {
+        console.warn('Cost conversions not supported yet. Error code 010249.');
+        return 0;
       }
+      return p1.cost.money - p2.cost.money;
+    })
+  } else if (sortingStrategy === SORTING_STRATEGY.COST_EFFECTIVENESS_DESC) {
+    clientCatalogProducts.sort((p1, p2) => {
+      return (p2.costEffectivenessRating || 0) - (p1.costEffectivenessRating || 0);
     })
   }
 };
