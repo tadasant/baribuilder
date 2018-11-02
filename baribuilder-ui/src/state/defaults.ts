@@ -8,7 +8,7 @@ export interface IApolloStateShape {
   searchQuery: ISearchQuery;
 }
 
-const storeDefaults: IApolloStateShape = {
+export const storeDefaults: IApolloStateShape = {
   currentRegimen: {
     __typename: 'Regimen',
     products: [],

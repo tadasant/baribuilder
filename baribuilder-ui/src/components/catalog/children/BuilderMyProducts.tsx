@@ -26,7 +26,6 @@ const RedButton = styled(Button)`
   }
 `;
 
-// Pure
 const BuilderMyProducts: SFC = () => {
   return (
     <Fragment>

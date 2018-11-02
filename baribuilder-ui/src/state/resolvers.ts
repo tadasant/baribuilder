@@ -8,6 +8,7 @@ import SetCurrentRegimen from './resolvers/resolver/mutation/SetCurrentRegimen';
 import SetCurrentRegimenProductQuantity from './resolvers/resolver/mutation/SetCurrentRegimenProductQuantity';
 import SetGoalIngredients from './resolvers/resolver/mutation/SetGoalIngredients';
 import SetSearchQuery from './resolvers/resolver/mutation/SetSearchQuery';
+import ClearCurrentRegimen from './resolvers/resolver/mutation/ClearCurrentRegimen';
 import {CURRENT_REGIMEN_QUERY} from './resolvers/resolver/queries';
 import allClientCatalogProducts from './resolvers/resolver/query/allClientCatalogProducts';
 import ClientCatalogProduct from './resolvers/resolver/query/ClientCatalogProduct';
@@ -43,6 +44,7 @@ const resolvers = {
     SetCurrentRegimenProductQuantity,
     DeleteCurrentRegimenProductQuantity,
     SetSearchQuery,
+    ClearCurrentRegimen,
   },
 };
 

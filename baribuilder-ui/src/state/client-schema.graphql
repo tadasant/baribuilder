@@ -127,5 +127,6 @@ extend type Mutation {
     SetCurrentRegimen(currentRegimen: RegimenInput!): Regimen!
     SetCurrentRegimenProductQuantity(catalogProductId: ID!, regimenProductQuantity: RegimenProductQuantityInput!): Regimen!
     DeleteCurrentRegimenProductQuantity(catalogProductId: ID!): Regimen!
+    ClearCurrentRegimen: Regimen!
     SetSearchQuery(searchQuery: String!): SearchQuery!
 }
