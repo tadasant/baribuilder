@@ -1,19 +1,32 @@
-import {Grid} from '@material-ui/core';
+import {Button, Grid} from '@material-ui/core';
 import gql from 'graphql-tag';
+import {keyBy} from 'lodash';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import {GetSelectedProductListings} from '../../../typings/gql/GetSelectedProductListings';
 import {EmptyRow} from '../../style/Layout';
-import {Header} from '../../style/Typography';
+import {Header, Subcaption} from '../../style/Typography';
 import SelectedProductListing from './SelectedProduct';
 
 const GET_SELECTED_PRODUCTS_QUERY = gql`
     query GetSelectedProductListings {
+        allCatalogProducts {
+            id
+            packages {
+                id
+                listings {
+                    id
+                    retailerName
+                    url
+                }
+            }
+        }
         currentRegimen @client {
             products {
                 catalogProductId
+
             }
         }
     }
@@ -25,7 +38,22 @@ const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
-const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen}}) => {
+const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen, loading, allCatalogProducts}}) => {
+  const catalogProductsById = allCatalogProducts ? keyBy(allCatalogProducts, product => product.id) : {};
+  const handleOpenAllClick = () => {
+    if (currentRegimen) {
+      currentRegimen.products.forEach(product => {
+        const {packages} = catalogProductsById[product.catalogProductId];
+        if (packages && packages.length > 0 && packages[0].listings) {
+          const listings = packages[0].listings.filter(listing => listing.retailerName === 'AMAZON');
+          if (listings && listings.length > 0) {
+            window.open(listings[0].url, '_blank');
+          }
+        }
+      })
+    }
+  };
+
   return (
     <Fragment>
       <CenteredTextGrid item lg={12}>
@@ -41,6 +69,18 @@ const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen}}
             </Fragment>
           ))
           : null
+      }
+      <EmptyRow/>
+      {currentRegimen && currentRegimen.products.length > 0
+        ? (
+          <Fragment>
+            <CenteredTextGrid item lg={12}>
+              <Button color='primary' fullWidth onClick={handleOpenAllClick} variant='contained'>Open all in new
+                tabs</Button>
+              <Subcaption dark>You may need to disable your popup blocker</Subcaption>
+            </CenteredTextGrid>
+          </Fragment>
+        ) : null
       }
     </Fragment>
   )
