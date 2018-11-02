@@ -66,6 +66,7 @@ const PaperGrid = styled(Grid)`
   background-color: white;
   position: sticky;
   top: ${(props: IProps) => props.vStickyOffset};
+  z-index: 2;
 `;
 
 const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {

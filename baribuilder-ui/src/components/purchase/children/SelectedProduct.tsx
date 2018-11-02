@@ -94,16 +94,19 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
           <Grid item>
             <Body dark>{quantityCaption}</Body>
           </Grid>
-          <Grid item>
-            <UndecoratedAnchor
-              href={affiliateLink.url}
-              target='__blank'
-              rel='noopener nofollower norefer'
-              onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
-              <Button fullWidth variant='raised' color='default'>Buy on Amazon</Button>
-            </UndecoratedAnchor>
-          </Grid>
         </CenteredTextGrid>
+        <Grid item lg={12}>
+          <Body dark>$20.93 for 20 servings</Body>
+        </Grid>
+        <Grid item lg={12}>
+          <UndecoratedAnchor
+            href={affiliateLink.url}
+            target='__blank'
+            rel='noopener nofollower norefer'
+            onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
+            <Button fullWidth variant='raised' color='default'>Buy on Amazon</Button>
+          </UndecoratedAnchor>
+        </Grid>
       </Fragment>
     );
   }

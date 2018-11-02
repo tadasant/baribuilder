@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import {GetSelectedProductListings} from '../../../typings/gql/GetSelectedProductListings';
 import {EmptyRow} from '../../style/Layout';
 import {Header, Subcaption} from '../../style/Typography';
+import {WideUndecoratedLink} from '../PurchaseScreenPure';
 import SelectedProductListing from './SelectedProduct';
 
 const GET_SELECTED_PRODUCTS_QUERY = gql`
@@ -35,6 +36,12 @@ const GET_SELECTED_PRODUCTS_QUERY = gql`
 type QueryOutputProps = ChildDataProps<{}, GetSelectedProductListings>;
 
 const CenteredTextGrid = styled(Grid)`
+  text-align: center;
+`;
+
+const PaddedCenteredTextGrid = styled(Grid)`
+  padding-left: 16px;
+  padding-right: 16px;
   text-align: center;
 `;
 
@@ -74,14 +81,20 @@ const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen, 
       {currentRegimen && currentRegimen.products.length > 0
         ? (
           <Fragment>
-            <CenteredTextGrid item lg={12}>
-              <Button color='primary' fullWidth onClick={handleOpenAllClick} variant='contained'>Open all in new
-                tabs</Button>
+            <PaddedCenteredTextGrid item lg={6}>
+              <Button color='primary' fullWidth onClick={handleOpenAllClick} variant='contained'>Open all in Amazon tabs</Button>
               <Subcaption dark>You may need to disable your popup blocker</Subcaption>
-            </CenteredTextGrid>
+            </PaddedCenteredTextGrid>
           </Fragment>
         ) : null
       }
+      <PaddedCenteredTextGrid item lg>
+        <WideUndecoratedLink to='/browse/all_products'>
+          <Button variant='raised' color='secondary' fullWidth>
+            Edit Selections
+          </Button>
+        </WideUndecoratedLink>
+      </PaddedCenteredTextGrid>
     </Fragment>
   )
 };
