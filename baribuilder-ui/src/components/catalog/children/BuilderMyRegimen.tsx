@@ -23,7 +23,7 @@ const BottomBorderedGrid = styled(Grid)`
   border-bottom: 1px solid ${Sketch.color.accent.grey};
 `;
 
-const Footer = styled.div`
+export const ButtonFooter = styled.div`
   box-shadow: 0px -2px 4px 0px ${Sketch.color.accent.grey};
   height: ${tabFooterHeight};
   position: sticky;
@@ -32,7 +32,7 @@ const Footer = styled.div`
   background-color: ${Sketch.color.background.white};
 `;
 
-const FooterGrid = styled(Grid)`
+export const ButtonFooterGrid = styled(Grid)`
   && {
     height: 100%;
   }
@@ -44,13 +44,13 @@ const WideLink = styled(UndecoratedLink)`
   }
 `;
 
-const NoMarginGrid = styled(Grid)`
+export const NoMarginGrid = styled(Grid)`
   && {
     margin: 0;
   }
 `;
 
-const HPaddedGrid = styled(Grid)`
+export const HPaddedGrid = styled(Grid)`
   && {
     padding: 0px 8px 0px 8px;
   }
@@ -75,8 +75,8 @@ const BuilderMyRegimen: SFC = () => {
         <Grid item lg={1}/>
         <EmptyRow mobile={`calc(${tabFooterHeight} * 1.5)`}/> {/* Hack for spacing UX */}
       </OuterGrid>
-      <Footer>
-        <FooterGrid item lg={12} container direction='column' justify='center'>
+      <ButtonFooter>
+        <ButtonFooterGrid item lg={12} container direction='column' justify='center'>
           <NoMarginGrid item container>
             <HPaddedGrid item lg={6}>
               <WideLink to='/purchase'>
@@ -93,8 +93,8 @@ const BuilderMyRegimen: SFC = () => {
               </WideLink>
             </HPaddedGrid>
           </NoMarginGrid>
-        </FooterGrid>
-      </Footer>
+        </ButtonFooterGrid>
+      </ButtonFooter>
     </Fragment>
   )
 };
