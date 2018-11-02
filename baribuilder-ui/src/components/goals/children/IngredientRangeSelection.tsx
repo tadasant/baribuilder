@@ -131,7 +131,8 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
           <TextField
-            onChange={handleMinimumChange} value={ingredientRange.minimumAmount || ''} fullWidth
+            error={ingredientRange.maximumAmount !== null && ingredientRange.minimumAmount !== null ? ingredientRange.minimumAmount > ingredientRange.maximumAmount : false}
+            onChange={handleMinimumChange} value={ingredientRange.minimumAmount === undefined || ingredientRange.minimumAmount === null ? '' : ingredientRange.minimumAmount} fullWidth
             label='Minimum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
@@ -142,7 +143,9 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
       </Grid>
       <Grid item lg={2} container direction='column' justify='flex-end'>
         <Grid item>
-          <TextField onChange={handleMaximumChange} value={ingredientRange.maximumAmount || ''} fullWidth
+          <TextField
+            error={ingredientRange.maximumAmount !== null && ingredientRange.minimumAmount !== null ? ingredientRange.maximumAmount < ingredientRange.minimumAmount : false}
+            onChange={handleMaximumChange} value={ingredientRange.maximumAmount === undefined || ingredientRange.maximumAmount === null ? '' : ingredientRange.maximumAmount} fullWidth
                      label='Maximum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
