@@ -9,12 +9,14 @@ import { RETAILER } from "./globalTypes";
 
 export interface GetSelectedProductListings_allCatalogProducts_packages_listings {
   __typename: "PackageListing";
+  id: string;
   retailerName: RETAILER;
   url: string;
 }
 
 export interface GetSelectedProductListings_allCatalogProducts_packages {
   __typename: "ProductPackage";
+  id: string;
   listings: GetSelectedProductListings_allCatalogProducts_packages_listings[] | null;
 }
 

@@ -4,10 +4,12 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
+import Sketch from '../../../app/style/SketchVariables';
 import {generateTrackAffiliateLinkClick} from '../../../lib/analytics';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
 import {prettifyEnumString} from '../../catalog/children/BuilderFilterPanel';
 import MainProductImageWithPopover from '../../catalog/children/productSelection/children/MainProductImageWithPopover';
+import {EmptyRow} from '../../style/Layout';
 import {Body, BoldBody} from '../../style/Typography';
 
 interface IProps {
@@ -23,12 +25,18 @@ const GET_SELECTED_PRODUCT_LISTING = gql`
             name
             brand
             packages {
+                id
+                numServings
                 listings {
                     id
                     retailerName
                     affiliateLink {
                         source
                         url
+                    }
+                    price {
+                        id
+                        amount
                     }
                 }
             }
@@ -57,6 +65,10 @@ const UndecoratedAnchor = styled.a`
     text-decoration: unset;
     color: inherit;
   }
+`;
+
+const GridWithBottomBorder = styled(Grid)`
+  border-bottom: 1px solid ${Sketch.color.accent.grey}
 `;
 
 const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct, currentRegimen, loading}, catalogProductId}) => {
@@ -95,10 +107,11 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
             <Body dark>{quantityCaption}</Body>
           </Grid>
         </CenteredTextGrid>
-        <Grid item lg={12}>
-          <Body dark>$20.93 for 20 servings</Body>
-        </Grid>
-        <Grid item lg={12}>
+        <EmptyRow/>
+        <CenteredTextGrid item lg={12}>
+          <Body dark><b>${listings[0].price.amount}</b> for <b>{CatalogProduct.packages[0].numServings}</b> servings</Body>
+        </CenteredTextGrid>
+        <GridWithBottomBorder item lg={12}>
           <UndecoratedAnchor
             href={affiliateLink.url}
             target='__blank'
@@ -106,7 +119,7 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
             onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
             <Button fullWidth variant='raised' color='default'>Buy on Amazon</Button>
           </UndecoratedAnchor>
-        </Grid>
+        </GridWithBottomBorder>
       </Fragment>
     );
   }

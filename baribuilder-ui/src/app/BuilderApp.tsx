@@ -18,6 +18,7 @@ export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
             form
             packages {
                 id
+                numServings
                 listings {
                     id
                     retailerName
@@ -26,10 +27,10 @@ export const PREFETCH_CATALOG_PRODUCTS_QUERY = gql`
                         url
                     }
                     price {
+                        id
                         amount
                     }
                 }
-                numServings
             }
             images {
                 url

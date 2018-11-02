@@ -13,16 +13,23 @@ export interface GetSelectedProduct_CatalogProduct_packages_listings_affiliateLi
   url: string;
 }
 
+export interface GetSelectedProduct_CatalogProduct_packages_listings_price {
+  __typename: "Price";
+  amount: number;
+}
+
 export interface GetSelectedProduct_CatalogProduct_packages_listings {
   __typename: "PackageListing";
   id: string;
   retailerName: RETAILER;
   affiliateLink: GetSelectedProduct_CatalogProduct_packages_listings_affiliateLink | null;
+  price: GetSelectedProduct_CatalogProduct_packages_listings_price;
 }
 
 export interface GetSelectedProduct_CatalogProduct_packages {
   __typename: "ProductPackage";
   listings: GetSelectedProduct_CatalogProduct_packages_listings[] | null;
+  numServings: number;
 }
 
 export interface GetSelectedProduct_CatalogProduct {
