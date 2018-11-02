@@ -49,22 +49,26 @@ export const subtractRegimenIngredientsFromGoalIngredientRanges = (
 
 /**
  * Returns the same regimenIngredients minus the aggregate of the ingredients found in product.
+ *
+ * Return null if no ingredients matched. TODO replace this with a check that makes more semantic sense.
  */
 export const subtractProductFromRegimenIngredients = (
   regimenIngredients: IRegimenIngredient[],
   product: IProductForCostEffectivenessRating,
-): IRegimenIngredient[] => {
+): IRegimenIngredient[] | null => {
+  let noMatches = true;
   if (product.serving.ingredients === null) {
     console.warn(`Ingredients shouldn\'t be null. Error code 58938238. Product ID: ${product.id}`);
     return [];
   }
 
   const productIngredientsByName = keyBy(product.serving.ingredients, i => i.ingredientType.name);
-  return regimenIngredients.map(regimenIngredient => {
+  const results = regimenIngredients.map(regimenIngredient => {
     if (productIngredientsByName.hasOwnProperty(regimenIngredient.ingredientTypeName)) {
       if (regimenIngredient.units === productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.units) {
         if (product.quantity.units === PRODUCT_QUANTITY_UNITS.SERVINGS) {
           if (product.quantity.frequency === regimenIngredient.frequency) {
+            noMatches = false;
             return {
               ...regimenIngredient,
               amount: regimenIngredient.amount - (productIngredientsByName[regimenIngredient.ingredientTypeName].quantity.amount * product.quantity.amount),
@@ -82,7 +86,8 @@ export const subtractProductFromRegimenIngredients = (
       }
     }
     return regimenIngredient;
-  }).filter(regimenIngredient => regimenIngredient.amount > 0)
+  }).filter(regimenIngredient => regimenIngredient.amount > 0);
+  return noMatches ? null : results;
 };
 
 // NB: "project" is a verb here
