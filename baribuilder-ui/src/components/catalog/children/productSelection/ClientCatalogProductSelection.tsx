@@ -6,7 +6,9 @@ import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
 import {GetCatalogProducts_allClientCatalogProducts} from '../../../../typings/gql/GetCatalogProducts';
+import {UndecoratedLink} from '../../../style/CustomMaterial';
 import {EmptyRow} from '../../../style/Layout';
+import {GreyHeader2} from '../../../style/Typography';
 import {SORTING_STRATEGY} from '../../CatalogScreen';
 import ClientCatalogProduct from './ClientCatalogProduct';
 
@@ -66,6 +68,10 @@ const GridWithBottomBorder = styled(Grid)`
   border-bottom: 1px solid ${Sketch.color.accent.grey};
 `;
 
+const CenteredTextGrid = styled(Grid)`
+  text-align: center;
+`;
+
 // Pure
 const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogProducts, currentPage, setCurrentPage, sortingStrategy, onAddToRegimen}) => {
   if (filteredClientCatalogProducts) {
@@ -75,10 +81,18 @@ const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogP
 
     const onPaginationChange = (current: number) => setCurrentPage(current);
     return (
-      <Grid
+      <CenteredTextGrid
         container
         direction='row'
         alignItems='flex-start'>
+        {
+          productsToDisplay.length === 0
+            ? (
+              <GreyHeader2>No results found. Would you like to <UndecoratedLink to='/request-products'><u>request a
+                product?</u></UndecoratedLink></GreyHeader2>
+            )
+            : null
+        }
         {
           productsToDisplay.map(product => (
             <Fragment key={product.catalogProductId}>
@@ -91,13 +105,26 @@ const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogP
             </Fragment>
           ))
         }
+        {
+          productsToDisplay.length !== 0
+            ? (
+              <Grid item lg={12}>
+                <GreyHeader2>Can't find what you're looking for?</GreyHeader2>
+                <br />
+                <GreyHeader2>
+                  <UndecoratedLink to='/request-products'><u>Request a product.</u></UndecoratedLink>
+                </GreyHeader2>
+              </Grid>
+            )
+            : null
+        }
         <Grid item lg={12} container direction='column' alignContent='flex-end'>
           <Grid item>
             <FloatRightPagination hideOnSinglePage onChange={onPaginationChange} current={currentPage}
                                   defaultPageSize={10} total={filteredClientCatalogProducts.length}/>
           </Grid>
         </Grid>
-      </Grid>
+      </CenteredTextGrid>
     );
   }
   // TODO add data.error branch (need a way to force not undefined in that case)

@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import GoalsScreen from '../components/goals/GoalsScreenContainer';
 import {CenteredTextGrid} from '../components/goals/GoalsScreenPure';
 import PurchaseScreen from '../components/purchase/PurchaseScreen';
+import RequestProductsScreen from '../components/request/RequestProductsScreen';
 import ShareScreen from '../components/share/ShareScreen';
 import {EmptyRow} from '../components/style/Layout';
 import {Header} from '../components/style/Typography';
@@ -28,6 +29,7 @@ const BuilderAppPure: SFC<RouteComponentProps> = ({location}) => {
           <Route exact path="/goals" component={GoalsScreen}/>
           <Route exact path="/purchase" component={PurchaseScreen}/>
           <Route exact path="/share" component={ShareScreen}/>
+          <Route exact path="/request-products" component={RequestProductsScreen}/>
           <Route exact path="/terms-and-conditions" component={TermsAndConditions}/>
           {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
           <Route component={NotFound}/>
