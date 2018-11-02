@@ -54,9 +54,7 @@ const LeftAlignTextGrid = styled(Grid)`
   text-align: left;
 `;
 
-// Pure
 const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}, onAddToRegimen}) => {
-  // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
   if (CatalogProduct) {
     return (
       <Grid container direction='row'>
