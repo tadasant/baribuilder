@@ -50,6 +50,10 @@ const LeftBorderGrid = styled(Grid)`
   padding-right: 16px;
 `;
 
+const LeftAlignTextGrid = styled(Grid)`
+  text-align: left;
+`;
+
 // Pure
 const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {CatalogProduct}, onAddToRegimen}) => {
   // TODO work correctly with multiple packages (but actually replace w/ my own detail page)
@@ -58,9 +62,9 @@ const ClientCatalogProduct: SFC<IProps & QueryOutputProps> = ({id, data: {Catalo
       <Grid container direction='row'>
         <EmptyRow mobile='-20px'/>
         <Grid container direction='row'>
-          <Grid item lg={12}>
+          <LeftAlignTextGrid item lg={12}>
             <Caption dark>{CatalogProduct.name} ({prettifyEnumString(CatalogProduct.brand)})</Caption>
-          </Grid>
+          </LeftAlignTextGrid>
           <Grid item lg={7} container alignItems='center'>
             <Grid item lg={4}>
               <MainProductImageWithPopover catalogProductId={id}/>
