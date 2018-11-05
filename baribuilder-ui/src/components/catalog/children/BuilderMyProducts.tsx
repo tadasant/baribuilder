@@ -79,6 +79,10 @@ const BuilderMyProducts: SFC<MutationOutputProps> = ({mutate}) => {
   )
 };
 
-const withMutation = graphql<{}, ClearCurrentRegimen>(REGIMEN_CLEAR_MUTATION);
+const withMutation = graphql<{}, ClearCurrentRegimen>(REGIMEN_CLEAR_MUTATION, {
+  options: {
+    refetchQueries: ['PrefetchClientCatalogProducts'],
+  }
+});
 
 export default withMutation(BuilderMyProducts);
