@@ -82,47 +82,47 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
           <Header dark>What are your ingredient goals?</Header>
         </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
-        <Grid item lg={12} container alignItems='center'>
-          <Grid item lg={2} xs={1}/>
-          <TemplateLabelGrid item lg={5} xs={10}>
+        <Grid item xs={12} container alignItems='center'>
+          <Grid item xs={1}/>
+          <TemplateLabelGrid item lg={3} xs={10}>
             <Body dark>Start with a template:&nbsp;</Body>
           </TemplateLabelGrid>
           <Hidden lgUp>
             <Grid item xs={1}/>
             <Grid item xs={1}/>
           </Hidden>
-          <Grid item lg={5} xs={10}>
+          <Grid item lg xs={10}>
             <TemplateSelect selectedTemplateName={props.selectedTemplateName}
                             onChangeTemplate={props.onChangeTemplate}/>
           </Grid>
-          <Grid item xs={1} lg={2}/>
+          <Grid item xs={1}/>
         </Grid>
         <EmptyRow mobile='20px'/>
-        <CenteredTextGrid item lg={12}>
+        <CenteredTextGrid item xs={12}>
           <Body dark>If needed, make changes to reflect your medical provider's recommendations below.</Body>
         </CenteredTextGrid>
         <EmptyRow/>
         <Fragment>
-          <Grid item lg={1}/>
-          <Grid item container lg={10} alignContent='flex-start' spacing={8}>
+          <Grid item xs={1}/>
+          <Grid item container xs={10} alignContent='flex-start' spacing={8}>
             {props.goalIngredients ? props.goalIngredients.ingredientRanges.map((ingredientRange, i) => (
-              <Grid item lg={12} key={i}>
+              <Grid item xs={12} key={i}>
                 <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal}
                                           onRemove={props.onRemoveGoal}/>
               </Grid>
             )) : null}
           </Grid>
-          <Grid item lg={1}/>
+          <Grid item xs={1}/>
         </Fragment>
         <EmptyRow/>
         <Fragment>
-          <Grid item lg={1}/>
-          <AddBoxGrid item lg={10} container direction='column' justify='center'>
+          <Grid item xs={1}/>
+          <AddBoxGrid item xs={10} container direction='column' justify='center'>
             <CenteredTextGridWithPointer item onClick={props.onAddGoal}>
               <GreyCaption>Click to add ingredient</GreyCaption>
             </CenteredTextGridWithPointer>
           </AddBoxGrid>
-          <Grid item lg={1}/>
+          <Grid item xs={1}/>
         </Fragment>
       </OuterGrid>
       <EmptyRow mobile={`calc(${footerHeight} * 1.5)`}/> {/* Hack for spacing UX */}
