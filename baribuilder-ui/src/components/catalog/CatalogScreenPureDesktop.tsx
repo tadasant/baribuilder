@@ -85,7 +85,7 @@ const filterClientCatalogProducts = (
   );
 };
 
-const CatalogScreenPure: SFC<IProps> = props => {
+const CatalogScreenPureDesktop: SFC<IProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
   const numColumnsForFilter = 2;
   // @ts-ignore can't figure out my math
@@ -149,4 +149,4 @@ const CatalogScreenPure: SFC<IProps> = props => {
   );
 };
 
-export default CatalogScreenPure;
+export default CatalogScreenPureDesktop;

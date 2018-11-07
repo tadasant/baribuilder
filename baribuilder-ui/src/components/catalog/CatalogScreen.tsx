@@ -1,8 +1,8 @@
-import {Grid} from '@material-ui/core';
+import {Grid, Hidden} from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import gql from 'graphql-tag';
 import * as React from 'react';
-import {Component, SFC} from 'react';
+import {Component, Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {compose, lifecycle, withProps} from 'recompose';
@@ -11,7 +11,7 @@ import {GetCatalogProductVariables} from '../../typings/gql/GetCatalogProduct';
 import {GetCatalogProducts} from '../../typings/gql/GetCatalogProducts';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
-import CatalogScreenPure from './CatalogScreenPure';
+import CatalogScreenPureDesktop from './CatalogScreenPureDesktop';
 
 export const GET_CATALOG_PRODUCTS = gql`
     query GetCatalogProducts {
@@ -163,23 +163,33 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
       return null;
     }
 
+    const propsForPure = {
+      selectedCategory,
+      allCatalogProducts,
+      clientCatalogProducts: allClientCatalogProducts,
+      searchQuery,
+      showMyProducts: this.state.showMyProducts,
+      setShowMyProducts: this.setShowMyProducts,
+      showMyRegimen: this.state.showMyRegimen,
+      setShowMyRegimen: this.setShowMyRegimen,
+      sortingStrategy: this.state.sortingStrategy,
+      setSortingStrategy: this.setSortingStrategy,
+      onAddToRegimen: this.handleAddToRegimen,
+      goalsSet: this.props.goalsSet,
+      setFilters: this.setFilters,
+      activeFilters: this.state.filters,
+    };
+
     return (
-      <CatalogScreenPure
-        selectedCategory={selectedCategory}
-        allCatalogProducts={allCatalogProducts}
-        clientCatalogProducts={allClientCatalogProducts}
-        searchQuery={searchQuery}
-        showMyProducts={this.state.showMyProducts}
-        setShowMyProducts={this.setShowMyProducts}
-        showMyRegimen={this.state.showMyRegimen}
-        setShowMyRegimen={this.setShowMyRegimen}
-        sortingStrategy={this.state.sortingStrategy}
-        setSortingStrategy={this.setSortingStrategy}
-        onAddToRegimen={this.handleAddToRegimen}
-        goalsSet={this.props.goalsSet}
-        setFilters={this.setFilters}
-        activeFilters={this.state.filters}
-      />
+      <Fragment>
+        <Hidden mdDown>
+          <CatalogScreenPureDesktop {...propsForPure} />
+        </Hidden>
+        <Hidden lgUp>
+          <div>Mobile under construction</div>
+          {/*<CatalogScreenPureMobile {...propsForPure} />*/}
+        </Hidden>
+      </Fragment>
     );
   }
 }

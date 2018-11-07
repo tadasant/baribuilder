@@ -14,7 +14,7 @@ import {GetSearchQuery} from '../../../typings/gql/GetSearchQuery';
 import {ShadowedSelect} from '../../style/CustomMaterial';
 import {Body} from '../../style/Typography';
 import {SORTING_STRATEGY, sortStrategyDisplayByEnum} from '../CatalogScreen';
-import {SetBuilderStateFunction} from '../CatalogScreenPure';
+import {SetBuilderStateFunction} from '../CatalogScreenPureDesktop';
 import {SEARCH_QUERY_QUERY} from '../queries';
 
 export const builderHeaderHeight = '48px';
