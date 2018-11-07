@@ -1,11 +1,11 @@
-import {Hidden} from '@material-ui/core';
+import {Hidden, Menu, MenuItem} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
-import {compose} from 'recompose';
+import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import MenuBarsIcon from '../../assets/icon/bars.svg';
@@ -20,13 +20,6 @@ const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_
 export const navbarHeight = '64px';
 
 type QueryOutputProps = ChildDataProps<{}, GetSearchQuery>;
-
-const data = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
-
-const enhance = compose<QueryOutputProps & RouteComponentProps, {}>(
-  data,
-  withRouter,
-);
 
 const PaddedImg = styled.img`
   height: 80%;
@@ -60,8 +53,26 @@ const NavigationGrid = styled(Grid)`
   padding: 8px;
 `;
 
-const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data: {searchQuery}}) => {
+interface IPropsState {
+  anchorEl: HTMLElement | null;
+  setAnchorEl: (el: HTMLElement | null) => HTMLElement | null;
+}
+
+const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({location, history, data: {searchQuery}, anchorEl, setAnchorEl}) => {
   const showCheckout = location.pathname.startsWith('/browse');
+
+  const handleSelectBrowse = () => {
+    generateTrackNavClick('Browse nav')();
+    setAnchorEl(null);
+    history.push('/browse/all_products');
+  };
+
+  const handleSelectGoals = () => {
+    generateTrackNavClick('Goals nav')();
+    setAnchorEl(null);
+    history.push('/goals');
+  };
+
   return (
     <GridWithRaisedBackground container>
       <FullHeightGrid item xs={6} lg={3}>
@@ -103,12 +114,39 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data
         </Hidden>
         <Hidden mdUp>
           <Grid item>
-            <MenuBarsImg src={MenuBarsIcon}/>
+            <MenuBarsImg
+              src={MenuBarsIcon}
+              onClick={event => setAnchorEl(event.currentTarget)}
+            />
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={() => setAnchorEl(null)}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+            >
+              <MenuItem onClick={handleSelectBrowse}>Browse</MenuItem>
+              <MenuItem onClick={handleSelectGoals}>Goals</MenuItem>
+            </Menu>
           </Grid>
         </Hidden>
       </NavigationGrid>
     </GridWithRaisedBackground>
   )
 };
+
+const withData = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
+
+const enhance = compose<QueryOutputProps & RouteComponentProps, {}>(
+  withState<{}, HTMLElement | null, 'anchorEl', 'setAnchorEl'>(
+    'anchorEl',
+    'setAnchorEl',
+    null,
+  ),
+  withData,
+  withRouter,
+);
 
 export default enhance(NavbarPure);
