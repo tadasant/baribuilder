@@ -39,7 +39,7 @@ const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
-export const PaddedCenteredTextGrid = styled(Grid)`
+const PaddedCenteredTextGrid = styled(Grid)`
   padding-left: 16px;
   padding-right: 16px;
   text-align: center;

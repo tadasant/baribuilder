@@ -1,4 +1,4 @@
-import {Button, Grid, Hidden} from '@material-ui/core';
+import {Button, Grid} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
@@ -9,7 +9,6 @@ import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
 import {prettifyEnumString} from '../../catalog/children/BuilderFilterPanel';
 import MainProductImageWithPopover from '../../catalog/children/productSelection/children/MainProductImageWithPopover';
 import {Body, BoldBody, Subcaption} from '../../style/Typography';
-import {PaddedCenteredTextGrid} from './SelectedProductListings';
 
 interface IProps {
   catalogProductId: string;
@@ -101,7 +100,13 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
           <Grid item>
             <Body dark>{quantityCaption}</Body>
           </Grid>
-          <Grid item xs>
+          <Grid item>
+            <Subcaption dark>
+              <b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;
+              <b>${listings[0].price.amount}</b>
+            </Subcaption>
+          </Grid>
+          <Grid item>
             <UndecoratedAnchor
               href={affiliateLink.url}
               target='__blank'
@@ -111,22 +116,8 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
                 fullWidth
                 variant='contained'
                 color='default'>
-                <Hidden mdDown>
-                  Buy&nbsp;<b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;
-                  <b>${listings[0].price.amount}</b>&nbsp;on Amazon
-                </Hidden>
-                <Hidden lgUp>
-                  Buy on Amazon
-                </Hidden>
+                Buy on Amazon
               </Button>
-              <Hidden lgUp>
-                <PaddedCenteredTextGrid item xs={12}>
-                  <Subcaption dark>
-                    <b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;
-                    <b>${listings[0].price.amount}</b>
-                  </Subcaption>
-                </PaddedCenteredTextGrid>
-              </Hidden>
             </UndecoratedAnchor>
           </Grid>
         </CenteredTextGrid>
