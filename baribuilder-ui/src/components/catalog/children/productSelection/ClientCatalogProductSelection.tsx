@@ -17,7 +17,7 @@ interface IProps {
   sortingStrategy: SORTING_STRATEGY;
   // Can't be in this component's query because it creates breaking dependency
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
-  onAddToRegimen: () => void;
+  onAddToRegimen?: () => void;
 }
 
 const enhance = compose<IPropsState, IProps>(

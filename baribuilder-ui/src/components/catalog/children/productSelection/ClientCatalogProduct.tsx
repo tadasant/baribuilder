@@ -16,7 +16,7 @@ import MainProductImageWithPopover from './children/MainProductImageWithPopover'
 
 interface IProps {
   id: string
-  onAddToRegimen: () => void
+  onAddToRegimen?: () => void
 }
 
 const GET_CATALOG_PRODUCT = gql`

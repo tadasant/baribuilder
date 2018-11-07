@@ -19,6 +19,7 @@ import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
 import {prettifyEnumString} from './children/BuilderFilterPanel';
 import CatalogScreenDesktop from './responsive/CatalogScreenDesktop';
+import CatalogScreenMobile from './responsive/CatalogScreenMobile';
 
 export const GET_CATALOG_PRODUCTS = gql`
     query GetCatalogProducts {
@@ -205,8 +206,7 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
           <CatalogScreenDesktop {...propsForPure} />
         </Hidden>
         <Hidden lgUp>
-          <div>Mobile under construction</div>
-          {/*<CatalogScreenPureMobile {...propsForPure} />*/}
+          <CatalogScreenMobile {...propsForPure} />
         </Hidden>
       </Fragment>
     );

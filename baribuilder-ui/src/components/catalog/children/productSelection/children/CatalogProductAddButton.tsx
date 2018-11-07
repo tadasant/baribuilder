@@ -12,7 +12,7 @@ import {GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity} 
 interface IProps {
   catalogProductId: string;
   quantity: GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity;
-  onAddToRegimen: () => void;
+  onAddToRegimen?: () => void;
 }
 
 const ADD_PRODUCT_MUTATION = gql`
@@ -61,7 +61,9 @@ const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate, 
             toast.success(`${quantity.amount} ${quantity.units.toLowerCase()} of product added.`);
           }
         });
-      onAddToRegimen();
+      if (onAddToRegimen) {
+        onAddToRegimen();
+      }
     } else {
       console.error('mutate undefined')
     }

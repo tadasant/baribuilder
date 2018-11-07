@@ -18,7 +18,7 @@ import CatalogProductAddButton from './CatalogProductAddButton';
 
 interface IProps {
   catalogProductId: string;
-  onAddToRegimen: () => void;
+  onAddToRegimen?: () => void;
 }
 
 const GET_CLIENT_CATALOG_PRODUCT_QUANTITIES_QUERY = gql`

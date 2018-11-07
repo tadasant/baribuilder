@@ -12,7 +12,7 @@ import BuilderMyRegimen from '../children/BuilderMyRegimen';
 
 export type SetBuilderStateFunction = (value: boolean) => void;
 
-interface IProps {
+interface IProps extends ICatalogScreenPureProps {
   showMyProducts: boolean;
   setShowMyProducts: SetBuilderStateFunction;
   showMyRegimen: boolean;
@@ -28,7 +28,7 @@ const TabGrid = styled(Grid)`
   top: 0;
 `;
 
-const CatalogScreenPureDesktop: SFC<IProps & ICatalogScreenPureProps> = props => {
+const CatalogScreenPureDesktop: SFC<IProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
   const numColumnsForFilter = 2;
   // @ts-ignore can't figure out my math

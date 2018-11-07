@@ -13,7 +13,7 @@ interface IProps {
   selectedCategory: string;
   sortingStrategy: SORTING_STRATEGY;
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
-  onAddToRegimen: () => void;
+  onAddToRegimen?: () => void;
 }
 
 const PaddedGrid = styled(Grid)`
