@@ -4,11 +4,11 @@ import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {ICatalogScreenPureProps} from '../CatalogScreen';
-import BuilderFilterPanel from '../children/BuilderFilterPanel';
-import BuilderHeader from '../children/BuilderHeader';
-import BuilderMainPanel from '../children/BuilderMainPanel';
-import BuilderMyProducts from '../children/BuilderMyProducts';
-import BuilderMyRegimen from '../children/BuilderMyRegimen';
+import BuilderFilterPanel from '../children/FilterPanel';
+import BuilderHeader from '../children/HeaderDesktop';
+import BuilderMyProducts from '../children/MyProductPanel';
+import MyRegimenPanel from '../children/MyRegimenPanel';
+import ProductPanel from '../children/ProductPanel';
 
 export type SetBuilderStateFunction = (value: boolean) => void;
 
@@ -57,7 +57,7 @@ const CatalogScreenPureDesktop: SFC<IProps> = props => {
         }
         {/* @ts-ignore Can't figure out my math*/}
         <Grid item lg={numColumnsForMain}>
-          <BuilderMainPanel
+          <ProductPanel
             selectedCategory={props.selectedCategory}
             key={props.selectedCategory}
             sortingStrategy={props.sortingStrategy}
@@ -68,7 +68,7 @@ const CatalogScreenPureDesktop: SFC<IProps> = props => {
         {
           showMyRegimen && !isMyRegimenOnRight ? (
             <TabGrid item lg={4}>
-              <BuilderMyRegimen/>
+              <MyRegimenPanel/>
             </TabGrid>
           ) : null
         }
@@ -81,7 +81,7 @@ const CatalogScreenPureDesktop: SFC<IProps> = props => {
         {
           showMyRegimen && isMyRegimenOnRight ? (
             <TabGrid item lg={4}>
-              <BuilderMyRegimen/>
+              <MyRegimenPanel/>
             </TabGrid>
           ) : null
         }

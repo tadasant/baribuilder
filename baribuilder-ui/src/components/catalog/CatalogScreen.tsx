@@ -17,7 +17,7 @@ import {
 } from '../../typings/gql/GetCatalogProducts';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
-import {prettifyEnumString} from './children/BuilderFilterPanel';
+import {prettifyEnumString} from './children/FilterPanel';
 import CatalogScreenDesktop from './responsive/CatalogScreenDesktop';
 import CatalogScreenMobile from './responsive/CatalogScreenMobile';
 

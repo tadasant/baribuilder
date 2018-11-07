@@ -6,7 +6,7 @@ import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import {generateTrackAffiliateLinkClick} from '../../../lib/analytics';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
-import {prettifyEnumString} from '../../catalog/children/BuilderFilterPanel';
+import {prettifyEnumString} from '../../catalog/children/FilterPanel';
 import MainProductImageWithPopover from '../../catalog/children/productSelection/children/MainProductImageWithPopover';
 import {Body, BoldBody, Subcaption} from '../../style/Typography';
 

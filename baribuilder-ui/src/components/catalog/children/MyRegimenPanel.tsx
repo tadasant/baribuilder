@@ -56,7 +56,7 @@ export const HPaddedGrid = styled(Grid)`
   }
 `;
 
-const BuilderMyRegimen: SFC = () => {
+const MyRegimenPanel: SFC = () => {
   return (
     <Fragment>
       <OuterGrid container>
@@ -99,4 +99,4 @@ const BuilderMyRegimen: SFC = () => {
   )
 };
 
-export default BuilderMyRegimen;
+export default MyRegimenPanel;

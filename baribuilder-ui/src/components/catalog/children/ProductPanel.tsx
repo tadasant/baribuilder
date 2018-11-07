@@ -22,7 +22,7 @@ const PaddedGrid = styled(Grid)`
 `;
 
 // Pure
-const BuilderMainPanel: SFC<IProps> = ({selectedCategory, sortingStrategy, filteredClientCatalogProducts, onAddToRegimen}) => {
+const ProductPanel: SFC<IProps> = ({selectedCategory, sortingStrategy, filteredClientCatalogProducts, onAddToRegimen}) => {
   return (
     <PaddedGrid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
@@ -41,4 +41,4 @@ const BuilderMainPanel: SFC<IProps> = ({selectedCategory, sortingStrategy, filte
   )
 };
 
-export default BuilderMainPanel;
+export default ProductPanel;

@@ -8,8 +8,8 @@ import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {ClearCurrentRegimen} from '../../../typings/gql/ClearCurrentRegimen';
 import {EmptyRow} from '../../style/Layout';
-import {ButtonFooter, ButtonFooterGrid, HPaddedGrid, NoMarginGrid} from './BuilderMyRegimen';
 import CurrentRegimenProducts from './myProducts/CurrentRegimenProducts';
+import {ButtonFooter, ButtonFooterGrid, HPaddedGrid, NoMarginGrid} from './MyRegimenPanel';
 
 
 const REGIMEN_CLEAR_MUTATION = gql`
@@ -43,7 +43,7 @@ const RedButton = styled(Button)`
   }
 `;
 
-const BuilderMyProducts: SFC<MutationOutputProps> = ({mutate}) => {
+const MyProductPanel: SFC<MutationOutputProps> = ({mutate}) => {
   const handleClearClick = () => {
     if (!mutate) {
       console.error('Mutate undefined for some reason. Error code 019472');
@@ -85,4 +85,4 @@ const withMutation = graphql<{}, ClearCurrentRegimen>(REGIMEN_CLEAR_MUTATION, {
   }
 });
 
-export default withMutation(BuilderMyProducts);
+export default withMutation(MyProductPanel);

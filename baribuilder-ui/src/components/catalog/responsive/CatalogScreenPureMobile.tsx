@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {ICatalogScreenPureProps} from '../CatalogScreen';
-import BuilderFilterPanel from '../children/BuilderFilterPanel';
-import BuilderMainPanel from '../children/BuilderMainPanel';
-import BuilderMyProducts from '../children/BuilderMyProducts';
-import BuilderMyRegimen from '../children/BuilderMyRegimen';
+import BuilderFilterPanel from '../children/FilterPanel';
+import BuilderMyProducts from '../children/MyProductPanel';
+import MyRegimenPanel from '../children/MyRegimenPanel';
+import ProductPanel from '../children/ProductPanel';
 import {CATALOG_TAB} from './CatalogScreenMobile';
 
 interface IProps extends ICatalogScreenPureProps {
@@ -21,13 +21,13 @@ const CatalogScreenPureMobile: SFC<IProps> = props => {
         activeFilters={props.activeFilters}
         setFilters={props.setFilters}
       />
-      <BuilderMainPanel
+      <ProductPanel
         selectedCategory={props.selectedCategory}
         key={props.selectedCategory}
         sortingStrategy={props.sortingStrategy}
         filteredClientCatalogProducts={props.filteredClientCatalogProducts}
       />
-      <BuilderMyRegimen/>
+      <MyRegimenPanel/>
       <BuilderMyProducts/>
     </Fragment>
   );

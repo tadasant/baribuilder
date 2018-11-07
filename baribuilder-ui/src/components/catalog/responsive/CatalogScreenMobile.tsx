@@ -5,7 +5,7 @@ import {ICatalogScreenPureProps} from '../CatalogScreen';
 import CatalogScreenPureMobile from './CatalogScreenPureMobile';
 
 export enum CATALOG_TAB {
-  FILTERS = "FILTERS",
+  FILTER = "FILTER",
   PRODUCTS = "PRODUCTS",
   MY_REGIMEN = "MY_REGIMEN",
   MY_PRODUCTS = "MY_PRODUCTS",

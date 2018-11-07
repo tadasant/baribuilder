@@ -9,7 +9,7 @@ import Sketch from '../../../../app/style/SketchVariables';
 import {GetCatalogProduct, GetCatalogProductVariables} from '../../../../typings/gql/GetCatalogProduct';
 import {EmptyRow} from '../../../style/Layout';
 import {Caption} from '../../../style/Typography';
-import {prettifyEnumString} from '../BuilderFilterPanel';
+import {prettifyEnumString} from '../FilterPanel';
 import CatalogContextPanel from './children/CatalogContextPanel';
 import CatalogProductAddPanel from './children/CatalogProductAddPanel';
 import MainProductImageWithPopover from './children/MainProductImageWithPopover';
