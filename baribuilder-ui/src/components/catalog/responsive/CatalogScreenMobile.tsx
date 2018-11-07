@@ -5,8 +5,8 @@ import {ICatalogScreenPureProps} from '../CatalogScreen';
 import CatalogScreenPureMobile from './CatalogScreenPureMobile';
 
 export enum CATALOG_TAB {
-  FILTER = "FILTER",
-  PRODUCTS = "PRODUCTS",
+  CATALOG = "CATALOG",
+  FILTERS = "FILTERS",
   MY_REGIMEN = "MY_REGIMEN",
   MY_PRODUCTS = "MY_PRODUCTS",
 }
@@ -26,7 +26,7 @@ const enhance = compose(
   withState<{}, CATALOG_TAB, 'activeTab', 'setActiveTab'>(
     'activeTab',
     'setActiveTab',
-    CATALOG_TAB.MY_PRODUCTS,
+    CATALOG_TAB.CATALOG,
   ),
 );
 
