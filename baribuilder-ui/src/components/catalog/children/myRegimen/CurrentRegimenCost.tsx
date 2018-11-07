@@ -51,21 +51,21 @@ const CurrentRegimenCostPure: SFC<DataOutputProps> = ({data: {currentRegimen, lo
     const monthlyRegimenCost = calculateDailyRegimenCost(currentRegimen.products) * 30;
     return (
       <Grid container direction='row' alignItems='flex-start'>
-        <CenteredTextGrid item lg={12}>
+        <CenteredTextGrid item xs={12}>
           <Header2 dark>Total {upperFirst(FREQUENCY.MONTHLY.toLowerCase())} Regimen Cost</Header2>
         </CenteredTextGrid>
-        <CenteredTextGrid item lg={12}>
+        <CenteredTextGrid item xs={12}>
           <Header2 dark>$<u>{monthlyRegimenCost.toFixed(2)}</u></Header2>
         </CenteredTextGrid>
         <EmptyRow/>
-        <Grid item lg={3} />
-        <Grid item lg={6}>
+        <Grid item xs={3} />
+        <Grid item xs={6}>
           {/*/!* TODO enable options; don't forget to change hardcoded header as well *!/*/}
           {/*<ShadowedSelect value={FREQUENCY.MONTHLY}>*/}
           {/*<MenuItem value={FREQUENCY.MONTHLY} key={FREQUENCY.MONTHLY}>{upperFirst(FREQUENCY.MONTHLY.toLowerCase())}</MenuItem>*/}
           {/*</ShadowedSelect>*/}
         </Grid>
-        <Grid item lg={3} />
+        <Grid item xs={3} />
       </Grid>
     );
   }

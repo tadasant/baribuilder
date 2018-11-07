@@ -154,25 +154,25 @@ const MicronutrientRow: SFC<IPropsForMicronutrientRow> = props => {
   const colorGoal = isExceeded ? Sketch.color.secondary.blue : isDeficient ? Sketch.color.accent.danger : Sketch.color.accent.black;
   return (
     <Fragment>
-      <LeftAlignGrid item lg={5}>
+      <LeftAlignGrid item xs={5}>
         <BoldBody dark>{props.ingredientTypeName}</BoldBody>
       </LeftAlignGrid>
       {
         props.goalToDisplay !== undefined
           ? (
-            <RightAlignPaddedGrid item lg={5}>
+            <RightAlignPaddedGrid item xs={5}>
               <ColoredBodyBold color={colorGoal}>
                 {props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)} of {props.goalToDisplay}
               </ColoredBodyBold>
             </RightAlignPaddedGrid>
           )
           : (
-            <RightAlignPaddedGrid item lg={5}>
+            <RightAlignPaddedGrid item xs={5}>
               <Body dark>{props.amount.toFixed((props.amount % 1 > 0) ? 1 : 0)}</Body>
             </RightAlignPaddedGrid>
           )
       }
-      <LeftAlignPaddedGrid item lg={2}>
+      <LeftAlignPaddedGrid item xs={2}>
         <Body dark>{props.units.toLowerCase()}</Body>
       </LeftAlignPaddedGrid>
     </Fragment>
@@ -263,21 +263,21 @@ const RegimenFacts: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogPr
     return (
       <Fragment>
         <OuterGrid container>
-          <InnerGrid item lg={12} container direction='row' alignItems='flex-start'>
-            <Grid item lg={12}>
+          <InnerGrid item xs={12} container direction='row' alignItems='flex-start'>
+            <Grid item xs={12}>
               <Header2LeftAlign dark>Regimen Facts</Header2LeftAlign>
             </Grid>
-            <ServingsHeaderGrid item lg={12}>
+            <ServingsHeaderGrid item xs={12}>
               <Body dark># of product servings {calculateNumberOfServings(currentRegimen.products)}</Body>
             </ServingsHeaderGrid>
-            <TitlesHeaderGrid item lg={12} container>
-              <Grid item lg={6}>
+            <TitlesHeaderGrid item xs={12} container>
+              <Grid item xs={6}>
                 <Body dark>Amount per day</Body>
               </Grid>
               {
                 goalIngredients.ingredientRanges.length > 0
                   ? (
-                    <RightAlignGrid item lg={6}>
+                    <RightAlignGrid item xs={6}>
                       <Body dark>of goal</Body>
                     </RightAlignGrid>
                   )
@@ -286,7 +286,7 @@ const RegimenFacts: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogPr
             </TitlesHeaderGrid>
             {
               micronutrientRowPropsList.map(rowProps => (
-                <Grid item lg={12} container key={rowProps.ingredientTypeName}>
+                <Grid item xs={12} container key={rowProps.ingredientTypeName}>
                   <MicronutrientRow {...rowProps}/>
                 </Grid>
               ))
@@ -295,14 +295,14 @@ const RegimenFacts: SFC<DataOutputProps> = ({data: {currentRegimen, allCatalogPr
           </InnerGrid>
         </OuterGrid>
         <EmptyRow/>
-        <Grid item lg={3}/>
-        <Grid item lg={6}>
+        <Grid item xs={3}/>
+        <Grid item xs={6}>
           <ShadowedSelect value={FREQUENCY.DAILY}>
             <MenuItem value={FREQUENCY.DAILY}
                       key={FREQUENCY.DAILY}>{upperFirst(FREQUENCY.DAILY.toLowerCase())}</MenuItem>
           </ShadowedSelect>
         </Grid>
-        <Grid item lg={3}/>
+        <Grid item xs={3}/>
       </Fragment>
     );
   }

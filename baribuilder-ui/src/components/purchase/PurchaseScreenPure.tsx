@@ -1,4 +1,4 @@
-import {Button, Grid} from '@material-ui/core';
+import {Button, Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {SFC} from 'react';
 import styled from 'styled-components';
@@ -27,35 +27,38 @@ const PurchaseScreenPure: SFC = () => {
     <Grid container>
       <SharingURLPanel vStickyOffset='0'/>
       <EmptyRow/>
-      <CenteredTextGrid item lg={12}>
+      <Grid item xs={1}/>
+      <CenteredTextGrid item xs={10}>
         <Caption dark>
           As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
         </Caption>
       </CenteredTextGrid>
+      <Grid item xs={1}/>
       <EmptyRow/>
-      <EmptyRow/>
-      <Grid item lg={1}/>
-      <Grid container item lg={4} alignContent='flex-start'>
-        <SelectedProductListings/>
-      </Grid>
-      <RightBorderGrid item lg={1}/>
-      <Grid item lg={1}/>
-      <Grid item container alignContent='flex-start' lg={4}>
-        <CenteredTextGrid item lg={12}>
+      <Hidden mdDown>
+        <Grid item lg={1}/>
+        <Grid container item lg={4} alignContent='flex-start'>
+          <SelectedProductListings/>
+        </Grid>
+        <RightBorderGrid item lg={1}/>
+      </Hidden>
+      <Grid item xs={1}/>
+      <Grid item container alignContent='flex-start' lg={4} xs={10}>
+        <CenteredTextGrid item xs={12}>
           <Header dark>My Regimen</Header>
         </CenteredTextGrid>
         <EmptyRow/>
-        <Grid item lg={1}/>
-        <Grid item lg={10} container alignContent='flex-start'>
-          <Grid item lg={12}>
+        <Grid item xs={1}/>
+        <Grid item xs={10} container alignContent='flex-start'>
+          <Grid item xs={12}>
             <CurrentRegimenCost/>
           </Grid>
           <EmptyRow/>
-          <Grid item container lg={12}>
+          <Grid item container xs={12}>
             <RegimenFacts/>
           </Grid>
         </Grid>
-        <Grid item lg={1}/>
+        <Grid item xs={1}/>
         <EmptyRow/>
         <WideUndecoratedLink to='/goals'>
           <Button variant='contained' color='secondary' fullWidth>
@@ -63,7 +66,7 @@ const PurchaseScreenPure: SFC = () => {
           </Button>
         </WideUndecoratedLink>
       </Grid>
-      <Grid item lg={1}/>
+      <Grid item xs={1}/>
       <EmptyRow/>
     </Grid>
   )
