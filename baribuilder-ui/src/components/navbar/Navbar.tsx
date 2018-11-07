@@ -8,6 +8,7 @@ import {RouteComponentProps, withRouter} from 'react-router';
 import {compose} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
+import MenuBarsIcon from '../../assets/icon/bars.svg';
 import {generateTrackNavClick} from '../../lib/analytics';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
@@ -50,6 +51,15 @@ const FullHeightGrid = styled(Grid)`
   height: 100%;
 `;
 
+const MenuBarsImg = styled.img`
+  max-height: 24px;
+  cursor: pointer;
+`;
+
+const NavigationGrid = styled(Grid)`
+  padding: 8px;
+`;
+
 const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data: {searchQuery}}) => {
   const showCheckout = location.pathname.startsWith('/browse');
   return (
@@ -64,33 +74,39 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data
           <SearchBox key={searchQuery ? searchQuery.value : ''}/>
         </Grid>
       </Hidden>
-      <Grid item xs={6} container alignItems='center' justify='flex-end'>
-        {showCheckout
-          ? (
-            <Grid item>
-              <UndecoratedLink to='/purchase' onClick={generateTrackNavClick('Checkout nav')}>
-                <Button color='primary' variant='contained'>Checkout</Button>
-              </UndecoratedLink>
-            </Grid>
-          )
-          : null
-        }
-        <Grid item>
-          <UndecoratedLink to='/browse/all_products' onClick={generateTrackNavClick('Browse nav')}>
-            <WhiteNavButton fullWidth>
-              Browse
-            </WhiteNavButton>
-          </UndecoratedLink>
-        </Grid>
-        <Grid item>
-          <UndecoratedLink to='/goals' onClick={generateTrackNavClick('Goals nav')}>
-            <WhiteNavButton fullWidth>
-              Goals
-            </WhiteNavButton>
-          </UndecoratedLink>
-        </Grid>
-      </Grid>
-
+      <NavigationGrid item xs={6} container alignItems='center' justify='flex-end'>
+        <Hidden smDown>
+          {showCheckout
+            ? (
+              <Grid item>
+                <UndecoratedLink to='/purchase' onClick={generateTrackNavClick('Checkout nav')}>
+                  <Button color='primary' variant='contained'>Checkout</Button>
+                </UndecoratedLink>
+              </Grid>
+            )
+            : null
+          }
+          <Grid item>
+            <UndecoratedLink to='/browse/all_products' onClick={generateTrackNavClick('Browse nav')}>
+              <WhiteNavButton fullWidth>
+                Browse
+              </WhiteNavButton>
+            </UndecoratedLink>
+          </Grid>
+          <Grid item>
+            <UndecoratedLink to='/goals' onClick={generateTrackNavClick('Goals nav')}>
+              <WhiteNavButton fullWidth>
+                Goals
+              </WhiteNavButton>
+            </UndecoratedLink>
+          </Grid>
+        </Hidden>
+        <Hidden mdUp>
+          <Grid item>
+            <MenuBarsImg src={MenuBarsIcon}/>
+          </Grid>
+        </Hidden>
+      </NavigationGrid>
     </GridWithRaisedBackground>
   )
 };
