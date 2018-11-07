@@ -68,7 +68,7 @@ const BuilderMyProducts: SFC<MutationOutputProps> = ({mutate}) => {
         <ButtonFooterGrid item lg={12} container direction='column' justify='center'>
           <NoMarginGrid item container>
             <HPaddedGrid item lg={12}>
-              <RedButton variant='raised' fullWidth onClick={handleClearClick}>
+              <RedButton variant='contained' fullWidth onClick={handleClearClick}>
                 Clear All
               </RedButton>
             </HPaddedGrid>

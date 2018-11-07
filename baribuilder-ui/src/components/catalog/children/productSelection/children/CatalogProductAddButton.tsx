@@ -68,7 +68,7 @@ const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate, 
   };
   return (
     <Button
-      variant='raised'
+      variant='contained'
       color='default'
       fullWidth
       onClick={handleClick}>

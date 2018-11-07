@@ -62,7 +62,7 @@ class BottomCTABanner extends Component {
             <Grid item xs={2} sm={3} lg={4}/>
             <Grid item xs={8} sm={6} lg={4}>
               <UndecoratedLink to={'/goals'} onClick={generateTrackNavClick('Bottom Build CTA')}>
-                <CTANavButton variant='raised' fullWidth>
+                <CTANavButton variant='contained' fullWidth>
                   Build Personal Regimen
                 </CTANavButton>
               </UndecoratedLink>

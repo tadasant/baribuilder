@@ -69,7 +69,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps> = ({location, data
           ? (
             <Grid item>
               <UndecoratedLink to='/purchase' onClick={generateTrackNavClick('Checkout nav')}>
-                <Button color='primary' variant='raised'>Checkout</Button>
+                <Button color='primary' variant='contained'>Checkout</Button>
               </UndecoratedLink>
             </Grid>
           )

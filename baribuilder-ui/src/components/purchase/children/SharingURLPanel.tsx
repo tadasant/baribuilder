@@ -91,7 +91,7 @@ const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {
           </Grid>
         </HorizontalPaddedGrid>
         <HorizontalPaddedGrid item lg={2}>
-          <Button color='primary' variant='raised' fullWidth onClick={performCopy}>Copy</Button>
+          <Button color='primary' variant='contained' fullWidth onClick={performCopy}>Copy</Button>
         </HorizontalPaddedGrid>
       </PaperGrid>
     );

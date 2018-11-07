@@ -90,7 +90,7 @@ const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen, 
       }
       <PaddedCenteredTextGrid item lg>
         <WideUndecoratedLink to='/browse/all_products'>
-          <Button variant='raised' color='secondary' fullWidth>
+          <Button variant='contained' color='secondary' fullWidth>
             Edit Selections
           </Button>
         </WideUndecoratedLink>

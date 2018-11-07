@@ -72,7 +72,7 @@ const Sketch = {
     },
   },
   'breakpoints': {
-    'desktop': 1000,
+    'desktop': 1200,
     'tablet': 600,
     'mobile': 320,
   },

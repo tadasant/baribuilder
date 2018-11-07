@@ -106,7 +106,7 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
               target='__blank'
               rel='noopener nofollower norefer'
               onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
-              <Button fullWidth variant='raised' color='default'>Buy&nbsp;<b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;<b>${listings[0].price.amount}</b>&nbsp;on Amazon</Button>
+              <Button fullWidth variant='contained' color='default'>Buy&nbsp;<b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;<b>${listings[0].price.amount}</b>&nbsp;on Amazon</Button>
             </UndecoratedAnchor>
           </Grid>
         </CenteredTextGrid>

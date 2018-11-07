@@ -51,7 +51,7 @@ class SignupForm extends Component {
           <Button
             color='secondary'
             fullWidth
-            variant='raised'
+            variant='contained'
             onClick={this.handleSubmit}
           >
             Get Updates

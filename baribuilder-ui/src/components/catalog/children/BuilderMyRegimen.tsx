@@ -80,14 +80,14 @@ const BuilderMyRegimen: SFC = () => {
           <NoMarginGrid item container>
             <HPaddedGrid item lg={6}>
               <WideLink to='/purchase'>
-                <Button variant='raised' color='primary' fullWidth>
+                <Button variant='contained' color='primary' fullWidth>
                   Checkout
                 </Button>
               </WideLink>
             </HPaddedGrid>
             <HPaddedGrid item lg={6}>
               <WideLink to='/goals'>
-                <Button variant='raised' color='secondary' fullWidth>
+                <Button variant='contained' color='secondary' fullWidth>
                   Edit Goals
                 </Button>
               </WideLink>

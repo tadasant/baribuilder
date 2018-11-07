@@ -58,7 +58,7 @@ const PurchaseScreenPure: SFC = () => {
         <Grid item lg={1}/>
         <EmptyRow/>
         <WideUndecoratedLink to='/goals'>
-          <Button variant='raised' color='secondary' fullWidth>
+          <Button variant='contained' color='secondary' fullWidth>
             Edit Goal Ingredients
           </Button>
         </WideUndecoratedLink>
