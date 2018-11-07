@@ -1,5 +1,4 @@
 import {Grid} from '@material-ui/core';
-import {keyBy} from 'lodash';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
@@ -9,8 +8,8 @@ import {
   GetCatalogProducts_allClientCatalogProducts,
   GetCatalogProducts_searchQuery
 } from '../../typings/gql/GetCatalogProducts';
-import {IFilters, ROOT_CATEGORY, SORTING_STRATEGY, TSetFiltersFunc} from './CatalogScreen';
-import BuilderFilterPanel, {prettifyEnumString} from './children/BuilderFilterPanel';
+import {IFilters, SORTING_STRATEGY, TSetFiltersFunc} from './CatalogScreen';
+import BuilderFilterPanel from './children/BuilderFilterPanel';
 import BuilderHeader from './children/BuilderHeader';
 import BuilderMainPanel from './children/BuilderMainPanel';
 import BuilderMyProducts from './children/BuilderMyProducts';
@@ -27,7 +26,7 @@ interface IProps {
   setSortingStrategy: (strategy: SORTING_STRATEGY) => void;
   searchQuery: GetCatalogProducts_searchQuery;
   allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
-  clientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
+  filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
   selectedCategory: string;
   onAddToRegimen: () => void;
   goalsSet: boolean;
@@ -43,48 +42,6 @@ const TabGrid = styled(Grid)`
   top: 0;
 `;
 
-// search query, filters, and category
-const filterClientCatalogProducts = (
-  clientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[],
-  searchQuery: GetCatalogProducts_searchQuery | undefined,
-  allCatalogProducts: GetCatalogProducts_allCatalogProducts[] | undefined,
-  selectedCategory: string,
-  filters: IFilters,
-): GetCatalogProducts_allClientCatalogProducts[] => {
-  const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
-  const conditionFunctions: Array<(productId: string) => boolean> = [];
-
-  // category
-  conditionFunctions.push(
-    productId => selectedCategory === ROOT_CATEGORY || catalogProductsById[productId].category === selectedCategory
-  );
-
-  // search
-  if (searchQuery && searchQuery.value) {
-    const lowercaseSearchQuery = searchQuery.value.toLowerCase();
-    conditionFunctions.push(
-      productId => catalogProductsById[productId].name.toLowerCase().includes(lowercaseSearchQuery) ||
-        prettifyEnumString(catalogProductsById[productId].brand).toLowerCase().includes(lowercaseSearchQuery)
-    )
-  }
-
-  // filters
-  if (filters.FORM.length > 0) {
-    conditionFunctions.push(
-      productId => filters.FORM.includes(catalogProductsById[productId].form)
-    )
-  }
-  if (filters.BRAND.length > 0) {
-    conditionFunctions.push(
-      productId => filters.BRAND.includes(catalogProductsById[productId].brand)
-    )
-  }
-
-  return clientCatalogProducts.filter(product =>
-    conditionFunctions.every(f => f(product.catalogProductId))
-  );
-};
-
 const CatalogScreenPureDesktop: SFC<IProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
   const numColumnsForFilter = 2;
@@ -92,15 +49,13 @@ const CatalogScreenPureDesktop: SFC<IProps> = props => {
   const numColumnsForMain: 10 | 8 | 6 | 4 = 10 - (showMyProducts ? 2 : 0) - (showMyRegimen ? 4 : 0);
   const isMyRegimenOnRight = !showMyProducts && showMyRegimen;
 
-  const filteredClientCatalogProducts = filterClientCatalogProducts(props.clientCatalogProducts, props.searchQuery, props.allCatalogProducts, props.selectedCategory, props.activeFilters);
-
   return (
     <Fragment>
       <BuilderHeader
         {...props}
         isMyRegimenOnRight={isMyRegimenOnRight}
         selectedCategory={props.selectedCategory}
-        filteredClientCatalogProducts={filteredClientCatalogProducts}
+        filteredClientCatalogProducts={props.filteredClientCatalogProducts}
       />
       <Grid container spacing={0}>
         {
@@ -120,7 +75,7 @@ const CatalogScreenPureDesktop: SFC<IProps> = props => {
             selectedCategory={props.selectedCategory}
             key={props.selectedCategory}
             sortingStrategy={props.sortingStrategy}
-            filteredClientCatalogProducts={filteredClientCatalogProducts}
+            filteredClientCatalogProducts={props.filteredClientCatalogProducts}
             onAddToRegimen={props.onAddToRegimen}
           />
         </Grid>

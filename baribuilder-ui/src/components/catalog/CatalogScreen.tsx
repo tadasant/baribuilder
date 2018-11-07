@@ -1,6 +1,7 @@
 import {Grid, Hidden} from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import gql from 'graphql-tag';
+import {keyBy} from 'lodash';
 import * as React from 'react';
 import {Component, Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
@@ -8,10 +9,16 @@ import {RouteComponentProps, withRouter} from 'react-router';
 import {compose, lifecycle, withProps} from 'recompose';
 import styled from 'styled-components';
 import {GetCatalogProductVariables} from '../../typings/gql/GetCatalogProduct';
-import {GetCatalogProducts} from '../../typings/gql/GetCatalogProducts';
+import {
+  GetCatalogProducts,
+  GetCatalogProducts_allCatalogProducts,
+  GetCatalogProducts_allClientCatalogProducts,
+  GetCatalogProducts_searchQuery
+} from '../../typings/gql/GetCatalogProducts';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
 import CatalogScreenPureDesktop from './CatalogScreenPureDesktop';
+import {prettifyEnumString} from './children/BuilderFilterPanel';
 
 export const GET_CATALOG_PRODUCTS = gql`
     query GetCatalogProducts {
@@ -98,6 +105,48 @@ const getSelectedCategory = (pathname: string) => {
   return selectedCategory;
 };
 
+// search query, filters, and category
+const filterClientCatalogProducts = (
+  clientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[],
+  searchQuery: GetCatalogProducts_searchQuery | undefined,
+  allCatalogProducts: GetCatalogProducts_allCatalogProducts[] | undefined,
+  selectedCategory: string,
+  filters: IFilters,
+): GetCatalogProducts_allClientCatalogProducts[] => {
+  const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
+  const conditionFunctions: Array<(productId: string) => boolean> = [];
+
+  // category
+  conditionFunctions.push(
+    productId => selectedCategory === ROOT_CATEGORY || catalogProductsById[productId].category === selectedCategory
+  );
+
+  // search
+  if (searchQuery && searchQuery.value) {
+    const lowercaseSearchQuery = searchQuery.value.toLowerCase();
+    conditionFunctions.push(
+      productId => catalogProductsById[productId].name.toLowerCase().includes(lowercaseSearchQuery) ||
+        prettifyEnumString(catalogProductsById[productId].brand).toLowerCase().includes(lowercaseSearchQuery)
+    )
+  }
+
+  // filters
+  if (filters.FORM.length > 0) {
+    conditionFunctions.push(
+      productId => filters.FORM.includes(catalogProductsById[productId].form)
+    )
+  }
+  if (filters.BRAND.length > 0) {
+    conditionFunctions.push(
+      productId => filters.BRAND.includes(catalogProductsById[productId].brand)
+    )
+  }
+
+  return clientCatalogProducts.filter(product =>
+    conditionFunctions.every(f => f(product.catalogProductId))
+  );
+};
+
 class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & IDerivedProps, Readonly<IState>> {
   constructor(props: QueryOutputProps & RouteComponentProps & IDerivedProps) {
     super(props);
@@ -163,10 +212,12 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
       return null;
     }
 
+    const filteredClientCatalogProducts = filterClientCatalogProducts(allClientCatalogProducts, searchQuery, allCatalogProducts, selectedCategory, this.state.filters);
+
     const propsForPure = {
       selectedCategory,
       allCatalogProducts,
-      clientCatalogProducts: allClientCatalogProducts,
+      filteredClientCatalogProducts,
       searchQuery,
       showMyProducts: this.state.showMyProducts,
       setShowMyProducts: this.setShowMyProducts,
