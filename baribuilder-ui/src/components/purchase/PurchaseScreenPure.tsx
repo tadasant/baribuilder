@@ -27,15 +27,15 @@ const PurchaseScreenPure: SFC = () => {
     <Grid container>
       <SharingURLPanel vStickyOffset='0'/>
       <EmptyRow/>
-      <Grid item xs={1}/>
-      <CenteredTextGrid item xs={10}>
-        <Caption dark>
-          As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
-        </Caption>
-      </CenteredTextGrid>
-      <Grid item xs={1}/>
-      <EmptyRow/>
       <Hidden mdDown>
+        <Grid item lg={1}/>
+        <CenteredTextGrid item lg={10}>
+          <Caption dark>
+            As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
+          </Caption>
+        </CenteredTextGrid>
+        <Grid item lg={1}/>
+        <EmptyRow/>
         <Grid item lg={1}/>
         <Grid container item lg={4} alignContent='flex-start'>
           <SelectedProductListings/>
@@ -68,6 +68,22 @@ const PurchaseScreenPure: SFC = () => {
       </Grid>
       <Grid item xs={1}/>
       <EmptyRow/>
+      <Hidden lgUp>
+        <Grid item xs={1}/>
+        <CenteredTextGrid item xs={10}>
+          <Caption dark>
+            As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
+          </Caption>
+        </CenteredTextGrid>
+        <Grid item xs={1}/>
+        <EmptyRow/>
+        <Grid item xs={1}/>
+        <Grid container item xs={10} alignContent='flex-start'>
+          <SelectedProductListings/>
+        </Grid>
+        <Grid item xs={1}/>
+        <EmptyRow/>
+      </Hidden>
     </Grid>
   )
 };

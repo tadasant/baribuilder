@@ -1,4 +1,4 @@
-import {Button, Grid} from '@material-ui/core';
+import {Button, Grid, Hidden} from '@material-ui/core';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
@@ -8,7 +8,8 @@ import {generateTrackAffiliateLinkClick} from '../../../lib/analytics';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
 import {prettifyEnumString} from '../../catalog/children/BuilderFilterPanel';
 import MainProductImageWithPopover from '../../catalog/children/productSelection/children/MainProductImageWithPopover';
-import {Body, BoldBody} from '../../style/Typography';
+import {Body, BoldBody, Subcaption} from '../../style/Typography';
+import {PaddedCenteredTextGrid} from './SelectedProductListings';
 
 interface IProps {
   catalogProductId: string;
@@ -85,10 +86,10 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
       : null;
     return (
       <Fragment>
-        <CenteredTextGrid item lg={3}>
+        <CenteredTextGrid item lg={3} xs={12}>
           <MainProductImageWithPopover catalogProductId={catalogProductId}/>
         </CenteredTextGrid>
-        <CenteredTextGrid item container direction='column' lg={9} justify='center' spacing={8}>
+        <CenteredTextGrid item container direction='column' lg={9} xs={12} justify='center' spacing={8}>
           <Grid item>
             <a
               href={affiliateLink.url}
@@ -100,13 +101,32 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
           <Grid item>
             <Body dark>{quantityCaption}</Body>
           </Grid>
-          <Grid item lg>
+          <Grid item xs>
             <UndecoratedAnchor
               href={affiliateLink.url}
               target='__blank'
               rel='noopener nofollower norefer'
               onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
-              <Button fullWidth variant='contained' color='default'>Buy&nbsp;<b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;<b>${listings[0].price.amount}</b>&nbsp;on Amazon</Button>
+              <Button
+                fullWidth
+                variant='contained'
+                color='default'>
+                <Hidden mdDown>
+                  Buy&nbsp;<b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;
+                  <b>${listings[0].price.amount}</b>&nbsp;on Amazon
+                </Hidden>
+                <Hidden lgUp>
+                  Buy on Amazon
+                </Hidden>
+              </Button>
+              <Hidden lgUp>
+                <PaddedCenteredTextGrid item xs={12}>
+                  <Subcaption dark>
+                    <b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;
+                    <b>${listings[0].price.amount}</b>
+                  </Subcaption>
+                </PaddedCenteredTextGrid>
+              </Hidden>
             </UndecoratedAnchor>
           </Grid>
         </CenteredTextGrid>
