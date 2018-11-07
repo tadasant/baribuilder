@@ -1,9 +1,10 @@
-import {Grid} from '@material-ui/core';
+import {Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import {IGoalIngredients} from '../../state/client-schema-types';
+import {media} from '../style/Core';
 import {EmptyRow} from '../style/Layout';
 import {Body, Caption, Header} from '../style/Typography';
 import GoalsFooter from './children/GoalsFooter';
@@ -60,8 +61,12 @@ export const CenteredTextGrid = styled(Grid)`
   text-align: center;
 `;
 
-const RightAlignTextGrid = styled(Grid)`
-  text-align: right;
+const TemplateLabelGrid = styled(Grid)`
+  text-align: center;
+  
+  ${media.desktop`
+    text-align: right;
+  `}
 `;
 
 const CenteredTextGridWithPointer = styled(CenteredTextGrid)`
@@ -73,20 +78,24 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
     <Fragment>
       <OuterGrid container alignContent='flex-start'>
         <EmptyRow/>
-        <CenteredTextGrid item lg={12}>
+        <CenteredTextGrid item xs={12}>
           <Header dark>What are your ingredient goals?</Header>
         </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
         <Grid item lg={12} container alignItems='center'>
-          <Grid item lg={2}/>
-          <RightAlignTextGrid item>
+          <Grid item lg={2} xs={1}/>
+          <TemplateLabelGrid item lg={5} xs={10}>
             <Body dark>Start with a template:&nbsp;</Body>
-          </RightAlignTextGrid>
-          <Grid item lg>
+          </TemplateLabelGrid>
+          <Hidden lgUp>
+            <Grid item xs={1}/>
+            <Grid item xs={1}/>
+          </Hidden>
+          <Grid item lg={5} xs={10}>
             <TemplateSelect selectedTemplateName={props.selectedTemplateName}
                             onChangeTemplate={props.onChangeTemplate}/>
           </Grid>
-          <Grid item lg={2}/>
+          <Grid item xs={1} lg={2}/>
         </Grid>
         <EmptyRow mobile='20px'/>
         <CenteredTextGrid item lg={12}>
