@@ -9,13 +9,13 @@ interface IProps {
 const GoalsFooter: SFC<IProps> = (props) => {
   return (
     <Fragment>
-      <Grid item lg={1}/>
-      <Grid item lg={10}>
+      <Grid item xs={1}/>
+      <Grid item xs={10}>
         <Button variant='contained' color='secondary' fullWidth onClick={props.onClickSetAndBrowse}>
           Set Goals & Browse
         </Button>
       </Grid>
-      <Grid item lg={1}/>
+      <Grid item xs={1}/>
     </Fragment>
   )
 };
