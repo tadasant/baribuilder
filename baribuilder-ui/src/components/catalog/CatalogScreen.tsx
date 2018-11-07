@@ -17,8 +17,8 @@ import {
 } from '../../typings/gql/GetCatalogProducts';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
-import CatalogScreenPureDesktop from './CatalogScreenPureDesktop';
 import {prettifyEnumString} from './children/BuilderFilterPanel';
+import CatalogScreenDesktop from './responsive/CatalogScreenDesktop';
 
 export const GET_CATALOG_PRODUCTS = gql`
     query GetCatalogProducts {
@@ -61,10 +61,7 @@ export interface IFilters {
 }
 
 interface IState {
-  showMyProducts: boolean;
-  showMyRegimen: boolean;
   sortingStrategy: SORTING_STRATEGY;
-  hasOpenedMyProducts: boolean;
   filters: IFilters;
 }
 
@@ -79,7 +76,7 @@ const LargePaddedSpinner = styled(CircularProgress)`
 export const CenteredSpinner: SFC = () => (
   <Grid container justify='center'>
     <Grid item>
-      <LargePaddedSpinner size={`calc(100vh - ${navbarHeight} - 32px)`}/>
+      <LargePaddedSpinner size={`calc(100vmin - ${navbarHeight} - 32px)`}/>
     </Grid>
   </Grid>
 );
@@ -151,38 +148,14 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
   constructor(props: QueryOutputProps & RouteComponentProps & IDerivedProps) {
     super(props);
     this.state = {
-      showMyProducts: false,
-      showMyRegimen: true,
       sortingStrategy: props.goalsSet ? SORTING_STRATEGY.COST_EFFECTIVENESS_DESC : SORTING_STRATEGY.COST_ASC,
-      hasOpenedMyProducts: false,
       filters: {
         FORM: [],
         BRAND: [],
       },
     };
-    this.setShowMyProducts = this.setShowMyProducts.bind(this);
-    this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
-    this.handleAddToRegimen = this.handleAddToRegimen.bind(this);
     this.setSortingStrategy = this.setSortingStrategy.bind(this);
     this.setFilters = this.setFilters.bind(this);
-  }
-
-  setShowMyProducts(showMyProducts: boolean) {
-    this.setState(prevState => ({
-      showMyProducts,
-      hasOpenedMyProducts: showMyProducts || prevState.hasOpenedMyProducts,
-    }));
-  }
-
-  setShowMyRegimen(showMyRegimen: boolean) {
-    this.setState({showMyRegimen});
-  }
-
-  handleAddToRegimen() {
-    this.setState(prevState => ({
-      showMyProducts: prevState.hasOpenedMyProducts ? prevState.showMyProducts : true,
-      hasOpenedMyProducts: true,
-    }));
   }
 
   setSortingStrategy(sortingStrategy: SORTING_STRATEGY) {
@@ -214,18 +187,13 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
 
     const filteredClientCatalogProducts = filterClientCatalogProducts(allClientCatalogProducts, searchQuery, allCatalogProducts, selectedCategory, this.state.filters);
 
-    const propsForPure = {
+    const propsForPure: ICatalogScreenPureProps = {
       selectedCategory,
       allCatalogProducts,
       filteredClientCatalogProducts,
       searchQuery,
-      showMyProducts: this.state.showMyProducts,
-      setShowMyProducts: this.setShowMyProducts,
-      showMyRegimen: this.state.showMyRegimen,
-      setShowMyRegimen: this.setShowMyRegimen,
       sortingStrategy: this.state.sortingStrategy,
       setSortingStrategy: this.setSortingStrategy,
-      onAddToRegimen: this.handleAddToRegimen,
       goalsSet: this.props.goalsSet,
       setFilters: this.setFilters,
       activeFilters: this.state.filters,
@@ -234,7 +202,7 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
     return (
       <Fragment>
         <Hidden mdDown>
-          <CatalogScreenPureDesktop {...propsForPure} />
+          <CatalogScreenDesktop {...propsForPure} />
         </Hidden>
         <Hidden lgUp>
           <div>Mobile under construction</div>
@@ -244,6 +212,19 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
     );
   }
 }
+
+export interface ICatalogScreenPureProps {
+  sortingStrategy: SORTING_STRATEGY;
+  setSortingStrategy: (strategy: SORTING_STRATEGY) => void;
+  searchQuery: GetCatalogProducts_searchQuery;
+  allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
+  filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
+  selectedCategory: string;
+  goalsSet: boolean;
+  activeFilters: IFilters;
+  setFilters: TSetFiltersFunc;
+}
+
 
 const withData = graphql<{}, GetCatalogProducts>(GET_CATALOG_PRODUCTS);
 

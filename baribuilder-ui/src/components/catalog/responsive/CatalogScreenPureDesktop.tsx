@@ -2,18 +2,13 @@ import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
-import Sketch from '../../app/style/SketchVariables';
-import {
-  GetCatalogProducts_allCatalogProducts,
-  GetCatalogProducts_allClientCatalogProducts,
-  GetCatalogProducts_searchQuery
-} from '../../typings/gql/GetCatalogProducts';
-import {IFilters, SORTING_STRATEGY, TSetFiltersFunc} from './CatalogScreen';
-import BuilderFilterPanel from './children/BuilderFilterPanel';
-import BuilderHeader from './children/BuilderHeader';
-import BuilderMainPanel from './children/BuilderMainPanel';
-import BuilderMyProducts from './children/BuilderMyProducts';
-import BuilderMyRegimen from './children/BuilderMyRegimen';
+import Sketch from '../../../app/style/SketchVariables';
+import {ICatalogScreenPureProps} from '../CatalogScreen';
+import BuilderFilterPanel from '../children/BuilderFilterPanel';
+import BuilderHeader from '../children/BuilderHeader';
+import BuilderMainPanel from '../children/BuilderMainPanel';
+import BuilderMyProducts from '../children/BuilderMyProducts';
+import BuilderMyRegimen from '../children/BuilderMyRegimen';
 
 export type SetBuilderStateFunction = (value: boolean) => void;
 
@@ -22,16 +17,7 @@ interface IProps {
   setShowMyProducts: SetBuilderStateFunction;
   showMyRegimen: boolean;
   setShowMyRegimen: SetBuilderStateFunction;
-  sortingStrategy: SORTING_STRATEGY;
-  setSortingStrategy: (strategy: SORTING_STRATEGY) => void;
-  searchQuery: GetCatalogProducts_searchQuery;
-  allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
-  filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
-  selectedCategory: string;
   onAddToRegimen: () => void;
-  goalsSet: boolean;
-  activeFilters: IFilters;
-  setFilters: TSetFiltersFunc;
 }
 
 const TabGrid = styled(Grid)`
@@ -42,7 +28,7 @@ const TabGrid = styled(Grid)`
   top: 0;
 `;
 
-const CatalogScreenPureDesktop: SFC<IProps> = props => {
+const CatalogScreenPureDesktop: SFC<IProps & ICatalogScreenPureProps> = props => {
   const {showMyProducts, showMyRegimen} = props;
   const numColumnsForFilter = 2;
   // @ts-ignore can't figure out my math
