@@ -62,7 +62,7 @@ const TermsAndConditions: SFC = () => {
         <p className="p1"><span className="s1">You acknowledge that Vita.G has no obligation to monitor your or any other user&rsquo;s access or use of the Site or the Service or edit any User Content (as defined below). Vita.G reserves the right, at any time and without prior notice, to refuse registration of, remove or disable an account (temporarily or permanently) in Vita.G&rsquo;s sole discretion. You are solely responsible and liable for activity that occurs on your account and shall be responsible for maintaining the confidentiality of your account and password. You agree to immediately notify Vita.G in writing of any unauthorized use of your account, or other account related security breach of which you are aware.</span>
         </p>
         <p className="p1"><span className="s1">Unless required by law, you agree and acknowledge that your BariBuilder Account is non-transferable and any rights to your BariBuilder Account or Content therein terminate upon your death. &nbsp;In the event of your death, a valid copy of a death certificate may permit the proper party to terminate your Account and related Content on your behalf. &nbsp;Contact Vita.G&nbsp;
-          <a href="mailto:feedback@vitaglab.com"><span className="s2">feedback@vitaglab.com</span></a>&nbsp;for additional assistance. &nbsp;</span>
+          <a href="mailto:feedback@baribuilder.com"><span className="s2">feedback@baribuilder.com</span></a>&nbsp;for additional assistance. &nbsp;</span>
         </p>
         <p className="p1"><span className="s1">&nbsp;</span></p>
         <p className="p1"><span className="s1"><strong>Service Purchases</strong></span></p>
@@ -180,7 +180,7 @@ const TermsAndConditions: SFC = () => {
         </ol>
         <p className="p1"><span className="s1">You may submit this information via:</span></p>
         <ol className="ol1">
-          <li className="li2"><span className="s4">Email:&nbsp;feedback@vitaglab.com</span></li>
+          <li className="li2"><span className="s4">Email:&nbsp;feedback@baribuilder.com</span></li>
           <li className="li3"><span className="s1">Offline: Vita.G, LLC Copyright Agent (see below)</span></li>
         </ol>
         <p className="p4">&nbsp;</p>
@@ -199,7 +199,7 @@ const TermsAndConditions: SFC = () => {
         </ol>
         <p className="p1"><span className="s1">You may submit this information via:</span></p>
         <ol className="ol1">
-          <li className="li2"><span className="s4">Email:&nbsp;feedback@vitaglab.com</span></li>
+          <li className="li2"><span className="s4">Email:&nbsp;feedback@baribuilder.com</span></li>
           <li className="li2"><span className="s4">Offline: Vita.G, LLC&rsquo;s Copyright Agent (see below)</span></li>
         </ol>
         <p className="p1"><span className="s1">Please note that we will provide complete counter-notifications to the person making the DMCA claim. That person may elect to file a lawsuit against you for copyright infringement. If we do not receive notice that a lawsuit has been filed within ten (10) business days after we provide notice of your counter-notification, we will restore the disabled materials. Until that time, your materials will remain disabled.</span>
@@ -214,7 +214,7 @@ const TermsAndConditions: SFC = () => {
         <p className="p1"><span className="s1">You may send a DMCA notice, a DMCA counter-notification, or any inquiries concerning intellectual property to Vita.G, Inc.&rsquo;s Copyright Agent:</span>
         </p>
         <p className="p5"><span className="s4"><em>Vita.G, LLC</em></span><span
-          className="s1"><em><br/></em></span><span className="s4"><em>Email:&nbsp;feedback@vitaglab.com</em></span></p>
+          className="s1"><em><br/></em></span><span className="s4"><em>Email:&nbsp;feedback@baribuilder.com</em></span></p>
         <p className="p1"><span className="s1"><strong>No Medical or Health Advice</strong></span></p>
         <p className="p1"><span className="s1">The website and the Service are not intended to and do not provide health advice, medical advice, professional diagnosis, opinion, treatment or services to you or to any other individual. The information provided in, and provided through this website, or through linkages to other websites, are not intended to be medical or professional care, and you should not use the website or the Service in place of a visit, call consultation or the advice of your physician or other healthcare provider. In fact, you should consult with a healthcare professional before beginning any diet, exercise, and/or supplementation program. &nbsp;Vita.G is not liable or responsible for any advice, course of treatment, diagnosis or any other information, services or product you obtain through the website or the Service.</span>
         </p>
@@ -257,7 +257,7 @@ const TermsAndConditions: SFC = () => {
         </p>
         <p className="p1"><span className="s1">The arbitrator, and not any federal, state, or local court, will have exclusive authority to resolve any dispute relating to the interpretation, applicability, unconscionability, arbitrability, enforceability, or formation of this arbitration agreement, including any claim that all or any part of this arbitration agreement is void or voidable.</span>
         </p>
-        <p className="p1"><span className="s1">If you do not want to arbitrate disputes with Vita.G and you are an individual, you may opt out of this arbitration agreement by sending an email at feedback@vitaglab.com within thirty (30) days of the first of the date you access or use the Service.</span>
+        <p className="p1"><span className="s1">If you do not want to arbitrate disputes with Vita.G and you are an individual, you may opt out of this arbitration agreement by sending an email at feedback@baribuilder.com within thirty (30) days of the first of the date you access or use the Service.</span>
         </p>
         <p className="p1"><span className="s1"><strong>Miscellaneous</strong></span></p>
         <p className="p1"><span className="s1">If any of the provisions of these Terms are held by a court or other tribunal of competent jurisdiction to be void or unenforceable, such provisions shall be limited to the minimum extent necessary and replaced with a valid provision that best embodies these Terms.</span>

@@ -90,8 +90,8 @@ const Footer: SFC<IProps> = props => {
             </Grid>
             <CenteredTextGrid item sm={3} container>
               <Grid item sm={12}>
-                <a href='mailto:feedback@vitaglab.com'
-                   onClick={generateTrackExternalLinkClick('footer email')}><Subcaption>feedback@vitaglab.com</Subcaption></a>
+                <a href='mailto:feedback@baribuilder.com'
+                   onClick={generateTrackExternalLinkClick('footer email')}><Subcaption>feedback@baribuilder.com</Subcaption></a>
               </Grid>
               <EmptyRow/>
               <Grid item sm={4} container alignItems='flex-start' justify='center'>
@@ -156,8 +156,8 @@ const Footer: SFC<IProps> = props => {
             </Fragment>
             <EmptyRow/>
             <CenteredTextGrid item xs={12}>
-              <a href='mailto:feedback@vitaglab.com'
-                 onClick={generateTrackExternalLinkClick('footer email')}><Subcaption>feedback@vitaglab.com</Subcaption></a>
+              <a href='mailto:feedback@baribuilder.com'
+                 onClick={generateTrackExternalLinkClick('footer email')}><Subcaption>feedback@baribuilder.com</Subcaption></a>
             </CenteredTextGrid>
             <EmptyRow mobile='1px'/>
             <Fragment>

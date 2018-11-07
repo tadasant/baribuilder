@@ -192,7 +192,7 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
       }
     }).then((response) => {
       if (response && response.errors) {
-        toast.error(`Error setting goals! Please contact feedback@vitaglab.com if you think this is a mistake. Error 96572 @ ${(new Date).getTime()}`, {
+        toast.error(`Error setting goals! Please contact feedback@baribuilder.com if you think this is a mistake. Error 96572 @ ${(new Date).getTime()}`, {
           autoClose: false,
           closeOnClick: false,
         });
