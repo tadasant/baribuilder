@@ -10,7 +10,7 @@ import Hero from './sections/1_Hero';
 import BariBuilderExplanationSection from './sections/2_BariBuilderExplanationSection/2_BariBuilderExplanationSection';
 import HowItWorksSection from './sections/4_HowItWorksSection.react';
 import BottomCTABanner from './sections/5_BottomCTABanner';
-import Footer from './sections/LandingFooter.react.js';
+import Footer from './sections/LandingFooter.tsx';
 
 const GutteredGrid = styled(Grid)`
   margin: 8px;

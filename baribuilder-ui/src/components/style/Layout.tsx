@@ -38,3 +38,7 @@ export const EmptyRow = (props: IMarginProps) => (
     <HiddenSpan>-</HiddenSpan>
   </SpacedGrid>
 );
+
+export const CenteredTextGrid = styled(Grid)`
+  text-align: center;
+`;

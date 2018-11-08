@@ -17,9 +17,8 @@ import {
   GetDataForRegimenFacts_goalIngredients_ingredientRanges
 } from '../../../../typings/gql/GetDataForRegimenFacts';
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS, PRODUCT_QUANTITY_UNITS} from '../../../../typings/gql/globalTypes';
-import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
 import {ShadowedSelect} from '../../../style/CustomMaterial';
-import {EmptyRow} from '../../../style/Layout';
+import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
 import {Body, BoldBody, GreyHeader2, Header2} from '../../../style/Typography';
 
 const REGIMEN_FACTS_QUERY = gql`

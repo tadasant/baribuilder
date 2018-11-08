@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
-import Footer, {BlackGrid} from '../../Footer';
+import * as React from 'react';
+import {Component, Fragment} from 'react';
+import Footer from '../../footer/Footer';
 import {EmptyRow} from '../../style/Layout';
 
 class LandingFooter extends Component {
   render() {
     return (
-      <BlackGrid item container direction='row'>
+      <Fragment>
         <EmptyRow mobile='80px'/>
         <Footer/>
-      </BlackGrid>
+      </Fragment>
     );
   }
 }

@@ -1,12 +1,10 @@
 import React, {Component, Fragment} from 'react';
-import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
+import {CenteredTextGrid, EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
-import {EmptyRow} from '../../style/Layout';
 import Step1 from './steps/Step1.react';
 import Step2 from './steps/Step2.react';
 import Step3 from './steps/Step3.react';
 import Step4 from './steps/Step4.react';
-import Grid from '@material-ui/core/Grid';
 
 class HowItWorksSection extends Component {
   render() {

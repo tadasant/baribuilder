@@ -6,10 +6,9 @@ import {toast} from 'react-toastify';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {generateTrackNavClick} from '../../../lib/analytics';
-import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {media} from '../../style/Core';
 import {UndecoratedLink} from '../../style/CustomMaterial';
-import {EmptyRow} from '../../style/Layout';
+import {CenteredTextGrid, EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
 
 const BoxedBlueShadowHangingGrid = styled(Grid)`

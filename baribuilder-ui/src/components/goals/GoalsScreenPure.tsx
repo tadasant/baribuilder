@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import {IGoalIngredients} from '../../state/client-schema-types';
 import {media} from '../style/Core';
-import {EmptyRow} from '../style/Layout';
+import {CenteredTextGrid, EmptyRow} from '../style/Layout';
 import {Body, Caption, Header} from '../style/Typography';
 import GoalsFooter from './children/GoalsFooter';
 import IngredientRangeSelection from './children/IngredientRangeSelection';
@@ -55,10 +55,6 @@ const FooterGrid = styled(Grid)`
   && {
     height: 100%;
   }
-`;
-
-export const CenteredTextGrid = styled(Grid)`
-  text-align: center;
 `;
 
 const TemplateLabelGrid = styled(Grid)`

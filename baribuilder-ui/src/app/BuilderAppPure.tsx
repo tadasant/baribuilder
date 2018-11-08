@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom';
 import CatalogScreen from '../components/catalog/CatalogScreen';
-import Footer from '../components/Footer';
+import Footer from '../components/footer/Footer';
 import GoalsScreen from '../components/goals/GoalsScreenContainer';
 import Navbar from '../components/navbar/Navbar';
 import PurchaseScreen from '../components/purchase/PurchaseScreen';

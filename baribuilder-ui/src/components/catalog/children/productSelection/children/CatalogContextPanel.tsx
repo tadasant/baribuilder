@@ -7,9 +7,8 @@ import {
   GetClientCatalogProductPrices,
   GetClientCatalogProductPricesVariables
 } from '../../../../../typings/gql/GetClientCatalogProductPrices';
-import {CenteredTextGrid} from '../../../../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../../../../style/CustomMaterial';
-import {EmptyRow} from '../../../../style/Layout';
+import {CenteredTextGrid, EmptyRow} from '../../../../style/Layout';
 import {Body, BoldBody, GreyBody, Subcaption} from '../../../../style/Typography';
 import HelpIcon from '../../lib/HelpIcon';
 

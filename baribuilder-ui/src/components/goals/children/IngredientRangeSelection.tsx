@@ -14,9 +14,9 @@ import {
   GetIngredientReferenceData_allIngredientTypes
 } from '../../../typings/gql/GetIngredientReferenceData';
 import {ShadowedSelect} from '../../style/CustomMaterial';
+import {CenteredTextGrid} from '../../style/Layout';
 import {Body} from '../../style/Typography';
 import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from '../GoalsScreen';
-import {CenteredTextGrid} from '../GoalsScreenPure';
 
 interface IProps {
   ingredientRange: IIngredientRange;

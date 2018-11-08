@@ -11,8 +11,7 @@ import {
   GetClientCatalogProductQuantitiesVariables
 } from '../../../../../typings/gql/GetClientCatalogProductQuantities';
 import {FREQUENCY} from '../../../../../typings/gql/globalTypes';
-import {CenteredTextGrid} from '../../../../goals/GoalsScreenPure';
-import {EmptyRow} from '../../../../style/Layout';
+import {CenteredTextGrid, EmptyRow} from '../../../../style/Layout';
 import {Body, Subcaption} from '../../../../style/Typography';
 import CatalogProductAddButton from './CatalogProductAddButton';
 
