@@ -2,11 +2,15 @@ import {AppBar, Grid, Tab, Tabs} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
+import Sketch from '../../../app/style/SketchVariables';
+import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import SearchBox from '../../navbar/SearchBox';
 import {media} from '../../style/Core';
 import {EmptyRow} from '../../style/Layout';
+import {Body} from '../../style/Typography';
 import {ICatalogScreenPureProps} from '../CatalogScreen';
 import FilterPanel, {prettifyEnumString} from '../children/FilterPanel';
+import FilterDescription from '../children/header/FilterDescription';
 import MyProductPanel from '../children/MyProductPanel';
 import MyRegimenPanel from '../children/MyRegimenPanel';
 import ProductPanel from '../children/ProductPanel';
@@ -24,6 +28,15 @@ const HeaderTab = styled(Tab)`
     ${media.tablet`
         font-size: inherit;
     `}
+  }
+`;
+
+const PaddedCaptionSizedBody = styled(Body)`
+  && {
+    font-size: ${Sketch.typography.caption.fontSize};
+    box-decoration-break: clone;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 `;
 
@@ -54,6 +67,16 @@ const CatalogScreenPureMobile: SFC<IProps> = props => {
                 <Grid item xs={10}>
                   <SearchBox key={props.searchQuery ? props.searchQuery.value : ''} dark/>
                 </Grid>
+                <Grid item xs={1}/>
+                <EmptyRow/>
+                <Grid item xs={1}/>
+                <CenteredTextGrid item xs={10}>
+                  <PaddedCaptionSizedBody dark>
+                    <FilterDescription
+                      filteredClientCatalogProducts={props.filteredClientCatalogProducts}
+                    />
+                  </PaddedCaptionSizedBody>
+                </CenteredTextGrid>
                 <Grid item xs={1}/>
               </Grid>
               <ProductPanel
