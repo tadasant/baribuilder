@@ -1,4 +1,5 @@
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import React, {Component, Fragment} from 'react';
 import {toast} from 'react-toastify';
 import styled from 'styled-components';
@@ -9,7 +10,6 @@ import {media} from '../../style/Core';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
-import {CTANavButton} from './1_Hero.react';
 
 const BoxedBlueShadowHangingGrid = styled(Grid)`
   && {
@@ -38,7 +38,7 @@ class BottomCTABanner extends Component {
 
   handleCTAClick() {
     if (window.innerWidth < 1119) {
-      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a deskop/laptop computer.', {
+      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a desktop/laptop computer.', {
         autoClose: 10000,
       });
     }
@@ -63,9 +63,9 @@ class BottomCTABanner extends Component {
             <Grid item xs={2} sm={3} lg={4}/>
             <Grid item xs={8} sm={6} lg={4}>
               <UndecoratedLink to={'/goals'} onClick={this.handleCTAClick}>
-                <CTANavButton variant='contained' fullWidth>
+                <Button variant='contained' fullWidth>
                   Build Personal Regimen
-                </CTANavButton>
+                </Button>
               </UndecoratedLink>
             </Grid>
             <Grid item xs={2} sm={3} lg={4}/>

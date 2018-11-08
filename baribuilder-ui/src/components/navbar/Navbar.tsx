@@ -64,7 +64,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
 
   const handleSelectBrowse = () => {
     if (window.innerWidth < 1119 && window.location.pathname === '/') {
-      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a deskop/laptop computer.', {
+      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a desktop/laptop computer.', {
         autoClose: 10000,
       });
     }
@@ -75,7 +75,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
 
   const handleSelectGoals = () => {
     if (window.innerWidth < 1119 && window.location.pathname === '/') {
-      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a deskop/laptop computer.', {
+      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a desktop/laptop computer.', {
         autoClose: 10000,
       });
     }
