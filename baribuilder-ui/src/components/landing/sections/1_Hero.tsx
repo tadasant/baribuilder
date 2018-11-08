@@ -34,13 +34,13 @@ class Hero extends Component<{}> {
       <HeroGrid item container alignContent='flex-start'>
         <EmptyRow/>
         <Fragment>
-          <Hidden only='xs' lgUp>
-            <Grid item sm={1}/>
+          <Hidden only='xs'>
+            <Grid item xs={1}/>
           </Hidden>
-          <CenteredTextGrid item xs={12} sm={10} lg={12}>
+          <CenteredTextGrid item xs={12} sm={10}>
             <Header dark>The easiest way for bariatric patients to find vitamins</Header>
           </CenteredTextGrid>
-          <Hidden only='xs' lgUp>
+          <Hidden only='xs'>
             <Grid item sm={1}/>
           </Hidden>
         </Fragment>

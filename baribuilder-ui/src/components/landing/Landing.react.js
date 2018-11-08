@@ -54,11 +54,11 @@ class Landing extends Component {
           <Grid container>
             <Hero/>
             <GutteredGrid container direction='row'>
-              <EmptyRow/>
+              <EmptyRow mobile='5px'/>
               <BariBuilderExplanationSection/>
-              <EmptyRow mobile='65px' tablet='90px'/>
+              <EmptyRow mobile='20px' tablet='40px'/>
               <HowItWorksSection/>
-              <EmptyRow mobile='65px' tablet='90px'/>
+              <EmptyRow mobile='20px' tablet='40px'/>
               <BottomCTABanner/>
             </GutteredGrid>
             <Footer/>

@@ -20,7 +20,7 @@ class BariBuilderExplanationSection extends Component {
         <CenteredTextGrid item xs={12}>
           <Header dark>BariBuilder...</Header>
         </CenteredTextGrid>
-        <EmptyRow desktop='50px'/>
+        <EmptyRow desktop='25px'/>
         <Hidden mdUp>
           <Fragment>
             <Grid item xs={2}/>
@@ -34,9 +34,7 @@ class BariBuilderExplanationSection extends Component {
                 {scaleText}
               </Grid>
             </IconContainerGrid>
-            <Hidden mdUp>
-              <Grid item xs={2}/>
-            </Hidden>
+            <Grid item xs={2}/>
           </Fragment>
           <EmptyRow/>
           <Fragment>
@@ -51,9 +49,7 @@ class BariBuilderExplanationSection extends Component {
                 {userText}
               </Grid>
             </IconContainerGrid>
-            <Hidden mdUp>
-              <Grid item xs={2}/>
-            </Hidden>
+            <Grid item xs={2}/>
           </Fragment>
           <EmptyRow/>
           <Fragment>
@@ -68,9 +64,48 @@ class BariBuilderExplanationSection extends Component {
                 {globeText}
               </Grid>
             </IconContainerGrid>
-            <Hidden mdUp>
-              <Grid item xs={2}/>
-            </Hidden>
+            <Grid item xs={2}/>
+          </Fragment>
+        </Hidden>
+        <Hidden smDown>
+          <Fragment>
+            <IconContainerGrid item md={4} container>
+              <Grid item md={3}/>
+              <Grid item md={6}>
+                <IconImage imagekitURL={imagekitURLs.scale} alt='Comparison scale'/>
+              </Grid>
+              <Grid item md={3}/>
+              <EmptyRow/>
+              <Grid item md={12}>
+                {scaleText}
+              </Grid>
+            </IconContainerGrid>
+          </Fragment>
+          <Fragment>
+            <IconContainerGrid item md={4} container>
+              <Grid item md={3}/>
+              <Grid item md={6}>
+                <IconImage imagekitURL={imagekitURLs.users} alt='Users'/>
+              </Grid>
+              <Grid item md={3}/>
+              <EmptyRow/>
+              <Grid item md={12}>
+                {userText}
+              </Grid>
+            </IconContainerGrid>
+          </Fragment>
+          <Fragment>
+            <IconContainerGrid item md={4} container>
+              <Grid item md={3}/>
+              <Grid item md={6}>
+                <IconImage imagekitURL={imagekitURLs.globe} alt='Internet globe'/>
+              </Grid>
+              <Grid item md={3}/>
+              <EmptyRow/>
+              <Grid item md={12}>
+                {globeText}
+              </Grid>
+            </IconContainerGrid>
           </Fragment>
         </Hidden>
       </Fragment>
