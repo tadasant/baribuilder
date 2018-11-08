@@ -1,6 +1,7 @@
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import React, {Component, Fragment} from 'react';
+import Grid from '@material-ui/core/Grid';
+import * as React from 'react';
+import {Component, Fragment} from 'react';
 import {toast} from 'react-toastify';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
@@ -30,8 +31,8 @@ const HeaderWithHeader2MobileSize = styled(Header)`
   `}
 `;
 
-class BottomCTABanner extends Component {
-  constructor(props) {
+class BottomCTABanner extends Component<{}> {
+  constructor(props: {}) {
     super(props);
     this.handleCTAClick = this.handleCTAClick.bind(this);
   }
@@ -54,7 +55,7 @@ class BottomCTABanner extends Component {
           <Grid item xs={12} container>
             <Grid item xs={2} lg={1}/>
             <CenteredTextGrid item xs={8} lg={10}>
-              <HeaderWithHeader2MobileSize dark>Start building your personalized regimen.</HeaderWithHeader2MobileSize>
+              <HeaderWithHeader2MobileSize dark>Find the vitamins meant for you.</HeaderWithHeader2MobileSize>
             </CenteredTextGrid>
             <Grid item xs={2} lg={1}/>
           </Grid>
@@ -63,8 +64,8 @@ class BottomCTABanner extends Component {
             <Grid item xs={2} sm={3} lg={4}/>
             <Grid item xs={8} sm={6} lg={4}>
               <UndecoratedLink to={'/goals'} onClick={this.handleCTAClick}>
-                <Button variant='contained' fullWidth>
-                  Build Personal Regimen
+                <Button variant='contained' fullWidth color='primary'>
+                  Get Started
                 </Button>
               </UndecoratedLink>
             </Grid>

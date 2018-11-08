@@ -9,7 +9,7 @@ import {EmptyRow} from '../style/Layout';
 import Hero from './sections/1_Hero';
 import BariBuilderExplanationSection from './sections/2_BariBuilderExplanationSection/2_BariBuilderExplanationSection';
 import HowItWorksSection from './sections/4_HowItWorksSection.react';
-import BottomCTABanner from './sections/5_BottomCTABanner.react';
+import BottomCTABanner from './sections/5_BottomCTABanner';
 import Footer from './sections/LandingFooter.react.js';
 
 const GutteredGrid = styled(Grid)`
