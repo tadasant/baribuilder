@@ -92,7 +92,7 @@ const CatalogScreenPureMobile: SFC<IProps> = props => {
       {
         props.activeTab === CATALOG_TAB.MY_PRODUCTS
           ? (
-            <MyProductPanel/>
+            <MyProductPanel showCheckout/>
           )
           : null
       }
@@ -110,7 +110,7 @@ const CatalogScreenPureMobile: SFC<IProps> = props => {
       {
         props.activeTab === CATALOG_TAB.MY_REGIMEN
           ? (
-            <MyRegimenPanel hideButtons/>
+            <MyRegimenPanel />
           )
           : null
       }

@@ -8,10 +8,6 @@ import {EmptyRow} from '../../style/Layout';
 import CurrentRegimenCost from './myRegimen/CurrentRegimenCost';
 import RegimenFacts from './myRegimen/RegimenFacts';
 
-interface IProps {
-  hideButtons?: boolean;
-}
-
 export const tabFooterHeight = '4em';
 
 const OuterGrid = styled(Grid)`
@@ -42,7 +38,7 @@ export const ButtonFooterGrid = styled(Grid)`
   }
 `;
 
-const WideLink = styled(UndecoratedLink)`
+export const WideLink = styled(UndecoratedLink)`
   && {
     width: 100%;
   }
@@ -60,7 +56,7 @@ export const HPaddedGrid = styled(Grid)`
   }
 `;
 
-const MyRegimenPanel: SFC<IProps> = (props) => {
+const MyRegimenPanel: SFC = () => {
   return (
     <Fragment>
       <OuterGrid container>
@@ -79,30 +75,26 @@ const MyRegimenPanel: SFC<IProps> = (props) => {
         <Grid item xs={1}/>
         <EmptyRow mobile={`calc(${tabFooterHeight} * 1.5)`}/> {/* Hack for spacing UX */}
       </OuterGrid>
-      {props.hideButtons
-        ? null
-        : (
-          <ButtonFooter>
-            <ButtonFooterGrid item xs={12} container direction='column' justify='center'>
-              <NoMarginGrid item container>
-                <HPaddedGrid item xs={6}>
-                  <WideLink to='/purchase'>
-                    <Button variant='contained' color='primary' fullWidth>
-                      Checkout
-                    </Button>
-                  </WideLink>
-                </HPaddedGrid>
-                <HPaddedGrid item xs={6}>
-                  <WideLink to='/goals'>
-                    <Button variant='contained' color='secondary' fullWidth>
-                      Edit Goals
-                    </Button>
-                  </WideLink>
-                </HPaddedGrid>
-              </NoMarginGrid>
-            </ButtonFooterGrid>
-          </ButtonFooter>
-        )}
+      <ButtonFooter>
+        <ButtonFooterGrid item xs={12} container direction='column' justify='center'>
+          <NoMarginGrid item container>
+            <HPaddedGrid item xs={6}>
+              <WideLink to='/purchase'>
+                <Button variant='contained' color='primary' fullWidth>
+                  Checkout
+                </Button>
+              </WideLink>
+            </HPaddedGrid>
+            <HPaddedGrid item xs={6}>
+              <WideLink to='/goals'>
+                <Button variant='contained' color='secondary' fullWidth>
+                  Edit Goals
+                </Button>
+              </WideLink>
+            </HPaddedGrid>
+          </NoMarginGrid>
+        </ButtonFooterGrid>
+      </ButtonFooter>
     </Fragment>
   )
 };

@@ -9,8 +9,11 @@ import Sketch from '../../../app/style/SketchVariables';
 import {ClearCurrentRegimen} from '../../../typings/gql/ClearCurrentRegimen';
 import {EmptyRow} from '../../style/Layout';
 import CurrentRegimenProducts from './myProducts/CurrentRegimenProducts';
-import {ButtonFooter, ButtonFooterGrid, HPaddedGrid, NoMarginGrid} from './MyRegimenPanel';
+import {ButtonFooter, ButtonFooterGrid, HPaddedGrid, NoMarginGrid, WideLink} from './MyRegimenPanel';
 
+interface IProps {
+  showCheckout?: boolean;
+}
 
 const REGIMEN_CLEAR_MUTATION = gql`
     mutation ClearCurrentRegimen {
@@ -43,7 +46,7 @@ const RedButton = styled(Button)`
   }
 `;
 
-const MyProductPanel: SFC<MutationOutputProps> = ({mutate}) => {
+const MyProductPanel: SFC<MutationOutputProps & IProps> = ({mutate, showCheckout}) => {
   const handleClearClick = () => {
     if (!mutate) {
       console.error('Mutate undefined for some reason. Error code 019472');
@@ -65,9 +68,20 @@ const MyProductPanel: SFC<MutationOutputProps> = ({mutate}) => {
         <EmptyRow mobile='1px'/>
       </PaddedGrid>
       <ButtonFooter>
-        <ButtonFooterGrid item lg={12} container direction='column' justify='center'>
+        <ButtonFooterGrid item xs={12} container direction='column' justify='center'>
           <NoMarginGrid item container>
-            <HPaddedGrid item lg={12}>
+            {showCheckout
+              ? (
+                <HPaddedGrid item xs={6}>
+                  <WideLink to='/purchase'>
+                    <Button variant='contained' color='primary' fullWidth>
+                      Checkout
+                    </Button>
+                  </WideLink>
+                </HPaddedGrid>
+              )
+              : null}
+            <HPaddedGrid item xs={showCheckout ? 6 : 12}>
               <RedButton variant='contained' fullWidth onClick={handleClearClick}>
                 Clear All
               </RedButton>
@@ -79,7 +93,7 @@ const MyProductPanel: SFC<MutationOutputProps> = ({mutate}) => {
   )
 };
 
-const withMutation = graphql<{}, ClearCurrentRegimen>(REGIMEN_CLEAR_MUTATION, {
+const withMutation = graphql<IProps, ClearCurrentRegimen>(REGIMEN_CLEAR_MUTATION, {
   options: {
     refetchQueries: ['PrefetchClientCatalogProducts'],
   }
