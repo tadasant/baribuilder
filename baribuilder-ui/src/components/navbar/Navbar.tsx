@@ -30,7 +30,7 @@ const GridWithRaisedBackground = styled(Grid)`
   background-color: ${Sketch.color.accent.black};
   box-shadow: 0px 2px 4px 0px;
   height: ${navbarHeight};
-  z-index: 2;
+  z-index: 5;
   position: relative;
 `;
 

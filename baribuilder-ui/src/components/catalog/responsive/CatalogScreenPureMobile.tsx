@@ -21,6 +21,14 @@ interface IProps extends ICatalogScreenPureProps {
   setActiveTab: (value: CATALOG_TAB) => CATALOG_TAB;
 }
 
+const StickyAppBar = styled(AppBar)`
+  && {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+`;
+
 const HeaderTab = styled(Tab)`
   && {
     font-size: 0.5rem;
@@ -41,13 +49,17 @@ const PaddedCaptionSizedBody = styled(Body)`
 `;
 
 const CatalogScreenPureMobile: SFC<IProps> = props => {
+  const handleChangeTab = (event: any, value: CATALOG_TAB) => {
+    props.setActiveTab(value);
+    window.scrollTo(0, 0);
+  };
   return (
     <Fragment>
-      <AppBar position='static' color='default'>
+      <StickyAppBar color='default'>
         <Tabs
           value={props.activeTab}
           indicatorColor='primary'
-          onChange={(event, value) => props.setActiveTab(value)}
+          onChange={handleChangeTab}
           fullWidth>
           {Object.keys(CATALOG_TAB).map(tabName => (
             <HeaderTab
@@ -56,7 +68,7 @@ const CatalogScreenPureMobile: SFC<IProps> = props => {
             />
           ))}
         </Tabs>
-      </AppBar>
+      </StickyAppBar>
       {
         props.activeTab === CATALOG_TAB.CATALOG
           ? (
