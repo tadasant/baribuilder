@@ -109,14 +109,14 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             : null
           }
           <Grid item>
-            <UndecoratedLink to='/browse/all_products' onClick={generateTrackNavClick('Browse nav')}>
+            <UndecoratedLink to='/browse/all_products' onClick={handleSelectBrowse}>
               <WhiteNavButton fullWidth>
                 Browse
               </WhiteNavButton>
             </UndecoratedLink>
           </Grid>
           <Grid item>
-            <UndecoratedLink to='/goals' onClick={generateTrackNavClick('Goals nav')}>
+            <UndecoratedLink to='/goals' onClick={handleSelectGoals}>
               <WhiteNavButton fullWidth>
                 Goals
               </WhiteNavButton>
