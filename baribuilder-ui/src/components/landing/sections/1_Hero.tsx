@@ -8,8 +8,8 @@ import {generateTrackNavClick} from '../../../lib/analytics';
 import {CenteredTextGrid} from '../../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
-import {Body, Header} from '../../style/Typography';
-import {HeroGrid} from './1_Hero.style';
+import {BoldBody, Header} from '../../style/Typography';
+import {HeroGrid, SubheaderGrid} from './1_Hero.style';
 
 
 class Hero extends Component<{}> {
@@ -44,31 +44,29 @@ class Hero extends Component<{}> {
             <Grid item sm={1}/>
           </Hidden>
         </Fragment>
-        <Fragment>
-          <Hidden only='xs' lgUp>
-            <Grid item sm={1}/>
-          </Hidden>
-          <CenteredTextGrid item xs={12} sm={10} lg={12}>
-            <Body dark>Compare supplement products to find what is cost-effective for you.</Body>
-          </CenteredTextGrid>
-          <Hidden only='xs' lgUp>
-            <Grid item sm={1}/>
-          </Hidden>
-        </Fragment>
         <EmptyRow/>
         <Fragment>
-          <Grid item xs={3}/>
-          <Grid item xs={6} container direction='row'>
+          <Grid item xs={1}/>
+          <SubheaderGrid item xs={10} container direction='row'>
             <Grid item xs={12}>
-              <UndecoratedLink to={'/goals'} onClick={this.handleCTAClick}>
-                <Button variant='contained' fullWidth color='primary'>
-                  Get Started
-                </Button>
-              </UndecoratedLink>
+              <BoldBody dark>Compare supplement products to find what is cost-effective for <u>you</u>.</BoldBody>
             </Grid>
-          </Grid>
-          <Grid item xs={3}/>
+            <EmptyRow/>
+            <Fragment>
+              <Grid item xs={3}/>
+              <Grid item xs={6}>
+                <UndecoratedLink to={'/goals'} onClick={this.handleCTAClick}>
+                  <Button variant='contained' fullWidth color='primary'>
+                    Get Started
+                  </Button>
+                </UndecoratedLink>
+              </Grid>
+              <Grid item xs={3}/>
+            </Fragment>
+          </SubheaderGrid>
+          <Grid item xs={1}/>
         </Fragment>
+        <EmptyRow/>
       </HeroGrid>
     );
   }

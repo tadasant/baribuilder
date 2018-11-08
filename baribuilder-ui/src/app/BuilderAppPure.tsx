@@ -4,6 +4,7 @@ import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom';
 import CatalogScreen from '../components/catalog/CatalogScreen';
 import Footer from '../components/Footer';
 import GoalsScreen from '../components/goals/GoalsScreenContainer';
+import Navbar from '../components/navbar/Navbar';
 import PurchaseScreen from '../components/purchase/PurchaseScreen';
 import RequestProductsScreen from '../components/request/RequestProductsScreen';
 import ShareScreen from '../components/share/ShareScreen';
@@ -19,6 +20,7 @@ const disclaimerText = 'The information on this website is not medical advice. P
 const BuilderAppPure: SFC<RouteComponentProps> = ({location}) => {
   return (
     <Fragment>
+      <Navbar/>
       {/* key needed to force re-mount on screen change --> natural e-commerce UX*/}
       <Switch key={location.pathname}>
         <Route path="/browse" component={CatalogScreen}/>

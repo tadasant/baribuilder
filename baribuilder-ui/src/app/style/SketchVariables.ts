@@ -11,6 +11,7 @@ const Sketch = {
     },
     'accent': {
       'black': '#2D3239',
+      'blackrgba': (alpha: number) => `rgba(45, 50, 57, ${alpha})`,
       'white': '#F2F2F2',
       'grey': '#D9D9D9',
       'darkgrey': '#A6A6A6',

@@ -4,7 +4,7 @@ import images from '../../../constants/images';
 import {navbarHeight} from '../../navbar/Navbar';
 
 export const HeroGrid = styled(Grid)`
-  height: calc(95vh - ${navbarHeight});
+  height: calc(90vh - ${navbarHeight});
 
   background-image: url('${images.hero.mobile}');
   background-repeat: no-repeat;
@@ -19,4 +19,8 @@ export const HeroGrid = styled(Grid)`
   @media (min-width: 900px) and (max-height: 960px) {
     background-image: url('${images.hero.desktop}');
   }
+`;
+
+export const SubheaderGrid = styled(Grid)`
+  text-align: center;
 `;
