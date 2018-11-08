@@ -1,5 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import React, {Component, Fragment} from 'react';
+import {toast} from 'react-toastify';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {generateTrackNavClick} from '../../../lib/analytics';
@@ -36,12 +37,12 @@ class BottomCTABanner extends Component {
   }
 
   handleCTAClick() {
-    ReactGA.event({
-      category: 'CTA',
-      action: 'click',
-      label: 'Bottom CTA Click'
-    });
-    this.props.onCTAClick();
+    if (window.innerWidth < 1119) {
+      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a deskop/laptop computer.', {
+        autoClose: false,
+      });
+    }
+    generateTrackNavClick('Bottom Build CTA')();
   }
 
   render() {
@@ -61,7 +62,7 @@ class BottomCTABanner extends Component {
           <Fragment>
             <Grid item xs={2} sm={3} lg={4}/>
             <Grid item xs={8} sm={6} lg={4}>
-              <UndecoratedLink to={'/goals'} onClick={generateTrackNavClick('Bottom Build CTA')}>
+              <UndecoratedLink to={'/goals'} onClick={this.handleCTAClick}>
                 <CTANavButton variant='contained' fullWidth>
                   Build Personal Regimen
                 </CTANavButton>

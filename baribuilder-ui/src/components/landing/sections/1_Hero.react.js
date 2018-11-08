@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 import React, {Component, Fragment} from 'react';
+import {toast} from 'react-toastify';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import images from '../../../constants/images';
@@ -59,12 +60,14 @@ class Hero extends Component {
   }
 
   handleCTAClick() {
-    ReactGA.event({
-      category: 'CTA',
-      action: 'click',
-      label: 'Hero CTA Click'
-    });
+    if (window.innerWidth < 1119) {
+      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a deskop/laptop computer.', {
+        autoClose: false,
+      });
+    }
+    generateTrackNavClick('Top Build CTA')();
   }
+
 
   render() {
     return (
@@ -88,7 +91,7 @@ class Hero extends Component {
           <Grid item xs={1} lg={3}/>
           <Grid item xs={10} lg={6} container direction='row'>
             <Grid item xs={12}>
-              <UndecoratedLink to={'/goals'} onClick={generateTrackNavClick('Top Build CTA')}>
+              <UndecoratedLink to={'/goals'} onClick={this.handleCTAClick}>
                 <CTANavButton variant='contained' fullWidth>
                   Build Personal Regimen
                 </CTANavButton>

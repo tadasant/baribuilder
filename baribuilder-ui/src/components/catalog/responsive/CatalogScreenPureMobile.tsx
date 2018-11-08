@@ -63,6 +63,7 @@ const CatalogScreenPureMobile: SFC<IProps> = props => {
           fullWidth>
           {Object.keys(CATALOG_TAB).map(tabName => (
             <HeaderTab
+              key={tabName}
               label={prettifyEnumString(tabName)}
               value={tabName}
             />

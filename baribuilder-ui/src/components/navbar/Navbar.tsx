@@ -5,6 +5,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
+import {toast} from 'react-toastify';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
@@ -62,12 +63,22 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   const showCheckout = location.pathname.startsWith('/browse');
 
   const handleSelectBrowse = () => {
+    if (window.innerWidth < 1119 && window.location.pathname === '/') {
+      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a deskop/laptop computer.', {
+        autoClose: false,
+      });
+    }
     generateTrackNavClick('Browse nav')();
     setAnchorEl(null);
     history.push('/browse/all_products');
   };
 
   const handleSelectGoals = () => {
+    if (window.innerWidth < 1119 && window.location.pathname === '/') {
+      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a deskop/laptop computer.', {
+        autoClose: false,
+      });
+    }
     generateTrackNavClick('Goals nav')();
     setAnchorEl(null);
     history.push('/goals');
