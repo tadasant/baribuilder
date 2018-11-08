@@ -104,13 +104,13 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
     <Grid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
       <InnerGrid item container direction='row'>
-        <Grid item lg={1}/>
-        <Grid item lg={10} container direction='row' alignContent='flex-start'>
-          <Grid item lg={12}>
+        <Grid item xs={1}/>
+        <Grid item xs={10} container direction='row' alignContent='flex-start'>
+          <Grid item xs={12}>
             <GreyLargeBody>Category</GreyLargeBody>
           </Grid>
           <EmptyRow mobile='0px'/>
-          <Grid item lg={12}>
+          <Grid item xs={12}>
             <UndecoratedLink to={`/browse/${ROOT_CATEGORY.toLowerCase()}`}>
               {selectedCategory === ROOT_CATEGORY
                 ? <SelectedCategoryFont dark>{prettifyEnumString(ROOT_CATEGORY)}</SelectedCategoryFont>
@@ -118,11 +118,11 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
               }
             </UndecoratedLink>
           </Grid>
-          <Grid item container lg={12}>
+          <Grid item container xs={12}>
             {categoriesToShow.map(category => (
               <Fragment key={category.name}>
-                <Grid item lg={1}/>
-                <Grid item lg={11}>
+                <Grid item xs={1}/>
+                <Grid item xs={11}>
                   <UndecoratedLink to={`/browse/${category.name.toLowerCase()}`}>
                     {selectedCategory === category.name
                       ? <SelectedCategoryFont
@@ -138,8 +138,8 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
                 ? null
                 : (
                   <Fragment>
-                    <Grid item lg={1}/>
-                    <Grid item lg={11}>
+                    <Grid item xs={1}/>
+                    <Grid item xs={11}>
                       <UnselectedCategoryFontWithPointer dark onClick={() => setShowAllCategories(true)}>...</UnselectedCategoryFontWithPointer>
                     </Grid>
                   </Fragment>
@@ -147,11 +147,11 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
             }
           </Grid>
           <EmptyRow/>
-          <Grid item lg={12}>
+          <Grid item xs={12}>
             <GreyLargeBody>Filters</GreyLargeBody>
           </Grid>
           <EmptyRow/>
-          <Grid item lg={12}>
+          <Grid item xs={12}>
             <UnselectedCategoryFont dark>Pill Forms</UnselectedCategoryFont>
             <FullWidthSelect
               multiple
@@ -188,7 +188,7 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
             </FullWidthSelect>
           </Grid>
           <EmptyRow/>
-          <Grid item lg={12}>
+          <Grid item xs={12}>
             <UnselectedCategoryFont dark>Brands</UnselectedCategoryFont>
             <FullWidthSelect
               multiple
@@ -225,7 +225,7 @@ const BuilderFilterPanelPure: SFC<QueryOutputProps & IProps & RouteComponentProp
             </FullWidthSelect>
           </Grid>
         </Grid>
-        <Grid item lg={1}/>
+        <Grid item xs={1}/>
       </InnerGrid>
       <EmptyRow mobile='1px'/>
     </Grid>
