@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {ICatalogScreenPureProps} from '../CatalogScreen';
 import BuilderFilterPanel from '../children/FilterPanel';
-import BuilderHeader from '../children/HeaderDesktop';
+import BuilderHeader from '../children/header/HeaderDesktop';
 import BuilderMyProducts from '../children/MyProductPanel';
 import MyRegimenPanel from '../children/MyRegimenPanel';
 import ProductPanel from '../children/ProductPanel';
