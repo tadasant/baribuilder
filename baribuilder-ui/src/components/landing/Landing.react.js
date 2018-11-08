@@ -7,8 +7,7 @@ import styled from 'styled-components';
 import {trackScrollPercent} from '../../lib/analytics';
 import {EmptyRow} from '../style/Layout';
 import Hero from './sections/1_Hero';
-import PriceSection from './sections/2_PriceSection.react';
-import UniqueSection from './sections/3_UniqueSection.react';
+import BariBuilderExplanationSection from './sections/2_BariBuilderExplanationSection/2_BariBuilderExplanationSection';
 import HowItWorksSection from './sections/4_HowItWorksSection.react';
 import BottomCTABanner from './sections/5_BottomCTABanner.react';
 import Footer from './sections/LandingFooter.react.js';
@@ -55,10 +54,8 @@ class Landing extends Component {
           <Grid container>
             <Hero/>
             <GutteredGrid container direction='row'>
-              <EmptyRow mobile='65px' tablet='90px'/>
-              <PriceSection/>
-              <EmptyRow mobile='65px' tablet='90px'/>
-              <UniqueSection/>
+              <EmptyRow/>
+              <BariBuilderExplanationSection/>
               <EmptyRow mobile='65px' tablet='90px'/>
               <HowItWorksSection/>
               <EmptyRow mobile='65px' tablet='90px'/>

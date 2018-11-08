@@ -4,7 +4,7 @@ import images from '../../../constants/images';
 import {navbarHeight} from '../../navbar/Navbar';
 
 export const HeroGrid = styled(Grid)`
-  height: calc(90vh - ${navbarHeight});
+  height: calc(92.5vh - ${navbarHeight});
 
   background-image: url('${images.hero.mobile}');
   background-repeat: no-repeat;

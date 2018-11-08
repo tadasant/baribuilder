@@ -10,10 +10,13 @@ export const fixedWidthImage = (imagekitURL, width) => {
   return tokens.join('/');
 };
 
-const imagekitURLs = {
+export const imagekitURLs = {
   'coloredLogo': 'https://ik.imagekit.io/vitaglab/vita.g-colored-logo-horizontal_r1mcrkLI7.png',
   'personInCrowd': 'https://ik.imagekit.io/vitaglab/person-in-crowd_HJLcTa_LX.png',
   'step1': 'https://ik.imagekit.io/vitaglab/step-1-enter-dosages_Hy4cQZc8m.png',
+  'globe': 'https://ik.imagekit.io/vitaglab/globe_BkkGZMzp7.png',
+  'scale': 'https://ik.imagekit.io/vitaglab/scale_ryWJfWff67.png',
+  'users': 'https://ik.imagekit.io/vitaglab/users_HkxyfZMz6X.png',
 };
 
 export default {
@@ -37,5 +40,5 @@ export default {
     'original': imagekitURLs.step1,
     'mobile': fixedWidthImage(imagekitURLs.step1, 360),
     'tablet': fixedWidthImage(imagekitURLs.step1, 600)
-  }
+  },
 };
