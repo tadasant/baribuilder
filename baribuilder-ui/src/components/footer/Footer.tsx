@@ -2,6 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import * as React from 'react';
 import {SFC} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../style/Layout';
+import ContactInformationPanel from './ContactInformationPanel';
 import {DisclaimerCaption, FooterContainerGrid} from './Footer.style';
 import SignupForm from './SignupForm';
 
@@ -25,6 +26,8 @@ const Footer: SFC<IProps> = props => {
           : null
         }
         <SignupForm/>
+        <EmptyRow mobile='20px' tablet='50px'/>
+        <ContactInformationPanel/>
       </Grid>
       <Grid item xs={1}/>
       <EmptyRow/>
