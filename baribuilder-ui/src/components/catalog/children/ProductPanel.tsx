@@ -27,7 +27,7 @@ const ProductPanel: SFC<IProps> = ({selectedCategory, sortingStrategy, filteredC
     <PaddedGrid container alignContent='flex-start'>
       <EmptyRow mobile='1px'/>
       <Grid item container direction='row'>
-        <Grid item lg={12}>
+        <Grid item xs={12}>
           <ClientCatalogProductSelection
             selectedCategory={selectedCategory}
             sortingStrategy={sortingStrategy}

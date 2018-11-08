@@ -105,23 +105,23 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
 
   return (
     <OuterGrid item container direction='row' justify='space-evenly'>
-      <Grid item lg={4}/>
-      <Grid item lg={4}>
+      <Grid item xs={4}/>
+      <Grid item xs={4}>
         <TextField type='number' value={quantityAmount || ''} onChange={handleChangeQuantity} fullWidth inputProps={{dataHjWhitelist: true}}/>
-        <CenteredTextGrid item lg={12}>
+        <CenteredTextGrid item xs={12}>
           <Subcaption dark>daily servings</Subcaption>
         </CenteredTextGrid>
       </Grid>
-      <Grid item lg={4}/>
+      <Grid item xs={4}/>
       <EmptyRow mobile='0px'/>
       {
         fullfilledIngredientPercentage !== null && goalIngredients.unfilledIngredientCount !== 0
           ? (
             <Fragment>
-              <CenteredTextGrid item lg={12}>
+              <CenteredTextGrid item xs={12}>
                 <Body dark>fills {fullfilledIngredientPercentage.toFixed(0)}% of {goalIngredients.unfilledIngredientCount}</Body>
               </CenteredTextGrid>
-              <CenteredTextGrid item lg={12}>
+              <CenteredTextGrid item xs={12}>
                 <Subcaption dark>remaining regimen ingredients</Subcaption>
               </CenteredTextGrid>
               <EmptyRow mobile='0px'/>
@@ -129,11 +129,11 @@ const CatalogProductAddPanelPure: SFC<IProps & DataOutputProps & IPropsState> = 
           )
           : null
       }
-      <Grid item lg={2}/>
-      <Grid item lg={8}>
+      <Grid item xs={2}/>
+      <Grid item xs={8}>
         <CatalogProductAddButton catalogProductId={catalogProductId} quantity={quantity} onAddToRegimen={onAddToRegimen}/>
       </Grid>
-      <Grid item lg={2}/>
+      <Grid item xs={2}/>
     </OuterGrid>
   );
 };
