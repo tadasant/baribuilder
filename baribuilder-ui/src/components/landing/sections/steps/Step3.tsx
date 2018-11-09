@@ -1,15 +1,16 @@
-import React, {Fragment} from 'react';
-import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
-import StepOval from './StepOval';
-import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
+import Hidden from '@material-ui/core/Hidden';
+import * as React from 'react';
+import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
-import {Body, Header2} from '../../../style/Typography';
-import OptionPill from './OptionPill';
 import Sketch from '../../../../app/style/SketchVariables';
+import {fixedWidthImage, imagekitURLs} from '../../../../constants/images';
+import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
+import {Body, Header2} from '../../../style/Typography';
+import StepOval from './StepOval';
 
 const LeftAlignHeader2 = styled(Header2)`
-  text-align: left;
+  text-align: left; 
 `;
 
 const CenteredBody = styled(Body)`
@@ -20,16 +21,11 @@ const FullWidthImg = styled.img`
   width: 100%;
 `;
 
-const instructionCopy = 'Filter out things you don\'t want in one sweep.';
-const subInstructionCopy = 'Filters include, but aren\'t limited to:';
-const optionsCopy = [
-  'Form (chewable, capsule, etc.)',
-  'Flavors',
-  'Brands',
-];
+const instructionCopy = 'Build your regimen, piece by piece.';
+const subInstructionCopy = <span>BariBuilder generates a personalized "<b>My Regimen Facts</b>" sheet as you make changes.</span>;
 
 // Desktop vs. tablet/mobile arrangements are very different
-const Step3 = () => (
+const Step3: SFC = () => (
   <Fragment>
     {/* Mobile & Tablet */}
     <Hidden lgUp>
@@ -50,38 +46,34 @@ const Step3 = () => (
       </Hidden>
       <EmptyRow mobile='5px'/>
       <Hidden only='xs'>
-        <Grid item sm={1} />
+        <Grid item sm={1}/>
       </Hidden>
       <Grid item xs={12} sm={10}>
         <FullWidthImg
-          src='https://ik.imagekit.io/vitaglab/step-3-use-filters_ByBVnWqUX.png'
-          srcSet='https://ik.imagekit.io/vitaglab/tr:w-360/step-3-use-filters_ByBVnWqUX.png 360w,
-                      https://ik.imagekit.io/vitaglab/tr:w-600/step-3-use-filters_ByBVnWqUX.png 600w'
+          src={imagekitURLs.step2}
+          srcSet={`${fixedWidthImage(imagekitURLs.step3, 360)} 360w,
+                      ${fixedWidthImage(imagekitURLs.step3, 600)} 600w`}
           sizes={`(min-width: ${Sketch.breakpoints.tablet}px) 600px, 360px`}
-          alt='Step 3: Apply Filters As Desired Image'
+          alt='Step 3: Build Regimen Piece by Piece'
         />
       </Grid>
       <Hidden only='xs'>
-        <Grid item sm={1} />
+        <Grid item sm={1}/>
       </Hidden>
       <Fragment>
-        <Grid item xs={1} sm={2} />
+        <Grid item xs={1} sm={2}/>
         <Grid item xs={10} sm={8} container justify='center'>
           <EmptyRow mobile='10px'/>
           <CenteredTextGrid item xs={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
           </CenteredTextGrid>
-          <Grid item xs={12}>
-            <OptionPill value={optionsCopy[0]} />
-            <OptionPill value={optionsCopy[1]} />
-          </Grid>
         </Grid>
-        <Grid item xs={1} sm={2} />
+        <Grid item xs={1} sm={2}/>
       </Fragment>
     </Hidden>
     {/* Desktop */}
     <Hidden mdDown>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
       <Grid item lg={1} container>
         <Grid item lg={12}>
           <StepOval value='3'/>
@@ -92,23 +84,19 @@ const Step3 = () => (
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
           <EmptyRow desktop='20px'/>
           <EmptyRow mobile='10px'/>
-          <CenteredTextGrid item lg={12}>
+          <Grid item lg={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
-          </CenteredTextGrid>
-          <Grid item xs={12}>
-            <OptionPill value={optionsCopy[0]} />
-            <OptionPill value={optionsCopy[1]} />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
       <Grid item lg={4}>
         <FullWidthImg
-          src='https://ik.imagekit.io/vitaglab/step-3-use-filters_ByBVnWqUX.png'
-          alt='Step 3: Apply Filters As Desired Image'
+          src={fixedWidthImage(imagekitURLs.step3, 600)}
+          alt='Step 3: Build Regimen Piece by Piece'
         />
       </Grid>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
     </Hidden>
   </Fragment>
 );
