@@ -1,5 +1,6 @@
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid/Grid';
+import {KeyboardEvent} from 'react';
 import * as React from 'react';
 import {Component, Fragment} from 'react';
 import Sketch from '../../app/style/SketchVariables';
@@ -32,11 +33,18 @@ class SignupForm extends Component {
   constructor(props: {}) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.inputRef = React.createRef();
   }
 
   handleSubmit() {
     postToMailchimp(this.inputRef.current.value);
+  }
+
+  handleKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.handleSubmit();
+    }
   }
 
   render() {
@@ -53,6 +61,7 @@ class SignupForm extends Component {
             inputRef={this.inputRef}
             placeholder='Enter Your Email'
             inputProps={{type: 'email', style: {color: Sketch.color.accent.white}}}
+            onKeyPress={this.handleKeyPress}
           />
         </Grid>
         <EmptyRow/>
