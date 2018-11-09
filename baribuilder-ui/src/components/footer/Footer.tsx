@@ -1,6 +1,7 @@
+import {Hidden} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import * as React from 'react';
-import {SFC} from 'react';
+import {Fragment, SFC} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../style/Layout';
 import ContactInformationPanel from './ContactInformationPanel';
 import {DisclaimerCaption, FooterContainerGrid} from './Footer.style';
@@ -14,25 +15,41 @@ const Footer: SFC<IProps> = props => {
   return (
     <FooterContainerGrid item container>
       <EmptyRow/>
-      <Grid item xs={1}/>
-      <Grid item container xs={10}>
-        <EmptyRow/>
-        {props.disclaimerText
-          ? (
+      {props.disclaimerText
+        ?
+        <Fragment>
+          <Grid item xs={1}/>
+          <Grid item container xs={10}>
+            <EmptyRow/>
             <CenteredTextGrid item xs={12}>
               <DisclaimerCaption>{props.disclaimerText}</DisclaimerCaption>
             </CenteredTextGrid>
-          )
-          : null
-        }
-        <SignupForm/>
-        <EmptyRow mobile='20px' tablet='50px'/>
-        <ContactInformationPanel/>
-      </Grid>
+          </Grid>
+          <Grid item xs={1}/>
+        </Fragment>
+        : null
+      }
       <Grid item xs={1}/>
-      <EmptyRow/>
+      <Hidden mdUp>
+        <Grid item xs={10} container>
+          <SignupForm/>
+          <EmptyRow mobile='20px' tablet='50px'/>
+          <ContactInformationPanel/>
+        </Grid>
+      </Hidden>
+      <Hidden smDown>
+        <Grid item md={5} container>
+          <SignupForm/>
+        </Grid>
+        <Grid item md={5} container>
+          <ContactInformationPanel/>
+        </Grid>
+      </Hidden>
+      <Grid item xs={1}/>
+      <EmptyRow tablet='25px'/>
     </FooterContainerGrid>
   );
 };
+
 
 export default Footer;

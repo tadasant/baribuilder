@@ -7,8 +7,7 @@ import {Caption} from '../style/Typography';
 
 const ContactInformationPanel: SFC = () => (
   <Fragment>
-    <Grid item xs={2}/>
-    <CenteredTextGrid item xs={8} container direction='column' alignContent='center' spacing={16}>
+    <CenteredTextGrid item xs={12} container direction='column' alignContent='center' spacing={16}>
       <CenteredTextGrid item>
         <a href='https://vitaglab.com/' target='_blank' rel='noopener noreferrer'>
           <img
@@ -17,7 +16,7 @@ const ContactInformationPanel: SFC = () => (
           />
         </a>
       </CenteredTextGrid>
-      <Grid item container justify='space-between'>
+      <Grid item container justify='center' spacing={16}>
         <Grid item>
           <a href='https://www.facebook.com/vitaglab/' target='_blank' rel='noopener noreferrer'
              onClick={generateTrackExternalLinkClick('footer facebook')}>
@@ -52,7 +51,6 @@ const ContactInformationPanel: SFC = () => (
         <Caption>© Vita.G, LLC 2018</Caption>
       </CenteredTextGrid>
     </CenteredTextGrid>
-    <Grid item xs={2}/>
   </Fragment>
 );
 

@@ -10,7 +10,7 @@ import Hero from './sections/1_Hero';
 import BariBuilderExplanationSection from './sections/2_BariBuilderExplanationSection/2_BariBuilderExplanationSection';
 import HowItWorksSection from './sections/4_HowItWorksSection.react';
 import BottomCTABanner from './sections/5_BottomCTABanner';
-import Footer from './sections/LandingFooter.tsx';
+import LandingFooter from './sections/footer/LandingFooter';
 
 const GutteredGrid = styled(Grid)`
   margin: 8px;
@@ -61,7 +61,7 @@ class Landing extends Component {
               <EmptyRow mobile='20px' tablet='40px'/>
               <BottomCTABanner/>
             </GutteredGrid>
-            <Footer/>
+            <LandingFooter/>
           </Grid>
         </ScrollPercentage>
       </Fragment>
