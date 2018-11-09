@@ -26,6 +26,7 @@ const Footer: SFC<IProps> = props => {
             </CenteredTextGrid>
           </Grid>
           <Grid item xs={1}/>
+          <EmptyRow/>
         </Fragment>
         : null
       }

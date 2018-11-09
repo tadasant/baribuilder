@@ -1,9 +1,9 @@
-import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom';
 import CatalogScreen from '../components/catalog/CatalogScreen';
 import Footer from '../components/footer/Footer';
+import {FooterContainerGrid} from '../components/footer/Footer.style';
 import GoalsScreen from '../components/goals/GoalsScreenContainer';
 import Navbar from '../components/navbar/Navbar';
 import PurchaseScreen from '../components/purchase/PurchaseScreen';
@@ -33,9 +33,9 @@ const BuilderAppPure: SFC<RouteComponentProps> = ({location}) => {
         {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
         <Route component={NotFound}/>
       </Switch>
-      <Grid container>
+      <FooterContainerGrid container>
         <Footer disclaimerText={disclaimerText}/>
-      </Grid>
+      </FooterContainerGrid>
     </Fragment>
   );
 };
