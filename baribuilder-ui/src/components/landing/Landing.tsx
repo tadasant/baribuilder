@@ -6,7 +6,7 @@ import ScrollPercentage from 'react-scroll-percentage';
 import styled from 'styled-components';
 import {trackScrollPercent} from '../../lib/analytics';
 import {EmptyRow} from '../style/Layout';
-import Hero from './sections/1_Hero';
+import Hero from './sections/1_Hero/1_Hero';
 import BariBuilderExplanationSection from './sections/2_BariBuilderExplanationSection/2_BariBuilderExplanationSection';
 import HowItWorksSection from './sections/4_HowItWorksSection';
 import BottomCTABanner from './sections/5_BottomCTABanner';

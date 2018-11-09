@@ -4,10 +4,10 @@ import Hidden from '@material-ui/core/Hidden';
 import * as React from 'react';
 import {Component, Fragment} from 'react';
 import {toast} from 'react-toastify';
-import {generateTrackNavClick} from '../../../lib/analytics';
-import {UndecoratedLink} from '../../style/CustomMaterial';
-import {CenteredTextGrid, EmptyRow} from '../../style/Layout';
-import {BoldBody, Header} from '../../style/Typography';
+import {generateTrackNavClick} from '../../../../lib/analytics';
+import {UndecoratedLink} from '../../../style/CustomMaterial';
+import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
+import {BoldBody, Header} from '../../../style/Typography';
 import {HeroGrid, SubheaderGrid} from './1_Hero.style';
 
 

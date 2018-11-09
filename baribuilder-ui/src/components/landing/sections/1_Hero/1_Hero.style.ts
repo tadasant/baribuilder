@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid/Grid';
 import styled from 'styled-components';
-import images from '../../../constants/images';
-import {navbarHeight} from '../../navbar/Navbar';
+import images from '../../../../constants/images';
+import {navbarHeight} from '../../../navbar/Navbar';
 
 export const HeroGrid = styled(Grid)`
   height: calc(92.5vh - ${navbarHeight});
