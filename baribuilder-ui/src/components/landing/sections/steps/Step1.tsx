@@ -60,7 +60,7 @@ const Step1: SFC = () => (
           srcSet={`${fixedWidthImage(imagekitURLs.step1, 360)} 360w,
                    ${fixedWidthImage(imagekitURLs.step1, 600)} 600w`}
           sizes={`(min-width: ${Sketch.breakpoints.tablet}px) 600px, 360px`}
-          alt='Step 1: Enter Your Desired Ingredients Image'
+          alt='Step 1: Enter Your Desired Ingredients'
         />
       </Grid>
       <Hidden only='xs'>
@@ -105,8 +105,8 @@ const Step1: SFC = () => (
       <Grid item lg={1}/>
       <Grid item lg={4}>
         <FullWidthImg
-          src={imagekitURLs.step1}
-          alt='Step 1: Enter Your Desired Ingredients Image'
+          src={fixedWidthImage(imagekitURLs.step1, 600)}
+          alt='Step 1: Enter Your Desired Ingredients'
         />
       </Grid>
       <Grid item lg={1}/>
