@@ -6,8 +6,8 @@ import Sketch from '../../../../app/style/SketchVariables';
 import images from '../../../../constants/images';
 import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
 import {Body, Header2} from '../../../style/Typography';
-import OptionPill from './OptionPill.react';
-import StepOval from './StepOval.react';
+import OptionPill from './OptionPill';
+import StepOval from './StepOval';
 
 const LeftAlignHeader2 = styled(Header2)`
   text-align: left;

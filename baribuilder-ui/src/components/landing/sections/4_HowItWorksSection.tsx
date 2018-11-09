@@ -1,4 +1,5 @@
-import React, {Component, Fragment} from 'react';
+import * as React from 'react';
+import {Component, Fragment} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
 import Step1 from './steps/Step1.react';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component, Fragment} from 'react';
 import {match, Route, Switch} from 'react-router-dom';
-import Landing from '../components/landing/Landing.react';
+import Landing from '../components/landing/Landing';
 import LandingNavbar from '../components/landing/navbar/LandingNavbar';
 
 interface IProps {

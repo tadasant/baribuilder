@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {SFC} from 'react';
+import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
 import {media} from '../../../style/Core';
-import styled from 'styled-components';
+import {BoldText} from '../../../style/Typography';
 
 const Circle = styled.div`
   border-radius: 50%;
@@ -21,26 +22,14 @@ const Circle = styled.div`
   `}
 `;
 
-const BoldText = styled.span`
-  color: ${props => props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
-  font-family: ${Sketch.typography.fontFamily};
-  
-  font-size: 18px;
-  font-weight: 800;
-  
-  ${media.tablet`
-    font-size: 28px;
-  `}
-`;
+interface IProps {
+  value: string;
+}
 
-const StepOval = props => (
+const StepOval: SFC<IProps> = props => (
   <Circle {...props}>
     <BoldText dark>{props.value}</BoldText>
   </Circle>
 );
-
-StepOval.propTypes = {
-  value: PropTypes.string,
-};
 
 export default StepOval;

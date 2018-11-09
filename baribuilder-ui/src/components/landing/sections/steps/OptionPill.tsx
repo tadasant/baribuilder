@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Sketch from '../../../../app/style/SketchVariables';
+import * as React from 'react';
+import {SFC} from 'react';
 import styled from 'styled-components';
+import Sketch from '../../../../app/style/SketchVariables';
 import {Body} from '../../../style/Typography';
 
 const Pill = styled.div`
@@ -16,14 +16,14 @@ const Pill = styled.div`
   margin: 10px 0 10px 0;
 `;
 
-const OptionPill = props => (
+interface IProps {
+  value: string;
+}
+
+const OptionPill: SFC<IProps> = props => (
   <Pill {...props}>
     <Body dark>{props.value}</Body>
   </Pill>
 );
-
-OptionPill.propTypes = {
-  value: PropTypes.string,
-};
 
 export default OptionPill;

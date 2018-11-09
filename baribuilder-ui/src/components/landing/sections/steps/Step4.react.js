@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
 import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
 import {Header, Header2} from '../../../style/Typography';
-import StepOval from './StepOval.react';
+import StepOval from './StepOval';
 
 const LeftAlignHeader2 = styled(Header2)`
   text-align: left;
