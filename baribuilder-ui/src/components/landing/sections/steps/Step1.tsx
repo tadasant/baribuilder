@@ -1,9 +1,10 @@
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import React, {Fragment} from 'react';
+import * as React from 'react';
+import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
-import images from '../../../../constants/images';
+import {fixedWidthImage, imagekitURLs} from '../../../../constants/images';
 import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
 import {Body, Header2} from '../../../style/Typography';
 import OptionPill from './OptionPill';
@@ -30,7 +31,7 @@ const optionsCopy = [
 ];
 
 // Desktop vs. tablet/mobile arrangements are very different
-const Step1 = () => (
+const Step1: SFC = () => (
   <Fragment>
     {/* Mobile & Tablet */}
     <Hidden lgUp>
@@ -55,11 +56,11 @@ const Step1 = () => (
       </Hidden>
       <Grid item xs={12} sm={10}>
         <FullWidthImg
-          src={images.step1.original}
-          srcSet={`${images.step1.mobile} 360w,
-                   ${images.step1.tablet} 600w`}
+          src={imagekitURLs.step1}
+          srcSet={`${fixedWidthImage(imagekitURLs.step1, 360)} 360w,
+                   ${fixedWidthImage(imagekitURLs.step1, 600)} 600w`}
           sizes={`(min-width: ${Sketch.breakpoints.tablet}px) 600px, 360px`}
-          alt='Step 1: Enter Your Desired Dosages Image'
+          alt='Step 1: Enter Your Desired Ingredients Image'
         />
       </Grid>
       <Hidden only='xs'>
@@ -104,8 +105,8 @@ const Step1 = () => (
       <Grid item lg={1}/>
       <Grid item lg={4}>
         <FullWidthImg
-          src={images.step1.tablet}
-          alt='Step 1: Enter Your Desired Dosages Image'
+          src={imagekitURLs.step1}
+          alt='Step 1: Enter Your Desired Ingredients Image'
         />
       </Grid>
       <Grid item lg={1}/>
