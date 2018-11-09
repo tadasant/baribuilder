@@ -5,7 +5,7 @@ import {Header} from '../../style/Typography';
 import Step1 from './steps/Step1';
 import Step2 from './steps/Step2';
 import Step3 from './steps/Step3';
-import Step4 from './steps/Step4.react';
+import Step4 from './steps/Step4';
 
 class HowItWorksSection extends Component {
   render() {

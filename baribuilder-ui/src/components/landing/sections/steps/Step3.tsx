@@ -50,7 +50,7 @@ const Step3: SFC = () => (
       </Hidden>
       <Grid item xs={12} sm={10}>
         <FullWidthImg
-          src={imagekitURLs.step2}
+          src={imagekitURLs.step3}
           srcSet={`${fixedWidthImage(imagekitURLs.step3, 360)} 360w,
                       ${fixedWidthImage(imagekitURLs.step3, 600)} 600w`}
           sizes={`(min-width: ${Sketch.breakpoints.tablet}px) 600px, 360px`}
