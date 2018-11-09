@@ -16,3 +16,11 @@ export const DisclaimerCaption = styled(Caption)`
 export const FooterContainerGrid = styled(Grid)`
   background-color: ${Sketch.color.accent.black};
 `;
+
+export const ContactInformationTextGrid = styled(Grid)`
+  text-align: center;
+  
+  ${media.tablet`
+    text-align: right;
+  `}
+`;
