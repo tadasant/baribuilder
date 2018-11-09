@@ -4,7 +4,7 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../style/Layout';
 import ContactInformationPanel from './ContactInformationPanel';
-import {DisclaimerCaption, FooterContainerGrid} from './Footer.style';
+import {DisclaimerCaption} from './Footer.style';
 import SignupForm from './SignupForm';
 
 interface IProps {
@@ -13,7 +13,7 @@ interface IProps {
 
 const Footer: SFC<IProps> = props => {
   return (
-    <FooterContainerGrid item container>
+    <Fragment>
       <EmptyRow/>
       {props.disclaimerText
         ?
@@ -47,7 +47,7 @@ const Footer: SFC<IProps> = props => {
       </Hidden>
       <Grid item xs={1}/>
       <EmptyRow tablet='25px'/>
-    </FooterContainerGrid>
+    </Fragment>
   );
 };
 

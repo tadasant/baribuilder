@@ -1,3 +1,4 @@
+import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom';
@@ -32,7 +33,9 @@ const BuilderAppPure: SFC<RouteComponentProps> = ({location}) => {
         {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
         <Route component={NotFound}/>
       </Switch>
-      <Footer disclaimerText={disclaimerText}/>
+      <Grid container>
+        <Footer disclaimerText={disclaimerText}/>
+      </Grid>
     </Fragment>
   );
 };
