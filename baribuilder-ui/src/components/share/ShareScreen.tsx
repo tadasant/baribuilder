@@ -89,7 +89,7 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
     }
     const storeValues = this.deriveStoreFromQueryParams();
     if (!storeValues || !storeValues.currentRegimen || !storeValues.goalIngredients) {
-      toast.error(`Error loading shared URL! Please contact feedback@vitaglab.com if you think this is a mistake. Error 01987 @ ${(new Date).getTime()}`, {
+      toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 01987 @ ${(new Date).getTime()}`, {
         autoClose: false,
         closeOnClick: false,
       });
@@ -103,7 +103,7 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
       }
     }).then((response) => {
       if (response && response.errors) {
-        toast.error(`Error loading shared URL! Please contact feedback@vitaglab.com if you think this is a mistake. Error 01988 @ ${(new Date).getTime()}`, {
+        toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 01988 @ ${(new Date).getTime()}`, {
           autoClose: false,
           closeOnClick: false,
         });

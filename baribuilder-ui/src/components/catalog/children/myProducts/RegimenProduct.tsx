@@ -110,27 +110,27 @@ const RegimenProductPure: SFC<QueryOutputProps & MutationOutputProps> = ({data: 
 
     return (
       <Grid item container alignItems='center'>
-        <Grid item lg={4}>
+        <Grid item xs={4}>
           <MainImage catalogProductId={catalogProductId} anchorSide='left'/>
         </Grid>
-        <Grid item container lg={8} alignContent='flex-start'>
-          <CenteredTextGrid item lg={12}>
+        <Grid item container xs={8} alignContent='flex-start'>
+          <CenteredTextGrid item xs={12}>
             <BoldBody dark>{CatalogProduct.name}</BoldBody>
           </CenteredTextGrid>
-          <CenteredTextGrid item lg={12}>
+          <CenteredTextGrid item xs={12}>
             <Caption dark>{CatalogProduct.brand.split('_').map(s => upperFirst(s.toLowerCase())).join(' ')}</Caption>
           </CenteredTextGrid>
           <Fragment>
-            <Grid item lg={4}/>
-            <Grid item lg={3}>
+            <Grid item xs={4}/>
+            <Grid item xs={3}>
               <TextField type='number' defaultValue={quantity.amount || ''} onBlur={handleChangeQuantity} fullWidth
                          key={quantity.amount} helperText='servings/day' onKeyDown={handleQuantityKeyPress}/>
             </Grid>
-            <Grid item lg={1} container justify='center'>
+            <Grid item xs={1} container justify='center'>
               {/* TODO can't figure out how to v-center this */}
               <XRegimenProductIcon catalogProductId={catalogProductId}/>
             </Grid>
-            <Grid item lg={4}/>
+            <Grid item xs={4}/>
           </Fragment>
         </Grid>
       </Grid>

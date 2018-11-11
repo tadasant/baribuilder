@@ -25,7 +25,7 @@ const CurrentRegimenProductsPure: SFC<DataOutputProps> = ({data: {currentRegimen
       <Grid container direction='row' alignItems='flex-start'>
         {currentRegimen.products.map(product => (
           <Fragment key={product.catalogProductId}>
-            <Grid item lg={12}>
+            <Grid item xs={12}>
               <RegimenProduct {...product}/>
             </Grid>
             <EmptyRow mobile='0px'/>

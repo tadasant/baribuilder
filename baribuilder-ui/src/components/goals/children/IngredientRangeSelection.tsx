@@ -1,4 +1,4 @@
-import {Grid, Tooltip} from '@material-ui/core';
+import {Grid, Hidden, Tooltip} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import gql from 'graphql-tag';
@@ -14,9 +14,9 @@ import {
   GetIngredientReferenceData_allIngredientTypes
 } from '../../../typings/gql/GetIngredientReferenceData';
 import {ShadowedSelect} from '../../style/CustomMaterial';
+import {CenteredTextGrid} from '../../style/Layout';
 import {Body} from '../../style/Typography';
 import {HandleChangeGoalFunc, HandleRemoveGoalFunc} from '../GoalsScreen';
-import {CenteredTextGrid} from '../GoalsScreenPure';
 
 interface IProps {
   ingredientRange: IIngredientRange;
@@ -98,7 +98,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
 
   return (
     <Grid container direction='row' spacing={8}>
-      <Grid item lg={3} container direction='column' justify='flex-end'>
+      <Grid item lg={3} xs={10} container direction='column' justify='flex-end'>
         <Grid item>
           <Tooltip title={tooltipText || ''}>
             <EmphasizedShadowedSelect
@@ -123,33 +123,46 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           </Tooltip>
         </Grid>
       </Grid>
-      <Grid item lg={1} container direction='column' justify='flex-end'>
+      <Hidden lgUp>
+        <Grid item xs={2} container direction='column' justify='flex-end'>
+          <Grid item container direction='row' justify='center'>
+            <Grid item>
+              <XIconImg src={XIcon} onClick={handleRemove}/>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Hidden>
+      <Grid item lg={1} xs={3} container direction='column' justify='flex-end'>
         <CenteredTextGrid item>
           <Body dark>from</Body>
         </CenteredTextGrid>
       </Grid>
-      <Grid item lg={2} container direction='column' justify='flex-end'>
+      <Grid item lg={2} xs={3} container direction='column' justify='flex-end'>
         <Grid item>
           <TextField
             error={ingredientRange.maximumAmount !== null && ingredientRange.minimumAmount !== null ? ingredientRange.minimumAmount > ingredientRange.maximumAmount : false}
-            onChange={handleMinimumChange} value={ingredientRange.minimumAmount === undefined || ingredientRange.minimumAmount === null ? '' : ingredientRange.minimumAmount} fullWidth
+            onChange={handleMinimumChange}
+            value={ingredientRange.minimumAmount === undefined || ingredientRange.minimumAmount === null ? '' : ingredientRange.minimumAmount}
+            fullWidth
             label='Minimum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
-      <Grid item lg={1} container direction='column' justify='flex-end'>
+      <Grid item lg={1} xs={3} container direction='column' justify='flex-end'>
         <CenteredTextGrid item>
           <Body dark>to</Body>
         </CenteredTextGrid>
       </Grid>
-      <Grid item lg={2} container direction='column' justify='flex-end'>
+      <Grid item lg={2} xs={3} container direction='column' justify='flex-end'>
         <Grid item>
           <TextField
             error={ingredientRange.maximumAmount !== null && ingredientRange.minimumAmount !== null ? ingredientRange.maximumAmount < ingredientRange.minimumAmount : false}
-            onChange={handleMaximumChange} value={ingredientRange.maximumAmount === undefined || ingredientRange.maximumAmount === null ? '' : ingredientRange.maximumAmount} fullWidth
-                     label='Maximum' inputProps={{dataHjWhitelist: true}}/>
+            onChange={handleMaximumChange}
+            value={ingredientRange.maximumAmount === undefined || ingredientRange.maximumAmount === null ? '' : ingredientRange.maximumAmount}
+            fullWidth
+            label='Maximum' inputProps={{dataHjWhitelist: true}}/>
         </Grid>
       </Grid>
-      <Grid item lg={1} container direction='column' justify='flex-end'>
+      <Grid item lg={1} xs={6} container direction='column' justify='flex-end'>
         <Grid item>
           <ShadowedSelect value={ingredientRange.units} onChange={handleChangeUnits}>
             {/* Disabling while feature unimplemented */}
@@ -161,7 +174,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
           </ShadowedSelect>
         </Grid>
       </Grid>
-      <Grid item container lg={2}>
+      <Grid item container lg={2} xs={6}>
         <Grid item lg={10} container direction='column' justify='flex-end'>
           <Grid item>
             <ShadowedSelect value={ingredientRange.frequency} onChange={handleChangeFrequency}>
@@ -175,13 +188,15 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
             </ShadowedSelect>
           </Grid>
         </Grid>
-        <Grid item lg={2} container direction='column' justify='flex-end'>
-          <Grid item container direction='row' justify='center'>
-            <Grid item>
-              <XIconImg src={XIcon} onClick={handleRemove}/>
+        <Hidden mdDown>
+          <Grid item lg={2} container direction='column' justify='flex-end'>
+            <Grid item container direction='row' justify='center'>
+              <Grid item>
+                <XIconImg src={XIcon} onClick={handleRemove}/>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </Hidden>
       </Grid>
     </Grid>
   )

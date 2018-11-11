@@ -17,7 +17,7 @@ interface IProps {
   sortingStrategy: SORTING_STRATEGY;
   // Can't be in this component's query because it creates breaking dependency
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
-  onAddToRegimen: () => void;
+  onAddToRegimen?: () => void;
 }
 
 const enhance = compose<IPropsState, IProps>(
@@ -96,7 +96,7 @@ const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogP
         {
           productsToDisplay.map(product => (
             <Fragment key={product.catalogProductId}>
-              <GridWithBottomBorder item lg={12}>
+              <GridWithBottomBorder item xs={12}>
                 <PaddedDiv>
                   <ClientCatalogProduct id={product.catalogProductId} onAddToRegimen={onAddToRegimen}/>
                 </PaddedDiv>
@@ -108,7 +108,7 @@ const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogP
         {
           productsToDisplay.length !== 0
             ? (
-              <Grid item lg={12}>
+              <Grid item xs={12}>
                 <GreyHeader2>Can't find what you're looking for?</GreyHeader2>
                 <br />
                 <GreyHeader2>
@@ -118,7 +118,7 @@ const ProductSelectionPure: SFC<IProps & IPropsState> = ({filteredClientCatalogP
             )
             : null
         }
-        <Grid item lg={12} container direction='column' alignContent='flex-end'>
+        <Grid item xs={12} container direction='column' alignContent='flex-end'>
           <Grid item>
             <FloatRightPagination hideOnSinglePage onChange={onPaginationChange} current={currentPage}
                                   defaultPageSize={10} total={filteredClientCatalogProducts.length}/>

@@ -6,9 +6,9 @@ import {ChildDataProps, graphql} from 'react-apollo';
 import styled from 'styled-components';
 import {generateTrackAffiliateLinkClick} from '../../../lib/analytics';
 import {GetSelectedProduct} from '../../../typings/gql/GetSelectedProduct';
-import {prettifyEnumString} from '../../catalog/children/BuilderFilterPanel';
+import {prettifyEnumString} from '../../catalog/children/FilterPanel';
 import MainProductImageWithPopover from '../../catalog/children/productSelection/children/MainProductImageWithPopover';
-import {Body, BoldBody} from '../../style/Typography';
+import {Body, BoldBody, Subcaption} from '../../style/Typography';
 
 interface IProps {
   catalogProductId: string;
@@ -85,10 +85,10 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
       : null;
     return (
       <Fragment>
-        <CenteredTextGrid item lg={3}>
+        <CenteredTextGrid item lg={3} xs={12}>
           <MainProductImageWithPopover catalogProductId={catalogProductId}/>
         </CenteredTextGrid>
-        <CenteredTextGrid item container direction='column' lg={9} justify='center' spacing={8}>
+        <CenteredTextGrid item container direction='column' lg={9} xs={12} justify='center' spacing={8}>
           <Grid item>
             <a
               href={affiliateLink.url}
@@ -100,13 +100,24 @@ const SelectedProduct: SFC<QueryOutputProps & IProps> = ({data: {CatalogProduct,
           <Grid item>
             <Body dark>{quantityCaption}</Body>
           </Grid>
-          <Grid item lg>
+          <Grid item>
+            <Subcaption dark>
+              <b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;
+              <b>${listings[0].price.amount}</b>
+            </Subcaption>
+          </Grid>
+          <Grid item>
             <UndecoratedAnchor
               href={affiliateLink.url}
               target='__blank'
               rel='noopener nofollower norefer'
               onClick={generateTrackAffiliateLinkClick(listings[0].id, listings[0].retailerName, affiliateLink.source, CatalogProduct.id)}>
-              <Button fullWidth variant='raised' color='default'>Buy&nbsp;<b>{CatalogProduct.packages[0].numServings}</b>&nbsp;servings for&nbsp;<b>${listings[0].price.amount}</b>&nbsp;on Amazon</Button>
+              <Button
+                fullWidth
+                variant='contained'
+                color='default'>
+                Buy on Amazon
+              </Button>
             </UndecoratedAnchor>
           </Grid>
         </CenteredTextGrid>

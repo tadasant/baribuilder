@@ -12,7 +12,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import * as uuid from 'uuid/v4';
-import Navbar from '../components/navbar/Navbar';
 import config from '../config/config';
 import {defaultFields} from '../lib/analytics';
 import {getLocalStorage, setLocalStorage} from '../lib/localStorage';
@@ -81,7 +80,6 @@ class App extends Component {
         <BrowserRouter>
           <ApolloProvider client={client}>
             <ToastContainer autoClose={2000}/>
-            <Navbar/>
             <Switch>
               <Route exact path="/" component={StaticApp}/>
               <Route component={BuilderApp}/>

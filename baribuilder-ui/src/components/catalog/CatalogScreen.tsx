@@ -1,17 +1,25 @@
-import {Grid} from '@material-ui/core';
+import {Grid, Hidden} from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import gql from 'graphql-tag';
+import {keyBy} from 'lodash';
 import * as React from 'react';
-import {Component, SFC} from 'react';
+import {Component, Fragment, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {compose, lifecycle, withProps} from 'recompose';
 import styled from 'styled-components';
 import {GetCatalogProductVariables} from '../../typings/gql/GetCatalogProduct';
-import {GetCatalogProducts} from '../../typings/gql/GetCatalogProducts';
+import {
+  GetCatalogProducts,
+  GetCatalogProducts_allCatalogProducts,
+  GetCatalogProducts_allClientCatalogProducts,
+  GetCatalogProducts_searchQuery
+} from '../../typings/gql/GetCatalogProducts';
 import {CATEGORY} from '../../typings/gql/globalTypes';
 import {navbarHeight} from '../navbar/Navbar';
-import CatalogScreenPure from './CatalogScreenPure';
+import {prettifyEnumString} from './children/FilterPanel';
+import CatalogScreenDesktop from './responsive/CatalogScreenDesktop';
+import CatalogScreenMobile from './responsive/CatalogScreenMobile';
 
 export const GET_CATALOG_PRODUCTS = gql`
     query GetCatalogProducts {
@@ -54,10 +62,7 @@ export interface IFilters {
 }
 
 interface IState {
-  showMyProducts: boolean;
-  showMyRegimen: boolean;
   sortingStrategy: SORTING_STRATEGY;
-  hasOpenedMyProducts: boolean;
   filters: IFilters;
 }
 
@@ -72,7 +77,7 @@ const LargePaddedSpinner = styled(CircularProgress)`
 export const CenteredSpinner: SFC = () => (
   <Grid container justify='center'>
     <Grid item>
-      <LargePaddedSpinner size={`calc(100vh - ${navbarHeight} - 32px)`}/>
+      <LargePaddedSpinner size={`calc(100vmin - ${navbarHeight} - 32px)`}/>
     </Grid>
   </Grid>
 );
@@ -98,42 +103,60 @@ const getSelectedCategory = (pathname: string) => {
   return selectedCategory;
 };
 
+// search query, filters, and category
+const filterClientCatalogProducts = (
+  clientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[],
+  searchQuery: GetCatalogProducts_searchQuery | undefined,
+  allCatalogProducts: GetCatalogProducts_allCatalogProducts[] | undefined,
+  selectedCategory: string,
+  filters: IFilters,
+): GetCatalogProducts_allClientCatalogProducts[] => {
+  const catalogProductsById = keyBy(allCatalogProducts, product => product.id);
+  const conditionFunctions: Array<(productId: string) => boolean> = [];
+
+  // category
+  conditionFunctions.push(
+    productId => selectedCategory === ROOT_CATEGORY || catalogProductsById[productId].category === selectedCategory
+  );
+
+  // search
+  if (searchQuery && searchQuery.value) {
+    const lowercaseSearchQuery = searchQuery.value.toLowerCase();
+    conditionFunctions.push(
+      productId => catalogProductsById[productId].name.toLowerCase().includes(lowercaseSearchQuery) ||
+        prettifyEnumString(catalogProductsById[productId].brand).toLowerCase().includes(lowercaseSearchQuery)
+    )
+  }
+
+  // filters
+  if (filters.FORM.length > 0) {
+    conditionFunctions.push(
+      productId => filters.FORM.includes(catalogProductsById[productId].form)
+    )
+  }
+  if (filters.BRAND.length > 0) {
+    conditionFunctions.push(
+      productId => filters.BRAND.includes(catalogProductsById[productId].brand)
+    )
+  }
+
+  return clientCatalogProducts.filter(product =>
+    conditionFunctions.every(f => f(product.catalogProductId))
+  );
+};
+
 class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & IDerivedProps, Readonly<IState>> {
   constructor(props: QueryOutputProps & RouteComponentProps & IDerivedProps) {
     super(props);
     this.state = {
-      showMyProducts: false,
-      showMyRegimen: true,
       sortingStrategy: props.goalsSet ? SORTING_STRATEGY.COST_EFFECTIVENESS_DESC : SORTING_STRATEGY.COST_ASC,
-      hasOpenedMyProducts: false,
       filters: {
         FORM: [],
         BRAND: [],
       },
     };
-    this.setShowMyProducts = this.setShowMyProducts.bind(this);
-    this.setShowMyRegimen = this.setShowMyRegimen.bind(this);
-    this.handleAddToRegimen = this.handleAddToRegimen.bind(this);
     this.setSortingStrategy = this.setSortingStrategy.bind(this);
     this.setFilters = this.setFilters.bind(this);
-  }
-
-  setShowMyProducts(showMyProducts: boolean) {
-    this.setState(prevState => ({
-      showMyProducts,
-      hasOpenedMyProducts: showMyProducts || prevState.hasOpenedMyProducts,
-    }));
-  }
-
-  setShowMyRegimen(showMyRegimen: boolean) {
-    this.setState({showMyRegimen});
-  }
-
-  handleAddToRegimen() {
-    this.setState(prevState => ({
-      showMyProducts: prevState.hasOpenedMyProducts ? prevState.showMyProducts : true,
-      hasOpenedMyProducts: true,
-    }));
   }
 
   setSortingStrategy(sortingStrategy: SORTING_STRATEGY) {
@@ -163,26 +186,45 @@ class CatalogScreen extends Component<QueryOutputProps & RouteComponentProps & I
       return null;
     }
 
+    const filteredClientCatalogProducts = filterClientCatalogProducts(allClientCatalogProducts, searchQuery, allCatalogProducts, selectedCategory, this.state.filters);
+
+    const propsForPure: ICatalogScreenPureProps = {
+      selectedCategory,
+      allCatalogProducts,
+      filteredClientCatalogProducts,
+      searchQuery,
+      sortingStrategy: this.state.sortingStrategy,
+      setSortingStrategy: this.setSortingStrategy,
+      goalsSet: this.props.goalsSet,
+      setFilters: this.setFilters,
+      activeFilters: this.state.filters,
+    };
+
     return (
-      <CatalogScreenPure
-        selectedCategory={selectedCategory}
-        allCatalogProducts={allCatalogProducts}
-        clientCatalogProducts={allClientCatalogProducts}
-        searchQuery={searchQuery}
-        showMyProducts={this.state.showMyProducts}
-        setShowMyProducts={this.setShowMyProducts}
-        showMyRegimen={this.state.showMyRegimen}
-        setShowMyRegimen={this.setShowMyRegimen}
-        sortingStrategy={this.state.sortingStrategy}
-        setSortingStrategy={this.setSortingStrategy}
-        onAddToRegimen={this.handleAddToRegimen}
-        goalsSet={this.props.goalsSet}
-        setFilters={this.setFilters}
-        activeFilters={this.state.filters}
-      />
+      <Fragment>
+        <Hidden mdDown>
+          <CatalogScreenDesktop {...propsForPure} />
+        </Hidden>
+        <Hidden lgUp>
+          <CatalogScreenMobile {...propsForPure} />
+        </Hidden>
+      </Fragment>
     );
   }
 }
+
+export interface ICatalogScreenPureProps {
+  sortingStrategy: SORTING_STRATEGY;
+  setSortingStrategy: (strategy: SORTING_STRATEGY) => void;
+  searchQuery: GetCatalogProducts_searchQuery;
+  allCatalogProducts: GetCatalogProducts_allCatalogProducts[];
+  filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
+  selectedCategory: string;
+  goalsSet: boolean;
+  activeFilters: IFilters;
+  setFilters: TSetFiltersFunc;
+}
+
 
 const withData = graphql<{}, GetCatalogProducts>(GET_CATALOG_PRODUCTS);
 

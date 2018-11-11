@@ -1,24 +1,28 @@
 import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
-import {withRouter} from 'react-router-dom';
+import * as React from 'react';
+import {Component, Fragment} from 'react';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 import ScrollPercentage from 'react-scroll-percentage';
 import styled from 'styled-components';
 import {trackScrollPercent} from '../../lib/analytics';
 import {EmptyRow} from '../style/Layout';
-import Hero from './sections/1_Hero.react';
-import PriceSection from './sections/2_PriceSection.react';
-import UniqueSection from './sections/3_UniqueSection.react';
-import HowItWorksSection from './sections/4_HowItWorksSection.react';
-import BottomCTABanner from './sections/5_BottomCTABanner.react';
-import Footer from './sections/LandingFooter.react.js';
+import Hero from './sections/1_Hero/1_Hero';
+import BariBuilderExplanationSection from './sections/2_BariBuilderExplanationSection/2_BariBuilderExplanationSection';
+import HowItWorksSection from './sections/4_HowItWorksSection';
+import BottomCTABanner from './sections/5_BottomCTABanner';
+import LandingFooter from './sections/footer/LandingFooter';
 
 const GutteredGrid = styled(Grid)`
   margin: 8px;
 `;
 
-class Landing extends Component {
-  constructor(props) {
+interface IState {
+  ctaModalActive: boolean;
+  maxScrolled: number;
+}
+
+class Landing extends Component<RouteComponentProps, IState> {
+  constructor(props: RouteComponentProps) {
     super(props);
     this.state = {
       ctaModalActive: false,
@@ -27,7 +31,7 @@ class Landing extends Component {
     this.handleScroll = this.handleScroll.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: RouteComponentProps, prevState: IState) {
     if (prevState.maxScrolled < 25 && this.state.maxScrolled > 25) {
       trackScrollPercent('Landing Page', 25);
     }
@@ -41,7 +45,7 @@ class Landing extends Component {
     }
   }
 
-  handleScroll(fraction) {
+  handleScroll(fraction: number) {
     const percentage = fraction * 100;
     if (percentage > this.state.maxScrolled) {
       this.setState({maxScrolled: percentage});
@@ -55,27 +59,19 @@ class Landing extends Component {
           <Grid container>
             <Hero/>
             <GutteredGrid container direction='row'>
-              <EmptyRow mobile='65px' tablet='90px'/>
-              <PriceSection/>
-              <EmptyRow mobile='65px' tablet='90px'/>
-              <UniqueSection/>
-              <EmptyRow mobile='65px' tablet='90px'/>
+              <EmptyRow mobile='5px'/>
+              <BariBuilderExplanationSection/>
+              <EmptyRow mobile='20px' tablet='40px'/>
               <HowItWorksSection/>
-              <EmptyRow mobile='65px' tablet='90px'/>
+              <EmptyRow mobile='20px' tablet='40px'/>
               <BottomCTABanner/>
             </GutteredGrid>
-            <Footer/>
+            <LandingFooter/>
           </Grid>
         </ScrollPercentage>
       </Fragment>
     );
   }
 }
-
-Landing.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
-};
 
 export default withRouter(Landing);

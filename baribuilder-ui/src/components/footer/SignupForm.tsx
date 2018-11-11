@@ -1,8 +1,12 @@
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid/Grid';
+import {KeyboardEvent} from 'react';
 import * as React from 'react';
 import {Component, Fragment} from 'react';
+import Sketch from '../../app/style/SketchVariables';
 import {NearFullWidthTextField} from '../style/CustomMaterial';
+import {CenteredTextGrid, EmptyRow} from '../style/Layout';
+import {Body} from '../style/Typography';
 
 const postToMailchimp = (email: string) => {
   const path = "https://baribuilder.us18.list-manage.com/subscribe/post?u=cfcfc2dfdd3593e3bb9d472f0&amp;id=c1667f6a02";
@@ -29,6 +33,7 @@ class SignupForm extends Component {
   constructor(props: {}) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.inputRef = React.createRef();
   }
 
@@ -36,28 +41,40 @@ class SignupForm extends Component {
     postToMailchimp(this.inputRef.current.value);
   }
 
+  handleKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.handleSubmit();
+    }
+  }
+
   render() {
     return (
       <Fragment>
-        <Grid item xs={1} lg={3}/>
-        <Grid item xs={6} lg={4}>
+        <CenteredTextGrid item xs={12}>
+          <Body>
+          Subscribe to BariBuilder product announcements & updates
+          </Body>
+        </CenteredTextGrid>
+        <EmptyRow/>
+        <Grid item xs={12}>
           <NearFullWidthTextField
             inputRef={this.inputRef}
-            placeholder='Email Address'
-            inputProps={{type: 'email'}}
+            placeholder='Enter Your Email'
+            inputProps={{type: 'email', style: {color: Sketch.color.accent.white}}}
+            onKeyPress={this.handleKeyPress}
           />
         </Grid>
-        <Grid item xs={4} lg={2}>
+        <EmptyRow/>
+        <Grid item xs={12}>
           <Button
-            color='secondary'
+            color='default'
             fullWidth
-            variant='raised'
+            variant='contained'
             onClick={this.handleSubmit}
           >
-            Get Updates
+            Sign Up
           </Button>
         </Grid>
-        <Grid item xs={1} lg={3}/>
       </Fragment>
     )
   }

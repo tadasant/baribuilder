@@ -1,4 +1,4 @@
-import {Button, Grid} from '@material-ui/core';
+import {Button, Grid, Hidden} from '@material-ui/core';
 import gql from 'graphql-tag';
 import {keyBy} from 'lodash';
 import * as React from 'react';
@@ -63,7 +63,7 @@ const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen, 
 
   return (
     <Fragment>
-      <CenteredTextGrid item lg={12}>
+      <CenteredTextGrid item xs={12}>
         <Header dark>Selections</Header>
       </CenteredTextGrid>
       <EmptyRow/>
@@ -81,16 +81,19 @@ const SelectedProductListings: SFC<QueryOutputProps> = ({data: {currentRegimen, 
       {currentRegimen && currentRegimen.products.length > 0
         ? (
           <Fragment>
-            <PaddedCenteredTextGrid item lg={6}>
+            <PaddedCenteredTextGrid item lg={6} xs={12}>
               <Button color='primary' fullWidth onClick={handleOpenAllClick} variant='contained'>Open all in Amazon tabs</Button>
               <Subcaption dark>You may need to disable your popup blocker</Subcaption>
             </PaddedCenteredTextGrid>
+            <Hidden mdUp>
+              <EmptyRow/>
+            </Hidden>
           </Fragment>
         ) : null
       }
-      <PaddedCenteredTextGrid item lg>
+      <PaddedCenteredTextGrid item xs>
         <WideUndecoratedLink to='/browse/all_products'>
-          <Button variant='raised' color='secondary' fullWidth>
+          <Button variant='contained' color='secondary' fullWidth>
             Edit Selections
           </Button>
         </WideUndecoratedLink>

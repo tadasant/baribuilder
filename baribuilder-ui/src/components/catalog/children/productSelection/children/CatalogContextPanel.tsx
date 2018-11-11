@@ -7,9 +7,8 @@ import {
   GetClientCatalogProductPrices,
   GetClientCatalogProductPricesVariables
 } from '../../../../../typings/gql/GetClientCatalogProductPrices';
-import {CenteredTextGrid} from '../../../../goals/GoalsScreenPure';
 import {UndecoratedLink} from '../../../../style/CustomMaterial';
-import {EmptyRow} from '../../../../style/Layout';
+import {CenteredTextGrid, EmptyRow} from '../../../../style/Layout';
 import {Body, BoldBody, GreyBody, Subcaption} from '../../../../style/Typography';
 import HelpIcon from '../../lib/HelpIcon';
 
@@ -49,7 +48,7 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
   // TODO refactor costEffectivenessRating so that stays server side i.e. change the value to directly be costEffectivenessRating
   return (
     <Grid container justify='flex-start'>
-      <CenteredTextGrid item lg={12}>
+      <CenteredTextGrid item xs={12}>
         {
           ClientCatalogProduct.costEffectivenessRating !== null
             ? <Body dark>Cost Effectiveness Rating &nbsp;<HelpIcon tooltipText={helpText} height='16px'/></Body>
@@ -64,16 +63,16 @@ const CatalogContextPanel: SFC<IProps & DataOutputProps> = ({data: {ClientCatalo
       {
         ClientCatalogProduct.costEffectivenessRating !== null
           ? (
-            <CenteredTextGrid item lg={12}>
+            <CenteredTextGrid item xs={12}>
               <BoldBody dark>{ClientCatalogProduct.costEffectivenessRating.toFixed(1)} / 10</BoldBody>
             </CenteredTextGrid>
           ) : (
             <Fragment>
-              <CenteredTextGrid item lg={12}>
+              <CenteredTextGrid item xs={12}>
                 {/* TODO don't hardcode / mo. */}
                 <Body dark>${price.toFixed(2)} / mo.</Body>
               </CenteredTextGrid>
-              <CenteredTextGrid item lg={12}>
+              <CenteredTextGrid item xs={12}>
                 <Subcaption dark>product cost</Subcaption>
               </CenteredTextGrid>
             </Fragment>

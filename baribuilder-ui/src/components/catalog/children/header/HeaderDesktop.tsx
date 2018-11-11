@@ -1,21 +1,16 @@
 import {Button, Grid} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import {fade} from '@material-ui/core/styles/colorManipulator';
-import {upperFirst} from 'lodash';
 import * as React from 'react';
 import {SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
-import {RouteComponentProps, withRouter} from 'react-router';
-import {compose} from 'recompose';
 import styled from 'styled-components';
-import Sketch from '../../../app/style/SketchVariables';
-import {GetCatalogProducts_allClientCatalogProducts} from '../../../typings/gql/GetCatalogProducts';
-import {GetSearchQuery} from '../../../typings/gql/GetSearchQuery';
-import {ShadowedSelect} from '../../style/CustomMaterial';
-import {Body} from '../../style/Typography';
-import {SORTING_STRATEGY, sortStrategyDisplayByEnum} from '../CatalogScreen';
-import {SetBuilderStateFunction} from '../CatalogScreenPure';
-import {SEARCH_QUERY_QUERY} from '../queries';
+import Sketch from '../../../../app/style/SketchVariables';
+import {GetCatalogProducts_allClientCatalogProducts} from '../../../../typings/gql/GetCatalogProducts';
+import {ShadowedSelect} from '../../../style/CustomMaterial';
+import {Body} from '../../../style/Typography';
+import {SORTING_STRATEGY, sortStrategyDisplayByEnum} from '../../CatalogScreen';
+import {SetBuilderStateFunction} from '../../responsive/CatalogScreenPureDesktop';
+import FilterDescription from './FilterDescription';
 
 export const builderHeaderHeight = '48px';
 
@@ -31,8 +26,6 @@ interface IProps {
   filteredClientCatalogProducts: GetCatalogProducts_allClientCatalogProducts[];
   goalsSet: boolean;
 }
-
-type QueryOutputProps = ChildDataProps<{}, GetSearchQuery>;
 
 const FixedGrid = styled(Grid)`
   && {
@@ -92,12 +85,8 @@ const RightPaddedGrid = styled(Grid)`
   }
 `;
 
-const BuilderHeaderPure: SFC<IProps & RouteComponentProps & QueryOutputProps> = props => {
-  const {filteredClientCatalogProducts, showMyProducts, showMyRegimen, isMyRegimenOnRight, location} = props;
-  const pathnameTokens = location.pathname.split('/');
-  const selectedCategory = pathnameTokens[pathnameTokens.length - 1].toUpperCase();
-
-  const productCount = filteredClientCatalogProducts ? filteredClientCatalogProducts.length : undefined;
+const BuilderHeaderPure: SFC<IProps> = props => {
+  const {filteredClientCatalogProducts, showMyProducts, showMyRegimen, isMyRegimenOnRight} = props;
 
   let sortColumnCount: 2 | 3 | 4 | 5 = 5; // !showMyProducts && !showMyRegimen
   if (showMyProducts && !showMyRegimen) {
@@ -117,16 +106,14 @@ const BuilderHeaderPure: SFC<IProps & RouteComponentProps & QueryOutputProps> = 
     return !(key === SORTING_STRATEGY.COST_EFFECTIVENESS_DESC && !props.goalsSet);
   });
 
-  const searchQuery = props.data.searchQuery ? props.data.searchQuery.value : '';
-
   return (
     <FixedGrid container direction='row'>
       <Grid item lg={3} container alignItems='center'>
         <Grid item>
           <PaddedCaptionSizedBody dark>
-            Showing{productCount ? ` ${productCount} ` : ' '}results in&nbsp;
-            <b>{selectedCategory.split('_').map(c => upperFirst(c.toLowerCase())).join(' ')}</b>
-            {searchQuery ? ` for "${searchQuery}"`: null}
+            <FilterDescription
+              filteredClientCatalogProducts={filteredClientCatalogProducts}
+            />
           </PaddedCaptionSizedBody>
         </Grid>
       </Grid>
@@ -186,11 +173,4 @@ const MyRegimenTabHeader: SFC<IProps & { style?: any }> = ({setShowMyRegimen, sh
   );
 };
 
-const withData = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
-
-const enhance = compose<QueryOutputProps & IProps, IProps>(
-  withData,
-  withRouter,
-);
-
-export default enhance(BuilderHeaderPure);
+export default BuilderHeaderPure;

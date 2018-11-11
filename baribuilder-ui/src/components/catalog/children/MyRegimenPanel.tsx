@@ -38,7 +38,7 @@ export const ButtonFooterGrid = styled(Grid)`
   }
 `;
 
-const WideLink = styled(UndecoratedLink)`
+export const WideLink = styled(UndecoratedLink)`
   && {
     width: 100%;
   }
@@ -56,38 +56,38 @@ export const HPaddedGrid = styled(Grid)`
   }
 `;
 
-const BuilderMyRegimen: SFC = () => {
+const MyRegimenPanel: SFC = () => {
   return (
     <Fragment>
       <OuterGrid container>
-        <Grid item lg={1}/>
-        <Grid item lg={10} container alignContent='flex-start'>
-          <Grid item lg={12}>
+        <Grid item xs={1}/>
+        <Grid item xs={10} container alignContent='flex-start'>
+          <Grid item xs={12}>
             <CurrentRegimenCost/>
           </Grid>
           <EmptyRow/>
-          <BottomBorderedGrid item lg={12}/>
+          <BottomBorderedGrid item xs={12}/>
           <EmptyRow/>
-          <Grid item container lg={12}>
+          <Grid item container xs={12}>
             <RegimenFacts/>
           </Grid>
         </Grid>
-        <Grid item lg={1}/>
+        <Grid item xs={1}/>
         <EmptyRow mobile={`calc(${tabFooterHeight} * 1.5)`}/> {/* Hack for spacing UX */}
       </OuterGrid>
       <ButtonFooter>
-        <ButtonFooterGrid item lg={12} container direction='column' justify='center'>
+        <ButtonFooterGrid item xs={12} container direction='column' justify='center'>
           <NoMarginGrid item container>
-            <HPaddedGrid item lg={6}>
+            <HPaddedGrid item xs={6}>
               <WideLink to='/purchase'>
-                <Button variant='raised' color='primary' fullWidth>
+                <Button variant='contained' color='primary' fullWidth>
                   Checkout
                 </Button>
               </WideLink>
             </HPaddedGrid>
-            <HPaddedGrid item lg={6}>
+            <HPaddedGrid item xs={6}>
               <WideLink to='/goals'>
-                <Button variant='raised' color='secondary' fullWidth>
+                <Button variant='contained' color='secondary' fullWidth>
                   Edit Goals
                 </Button>
               </WideLink>
@@ -99,4 +99,4 @@ const BuilderMyRegimen: SFC = () => {
   )
 };
 
-export default BuilderMyRegimen;
+export default MyRegimenPanel;

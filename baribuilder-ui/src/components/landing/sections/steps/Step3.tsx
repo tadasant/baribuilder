@@ -1,37 +1,31 @@
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import React, {Fragment} from 'react';
+import * as React from 'react';
+import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../../../app/style/SketchVariables';
-import images from '../../../../constants/images';
-import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
-import {EmptyRow} from '../../../style/Layout';
+import {fixedWidthImage, imagekitURLs} from '../../../../constants/images';
+import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
 import {Body, Header2} from '../../../style/Typography';
-import OptionPill from './OptionPill.react';
-import StepOval from './StepOval.react';
+import StepOval from './StepOval';
 
 const LeftAlignHeader2 = styled(Header2)`
-  text-align: left;
+  text-align: left; 
 `;
 
 const CenteredBody = styled(Body)`
-  text-align: center;
+  text-align: center; 
 `;
 
 const FullWidthImg = styled.img`
   width: 100%;
 `;
 
-const instructionCopy = 'Fill out the dosages your body needs.';
-const subInstructionCopy = 'Get these from one of:';
-const optionsCopy = [
-  'Your medical provider',
-  'Your own online research',
-  'Our surgery-specific templates',
-];
+const instructionCopy = 'Build your regimen, piece by piece.';
+const subInstructionCopy = <span>BariBuilder generates a personalized "<b>My Regimen Facts</b>" sheet as you make changes.</span>;
 
 // Desktop vs. tablet/mobile arrangements are very different
-const Step1 = () => (
+const Step3: SFC = () => (
   <Fragment>
     {/* Mobile & Tablet */}
     <Hidden lgUp>
@@ -40,7 +34,7 @@ const Step1 = () => (
       </Hidden>
       <Grid item xs={12} sm={10} container>
         <Grid item xs={2}>
-          <StepOval value='1'/>
+          <StepOval value='3'/>
         </Grid>
         <Grid item xs={9}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
@@ -56,11 +50,11 @@ const Step1 = () => (
       </Hidden>
       <Grid item xs={12} sm={10}>
         <FullWidthImg
-          src={images.step1.original}
-          srcSet={`${images.step1.mobile} 360w,
-                   ${images.step1.tablet} 600w`}
+          src={imagekitURLs.step3}
+          srcSet={`${fixedWidthImage(imagekitURLs.step3, 360)} 360w,
+                      ${fixedWidthImage(imagekitURLs.step3, 600)} 600w`}
           sizes={`(min-width: ${Sketch.breakpoints.tablet}px) 600px, 360px`}
-          alt='Step 1: Enter Your Desired Dosages Image'
+          alt='Step 3: Build Regimen Piece by Piece'
         />
       </Grid>
       <Hidden only='xs'>
@@ -70,14 +64,9 @@ const Step1 = () => (
         <Grid item xs={1} sm={2}/>
         <Grid item xs={10} sm={8} container justify='center'>
           <EmptyRow mobile='10px'/>
-          <CenteredTextGrid item lg={12}>
+          <CenteredTextGrid item xs={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
           </CenteredTextGrid>
-          <Grid item xs={12}>
-            <OptionPill value={optionsCopy[0]}/>
-            <OptionPill value={optionsCopy[1]}/>
-            <OptionPill value={optionsCopy[2]}/>
-          </Grid>
         </Grid>
         <Grid item xs={1} sm={2}/>
       </Fragment>
@@ -87,26 +76,24 @@ const Step1 = () => (
       <Grid item lg={1}/>
       <Grid item lg={1} container>
         <Grid item lg={12}>
-          <StepOval value='1'/>
+          <StepOval value='3'/>
         </Grid>
       </Grid>
       <Grid item lg={4} container>
         <Grid item lg={12}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
+          <EmptyRow desktop='20px'/>
+          <EmptyRow mobile='10px'/>
+          <Grid item lg={12}>
+            <CenteredBody dark>{subInstructionCopy}</CenteredBody>
+          </Grid>
         </Grid>
-        <EmptyRow desktop='20px'/>
-        <CenteredTextGrid item lg={12}>
-          <CenteredBody dark>{subInstructionCopy}</CenteredBody>
-          <OptionPill value={optionsCopy[0]}/>
-          <OptionPill value={optionsCopy[1]}/>
-          <OptionPill value={optionsCopy[2]}/>
-        </CenteredTextGrid>
       </Grid>
       <Grid item lg={1}/>
       <Grid item lg={4}>
         <FullWidthImg
-          src={images.step1.tablet}
-          alt='Step 1: Enter Your Desired Dosages Image'
+          src={fixedWidthImage(imagekitURLs.step3, 600)}
+          alt='Step 3: Build Regimen Piece by Piece'
         />
       </Grid>
       <Grid item lg={1}/>
@@ -114,4 +101,4 @@ const Step1 = () => (
   </Fragment>
 );
 
-export default Step1;
+export default Step3;

@@ -8,7 +8,7 @@ import Sketch from '../../../../app/style/SketchVariables';
 import {GetProductPopover} from '../../../../typings/gql/GetProductPopover';
 import {EmptyRow} from '../../../style/Layout';
 import {Body, Caption, Header2} from '../../../style/Typography';
-import {prettifyEnumString} from '../BuilderFilterPanel';
+import {prettifyEnumString} from '../FilterPanel';
 
 interface IProps {
   catalogProductId: string;

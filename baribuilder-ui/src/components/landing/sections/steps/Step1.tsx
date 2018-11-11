@@ -1,13 +1,14 @@
-import React, {Fragment} from 'react';
-import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
-import {CenteredTextGrid} from '../../../goals/GoalsScreenPure';
-import StepOval from './StepOval.react';
-import {EmptyRow} from '../../../style/Layout';
+import Hidden from '@material-ui/core/Hidden';
+import * as React from 'react';
+import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
-import {Body, Header2} from '../../../style/Typography';
-import OptionPill from './OptionPill.react';
 import Sketch from '../../../../app/style/SketchVariables';
+import {fixedWidthImage, imagekitURLs} from '../../../../constants/images';
+import {CenteredTextGrid, EmptyRow} from '../../../style/Layout';
+import {Body, Header2} from '../../../style/Typography';
+import OptionPill from './OptionPill';
+import StepOval from './StepOval';
 
 const LeftAlignHeader2 = styled(Header2)`
   text-align: left;
@@ -21,16 +22,16 @@ const FullWidthImg = styled.img`
   width: 100%;
 `;
 
-const instructionCopy = <span>You'll see <u>all</u> the possible product combinations that fit your needs.</span>;
-const subInstructionCopy = 'You can sort them by:';
+const instructionCopy = 'Fill out the dosages your body needs.';
+const subInstructionCopy = 'Get these from one of:';
 const optionsCopy = [
-  'Cost per day',
-  'Servings (e.g. tablets) per day',
+  'Your medical provider',
+  'Your own online research',
   'Our surgery-specific templates',
 ];
 
 // Desktop vs. tablet/mobile arrangements are very different
-const Step2 = () => (
+const Step1: SFC = () => (
   <Fragment>
     {/* Mobile & Tablet */}
     <Hidden lgUp>
@@ -39,7 +40,7 @@ const Step2 = () => (
       </Hidden>
       <Grid item xs={12} sm={10} container>
         <Grid item xs={2}>
-          <StepOval value='2'/>
+          <StepOval value='1'/>
         </Grid>
         <Grid item xs={9}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
@@ -51,66 +52,66 @@ const Step2 = () => (
       </Hidden>
       <EmptyRow mobile='5px'/>
       <Hidden only='xs'>
-        <Grid item sm={1} />
+        <Grid item sm={1}/>
       </Hidden>
       <Grid item xs={12} sm={10}>
         <FullWidthImg
-          src='https://ik.imagekit.io/vitaglab/step-2-see-results_SJVrLVO87.png'
-          srcSet='https://ik.imagekit.io/vitaglab/tr:w-360/step-2-see-results_SJVrLVO87.png 360w,
-                      https://ik.imagekit.io/vitaglab/tr:w-600/step-2-see-results_SJVrLVO87.png 600w'
+          src={imagekitURLs.step1}
+          srcSet={`${fixedWidthImage(imagekitURLs.step1, 360)} 360w,
+                   ${fixedWidthImage(imagekitURLs.step1, 600)} 600w`}
           sizes={`(min-width: ${Sketch.breakpoints.tablet}px) 600px, 360px`}
-          alt='Step 2: See Your Product Results Image'
+          alt='Step 1: Enter Your Desired Ingredients'
         />
       </Grid>
       <Hidden only='xs'>
-        <Grid item sm={1} />
+        <Grid item sm={1}/>
       </Hidden>
       <Fragment>
-        <Grid item xs={1} sm={2} />
+        <Grid item xs={1} sm={2}/>
         <Grid item xs={10} sm={8} container justify='center'>
           <EmptyRow mobile='10px'/>
-          <CenteredTextGrid item xs={12}>
+          <CenteredTextGrid item lg={12}>
             <CenteredBody dark>{subInstructionCopy}</CenteredBody>
           </CenteredTextGrid>
           <Grid item xs={12}>
-            <OptionPill value={optionsCopy[0]} />
-            <OptionPill value={optionsCopy[1]} />
+            <OptionPill value={optionsCopy[0]}/>
+            <OptionPill value={optionsCopy[1]}/>
+            <OptionPill value={optionsCopy[2]}/>
           </Grid>
         </Grid>
-        <Grid item xs={1} sm={2} />
+        <Grid item xs={1} sm={2}/>
       </Fragment>
     </Hidden>
     {/* Desktop */}
     <Hidden mdDown>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
       <Grid item lg={1} container>
         <Grid item lg={12}>
-          <StepOval value='2'/>
+          <StepOval value='1'/>
         </Grid>
       </Grid>
       <Grid item lg={4} container>
         <Grid item lg={12}>
           <LeftAlignHeader2 dark>{instructionCopy}</LeftAlignHeader2>
-          <EmptyRow desktop='20px'/>
-          <CenteredTextGrid item lg={12}>
-            <CenteredBody dark>{subInstructionCopy}</CenteredBody>
-          </CenteredTextGrid>
-          <Grid item xs={12}>
-            <OptionPill value={optionsCopy[0]} />
-            <OptionPill value={optionsCopy[1]} />
-          </Grid>
         </Grid>
+        <EmptyRow desktop='20px'/>
+        <CenteredTextGrid item lg={12}>
+          <CenteredBody dark>{subInstructionCopy}</CenteredBody>
+          <OptionPill value={optionsCopy[0]}/>
+          <OptionPill value={optionsCopy[1]}/>
+          <OptionPill value={optionsCopy[2]}/>
+        </CenteredTextGrid>
       </Grid>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
       <Grid item lg={4}>
         <FullWidthImg
-          src='https://ik.imagekit.io/vitaglab/tr:w-600/step-2-see-results_SJVrLVO87.png'
-          alt='Step 2: See Your Product Results Image'
+          src={fixedWidthImage(imagekitURLs.step1, 600)}
+          alt='Step 1: Enter Your Desired Ingredients'
         />
       </Grid>
-      <Grid item lg={1} />
+      <Grid item lg={1}/>
     </Hidden>
   </Fragment>
 );
 
-export default Step2;
+export default Step1;

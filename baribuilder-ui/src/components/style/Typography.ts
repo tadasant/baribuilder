@@ -87,3 +87,16 @@ export const GreyHeader2 = styled(Header2)`
 export const GreyBody = styled(Body)`
   color: ${Sketch.color.accent.grey};
 `;
+
+// TODO conform to other conventions above
+export const BoldText = styled.span`
+  color: ${(props: ITypographyProps )=> props.dark ? Sketch.color.accent.black : Sketch.color.accent.white};
+  font-family: ${Sketch.typography.fontFamily};
+  
+  font-size: 18px;
+  font-weight: 800;
+  
+  ${media.tablet`
+    font-size: 28px;
+  `}
+`;

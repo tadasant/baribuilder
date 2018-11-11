@@ -54,6 +54,7 @@ const MainProductImageWithPopover: SFC<IProps & IPropsState> = ({catalogProductI
         }}
         open={open}
         anchorEl={anchorEl}
+        onClick={handlePopoverClose}
         onClose={handlePopoverClose}
         disableRestoreFocus
       >

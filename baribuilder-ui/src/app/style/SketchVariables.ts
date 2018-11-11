@@ -11,6 +11,7 @@ const Sketch = {
     },
     'accent': {
       'black': '#2D3239',
+      'blackrgba': (alpha: number) => `rgba(45, 50, 57, ${alpha})`,
       'white': '#F2F2F2',
       'grey': '#D9D9D9',
       'darkgrey': '#A6A6A6',
@@ -35,7 +36,7 @@ const Sketch = {
     },
     'header2': { // bold
       'textAlign': 'center',
-      'fontSize': '36px',
+      'fontSize': '24px',
       'fontWeight': 600,
       'tablet': {
         'fontSize': '36px',
@@ -72,9 +73,9 @@ const Sketch = {
     },
   },
   'breakpoints': {
-    'desktop': 1000,
-    'tablet': 600,
-    'mobile': 320,
+    'desktop': 1119,
+    'tablet': 599,
+    'mobile': 319,
   },
 };
 

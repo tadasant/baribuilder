@@ -80,18 +80,18 @@ const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {
   if (data) {
     return (
       <PaperGrid container justify='flex-end' vStickyOffset={props.vStickyOffset}>
-        <HorizontalPaddedGrid item container lg={10}>
+        <HorizontalPaddedGrid item container xs={9}>
           <Grid container spacing={8} justify='flex-end'>
             <Grid item>
-              <BoldBody dark>URL to share:</BoldBody>
+              <BoldBody dark>To share:</BoldBody>
             </Grid>
-            <Grid item lg>
+            <Grid item xs>
               <TextField fullWidth value={dataToShareableURL(data)}/>
             </Grid>
           </Grid>
         </HorizontalPaddedGrid>
-        <HorizontalPaddedGrid item lg={2}>
-          <Button color='primary' variant='raised' fullWidth onClick={performCopy}>Copy</Button>
+        <HorizontalPaddedGrid item xs={3}>
+          <Button color='primary' variant='contained' fullWidth onClick={performCopy}>Copy</Button>
         </HorizontalPaddedGrid>
       </PaperGrid>
     );

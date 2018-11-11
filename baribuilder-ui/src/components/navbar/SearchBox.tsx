@@ -13,6 +13,10 @@ import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SetSearchQuery} from '../../typings/gql/SetSearchQuery';
 import {SEARCH_QUERY_QUERY} from '../catalog/queries';
 
+interface IProps {
+  dark?: boolean;
+}
+
 // TODO something wrong with typescript def
 const NearFullWidthTextField: any = styled(TextField)`
   width: 95%;
@@ -46,7 +50,7 @@ type MutationOutputProps =
 const withData = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
 const withMutation = graphql<{}, SetSearchQuery>(SEARCH_QUERY_MUTATION);
 
-const enhance = compose<IPropsState & QueryOutputProps & MutationOutputProps, {}>(
+const enhance = compose<IProps & IPropsState & QueryOutputProps & MutationOutputProps, IProps>(
   // Used to become fully controlled: https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html?no-cache=1#recommendation-fully-uncontrolled-component-with-a-key
   withState<{}, string, 'searchQuery', 'setSearchQuery'>(
     'searchQuery',
@@ -63,7 +67,7 @@ interface IPropsState {
   setSearchQuery: (state: string) => string
 }
 
-const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps & RouteComponentProps> = ({searchQuery, setSearchQuery, mutate, data, location, history}) => {
+const SearchBox: SFC<IProps & IPropsState & QueryOutputProps & MutationOutputProps & RouteComponentProps> = ({searchQuery, setSearchQuery, mutate, data, location, history, dark}) => {
   if (!mutate) {
     console.error('Something went wrong with mutate. Error code 3922358184.');
     return null;
@@ -82,16 +86,16 @@ const SearchBox: SFC<IPropsState & QueryOutputProps & MutationOutputProps & Rout
 
   return (
     <FullHeightGrid item container alignItems='center'>
-      <Grid item lg={10}>
+      <Grid item xs={11}>
         <NearFullWidthTextField
           placeholder='Search'
-          inputProps={{style: {color: Sketch.color.accent.white}, dataHjWhitelist: true}}
+          inputProps={{style: {color: dark ? Sketch.color.accent.black : Sketch.color.accent.white}, dataHjWhitelist: true}}
           defaultValue={data ? data.searchQuery ? data.searchQuery.value : '' : ''}
           onKeyPress={handleSearchKeyPress}
           onChange={(event: ChangeEvent<HTMLSelectElement>) => setSearchQuery(event.target.value || '')}
         />
       </Grid>
-      <Grid item lg={2}>
+      <Grid item xs={1}>
         <LogoImg src={searchIcon} onClick={() => mutateAndRedirect()}/>
       </Grid>
     </FullHeightGrid>

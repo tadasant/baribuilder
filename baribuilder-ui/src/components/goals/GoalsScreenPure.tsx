@@ -1,10 +1,11 @@
-import {Grid} from '@material-ui/core';
+import {Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import {IGoalIngredients} from '../../state/client-schema-types';
-import {EmptyRow} from '../style/Layout';
+import {media} from '../style/Core';
+import {CenteredTextGrid, EmptyRow} from '../style/Layout';
 import {Body, Caption, Header} from '../style/Typography';
 import GoalsFooter from './children/GoalsFooter';
 import IngredientRangeSelection from './children/IngredientRangeSelection';
@@ -56,12 +57,12 @@ const FooterGrid = styled(Grid)`
   }
 `;
 
-export const CenteredTextGrid = styled(Grid)`
+const TemplateLabelGrid = styled(Grid)`
   text-align: center;
-`;
-
-const RightAlignTextGrid = styled(Grid)`
-  text-align: right;
+  
+  ${media.desktop`
+    text-align: right;
+  `}
 `;
 
 const CenteredTextGridWithPointer = styled(CenteredTextGrid)`
@@ -73,47 +74,56 @@ const GoalsScreenPure: SFC<IProps> = (props) => {
     <Fragment>
       <OuterGrid container alignContent='flex-start'>
         <EmptyRow/>
-        <CenteredTextGrid item lg={12}>
+        <CenteredTextGrid item xs={12}>
           <Header dark>What are your ingredient goals?</Header>
         </CenteredTextGrid>
         <EmptyRow mobile='20px'/>
-        <Grid item lg={12} container alignItems='center'>
-          <Grid item lg={2}/>
-          <RightAlignTextGrid item>
+        <Grid item xs={12} container alignItems='center'>
+          <Grid item xs={1}/>
+          <TemplateLabelGrid item lg={3} xs={10}>
             <Body dark>Start with a template:&nbsp;</Body>
-          </RightAlignTextGrid>
-          <Grid item lg>
+          </TemplateLabelGrid>
+          <Hidden lgUp>
+            <Grid item xs={1}/>
+            <Grid item xs={1}/>
+          </Hidden>
+          <Grid item lg xs={10}>
             <TemplateSelect selectedTemplateName={props.selectedTemplateName}
                             onChangeTemplate={props.onChangeTemplate}/>
           </Grid>
-          <Grid item lg={2}/>
+          <Grid item xs={1}/>
         </Grid>
         <EmptyRow mobile='20px'/>
-        <CenteredTextGrid item lg={12}>
+        <CenteredTextGrid item xs={12}>
           <Body dark>If needed, make changes to reflect your medical provider's recommendations below.</Body>
         </CenteredTextGrid>
         <EmptyRow/>
         <Fragment>
-          <Grid item lg={1}/>
-          <Grid item container lg={10} alignContent='flex-start' spacing={8}>
+          <Grid item xs={1}/>
+          <Grid item container xs={10} alignContent='flex-start' spacing={8}>
             {props.goalIngredients ? props.goalIngredients.ingredientRanges.map((ingredientRange, i) => (
-              <Grid item lg={12} key={i}>
-                <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal}
-                                          onRemove={props.onRemoveGoal}/>
-              </Grid>
+              <Fragment key={i}>
+                <Grid item xs={12}>
+                  <IngredientRangeSelection ingredientRange={ingredientRange} onChange={props.onChangeGoal}
+                                            onRemove={props.onRemoveGoal}/>
+                </Grid>
+                <Hidden lgUp>
+                  <EmptyRow mobile='20px'/>
+                </Hidden>
+              </Fragment>
             )) : null}
           </Grid>
-          <Grid item lg={1}/>
+          <Grid item xs={1}/>
         </Fragment>
         <EmptyRow/>
         <Fragment>
-          <Grid item lg={1}/>
-          <AddBoxGrid item lg={10} container direction='column' justify='center'>
+          <Grid item xs={1}/>
+          <AddBoxGrid item xs={10} container direction='column' justify='center'>
             <CenteredTextGridWithPointer item onClick={props.onAddGoal}>
               <GreyCaption>Click to add ingredient</GreyCaption>
             </CenteredTextGridWithPointer>
           </AddBoxGrid>
-          <Grid item lg={1}/>
+          <Grid item xs={1}/>
         </Fragment>
       </OuterGrid>
       <EmptyRow mobile={`calc(${footerHeight} * 1.5)`}/> {/* Hack for spacing UX */}
