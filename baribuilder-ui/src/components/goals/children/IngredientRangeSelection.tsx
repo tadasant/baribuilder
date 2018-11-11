@@ -61,6 +61,10 @@ export const XIconImg = styled.img`
   cursor: pointer;
 `;
 
+const IngredientSelectGrid = styled(Grid)`
+  width: 100%;
+`;
+
 const ingredientNameWithSynonymsDisplay = (ingredientType: GetIngredientReferenceData_allIngredientTypes) => {
   if (!ingredientType.synonyms || ingredientType.synonyms.length === 0) {
     return ingredientType.name;
@@ -99,7 +103,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
   return (
     <Grid container direction='row' spacing={8}>
       <Grid item lg={3} xs={10} container direction='column' justify='flex-end'>
-        <Grid item>
+        <IngredientSelectGrid item>
           <Tooltip title={tooltipText || ''}>
             <EmphasizedShadowedSelect
               value={ingredientRange.ingredientTypeName}
@@ -121,7 +125,7 @@ const IngredientRangeSelection: SFC<ReferenceDataOutputProps & IProps> = ({ingre
               )) : null}
             </EmphasizedShadowedSelect>
           </Tooltip>
-        </Grid>
+        </IngredientSelectGrid>
       </Grid>
       <Hidden lgUp>
         <Grid item xs={2} container direction='column' justify='flex-end'>

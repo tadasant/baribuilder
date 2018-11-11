@@ -89,7 +89,7 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
     switch (key) {
       case 'minimumAmount':
       case 'maximumAmount':
-        finalValue = value === undefined ? null : parseFloat(value);
+        finalValue = value === undefined || value === '' ? null : parseFloat(value);
         break;
       default:
         finalValue = value || null;
