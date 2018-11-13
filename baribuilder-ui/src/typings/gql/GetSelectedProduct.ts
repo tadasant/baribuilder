@@ -15,6 +15,7 @@ export interface GetSelectedProduct_CatalogProduct_packages_listings_affiliateLi
 
 export interface GetSelectedProduct_CatalogProduct_packages_listings_price {
   __typename: "Price";
+  id: string;
   amount: number;
 }
 
@@ -28,8 +29,9 @@ export interface GetSelectedProduct_CatalogProduct_packages_listings {
 
 export interface GetSelectedProduct_CatalogProduct_packages {
   __typename: "ProductPackage";
-  listings: GetSelectedProduct_CatalogProduct_packages_listings[] | null;
+  id: string;
   numServings: number;
+  listings: GetSelectedProduct_CatalogProduct_packages_listings[] | null;
 }
 
 export interface GetSelectedProduct_CatalogProduct {

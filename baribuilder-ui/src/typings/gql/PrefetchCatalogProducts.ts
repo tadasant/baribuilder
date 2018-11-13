@@ -15,6 +15,7 @@ export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings_af
 
 export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings_price {
   __typename: "Price";
+  id: string;
   amount: number;
 }
 
@@ -29,8 +30,8 @@ export interface PrefetchCatalogProducts_allCatalogProducts_packages_listings {
 export interface PrefetchCatalogProducts_allCatalogProducts_packages {
   __typename: "ProductPackage";
   id: string;
-  listings: PrefetchCatalogProducts_allCatalogProducts_packages_listings[] | null;
   numServings: number;
+  listings: PrefetchCatalogProducts_allCatalogProducts_packages_listings[] | null;
 }
 
 export interface PrefetchCatalogProducts_allCatalogProducts_images {

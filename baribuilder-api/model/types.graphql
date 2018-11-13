@@ -93,3 +93,8 @@ type DummyFieldToForceFrequency @model {
     id: ID! @isUnique
     dummy: FREQUENCY!
 }
+
+type Url @model {
+    id: ID! @isUnique
+    pathname: String!
+}
