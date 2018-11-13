@@ -108,17 +108,8 @@ const SharingURLPanel: SFC<TProps> = props => {
   }
 
   const performCopy = () => {
-    hashUnhashedUrl()
-      .then((urlId?: string) => {
-        if (urlId) {
-          const url = idToShareableURL(urlId);
-          copy(url);
-          setShareableUrl(url);
-        } else {
-          copy(shareableUrl);
-        }
-        toast.success('Successfully copied URL to clipboard');
-      }).catch(err => console.log(err));
+    copy(shareableUrl);
+    toast.success('Successfully copied URL to clipboard');
   };
 
   const hashUnhashedUrl = () => {
@@ -159,7 +150,7 @@ const SharingURLPanel: SFC<TProps> = props => {
           </Grid>
         </HorizontalPaddedGrid>
         <HorizontalPaddedGrid item xs={3}>
-          <Button color='primary' variant='contained' fullWidth onClick={performCopy}>Copy</Button>
+          <Button color='primary' variant='contained' fullWidth onClick={performCopy} onMouseOver={handleFocus}>Copy</Button>
         </HorizontalPaddedGrid>
       </PaperGrid>
     );
