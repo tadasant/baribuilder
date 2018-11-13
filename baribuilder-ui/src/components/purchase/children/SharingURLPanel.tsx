@@ -6,7 +6,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {ChildDataProps, DataValue, graphql} from 'react-apollo';
 import {toast} from 'react-toastify';
-import {compose} from 'recompose';
+import {compose, withProps, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
 import {GetStoreToShare} from '../../../typings/gql/GetStoreToShare';
@@ -46,12 +46,16 @@ interface IProps {
   vStickyOffset: string
 }
 
-const dataToShareableURL = ({currentRegimen, goalIngredients}: DataValue<GetStoreToShare, {}>) => {
+const dataToShareablePathname = ({currentRegimen, goalIngredients}: DataValue<GetStoreToShare, {}>) => {
   const queryString = qs.stringify({
     currentRegimen,
     goalIngredients
   });
-  return `${window.location.host}/share?${queryString}`;
+  return `share?${queryString}`;
+};
+
+const dataToShareableURL = (data: DataValue<GetStoreToShare, {}>) => {
+  return data ? `${window.location.host}/${dataToShareablePathname(data)}` : window.location.host;
 };
 
 const HorizontalPaddedGrid = styled(Grid)`
@@ -69,11 +73,16 @@ const PaperGrid = styled(Grid)`
   z-index: 2;
 `;
 
-const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {
-  const {data} = props;
+interface IStateProps {
+  shareableUrl: string;
+  setShareableUrl: (s: string) => string;
+}
+
+const SharingURLPanel: SFC<QueryOutputProps & IProps & IStateProps> = props => {
+  const {data, shareableUrl} = props;
 
   const performCopy = () => {
-    copy(dataToShareableURL(data));
+    copy(shareableUrl);
     toast.success('Successfully copied URL to clipboard');
   };
 
@@ -86,7 +95,7 @@ const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {
               <BoldBody dark>To share:</BoldBody>
             </Grid>
             <Grid item xs>
-              <TextField fullWidth value={dataToShareableURL(data)}/>
+              <TextField fullWidth value={shareableUrl}/>
             </Grid>
           </Grid>
         </HorizontalPaddedGrid>
@@ -102,7 +111,19 @@ const SharingURLPanel: SFC<QueryOutputProps & IProps> = props => {
 const withData = graphql<{}, GetStoreToShare>(STORE_TO_SHARE_QUERY);
 
 const enhance = compose<QueryOutputProps & IProps, IProps>(
-  withData
+  withData,
+  withProps<{ key: string }, QueryOutputProps>(
+    ({data: {currentRegimen, goalIngredients}}) => (
+      {
+        key: `${currentRegimen ? currentRegimen.toString() : 'no-data'}${goalIngredients ? goalIngredients.toString() : 'no-data'}`
+      }
+    )
+  ),
+  withState<{}, string, 'shareableUrl', 'setShareableUrl'>(
+    'shareableUrl',
+    'setShareableUrl',
+    (props: QueryOutputProps) => dataToShareableURL(props.data),
+  ),
 );
 
 export default enhance(SharingURLPanel);
