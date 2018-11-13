@@ -103,7 +103,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
 
   return (
     <GridWithRaisedBackground container>
-      <FullHeightGrid item xs={6} lg={3}>
+      <FullHeightGrid item xs={6} lg={3} md={4}>
         <UndecoratedLink to='/' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
         </UndecoratedLink>
@@ -113,7 +113,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
           <SearchBox key={searchQuery ? searchQuery.value : ''}/>
         </Grid>
       </Hidden>
-      <NavigationGrid item xs={6} container alignItems='center' justify='flex-end' spacing={16}>
+      <NavigationGrid item xs={6} md={8} lg={6} container alignItems='center' justify='flex-end' spacing={16}>
         <Hidden smDown>
           <Grid item>
             <FbIconImg
