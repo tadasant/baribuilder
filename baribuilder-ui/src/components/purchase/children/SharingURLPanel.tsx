@@ -70,8 +70,10 @@ const dataToShareableURL = (data: DataValue<GetStoreToShare, {}>) => {
   return data ? `${window.location.host}/${dataToShareablePathname(data)}` : window.location.host;
 };
 
+export const URL_ID_KEY = 'url-id';
+
 const idToShareableURL = (id: string) => {
-  return `${window.location.host}/share?url-id=${id}`;
+  return `${window.location.host}/share?${URL_ID_KEY}=${id}`;
 };
 
 const HorizontalPaddedGrid = styled(Grid)`
@@ -92,6 +94,8 @@ const PaperGrid = styled(Grid)`
 interface IStateProps {
   shareableUrl: string;
   setShareableUrl: (s: string) => string;
+  shareableUrlIsHashed: boolean;
+  setShareableUrlIsHashed: (b: boolean) => boolean;
 }
 
 type TProps = MutationOutputProps & QueryOutputProps & IProps & IStateProps;
@@ -104,21 +108,41 @@ const SharingURLPanel: SFC<TProps> = props => {
   }
 
   const performCopy = () => {
-    copy(shareableUrl);
-    toast.success('Successfully copied URL to clipboard');
+    hashUnhashedUrl()
+      .then((urlId?: string) => {
+        if (urlId) {
+          const url = idToShareableURL(urlId);
+          copy(url);
+          setShareableUrl(url);
+        } else {
+          copy(shareableUrl);
+        }
+        toast.success('Successfully copied URL to clipboard');
+      }).catch(err => console.log(err));
+  };
+
+  const hashUnhashedUrl = () => {
+    if (!shareableUrl.includes(URL_ID_KEY)) {
+      return mutate({variables: {pathname: dataToShareablePathname(data)}})
+        .then(response => {
+          if (response && (response.errors || !response.data || !response.data.createUrl)) {
+            console.error('Failed creating hashed URL. Error code 019484');
+          } else {
+            // @ts-ignore wrong type that doesn't recognize data??
+            return response.data.createUrl.id;
+          }
+        })
+    }
+    return Promise.resolve('');
   };
 
   const handleFocus = () => {
-    // TODO check if already hashed
-    mutate({variables: {pathname: dataToShareablePathname(data)}})
-      .then(response => {
-        if (response && (response.errors || !response.data || !response.data.createUrl)) {
-          console.error('Failed creating hashed URL. Error code 019484');
-        } else {
-          // @ts-ignore wrong type that doesn't recognize data??
-          setShareableUrl(idToShareableURL(response.data.createUrl.id))
+    hashUnhashedUrl()
+      .then((urlId?: string) => {
+        if (urlId) {
+          setShareableUrl(idToShareableURL(urlId))
         }
-      })
+      });
   };
 
   if (data) {
