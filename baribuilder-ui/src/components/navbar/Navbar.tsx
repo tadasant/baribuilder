@@ -9,11 +9,14 @@ import {toast} from 'react-toastify';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
+import FbLargeIcon from '../../assets/fb/fb-large.svg';
+import FbSmallIcon from '../../assets/fb/fb-small.svg';
 import MenuBarsIcon from '../../assets/icon/bars.svg';
 import {generateTrackNavClick} from '../../lib/analytics';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SEARCH_QUERY_QUERY} from '../catalog/queries';
+import {media} from '../style/Core';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import SearchBox from './SearchBox';
 
@@ -45,9 +48,18 @@ const FullHeightGrid = styled(Grid)`
   height: 100%;
 `;
 
-const MenuBarsImg = styled.img`
+const MobileNavIconImg = styled.img`
   max-height: 24px;
   cursor: pointer;
+`;
+
+const FbIconImg = styled.img`
+  cursor: pointer;
+  max-height: 36px;
+  
+  ${media.tablet`
+    max-height: 48px;
+  `}
 `;
 
 const NavigationGrid = styled(Grid)`
@@ -84,6 +96,11 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
     history.push('/goals');
   };
 
+  const handleFacebookClick = () => {
+    generateTrackNavClick('Facebook group')();
+    window.open('https://www.facebook.com/groups/671563826519599/', '_blank');
+  };
+
   return (
     <GridWithRaisedBackground container>
       <FullHeightGrid item xs={6} lg={3}>
@@ -96,8 +113,14 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
           <SearchBox key={searchQuery ? searchQuery.value : ''}/>
         </Grid>
       </Hidden>
-      <NavigationGrid item xs={6} container alignItems='center' justify='flex-end'>
+      <NavigationGrid item xs={6} container alignItems='center' justify='flex-end' spacing={16}>
         <Hidden smDown>
+          <Grid item>
+            <FbIconImg
+              src={FbLargeIcon}
+              onClick={handleFacebookClick}
+            />
+          </Grid>
           {showCheckout
             ? (
               <Grid item>
@@ -125,7 +148,13 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
         </Hidden>
         <Hidden mdUp>
           <Grid item>
-            <MenuBarsImg
+            <FbIconImg
+              src={FbSmallIcon}
+              onClick={handleFacebookClick}
+            />
+          </Grid>
+          <Grid item>
+            <MobileNavIconImg
               src={MenuBarsIcon}
               onClick={event => setAnchorEl(event.currentTarget)}
             />

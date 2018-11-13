@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="121.323019px" height="116.656749px" viewBox="0 0 121.323019 116.656749" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>fb-small</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="121" height="117" rx="5"></rect>
+        <filter x="-5.8%" y="-4.3%" width="111.6%" height="112.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="fb-small" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rectangle" fill-rule="nonzero">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#4367B2" xlink:href="#path-1"></use>
+        </g>
+        <path d="M49.8170455,107 L49.8170455,63.1679688 L35,63.1679688 L35,45.75 L49.8170455,45.75 L49.8170455,32.0261719 C49.8170455,17.115625 59.0125,9 72.4386364,9 C78.8715909,9 84.3965909,9.47851562 86,9.6890625 L86,25.2695312 L76.6886364,25.2695312 C69.3863636,25.2695312 67.9761364,28.7148438 67.9761364,33.7488281 L67.9761364,45.75 L84.4545455,45.75 L82.1943182,63.1679688 L67.9761364,63.1679688 L67.9761364,107" id="Path" fill="#FAFAFA"></path>
+    </g>
+</svg>
