@@ -34,6 +34,8 @@ permissions:
   - operation: ServingIngredient.read
   - operation: ServingIngredientQuantity.read
   - operation: IngredientType.read
+  - operation: Url.read
+  - operation: Url.create
 
 # Your root tokens used for functions to get full access to the API
 # Read more here:

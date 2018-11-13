@@ -4,11 +4,12 @@ import gql from 'graphql-tag';
 import * as qs from 'qs';
 import * as React from 'react';
 import {SFC} from 'react';
-import {ChildDataProps, DataValue, graphql} from 'react-apollo';
+import {ChildDataProps, DataProps, DataValue, graphql, MutateProps} from 'react-apollo';
 import {toast} from 'react-toastify';
 import {compose, withProps, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
+import {CreateUrlHash, CreateUrlHashVariables} from '../../../typings/gql/CreateUrlHash';
 import {GetStoreToShare} from '../../../typings/gql/GetStoreToShare';
 import {BoldBody} from '../../style/Typography';
 
@@ -40,7 +41,18 @@ const STORE_TO_SHARE_QUERY = gql`
     }
 `;
 
+// TODO would make sense to move mutation to a container component
+const CREATE_URL_HASH_MUTATION = gql`
+    mutation CreateUrlHash($pathname: String!) {
+        createUrl(pathname: $pathname) {
+            id
+        }
+    }
+`;
+
 type QueryOutputProps = ChildDataProps<{}, GetStoreToShare>;
+
+type MutationOutputProps = Partial<DataProps<CreateUrlHash, CreateUrlHashVariables>> & Partial<MutateProps<CreateUrlHash, CreateUrlHashVariables>>;
 
 interface IProps {
   vStickyOffset: string
@@ -56,6 +68,10 @@ const dataToShareablePathname = ({currentRegimen, goalIngredients}: DataValue<Ge
 
 const dataToShareableURL = (data: DataValue<GetStoreToShare, {}>) => {
   return data ? `${window.location.host}/${dataToShareablePathname(data)}` : window.location.host;
+};
+
+const idToShareableURL = (id: string) => {
+  return `${window.location.host}/share?url-id=${id}`;
 };
 
 const HorizontalPaddedGrid = styled(Grid)`
@@ -78,12 +94,31 @@ interface IStateProps {
   setShareableUrl: (s: string) => string;
 }
 
-const SharingURLPanel: SFC<QueryOutputProps & IProps & IStateProps> = props => {
-  const {data, shareableUrl} = props;
+type TProps = MutationOutputProps & QueryOutputProps & IProps & IStateProps;
+
+const SharingURLPanel: SFC<TProps> = props => {
+  const {data, shareableUrl, mutate, setShareableUrl} = props;
+  if (!mutate) {
+    console.warn('Mutate is null. Error code 3445472849');
+    return null;
+  }
 
   const performCopy = () => {
     copy(shareableUrl);
     toast.success('Successfully copied URL to clipboard');
+  };
+
+  const handleFocus = () => {
+    // TODO check if already hashed
+    mutate({variables: {pathname: dataToShareablePathname(data)}})
+      .then(response => {
+        if (response && (response.errors || !response.data || !response.data.createUrl)) {
+          console.error('Failed creating hashed URL. Error code 019484');
+        } else {
+          // @ts-ignore wrong type that doesn't recognize data??
+          setShareableUrl(idToShareableURL(response.data.createUrl.id))
+        }
+      })
   };
 
   if (data) {
@@ -95,7 +130,7 @@ const SharingURLPanel: SFC<QueryOutputProps & IProps & IStateProps> = props => {
               <BoldBody dark>To share:</BoldBody>
             </Grid>
             <Grid item xs>
-              <TextField fullWidth value={shareableUrl}/>
+              <TextField fullWidth value={shareableUrl} onFocus={handleFocus}/>
             </Grid>
           </Grid>
         </HorizontalPaddedGrid>
@@ -110,7 +145,10 @@ const SharingURLPanel: SFC<QueryOutputProps & IProps & IStateProps> = props => {
 
 const withData = graphql<{}, GetStoreToShare>(STORE_TO_SHARE_QUERY);
 
+const withMutation = graphql<CreateUrlHashVariables, CreateUrlHash>(CREATE_URL_HASH_MUTATION);
+
 const enhance = compose<QueryOutputProps & IProps, IProps>(
+  withMutation,
   withData,
   withProps<{ key: string }, QueryOutputProps>(
     ({data: {currentRegimen, goalIngredients}}) => (
