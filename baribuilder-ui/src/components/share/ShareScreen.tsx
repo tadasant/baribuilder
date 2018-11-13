@@ -2,16 +2,28 @@ import gql from 'graphql-tag';
 import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
-import {DataProps, graphql, MutateProps} from 'react-apollo';
+import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {toast} from 'react-toastify';
-import {compose} from 'recompose';
+import {branch, compose, withProps} from 'recompose';
 import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../app/BuilderApp';
 import {IGoalIngredients, IIngredientRange, IRegimen, IRegimenProduct} from '../../state/client-schema-types';
 import {DeleteCurrentRegimenProductQuantity} from '../../typings/gql/DeleteCurrentRegimenProductQuantity';
+import {GetSharedUrl, GetSharedUrlVariables} from '../../typings/gql/GetSharedUrl';
 import {GetStoreToShare} from '../../typings/gql/GetStoreToShare';
 import {ShareStoreMutation, ShareStoreMutationVariables} from '../../typings/gql/ShareStoreMutation';
 import {CenteredSpinner} from '../catalog/CatalogScreen';
+import {URL_ID_KEY} from '../purchase/children/SharingURLPanel';
+
+const SHARE_QUERY = gql`
+    query GetSharedUrl($id: ID!) {
+        allUrls(filter: {id: $id}) {
+            pathname
+        }
+    }
+`;
+
+type QueryOutputProps = ChildDataProps<{}, GetSharedUrl>;
 
 const SHARE_STORE_MUTATION = gql`
     mutation ShareStoreMutation($currentRegimen: RegimenInput!, $goalIngredients: GoalIngredientsInput!) {
@@ -72,7 +84,9 @@ const stringifiedStoreToStore = (parsedStore: any): Partial<GetStoreToShare> => 
   return {currentRegimen, goalIngredients};
 };
 
-class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
+type TProps = RouteComponentProps & MutationOutputProps & (QueryOutputProps | null);
+
+class ShareScreen extends Component<TProps> {
   deriveStoreFromQueryParams(): Partial<GetStoreToShare> | null {
     const queryString = this.props.location.search;
     try {
@@ -87,39 +101,71 @@ class ShareScreen extends Component<RouteComponentProps & MutationOutputProps> {
     if (!this.props.mutate) {
       return;
     }
-    const storeValues = this.deriveStoreFromQueryParams();
-    if (!storeValues || !storeValues.currentRegimen || !storeValues.goalIngredients) {
-      toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 01987 @ ${(new Date).getTime()}`, {
-        autoClose: false,
-        closeOnClick: false,
-      });
-      this.props.history.push('/');
-      return;
-    }
-    this.props.mutate({
-      variables: {
-        currentRegimen: storeValues.currentRegimen,
-        goalIngredients: storeValues.goalIngredients
+    if (this.props.data && !this.props.data.loading) {
+      // we have data (i.e. we pulled in a URL ID)
+      if (this.props.data.allUrls && this.props.data.allUrls.length === 1) {
+        // @ts-ignore check above
+        this.props.history.push(this.props.data.allUrls[0].pathname);
+      } else {
+        toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 92382 @ ${(new Date).getTime()}`, {
+          autoClose: false,
+          closeOnClick: false,
+        });
       }
-    }).then((response) => {
-      if (response && response.errors) {
-        toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 01988 @ ${(new Date).getTime()}`, {
+    } else if (!this.props.data) {
+      const storeValues = this.deriveStoreFromQueryParams();
+      if (!storeValues || !storeValues.currentRegimen || !storeValues.goalIngredients) {
+        toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 01987 @ ${(new Date).getTime()}`, {
           autoClose: false,
           closeOnClick: false,
         });
         this.props.history.push('/');
-      } else {
-        toast.success('Loaded shared selections & products successfully!');
-        this.props.history.push('/purchase');
+        return;
       }
-    });
-
+      this.props.mutate({
+        variables: {
+          currentRegimen: storeValues.currentRegimen,
+          goalIngredients: storeValues.goalIngredients
+        }
+      }).then((response) => {
+        if (response && response.errors) {
+          toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 01988 @ ${(new Date).getTime()}`, {
+            autoClose: false,
+            closeOnClick: false,
+          });
+          this.props.history.push('/');
+        } else {
+          toast.success('Loaded shared selections & products successfully!');
+          this.props.history.push('/purchase');
+        }
+      });
+    }
   }
 
   render() {
     return <CenteredSpinner/>;
   }
 }
+
+const withData = graphql<RouteComponentProps, GetSharedUrl, GetSharedUrlVariables>(SHARE_QUERY, {
+  options: (props: RouteComponentProps) => {
+    const queryString = props.location.search;
+    try {
+      const parsedData = qs.parse(queryString.slice(1));
+      return {
+        variables: {id: parsedData[URL_ID_KEY]}
+      };
+    } catch {
+      toast.error(`Error loading shared URL! Please contact feedback@baribuilder.com if you think this is a mistake. Error 193832 @ ${(new Date).getTime()}`, {
+        autoClose: false,
+        closeOnClick: false,
+      });
+      return {
+        variables: {id: ''},
+      }
+    }
+  }
+});
 
 const withMutation = graphql<{}, DeleteCurrentRegimenProductQuantity>(SHARE_STORE_MUTATION, {
   options: () => ({
@@ -129,7 +175,19 @@ const withMutation = graphql<{}, DeleteCurrentRegimenProductQuantity>(SHARE_STOR
 
 const enhance = compose<{}, RouteComponentProps & MutationOutputProps>(
   withMutation,
-  withRouter
+  withRouter,
+  branch(
+    (props: RouteComponentProps) => props.location.search.includes(URL_ID_KEY),
+    withData
+  ),
+  withProps<{ key: string }, TProps>(
+    (props) => (
+      {
+        ...props,
+        key: `${props.data ? props.data.allUrls ? props.data.allUrls.toString() : 'no-urls' : 'no-data'}`
+      }
+    )
+  ),
 );
 
 export default enhance(ShareScreen);
