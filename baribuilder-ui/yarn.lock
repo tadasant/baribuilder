@@ -130,6 +130,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-youtube@^7.4.2":
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/@types/react-youtube/-/react-youtube-7.4.2.tgz#878dfa39d436bc4da6f70ecc0207810690d3396f"
+  integrity sha512-FvKcB+sLXAuWpXG0QFUzXvcjQzkeejD5C2i3pAlDPfPsmLhVB+9tcVXzsMsRp1ZsfPc9vgJs3wtrxlLMuRSHbA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.4.14":
   version "16.4.18"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.18.tgz#2e28a2e7f92d3fa7d6a65f2b73275c3e3138a13d"
@@ -5133,6 +5140,11 @@ load-json-file@^2.0.0:
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
+load-script@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/load-script/-/load-script-1.0.0.tgz#0491939e0bee5643ee494a7e3da3d2bac70c6ca4"
+  integrity sha1-BJGTngvuVkPuSUp+PaPSuscMbKQ=
+
 loader-fs-cache@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/loader-fs-cache/-/loader-fs-cache-1.0.1.tgz#56e0bf08bd9708b26a765b68509840c8dec9fdbc"
@@ -6484,7 +6496,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.3, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -6846,6 +6858,15 @@ react-transition-group@^2.2.1, react-transition-group@^2.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
+
+react-youtube@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/react-youtube/-/react-youtube-7.8.0.tgz#f782995cc5bad1c0378e3669359aa786acba2d31"
+  integrity sha512-kQFR0XTpgGRtzJ54HKDaCtAGr34mgB/BVFeCAL0WUjpIKZBcWtFrKJhYkoKfvWK7aTzJuQ57xojTjG7V6JzILA==
+  dependencies:
+    fast-deep-equal "^2.0.1"
+    prop-types "^15.5.3"
+    youtube-player "^5.5.1"
 
 react@^16.5.1:
   version "16.6.0"
@@ -7425,6 +7446,11 @@ shellwords@^0.1.1:
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+sister@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/sister/-/sister-3.0.1.tgz#a36ba6a1d1e46415ba16cb4ecefe14cbd8d82d1f"
+  integrity sha512-aG41gNRHRRxPq52MpX4vtm9tapnr6ENmHUx8LMAJWCOplEMwXzh/dp5WIo52Wl8Zlc/VUyHLJ2snX0ck+Nma9g==
 
 slash@^1.0.0:
   version "1.0.0"
@@ -8825,6 +8851,15 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+youtube-player@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/youtube-player/-/youtube-player-5.5.1.tgz#74a660a452f598cb241677e3222bbc3cff5cc58e"
+  integrity sha512-1d62W9She0B1uKNyY6K7jtWFbOW3dYsm6hyKzrh11BLOuYFzkt8K6AcQ3QdPF3aU47dzhZ82clzOJVVWus4HTw==
+  dependencies:
+    debug "^2.6.6"
+    load-script "^1.0.0"
+    sister "^3.0.0"
 
 zen-observable-ts@^0.8.10:
   version "0.8.10"
