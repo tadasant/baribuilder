@@ -33,7 +33,7 @@ class HowItWorksSection extends Component {
           <Grid item xs={10} container justify='center'>
             <VideoContainerGrid xs={12}>
               <YoutubeContainer
-                videoId='8SY00K2kn_o-U'
+                videoId='8SY00K2kn_o'
                 onPlay={() => trackDemoVideoPlayer(0)}
               />
             </VideoContainerGrid>
