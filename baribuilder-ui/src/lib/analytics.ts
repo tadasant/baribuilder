@@ -38,6 +38,13 @@ export const trackScrollPercent = (screenName: string, percentScrolled: number) 
   })
 };
 
+export const trackDemoVideoPlayer = (percent: number) => {
+  analytics.track('Playing demo video', {
+    ...defaultFields,
+    percent
+  })
+};
+
 // Initialized in index.html's <head>
 declare global {
   interface Window {

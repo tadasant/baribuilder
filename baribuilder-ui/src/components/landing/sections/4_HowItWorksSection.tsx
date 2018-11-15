@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Component, Fragment} from 'react';
 import YouTube from 'react-youtube';
 import styled from 'styled-components';
+import {trackDemoVideoPlayer} from '../../../lib/analytics';
 import {CenteredTextGrid, EmptyRow} from '../../style/Layout';
 import {Header} from '../../style/Typography';
 import Step1 from './steps/Step1';
@@ -31,7 +32,10 @@ class HowItWorksSection extends Component {
           <Grid item xs={1}/>
           <Grid item xs={10} container justify='center'>
             <VideoContainerGrid xs={12}>
-              <YoutubeContainer videoId='8SY00K2kn_o-U'/>
+              <YoutubeContainer
+                videoId='8SY00K2kn_o-U'
+                onPlay={() => trackDemoVideoPlayer(0)}
+              />
             </VideoContainerGrid>
           </Grid>
           <Grid item xs={1}/>
