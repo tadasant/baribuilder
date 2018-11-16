@@ -6,6 +6,7 @@ import {DataProps, graphql, MutateProps} from 'react-apollo';
 import {toast} from 'react-toastify';
 import {compose, pure} from 'recompose';
 import {PREFETCH_CLIENT_CATALOG_PRODUCTS_QUERY} from '../../../../../app/BuilderApp';
+import {trackButtonClick} from '../../../../../lib/analytics';
 import {AddProduct, AddProductVariables} from '../../../../../typings/gql/AddProduct';
 import {GetClientCatalogProductQuantities_ClientCatalogProduct_defaultQuantity} from '../../../../../typings/gql/GetClientCatalogProductQuantities';
 
@@ -52,8 +53,9 @@ const enhance = compose<IProps & GraphqlOutputProps, IProps>(
 );
 
 // Pure
-const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate, onAddToRegimen, quantity}) => {
+const CatalogProductAddButtonPure: SFC<IProps & GraphqlOutputProps> = ({mutate, onAddToRegimen, quantity, catalogProductId}) => {
   const handleClick = () => {
+    trackButtonClick('Add Product', catalogProductId);
     if (mutate) {
       mutate()
         .then(response => {

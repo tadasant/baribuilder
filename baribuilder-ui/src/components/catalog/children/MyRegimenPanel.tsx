@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import styled from 'styled-components';
 import Sketch from '../../../app/style/SketchVariables';
+import {generateTrackNavClick} from '../../../lib/analytics';
 import {UndecoratedLink} from '../../style/CustomMaterial';
 import {EmptyRow} from '../../style/Layout';
 import CurrentRegimenCost from './myRegimen/CurrentRegimenCost';
@@ -80,14 +81,14 @@ const MyRegimenPanel: SFC = () => {
           <NoMarginGrid item container>
             <HPaddedGrid item xs={6}>
               <WideLink to='/purchase'>
-                <Button variant='contained' color='primary' fullWidth>
+                <Button variant='contained' color='primary' fullWidth onClick={generateTrackNavClick('Checkout (My Regimen Panel)')}>
                   Checkout
                 </Button>
               </WideLink>
             </HPaddedGrid>
             <HPaddedGrid item xs={6}>
               <WideLink to='/goals'>
-                <Button variant='contained' color='secondary' fullWidth>
+                <Button variant='contained' color='secondary' fullWidth onClick={generateTrackNavClick('Edit (My Regimen Panel)')}>
                   Edit Goals
                 </Button>
               </WideLink>

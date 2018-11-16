@@ -13,6 +13,14 @@ export const generateTrackNavClick = (label: string): (() => void) => {
   });
 };
 
+export const trackButtonClick = (label: string, id?: string): (() => void) => {
+  return () => analytics.track('Clicked Button', {
+    ...defaultFields,
+    label,
+    id
+  });
+};
+
 export const generateTrackExternalLinkClick = (label: string): (() => void) => {
   return () => analytics.track('Clicked Outbound Link', {
     ...defaultFields,
