@@ -6,7 +6,7 @@ import {generateTrackExternalLinkClick} from '../../lib/analytics';
 const SocialMediaIcons: SFC = () => (
   <Fragment>
     <Grid item>
-      <a href='https://www.facebook.com/vitaglab/' target='_blank' rel='noopener noreferrer'
+      <a href='https://www.facebook.com/baribuilder/' target='_blank' rel='noopener noreferrer'
          onClick={generateTrackExternalLinkClick('footer facebook')}>
         <img
           src='https://ik.imagekit.io/vitaglab/tr:w-32/facebook_HkCI3udUm.png'

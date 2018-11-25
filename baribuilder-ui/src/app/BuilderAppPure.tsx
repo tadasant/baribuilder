@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Fragment, SFC} from 'react';
 import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom';
+import AboutScreen from '../components/about/AboutScreen';
 import CatalogScreen from '../components/catalog/CatalogScreen';
 import Footer from '../components/footer/Footer';
 import {FooterContainerGrid} from '../components/footer/Footer.style';
@@ -30,6 +31,7 @@ const BuilderAppPure: SFC<RouteComponentProps> = ({location}) => {
         <Route exact path="/share" component={ShareScreen}/>
         <Route exact path="/request-products" component={RequestProductsScreen}/>
         <Route exact path="/terms-and-conditions" component={TermsAndConditions}/>
+        <Route exact path="/about" component={AboutScreen}/>
         {isProduction ? null : <Route exact path='/dev' component={Dev}/>}
         <Route component={NotFound}/>
       </Switch>
