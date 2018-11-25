@@ -9,7 +9,6 @@ import {toast} from 'react-toastify';
 import {compose, withState} from 'recompose';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
-import FbLargeIcon from '../../assets/fb/fb-large.svg';
 import FbSmallIcon from '../../assets/fb/fb-small.svg';
 import MenuBarsIcon from '../../assets/icon/bars.svg';
 import {generateTrackNavClick} from '../../lib/analytics';
@@ -96,6 +95,12 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
     history.push('/goals');
   };
 
+  const handleSelectAbout = () => {
+    generateTrackNavClick('About nav')();
+    setAnchorEl(null);
+    history.push('/about');
+  };
+
   const handleFacebookClick = () => {
     generateTrackNavClick('Facebook group')();
     window.open('https://www.facebook.com/groups/671563826519599/', '_blank');
@@ -119,13 +124,13 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
         </Grid>
       </Hidden>
       <NavigationGrid item xs={6} md={8} lg={6} container alignItems='center' justify='flex-end' spacing={16}>
+        <Grid item>
+          <FbIconImg
+            src={FbSmallIcon}
+            onClick={handleFacebookClick}
+          />
+        </Grid>
         <Hidden mdDown>
-          <Grid item>
-            <FbIconImg
-              src={FbLargeIcon}
-              onClick={handleFacebookClick}
-            />
-          </Grid>
           {showCheckout
             ? (
               <Grid item>
@@ -136,6 +141,13 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             )
             : null
           }
+          <Grid item>
+            <UndecoratedLink to='/about' onClick={handleSelectAbout}>
+              <WhiteNavButton fullWidth>
+                About
+              </WhiteNavButton>
+            </UndecoratedLink>
+          </Grid>
           <Grid item>
             <WhiteNavButton fullWidth onClick={handleBlogClick}>
               Blog
@@ -158,12 +170,6 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
         </Hidden>
         <Hidden lgUp>
           <Grid item>
-            <FbIconImg
-              src={FbSmallIcon}
-              onClick={handleFacebookClick}
-            />
-          </Grid>
-          <Grid item>
             <MobileNavIconImg
               src={MenuBarsIcon}
               onClick={event => setAnchorEl(event.currentTarget)}
@@ -180,6 +186,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
               <MenuItem onClick={handleSelectBrowse}>Browse</MenuItem>
               <MenuItem onClick={handleSelectGoals}>Goals</MenuItem>
               <MenuItem onClick={handleBlogClick}>Blog</MenuItem>
+              <MenuItem onClick={handleSelectAbout}>About</MenuItem>
             </Menu>
           </Grid>
         </Hidden>
