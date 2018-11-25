@@ -119,7 +119,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
         </Grid>
       </Hidden>
       <NavigationGrid item xs={6} md={8} lg={6} container alignItems='center' justify='flex-end' spacing={16}>
-        <Hidden smDown>
+        <Hidden mdDown>
           <Grid item>
             <FbIconImg
               src={FbLargeIcon}
@@ -156,7 +156,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             </UndecoratedLink>
           </Grid>
         </Hidden>
-        <Hidden mdUp>
+        <Hidden lgUp>
           <Grid item>
             <FbIconImg
               src={FbSmallIcon}
