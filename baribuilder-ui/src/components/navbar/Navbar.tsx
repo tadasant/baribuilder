@@ -101,6 +101,11 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
     window.open('https://www.facebook.com/groups/671563826519599/', '_blank');
   };
 
+  const handleBlogClick = () => {
+    generateTrackNavClick('BariBuilder Blog')();
+    window.open('https://blog.baribuilder.com/', '_self');
+  };
+
   return (
     <GridWithRaisedBackground container>
       <FullHeightGrid item xs={6} lg={3} md={4}>
@@ -131,6 +136,11 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             )
             : null
           }
+          <Grid item>
+            <WhiteNavButton fullWidth onClick={handleBlogClick}>
+              Blog
+            </WhiteNavButton>
+          </Grid>
           <Grid item>
             <UndecoratedLink to='/browse/all_products' onClick={handleSelectBrowse}>
               <WhiteNavButton fullWidth>
@@ -169,6 +179,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             >
               <MenuItem onClick={handleSelectBrowse}>Browse</MenuItem>
               <MenuItem onClick={handleSelectGoals}>Goals</MenuItem>
+              <MenuItem onClick={handleBlogClick}>Blog</MenuItem>
             </Menu>
           </Grid>
         </Hidden>
