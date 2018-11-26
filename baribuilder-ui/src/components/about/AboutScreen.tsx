@@ -5,11 +5,12 @@ import {lifecycle} from "recompose";
 import styled from 'styled-components';
 import drGHeadshot from '../../assets/G-circle.png';
 import tadasHeadshot from '../../assets/Tadas-circle.png';
+import {UndecoratedAnchor} from '../footer/ContactInformationPanel';
 import Footer from '../footer/Footer';
 import {FooterContainerGrid} from '../footer/Footer.style';
 import Navbar from '../navbar/Navbar';
 import {media} from '../style/Core';
-import {Body, Header, Header2} from '../style/Typography';
+import {Body, Caption, Header, Header2} from '../style/Typography';
 
 const AboutContainerDiv = styled.div`
   margin-top: 5vh;
@@ -24,13 +25,22 @@ const AboutContainerDiv = styled.div`
 `;
 
 const HeadshotGridContainer = styled(Grid)`
-  padding: 0 5vw 5vh 5vw;
+  padding: 0 3vw 3vh 3vw;
   text-align: center;
 `;
 
 const HeadshotImg = styled.img`
   width: 100%;
   max-width: 260px;
+`;
+
+const MemberNameP = styled.p`
+  margin-block-end: 0px;
+`;
+
+const MemberDetailP = styled.p`
+  margin-block-end: 0px;
+  margin-block-start: 0px;
 `;
 
 const AboutScreen: SFC = () => {
@@ -165,9 +175,35 @@ const AboutScreen: SFC = () => {
           <Grid container justify='center' alignItems='center'>
             <HeadshotGridContainer item xs={12} md={6}>
               <HeadshotImg src={drGHeadshot} alt='Dr. G Photo'/>
+              <br/>
+              <MemberNameP>
+                <Body dark>
+                <UndecoratedAnchor href='https://www.linkedin.com/in/gintaras-antanavicius-md-52b31743/' target='_blank' rel='nofollow noopener'>
+                  Dr. Gintas "G" Antanavicius
+                </UndecoratedAnchor>
+                </Body>
+              </MemberNameP>
+              <MemberDetailP>
+                <Caption dark>
+                  Bariatric Surgeon
+                </Caption>
+              </MemberDetailP>
             </HeadshotGridContainer>
             <HeadshotGridContainer item xs={12} md={6}>
               <HeadshotImg src={tadasHeadshot} alt='Tadas Photo'/>
+              <br/>
+              <MemberNameP>
+                <Body dark>
+                <UndecoratedAnchor href='https://www.linkedin.com/in/antanavicius/' target='_blank' rel='nofollow noopener'>
+                  Tadas Antanavicius
+                </UndecoratedAnchor>
+                </Body>
+              </MemberNameP>
+              <MemberDetailP>
+                <Caption dark>
+                  Entrepreneur and Software Engineer
+                </Caption>
+              </MemberDetailP>
             </HeadshotGridContainer>
           </Grid>
         </p>
