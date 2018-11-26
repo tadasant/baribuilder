@@ -12,13 +12,14 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import * as uuid from 'uuid/v4';
+import AboutScreen from '../components/about/AboutScreen';
+import TermsAndConditions from '../components/TermsAndConditions';
 import config from '../config/config';
 import {defaultFields} from '../lib/analytics';
 import {getLocalStorage, setLocalStorage} from '../lib/localStorage';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
-import NotFound from './NotFound';
 import StaticApp from './StaticApp';
 import theme from './style/MuiTheming';
 
@@ -82,8 +83,9 @@ class App extends Component {
             <ToastContainer autoClose={2000}/>
             <Switch>
               <Route exact path="/" component={StaticApp}/>
+              <Route exact path="/terms-and-conditions" component={TermsAndConditions}/>
+              <Route exact path="/about" component={AboutScreen}/>
               <Route component={BuilderApp}/>
-              <Route component={NotFound}/>
             </Switch>
           </ApolloProvider>
         </BrowserRouter>
