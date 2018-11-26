@@ -125,10 +125,13 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
       </Hidden>
       <NavigationGrid item xs={6} md={8} lg={6} container alignItems='center' justify='flex-end' spacing={16}>
         <Grid item>
-          <FbIconImg
-            src={FbSmallIcon}
-            onClick={handleFacebookClick}
-          />
+          {showCheckout // spacing doesn't work well with the addition of checkout
+            ? null
+            : <FbIconImg
+              src={FbSmallIcon}
+              onClick={handleFacebookClick}
+            />
+          }
         </Grid>
         <Hidden mdDown>
           {showCheckout
