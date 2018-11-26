@@ -34,6 +34,10 @@ const HeadshotImg = styled.img`
   max-width: 260px;
 `;
 
+const CenteredP = styled.p`
+  text-align: center;
+`;
+
 const MemberNameP = styled.p`
   margin-block-end: 0px;
 `;
@@ -170,7 +174,9 @@ const AboutScreen: SFC = () => {
         </p>
         <br/>
         <p>
-          <Header dark>Our Team</Header>
+          <CenteredP>
+            <Header dark>Our Team</Header>
+          </CenteredP>
           <br/><br/><br/>
           <Grid container justify='center' alignItems='center'>
             <HeadshotGridContainer item xs={12} md={6}>
@@ -178,7 +184,8 @@ const AboutScreen: SFC = () => {
               <br/>
               <MemberNameP>
                 <Body dark>
-                <UndecoratedAnchor href='https://www.linkedin.com/in/gintaras-antanavicius-md-52b31743/' target='_blank' rel='nofollow noopener'>
+                <UndecoratedAnchor href='https://www.linkedin.com/in/gintaras-antanavicius-md-52b31743/' target='_blank'
+                                   rel='nofollow noopener'>
                   Dr. Gintas "G" Antanavicius
                 </UndecoratedAnchor>
                 </Body>
@@ -194,7 +201,8 @@ const AboutScreen: SFC = () => {
               <br/>
               <MemberNameP>
                 <Body dark>
-                <UndecoratedAnchor href='https://www.linkedin.com/in/antanavicius/' target='_blank' rel='nofollow noopener'>
+                <UndecoratedAnchor href='https://www.linkedin.com/in/antanavicius/' target='_blank'
+                                   rel='nofollow noopener'>
                   Tadas Antanavicius
                 </UndecoratedAnchor>
                 </Body>
