@@ -24,11 +24,6 @@ export const imagekitURLs = {
 
 export default {
   // No auto-conversion here due to complexity
-  'hero': {
-    'mobile': 'https://ik.imagekit.io/vitaglab/hero-mobile_H1O0qndIm.png',
-    'tablet': 'https://ik.imagekit.io/vitaglab/hero-tablet_BywC9n_I7.png',
-    'desktop': 'https://ik.imagekit.io/vitaglab/hero-desktop_rkiAc3dUX.png',
-  },
   'coloredLogo': {
     'original': imagekitURLs.coloredLogo,
     'mobile': fixedWidthImage(imagekitURLs.coloredLogo, 64),
