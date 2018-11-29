@@ -22,6 +22,7 @@ import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
 import StaticApp from './StaticApp';
 import theme from './style/MuiTheming';
+import withExitIntentModal from './withExitIntentModal';
 
 // Apollo initialization
 const cache = new InMemoryCache({
@@ -66,6 +67,7 @@ const client = new ApolloClient({
 
 class App extends Component {
   componentDidMount() {
+    // User ID management for analytics
     let anonymousUserId = getLocalStorage('anonymousUserId');
     if (!anonymousUserId) {
       anonymousUserId = uuid();
@@ -94,4 +96,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withExitIntentModal(App);
