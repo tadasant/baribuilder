@@ -17,7 +17,6 @@ const GutteredGrid = styled(Grid)`
 `;
 
 interface IState {
-  ctaModalActive: boolean;
   maxScrolled: number;
 }
 
@@ -25,7 +24,6 @@ class Landing extends Component<RouteComponentProps, IState> {
   constructor(props: RouteComponentProps) {
     super(props);
     this.state = {
-      ctaModalActive: false,
       maxScrolled: 0,
     };
     this.handleScroll = this.handleScroll.bind(this);

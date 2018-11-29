@@ -20,9 +20,9 @@ import {getLocalStorage, setLocalStorage} from '../lib/localStorage';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
+import withExitIntentModal from './exitintent/withExitIntentModal';
 import StaticApp from './StaticApp';
 import theme from './style/MuiTheming';
-import withExitIntentModal from './withExitIntentModal';
 
 // Apollo initialization
 const cache = new InMemoryCache({
