@@ -29,6 +29,38 @@ const ExitIntentSurvey: SFC<IProps> = props => {
             <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
               Card</b></Body>
           </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
         </Grid>
       </ExitIntentDiv>
       <StickyBottomDiv>

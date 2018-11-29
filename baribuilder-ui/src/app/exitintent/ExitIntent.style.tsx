@@ -26,8 +26,9 @@ export const ExitIntentDiv = styled.div`
 
 export const StickyBottomDiv = styled.div`
   box-shadow: 0px -2px 4px 0px ${Sketch.color.accent.grey};
+  background-color: ${Sketch.color.background.white};
   
   position: sticky;
-  bottom: 0;
-  height: 10vh;
+  top: calc(75vh - 11vh);
+  height: 11vh;
 `;
