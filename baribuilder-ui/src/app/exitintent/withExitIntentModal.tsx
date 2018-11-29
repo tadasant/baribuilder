@@ -20,15 +20,11 @@ const ExitIntentSurvey: SFC<IProps> = props => {
           <CenteredTextGrid item xs={12}>
             <Header dark>Before you leave...</Header>
           </CenteredTextGrid>
-        </Grid>
-        <EmptyRow/>
-        <Grid container>
+          <EmptyRow/>
           <CenteredTextGrid item xs={12}>
             Amazon image
           </CenteredTextGrid>
-        </Grid>
-        <EmptyRow/>
-        <Grid container>
+          <EmptyRow/>
           <CenteredTextGrid item xs={12}>
             <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
               Card</b></Body>
