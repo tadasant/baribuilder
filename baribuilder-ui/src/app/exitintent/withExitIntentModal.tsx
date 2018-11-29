@@ -1,10 +1,12 @@
-import {Modal} from '@material-ui/core';
+import {Grid, Modal} from '@material-ui/core';
 import * as React from 'react';
 import {Component, ComponentType, Fragment, SFC, SyntheticEvent} from 'react';
-import {ExitIntentDiv} from './ExitIntent.style';
+import {CenteredTextGrid, EmptyRow} from '../../components/style/Layout';
+import {Body, Header} from '../../components/style/Typography';
+import {ExitIntentContainerDiv, ExitIntentDiv, StickyBottomDiv} from './ExitIntent.style';
 
 // Number of miliseconds from component mount that the modal should display
-const MS_UNTIL_POPUP = 1000;
+const MS_UNTIL_POPUP = 100;
 
 interface IProps {
   onSuccess: () => void
@@ -12,7 +14,32 @@ interface IProps {
 
 const ExitIntentSurvey: SFC<IProps> = props => {
   return (
-    <ExitIntentDiv />
+    <ExitIntentContainerDiv tabIndex={-1}>
+      <ExitIntentDiv>
+        <Grid container>
+          <CenteredTextGrid item xs={12}>
+            <Header dark>Before you leave...</Header>
+          </CenteredTextGrid>
+        </Grid>
+        <EmptyRow/>
+        <Grid container>
+          <CenteredTextGrid item xs={12}>
+            Amazon image
+          </CenteredTextGrid>
+        </Grid>
+        <EmptyRow/>
+        <Grid container>
+          <CenteredTextGrid item xs={12}>
+            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+              Card</b></Body>
+          </CenteredTextGrid>
+        </Grid>
+      </ExitIntentDiv>
+      <StickyBottomDiv>
+        Dismiss <br/>
+        Open questions in new tab to finish later
+      </StickyBottomDiv>
+    </ExitIntentContainerDiv>
   );
 };
 
@@ -41,12 +68,10 @@ class ExitIntentModalContainer extends Component<{}, IState> {
   }
 
   handleCloseModal(event: SyntheticEvent<{}>) {
-    // if (reason !== 'backdropClick') {
-      this.setState({showModal: false});
-      // TODO set localStorage s.t. last time we unsuccessfully tried was at X time [requires adding a 'don't show again' box]
-      // defaulting to not show again
-      // TODO set localStorage s.t. we won't show again
-    // }
+    this.setState({showModal: false});
+    // TODO set localStorage s.t. last time we unsuccessfully tried was at X time [requires adding a 'don't show again' box]
+    // defaulting to not show again
+    // TODO set localStorage s.t. we won't show again
   }
 
   handleSuccessModal() {
@@ -60,6 +85,7 @@ class ExitIntentModalContainer extends Component<{}, IState> {
         <Modal
           open={this.state.showModal}
           onClose={this.handleCloseModal}
+          disableBackdropClick
         >
           <ExitIntentSurvey onSuccess={this.handleSuccessModal}/>
         </Modal>
