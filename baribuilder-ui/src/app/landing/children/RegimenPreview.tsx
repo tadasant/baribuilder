@@ -1,7 +1,7 @@
 import {Button, Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, FunctionComponent} from 'react';
-import {UndecoratedLink} from '../../../components/style/CustomMaterial';
+import {UndecoratedAnchor} from '../../../components/footer/ContactInformationPanel';
 import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
 import {Body, Header} from '../../../components/style/Typography';
 import {trackButtonClick} from '../../../lib/analytics';
@@ -26,9 +26,9 @@ const RegimenPreview: FunctionComponent<IProps> = props => {
   return (
     <Grid container alignItems='center'>
       <RegimenPreviewHeaderGrid item xs={12}>
-        <UndecoratedLink to={props.pathname}>
+        <UndecoratedAnchor href={`${window.location.origin}${props.pathname}`} target='_blank' rel='noopener'>
           <Header dark onClick={trackButtonClick('View Shared Products (via Header)', props.pathname)}><u>{props.name}</u> Regimen</Header>
-        </UndecoratedLink>
+        </UndecoratedAnchor>
       </RegimenPreviewHeaderGrid>
       <EmptyRow/>
       <CenteredTextGrid item xs={12} lg={4}>
@@ -65,9 +65,10 @@ const RegimenPreview: FunctionComponent<IProps> = props => {
       <Fragment>
         <Grid item xs={4} lg={1}/>
         <Grid item xs={4} lg={2}>
-          <UndecoratedLink to={props.pathname}>
-            <Button variant='contained' fullWidth color='secondary' onClick={trackButtonClick('View Shared Products', props.pathname)}>View Products</Button>
-          </UndecoratedLink>
+          <UndecoratedAnchor href={`${window.location.origin}${props.pathname}`} target='_blank' rel='noopener'>
+            <Button variant='contained' fullWidth color='secondary'
+                    onClick={trackButtonClick('View Shared Products', props.pathname)}>View Products</Button>
+          </UndecoratedAnchor>
         </Grid>
         <Grid item xs={4} lg={1}/>
       </Fragment>

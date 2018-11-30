@@ -368,7 +368,7 @@ const SleeveLanding: FunctionComponent = () => {
           pathname='/share?url-id=cjogczql70m5k0163qt74qrr4&utm_source=curated-regimens&utm_medium=fb&utm_campaign=sleeve'>
           <RegimenFacts
             micronutrients={standardMicronutrients}
-            numProductServings={3}/>
+            numProductServings={4}/>
         </RegimenPreview>
       </SharedItemsContainerGrid>
     </LandingShell>
