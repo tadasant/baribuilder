@@ -4,6 +4,7 @@ import {Fragment, FunctionComponent} from 'react';
 import {UndecoratedLink} from '../../../components/style/CustomMaterial';
 import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
 import {Body, Header} from '../../../components/style/Typography';
+import {trackButtonClick} from '../../../lib/analytics';
 import Sketch from '../../style/SketchVariables';
 import {ColoredSpan} from '../Landing.style';
 import {RegimenPreviewHeaderGrid} from './Guidelines.style';
@@ -26,7 +27,7 @@ const RegimenPreview: FunctionComponent<IProps> = props => {
     <Grid container alignItems='center'>
       <RegimenPreviewHeaderGrid item xs={12}>
         <UndecoratedLink to={props.pathname}>
-          <Header dark><u>{props.name}</u> Regimen</Header>
+          <Header dark onClick={trackButtonClick('View Shared Products (via Header)', props.pathname)}><u>{props.name}</u> Regimen</Header>
         </UndecoratedLink>
       </RegimenPreviewHeaderGrid>
       <EmptyRow/>
@@ -65,7 +66,7 @@ const RegimenPreview: FunctionComponent<IProps> = props => {
         <Grid item xs={4} lg={1}/>
         <Grid item xs={4} lg={2}>
           <UndecoratedLink to={props.pathname}>
-            <Button variant='contained' fullWidth color='secondary'>View Products</Button>
+            <Button variant='contained' fullWidth color='secondary' onClick={trackButtonClick('View Shared Products', props.pathname)}>View Products</Button>
           </UndecoratedLink>
         </Grid>
         <Grid item xs={4} lg={1}/>
