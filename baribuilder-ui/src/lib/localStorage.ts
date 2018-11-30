@@ -2,6 +2,7 @@ const LOCAL_STORAGE_KEY = 'BBVITAG';
 
 interface ILocalStorage {
   anonymousUserId: string
+  disableShowModal: boolean
 }
 
 export const getLocalStorage = (key: keyof ILocalStorage) => {
@@ -9,7 +10,7 @@ export const getLocalStorage = (key: keyof ILocalStorage) => {
   return storedValue === null ? null : JSON.parse(storedValue)[key];
 };
 
-export const setLocalStorage = (key: keyof ILocalStorage, value: string) => {
+export const setLocalStorage = (key: keyof ILocalStorage, value: any) => {
   const currentValue = window.localStorage.getItem(LOCAL_STORAGE_KEY);
   const currentJson: ILocalStorage = currentValue === null ? {} : JSON.parse(currentValue);
   const newJson: ILocalStorage = {
