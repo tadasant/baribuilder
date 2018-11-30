@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Fragment, FunctionComponent} from 'react';
 import {Body, Header} from '../../../components/style/Typography';
 import Guidelines, {IMicronutrient} from '../children/Guidelines';
+import RegimenPreview from '../children/RegimenPreview';
 import {SharedItemsContainerGrid} from '../Landing.style';
 import LandingShell from '../LandingShell';
 
@@ -72,7 +73,7 @@ const BypassLanding: FunctionComponent = () => {
           <br/><br/>
           <Body dark>
           Using the American Society for Metabolic and Bariatric Surgery’s nutritional guidelines (2017), we derived the
-          following image of “desired dosages” (daily).
+          following “desired dosages” (daily).
           </Body>
           <br/><br/>
           <Body dark>
@@ -100,18 +101,32 @@ const BypassLanding: FunctionComponent = () => {
         </Hidden>
       </Fragment>
       <SharedItemsContainerGrid item xs={12} container>
-        <Grid item xs={12}>
-          Cheapest Regimen
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          Summary text
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          Regimen facts
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          View products button
-        </Grid>
+        <RegimenPreview
+          name='Cheapest'
+          numUnits={8}
+          unitsName='tablets'
+          unitsColor='red'
+          numProducts={3}
+          productsColor='red'
+          cost={15}
+          costColor='green'
+          pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          Regimen Facts
+        </RegimenPreview>
+      </SharedItemsContainerGrid>
+      <SharedItemsContainerGrid item xs={12} container>
+        <RegimenPreview
+          name='Cheapest'
+          numUnits={8}
+          unitsName='tablets'
+          unitsColor='red'
+          numProducts={3}
+          productsColor='red'
+          cost={15}
+          costColor='green'
+          pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          Regimen Facts
+        </RegimenPreview>
       </SharedItemsContainerGrid>
     </LandingShell>
   );
