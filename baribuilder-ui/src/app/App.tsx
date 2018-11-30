@@ -21,6 +21,8 @@ import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
 import withExitIntentModal from './exitintent/withExitIntentModal';
+import BypassLanding from './landing/templates/BypassLanding';
+import SleeveLanding from './landing/templates/SleeveLanding';
 import StaticApp from './StaticApp';
 import theme from './style/MuiTheming';
 
@@ -87,6 +89,8 @@ class App extends Component {
               <Route exact path="/" component={StaticApp}/>
               <Route exact path="/terms-and-conditions" component={TermsAndConditions}/>
               <Route exact path="/about" component={AboutScreen}/>
+              <Route exact path="/sleeve" component={SleeveLanding}/>
+              <Route exact path="/bypass" component={BypassLanding}/>
               <Route component={BuilderApp}/>
             </Switch>
           </ApolloProvider>
