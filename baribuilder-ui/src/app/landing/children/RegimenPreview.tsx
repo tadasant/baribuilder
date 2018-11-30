@@ -1,4 +1,4 @@
-import {Button, Grid} from '@material-ui/core';
+import {Button, Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, FunctionComponent} from 'react';
 import {UndecoratedLink} from '../../../components/style/CustomMaterial';
@@ -6,6 +6,7 @@ import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
 import {Body, Header} from '../../../components/style/Typography';
 import Sketch from '../../style/SketchVariables';
 import {ColoredSpan} from '../Landing.style';
+import {RegimenPreviewHeaderGrid} from './Guidelines.style';
 
 // props.children should be the regimen facts sheet
 interface IProps {
@@ -22,10 +23,10 @@ interface IProps {
 
 const RegimenPreview: FunctionComponent<IProps> = props => {
   return (
-    <Grid container>
-      <Grid item xs={12}>
+    <Grid container alignItems='center'>
+      <RegimenPreviewHeaderGrid item xs={12}>
         <Header dark><u>{props.name}</u> Regimen</Header>
-      </Grid>
+      </RegimenPreviewHeaderGrid>
       <EmptyRow/>
       <CenteredTextGrid item xs={12} lg={4}>
         <Body dark>
@@ -49,9 +50,15 @@ const RegimenPreview: FunctionComponent<IProps> = props => {
         &nbsp;per month
         </Body>
       </CenteredTextGrid>
+      <Hidden lgUp>
+        <EmptyRow/>
+      </Hidden>
       <Grid item xs={12} lg={4}>
         {props.children}
       </Grid>
+      <Hidden lgUp>
+        <EmptyRow/>
+      </Hidden>
       <Fragment>
         <Grid item xs={4} lg={1}/>
         <Grid item xs={4} lg={2}>

@@ -7,13 +7,17 @@ export const GuidelinesContainerDiv = styled.div`
 `;
 
 export const GuidelinesHeaderGrid = styled(Grid)`
-  border-bottom: 18px solid ${Sketch.color.accent.black};
-  margin: 0 8px 0 8px;
+  && {
+    border-bottom: 18px solid ${Sketch.color.accent.black};
+    margin: 0 8px 0 8px;
+  }
 `;
 
 export const TitlesHeaderGrid = styled(Grid)`
-  border-bottom: 2px solid ${Sketch.color.accent.black};
-  margin: 0 8px 8px 8px;
+  && {
+    border-bottom: 2px solid ${Sketch.color.accent.black};
+    margin: 0 8px 8px 8px;
+  }
 `;
 
 export const SecondTitleGrid = styled(Grid)`
@@ -27,4 +31,8 @@ export const MicronutrientNameGrid = styled(Grid)`
 export const MicronutrientValueGrid = styled(Grid)`
   text-align: right;
   padding: 0 8px 0 8px;
+`;
+
+export const RegimenPreviewHeaderGrid = styled(Grid)`
+  text-align: center;
 `;

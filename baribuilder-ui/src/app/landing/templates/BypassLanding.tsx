@@ -2,13 +2,94 @@ import {Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, FunctionComponent} from 'react';
 import {Body, Header} from '../../../components/style/Typography';
-import Guidelines, {IMicronutrient} from '../children/Guidelines';
+import Sketch from '../../style/SketchVariables';
+import Guidelines, {IGuidelinesMicronutrient} from '../children/Guidelines';
+import RegimenFacts, {IRegimenFactsMicronutrient} from '../children/RegimenFacts';
 import RegimenPreview from '../children/RegimenPreview';
 import {SharedItemsContainerGrid} from '../Landing.style';
 import LandingShell from '../LandingShell';
 
+const cheapestMicronutrients: IRegimenFactsMicronutrient[] = [
+  {
+    name: 'Vitamin A',
+    value: '14,000',
+    goal: '10,000',
+    color: Sketch.color.secondary.blue,
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin D3',
+    value: '4,000',
+    goal: '3,000',
+    color: Sketch.color.secondary.blue,
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin E',
+    value: '120',
+    goal: '22',
+    color: Sketch.color.secondary.blue,
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin K1',
+    value: '100',
+    goal: '120',
+    units: 'mcg'
+  },
+  {
+    name: 'Thiamine',
+    value: '21',
+    goal: '100',
+    units: 'mg'
+  },
+  {
+    name: 'Folic Acid',
+    value: '2,400',
+    goal: '1,000',
+    color: Sketch.color.secondary.blue,
+    units: 'mcg'
+  },
+  {
+    name: 'Vitamin B12',
+    value: '1,024',
+    goal: '500',
+    color: Sketch.color.secondary.blue,
+    units: 'mcg'
+  },
+  {
+    name: 'Calcium',
+    value: '1,400',
+    goal: '1,500',
+    units: 'mg'
+  },
+  {
+    name: 'Iron',
+    value: '72',
+    goal: '60',
+    color: Sketch.color.secondary.blue,
+    units: 'mg'
+  },
+  {
+    name: 'Zinc',
+    value: '59',
+    goal: '22',
+    color: Sketch.color.secondary.blue,
+    units: 'mg'
+  },
+  {
+    name: 'Copper',
+    value: '3',
+    goal: '2',
+    color: Sketch.color.secondary.blue,
+    units: 'mg'
+  },
+];
+// const minimizingPillMicronutrients: IRegimenFactsMicronutrient[] = [];
+// const standardMicronutrients: IRegimenFactsMicronutrient[] = [];
+
 const BypassLanding: FunctionComponent = () => {
-  const micronutrients: IMicronutrient[] = [
+  const micronutrients: IGuidelinesMicronutrient[] = [
     {
       name: 'Vitamin A',
       units: 'IU',
@@ -111,7 +192,9 @@ const BypassLanding: FunctionComponent = () => {
           cost={15}
           costColor='green'
           pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
-          Regimen Facts
+          <RegimenFacts
+            micronutrients={cheapestMicronutrients}
+            numProductServings={6}/>
         </RegimenPreview>
       </SharedItemsContainerGrid>
       <SharedItemsContainerGrid item xs={12} container>
@@ -125,7 +208,9 @@ const BypassLanding: FunctionComponent = () => {
           cost={15}
           costColor='green'
           pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
-          Regimen Facts
+          <RegimenFacts
+            micronutrients={cheapestMicronutrients}
+            numProductServings={6}/>
         </RegimenPreview>
       </SharedItemsContainerGrid>
     </LandingShell>

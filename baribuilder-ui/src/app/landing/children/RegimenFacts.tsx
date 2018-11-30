@@ -3,6 +3,8 @@ import * as React from 'react';
 import {FunctionComponent} from 'react';
 import {EmptyRow} from '../../../components/style/Layout';
 import {Body, BoldBody, Header2} from '../../../components/style/Typography';
+import Sketch from '../../style/SketchVariables';
+import {ColoredSpan} from '../Landing.style';
 import {
   GuidelinesContainerDiv,
   GuidelinesHeaderGrid,
@@ -12,30 +14,35 @@ import {
   TitlesHeaderGrid
 } from './Guidelines.style';
 
-export interface IGuidelinesMicronutrient {
+export interface IRegimenFactsMicronutrient {
   name: string
   // value is an approximate or an array of 2 representing a range
-  value: string | string[]
+  value: string
+  goal: string
+  color?: string
   units: string
 }
 
 interface IProps {
-  micronutrients: IGuidelinesMicronutrient[];
+  numProductServings: number
+  micronutrients: IRegimenFactsMicronutrient[];
 }
 
-const Guidelines: FunctionComponent<IProps> = props => {
+const RegimenFacts: FunctionComponent<IProps> = props => {
   return (
     <GuidelinesContainerDiv>
       <Grid container>
         <GuidelinesHeaderGrid item xs={12}>
-          <Header2 dark>Guidelines</Header2>
+          <Header2 dark>Regimen Facts</Header2>
+          <br/>
+          <Body dark># of product servings {props.numProductServings}</Body>
         </GuidelinesHeaderGrid>
         <TitlesHeaderGrid item xs={12} container>
           <Grid item xs={6}>
-            <Body dark>Ingredient</Body>
+            <Body dark>Amount per day</Body>
           </Grid>
           <SecondTitleGrid item xs={6}>
-            <Body dark>Goal Dosage</Body>
+            <Body dark>of goal</Body>
           </SecondTitleGrid>
           <Grid item xs={2}/>
         </TitlesHeaderGrid>
@@ -46,7 +53,7 @@ const Guidelines: FunctionComponent<IProps> = props => {
                 <BoldBody dark>{micro.name}</BoldBody>
               </MicronutrientNameGrid>
               <MicronutrientValueGrid item xs={7}>
-                <Body dark>{Array.isArray(micro.value) ? `${micro.value[0]} - ${micro.value[1]} ${micro.units}` : `~${micro.value} ${micro.units}`}</Body>
+                <Body dark><b><ColoredSpan color={micro.color || Sketch.color.accent.black}>{micro.value} of {micro.goal}</ColoredSpan></b> {micro.units}</Body>
               </MicronutrientValueGrid>
             </Grid>
           ))
@@ -57,4 +64,4 @@ const Guidelines: FunctionComponent<IProps> = props => {
   );
 };
 
-export default Guidelines;
+export default RegimenFacts;
