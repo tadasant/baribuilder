@@ -1,9 +1,10 @@
-import {Grid, Modal} from '@material-ui/core';
+import {Button, Grid, Modal} from '@material-ui/core';
 import * as React from 'react';
 import {Component, ComponentType, Fragment, SFC, SyntheticEvent} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../../components/style/Layout';
-import {Body, Header} from '../../components/style/Typography';
-import {ExitIntentContainerDiv, ExitIntentDiv, StickyBottomDiv} from './ExitIntent.style';
+import {Body, Header, Subcaption} from '../../components/style/Typography';
+import {ExitIntentContainerDiv, ExitIntentDiv, StickyBottomDiv, VPaddedGrid} from './ExitIntent.style';
+import SurveyTypeForm from './SurveyTypeform';
 
 // Number of miliseconds from component mount that the modal should display
 const MS_UNTIL_POPUP = 100;
@@ -29,43 +30,26 @@ const ExitIntentSurvey: SFC<IProps> = props => {
             <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
               Card</b></Body>
           </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
-          <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
-              Card</b></Body>
-          </CenteredTextGrid>
+          <Grid item xs={12}>
+            <SurveyTypeForm/>
+          </Grid>
         </Grid>
       </ExitIntentDiv>
       <StickyBottomDiv>
-        Dismiss <br/>
-        Open questions in new tab to finish later
+        <VPaddedGrid container>
+          <Grid item xs={3}/>
+          <CenteredTextGrid item xs={6}>
+            <Button variant='contained' fullWidth>Open in tab & dismiss popup</Button>
+          </CenteredTextGrid>
+          <Grid item xs={3}/>
+        </VPaddedGrid>
+        <Grid container>
+          <Grid item xs={3}/>
+          <CenteredTextGrid item xs={6}>
+            <Subcaption dark><u>Dismiss popup</u></Subcaption>
+          </CenteredTextGrid>
+          <Grid item xs={3}/>
+        </Grid>
       </StickyBottomDiv>
     </ExitIntentContainerDiv>
   );
