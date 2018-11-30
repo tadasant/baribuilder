@@ -293,7 +293,7 @@ const BypassLanding: FunctionComponent = () => {
     <LandingShell>
       <Fragment>
         <Grid item xs={12} lg={6}>
-          <Header dark>Gastric Bypass Guidelines</Header>
+          <Header dark>Gastric Bypass (RNY) Guidelines</Header>
           <br/><br/>
           <Body dark>
           Using the American Society for Metabolic and Bariatric Surgery’s nutritional guidelines (2017), we derived the
