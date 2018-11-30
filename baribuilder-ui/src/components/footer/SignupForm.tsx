@@ -52,7 +52,7 @@ class SignupForm extends Component {
       <Fragment>
         <CenteredTextGrid item xs={12}>
           <Body>
-          Subscribe to BariBuilder product announcements & updates
+          Subscribe to BariBuilder app announcements & updates
           </Body>
         </CenteredTextGrid>
         <EmptyRow/>
