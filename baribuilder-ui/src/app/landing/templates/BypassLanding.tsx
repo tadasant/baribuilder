@@ -1,14 +1,73 @@
-import {Grid} from '@material-ui/core';
+import {Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, FunctionComponent} from 'react';
 import {Body, Header} from '../../../components/style/Typography';
+import Guidelines, {IMicronutrient} from '../children/Guidelines';
+import {SharedItemsContainerGrid} from '../Landing.style';
 import LandingShell from '../LandingShell';
 
 const BypassLanding: FunctionComponent = () => {
+  const micronutrients: IMicronutrient[] = [
+    {
+      name: 'Vitamin A',
+      units: 'IU',
+      value: ['5,000', '10,000']
+    },
+    {
+      name: 'Vitamin D3',
+      units: 'IU',
+      value: '3,000'
+    },
+    {
+      name: 'Vitamin E',
+      units: 'IU',
+      value: '22'
+    },
+    {
+      name: 'Thiamine',
+      units: 'mg',
+      value: ['12', '100']
+    },
+    {
+      name: 'Folic Acid',
+      units: 'mg',
+      value: ['400', '1,000']
+    },
+    {
+      name: 'Vitamin B12',
+      units: 'mcg',
+      value: ['350', '500']
+    },
+    {
+      name: 'Calcium',
+      units: 'mg',
+      value: ['1,200', '1,500']
+    },
+    {
+      name: 'Vitamin K1',
+      units: 'mcg',
+      value: ['90', '120']
+    },
+    {
+      name: 'Iron',
+      units: 'mg',
+      value: ['45', '60']
+    },
+    {
+      name: 'Zinc',
+      units: 'mg',
+      value: ['8', '22']
+    },
+    {
+      name: 'Copper',
+      units: 'mg',
+      value: ['1', '2']
+    },
+  ];
   return (
     <LandingShell>
       <Fragment>
-        <Grid item xs={12} lg={8}>
+        <Grid item xs={12} lg={6}>
           <Header dark>Gastric Bypass Guidelines</Header>
           <br/><br/>
           <Body dark>
@@ -27,12 +86,20 @@ const BypassLanding: FunctionComponent = () => {
           </Body>
           <br/><br/>
         </Grid>
-        <Grid item xs={12} lg={4}>
-          Guidelines Img
+        <Hidden mdDown>
+          <Grid item lg={2}/>
+        </Hidden>
+        <Hidden lgUp smDown>
+          <Grid item md={2}/>
+        </Hidden>
+        <Grid item xs={12} md={8} lg={4}>
+          <Guidelines micronutrients={micronutrients}/>
         </Grid>
+        <Hidden lgUp smDown>
+          <Grid item md={2}/>
+        </Hidden>
       </Fragment>
-      <hr/>
-      <Fragment>
+      <SharedItemsContainerGrid item xs={12} container>
         <Grid item xs={12}>
           Cheapest Regimen
         </Grid>
@@ -45,7 +112,7 @@ const BypassLanding: FunctionComponent = () => {
         <Grid item xs={12} lg={4}>
           View products button
         </Grid>
-      </Fragment>
+      </SharedItemsContainerGrid>
     </LandingShell>
   );
 };
