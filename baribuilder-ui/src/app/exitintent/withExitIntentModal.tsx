@@ -1,9 +1,10 @@
 import {Button, Grid, Modal} from '@material-ui/core';
 import * as React from 'react';
 import {Component, ComponentType, Fragment, SFC, SyntheticEvent} from 'react';
+import AmazonImage from '../../assets/amazon-gift-card.svg';
 import {CenteredTextGrid, EmptyRow} from '../../components/style/Layout';
 import {Body, Header, Subcaption} from '../../components/style/Typography';
-import {ExitIntentContainerDiv, ExitIntentDiv, StickyBottomDiv, VPaddedGrid} from './ExitIntent.style';
+import {ExitIntentContainerDiv, ExitIntentDiv, GiftCardImg, StickyBottomDiv, VPaddedGrid} from './ExitIntent.style';
 import SurveyTypeForm from './SurveyTypeform';
 
 // Number of miliseconds from component mount that the modal should display
@@ -23,11 +24,11 @@ const ExitIntentSurvey: SFC<IProps> = props => {
           </CenteredTextGrid>
           <EmptyRow/>
           <CenteredTextGrid item xs={12}>
-            Amazon image
+            <GiftCardImg src={AmazonImage} alt='Amazon Gift Card'/>
           </CenteredTextGrid>
           <EmptyRow/>
           <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out this quick 2 question survey to enter our drawing for a <b>$20 Amazon Gift
+            <Body dark>Fill out the 10-second survey below to enter our drawing for a <b>$20 Amazon Gift
               Card</b></Body>
           </CenteredTextGrid>
           <Grid item xs={12}>

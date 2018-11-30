@@ -22,26 +22,37 @@ export const ExitIntentContainerDiv = styled.div`
 `;
 
 export const ExitIntentDiv = styled.div`
-  height: 49vh;
+  margin-bottom: 20vh;
+  
+  @media (min-height: 500px) {
+    margin-bottom: 84px;
+  }
+  
+  ${media.tablet`
+    margin-bottom: 84px;
+  `}
 `;
 
 export const StickyBottomDiv = styled.div`
   box-shadow: 0px -2px 4px 0px ${Sketch.color.accent.grey};
   background-color: ${Sketch.color.background.white};
   z-index: 5;
+  overflow-x: hidden;
   
-  position: sticky;
-  top: calc(75vh - 20vh);
+  position: fixed;
+  top: calc(75vh + 7.5vh - 20vh);
   height: 20vh;
+  width: 75vw;
   
   @media (min-height: 500px) {
-    top: calc(75vh - 84px);
+    top: calc(75vh + 7.5vh - 84px);
     height: 84px;
   }
   
   ${media.tablet`
-    top: calc(75vh - 84px);
+    top: calc(75vh + 7.5vh - 84px);
     height: 84px;
+    width: 50vw;
   `}
 `;
 
@@ -50,5 +61,13 @@ export const VPaddedGrid = styled(Grid)`
   
   ${media.tablet`
     padding-top: 16px;
+  `}
+`;
+
+export const GiftCardImg = styled.img`
+  width: 90%;
+  
+  ${media.tablet`
+    width: 75%;
   `}
 `;
