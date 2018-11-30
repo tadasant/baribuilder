@@ -39,7 +39,7 @@ const ExitIntentSurvey: FunctionComponent<IProps> = props => {
           </CenteredTextGrid>
           <EmptyRow/>
           <CenteredTextGrid item xs={12}>
-            <Body dark>Fill out the 10-second survey below to enter our drawing for a <b>$20 Amazon Gift
+            <Body dark>Fill out the 10-second survey below to enter our drawing for a <b>$50 Amazon Gift
               Card</b></Body>
           </CenteredTextGrid>
           <Grid item xs={12}>
