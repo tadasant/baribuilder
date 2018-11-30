@@ -25,7 +25,9 @@ const RegimenPreview: FunctionComponent<IProps> = props => {
   return (
     <Grid container alignItems='center'>
       <RegimenPreviewHeaderGrid item xs={12}>
-        <Header dark><u>{props.name}</u> Regimen</Header>
+        <UndecoratedLink to={props.pathname}>
+          <Header dark><u>{props.name}</u> Regimen</Header>
+        </UndecoratedLink>
       </RegimenPreviewHeaderGrid>
       <EmptyRow/>
       <CenteredTextGrid item xs={12} lg={4}>
@@ -42,7 +44,7 @@ const RegimenPreview: FunctionComponent<IProps> = props => {
         </ColoredSpan>
         &nbsp;products
         </Body>
-        <br />
+        <br/>
         <Body dark>
         <ColoredSpan color={props.costColor || Sketch.color.accent.black}>
           <b>${props.cost}</b>

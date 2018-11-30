@@ -85,8 +85,151 @@ const cheapestMicronutrients: IRegimenFactsMicronutrient[] = [
     units: 'mg'
   },
 ];
-// const minimizingPillMicronutrients: IRegimenFactsMicronutrient[] = [];
-// const standardMicronutrients: IRegimenFactsMicronutrient[] = [];
+const minimizingPillMicronutrients: IRegimenFactsMicronutrient[] = [
+  {
+    name: 'Vitamin A',
+    value: '10,000',
+    goal: '10,000',
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin D3',
+    value: '3,999',
+    goal: '3,000',
+    color: Sketch.color.secondary.blue,
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin E',
+    value: '60',
+    goal: '22',
+    color: Sketch.color.secondary.blue,
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin K1',
+    value: '120',
+    goal: '120',
+    units: 'mcg'
+  },
+  {
+    name: 'Thiamine',
+    value: '20',
+    goal: '100',
+    units: 'mg'
+  },
+  {
+    name: 'Folic Acid',
+    value: '800',
+    goal: '1,000',
+    units: 'mcg'
+  },
+  {
+    name: 'Vitamin B12',
+    value: '1,000',
+    goal: '500',
+    color: Sketch.color.secondary.blue,
+    units: 'mcg'
+  },
+  {
+    name: 'Calcium',
+    value: '1,500',
+    goal: '1,500',
+    units: 'mg'
+  },
+  {
+    name: 'Iron',
+    value: '45',
+    goal: '60',
+    units: 'mg'
+  },
+  {
+    name: 'Zinc',
+    value: '15',
+    goal: '22',
+    units: 'mg'
+  },
+  {
+    name: 'Copper',
+    value: '2',
+    goal: '2',
+    units: 'mg'
+  },
+];
+const standardMicronutrients: IRegimenFactsMicronutrient[] = [
+  {
+    name: 'Vitamin A',
+    value: '10,000',
+    goal: '10,000',
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin D3',
+    value: '4,000',
+    goal: '3,000',
+    color: Sketch.color.secondary.blue,
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin E',
+    value: '150',
+    goal: '22',
+    color: Sketch.color.secondary.blue,
+    units: 'IU'
+  },
+  {
+    name: 'Vitamin K1',
+    value: '300',
+    goal: '120',
+    units: 'mcg'
+  },
+  {
+    name: 'Thiamine',
+    value: '12.5',
+    goal: '100',
+    units: 'mg'
+  },
+  {
+    name: 'Folic Acid',
+    value: '800',
+    goal: '1,000',
+    color: Sketch.color.secondary.blue,
+    units: 'mcg'
+  },
+  {
+    name: 'Vitamin B12',
+    value: '1,000',
+    goal: '500',
+    color: Sketch.color.secondary.blue,
+    units: 'mcg'
+  },
+  {
+    name: 'Calcium',
+    value: '1,440',
+    goal: '1,500',
+    units: 'mg'
+  },
+  {
+    name: 'Iron',
+    value: '45',
+    goal: '60',
+    units: 'mg'
+  },
+  {
+    name: 'Zinc',
+    value: '26',
+    goal: '22',
+    color: Sketch.color.secondary.blue,
+    units: 'mg'
+  },
+  {
+    name: 'Copper',
+    value: '3',
+    goal: '2',
+    color: Sketch.color.secondary.blue,
+    units: 'mg'
+  },
+];
 
 const BypassLanding: FunctionComponent = () => {
   const micronutrients: IGuidelinesMicronutrient[] = [
@@ -199,18 +342,30 @@ const BypassLanding: FunctionComponent = () => {
       </SharedItemsContainerGrid>
       <SharedItemsContainerGrid item xs={12} container>
         <RegimenPreview
-          name='Cheapest'
-          numUnits={8}
-          unitsName='tablets'
-          unitsColor='red'
-          numProducts={3}
-          productsColor='red'
-          cost={15}
-          costColor='green'
-          pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          name='Pill Minimizing'
+          numUnits={4}
+          unitsName='pills'
+          unitsColor='green'
+          numProducts={2}
+          cost={39}
+          pathname='/share?url-id=cjohakjh30jrk0139be8m4818&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
           <RegimenFacts
-            micronutrients={cheapestMicronutrients}
-            numProductServings={6}/>
+            micronutrients={minimizingPillMicronutrients}
+            numProductServings={4}/>
+        </RegimenPreview>
+      </SharedItemsContainerGrid>
+      <SharedItemsContainerGrid item xs={12} container>
+        <RegimenPreview
+          name='Standard (Bariatric Advantage)'
+          numUnits={6}
+          unitsName='pills'
+          numProducts={2}
+          cost={59}
+          costColor='red'
+          pathname='/share?url-id=cjohfm8xa06wh01705q8e48e7&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          <RegimenFacts
+            micronutrients={standardMicronutrients}
+            numProductServings={3}/>
         </RegimenPreview>
       </SharedItemsContainerGrid>
     </LandingShell>
