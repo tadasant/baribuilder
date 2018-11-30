@@ -2,6 +2,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {compose, lifecycle} from "recompose";
 import styled from 'styled-components';
+import {TYPEFORM_URL} from './withExitIntentModal';
 
 const initiateTypeform = () => {
   let js;
@@ -25,7 +26,7 @@ const initiateTypeform = () => {
 const SurveyTypeForm: SFC = () => (
   <StyledDiv
     className='typeform-widget'
-    data-url='https://vitagllc.typeform.com/to/JeKegc'
+    data-url={TYPEFORM_URL}
     data-transparency="50"
     data-hide-headers={true}
     data-hide-footer={true}

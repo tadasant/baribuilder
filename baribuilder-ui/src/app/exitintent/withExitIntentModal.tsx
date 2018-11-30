@@ -1,20 +1,30 @@
 import {Button, Grid, Modal} from '@material-ui/core';
 import * as React from 'react';
-import {Component, ComponentType, Fragment, SFC, SyntheticEvent} from 'react';
+import {Component, ComponentType, Fragment, FunctionComponent} from 'react';
 import AmazonImage from '../../assets/amazon-gift-card.svg';
+import {UndecoratedAnchor} from '../../components/footer/ContactInformationPanel';
 import {CenteredTextGrid, EmptyRow} from '../../components/style/Layout';
-import {Body, Header, Subcaption} from '../../components/style/Typography';
-import {ExitIntentContainerDiv, ExitIntentDiv, GiftCardImg, StickyBottomDiv, VPaddedGrid} from './ExitIntent.style';
+import {Body, Header} from '../../components/style/Typography';
+import {
+  DismissSubcaption,
+  ExitIntentContainerDiv,
+  ExitIntentDiv,
+  GiftCardImg,
+  StickyBottomDiv,
+  VPaddedGrid
+} from './ExitIntent.style';
 import SurveyTypeForm from './SurveyTypeform';
 
 // Number of miliseconds from component mount that the modal should display
 const MS_UNTIL_POPUP = 100;
+export const TYPEFORM_URL = 'https://vitagllc.typeform.com/to/JeKegc';
 
 interface IProps {
-  onSuccess: () => void
+  onSuccess: () => void;
+  onDismiss: () => void;
 }
 
-const ExitIntentSurvey: SFC<IProps> = props => {
+const ExitIntentSurvey: FunctionComponent<IProps> = props => {
   return (
     <ExitIntentContainerDiv tabIndex={-1}>
       <ExitIntentDiv>
@@ -40,14 +50,16 @@ const ExitIntentSurvey: SFC<IProps> = props => {
         <VPaddedGrid container>
           <Grid item xs={3}/>
           <CenteredTextGrid item xs={6}>
-            <Button variant='contained' fullWidth>Open in tab & dismiss popup</Button>
+            <UndecoratedAnchor href={TYPEFORM_URL} rel='noopener nofollow' target='_blank'>
+              <Button variant='contained' fullWidth onClick={props.onSuccess}>Open in tab & dismiss popup</Button>
+            </UndecoratedAnchor>
           </CenteredTextGrid>
           <Grid item xs={3}/>
         </VPaddedGrid>
         <Grid container>
           <Grid item xs={3}/>
           <CenteredTextGrid item xs={6}>
-            <Subcaption dark><u>Dismiss popup</u></Subcaption>
+            <DismissSubcaption dark onClick={props.onDismiss}>Dismiss popup</DismissSubcaption>
           </CenteredTextGrid>
           <Grid item xs={3}/>
         </Grid>
@@ -80,7 +92,7 @@ class ExitIntentModalContainer extends Component<{}, IState> {
     this.setState({showModal: true});
   }
 
-  handleCloseModal(event: SyntheticEvent<{}>) {
+  handleCloseModal() {
     this.setState({showModal: false});
     // TODO set localStorage s.t. last time we unsuccessfully tried was at X time [requires adding a 'don't show again' box]
     // defaulting to not show again
@@ -100,7 +112,7 @@ class ExitIntentModalContainer extends Component<{}, IState> {
           onClose={this.handleCloseModal}
           disableBackdropClick
         >
-          <ExitIntentSurvey onSuccess={this.handleSuccessModal}/>
+          <ExitIntentSurvey onDismiss={this.handleCloseModal} onSuccess={this.handleSuccessModal}/>
         </Modal>
       </Fragment>
     );

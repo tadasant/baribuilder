@@ -1,6 +1,7 @@
 import {Grid} from '@material-ui/core';
 import styled from 'styled-components';
 import {media} from '../../components/style/Core';
+import {Subcaption} from '../../components/style/Typography';
 import Sketch from '../style/SketchVariables';
 
 export const ExitIntentContainerDiv = styled.div`
@@ -70,4 +71,9 @@ export const GiftCardImg = styled.img`
   ${media.tablet`
     width: 75%;
   `}
+`;
+
+export const DismissSubcaption = styled(Subcaption)`
+  text-decoration: underline;
+  cursor: pointer;
 `;
