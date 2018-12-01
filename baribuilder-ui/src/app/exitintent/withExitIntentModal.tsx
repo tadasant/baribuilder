@@ -101,6 +101,7 @@ class ExitIntentModalContainer extends Component<{}, IState> {
 
   tryDisplayingModal() {
     if (!getLocalStorage('disableShowModal')) {
+      trackPopupAction('show');
       this.setState({showModal: true});
     }
   }
