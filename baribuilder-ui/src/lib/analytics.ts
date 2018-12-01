@@ -53,6 +53,13 @@ export const trackDemoVideoPlayer = (percent: number) => {
   })
 };
 
+export const trackPopupAction = (action: string) => {
+  analytics.track('Popup', {
+    ...defaultFields,
+    action,
+  })
+};
+
 // Initialized in index.html's <head>
 declare global {
   interface Window {
