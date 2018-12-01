@@ -2,7 +2,6 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {compose, lifecycle} from "recompose";
 import styled from 'styled-components';
-import {trackPopupAction} from '../../lib/analytics';
 import {TYPEFORM_URL} from './withExitIntentModal';
 
 const initiateTypeform = () => {
@@ -26,7 +25,6 @@ const initiateTypeform = () => {
 
 const SurveyTypeForm: SFC = () => (
   <StyledDiv
-    onClick={() => trackPopupAction('Clicked Within Typeform')}
     className='typeform-widget'
     data-url={TYPEFORM_URL}
     data-transparency="50"
