@@ -100,7 +100,7 @@ class ExitIntentModalContainer extends Component<{}, IState> {
   }
 
   tryDisplayingModal() {
-    if (!getLocalStorage('disableShowModal')) {
+    if (!getLocalStorage('dontShowModalAgain')) {
       trackPopupAction('show');
       this.setState({showModal: true});
     }
@@ -111,12 +111,12 @@ class ExitIntentModalContainer extends Component<{}, IState> {
     // TODO set localStorage s.t. last time we unsuccessfully tried was at X time [requires adding a 'don't show again' box]
     // Also consider adding "minimize"
     // defaulting to not show again
-    setLocalStorage('disableShowModal', true);
+    setLocalStorage('dontShowModalAgain', true);
   }
 
   handleSuccessModal() {
     this.setState({showModal: false});
-    setLocalStorage('disableShowModal', true);
+    setLocalStorage('dontShowModalAgain', true);
   }
 
   render() {

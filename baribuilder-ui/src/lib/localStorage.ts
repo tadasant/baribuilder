@@ -2,7 +2,7 @@ const LOCAL_STORAGE_KEY = 'BBVITAG';
 
 interface ILocalStorage {
   anonymousUserId: string
-  disableShowModal: boolean
+  dontShowModalAgain: boolean
 }
 
 export const getLocalStorage = (key: keyof ILocalStorage) => {
