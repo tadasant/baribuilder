@@ -82,8 +82,8 @@ class App extends Component<RouteComponentProps> {
     // Only bother w/ exit intent on FB arrivers management
     const queryString = window.location.search;
     const parsedQuery = qs.parse(queryString.slice(1));
-    if (parsedQuery.utm_medium !== 'ads' || parsedQuery.utm_source !== 'facebook') {
-      setLocalStorage('dontShowModalAgain', true);
+    if (parsedQuery.utm_medium === 'ads' && parsedQuery.utm_source === 'facebook') {
+      setLocalStorage('enableShowModal', true);
     }
   }
 
