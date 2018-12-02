@@ -2,7 +2,7 @@ import * as React from 'react';
 import {SFC} from 'react';
 import {compose, lifecycle} from "recompose";
 import styled from 'styled-components';
-import {TYPEFORM_URL} from './withDelayedPopupModal';
+import {TYPEFORM_URL} from '../withDelayedPopupModal';
 
 const initiateTypeform = () => {
   let js;

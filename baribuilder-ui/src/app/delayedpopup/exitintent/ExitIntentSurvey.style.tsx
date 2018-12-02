@@ -1,8 +1,8 @@
 import {Grid} from '@material-ui/core';
 import styled from 'styled-components';
-import {media} from '../../components/style/Core';
-import {Subcaption} from '../../components/style/Typography';
-import Sketch from '../style/SketchVariables';
+import {media} from '../../../components/style/Core';
+import {Subcaption} from '../../../components/style/Typography';
+import Sketch from '../../style/SketchVariables';
 
 export const DelayedPopupContainerDiv = styled.div`
   position: absolute;

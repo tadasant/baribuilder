@@ -1,21 +1,21 @@
 import {Button, Grid} from '@material-ui/core';
 import * as React from 'react';
 import {FunctionComponent} from 'react';
-import AmazonImage from '../../assets/amazon-gift-card.svg';
-import {UndecoratedAnchor} from '../../components/footer/ContactInformationPanel';
-import {CenteredTextGrid, EmptyRow} from '../../components/style/Layout';
-import {Body, Header} from '../../components/style/Typography';
-import {trackPopupAction} from '../../lib/analytics';
+import AmazonImage from '../../../assets/amazon-gift-card.svg';
+import {UndecoratedAnchor} from '../../../components/footer/ContactInformationPanel';
+import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
+import {Body, Header} from '../../../components/style/Typography';
+import {trackPopupAction} from '../../../lib/analytics';
+import {TYPEFORM_URL} from '../withDelayedPopupModal';
 import {
-  DismissSubcaption,
   DelayedPopupContainerDiv,
   DelayedPopupDiv,
+  DismissSubcaption,
   GiftCardImg,
   StickyBottomDiv,
   VPaddedGrid
-} from './DelayedPopup';
+} from './ExitIntentSurvey.style';
 import SurveyTypeForm from './SurveyTypeform';
-import {TYPEFORM_URL} from './withDelayedPopupModal';
 
 interface IProps {
   onSuccess: () => void;
