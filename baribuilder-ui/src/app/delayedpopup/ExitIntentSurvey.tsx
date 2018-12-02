@@ -13,9 +13,9 @@ import {
   GiftCardImg,
   StickyBottomDiv,
   VPaddedGrid
-} from './ExitIntent.style';
+} from './DelayedPopup';
 import SurveyTypeForm from './SurveyTypeform';
-import {TYPEFORM_URL} from './withExitIntentModal';
+import {TYPEFORM_URL} from './withDelayedPopupModal';
 
 interface IProps {
   onSuccess: () => void;

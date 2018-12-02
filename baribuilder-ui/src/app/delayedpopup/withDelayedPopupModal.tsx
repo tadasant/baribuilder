@@ -12,7 +12,7 @@ interface IState {
   showModal: boolean;
 }
 
-class ExitIntentModalContainer extends Component<{}, IState> {
+class DelayedPopupModalContainer extends Component<{}, IState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -63,13 +63,13 @@ class ExitIntentModalContainer extends Component<{}, IState> {
   }
 }
 
-const withExitIntentModal = (WrappedComponent: ComponentType) => {
+const withDelayedPopupModal = (WrappedComponent: ComponentType) => {
   return (props: any) => (
     <Fragment>
-      <ExitIntentModalContainer/>
+      <DelayedPopupModalContainer/>
       <WrappedComponent {...props} />
     </Fragment>
   );
 };
 
-export default withExitIntentModal;
+export default withDelayedPopupModal;

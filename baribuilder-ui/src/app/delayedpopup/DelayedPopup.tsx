@@ -4,7 +4,7 @@ import {media} from '../../components/style/Core';
 import {Subcaption} from '../../components/style/Typography';
 import Sketch from '../style/SketchVariables';
 
-export const ExitIntentContainerDiv = styled.div`
+export const DelayedPopupContainerDiv = styled.div`
   position: absolute;
   background-color: ${Sketch.color.background.white};
   box-shadow: 0px 0px 4px 4px ${Sketch.color.accent.grey};
@@ -22,7 +22,7 @@ export const ExitIntentContainerDiv = styled.div`
   `}
 `;
 
-export const ExitIntentDiv = styled.div`
+export const DelayedPopupDiv = styled.div`
   margin-bottom: 20vh;
   
   @media (min-height: 500px) {
