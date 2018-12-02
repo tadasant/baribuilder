@@ -8,8 +8,8 @@ import {Body, Header} from '../../components/style/Typography';
 import {trackPopupAction} from '../../lib/analytics';
 import {
   DismissSubcaption,
-  ExitIntentContainerDiv,
-  ExitIntentDiv,
+  DelayedPopupContainerDiv,
+  DelayedPopupDiv,
   GiftCardImg,
   StickyBottomDiv,
   VPaddedGrid
@@ -34,8 +34,8 @@ const ExitIntentSurvey: FunctionComponent<IProps> = props => {
   };
 
   return (
-    <ExitIntentContainerDiv tabIndex={-1}>
-      <ExitIntentDiv>
+    <DelayedPopupContainerDiv tabIndex={-1}>
+      <DelayedPopupDiv>
         <Grid container>
           <CenteredTextGrid item xs={12}>
             <Header dark>Before you leave...</Header>
@@ -53,7 +53,7 @@ const ExitIntentSurvey: FunctionComponent<IProps> = props => {
             <SurveyTypeForm/>
           </Grid>
         </Grid>
-      </ExitIntentDiv>
+      </DelayedPopupDiv>
       <StickyBottomDiv>
         <VPaddedGrid container>
           <Grid item xs={3}/>
@@ -72,7 +72,7 @@ const ExitIntentSurvey: FunctionComponent<IProps> = props => {
           <Grid item xs={3}/>
         </Grid>
       </StickyBottomDiv>
-    </ExitIntentContainerDiv>
+    </DelayedPopupContainerDiv>
   );
 };
 
