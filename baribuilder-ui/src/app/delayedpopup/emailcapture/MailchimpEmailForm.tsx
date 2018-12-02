@@ -4,6 +4,7 @@ import * as React from 'react';
 import {Component, Fragment, KeyboardEvent} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
 import {Caption} from '../../../components/style/Typography';
+import {trackPopupAction} from '../../../lib/analytics';
 import Sketch from '../../style/SketchVariables';
 import {FormTextField} from './MailchimpEmailForm.style';
 
@@ -62,6 +63,7 @@ class MailchimpEmailForm extends Component<IProps, IState> {
   handleSubmit() {
     if (validateEmail(this.state.email)) {
       postToMailchimp(this.state.email, this.state.name);
+      trackPopupAction('email captured');
       this.props.onSubmit();
     }
   }
