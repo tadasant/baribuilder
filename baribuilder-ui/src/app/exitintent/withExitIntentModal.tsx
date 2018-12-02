@@ -48,9 +48,6 @@ const ExitIntentSurvey: FunctionComponent<IProps> = props => {
           <CenteredTextGrid item xs={12}>
             <GiftCardImg src={AmazonImage} alt='Amazon Gift Card'/>
           </CenteredTextGrid>
-          {/*<CenteredTextGrid item xs={12}>*/}
-          {/*<GiftCardImg src={CompletedByImage} alt='Completed By'/>*/}
-          {/*</CenteredTextGrid>*/}
           <EmptyRow/>
           <CenteredTextGrid item xs={12}>
             <Body dark>Fill out the 10-second survey below to enter our drawing for a <b>$50 Amazon Gift

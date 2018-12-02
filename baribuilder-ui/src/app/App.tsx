@@ -5,10 +5,11 @@ import * as ApolloLink from 'apollo-link';
 import {HttpLink} from 'apollo-link-http';
 import {withClientState} from 'apollo-link-state';
 import 'npm-font-open-sans';
+import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, RouteComponentProps, Switch} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import * as uuid from 'uuid/v4';
@@ -67,7 +68,7 @@ const client = new ApolloClient({
   cache,
 });
 
-class App extends Component {
+class App extends Component<RouteComponentProps> {
   componentDidMount() {
     // User ID management for analytics
     let anonymousUserId = getLocalStorage('anonymousUserId');
@@ -77,6 +78,13 @@ class App extends Component {
     }
     analytics.identify(anonymousUserId);
     analytics.page('Loaded App', defaultFields);
+
+    // Only bother w/ exit intent on FB arrivers management
+    const queryString = window.location.search;
+    const parsedQuery = qs.parse(queryString.slice(1));
+    if (parsedQuery.utm_medium !== 'ads' || parsedQuery.utm_source !== 'facebook') {
+      setLocalStorage('disableShowModal', true);
+    }
   }
 
   public render() {
