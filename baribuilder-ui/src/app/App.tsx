@@ -21,7 +21,6 @@ import {getLocalStorage, setLocalStorage} from '../lib/localStorage';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
-import withDelayedPopupModal from './delayedpopup/withDelayedPopupModal';
 import BypassLanding from './landing/templates/BypassLanding';
 import SleeveLanding from './landing/templates/SleeveLanding';
 import StaticApp from './StaticApp';
@@ -108,4 +107,4 @@ class App extends Component<RouteComponentProps> {
   }
 }
 
-export default withDelayedPopupModal(App);
+export default App;
