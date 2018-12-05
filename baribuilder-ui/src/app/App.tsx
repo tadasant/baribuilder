@@ -9,7 +9,7 @@ import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
-import {BrowserRouter, Route, RouteComponentProps, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import * as uuid from 'uuid/v4';
@@ -67,7 +67,7 @@ const client = new ApolloClient({
   cache,
 });
 
-class App extends Component<RouteComponentProps> {
+class App extends Component {
   componentDidMount() {
     // User ID management for analytics
     let anonymousUserId = getLocalStorage('anonymousUserId');
