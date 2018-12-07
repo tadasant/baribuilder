@@ -2,7 +2,7 @@ import {Hidden, Menu, MenuItem} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import * as React from 'react';
-import {SFC} from 'react';
+import {MouseEvent, SFC} from 'react';
 import {ChildDataProps, graphql} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {toast} from 'react-toastify';
@@ -67,22 +67,23 @@ const NavigationGrid = styled(Grid)`
 `;
 
 interface IPropsState {
-  anchorEl: HTMLElement | null;
-  setAnchorEl: (el: HTMLElement | null) => HTMLElement | null;
+  mainMenuAnchorEl: HTMLElement | null;
+  setMainMenuAnchorEl: (el: HTMLElement | null) => HTMLElement | null;
+  secondaryMenuAnchorEl: HTMLElement | null;
+  setSecondaryMenuAnchorEl: (el: HTMLElement | null) => HTMLElement | null;
 }
 
-const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({location, history, data: {searchQuery}, anchorEl, setAnchorEl}) => {
+const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({location, history, data: {searchQuery}, mainMenuAnchorEl, setMainMenuAnchorEl, secondaryMenuAnchorEl, setSecondaryMenuAnchorEl}) => {
   const showCheckout = location.pathname.startsWith('/browse');
 
-  const handleSelectBrowse = () => {
+  const handleSelectBrowse = (event: MouseEvent<HTMLElement>) => {
     if (window.innerWidth < 1119 && window.location.pathname === '/') {
       toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a desktop/laptop computer.', {
         autoClose: 10000,
       });
     }
     generateTrackNavClick('Browse nav')();
-    setAnchorEl(null);
-    history.push('/browse/all_products');
+    setSecondaryMenuAnchorEl(event.currentTarget);
   };
 
   const handleSelectGoals = () => {
@@ -92,14 +93,20 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
       });
     }
     generateTrackNavClick('Goals nav')();
-    setAnchorEl(null);
+    setMainMenuAnchorEl(null);
     history.push('/goals');
   };
 
   const handleSelectAbout = () => {
     generateTrackNavClick('About nav')();
-    setAnchorEl(null);
+    setMainMenuAnchorEl(null);
     history.push('/about');
+  };
+
+  const generateHandleSelectNav = (path: string) => () => {
+    generateTrackNavClick(`${path} nav`)();
+    setMainMenuAnchorEl(null);
+    history.push(path);
   };
 
   const handleFacebookClick = () => {
@@ -110,6 +117,12 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   const handleBlogClick = () => {
     generateTrackNavClick('BariBuilder Blog')();
   };
+
+  const browseOptions = [
+    <MenuItem key='all-products' onClick={generateHandleSelectNav('/browse/all_products')}>All Products</MenuItem>,
+    <MenuItem key='bypass' onClick={generateHandleSelectNav('/bypass')}>Bypass (RNY)</MenuItem>,
+    <MenuItem key='sleeve' onClick={generateHandleSelectNav('/sleeve')}>Sleeve (VSG)</MenuItem>
+  ];
 
   return (
     <GridWithRaisedBackground container>
@@ -159,12 +172,25 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             </UndecoratedAnchor>
           </Grid>
           <Grid item>
-            <UndecoratedLink to='/browse/all_products' onClick={handleSelectBrowse}>
-              <WhiteNavButton fullWidth>
-                Browse
-              </WhiteNavButton>
-            </UndecoratedLink>
+            <WhiteNavButton fullWidth onClick={handleSelectBrowse}>
+              Browse
+            </WhiteNavButton>
           </Grid>
+          <Menu
+            anchorEl={secondaryMenuAnchorEl}
+            open={Boolean(secondaryMenuAnchorEl)}
+            onClose={() => setSecondaryMenuAnchorEl(null)}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            {browseOptions}
+          </Menu>
           <Grid item>
             <UndecoratedLink to='/goals' onClick={handleSelectGoals}>
               <WhiteNavButton fullWidth>
@@ -177,12 +203,12 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
           <Grid item>
             <MobileNavIconImg
               src={MenuBarsIcon}
-              onClick={event => setAnchorEl(event.currentTarget)}
+              onClick={event => setMainMenuAnchorEl(event.currentTarget)}
             />
             <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
+              anchorEl={mainMenuAnchorEl}
+              open={Boolean(mainMenuAnchorEl)}
+              onClose={() => setMainMenuAnchorEl(null)}
               transformOrigin={{
                 vertical: 'top',
                 horizontal: 'right'
@@ -203,9 +229,14 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
 const withData = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
 
 const enhance = compose<QueryOutputProps & RouteComponentProps, {}>(
-  withState<{}, HTMLElement | null, 'anchorEl', 'setAnchorEl'>(
-    'anchorEl',
-    'setAnchorEl',
+  withState<{}, HTMLElement | null, 'mainMenuAnchorEl', 'setMainMenuAnchorEl'>(
+    'mainMenuAnchorEl',
+    'setMainMenuAnchorEl',
+    null,
+  ),
+  withState<{}, HTMLElement | null, 'secondaryMenuAnchorEl', 'setSecondaryMenuAnchorEl'>(
+    'secondaryMenuAnchorEl',
+    'setSecondaryMenuAnchorEl',
     null,
   ),
   withData,
