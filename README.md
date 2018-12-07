@@ -24,7 +24,7 @@ GraphQL Endpoint: https://api.graph.cool/simple/v1/cjlzqvawt1ib00107g3nfr04i
 ### Managing GraphQL query typing
 If you don't have Apollo yet:
 
-`npm install -g apollo`
+`npm install -g apollo@1.9.2`
 
 Download GraphQL schema:
 
