@@ -219,6 +219,21 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
               <MenuItem onClick={handleBlogClick}>Blog</MenuItem>
               <MenuItem onClick={handleSelectAbout}>About</MenuItem>
             </Menu>
+            <Menu
+              anchorEl={secondaryMenuAnchorEl}
+              open={Boolean(secondaryMenuAnchorEl)}
+              onClose={() => setSecondaryMenuAnchorEl(null)}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              {browseOptions}
+            </Menu>
           </Grid>
         </Hidden>
       </NavigationGrid>
