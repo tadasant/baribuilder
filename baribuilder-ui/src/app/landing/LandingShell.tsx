@@ -1,6 +1,7 @@
 import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, FunctionComponent} from 'react';
+import {lifecycle} from "recompose";
 import Footer from '../../components/footer/Footer';
 import {FooterContainerGrid} from '../../components/footer/Footer.style';
 import Navbar from '../../components/navbar/Navbar';
@@ -26,4 +27,8 @@ const LandingShell: FunctionComponent = props => {
   );
 };
 
-export default LandingShell;
+export default lifecycle({
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+})(LandingShell);
