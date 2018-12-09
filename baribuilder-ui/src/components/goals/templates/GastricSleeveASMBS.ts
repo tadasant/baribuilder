@@ -1,8 +1,11 @@
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
 import {IGoalsScreenState} from '../GoalsScreen';
 
+export const SLEEVE_TEMPLATE_NAME = 'Gastric Sleeve (VSG) - ASMBS';
+
 const state: IGoalsScreenState = {
-  "selectedTemplateName": 'Gastric Sleeve (VSG) - ASMBS',
+  "showRedirectModal": false,
+  "selectedTemplateName": SLEEVE_TEMPLATE_NAME,
   "goalIngredients": {
     "ingredientRanges": [
       {

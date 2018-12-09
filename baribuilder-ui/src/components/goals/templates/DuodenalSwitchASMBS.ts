@@ -2,6 +2,7 @@ import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalT
 import {IGoalsScreenState} from '../GoalsScreen';
 
 const state: IGoalsScreenState = {
+  "showRedirectModal": false,
   "selectedTemplateName": 'Duodenal Switch (BPD/DS) - ASMBS',
   "goalIngredients": {
     "ingredientRanges": [

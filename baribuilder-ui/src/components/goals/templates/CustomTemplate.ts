@@ -7,7 +7,8 @@ const state: IGoalsScreenState = {
   "goalIngredients": {
     "__typename": "GoalIngredients",
     "ingredientRanges": []
-  }
+  },
+  "showRedirectModal": false
 };
 
 export default state;

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import update from 'immutability-helper';
 import * as React from 'react';
-import {Component} from 'react';
+import {Component, Fragment} from 'react';
 import {ChildDataProps, DataProps, graphql, MutateProps} from 'react-apollo';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {toast} from 'react-toastify';
@@ -12,8 +12,11 @@ import '../../state/fragments.graphql';
 import {GetGoalsScreenData} from '../../typings/gql/GetGoalsScreenData';
 import {FREQUENCY} from '../../typings/gql/globalTypes';
 import {SetGoalIngredients, SetGoalIngredientsVariables} from '../../typings/gql/SetGoalIngredients';
+import CurationRedirectModal from './CurationRedirectModal';
 import GoalsScreenPure from './GoalsScreenPure';
 import {CUSTOM_TEMPLATE_NAME} from './templates/CustomTemplate';
+import {BYPASS_TEMPLATE_NAME} from './templates/GastricBypassASMBS';
+import {SLEEVE_TEMPLATE_NAME} from './templates/GastricSleeveASMBS';
 import templatesByName, {DEFAULT_TEMPLATE_NAME} from './templates/templates';
 
 interface IProps {
@@ -55,6 +58,7 @@ type MutationOutputProps =
 export interface IGoalsScreenState {
   goalIngredients?: IGoalIngredients;
   selectedTemplateName: string;
+  showRedirectModal?: boolean;
 }
 
 export type HandleChangeGoalFunc = (ingredientTypeName: string, key: keyof IIngredientRange, value: string | undefined) => void;
@@ -182,10 +186,19 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
   };
 
   handleSetAndBrowse = (): void => {
+    if (this.state.selectedTemplateName === SLEEVE_TEMPLATE_NAME || this.state.selectedTemplateName === BYPASS_TEMPLATE_NAME) {
+      this.setState({showRedirectModal: true});
+    } else {
+      this.updateIngredients();
+    }
+  };
+
+  updateIngredients = (): void => {
     if (!this.props.mutate || !this.state.goalIngredients) {
       console.error('mutate or goalIngredients undefined, error code 59329083');
       return;
     }
+
     this.props.mutate({
       variables: {
         goalIngredients: this.state.goalIngredients
@@ -212,15 +225,23 @@ class GoalsScreen extends Component<TProps, Readonly<IGoalsScreenState>> {
       this.props.data.allIngredientTypes.sort((i1, i2) => compareIngredientTypeNames(i1.name, i2.name));
     }
     return (
-      <GoalsScreenPure
-        goalIngredients={this.state.goalIngredients}
-        selectedTemplateName={this.state.selectedTemplateName}
-        onChangeTemplate={this.handleChangeTemplate}
-        onChangeGoal={this.handleChangeGoal}
-        onRemoveGoal={this.handleRemoveGoal}
-        onAddGoal={this.handleAddGoal}
-        onSetAndBrowse={this.handleSetAndBrowse}
-      />
+      <Fragment>
+        <CurationRedirectModal
+          template={this.state.selectedTemplateName}
+          show={this.state.showRedirectModal}
+          onProceed={this.updateIngredients}
+          onClose={() => this.setState({showRedirectModal: false})}
+        />
+        <GoalsScreenPure
+          goalIngredients={this.state.goalIngredients}
+          selectedTemplateName={this.state.selectedTemplateName}
+          onChangeTemplate={this.handleChangeTemplate}
+          onChangeGoal={this.handleChangeGoal}
+          onRemoveGoal={this.handleRemoveGoal}
+          onAddGoal={this.handleAddGoal}
+          onSetAndBrowse={this.handleSetAndBrowse}
+        />
+      </Fragment>
     );
   }
 }

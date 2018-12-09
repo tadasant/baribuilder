@@ -1,8 +1,11 @@
 import {FREQUENCY, INGREDIENT_QUANTITY_UNITS} from '../../../typings/gql/globalTypes';
 import {IGoalsScreenState} from '../GoalsScreen';
 
+export const BYPASS_TEMPLATE_NAME = 'Gastric Bypass (RNY) - ASMBS';
+
 const state: IGoalsScreenState = {
-  "selectedTemplateName": 'Gastric Bypass (RNY) - ASMBS',
+  "showRedirectModal": false,
+  "selectedTemplateName": BYPASS_TEMPLATE_NAME,
   "goalIngredients": {
     "ingredientRanges": [
       {
