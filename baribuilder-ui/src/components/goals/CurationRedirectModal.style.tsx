@@ -1,3 +1,4 @@
+import {Grid} from '@material-ui/core';
 import styled from 'styled-components';
 import Sketch from '../../app/style/SketchVariables';
 import {media} from '../style/Core';
@@ -32,4 +33,8 @@ export const CurationRedirectDiv = styled.div`
     margin-bottom: 84px;
     padding: 16px;
   `}
+`;
+
+export const ButtonGrid = styled(Grid)`
+  padding: 8px;
 `;
