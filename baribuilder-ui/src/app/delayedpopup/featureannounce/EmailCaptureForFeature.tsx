@@ -30,13 +30,13 @@ const EmailCapture: FunctionComponent<IProps> = props => {
             <Body dark>Enter your info below so that you'll get an email when the feature is live.</Body>
           </Grid>
           <EmptyRow/>
-          <Grid item xs={12} container>
+          <CenteredTextGrid item xs={12} container>
             <MailchimpEmailForm onSubmit={props.onSubmit}/>
-          </Grid>
+          </CenteredTextGrid>
           <EmptyRow/>
-          <Grid item xs={12}>
+          <CenteredTextGrid item xs={12}>
             <Caption dark>We send at most 1-2 emails per month. You can unsubscribe at any time.</Caption>
-          </Grid>
+          </CenteredTextGrid>
         </Grid>
       </DelayedPopupDiv>
     </DelayedPopupContainerDiv>
