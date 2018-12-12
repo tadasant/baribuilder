@@ -2,41 +2,40 @@ import {Grid} from '@material-ui/core';
 import * as React from 'react';
 import {FunctionComponent} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
-import {BoldBody, Caption, Subcaption} from '../../../components/style/Typography';
+import {Body, BoldBody, Caption} from '../../../components/style/Typography';
 import MailchimpEmailForm from '../common/MailchimpEmailForm';
-import {DelayedPopupContainerDiv, DelayedPopupDiv} from './EmailCaptureForFeature.style';
+import {DelayedPopupContainerDiv, DelayedPopupDiv, XButtonSpan} from './EmailCaptureForFeature.style';
 
 interface IProps {
-  onSubmit: () => void;
+  onSubmit: () => void
+  onClose: () => void
 }
 
 const EmailCapture: FunctionComponent<IProps> = props => {
   return (
     <DelayedPopupContainerDiv tabIndex={-1}>
+      <XButtonSpan onClick={props.onClose}>X</XButtonSpan>
       <DelayedPopupDiv>
         <Grid container>
           <CenteredTextGrid item xs={12}>
-            <BoldBody dark>Please enter your email for the BariBuilder mailing list to continue reading.</BoldBody>
+            <BoldBody dark>We're working on a new feature: <u>Price Alerts</u>.</BoldBody>
           </CenteredTextGrid>
           <EmptyRow/>
-          <Grid item xs={12} container>
-            <MailchimpEmailForm onSubmit={props.onSubmit}/>
-            <Grid item xs={1} md={2}/>
-            <CenteredTextGrid item xs={10} md={8}>
-              <Caption dark>
-                This popup will dismiss after you have verified your email. You are free to unusubscribe at any time.
-              </Caption>
-            </CenteredTextGrid>
-            <Grid item xs={1} md={2}/>
+          <Grid item xs={12}>
+            Image goes here
+            {/*<FeatureImg />*/}
           </Grid>
           <EmptyRow/>
           <Grid item xs={12}>
-            <Subcaption dark>
-              <u>Why are we asking for your email?</u><br/><br/>
-              We're working on BariBuilder, a free web application. We rarely send emails: only when we have a major
-              announcement or send out opportunities to provide feedback - sometimes we'll offer an Amazon Gift Card in
-              return.
-            </Subcaption>
+            <Body dark>Enter your info below so that you'll get an email when the feature is live.</Body>
+          </Grid>
+          <EmptyRow/>
+          <Grid item xs={12} container>
+            <MailchimpEmailForm onSubmit={props.onSubmit}/>
+          </Grid>
+          <EmptyRow/>
+          <Grid item xs={12}>
+            <Caption dark>We send at most 1-2 emails per month. You can unsubscribe at any time.</Caption>
           </Grid>
         </Grid>
       </DelayedPopupDiv>

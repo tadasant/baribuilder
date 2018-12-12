@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Component, ComponentType, Fragment} from 'react';
 import {trackPopupAction} from '../../lib/analytics';
 import {getLocalStorage, setLocalStorage} from '../../lib/localStorage';
-import EmailCapture from './emailcapture/EmailCapture';
+import EmailCaptureForFeature from './featureannounce/EmailCaptureForFeature';
 
 // Number of miliseconds from component mount that the modal should display
 const MS_UNTIL_POPUP = 100;
@@ -54,8 +54,9 @@ class DelayedPopupModalContainer extends Component<{}, IState> {
         <Modal
           open={this.state.showModal}
           onClose={this.handleCloseModal}
+          disableBackdropClick
         >
-          <EmailCapture onSubmit={this.handleSuccessModal}/>
+          <EmailCaptureForFeature onSubmit={this.handleSuccessModal} onClose={this.handleCloseModal}/>
           {/*<ExitIntentSurvey onDismiss={this.handleCloseModal} onSuccess={this.handleSuccessModal}/>*/}
         </Modal>
       </Fragment>

@@ -33,3 +33,8 @@ export const DelayedPopupDiv = styled.div`
     padding: 16px;
   `}
 `;
+
+export const XButtonSpan = styled.span`
+  cursor: pointer;
+  float: right;
+`;
