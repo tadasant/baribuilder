@@ -30,7 +30,7 @@ class DelayedPopupModalContainer extends Component<{}, IState> {
 
   tryDisplayingModal() {
     if (!getLocalStorage('dontShowModalAgain')) {
-      trackPopupAction('show');
+      trackPopupAction('show feature capture');
       this.setState({showModal: true});
     }
   }
