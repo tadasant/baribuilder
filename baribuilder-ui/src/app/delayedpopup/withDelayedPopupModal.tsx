@@ -6,7 +6,7 @@ import {getLocalStorage, setLocalStorage} from '../../lib/localStorage';
 import EmailCapture from './emailcapture/EmailCapture';
 
 // Number of miliseconds from component mount that the modal should display
-const MS_UNTIL_POPUP = 3000;
+const MS_UNTIL_POPUP = 100;
 export const TYPEFORM_URL = 'https://vitagllc.typeform.com/to/JeKegc';
 
 interface IState {
@@ -29,7 +29,7 @@ class DelayedPopupModalContainer extends Component<{}, IState> {
   }
 
   tryDisplayingModal() {
-    if (getLocalStorage('enableShowModal') && !getLocalStorage('dontShowModalAgain')) {
+    if (!getLocalStorage('dontShowModalAgain')) {
       trackPopupAction('show');
       this.setState({showModal: true});
     }
@@ -54,8 +54,6 @@ class DelayedPopupModalContainer extends Component<{}, IState> {
         <Modal
           open={this.state.showModal}
           onClose={this.handleCloseModal}
-          disableBackdropClick
-          disableEscapeKeyDown
         >
           <EmailCapture onSubmit={this.handleSuccessModal}/>
           {/*<ExitIntentSurvey onDismiss={this.handleCloseModal} onSuccess={this.handleSuccessModal}/>*/}

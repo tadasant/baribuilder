@@ -2,8 +2,7 @@ import {Grid} from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import * as React from 'react';
 import {Component, Fragment, KeyboardEvent} from 'react';
-import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
-import {Caption} from '../../../components/style/Typography';
+import {EmptyRow} from '../../../components/style/Layout';
 import {trackPopupAction} from '../../../lib/analytics';
 import Sketch from '../../style/SketchVariables';
 import {FormTextField} from './MailchimpEmailForm.style';
@@ -112,13 +111,6 @@ class MailchimpEmailForm extends Component<IProps, IState> {
           </Grid>
         </Grid>
         <Grid item xs={1} md={4}/>
-        <Grid item xs={1} md={2}/>
-        <CenteredTextGrid item xs={10} md={8}>
-          <Caption dark>
-            This popup will dismiss after you have verified your email. You are free to unusubscribe at any time.
-          </Caption>
-        </CenteredTextGrid>
-        <Grid item xs={1} md={2}/>
       </Fragment>
     )
   }

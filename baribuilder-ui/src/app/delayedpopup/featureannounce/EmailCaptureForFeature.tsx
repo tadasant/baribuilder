@@ -4,7 +4,7 @@ import {FunctionComponent} from 'react';
 import {CenteredTextGrid, EmptyRow} from '../../../components/style/Layout';
 import {BoldBody, Caption, Subcaption} from '../../../components/style/Typography';
 import MailchimpEmailForm from '../common/MailchimpEmailForm';
-import {DelayedPopupContainerDiv, DelayedPopupDiv} from './EmailCapture.style';
+import {DelayedPopupContainerDiv, DelayedPopupDiv} from './EmailCaptureForFeature.style';
 
 interface IProps {
   onSubmit: () => void;
