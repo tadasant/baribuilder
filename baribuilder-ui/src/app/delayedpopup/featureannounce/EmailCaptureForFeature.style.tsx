@@ -38,3 +38,8 @@ export const XButtonSpan = styled.span`
   cursor: pointer;
   float: right;
 `;
+
+export const TeaserImg = styled.img`
+  max-width: 291px;
+  width: 100%;
+`;
