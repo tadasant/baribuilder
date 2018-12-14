@@ -29,7 +29,7 @@ class DelayedPopupModalContainer extends Component<{}, IState> {
   }
 
   tryDisplayingModal() {
-    if (!getLocalStorage('dontShowModalAgain')) {
+    if (!getLocalStorage('dontShowModalAgainV2')) {
       trackPopupAction('show feature capture');
       this.setState({showModal: true});
     }
@@ -40,12 +40,12 @@ class DelayedPopupModalContainer extends Component<{}, IState> {
     // TODO set localStorage s.t. last time we unsuccessfully tried was at X time [requires adding a 'don't show again' box]
     // Also consider adding "minimize"
     // defaulting to not show again
-    setLocalStorage('dontShowModalAgain', true);
+    setLocalStorage('dontShowModalAgainV2', true);
   }
 
   handleSuccessModal() {
     this.setState({showModal: false});
-    setLocalStorage('dontShowModalAgain', true);
+    setLocalStorage('dontShowModalAgainV2', true);
   }
 
   render() {
