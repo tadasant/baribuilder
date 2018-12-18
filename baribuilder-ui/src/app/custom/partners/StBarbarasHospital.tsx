@@ -313,27 +313,26 @@ const StBarbarasHospital: FunctionComponent = () => {
   return (
     <CustomShell>
       <Fragment>
-        <Grid item xs={12} lg={6}>
-          <Header dark>Gastric Bypass (RNY) Guidelines</Header>
+        <Grid item xs={12} lg={7}>
+          <Header dark>St. Barbara's Hospital Recommendations</Header>
           <br/><br/>
           <Body dark>
-          Using the American Society for Metabolic and Bariatric Surgery’s nutritional guidelines (2017), we derived the
-          following “desired dosages” (daily).
+          This page is maintained in collaboration with the Bariatric Surgery Center at St. Barbara's Hospital.
           </Body>
           <br/><br/>
           <Body dark>
-          It is important to note that these are <b>maintenance</b> guidelines. They should only be used as a reference
-          point.
+          It is important that each patient receive individualized care. Please consult your medical provider before
+          making any changes to your supplementation regimen.
           </Body>
           <br/><br/>
           <Body dark>
-          All bariatric patients should be getting labs done regularly, and adjusting their dosages based on those
+          Please remember that all bariatric patients should be getting labs done regularly, and adjusting their vitamin regimens based on those
           results.
           </Body>
           <br/><br/>
         </Grid>
         <Hidden mdDown>
-          <Grid item lg={2}/>
+          <Grid item lg={1}/>
         </Hidden>
         <Hidden lgUp smDown>
           <Grid item md={2}/>
