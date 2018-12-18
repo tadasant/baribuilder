@@ -10,6 +10,10 @@ export const SharedItemsContainerGrid = styled(Grid)`
   }
 `;
 
+export const IntroductionLogoImg = styled.img`
+  width: 100%;
+`;
+
 export const ColoredSpan = styled.span`
   color: ${props => props.color};
 `;

@@ -1,11 +1,12 @@
 import {Grid, Hidden} from '@material-ui/core';
 import * as React from 'react';
 import {Fragment, FunctionComponent} from 'react';
+import StBarbarasLogo from '../../../assets/logos/st-barbara-hospital-logo.png';
 import {Body, Header} from '../../../components/style/Typography';
 import RegimenFacts, {IRegimenFactsMicronutrient} from '../../landing/children/RegimenFacts';
 import RegimenPreview from '../../landing/children/RegimenPreview';
 import Sketch from '../../style/SketchVariables';
-import {SharedItemsContainerGrid} from '../Custom.style';
+import {IntroductionLogoImg, SharedItemsContainerGrid} from '../Custom.style';
 import CustomShell from '../CustomShell';
 
 const bypassMicronutrients: IRegimenFactsMicronutrient[] = [
@@ -326,7 +327,8 @@ const StBarbarasHospital: FunctionComponent = () => {
           </Body>
           <br/><br/>
           <Body dark>
-          Please remember that all bariatric patients should be getting labs done regularly, and adjusting their vitamin regimens based on those
+          Please remember that all bariatric patients should be getting labs done regularly, and adjusting their vitamin
+          regimens based on those
           results.
           </Body>
           <br/><br/>
@@ -338,7 +340,7 @@ const StBarbarasHospital: FunctionComponent = () => {
           <Grid item md={2}/>
         </Hidden>
         <Grid item xs={12} md={8} lg={4}>
-          Hospital logo here
+          <IntroductionLogoImg src={StBarbarasLogo} alt='St. Barbaras Logo'/>
         </Grid>
         <Hidden lgUp smDown>
           <Grid item md={2}/>
@@ -354,7 +356,7 @@ const StBarbarasHospital: FunctionComponent = () => {
           productsColor='green'
           cost={59}
           costColor='red'
-          pathname='/share?url-id=cjohfm8xa06wh01705q8e48e7&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          pathname='/share?url-id=cjohfm8xa06wh01705q8e48e7&utm_source=curated-regimens&utm_medium=partner&utm_campaign=stbarbaras'>
           <RegimenFacts
             micronutrients={bypassMicronutrients}
             numProductServings={3}/>
@@ -369,7 +371,7 @@ const StBarbarasHospital: FunctionComponent = () => {
             productsColor='red'
             cost={15}
             costColor='green'
-            pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=landing&utm_campaign=rny'>
+            pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=partner&utm_campaign=stbarbaras'>
             <RegimenFacts
               micronutrients={bypassCheapestMicronutrients}
               numProductServings={6}/>
@@ -385,7 +387,7 @@ const StBarbarasHospital: FunctionComponent = () => {
             productsColor='green'
             cost={65}
             costColor='red'
-            pathname='/share?url-id=cjogczql70m5k0163qt74qrr4&utm_source=curated-regimens&utm_medium=landing&utm_campaign=sleeve'>
+            pathname='/share?url-id=cjogczql70m5k0163qt74qrr4&utm_source=curated-regimens&utm_medium=partner&utm_campaign=stbarbaras'>
             <RegimenFacts
               micronutrients={sleeveMicronutrients}
               numProductServings={4}/>
@@ -401,7 +403,7 @@ const StBarbarasHospital: FunctionComponent = () => {
             productsColor='red'
             cost={14}
             costColor='green'
-            pathname='/share?url-id=cjogd1gmw0ma50163a61uwswv&utm_source=curated-regimens&utm_medium=landing&utm_campaign=sleeve'>
+            pathname='/share?url-id=cjogd1gmw0ma50163a61uwswv&utm_source=curated-regimens&utm_medium=partner&utm_campaign=stbarbaras'>
             <RegimenFacts
               micronutrients={sleeveCheapestMicronutrients}
               numProductServings={6}/>
