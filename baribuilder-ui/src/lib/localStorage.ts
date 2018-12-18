@@ -2,7 +2,6 @@ const LOCAL_STORAGE_KEY = 'BBVITAG';
 
 interface ILocalStorage {
   anonymousUserId: string
-  enableShowModal: boolean
   dontShowModalAgainV2: boolean
 }
 
