@@ -5,7 +5,6 @@ import * as ApolloLink from 'apollo-link';
 import {HttpLink} from 'apollo-link-http';
 import {withClientState} from 'apollo-link-state';
 import 'npm-font-open-sans';
-import * as qs from 'qs';
 import * as React from 'react';
 import {Component} from 'react';
 import {ApolloProvider} from 'react-apollo';
@@ -21,6 +20,7 @@ import {getLocalStorage, setLocalStorage} from '../lib/localStorage';
 import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
+import StBarbarasHospital from './custom/partners/StBarbarasHospital';
 import withDelayedPopupModal from './delayedpopup/withDelayedPopupModal';
 import BypassLanding from './landing/templates/BypassLanding';
 import SleeveLanding from './landing/templates/SleeveLanding';
@@ -78,13 +78,6 @@ class App extends Component {
     }
     analytics.identify(anonymousUserId);
     analytics.page('Loaded App', defaultFields);
-
-    // Only bother w/ exit intent on FB arrivers management
-    const queryString = window.location.search;
-    const parsedQuery = qs.parse(queryString.slice(1));
-    if (parsedQuery.utm_medium === 'ads' && parsedQuery.utm_source === 'facebook') {
-      setLocalStorage('enableShowModal', true);
-    }
   }
 
   public render() {
@@ -99,6 +92,7 @@ class App extends Component {
               <Route exact path="/about" component={AboutScreen}/>
               <Route exact path="/sleeve" component={SleeveLanding}/>
               <Route exact path="/bypass" component={BypassLanding}/>
+              <Route exact path="/st-barbaras-hospital" component={StBarbarasHospital}/>
               <Route component={BuilderApp}/>
             </Switch>
           </ApolloProvider>

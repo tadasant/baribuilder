@@ -337,7 +337,7 @@ const SleeveLanding: FunctionComponent = () => {
           productsColor='red'
           cost={14}
           costColor='green'
-          pathname='/share?url-id=cjogd1gmw0ma50163a61uwswv&utm_source=curated-regimens&utm_medium=fb&utm_campaign=sleeve'>
+          pathname='/share?url-id=cjogd1gmw0ma50163a61uwswv&utm_source=curated-regimens&utm_medium=landing&utm_campaign=sleeve'>
           <RegimenFacts
             micronutrients={cheapestMicronutrients}
             numProductServings={6}/>
@@ -351,7 +351,7 @@ const SleeveLanding: FunctionComponent = () => {
           unitsColor='green'
           numProducts={2}
           cost={33}
-          pathname='/share?url-id=cjogcy0l30mzl0189b2pev66b&utm_source=curated-regimens&utm_medium=fb&utm_campaign=sleeve'>
+          pathname='/share?url-id=cjogcy0l30mzl0189b2pev66b&utm_source=curated-regimens&utm_medium=landing&utm_campaign=sleeve'>
           <RegimenFacts
             micronutrients={minimizingPillMicronutrients}
             numProductServings={4}/>
@@ -365,7 +365,7 @@ const SleeveLanding: FunctionComponent = () => {
           numProducts={2}
           cost={65}
           costColor='red'
-          pathname='/share?url-id=cjogczql70m5k0163qt74qrr4&utm_source=curated-regimens&utm_medium=fb&utm_campaign=sleeve'>
+          pathname='/share?url-id=cjogczql70m5k0163qt74qrr4&utm_source=curated-regimens&utm_medium=landing&utm_campaign=sleeve'>
           <RegimenFacts
             micronutrients={standardMicronutrients}
             numProductServings={4}/>

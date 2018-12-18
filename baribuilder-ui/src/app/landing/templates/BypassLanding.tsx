@@ -334,7 +334,7 @@ const BypassLanding: FunctionComponent = () => {
           productsColor='red'
           cost={15}
           costColor='green'
-          pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          pathname='/share?url-id=cjohbukm20pvi0139rxk3s49u&utm_source=curated-regimens&utm_medium=landing&utm_campaign=rny'>
           <RegimenFacts
             micronutrients={cheapestMicronutrients}
             numProductServings={6}/>
@@ -348,7 +348,7 @@ const BypassLanding: FunctionComponent = () => {
           unitsColor='green'
           numProducts={2}
           cost={39}
-          pathname='/share?url-id=cjohakjh30jrk0139be8m4818&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          pathname='/share?url-id=cjohakjh30jrk0139be8m4818&utm_source=curated-regimens&utm_medium=landing&utm_campaign=rny'>
           <RegimenFacts
             micronutrients={minimizingPillMicronutrients}
             numProductServings={4}/>
@@ -362,7 +362,7 @@ const BypassLanding: FunctionComponent = () => {
           numProducts={2}
           cost={59}
           costColor='red'
-          pathname='/share?url-id=cjohfm8xa06wh01705q8e48e7&utm_source=curated-regimens&utm_medium=fb&utm_campaign=rny'>
+          pathname='/share?url-id=cjohfm8xa06wh01705q8e48e7&utm_source=curated-regimens&utm_medium=landing&utm_campaign=rny'>
           <RegimenFacts
             micronutrients={standardMicronutrients}
             numProductServings={3}/>
