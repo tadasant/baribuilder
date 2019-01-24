@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {fromEvent} from 'graphcool-lib';
 
+// TODO bad - eliminate use of inline-tokens after migration to dropshipping
 const viglinkSecretToken = 'b622e46ec05d0a2df526e053b3fca2b9c7fc3a1f';
 const productApiUrl = 'https://rest.viglink.com/api/product/metadata';
 const graphcoolToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MzgzOTA3NjAsImNsaWVudElkIjoiY2psemtzaHB0MTB0czAxNDIybDlzM2pkbyIsInByb2plY3RJZCI6ImNqbHpxdmF3dDFpYjAwMTA3ZzNuZnIwNGkiLCJwZXJtYW5lbnRBdXRoVG9rZW5JZCI6ImNqbXE2NHptajJ5bGcwMTMwbzFsenhjbGMifQ.17q8GNMZI8r53I3QfgQhlkumnbZQRezevQ_L7NE0pHA';

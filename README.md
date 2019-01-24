@@ -59,7 +59,7 @@ This monorepo consists of four pieces:
 1) [BariBuilder UI](#baribuilder-ui): Front-end React app for BariBuilder.
 2) [BariBuilder API](#baribuilder-api): Back-end configuration for Graphcool.
 3) [BariBuilder Aggregator](#baribuilder-aggregator): Lambda functions to keep catalog up-to-date.
-4) [GraphQL Scripts](#graphql-scripts): Various data-wrangling utilities (i.e. SQL scripts analog)
+4) [GraphQL Scripts](#graphql-scripts): Various data-wrangling utilities (i.e. SQL scripts analog).
 
 ### BariBuilder UI
 
