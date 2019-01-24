@@ -112,7 +112,7 @@ The orphaned **URL** object is a hacky datastore for our link shortener that we 
 
 ### Client-side Model (not persisted)
 
-Pictured is a UML diagram of the BariBuilder UI's model insofar as a user has loaded 
+Pictured is a UML diagram of the BariBuilder UI's model insofar as a user has loaded and is using the application. 
 
 None of this data is (currently) persisted, but is the client's view of the world during a user's session with the single page application.
 
@@ -133,7 +133,19 @@ Lastly, each local store has a set of **GoalIngredients** (set on the /goals pag
 
 ## List of Shortcomings
 
+I regret almost none of the below decisions that led to the shortcomings below to-date. This is the only application of its kind, especially in the bariatric space - so we had no idea how close we were to delivering real value to consumers during the development of the application. It did not make sense to follow time-consuming, stable engineering best practices in many cases, except insofar as they would help us test our business assumptions more rapidly. Speed and iteration were of principal concern. Long term technical debt was not. 
+
+**There are way too many client-side operations going on.** BariBuilder eats a lot of CPU cycles (especially on slow machines), and the SPA is noticeably laggy when it has to recalculate the entire catalog's user-contextual pricing information. This occurs every time the user adds or removes a product from his/her current regimen (i.e. shopping cart). This has also made for an extremely messy Apollo Local State (see [model](#client-side-model), and its weird dependencies, above). The solution here is to break this out into an asynchronous server-side operation, which will be possible when the migration from Graphcool to Prisma is complete.
+
+**Data is of questionable reliability.** The data came almost exclusively from one round of untrained Mechanical Turk workers. There was no QA step beyond the occasional inconsistencies we stumbled across during the development of the application.
+
+**There are no (ZERO) tests.** This was a conscious decision. I do have concerns that at some point this will slow down development speed if things break every time I do a push, but I have reasonable faith that this won't happen until much later - after we've validated some initial business assumptions and probably pivoted a few times. My confidence stems from the way I've tied the data model through the UI end to end. The domain model is encoded in a GraphQL schema with Graphcool, which I think introspect to generate a set of TypeScript types. I then use those TypeScript types all throughout the UI. This has very reliably created almost no data-related issues. There may be functionality bugs, but to date they've all been tolerable or able to be worked around by the user.
+
 ## Looking Ahead
+
+**Migration from Graphcool to Prisma**. Graphcool is no longer under active development, and the team responsible for Graphcool has since shifted its focus to Prisma. Prisma offers a much more flexible to setting up a GraphQL server. In addition to the Prisma setup, I will be setting up an `apollo-server` Node.js proxy server that stands between Prisma and the UI in order to facilitate the session-based computations as described in [List of Shortcomings](#list-of-shortcomings) above.
+
+**Revamping of business model**. Affiliate revenue doesn't reel in customers well, and generally doesn't have much of a place in a space that is oriented around consistent, recurring purchases. BariBuilder needs to become a true e-commerce platform that facilitates transactions on-site: starting with dropshipping, and eventually retail through wholesale. This will additionally enable unique, value-add features like tracking vitamin intake based on actual shopping history, a one-stop view of all your vitamin history, etc.
 
 ## Development Notes
 
