@@ -116,6 +116,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
 
   const handleBlogClick = () => {
     generateTrackNavClick('BariBuilder Blog')();
+    window.open('https://blog.baribuilder.com/', '_blank');
   };
 
   const browseOptions = [
