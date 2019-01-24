@@ -72,6 +72,7 @@ The [baribuilder-ui](baribuilder-ui) directory contains the Single Page App (SPA
 * [styled-components](https://www.styled-components.com/)
 * [yarn](https://yarnpkg.com/en/)
 * [create-react-app](https://github.com/facebook/create-react-app)
+* Hosted on [Netlify](https://netlify.com/)
 
 ### BariBuilder API
 
