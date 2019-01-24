@@ -63,11 +63,39 @@ This monorepo consists of four pieces:
 
 ### BariBuilder UI
 
+The [baribuilder-ui](baribuilder-ui) directory contains the Single Page App (SPA) built with React. Notable technologies used:
+* [React](https://reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [GraphQL](https://graphql.org/)
+* [Apollo](https://www.apollographql.com/)
+* [Material-UI](https://material-ui.com/) styling components
+* [styled-components](https://www.styled-components.com/)
+* [yarn](https://yarnpkg.com/en/)
+* [create-react-app](https://github.com/facebook/create-react-app)
+
 ### BariBuilder API
+
+The [baribuilder-api](baribuilder-api) directory contains the configuration used for the application backend, which leverages [Graphcool](https://www.graph.cool/)'s hosted solution.
+
+The domain model is defined in the GraphQL schema files at [baribuilder-api/model](baribuilder-api/model). See [Domain Model](#domain-model) section for an easy-to-digest write-up.
+
+Eventually, this hosted GraphCool solution will be ripped out and replaced with a self-managed [Prisma](https://www.prisma.io/) setup.
 
 ### BariBuilder Aggregator
 
+The [baribuilder-aggregator](baribuilder-aggregator) directory contains the lambda functions used to manage automated data wrangling processes.
+
+At the moment, the only process in place is a price updater, which uses Viglink's API to grab and upload updated product prices from Amazon every 45 minutes.
+
 ### GraphQL Scripts
+
+The [gql-scripts](gql-scripts) directory contains data wrangling scripts for various Graphcool operations. These are meant to be invoked manually from a local machine. Think of them as analogous to SQL scripts.
+
+## Domain Model
+
+## List of Shortcomings
+
+## Looking Ahead
 
 ## Development Notes
 
