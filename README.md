@@ -68,7 +68,7 @@ The [baribuilder-ui](baribuilder-ui) directory contains the Single Page App (SPA
 * [TypeScript](https://www.typescriptlang.org/)
 * [GraphQL](https://graphql.org/)
 * [Apollo](https://www.apollographql.com/)
-* [Material-UI](https://material-ui.com/) styling components
+* [Material-UI](https://material-ui.com/)
 * [styled-components](https://www.styled-components.com/)
 * [yarn](https://yarnpkg.com/en/)
 * [create-react-app](https://github.com/facebook/create-react-app)
@@ -101,7 +101,7 @@ Pictured is a UML diagram of the BariBuilder API's GraphQL schema (which Graphco
     <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png?token=ADuF41roK8ip6Q9ySGiuRHFNKlrJSKP2ks5cU20gwA%3D%3D" width="640" />
 </p>
 <p align="center">
-     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png?token=ADuF41roK8ip6Q9ySGiuRHFNKlrJSKP2ks5cU20gwA%3D%3D">Click here to enlarge</a>
+     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png?token=ADuF41roK8ip6Q9ySGiuRHFNKlrJSKP2ks5cU20gwA%3D%3D" target="_blank">Click here to enlarge</a>
 </p>
 
 The core of the model starts with **CatalogProduct** in the middle. We have a row here for every product we offer for sale/analysis on BariBuilder. A Catalog Product may have zero or more associated **images**. As you can see on a Nutrition/Supplement Facts label, every Product has details on what a **Serving** is for that product. Looking at the line-by-line of that label, you would see one or more **ServingIngredients**. Each Serving Ingredient is composed of at least an **IngredientType** (e.g. Vitamin A) and, optionally, some **quantity**. Sometimes ingredients have only trace quantities, so the quantity is unlisted.
@@ -122,7 +122,7 @@ The data represented in this model is currently managed using [Apollo's local st
     <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png?token=ADuF4y6PxhH0IgXUakejTbiC2WufnN1-ks5cU20ywA%3D%3D" width="800" />
 </p>
 <p align="center">
-     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png?token=ADuF4y6PxhH0IgXUakejTbiC2WufnN1-ks5cU20ywA%3D%3D">Click here to enlarge</a>
+     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png?token=ADuF4y6PxhH0IgXUakejTbiC2WufnN1-ks5cU20ywA%3D%3D" target="_blank">Click here to enlarge</a>
 </p>
 
 **ApolloStore** refers to a single client's instance of the local store. Every local store has one **CurrentRegimen** (you can think of this as their "shopping cart"), which is composed of zero or more **products**. Each product has some **quantity** and total **cost** (which changes based on the quantity). Cost is generally a nontrivial concept because the "cost" of a vitamin product is not simply the sticker price - it is the amount of money it will cost them *over a period of time* assuming the consumption of a certain *quantity*.
@@ -133,7 +133,7 @@ Lastly, each local store has a set of **GoalIngredients** (set on the /goals pag
 
 ## List of Shortcomings
 
-I regret almost none of the below decisions that led to the shortcomings below to-date. This is the only application of its kind, especially in the bariatric space - so we had no idea how close we were to delivering real value to consumers during the development of the application. It did not make sense to follow time-consuming, stable engineering best practices in many cases, except insofar as they would help us test our business assumptions more rapidly. Speed and iteration were of principal concern. Long term technical debt was not. 
+I regret almost none of the decisions that led to the shortcomings below to-date. This is the only application of its kind, especially in the bariatric space - so we had no idea how close we were to delivering real value to consumers during the development of the application. It did not make sense to follow time-consuming, stable engineering best practices in many cases, except insofar as they would help us test our business assumptions more rapidly. Speed and iteration were of principal concern. Long term technical debt was not. 
 
 **There are way too many client-side operations going on.** BariBuilder eats a lot of CPU cycles (especially on slow machines), and the SPA is noticeably laggy when it has to recalculate the entire catalog's user-contextual pricing information. This occurs every time the user adds or removes a product from his/her current regimen (i.e. shopping cart). This has also made for an extremely messy Apollo Local State (see [model](#client-side-model), and its weird dependencies, above). The solution here is to break this out into an asynchronous server-side operation, which will be possible when the migration from Graphcool to Prisma is complete.
 
