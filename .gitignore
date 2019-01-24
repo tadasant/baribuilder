@@ -19,17 +19,12 @@ pids
 # Log files
 **/log
 
-# IDEA files
-baribuilder.iml
-misc.xml
-modules.xml
-workspace.xml
-
 # Dependency directories
 **/node_modules/
 
 # Optional npm cache directory
 .npm
+**/.cache
 
 # Optional eslint cache
 .eslintcache
