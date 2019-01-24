@@ -16,7 +16,7 @@
 <br>
 
 <p align="center">
-    <img src="https://s3.amazonaws.com/baribuilder/_external/baribuilder-quick-demo-low.gif" width="640" />
+    <img src="https://s3.amazonaws.com/baribuilder/_external/baribuilder-quick-demo-lower.gif" width="640" />
 </p>
 <p align="center">
     See a full demo video <a href="https://www.youtube.com/watch?v=8SY00K2kn_o">here</a>.
