@@ -30,7 +30,7 @@
 
 &nbsp;
 
-Our mission with BariBuilder is to spread **transparent** information about supplement products to you, **bariatric patients**, in order to improve your **medical outcomes** and lower your costs.
+Our mission with BariBuilder is to spread **transparent** information about supplement products to you, **bariatric patients**, in order to improve your **medical outcomes** and lower your **costs**.
 
 Read more about our mission [here](https://baribuilder.com/about), and the problem facing bariatric patients [here](https://blog.baribuilder.com/wls-patients-need-personalized-bariatric-vitamin-regimens/).
 
@@ -92,6 +92,44 @@ At the moment, the only process in place is a price updater, which uses Viglink'
 The [gql-scripts](gql-scripts) directory contains data wrangling scripts for various Graphcool operations. These are meant to be invoked manually from a local machine. Think of them as analogous to SQL scripts.
 
 ## Domain Model
+
+### API Model (persisted)
+
+Pictured is a UML diagram of the BariBuilder API's GraphQL schema (which Graphcool translates into a SQL schema).
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png?token=ADuF41roK8ip6Q9ySGiuRHFNKlrJSKP2ks5cU20gwA%3D%3D" width="640" />
+</p>
+<p align="center">
+     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png?token=ADuF41roK8ip6Q9ySGiuRHFNKlrJSKP2ks5cU20gwA%3D%3D">Click here to enlarge</a>
+</p>
+
+The core of the model starts with **CatalogProduct** in the middle. We have a row here for every product we offer for sale/analysis on BariBuilder. A Catalog Product may have zero or more associated **images**. As you can see on a Nutrition/Supplement Facts label, every Product has details on what a **Serving** is for that product. Looking at the line-by-line of that label, you would see one or more **ServingIngredients**. Each Serving Ingredient is composed of at least an **IngredientType** (e.g. Vitamin A) and, optionally, some **quantity**. Sometimes ingredients have only trace quantities, so the quantity is unlisted.
+
+Looking at the other side of **CatalogProduct**, we have the domain related to retail operations. Every product comes in some sort of **ProductPackage**, where you'll find a bunch of tablets or units of that product being sold in a bottle. This Package typically has some **PackageIndentifier**, like a UPC code or ASIN code. Each Package can be sold in zero or more places on the internet, hence the package is associated to **listings**. A listing has a **price** at a given time, and we may also have stored a specific **AffiliateLink** to that listing.
+
+The orphaned **URL** object is a hacky datastore for our link shortener that we use for generating shareable URLs with long query parameters. And the **User** object is as-of-yet unused.
+
+### Client-side Model (not persisted)
+
+Pictured is a UML diagram of the BariBuilder UI's model insofar as a user has loaded 
+
+None of this data is (currently) persisted, but is the client's view of the world during a user's session with the single page application.
+
+The data represented in this model is currently managed using [Apollo's local state management system](https://www.apollographql.com/docs/react/essentials/local-state.html). This is certainly not the optimal way to do it. It should be managed on the server side - and that is the plan once migration from Graphcool to Prisma is complete. 
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png?token=ADuF4y6PxhH0IgXUakejTbiC2WufnN1-ks5cU20ywA%3D%3D" width="800" />
+</p>
+<p align="center">
+     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png?token=ADuF4y6PxhH0IgXUakejTbiC2WufnN1-ks5cU20ywA%3D%3D">Click here to enlarge</a>
+</p>
+
+**ApolloStore** refers to a single client's instance of the local store. Every local store has one **CurrentRegimen** (you can think of this as their "shopping cart"), which is composed of zero or more **products**. Each product has some **quantity** and total **cost** (which changes based on the quantity). Cost is generally a nontrivial concept because the "cost" of a vitamin product is not simply the sticker price - it is the amount of money it will cost them *over a period of time* assuming the consumption of a certain *quantity*.
+
+Every local store also has a list of **ClientCatalogProducts**. The number of items in this list is equal to the number of CatalogProducts on the API's side. The intent here is to contextualize the entire catalog for this specific user. So every ClientCatalogProduct has potential **cost** for this user given some specific **defaultQuantity**.
+
+Lastly, each local store has a set of **GoalIngredients** (set on the /goals page in the app). These Goal Ingredients are composed of zero or more **ranges**, each of which has some **minimum** quantity and **maximum** quantity.
 
 ## List of Shortcomings
 
