@@ -1,65 +1,74 @@
-# baribuilder
-BariBuilder Monorepo
+&nbsp;
+<p align="center">
+  <a href="https://ghost.org">
+    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/BariBuilder%20Color%20Logo%20(300px).png?token=ADuF42a-pZ55hp3jrETBDAl8sHcVgFiTks5cUzoJwA%3D%3D" width="200px" alt="Ghost" />
+  </a>
+</p>
+<h3 align="center">Bariatric Vitamin Shopping Made Easy</h3>
+<p align="center">The easiest way for weight loss surgery (bariatric) patients to find the <u>correct</u>, <u>cheap</u> vitamins they need after surgery.</p>
+<hr />
+<p align="center">
+    <a href="https://baribuilder.com/">BariBuilder.com</a> |
+    <a href="https://ghost.org/features">Blog</a> |
+    <a href="https://baribuilder.com/about">About</a>
+</p>
 
-Production: https://baribuilder.com/
-Development: https://dev.baribuilder.com/
+<br>
 
+<p align="center">
+    <img src="https://s3.amazonaws.com/baribuilder/_external/baribuilder-quick-demo-low.gif" width="640" />
+</p>
+<p align="center">
+    See a full demo video <a href="https://www.youtube.com/watch?v=8SY00K2kn_o">here</a>.
+</p>
 
-## baribuilder-api (Graphcool)
+<br>
 
-`npm install -g graphcool`
+&nbsp;
 
-`graphcool init <project-name>`
+---
 
-`cd baribuilder-api && graphcool deploy`
+&nbsp;
 
-Don't forget to redownload the new schema if trying to create types.
+Our mission with BariBuilder is to spread **transparent** information about supplement products to you, **bariatric patients**, in order to improve your **medical outcomes** and lower your costs.
 
-`graphcool playground`
+Read more about our mission [here](https://baribuilder.com/about), and the problem facing bariatric patients [here](https://blog.baribuilder.com/wls-patients-need-personalized-bariatric-vitamin-regimens/).
 
-GraphQL Endpoint: https://api.graph.cool/simple/v1/cjlzqvawt1ib00107g3nfr04i
+&nbsp;
 
-## baribuilder-ui
+## Table of Contents
+1. [Table of Contents](#table-of-contents) (you are here)
+2. [Current Project Status](#current-project-status)
+3. [Technologies & API's Used](#technologies-&-apis-used)
+    1. [BariBuilder UI](#baribuilder-ui)
+    2. [BariBuilder API](#baribuilder-api)
+    3. [BariBuilder Aggregator](#baribuilder-aggregator)
+    4. [GraphQL Scripts](#graphql-scripts)
+4. [Domain Model](#domain-model)
+5. [List of Shortcomings](#list-of-shortcomings)
+6. [Looking Ahead](#looking-ahead)
+7. [Development Notes](#development-notes)
 
-### Managing GraphQL query typing
-If you don't have Apollo yet:
+## Current Project Status
 
-`npm install -g apollo@1.9.2`
+BariBuilder is live and publicly available for use in **public beta** form. You do not need an account to use the service at [baribuilder.com](https://baribuilder.com/). It is under active development by [@tadasant](https://github.com/tadasant).
 
-Download GraphQL schema:
+## Technologies & API's Used
 
-`apollo schema:download graphql.schema.json --endpoint=https://api.graph.cool/simple/v1/cjlzqvawt1ib00107g3nfr04i`
+This monorepo consists of four pieces:
+1) [BariBuilder UI](#baribuilder-ui): Front-end React app for BariBuilder.
+2) [BariBuilder API](#baribuilder-api): Back-end configuration for Graphcool.
+3) [BariBuilder Aggregator](#baribuilder-aggregator): Lambda functions to keep catalog up-to-date.
+4) [GraphQL Scripts](#graphql-scripts): Various data-wrangling utilities (i.e. SQL scripts analog)
 
-Generate GraphQL Schema TypeScript typings:
+### BariBuilder UI
 
-`apollo codegen:generate ./baribuilder-ui/src/typings/gql --schema ./graphql.schema.json --target typescript --outputFlat --addTypename --queries=./baribuilder-ui/src/**/*.ts* --clientSchema ./baribuilder-ui/src/state/client-schema.graphql`
+### BariBuilder API
 
-Troubleshooting:
-* `SyntaxError: Operation extraction from file baribuilder-ui/node_modules/browser-resolve/node_modules/resolve/test/precedence/bbb.js failed with 
-   Unexpected token, expected ";" (1:15)`
-    * Make sure you've set the `--queries` flag correctly - it needs to find queries for which to make types
-* `TypeError: Cannot read property 'getQueryType' of undefined`
-    * You might have the wrong path to your schema 
+### BariBuilder Aggregator
 
-### Shortcomings of Typescript for being a catchall
+### GraphQL Scripts
 
-No good way to track the extensions of remote schema (`state/resolvers.ts`)
+## Development Notes
 
-No good way to track cache redirect keys (`BuilderApp.tsx`)
-
-### Bugs / inconveniences to look into
-
-Problem: When making a local & remote combined query, if the remote bit is not in the cache, the result will return the remote bit and just the default value for the local bit.
-
-Solution: @client directive should result in ALWAYS cache hit for that piece of the query.
-
-Update: not entirely sure if this is a real problem or I was doing something wrong by relying on default resolvers too heavily
-
-## baribuilder-aggregator
-
-AWS Lambda function that should run periodically to keep the product catalog fresh
-
-## gql-scripts
-
-Utilities for performing operations on the database
-
+See [DEVELOPMENT.md](DEVELOPMENT.md)
