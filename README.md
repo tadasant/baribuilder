@@ -59,11 +59,11 @@ This monorepo consists of four pieces:
 1) [BariBuilder UI](#baribuilder-ui): Front-end React app for BariBuilder.
 2) [BariBuilder API](#baribuilder-api): Back-end configuration for Graphcool.
 3) [BariBuilder Aggregator](#baribuilder-aggregator): Lambda functions to keep catalog up-to-date.
-4) [GraphQL Scripts](#graphql-scripts): Various data-wrangling utilities (i.e. SQL scripts analog).
+4) [GraphQL Scripts](#graphql-scripts): Various database data-wrangling utilities (i.e. SQL scripts analog).
 
 ### BariBuilder UI
 
-The [baribuilder-ui](baribuilder-ui) directory contains the Single Page App (SPA) built with React. Notable technologies used:
+The [baribuilder-ui](baribuilder-ui) directory contains the Single Page App (SPA) built with React. Notable technologies used within the SPA:
 * [React](https://reactjs.org/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [GraphQL](https://graphql.org/)
@@ -72,7 +72,13 @@ The [baribuilder-ui](baribuilder-ui) directory contains the Single Page App (SPA
 * [styled-components](https://www.styled-components.com/)
 * [yarn](https://yarnpkg.com/en/)
 * [create-react-app](https://github.com/facebook/create-react-app)
+
+Other API's & SaaS's integrated:
 * Hosted on [Netlify](https://netlify.com/)
+* [Mixpanel](https://mixpanel.com/) for event-based analytics
+* [Segment](https://segment.com/) for managing events
+* [HotJar](https://www.hotjar.com/) for studying users, collecting feedback
+* Misc. tools: [Drift](https://www.drift.com/), [Mailchimp](https://mailchimp.com/), [Typeform](https://www.typeform.com/), [Facebook Pixel](https://www.facebook.com/business/learn/facebook-ads-pixel)
 
 ### BariBuilder API
 
