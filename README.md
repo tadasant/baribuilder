@@ -1,7 +1,7 @@
 &nbsp;
 <p align="center">
-  <a href="https://ghost.org">
-    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/BariBuilder%20Color%20Logo%20(300px).png?token=ADuF42a-pZ55hp3jrETBDAl8sHcVgFiTks5cUzoJwA%3D%3D" width="200px" alt="Ghost" />
+  <a href="https://baribuilder.com/">
+    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/BariBuilder%20Color%20Logo%20(300px).png?token=ADuF42a-pZ55hp3jrETBDAl8sHcVgFiTks5cUzoJwA%3D%3D" width="200px" alt="BariBuilder" />
   </a>
 </p>
 <h3 align="center">Bariatric Vitamin Shopping Made Easy</h3>
@@ -9,7 +9,7 @@
 <hr />
 <p align="center">
     <a href="https://baribuilder.com/">BariBuilder.com</a> |
-    <a href="https://ghost.org/features">Blog</a> |
+    <a href="https://blog.baribuilder.com/">Blog</a> |
     <a href="https://baribuilder.com/about">About</a>
 </p>
 
