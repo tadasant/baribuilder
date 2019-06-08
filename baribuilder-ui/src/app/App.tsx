@@ -21,7 +21,6 @@ import defaults from '../state/defaults';
 import resolvers from '../state/resolvers';
 import BuilderApp from './BuilderApp';
 import StBarbarasHospital from './custom/partners/StBarbarasHospital';
-import withDelayedPopupModal from './delayedpopup/withDelayedPopupModal';
 import BypassLanding from './landing/templates/BypassLanding';
 import SleeveLanding from './landing/templates/SleeveLanding';
 import StaticApp from './StaticApp';
@@ -102,4 +101,4 @@ class App extends Component {
   }
 }
 
-export default withDelayedPopupModal(App);
+export default App;
