@@ -1,10 +1,10 @@
 {
   "development": {
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "apiUrl": "https://baribuilder-blog.ghost.io",
+    "contentApiKey": "a5c66ccb88dba81024ec3a0c8e"
   },
   "production": {
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "apiUrl": "https://baribuilder-blog.ghost.io",
+    "contentApiKey": "a5c66ccb88dba81024ec3a0c8e"
   }
 }
