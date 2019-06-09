@@ -42,7 +42,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 <Link to="/">
                                     {site.logo ?
                                         <img className="site-logo" src={site.logo} alt={site.title} />
-                                        : <Img fixed={data.file.childImageSharp.fixed} alt={site.title} />
+                                        : "BariBuilder"
                                     }
                                 </Link>
                                 <p className="site-banner-desc">{site.description}</p>
@@ -106,13 +106,6 @@ const DefaultLayoutSettingsQuery = props => (
                     edges {
                         node {
                             ...GhostSettingsFields
-                        }
-                    }
-                }
-                file(relativePath: {eq: "ghost-icon.png"}) {
-                    childImageSharp {
-                        fixed(width: 30, height: 30) {
-                            ...GatsbyImageSharpFixed
                         }
                     }
                 }

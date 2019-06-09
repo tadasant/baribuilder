@@ -1,5 +1,4 @@
 # Netlify redirects file, edit with your domain
 # https://www.netlify.com/docs/redirects/
 
-https://gatsby-starter-ghost.netlify.com/*      https://gatsby.ghost.org/:splat    301!
-http://gatsby-starter-ghost.netlify.com/*       https://gatsby.ghost.org/:splat    301!
+https://condescending-keller-8431b5.netlify.com/*      https://baribuilder.com/:splat    301!

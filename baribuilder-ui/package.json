@@ -1,24 +1,16 @@
 {
-  "name": "gatsby-starter-ghost",
+  "name": "baribuilder-ui",
   "description": "A starter template to build lightning fast websites with Ghost and Gatsby",
-  "version": "1.0.0",
-  "license": "MIT",
-  "author": "Ghost Foundation",
-  "homepage": "https://docs.ghost.org/api/gatsby/",
+  "version": "0.2.0",
+  "author": "Tadas Antanavicius",
+  "homepage": "https://baribuilder.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tryghost/gatsby-starter-ghost.git"
+    "url": "git+https://github.com/tadasant/baribuilder.git"
   },
   "engines": {
     "node": ">= 8.9.0"
   },
-  "bugs": {
-    "url": "https://github.com/tryghost/gatsby-starter-ghost/issues"
-  },
-  "keywords": [
-    "gatsby",
-    "ghost"
-  ],
   "main": "n/a",
   "scripts": {
     "serve": "gatsby build && NODE_ENV=production gatsby serve",

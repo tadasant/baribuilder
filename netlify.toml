@@ -6,6 +6,9 @@
 #    that is where we will look for package.json/.nvmrc/etc not repo root!
 
 [build]
-  base    = "baribuilder-shop"
-  publish = "baribuilder-shop/build"
-  command = "yarn build"
+  base    = "baribuilder-ui"
+  publish = "baribuilder-ui/public/"
+  command = "gatsby build"
+
+[template]
+  incoming-hooks = ["Ghost"]
