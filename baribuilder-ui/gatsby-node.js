@@ -14,7 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
     */
     const createPosts = new Promise((resolve, reject) => {
         const postTemplate = path.resolve(`./src/templates/post.js`)
-        const indexTemplate = path.resolve(`./src/templates/index.js`)
+        const blogTemplate = path.resolve(`./src/templates/blog.js`)
         resolve(
             graphql(`
                 {
@@ -60,12 +60,12 @@ exports.createPages = ({ graphql, actions }) => {
                     createPage,
                     items: items,
                     itemsPerPage: config.postsPerPage,
-                    component: indexTemplate,
+                    component: blogTemplate,
                     pathPrefix: ({ pageNumber }) => {
                         if (pageNumber === 0) {
-                            return `/`
+                            return `/blog/`
                         } else {
-                            return `/page`
+                            return `/blog/page`
                         }
                     },
                 })
