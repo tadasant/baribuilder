@@ -6,7 +6,7 @@ import { Layout, PostCard, Pagination } from '../components/common'
 import { MetaData } from '../components/common/meta'
 
 /**
-* Author page (/author/:slug)
+* Author page (/blog/author/:slug)
 *
 * Loads all posts for the requested author incl. pagination.
 *

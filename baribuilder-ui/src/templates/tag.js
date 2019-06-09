@@ -6,7 +6,7 @@ import { Layout, PostCard, Pagination } from '../components/common'
 import { MetaData } from '../components/common/meta'
 
 /**
-* Tag page (/tag/:slug)
+* Tag page (/blog/tag/:slug)
 *
 * Loads all posts for the requested tag incl. pagination.
 *

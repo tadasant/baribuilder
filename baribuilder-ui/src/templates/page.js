@@ -7,7 +7,7 @@ import { Layout } from '../components/common'
 import { MetaData } from '../components/common/meta'
 
 /**
-* Single page (/:slug)
+* Single page (/blog/:slug)
 *
 * This file renders a single page and loads all the content.
 *

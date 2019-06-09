@@ -41,8 +41,8 @@ exports.createPages = ({ graphql, actions }) => {
 
                 items.forEach(({ node }) => {
                     // This part here defines, that our posts will use
-                    // a `/:slug/` permalink.
-                    node.url = `/${node.slug}/`
+                    // a `/blog/:slug/` permalink.
+                    node.url = `/blog/${node.slug}/`
 
                     createPage({
                         path: node.url,
@@ -112,8 +112,8 @@ exports.createPages = ({ graphql, actions }) => {
                     const numberOfPages = Math.ceil(totalPosts / postsPerPage)
 
                     // This part here defines, that our tag pages will use
-                    // a `/tag/:slug/` permalink.
-                    node.url = `/tag/${node.slug}/`
+                    // a `/blog/tag/:slug/` permalink.
+                    node.url = `/blog/tag/${node.slug}/`
 
                     Array.from({ length: numberOfPages }).forEach((_, i) => {
                         const currentPage = i + 1
@@ -185,7 +185,7 @@ exports.createPages = ({ graphql, actions }) => {
 
                     // This part here defines, that our author pages will use
                     // a `/author/:slug/` permalink.
-                    node.url = `/author/${node.slug}/`
+                    node.url = `/blog/author/${node.slug}/`
 
                     Array.from({ length: numberOfPages }).forEach((_, i) => {
                         const currentPage = i + 1
@@ -250,8 +250,8 @@ exports.createPages = ({ graphql, actions }) => {
 
                 items.forEach(({ node }) => {
                     // This part here defines, that our pages will use
-                    // a `/:slug/` permalink.
-                    node.url = `/${node.slug}/`
+                    // a `/blog/:slug/` permalink.
+                    node.url = `/blog/${node.slug}/`
 
                     createPage({
                         path: node.url,
