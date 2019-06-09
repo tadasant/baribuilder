@@ -662,10 +662,14 @@ h6 {
 /* ---------------------------------------------------------- */
 
 .site-head {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     color: #fff;
     background: var(--color-base);
+}
+
+.site-nav img {
+    max-height: 30px;
 }
 
 .site-nav-item {
@@ -723,7 +727,7 @@ h6 {
 
 .site-banner-desc {
     margin: 5px 0 0 0;
-    padding: 0;
+    padding: 5px 0 0 0;
     font-size: 1.6rem;
     line-height: 1.3em;
     opacity: 0.7;
@@ -733,11 +737,15 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 15px 0 0 0;
 }
 
 .site-nav-left {
     margin: 0 20px 0 -10px;
+    display: flex;
+}
+
+.site-nav-logo {
+    margin: 0 5px 0 5px;
 }
 
 .site-nav-right {
@@ -763,7 +771,7 @@ h6 {
 /* ---------------------------------------------------------- */
 
 .site-main {
-    padding: 4vw 0;
+    padding: 20px 0;
 }
 
 /* Index */
