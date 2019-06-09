@@ -766,7 +766,50 @@ h6 {
     padding: 4vw 0;
 }
 
-/* Index
+/* Index */
+/* ---------------------------------------------------------- */
+
+.resource-list {
+    display: grid;
+    justify-content: space-between;
+    grid-gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 680px) {
+    .resource-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.resource-card {
+    color: inherit;
+    text-decoration: none;
+}
+
+.resource-card:hover {
+    text-decoration: none;
+}
+
+.resource-card-title {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.resource-card-description {
+    font-size: 1.6rem;
+    line-height: 1.55em;
+}
+
+.resource-card-image {
+    margin: 0 0 10px 0;
+    width: auto;
+    height: 200px;
+    background: var(--color-secondary) no-repeat center center;
+    background-size: cover;
+}
+
+/* Blog
 /* ---------------------------------------------------------- */
 
 .post-feed {
