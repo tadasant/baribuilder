@@ -1,6 +1,6 @@
 {
   "name": "baribuilder-ui",
-  "description": "A starter template to build lightning fast websites with Ghost and Gatsby",
+  "description": "Entry point to the BariBuilder blog and suite of tooling for bariatric patients.",
   "version": "0.2.0",
   "author": "Tadas Antanavicius",
   "homepage": "https://baribuilder.com/",
