@@ -44,10 +44,12 @@ const DefaultLayout = props => {
                             {isHome ? (
                                 <div className="site-banner">
                                     <Link to="/">
-                                        {site.logo ? (
-                                            <img
-                                                className="site-logo"
-                                                src={site.logo}
+                                        {data.bannerLogo ? (
+                                            <Img
+                                                fixed={
+                                                    data.bannerLogo.childImageSharp
+                                                        .fixed
+                                                }
                                                 alt={site.title}
                                             />
                                         ) : (
@@ -63,8 +65,15 @@ const DefaultLayout = props => {
                                 <div className="site-nav-left">
                                     {!isHome ? (
                                         <Link to="/" className="site-nav-logo">
-                                            {data.logo ? (
-                                                <Img fixed={data.logo.childImageSharp.fixed} alt={site.title} />
+                                            {data.navLogo ? (
+                                                <Img
+                                                    fixed={
+                                                        data.navLogo
+                                                            .childImageSharp
+                                                            .fixed
+                                                    }
+                                                    alt={site.title}
+                                                />
                                             ) : (
                                                 "BariBuilder"
                                             )}
@@ -171,9 +180,16 @@ const DefaultLayoutSettingsQuery = props => (
                         }
                     }
                 }
-                logo: file(relativePath: { eq: "baribuilder-logo-white.png" }) {
+                navLogo: file(relativePath: { eq: "baribuilder-logo-white.png" }) {
                     childImageSharp {
                         fixed(height: 30) {
+                            ...GatsbyImageSharpFixed
+                        }
+                    }
+                }
+                bannerLogo: file(relativePath: { eq: "baribuilder-logo-white.png" }) {
+                    childImageSharp {
+                        fixed(height: 200) {
                             ...GatsbyImageSharpFixed
                         }
                     }
