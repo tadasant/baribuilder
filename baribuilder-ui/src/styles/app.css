@@ -783,12 +783,20 @@ h6 {
 }
 
 .resource-card {
+    display: flex;
+    justify-content: center;
+    
     color: inherit;
     text-decoration: none;
 }
 
 .resource-card:hover {
     text-decoration: none;
+}
+
+.resource-card-content {
+    width: min-content;
+    text-align: center;
 }
 
 .resource-card-title {
@@ -804,7 +812,6 @@ h6 {
 .resource-card-image {
     margin: 0 0 10px 0;
     width: auto;
-    height: 200px;
     background: var(--color-secondary) no-repeat center center;
     background-size: cover;
 }

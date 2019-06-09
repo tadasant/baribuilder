@@ -10,25 +10,42 @@ import { MetaData } from "../components/common/meta";
  * Displays a couple cards that serve as entrypoints to the blog and shopper app.
  *
  */
+
+const blogDescription =
+    "Read about topics related to life after bariatric surgery; everything from vitamins to lifestyle to complications.";
+
+const shopDescription =
+    "Use the calculator within our shopping website to comparison shop bariatric vitamin products.";
+
 const Index = ({ data, location }) => {
     return (
         <>
             <MetaData location={location} />
             <Layout isHome>
                 <div className="container">
-                    <p>TODO: Add some intro text here</p>
+                    <p>
+                        We're committed to providing you with the information
+                        and resources you need to make sure your journey after
+                        weight loss surgery is as smooth as can be. We work with
+                        surgeons, dietitians, and other medical professionals to
+                        put together educational - but still easily readable and
+                        digestible! - articles, and work with a team of software
+                        engineers to build useful tools that will make your life
+                        easier. Check them out below!
+                    </p>
+                    <hr />
                     <section className="resource-list">
                         <ResourceCard
                             img={data.blogImage.childImageSharp.fixed}
                             title="Blog"
-                            description="blogging desc"
-                            url="google.com"
+                            description={blogDescription}
+                            url="blog"
                         />
                         <ResourceCard
                             img={data.shopImage.childImageSharp.fixed}
                             title="Shop"
-                            description="shopping desc"
-                            url="google.com"
+                            description={shopDescription}
+                            url="https://shop.baribuilder.com/"
                         />
                     </section>
                 </div>
