@@ -2,3 +2,5 @@
 # https://www.netlify.com/docs/redirects/
 
 https://condescending-keller-8431b5.netlify.com/*      https://baribuilder.com/:splat    301!
+/about      https://shop.baribuilder.com/about      302!
+/terms-and-conditions      https://shop.baribuilder.com/terms-and-conditions      302!
