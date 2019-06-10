@@ -15,7 +15,6 @@ import {generateTrackNavClick} from '../../lib/analytics';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SEARCH_QUERY_QUERY} from '../catalog/queries';
-import {UndecoratedAnchor} from '../footer/ContactInformationPanel';
 import {media} from '../style/Core';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import SearchBox from './SearchBox';
