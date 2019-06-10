@@ -148,7 +148,15 @@ const DefaultLayout = props => {
                             </div>
                             <div className="site-foot-nav-right">
                                 <a
-                                    className="site-nav-item"
+                                    className="site-foot-nav-item"
+                                    href="http://eepurl.com/dHMECz"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Subscribe
+                                </a>
+                                <a
+                                    className="site-foot-nav-item"
                                     href="https://shop.baribuilder.com/terms-and-conditions"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -156,7 +164,7 @@ const DefaultLayout = props => {
                                     Terms & Conditions
                                 </a>
                                 <a
-                                    className="site-nav-item"
+                                    className="site-foot-nav-item"
                                     href="https://www.iubenda.com/privacy-policy/25172832"
                                     target="_blank"
                                     rel="noopener noreferrer"
