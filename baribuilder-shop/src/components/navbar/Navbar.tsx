@@ -78,7 +78,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
 
   const handleSelectBrowse = (event: MouseEvent<HTMLElement>) => {
     if (window.innerWidth < 1119 && window.location.pathname === '/') {
-      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a desktop/laptop computer.', {
+      toast.warn('Warning: BariBuilder Shop is not optimized for small screens. Consider using a desktop/laptop computer.', {
         autoClose: 10000,
       });
     }
@@ -88,7 +88,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
 
   const handleSelectGoals = () => {
     if (window.innerWidth < 1119 && window.location.pathname === '/') {
-      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a desktop/laptop computer.', {
+      toast.warn('Warning: BariBuilder Shop is not optimized for small screens. Consider using a desktop/laptop computer.', {
         autoClose: 10000,
       });
     }
@@ -115,8 +115,9 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   };
 
   const handleBlogClick = () => {
-    generateTrackNavClick('BariBuilder Blog')();
-    window.open('https://blog.baribuilder.com/', '_blank');
+    generateTrackNavClick('Blog nav')();
+    setMainMenuAnchorEl(null);
+    history.push('/blog');
   };
 
   const browseOptions = [
@@ -166,11 +167,11 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             </UndecoratedLink>
           </Grid>
           <Grid item>
-            <UndecoratedAnchor href='https://blog.baribuilder.com/' onClick={handleBlogClick}>
+            <UndecoratedLink to='/blog' onClick={handleBlogClick}>
               <WhiteNavButton fullWidth>
                 Blog
               </WhiteNavButton>
-            </UndecoratedAnchor>
+            </UndecoratedLink>
           </Grid>
           <Grid item>
             <WhiteNavButton fullWidth onClick={handleSelectBrowse}>

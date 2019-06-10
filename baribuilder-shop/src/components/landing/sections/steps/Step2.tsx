@@ -22,7 +22,7 @@ const FullWidthImg = styled.img`
 `;
 
 const instructionCopy = <span>You'll see options sorted by <u>real</u> cost to <u>you</u>.</span>;
-const subInstructionCopy = <span>BariBuilder does the math for you: no need for looking at prices, pill counts, or line by line ingredients.<br/><br/>It's all factored into the "<b>cost effectiveness rating</b>"</span>;
+const subInstructionCopy = <span>BariBuilder Shop does the math for you: no need for looking at prices, pill counts, or line by line ingredients.<br/><br/>It's all factored into the "<b>cost effectiveness rating</b>"</span>;
 
 // Desktop vs. tablet/mobile arrangements are very different
 const Step2 = () => (

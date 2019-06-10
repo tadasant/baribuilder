@@ -57,17 +57,17 @@ const AboutScreen: SFC = () => {
         </p>
         <p>
           <Body dark>
-          Our mission with BariBuilder is to <b>spread transparent information about supplement products to you, bariatric patients, in order to improve your medical outcomes and lower your costs</b>.
+          Our mission with BariBuilder is to <b>spread accurate, transparent information about the post-surgery bariatric life to you, bariatric patients, in order to improve your medical outcomes and lower your costs</b>.
           </Body>
         </p>
         <p>
           <Body dark>
-          As bariatric patients, you’re going to be dealing with supplementation every day for the rest of your life.  We believe that bariatric supplementation is challenging to navigate for any consumer.
+          As bariatric patients, you’re going to be dealing with various post-op considerations - supplementation, diet, etc. - every day for the rest of your life.  We believe that some of this can be challenging to navigate.
           </Body>
         </p>
         <p>
           <Body dark>
-          There are at least three major issues with bariatric patient supplementation today:
+          One of our focuses, specifically with BariBuilder Shop, is bariatric supplementation. There are at least three major issues with bariatric patient supplementation today:
           </Body>
         </p>
         <br/>
@@ -119,7 +119,7 @@ const AboutScreen: SFC = () => {
         </p>
         <p>
           <Body dark>
-          As <a href='https://blog.baribuilder.com/wls-patients-need-personalized-bariatric-vitamin-regimens/' target='_blank' rel='noopener'>we’ve written about in more depth</a>, a “one size fits all” regimen like this is almost always a mistake.
+          As <a href='https://baribuilder.com/blog/wls-patients-need-personalized-bariatric-vitamin-regimens/' target='_blank' rel='noopener'>we’ve written about in more depth</a>, a “one size fits all” regimen like this is almost always a mistake.
           </Body>
         </p>
         <p>
@@ -152,7 +152,7 @@ const AboutScreen: SFC = () => {
         </p>
         <p>
           <Body dark>
-          So we shifted our focus to BariBuilder. BariBuilder was born from listening to patients’ wants and needs: we continue to listen to patients, and will eagerly respond to your feedback at <a href='mailto:feedback@baribuilder.com'>feedback@baribuilder.com</a>.
+          So we shifted our focus to BariBuilder Shop. BariBuilder was born from listening to patients’ wants and needs: we continue to listen to patients, and will eagerly respond to your feedback at <a href='mailto:feedback@baribuilder.com'>feedback@baribuilder.com</a>.
           </Body>
         </p>
         <p>

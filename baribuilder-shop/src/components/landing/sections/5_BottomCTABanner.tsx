@@ -38,7 +38,7 @@ class BottomCTABanner extends Component<{}> {
 
   handleCTAClick() {
     if (window.innerWidth < 1119) {
-      toast.warn('Warning: BariBuilder is not optimized for small screens. Consider using a desktop/laptop computer.', {
+      toast.warn('Warning: BariBuilder Shop is not optimized for small screens. Consider using a desktop/laptop computer.', {
         autoClose: 10000,
       });
     }

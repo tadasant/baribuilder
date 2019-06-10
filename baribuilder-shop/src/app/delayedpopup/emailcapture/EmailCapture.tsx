@@ -33,7 +33,7 @@ const EmailCapture: FunctionComponent<IProps> = props => {
           <Grid item xs={12}>
             <Subcaption dark>
               <u>Why are we asking for your email?</u><br/><br/>
-              We're working on BariBuilder, a free web application. We rarely send emails: only when we have a major
+              We're working on BariBuilder Shop, a free web application. We rarely send emails: only when we have a major
               announcement or send out opportunities to provide feedback - sometimes we'll offer an Amazon Gift Card in
               return.
             </Subcaption>

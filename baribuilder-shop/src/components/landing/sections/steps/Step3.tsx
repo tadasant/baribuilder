@@ -22,7 +22,7 @@ const FullWidthImg = styled.img`
 `;
 
 const instructionCopy = 'Build your regimen, piece by piece.';
-const subInstructionCopy = <span>BariBuilder generates a personalized "<b>My Regimen Facts</b>" sheet as you make changes.</span>;
+const subInstructionCopy = <span>BariBuilder Shop generates a personalized "<b>My Regimen Facts</b>" sheet as you make changes.</span>;
 
 // Desktop vs. tablet/mobile arrangements are very different
 const Step3: SFC = () => (

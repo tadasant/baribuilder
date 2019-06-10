@@ -7,7 +7,7 @@ import CurrentRegimenCost from '../catalog/children/myRegimen/CurrentRegimenCost
 import RegimenFacts from '../catalog/children/myRegimen/RegimenFacts';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import {CenteredTextGrid, EmptyRow} from '../style/Layout';
-import {Caption, Header} from '../style/Typography';
+import {Header} from '../style/Typography';
 import SelectedProductListings from './children/SelectedProductListings';
 import SharingURLPanel from './children/SharingURLPanel';
 
@@ -27,14 +27,6 @@ const PurchaseScreenPure: SFC = () => {
       <SharingURLPanel vStickyOffset='0'/>
       <EmptyRow/>
       <Hidden mdDown>
-        <Grid item lg={1}/>
-        <CenteredTextGrid item lg={10}>
-          <Caption dark>
-            As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
-          </Caption>
-        </CenteredTextGrid>
-        <Grid item lg={1}/>
-        <EmptyRow/>
         <Grid item lg={1}/>
         <Grid container item lg={4} alignContent='flex-start'>
           <SelectedProductListings/>
@@ -68,14 +60,6 @@ const PurchaseScreenPure: SFC = () => {
       <Grid item xs={1}/>
       <EmptyRow/>
       <Hidden lgUp>
-        <Grid item xs={1}/>
-        <CenteredTextGrid item xs={10}>
-          <Caption dark>
-            As an Amazon Associate, BariBuilder.com earns from qualifying purchases.
-          </Caption>
-        </CenteredTextGrid>
-        <Grid item xs={1}/>
-        <EmptyRow/>
         <Grid item xs={1}/>
         <Grid container item xs={10} alignContent='flex-start'>
           <SelectedProductListings/>
