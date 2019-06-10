@@ -143,38 +143,48 @@ const DefaultLayout = props => {
                     {/* The footer at the very bottom of the screen */}
                     <footer className="site-foot">
                         <div className="site-foot-nav container">
-                            <div className="site-foot-nav-left">
-                                <Link to="/">{site.title}</Link> © 2019
+                            <div className="site-foot-disclaimer">
+                                <p>
+                                    The information on this website is not
+                                    medical advice. Please consult your medical
+                                    provider before making any changes related
+                                    to your health.
+                                </p>
                             </div>
-                            <div className="site-foot-nav-right">
-                                <a
-                                    className="site-foot-nav-item"
-                                    href="http://eepurl.com/dHMECz"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Subscribe
-                                </a>
-                                <a
-                                    className="site-foot-nav-item"
-                                    href="https://shop.baribuilder.com/terms-and-conditions"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Terms & Conditions
-                                </a>
-                                <a
-                                    className="site-foot-nav-item"
-                                    href="https://www.iubenda.com/privacy-policy/25172832"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Privacy Policy
-                                </a>
-                                <Navigation
-                                    data={site.navigation}
-                                    navClass="site-foot-nav-item"
-                                />
+                            <div className="site-foot-bottom">
+                                <div className="site-foot-nav-left">
+                                    <Link to="/">{site.title}</Link> © 2019
+                                </div>
+                                <div className="site-foot-nav-right">
+                                    <a
+                                        className="site-foot-nav-item"
+                                        href="http://eepurl.com/dHMECz"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Subscribe
+                                    </a>
+                                    <a
+                                        className="site-foot-nav-item"
+                                        href="https://shop.baribuilder.com/terms-and-conditions"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Terms & Conditions
+                                    </a>
+                                    <a
+                                        className="site-foot-nav-item"
+                                        href="https://www.iubenda.com/privacy-policy/25172832"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Privacy Policy
+                                    </a>
+                                    <Navigation
+                                        data={site.navigation}
+                                        navClass="site-foot-nav-item"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </footer>

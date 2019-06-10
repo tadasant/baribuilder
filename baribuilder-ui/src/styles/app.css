@@ -1052,10 +1052,23 @@ h6 {
     background: var(--color-base);
 }
 
-.site-foot-nav {
+.site-foot-disclaimer {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.site-foot-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+}
+
+.site-foot-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .site-foot-nav a {
