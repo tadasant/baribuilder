@@ -47,8 +47,8 @@ const DefaultLayout = props => {
                                         {data.bannerLogo ? (
                                             <Img
                                                 fixed={
-                                                    data.bannerLogo.childImageSharp
-                                                        .fixed
+                                                    data.bannerLogo
+                                                        .childImageSharp.fixed
                                                 }
                                                 alt={site.title}
                                             />
@@ -147,6 +147,22 @@ const DefaultLayout = props => {
                                 <Link to="/">{site.title}</Link> © 2019
                             </div>
                             <div className="site-foot-nav-right">
+                                <a
+                                    className="site-nav-item"
+                                    href="https://shop.baribuilder.com/terms-and-conditions"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Terms & Conditions
+                                </a>
+                                <a
+                                    className="site-nav-item"
+                                    href="https://www.iubenda.com/privacy-policy/25172832"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Privacy Policy
+                                </a>
                                 <Navigation
                                     data={site.navigation}
                                     navClass="site-foot-nav-item"
@@ -180,14 +196,18 @@ const DefaultLayoutSettingsQuery = props => (
                         }
                     }
                 }
-                navLogo: file(relativePath: { eq: "baribuilder-logo-white.png" }) {
+                navLogo: file(
+                    relativePath: { eq: "baribuilder-logo-white.png" }
+                ) {
                     childImageSharp {
                         fixed(height: 30) {
                             ...GatsbyImageSharpFixed
                         }
                     }
                 }
-                bannerLogo: file(relativePath: { eq: "baribuilder-logo-white.png" }) {
+                bannerLogo: file(
+                    relativePath: { eq: "baribuilder-logo-white.png" }
+                ) {
                     childImageSharp {
                         fixed(height: 200) {
                             ...GatsbyImageSharpFixed
