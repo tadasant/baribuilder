@@ -1,27 +1,28 @@
-import {Hidden, Menu, MenuItem} from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import * as React from 'react';
-import {MouseEvent, SFC} from 'react';
-import {ChildDataProps, graphql} from 'react-apollo';
-import {RouteComponentProps, withRouter} from 'react-router';
-import {toast} from 'react-toastify';
-import {compose, withState} from 'recompose';
-import styled from 'styled-components';
-import Sketch from '../../app/style/SketchVariables';
-import FbSmallIcon from '../../assets/fb/fb-small.svg';
-import MenuBarsIcon from '../../assets/icon/bars.svg';
-import {generateTrackNavClick} from '../../lib/analytics';
-import {fixedWidthImage} from '../../lib/imageKitHelpers';
-import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
-import {SEARCH_QUERY_QUERY} from '../catalog/queries';
-import {UndecoratedAnchor } from '../footer/ContactInformationPanel';
-import {media} from '../style/Core';
-import {UndecoratedLink} from '../style/CustomMaterial';
-import SearchBox from './SearchBox';
+import { Hidden, Menu, MenuItem } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import * as React from "react";
+import { MouseEvent, SFC } from "react";
+import { ChildDataProps, graphql } from "react-apollo";
+import { RouteComponentProps, withRouter } from "react-router";
+import { toast } from "react-toastify";
+import { compose, withState } from "recompose";
+import styled from "styled-components";
+import Sketch from "../../app/style/SketchVariables";
+import FbSmallIcon from "../../assets/fb/fb-small.svg";
+import MenuBarsIcon from "../../assets/icon/bars.svg";
+import { generateTrackNavClick } from "../../lib/analytics";
+import { fixedWidthImage } from "../../lib/imageKitHelpers";
+import { GetSearchQuery } from "../../typings/gql/GetSearchQuery";
+import { SEARCH_QUERY_QUERY } from "../catalog/queries";
+import { UndecoratedAnchor } from "../footer/ContactInformationPanel";
+import { media } from "../style/Core";
+import { UndecoratedLink } from "../style/CustomMaterial";
+import SearchBox from "./SearchBox";
 
-const logoImgSrc = 'https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png';
-export const navbarHeight = '64px';
+const logoImgSrc =
+  "https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png";
+export const navbarHeight = "64px";
 
 type QueryOutputProps = ChildDataProps<{}, GetSearchQuery>;
 
@@ -56,7 +57,7 @@ const MobileNavIconImg = styled.img`
 const FbIconImg = styled.img`
   cursor: pointer;
   max-height: 36px;
-  
+
   ${media.tablet`
     max-height: 48px;
   `}
@@ -73,34 +74,48 @@ interface IPropsState {
   setSecondaryMenuAnchorEl: (el: HTMLElement | null) => HTMLElement | null;
 }
 
-const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({location, history, data: {searchQuery}, mainMenuAnchorEl, setMainMenuAnchorEl, secondaryMenuAnchorEl, setSecondaryMenuAnchorEl}) => {
-  const showCheckout = location.pathname.startsWith('/browse');
+const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
+  location,
+  history,
+  data: { searchQuery },
+  mainMenuAnchorEl,
+  setMainMenuAnchorEl,
+  secondaryMenuAnchorEl,
+  setSecondaryMenuAnchorEl
+}) => {
+  const showCheckout = location.pathname.startsWith("/browse");
 
   const handleSelectBrowse = (event: MouseEvent<HTMLElement>) => {
-    if (window.innerWidth < 1119 && window.location.pathname === '/') {
-      toast.warn('Warning: BariBuilder Shop is not optimized for small screens. Consider using a desktop/laptop computer.', {
-        autoClose: 10000,
-      });
+    if (window.innerWidth < 1119 && window.location.pathname === "/") {
+      toast.warn(
+        "Warning: BariBuilder Shop is not optimized for small screens. Consider using a desktop/laptop computer.",
+        {
+          autoClose: 10000
+        }
+      );
     }
-    generateTrackNavClick('Browse nav')();
+    generateTrackNavClick("Browse nav")();
     setSecondaryMenuAnchorEl(event.currentTarget);
   };
 
   const handleSelectGoals = () => {
-    if (window.innerWidth < 1119 && window.location.pathname === '/') {
-      toast.warn('Warning: BariBuilder Shop is not optimized for small screens. Consider using a desktop/laptop computer.', {
-        autoClose: 10000,
-      });
+    if (window.innerWidth < 1119 && window.location.pathname === "/") {
+      toast.warn(
+        "Warning: BariBuilder Shop is not optimized for small screens. Consider using a desktop/laptop computer.",
+        {
+          autoClose: 10000
+        }
+      );
     }
-    generateTrackNavClick('Goals nav')();
+    generateTrackNavClick("Goals nav")();
     setMainMenuAnchorEl(null);
-    history.push('/goals');
+    history.push("/goals");
   };
 
   const handleSelectAbout = () => {
-    generateTrackNavClick('About nav')();
+    generateTrackNavClick("About nav")();
     setMainMenuAnchorEl(null);
-    history.push('/about');
+    history.push("/about");
   };
 
   const generateHandleSelectNav = (path: string) => () => {
@@ -110,68 +125,90 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   };
 
   const handleFacebookClick = () => {
-    generateTrackNavClick('Facebook group')();
-    window.open('https://www.facebook.com/groups/671563826519599/', '_blank');
+    generateTrackNavClick("Facebook group")();
+    window.open("https://www.facebook.com/groups/671563826519599/", "_blank");
   };
 
   const handleBlogClick = () => {
-    generateTrackNavClick('Blog nav')();
+    generateTrackNavClick("Blog nav")();
     setMainMenuAnchorEl(null);
-    history.push('/blog');
+    history.push("/blog");
   };
 
   const browseOptions = [
-    <MenuItem key='all-products' onClick={generateHandleSelectNav('/browse/all_products')}>All Products</MenuItem>,
-    <MenuItem key='bypass' onClick={generateHandleSelectNav('/bypass')}>Bypass (RNY)</MenuItem>,
-    <MenuItem key='sleeve' onClick={generateHandleSelectNav('/sleeve')}>Sleeve (VSG)</MenuItem>
+    <MenuItem
+      key="all-products"
+      onClick={generateHandleSelectNav("/browse/all_products")}
+    >
+      All Products
+    </MenuItem>,
+    <MenuItem key="bypass" onClick={generateHandleSelectNav("/bypass")}>
+      Bypass (RNY)
+    </MenuItem>,
+    <MenuItem key="sleeve" onClick={generateHandleSelectNav("/sleeve")}>
+      Sleeve (VSG)
+    </MenuItem>
   ];
 
   return (
     <GridWithRaisedBackground container>
       <FullHeightGrid item xs={6} lg={3} md={4}>
-        <UndecoratedAnchor href='https://baribuilder.com/' rel='noopener nofollow'>
-          <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo' onClick={generateTrackNavClick('Header image')}/>
+        <UndecoratedAnchor
+          href="https://baribuilder.com/"
+          rel="noopener nofollow"
+        >
+          <PaddedImg
+            src={fixedWidthImage(logoImgSrc, "400px")}
+            alt="BariBuilder Logo"
+            onClick={generateTrackNavClick("Header image")}
+          />
         </UndecoratedAnchor>
       </FullHeightGrid>
       <Hidden mdDown>
-        <Grid item lg={3} container alignItems='center'>
-          <SearchBox key={searchQuery ? searchQuery.value : ''}/>
+        <Grid item lg={3} container alignItems="center">
+          <SearchBox key={searchQuery ? searchQuery.value : ""} />
         </Grid>
       </Hidden>
-      <NavigationGrid item xs={6} md={8} lg={6} container alignItems='center' justify='flex-end' spacing={16}>
+      <NavigationGrid
+        item
+        xs={6}
+        md={8}
+        lg={6}
+        container
+        alignItems="center"
+        justify="flex-end"
+        spacing={16}
+      >
         <Grid item>
-          {showCheckout // spacing doesn't work well with the addition of checkout
-            ? null
-            : <FbIconImg
-              src={FbSmallIcon}
-              onClick={handleFacebookClick}
-            />
-          }
+          {showCheckout ? null : ( // spacing doesn't work well with the addition of checkout
+            <FbIconImg src={FbSmallIcon} onClick={handleFacebookClick} />
+          )}
         </Grid>
         <Hidden mdDown>
-          {showCheckout
-            ? (
-              <Grid item>
-                <UndecoratedLink to='/purchase' onClick={generateTrackNavClick('Checkout nav')}>
-                  <Button color='primary' variant='contained'>Checkout</Button>
-                </UndecoratedLink>
-              </Grid>
-            )
-            : null
-          }
+          {showCheckout ? (
+            <Grid item>
+              <UndecoratedLink
+                to="/purchase"
+                onClick={generateTrackNavClick("Checkout nav")}
+              >
+                <Button color="primary" variant="contained">
+                  Checkout
+                </Button>
+              </UndecoratedLink>
+            </Grid>
+          ) : null}
           <Grid item>
-            <UndecoratedLink to='/about' onClick={handleSelectAbout}>
-              <WhiteNavButton fullWidth>
-                About
-              </WhiteNavButton>
+            <UndecoratedLink to="/about" onClick={handleSelectAbout}>
+              <WhiteNavButton fullWidth>About</WhiteNavButton>
             </UndecoratedLink>
           </Grid>
           <Grid item>
-            <UndecoratedLink to='/blog' onClick={handleBlogClick}>
-              <WhiteNavButton fullWidth>
-                Blog
-              </WhiteNavButton>
-            </UndecoratedLink>
+            <UndecoratedAnchor
+              href="https:/baribuilder.com/blog"
+              rel="noopener nofollow"
+            >
+              <WhiteNavButton fullWidth>Blog</WhiteNavButton>
+            </UndecoratedAnchor>
           </Grid>
           <Grid item>
             <WhiteNavButton fullWidth onClick={handleSelectBrowse}>
@@ -183,21 +220,19 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             open={Boolean(secondaryMenuAnchorEl)}
             onClose={() => setSecondaryMenuAnchorEl(null)}
             anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
+              vertical: "bottom",
+              horizontal: "center"
             }}
             transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
+              vertical: "top",
+              horizontal: "center"
             }}
           >
             {browseOptions}
           </Menu>
           <Grid item>
-            <UndecoratedLink to='/goals' onClick={handleSelectGoals}>
-              <WhiteNavButton fullWidth>
-                Goals
-              </WhiteNavButton>
+            <UndecoratedLink to="/goals" onClick={handleSelectGoals}>
+              <WhiteNavButton fullWidth>Goals</WhiteNavButton>
             </UndecoratedLink>
           </Grid>
         </Hidden>
@@ -212,8 +247,8 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
               open={Boolean(mainMenuAnchorEl)}
               onClose={() => setMainMenuAnchorEl(null)}
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
+                vertical: "top",
+                horizontal: "right"
               }}
             >
               <MenuItem onClick={handleSelectBrowse}>Browse</MenuItem>
@@ -226,12 +261,12 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
               open={Boolean(secondaryMenuAnchorEl)}
               onClose={() => setSecondaryMenuAnchorEl(null)}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left"
               }}
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right"
               }}
             >
               {browseOptions}
@@ -240,24 +275,25 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
         </Hidden>
       </NavigationGrid>
     </GridWithRaisedBackground>
-  )
+  );
 };
 
 const withData = graphql<{}, GetSearchQuery>(SEARCH_QUERY_QUERY);
 
 const enhance = compose<QueryOutputProps & RouteComponentProps, {}>(
-  withState<{}, HTMLElement | null, 'mainMenuAnchorEl', 'setMainMenuAnchorEl'>(
-    'mainMenuAnchorEl',
-    'setMainMenuAnchorEl',
-    null,
+  withState<{}, HTMLElement | null, "mainMenuAnchorEl", "setMainMenuAnchorEl">(
+    "mainMenuAnchorEl",
+    "setMainMenuAnchorEl",
+    null
   ),
-  withState<{}, HTMLElement | null, 'secondaryMenuAnchorEl', 'setSecondaryMenuAnchorEl'>(
-    'secondaryMenuAnchorEl',
-    'setSecondaryMenuAnchorEl',
-    null,
-  ),
+  withState<
+    {},
+    HTMLElement | null,
+    "secondaryMenuAnchorEl",
+    "setSecondaryMenuAnchorEl"
+  >("secondaryMenuAnchorEl", "setSecondaryMenuAnchorEl", null),
   withData,
-  withRouter,
+  withRouter
 );
 
 export default enhance(NavbarPure);
