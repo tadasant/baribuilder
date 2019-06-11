@@ -129,8 +129,8 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   return (
     <GridWithRaisedBackground container>
       <FullHeightGrid item xs={6} lg={3} md={4}>
-        <UndecoratedAnchor href='https://baribuilder.com/' rel='noopener nofollow' onClick={generateTrackNavClick('Header image')}>
-          <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
+        <UndecoratedAnchor href='https://baribuilder.com/' rel='noopener nofollow'>
+          <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo' onClick={generateTrackNavClick('Header image')}/>
         </UndecoratedAnchor>
       </FullHeightGrid>
       <Hidden mdDown>
