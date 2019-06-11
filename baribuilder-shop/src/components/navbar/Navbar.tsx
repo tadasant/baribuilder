@@ -15,6 +15,7 @@ import {generateTrackNavClick} from '../../lib/analytics';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SEARCH_QUERY_QUERY} from '../catalog/queries';
+import {UndecoratedAnchor } from '../footer/ContactInformationPanel';
 import {media} from '../style/Core';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import SearchBox from './SearchBox';
@@ -128,9 +129,9 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   return (
     <GridWithRaisedBackground container>
       <FullHeightGrid item xs={6} lg={3} md={4}>
-        <UndecoratedLink to='/' onClick={generateTrackNavClick('Header image')}>
+        <UndecoratedAnchor href='https://baribuilder.com/' rel='noopener nofollow' onClick={generateTrackNavClick('Header image')}>
           <PaddedImg src={fixedWidthImage(logoImgSrc, '400px')} alt='BariBuilder Logo'/>
-        </UndecoratedLink>
+        </UndecoratedAnchor>
       </FullHeightGrid>
       <Hidden mdDown>
         <Grid item lg={3} container alignItems='center'>
