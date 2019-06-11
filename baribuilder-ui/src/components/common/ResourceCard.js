@@ -20,7 +20,6 @@ const ResourceCard = ({ title, img, description, url }) => {
             <a
                 className="resource-card"
                 href={url}
-                target="_blank"
                 rel="noopener noreferrer"
             >
                 {linkContent}
