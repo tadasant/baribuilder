@@ -227,7 +227,7 @@ const DefaultLayoutSettingsQuery = props => (
                     relativePath: { eq: "baribuilder-logo-white.png" }
                 ) {
                     childImageSharp {
-                        fixed(height: 200) {
+                        fixed(height: 60) {
                             ...GatsbyImageSharpFixed
                         }
                     }
