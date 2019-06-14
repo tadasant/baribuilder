@@ -180,5 +180,11 @@ module.exports = {
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-force-trailing-slashes`,
         `gatsby-plugin-offline`,
+        {
+            resolve: 'gatsby-plugin-segment',
+            options: {
+              writeKey: '2HIfcHZKvGah4QgZJqdrTrCse8Z8hfqv'
+            }
+          }
     ],
 }
