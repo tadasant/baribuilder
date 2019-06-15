@@ -28,9 +28,6 @@ const DefaultLayout = props => {
         ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
         : null;
 
-    // Fire analytics event at every screen
-    analytics.page();
-
     return (
         <>
             <Helmet>

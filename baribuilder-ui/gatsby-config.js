@@ -181,10 +181,13 @@ module.exports = {
         `gatsby-plugin-force-trailing-slashes`,
         `gatsby-plugin-offline`,
         {
-            resolve: 'gatsby-plugin-segment',
+            // https://github.com/benjaminhoffman/gatsby-plugin-segment-js
+            resolve: `gatsby-plugin-segment-js`,
             options: {
-              writeKey: '2HIfcHZKvGah4QgZJqdrTrCse8Z8hfqv'
+                prodKey: `2HIfcHZKvGah4QgZJqdrTrCse8Z8hfqv`,
+                // devKey: `SEGMENT_DEV_WRITE_KEY`,
+                trackPage: true
             }
-          }
+        }
     ],
 }
