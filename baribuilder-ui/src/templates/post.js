@@ -8,6 +8,7 @@ import { MetaData } from "../components/common/meta";
 import AuthorCard from "../components/common/AuthorCard";
 
 import styled from "styled-components";
+import medicallyReviewed from "../utils/medicallyReviewed";
 
 const AuthorFooter = styled.footer``;
 
@@ -42,11 +43,21 @@ const Post = ({ data, location }) => {
 								className="content-body load-external-scripts"
 								dangerouslySetInnerHTML={{ __html: post.html }}
 							/>
-							{post.authors.map(author => (
-								<AuthorFooter key={author.slug}>
-									<AuthorCard author={author} />
-								</AuthorFooter>
-							))}
+							{post.authors.map(author => {
+								// hack for medical reviewers -- could eventually integrate into custom CMS
+								let role = "Author";
+								if (
+									post.slug in medicallyReviewed &&
+									medicallyReviewed[post.slug].includes(author.slug)
+								) {
+									role = "Medical Reviewer";
+								}
+								return (
+									<AuthorFooter key={author.slug}>
+										<AuthorCard author={author} role={role} />
+									</AuthorFooter>
+								);
+							})}
 						</section>
 					</article>
 				</div>

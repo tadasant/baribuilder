@@ -39,8 +39,7 @@ const RoleText = styled.p`
 
 const ContentSection = styled.section``;
 
-const AuthorCard = props => {
-	const { author } = props;
+const AuthorCard = ({ author, role }) => {
 	const authorPageUrl = `/blog/author/${author.slug}`;
 	return (
 		<ContainerSection>
@@ -53,7 +52,7 @@ const AuthorCard = props => {
 				<Link to={authorPageUrl}>
 					<NameHeader>{author.name}</NameHeader>
 				</Link>
-				<RoleText>{props.role || "Author"}</RoleText>
+				<RoleText>{role}</RoleText>
 				<BioText>{author.bio}</BioText>
 			</ContentSection>
 		</ContainerSection>
@@ -67,7 +66,7 @@ AuthorCard.propTypes = {
 		bio: PropTypes.string,
 		profile_image: PropTypes.string
 	}).isRequired,
-	role: PropTypes.string
+	role: PropTypes.string.isRequired
 };
 
 export default AuthorCard;

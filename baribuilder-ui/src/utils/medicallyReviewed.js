@@ -1,2 +1,4 @@
 // Post slugs exported here will be displayed as medically reviewed by Dr. G
-module.exports = ['wls-patients-need-personalized-bariatric-vitamin-regimens'];
+module.exports = {
+	"gastric-bypass-dumping-syndrome": ["gintas"]
+};
