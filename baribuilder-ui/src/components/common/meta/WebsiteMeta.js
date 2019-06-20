@@ -34,14 +34,11 @@ const WebsiteMeta = ({
 		data.description ||
 		config.siteDescriptionMeta ||
 		settings.description;
-	title = `${title || data.meta_title || data.name || data.title} - ${
-		settings.title
-	}`;
 
 	return (
 		<>
 			<Helmet>
-				<title>{title}</title>
+				<title>{settings.title}</title>
 				<meta name="description" content={description} />
 				<link rel="canonical" href={canonical} />
 				<meta property="og:site_name" content={settings.title} />
