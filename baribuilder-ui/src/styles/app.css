@@ -656,6 +656,7 @@ figcaption {
 	margin: 0.4em 0 1.6em;
 	font-size: 2.8rem;
 	font-weight: 700;
+	text-align: center;
 }
 
 .content-body pre {
