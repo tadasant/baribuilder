@@ -8,7 +8,7 @@
 <p align="center">The easiest way for weight loss surgery (bariatric) patients to find the <u>correct</u>, <u>cheap</u> vitamins they need after surgery.</p>
 <hr />
 <p align="center">
-    <a href="https://shop.baribuilder.com/">shop.BariBuilder.com</a> |
+    <a href="https://shop.baribuilder.com/">Webapp</a> |
     <a href="https://baribuilder.com/blog">Blog</a> |
     <a href="https://baribuilder.com/about">About</a>
 </p>
