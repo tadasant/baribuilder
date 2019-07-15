@@ -3,5 +3,6 @@ module.exports = {
 	"gastric-bypass-dumping-syndrome": ["gintas"],
 	"gastric-bypass-pre-op-diet": ["gintas"],
 	"gastric-bypass-and-diabetes": ["gintas"],
-	"gastric-sleeve-and-alcohol": ["gintas"]
+	"gastric-sleeve-and-alcohol": ["gintas"],
+	"pregnancy-after-gastric-sleeve-surgery": ["gintas"],
 };
