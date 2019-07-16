@@ -1,24 +1,24 @@
-import { Hidden, Menu, MenuItem } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import * as React from "react";
-import { MouseEvent, SFC } from "react";
-import { ChildDataProps, graphql } from "react-apollo";
-import { RouteComponentProps, withRouter } from "react-router";
-import { toast } from "react-toastify";
-import { compose, withState } from "recompose";
-import styled from "styled-components";
-import Sketch from "../../app/style/SketchVariables";
-import FbSmallIcon from "../../assets/fb/fb-small.svg";
-import MenuBarsIcon from "../../assets/icon/bars.svg";
-import { generateTrackNavClick } from "../../lib/analytics";
-import { fixedWidthImage } from "../../lib/imageKitHelpers";
-import { GetSearchQuery } from "../../typings/gql/GetSearchQuery";
-import { SEARCH_QUERY_QUERY } from "../catalog/queries";
-import { UndecoratedAnchor } from "../footer/ContactInformationPanel";
-import { media } from "../style/Core";
-import { UndecoratedLink } from "../style/CustomMaterial";
-import SearchBox from "./SearchBox";
+import {Hidden, Menu, MenuItem} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import * as React from 'react';
+import {MouseEvent, SFC} from 'react';
+import {ChildDataProps, graphql} from 'react-apollo';
+import {RouteComponentProps, withRouter} from 'react-router';
+import {toast} from 'react-toastify';
+import {compose, withState} from 'recompose';
+import styled from 'styled-components';
+import Sketch from '../../app/style/SketchVariables';
+import FbSmallIcon from '../../assets/fb/fb-small.svg';
+import MenuBarsIcon from '../../assets/icon/bars.svg';
+import {generateTrackNavClick} from '../../lib/analytics';
+import {fixedWidthImage} from '../../lib/imageKitHelpers';
+import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
+import {SEARCH_QUERY_QUERY} from '../catalog/queries';
+import {UndecoratedAnchor} from '../footer/ContactInformationPanel';
+import {media} from '../style/Core';
+import {UndecoratedLink} from '../style/CustomMaterial';
+import SearchBox from './SearchBox';
 
 const logoImgSrc =
   "https://ik.imagekit.io/vitaglab/baribuilder-logo-beta-white_ry91QeWtQ.png";
@@ -132,7 +132,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   const handleBlogClick = () => {
     generateTrackNavClick("Blog nav")();
     setMainMenuAnchorEl(null);
-    history.push("/blog");
+    history.push('https://baribuilder.com/blog');
   };
 
   const browseOptions = [

@@ -58,7 +58,7 @@ const MetaData = ({
     } else {
         title = title || config.siteTitleMeta || settings.title
         description = description || config.siteDescriptionMeta || settings.description
-        image = image || settings.cover_image || null
+        image = image || settings.logo || null
 
         image = image ? url.resolve(config.siteUrl, image) : null
 
@@ -106,6 +106,7 @@ const MetaDataQuery = props => (
                         node {
                             title
                             description
+														logo
                         }
                     }
                 }

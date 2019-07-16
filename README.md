@@ -1,15 +1,15 @@
 &nbsp;
 <p align="center">
   <a href="https://baribuilder.com/">
-    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/BariBuilder%20Color%20Logo%20(300px).png?token=ADuF42a-pZ55hp3jrETBDAl8sHcVgFiTks5cUzoJwA%3D%3D" width="200px" alt="BariBuilder" />
+    <img src="https://github.com/tadasant/baribuilder/blob/master/img/BariBuilder%20Color%20Logo%20(300px).png?raw=true" width="200px" alt="BariBuilder" />
   </a>
 </p>
 <h3 align="center">Bariatric Vitamin Shopping Made Easy</h3>
 <p align="center">The easiest way for weight loss surgery (bariatric) patients to find the <u>correct</u>, <u>cheap</u> vitamins they need after surgery.</p>
 <hr />
 <p align="center">
-    <a href="https://baribuilder.com/">BariBuilder.com</a> |
-    <a href="https://blog.baribuilder.com/">Blog</a> |
+    <a href="https://shop.baribuilder.com/">Webapp</a> |
+    <a href="https://baribuilder.com/blog">Blog</a> |
     <a href="https://baribuilder.com/about">About</a>
 </p>
 
@@ -32,7 +32,7 @@
 
 Our mission with BariBuilder is to spread **transparent** information about supplement products to you, **bariatric patients**, in order to improve your **medical outcomes** and lower your **costs**.
 
-Read more about our mission [here](https://baribuilder.com/about), and the problem facing bariatric patients [here](https://blog.baribuilder.com/wls-patients-need-personalized-bariatric-vitamin-regimens/).
+Read more about our mission [here](https://baribuilder.com/about), and the problem facing bariatric patients [here](https://baribuilder.com/blog/wls-patients-need-personalized-bariatric-vitamin-regimens/).
 
 &nbsp;
 
@@ -105,10 +105,10 @@ The [gql-scripts](gql-scripts) directory contains data wrangling scripts for var
 Pictured is a UML diagram of the BariBuilder API's GraphQL schema (which Graphcool translates into a SQL schema).
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png?token=ADuF41roK8ip6Q9ySGiuRHFNKlrJSKP2ks5cU20gwA%3D%3D" width="640" />
+    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png" width="640" />
 </p>
 <p align="center">
-     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png?token=ADuF41roK8ip6Q9ySGiuRHFNKlrJSKP2ks5cU20gwA%3D%3D" target="_blank">Click here to enlarge</a>
+     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/API%20model.png" target="_blank">Click here to enlarge</a>
 </p>
 
 The core of the model starts with **CatalogProduct** in the middle. We have a row here for every product we offer for sale/analysis on BariBuilder. A Catalog Product may have zero or more associated **images**. As you can see on a Nutrition/Supplement Facts label, every Product has details on what a **Serving** is for that product. Looking at the line-by-line of that label, you would see one or more **ServingIngredients**. Each Serving Ingredient is composed of at least an **IngredientType** (e.g. Vitamin A) and, optionally, some **quantity**. Sometimes ingredients have only trace quantities, so the quantity is unlisted.
@@ -126,10 +126,10 @@ None of this data is (currently) persisted, but is the client's view of the worl
 The data represented in this model is currently managed using [Apollo's local state management system](https://www.apollographql.com/docs/react/essentials/local-state.html). This is certainly not the optimal way to do it. It should be managed on the server side - and that is the plan once migration from Graphcool to Prisma is complete. 
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png?token=ADuF4y6PxhH0IgXUakejTbiC2WufnN1-ks5cU20ywA%3D%3D" width="800" />
+    <img src="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png" width="800" />
 </p>
 <p align="center">
-     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png?token=ADuF4y6PxhH0IgXUakejTbiC2WufnN1-ks5cU20ywA%3D%3D" target="_blank">Click here to enlarge</a>
+     <a href="https://raw.githubusercontent.com/tadasant/baribuilder/master/img/UI%20model.png" target="_blank">Click here to enlarge</a>
 </p>
 
 **ApolloStore** refers to a single client's instance of the local store. Every local store has one **CurrentRegimen** (you can think of this as their "shopping cart"), which is composed of zero or more **products**. Each product has some **quantity** and total **cost** (which changes based on the quantity). Cost is generally a nontrivial concept because the "cost" of a vitamin product is not simply the sticker price - it is the amount of money it will cost them *over a period of time* assuming the consumption of a certain *quantity*.

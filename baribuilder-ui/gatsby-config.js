@@ -180,5 +180,14 @@ module.exports = {
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-force-trailing-slashes`,
         `gatsby-plugin-offline`,
+        {
+            // https://github.com/benjaminhoffman/gatsby-plugin-segment-js
+            resolve: `gatsby-plugin-segment-js`,
+            options: {
+                prodKey: `2HIfcHZKvGah4QgZJqdrTrCse8Z8hfqv`,
+                // devKey: `SEGMENT_DEV_WRITE_KEY`,
+                trackPage: true
+            }
+        }
     ],
 }
