@@ -15,6 +15,7 @@ import {generateTrackNavClick} from '../../lib/analytics';
 import {fixedWidthImage} from '../../lib/imageKitHelpers';
 import {GetSearchQuery} from '../../typings/gql/GetSearchQuery';
 import {SEARCH_QUERY_QUERY} from '../catalog/queries';
+import {UndecoratedAnchor} from '../footer/ContactInformationPanel';
 import {media} from '../style/Core';
 import {UndecoratedLink} from '../style/CustomMaterial';
 import SearchBox from './SearchBox';
@@ -116,7 +117,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
   const handleBlogClick = () => {
     generateTrackNavClick('Blog nav')();
     setMainMenuAnchorEl(null);
-    history.push('/blog');
+    history.push('https://baribuilder.com/blog');
   };
 
   const browseOptions = [
@@ -166,11 +167,11 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
             </UndecoratedLink>
           </Grid>
           <Grid item>
-            <UndecoratedLink to='/blog' onClick={handleBlogClick}>
+            <UndecoratedAnchor href='https://baribuilder.com/blog' onClick={handleBlogClick}>
               <WhiteNavButton fullWidth>
                 Blog
               </WhiteNavButton>
-            </UndecoratedLink>
+            </UndecoratedAnchor>
           </Grid>
           <Grid item>
             <WhiteNavButton fullWidth onClick={handleSelectBrowse}>
