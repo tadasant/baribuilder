@@ -204,7 +204,7 @@ const NavbarPure: SFC<RouteComponentProps & QueryOutputProps & IPropsState> = ({
           </Grid>
           <Grid item>
             <UndecoratedAnchor
-              href="https:/baribuilder.com/blog"
+              href="https://baribuilder.com/blog"
               rel="noopener nofollow"
             >
               <WhiteNavButton fullWidth>Blog</WhiteNavButton>
