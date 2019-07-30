@@ -6,5 +6,6 @@ module.exports = {
 	"gastric-sleeve-and-alcohol": ["gintas"],
 	"pregnancy-after-gastric-sleeve-surgery": ["gintas"],
 	"gastric-sleeve-and-diabetes": ["gintas"],
-	"gastric-bypass-and-hair-loss": ["gintas"]
+	"gastric-bypass-and-hair-loss": ["gintas"],
+	"liver-shrinking-diet": ["gintas"]
 };
