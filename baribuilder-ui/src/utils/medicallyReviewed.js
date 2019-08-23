@@ -9,5 +9,6 @@ module.exports = {
 	"gastric-bypass-and-hair-loss": ["gintas"],
 	"liver-shrinking-diet": ["gintas"],
 	"gastric-bypass-reversal": ["gintas"],
-	"eating-one-week-after-gastric-sleeve": ["gintas"]
+	"eating-one-week-after-gastric-sleeve": ["gintas"],
+	"bariatric-surgery-and-popcorn": ["gintas"]	
 };
