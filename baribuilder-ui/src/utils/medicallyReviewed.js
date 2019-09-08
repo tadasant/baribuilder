@@ -11,5 +11,6 @@ module.exports = {
 	"gastric-bypass-reversal": ["gintas"],
 	"eating-one-week-after-gastric-sleeve": ["gintas"],
 	"bariatric-surgery-and-popcorn": ["gintas"],
-	"nsaids-after-gastric-bypass-surgery": ["gintas"]
+	"nsaids-after-gastric-bypass-surgery": ["gintas"],
+	"gastric-sleeve-surgery-and-pcos": ["gintas"]
 };
