@@ -12,5 +12,6 @@ module.exports = {
 	"eating-one-week-after-gastric-sleeve": ["gintas"],
 	"bariatric-surgery-and-popcorn": ["gintas"],
 	"nsaids-after-gastric-bypass-surgery": ["gintas"],
-	"gastric-sleeve-surgery-and-pcos": ["gintas"]
+	"gastric-sleeve-surgery-and-pcos": ["gintas"],
+	"gastric-sleeve-diet-cheating": ["gintas"]
 };
