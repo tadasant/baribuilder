@@ -13,5 +13,6 @@ module.exports = {
 	"bariatric-surgery-and-popcorn": ["gintas"],
 	"nsaids-after-gastric-bypass-surgery": ["gintas"],
 	"gastric-sleeve-surgery-and-pcos": ["gintas"],
-	"gastric-sleeve-diet-cheating": ["gintas"]
+	"gastric-sleeve-diet-cheating": ["gintas"],
+	"vsg-diet-sleeve-gastrectomy": ["gintas"]
 };
