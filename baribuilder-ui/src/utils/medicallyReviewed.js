@@ -17,5 +17,6 @@ module.exports = {
 	"pcos-and-gastric-bypass": ["gintas"],
 	"vsg-diet-sleeve-gastrectomy": ["gintas"],
 	"bariatric-surgery-and-alcohol": ["gintas"],
-	"pcos-and-weight-loss-surgery": ["gintas"]
+	"pcos-and-weight-loss-surgery": ["gintas"],
+	"ketogenic-diet-after-gastric-sleeve-surgery": ["gintas"]
 };
