@@ -21,5 +21,6 @@ module.exports = {
 	"ketogenic-diet-after-gastric-sleeve-surgery": ["gintas"],
 	"gastric-sleeve-revision": ["gintas"],
 	"bariatric-hair-loss": ["gintas"],
-	"gastric-bypass-blood-sugar": ["gintas"]
+	"gastric-bypass-blood-sugar": ["gintas"],
+	"revision-weight-loss-surgery": ["gintas"]
 };
