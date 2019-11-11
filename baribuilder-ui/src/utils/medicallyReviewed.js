@@ -24,5 +24,6 @@ module.exports = {
 	"gastric-bypass-blood-sugar": ["gintas"],
 	"revision-weight-loss-surgery": ["gintas"],
 	"bariatric-dumping": ["gintas"],
-	"lap-band-revision": ["gintas"]
+	"lap-band-revision": ["gintas"],
+	"loose-skin-after-weight-loss-surgery": ["gintas"]
 };
