@@ -25,5 +25,6 @@ module.exports = {
 	"revision-weight-loss-surgery": ["gintas"],
 	"bariatric-dumping": ["gintas"],
 	"lap-band-revision": ["gintas"],
-	"loose-skin-after-weight-loss-surgery": ["gintas"]
+	"loose-skin-after-weight-loss-surgery": ["gintas"],
+	"bariatric-surgery-and-diabetes": ["gintas"]
 };
