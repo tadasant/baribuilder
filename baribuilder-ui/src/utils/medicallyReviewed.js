@@ -29,5 +29,6 @@ module.exports = {
 	"bariatric-surgery-and-diabetes": ["gintas"],
 	"gastric-bypass-complications": ["gintas"],
 	"duodenal-switch-complications": ["gintas"],
-	"bariatric-plastic-surgery": ["gintas"]
+	"bariatric-plastic-surgery": ["gintas"],
+	"astric-sleeve-vs-gastric-bypass": ["gintas"]
 };
