@@ -28,5 +28,6 @@ module.exports = {
 	"loose-skin-after-weight-loss-surgery": ["gintas"],
 	"bariatric-surgery-and-diabetes": ["gintas"],
 	"gastric-bypass-complications": ["gintas"],
-	"duodenal-switch-complications": ["gintas"]
+	"duodenal-switch-complications": ["gintas"],
+	"bariatric-plastic-surgery": ["gintas"]
 };
