@@ -31,5 +31,6 @@ module.exports = {
 	"duodenal-switch-complications": ["gintas"],
 	"bariatric-plastic-surgery": ["gintas"],
 	"astric-sleeve-vs-gastric-bypass": ["gintas"],
-	"gastric-sleeve-hair-loss": ["gintas"]
+	"gastric-sleeve-hair-loss": ["gintas"],
+	"constipation-after-gastric-sleeve": ["gintas"]
 };
