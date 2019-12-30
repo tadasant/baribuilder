@@ -9,6 +9,7 @@ import getAuthorProperties from "./getAuthorProperties";
 import config from "../../../utils/siteConfig";
 import TwitterTag from "./TwitterTag";
 import PinterestTag from "./PinterestTag";
+import AdRollPixel from "./AdRollPixel";
 
 const AuthorMeta = ({ data, settings, canonical }) => {
 	settings = settings.allGhostSettings.edges[0].node;
@@ -76,6 +77,7 @@ const AuthorMeta = ({ data, settings, canonical }) => {
 			</Helmet>
 			<PinterestTag />
 			<TwitterTag />
+			<AdRollPixel />
 			<ImageMeta image={shareImage} />
 		</>
 	);

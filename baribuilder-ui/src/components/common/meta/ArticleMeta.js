@@ -12,6 +12,7 @@ import config from "../../../utils/siteConfig";
 import { tags as tagsHelper } from "@tryghost/helpers";
 import TwitterTag from "./TwitterTag";
 import PinterestTag from "./PinterestTag";
+import AdRollPixel from "./AdRollPixel";
 
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
 	const ghostPost = data;
@@ -163,6 +164,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
 			</Helmet>
 			<TwitterTag />
 			<PinterestTag />
+			<AdRollPixel />
 			<ImageMeta image={shareImage} />
 		</>
 	);

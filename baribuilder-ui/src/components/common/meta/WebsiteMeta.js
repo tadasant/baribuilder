@@ -9,6 +9,7 @@ import ImageMeta from "./ImageMeta";
 import config from "../../../utils/siteConfig";
 import TwitterTag from "./TwitterTag";
 import PinterestTag from "./PinterestTag";
+import AdRollPixel from "./AdRollPixel";
 
 const WebsiteMeta = ({
 	data,
@@ -103,6 +104,7 @@ const WebsiteMeta = ({
 			</Helmet>
 			<PinterestTag />
 			<TwitterTag />
+			<AdRollPixel />
 			<ImageMeta image={shareImage} />
 		</>
 	);
