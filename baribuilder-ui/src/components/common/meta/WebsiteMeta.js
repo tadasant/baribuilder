@@ -7,6 +7,7 @@ import url from "url";
 
 import ImageMeta from "./ImageMeta";
 import config from "../../../utils/siteConfig";
+import TwitterTag from "./TwitterTag";
 
 const WebsiteMeta = ({
 	data,
@@ -100,6 +101,7 @@ const WebsiteMeta = ({
                 `}</script>
 			</Helmet>
 			<ImageMeta image={shareImage} />
+			<TwitterTag />
 		</>
 	);
 };
