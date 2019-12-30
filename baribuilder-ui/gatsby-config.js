@@ -194,7 +194,7 @@ module.exports = {
 			options: {
 				trackingId: "UA-104887163-2",
 				// Defines where to place the tracking script - `true` in the head and `false` in the body
-				head: false,
+				head: true,
 				respectDNT: true
 			}
 		}

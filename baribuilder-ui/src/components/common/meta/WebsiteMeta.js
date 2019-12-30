@@ -8,6 +8,7 @@ import url from "url";
 import ImageMeta from "./ImageMeta";
 import config from "../../../utils/siteConfig";
 import TwitterTag from "./TwitterTag";
+import PinterestTag from "./PinterestTag";
 
 const WebsiteMeta = ({
 	data,
@@ -100,8 +101,9 @@ const WebsiteMeta = ({
                     }
                 `}</script>
 			</Helmet>
-			<ImageMeta image={shareImage} />
+			<PinterestTag />
 			<TwitterTag />
+			<ImageMeta image={shareImage} />
 		</>
 	);
 };
