@@ -188,6 +188,15 @@ module.exports = {
 			options: {
 				pixelId: "2046900505418306"
 			}
+		},
+		{
+			resolve: `gatsby-plugin-google-analytics`,
+			options: {
+				trackingId: "UA-104887163-2",
+				// Defines where to place the tracking script - `true` in the head and `false` in the body
+				head: false,
+				respectDNT: true
+			}
 		}
 	]
 };
