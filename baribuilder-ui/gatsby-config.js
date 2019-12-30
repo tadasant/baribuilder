@@ -182,6 +182,12 @@ module.exports = {
 		},
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-force-trailing-slashes`,
-		`gatsby-plugin-offline`
+		`gatsby-plugin-offline`,
+		{
+			resolve: `gatsby-plugin-facebook-pixel`,
+			options: {
+				pixelId: "2046900505418306"
+			}
+		}
 	]
 };

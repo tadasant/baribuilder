@@ -4926,6 +4926,11 @@ gatsby-plugin-advanced-sitemap@1.0.6:
     moment "^2.24.0"
     xml "^1.0.1"
 
+gatsby-plugin-facebook-pixel@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-facebook-pixel/-/gatsby-plugin-facebook-pixel-1.0.3.tgz#d3cab36fa61803e9d412f36847775d383325dfdf"
+  integrity sha512-IM4e+5FkpLUCV/69tU+GFXVAs0EJXBfM/BARO/6SaMqalLfj1fj4ZXUyC8kHy3RiTMuw+y8g2mdkBMZqj7RyWQ==
+
 gatsby-plugin-feed@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-feed/-/gatsby-plugin-feed-2.2.2.tgz#522078455daf20832019dd9ff981ba8f6c977b6e"
