@@ -34,5 +34,6 @@ module.exports = {
 	"gastric-sleeve-hair-loss": ["gintas"],
 	"constipation-after-gastric-sleeve": ["gintas"],
 	"how-to-tighten-loose-skin-after-gastric-bypass-without-surgery": ["gintas"],
-	"gastric-bypass-for-gastroparesis": ["gintas"]
+	"gastric-bypass-for-gastroparesis": ["gintas"],
+	"gastric-sleeve-regrets": ["gintas"],
 };
