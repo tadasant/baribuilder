@@ -36,5 +36,6 @@ module.exports = {
 	"how-to-tighten-loose-skin-after-gastric-bypass-without-surgery": ["gintas"],
 	"gastric-bypass-for-gastroparesis": ["gintas"],
 	"gastric-sleeve-regrets": ["gintas"],
-	"gastric-bypass-and-alcohol": ["gintas"]
+	"gastric-bypass-and-alcohol": ["gintas"],
+	"gastric-sleeve-complications": ["gintas"]
 };
