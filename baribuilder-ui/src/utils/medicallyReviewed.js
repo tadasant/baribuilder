@@ -38,5 +38,6 @@ module.exports = {
 	"gastric-sleeve-regrets": ["gintas"],
 	"gastric-bypass-and-alcohol": ["gintas"],
 	"gastric-sleeve-complications": ["gintas"],
-	"cheating-on-liquid-diet-before-gastric-bypass": ["gintas"]
+	"cheating-on-liquid-diet-before-gastric-bypass": ["gintas"],
+	"gastric-sleeve-pouch-reset": ["gintas"]
 };
