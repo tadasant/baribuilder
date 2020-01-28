@@ -42,5 +42,6 @@ module.exports = {
 	"gastric-sleeve-pouch-reset": ["gintas"],
 	"dumping-syndrome-gastric-sleeve": ["gintas"],
 	"gastric-bypass-pouch-reset": ["gintas"],
-	"bariatric-plate": ["gintas"]
+	"bariatric-plate": ["gintas"],
+	"bariatric-surgery-books": ["gintas"]
 };
