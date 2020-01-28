@@ -41,5 +41,6 @@ module.exports = {
 	"cheating-on-liquid-diet-before-gastric-bypass": ["gintas"],
 	"gastric-sleeve-pouch-reset": ["gintas"],
 	"dumping-syndrome-gastric-sleeve": ["gintas"],
-	"gastric-bypass-pouch-reset": ["gintas"]
+	"gastric-bypass-pouch-reset": ["gintas"],
+	"bariatric-plate": ["gintas"]
 };
