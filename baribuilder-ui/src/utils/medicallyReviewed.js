@@ -43,5 +43,6 @@ module.exports = {
 	"dumping-syndrome-gastric-sleeve": ["gintas"],
 	"gastric-bypass-pouch-reset": ["gintas"],
 	"bariatric-plate": ["gintas"],
-	"bariatric-surgery-books": ["gintas"]
+	"bariatric-surgery-books": ["gintas"],
+	"acid-reflux-after-gastric-sleeve": ["gintas"]
 };
