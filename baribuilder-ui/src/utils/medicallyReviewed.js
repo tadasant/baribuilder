@@ -44,5 +44,6 @@ module.exports = {
 	"gastric-bypass-pouch-reset": ["gintas"],
 	"bariatric-plate": ["gintas"],
 	"bariatric-surgery-books": ["gintas"],
-	"acid-reflux-after-gastric-sleeve": ["gintas"]
+	"acid-reflux-after-gastric-sleeve": ["gintas"],
+	"gastric-bypass-failure": ["gintas"]
 };
