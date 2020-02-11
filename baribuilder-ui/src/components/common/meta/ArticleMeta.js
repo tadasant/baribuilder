@@ -14,6 +14,8 @@ import TwitterTag from "./TwitterTag";
 import PinterestTag from "./PinterestTag";
 import AdRollPixel from "./AdRollPixel";
 
+import escapeHtml from "escape-html";
+
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
 	const ghostPost = data;
 	settings = settings.allGhostSettings.edges[0].node;
@@ -109,12 +111,12 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                         "@type": "Article",
                         "author": {
                             "@type": "Person",
-                            "name": "${author.name}",
+                            "name": "${escapeHtml(author.name)}",
                             ${
 															author.image
 																? author.sameAsArray
-																	? `"image": "${author.image}",`
-																	: `"image": "${author.image}"`
+																	? `"image": "${escapeHtml(author.image)}",`
+																	: `"image": "${escapeHtml(author.image)}"`
 																: ``
 														}
                             ${
@@ -125,11 +127,14 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                         },
                         ${
 													publicTags.length
-														? `"keywords": "${_.join(publicTags, `, `)}",`
+														? `"keywords": "${escapeHtml(
+																_.join(publicTags, `, `)
+														  )}",`
 														: ``
 												}
-                        "headline": "${ghostPost.meta_title ||
-													ghostPost.title}",
+                        "headline": "${escapeHtml(
+													ghostPost.meta_title || ghostPost.title
+												)}",
                         "url": "${canonical}",
                         "datePublished": "${ghostPost.published_at}",
                         "dateModified": "${ghostPost.updated_at}",
@@ -145,7 +150,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
 												}
                         "publisher": {
                             "@type": "Organization",
-                            "name": "${settings.title}",
+                            "name": "${escapeHtml(settings.title)}",
                             "logo": {
                                 "@type": "ImageObject",
                                 "url": "${publisherLogo}",
@@ -153,8 +158,9 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                                 "height": 60
                             }
                         },
-                        "description": "${ghostPost.meta_description ||
-													ghostPost.excerpt}",
+                        "description": "${escapeHtml(
+													ghostPost.meta_description || ghostPost.excerpt
+												)}",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": "${config.siteUrl}"
