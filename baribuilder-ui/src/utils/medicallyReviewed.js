@@ -47,5 +47,6 @@ module.exports = {
 	"acid-reflux-after-gastric-sleeve": ["gintas"],
 	"gastric-bypass-failure": ["gintas"],
 	"gastric-bypass-app": ["gintas"],
-	"bariatric-surgery-recovery-time": ["gintas"]
+	"bariatric-surgery-recovery-time": ["gintas"],
+	"constipation-after-gastric-bypass": ["gintas"]
 };
