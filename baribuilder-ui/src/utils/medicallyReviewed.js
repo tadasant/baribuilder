@@ -48,5 +48,6 @@ module.exports = {
 	"gastric-bypass-failure": ["gintas"],
 	"gastric-bypass-app": ["gintas"],
 	"bariatric-surgery-recovery-time": ["gintas"],
-	"constipation-after-gastric-bypass": ["gintas"]
+	"constipation-after-gastric-bypass": ["gintas"],
+	"gastric-sleeve-horror-stories": ["gintas"]
 };
