@@ -52,5 +52,6 @@ module.exports = {
 	"gastric-sleeve-horror-stories": ["gintas"],
 	"what-is-lap-band-surgery": ["gintas"],
 	"personality-changes-after-bariatric-surgery": ["gintas"],
-	"bariatric-app": ["gintas"]
+	"bariatric-app": ["gintas"],
+	"pain-after-bariatric-surgery": ["gintas"]
 };
