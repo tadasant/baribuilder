@@ -6,11 +6,18 @@ import Helmet from "react-helmet";
 import { Layout } from "../components/common";
 import { MetaData } from "../components/common/meta";
 import AuthorCard from "../components/common/AuthorCard";
+import TipsInlineForm from "../components/convertKit/TipsInlineForm";
 
 import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
+import TipsHeaderForm from "../components/convertKit/TipsHeaderForm";
 
 const AuthorFooter = styled.footer``;
+
+const TipsInlineFormDiv = styled.div`
+	margin: 16px;
+	margin-bottom: 48px;
+`;
 
 /**
  * Single post view (/blog/:slug)
@@ -38,11 +45,20 @@ const Post = ({ data, location }) => {
 						<section className="post-full-content">
 							<h1 className="content-title">{post.title}</h1>
 
+							{/* CTA to sign up for newsletter */}
+							<TipsInlineFormDiv>
+								<TipsHeaderForm />
+							</TipsInlineFormDiv>
+
 							{/* The main post content */}
 							<section
 								className="content-body load-external-scripts"
 								dangerouslySetInnerHTML={{ __html: post.html }}
 							/>
+							{/* End of article tips CTA */}
+							<TipsInlineFormDiv>
+								<TipsInlineForm />
+							</TipsInlineFormDiv>
 							{post.authors.map(author => {
 								// hack for medical reviewers -- could eventually integrate into custom CMS
 								let role = "Author";
