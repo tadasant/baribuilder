@@ -50,5 +50,8 @@ module.exports = {
 	"bariatric-surgery-recovery-time": ["gintas"],
 	"constipation-after-gastric-bypass": ["gintas"],
 	"gastric-sleeve-horror-stories": ["gintas"],
-	"what-is-lap-band-surgery": ["gintas"]
+	"what-is-lap-band-surgery": ["gintas"],
+	"personality-changes-after-bariatric-surgery": ["gintas"],
+	"bariatric-app": ["gintas"],
+	"pain-after-bariatric-surgery": ["gintas"]
 };
