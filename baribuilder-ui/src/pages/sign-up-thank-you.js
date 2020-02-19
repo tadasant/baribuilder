@@ -11,11 +11,36 @@ import { navigate } from "gatsby";
 const SignUpThankYou = ({ location }) => {
 	const [dotsText, setDotsText] = useState("");
 
+	const config = {
+		// Redirect to home by default
+		redirectUrl: "/",
+		redirectText: "our homepage",
+		hideConfirmation: false,
+		externalLink: false,
+		timeDelay: 5000
+	};
+
+	const urlParams = new URLSearchParams(location.search);
+	if (urlParams && urlParams.has("pdf") && urlParams.get("pdf") === "recipes") {
+		config.redirectUrl =
+			"https://baribuilder.s3.amazonaws.com/_external/12-recipes-placeholder.pdf";
+		config.redirectText = "your PDF download";
+		config.hideConfirmation = true;
+		config.externalLink = true;
+		config.timeDelay = 2000;
+	}
+
 	useEffect(() => {
-		setTimeout(() => setDotsText("."), 500);
-		setTimeout(() => setDotsText(".."), 2000);
-		setTimeout(() => setDotsText("..."), 4000);
-		setTimeout(() => navigate("/"), 5000);
+		setTimeout(() => setDotsText("."), config.timeDelay / 4);
+		setTimeout(() => setDotsText(".."), (config.timeDelay / 4) * 2);
+		setTimeout(() => setDotsText("..."), (config.timeDelay / 4) * 3);
+		setTimeout(() => {
+			if (config.externalLink) {
+				window.location.href = config.redirectUrl;
+			} else {
+				navigate(config.redirectUrl);
+			}
+		}, config.timeDelay);
 	}, []);
 
 	return (
@@ -23,13 +48,19 @@ const SignUpThankYou = ({ location }) => {
 			<MetaData location={location} title="Thank You" />
 			<Layout>
 				<div className="container">
-					<h1>Subscription confirmed</h1>
-					<h3>
-						Boom! You're officially confirmed and on the list. Expect some great
-						emails headed your way very soon.
-					</h3>
+					{config.hideConfirmation ? null : (
+						<React.Fragment>
+							<h1>Subscription confirmed</h1>
+							<h3>
+								Boom! You're officially confirmed and on the list. Expect some
+								great emails headed your way very soon.
+							</h3>
+						</React.Fragment>
+					)}
+
 					<p>
-						You are being redirected to our homepage in 5 seconds{`${dotsText}`}
+						You are being redirected to {config.redirectText}
+						{dotsText}
 					</p>
 				</div>
 			</Layout>
