@@ -2,7 +2,8 @@
 
 import { Keyword, Link, Post } from "../common/types";
 import GhostApiClient from "../common/GhostApiClient";
-import AirtableApiClient, { AirtablePost } from "../common/AirtableApiClient";
+import AirtableApiClient from "../common/AirtableApiClient";
+import _ from "lodash";
 
 /// Import all posts from the Ghost API
 
@@ -13,31 +14,68 @@ async function main() {
 		version: "v2"
 	});
 
-	// const ghostPosts = await ghostClient.getAllPublishedPostsSync();
+	const ghostPosts = await ghostClient.getAllPublishedPostsSync();
 
-	// const posts = [];
-	// ghostPosts.forEach(ghostPost => {
-	// 	const post: Partial<Post> = {};
-	// 	post.content = ghostPost.html;
-	// 	post.slug = ghostPost.slug;
-	// 	posts.push(post);
-	// });
+	const postsBySlug: { [slug: string]: Partial<Post> } = {};
+	ghostPosts.forEach(ghostPost => {
+		const post: Partial<Post> = {
+			content: ghostPost.html,
+			slug: ghostPost.slug
+		};
+		postsBySlug[post.slug] = post;
+	});
 
 	/// Import all published posts from the Airtable API (BariBuilder Blog Articles base)
 	const airtableClient = new AirtableApiClient();
-	const airtablePosts = await airtableClient.callOnEachPostRecord();
+	const airtablePosts = await airtableClient.getAllPublishedPosts();
+	const uniqueKeywordIds = new Set();
+	airtablePosts.forEach(airtablePost => {
+		if (airtablePost.relatedKeywordIds) {
+			airtablePost.relatedKeywordIds.forEach(id => uniqueKeywordIds.add(id));
+		}
+	});
 
-	// extract the presumed slug from the Published URL
-	// attach list of target keywords, with each one missing expectedTraffic
+	// Grab the join'd keywords
+	const airtableKeywords = await airtableClient.getKeywords(
+		Array.from(uniqueKeywordIds) as string[]
+	);
+	const airtableKeywordsById = _.keyBy(airtableKeywords, "id");
+
+	// Organize Airtable post data by slug
+	const airtablePostsBySlug = _.keyBy(airtablePosts, post => {
+		const tokens = post.publishedUrl.split("/");
+		const slug =
+			tokens[tokens.length - 1] === ""
+				? tokens[tokens.length - 2]
+				: tokens[tokens.length - 1];
+		console.log(slug);
+		return slug;
+	});
+
+	// TODO: any in ghost that aren't in Airtable or vice-versa?
+
+	// Combine the Airtable data to the ghost data
+	Object.keys(airtablePostsBySlug).forEach(slug => {
+		if (!(slug in postsBySlug)) {
+			console.error(`${slug} found in Airtable, not in Ghost`);
+		} else if (airtablePostsBySlug[slug].relatedKeywordIds) {
+			postsBySlug[slug].targetKeywords = airtablePostsBySlug[
+				slug
+			].relatedKeywordIds.map(keywordId => ({
+				value: airtableKeywordsById[keywordId].keyword,
+				expectedTraffic: airtableKeywordsById[keywordId].volume
+			}));
+		}
+	});
+
+	console.log(JSON.stringify(postsBySlug, null, 2));
+
+	// TODO the rest
+	/// Iterate over each Post
+	// identify, using a regex, any existing <a href> to an internal link
+	// when identified, add it to that post's outboundLink && the matching post's inboundLinks
+
+	// Dump the Post[] output as a pretty printed table
 }
 
 main();
-
-/// For each unique Keyword, get its entry in the relevant Airtable table
-// store its expectedTraffic value
-
-/// Iterate over each Post
-// identify, using a regex, any existing <a href> to an internal link
-// when identified, add it to that post's outboundLink && the matching post's inboundLinks
-
-// Dump the Post[] output as a pretty printed table

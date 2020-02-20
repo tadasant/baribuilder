@@ -5,6 +5,12 @@ export interface AirtablePost {
 	relatedKeywordIds: string[];
 }
 
+export interface AirtableKeyword {
+	id: string;
+	keyword: string;
+	volume: string;
+}
+
 class AirtableApiClient {
 	base: Airtable.Base;
 
@@ -12,7 +18,7 @@ class AirtableApiClient {
 		this.base = new Airtable().base("appfx3H4IT1m9IKNO");
 	}
 
-	async callOnEachPostRecord() {
+	async getAllPublishedPosts(): Promise<AirtablePost[]> {
 		const result = [];
 
 		await this.base("Post Queue")
@@ -36,8 +42,31 @@ class AirtableApiClient {
 		return result;
 	}
 
-	async getKeywordsTrafficData(keywordIds: string[]) {
-		// TODO
+	async getKeywords(keywordIds: string[]) {
+		const result = [];
+
+		const formula = `SEARCH(RECORD_ID(), "${keywordIds.join(",")}") != ""`;
+
+		await this.base("Keywords")
+			.select({
+				filterByFormula: formula,
+				fields: ["Search Volume (Monthly)", "Keyword"]
+			})
+			.all()
+			.then(response => {
+				response.forEach(record => {
+					const keyword: AirtableKeyword = {
+						id: record.id,
+						// @ts-ignore
+						keyword: record.get("Keyword"),
+						// @ts-ignore
+						volume: record.get("Search Volume (Monthly)")
+					};
+					result.push(keyword);
+				});
+			});
+
+		return result;
 	}
 }
 

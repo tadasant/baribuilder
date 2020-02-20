@@ -25,7 +25,6 @@ class GhostApiClient {
 			this.version
 			// TODO make limit more robust
 		}/content/posts/?${queryParams.toString()}&limit=9999999`;
-		console.log(urlToCall);
 		return axios.get<{ posts: GhostPost[] }>(urlToCall).then(response => {
 			return response.data.posts;
 		});
