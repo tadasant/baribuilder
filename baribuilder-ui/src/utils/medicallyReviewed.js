@@ -54,5 +54,6 @@ module.exports = {
 	"personality-changes-after-bariatric-surgery": ["gintas"],
 	"bariatric-app": ["gintas"],
 	"pain-after-bariatric-surgery": ["gintas"],
-	"hiatal-hernia-after-gastric-bypass": ["gintas"]
+	"hiatal-hernia-after-gastric-bypass": ["gintas"],
+	"gastric-sleeve-surgery-recovery-time": ["gintas"]
 };
