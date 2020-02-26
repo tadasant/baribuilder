@@ -10,11 +10,12 @@ import TipsInlineForm from "../components/convertKit/TipsInlineForm";
 
 import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
-import TipsHeaderForm from "../components/convertKit/TipsHeaderForm";
+import RecipesHeaderForm from "../components/convertKit/RecipesHeaderForm";
+import RecipesModal from "../components/convertKit/RecipesModal";
 
 const AuthorFooter = styled.footer``;
 
-const TipsInlineFormDiv = styled.div`
+const InlineFormDiv = styled.div`
 	margin: 16px;
 	margin-bottom: 48px;
 `;
@@ -46,9 +47,12 @@ const Post = ({ data, location }) => {
 							<h1 className="content-title">{post.title}</h1>
 
 							{/* CTA to sign up for newsletter */}
-							<TipsInlineFormDiv>
-								<TipsHeaderForm />
-							</TipsInlineFormDiv>
+							<InlineFormDiv>
+								<RecipesHeaderForm />
+							</InlineFormDiv>
+
+							{/* Modal CTA to sign up for newsletter */}
+							<RecipesModal />
 
 							{/* The main post content */}
 							<section
@@ -56,9 +60,9 @@ const Post = ({ data, location }) => {
 								dangerouslySetInnerHTML={{ __html: post.html }}
 							/>
 							{/* End of article tips CTA */}
-							<TipsInlineFormDiv>
+							<InlineFormDiv>
 								<TipsInlineForm />
-							</TipsInlineFormDiv>
+							</InlineFormDiv>
 							{post.authors.map(author => {
 								// hack for medical reviewers -- could eventually integrate into custom CMS
 								let role = "Author";

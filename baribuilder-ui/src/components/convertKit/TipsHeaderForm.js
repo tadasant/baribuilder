@@ -2,7 +2,6 @@ import React from "react";
 
 const TipsHeaderForm = () => (
 	<React.Fragment>
-		<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 		<form
 			action="https://app.convertkit.com/forms/1228954/subscriptions"
 			className="seva-form formkit-form"
