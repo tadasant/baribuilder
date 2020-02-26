@@ -16,6 +16,8 @@ const ProfileImgLink = styled(Link)`
 const ProfileImg = styled.img`
 	width: 100%;
 	border-radius: 50%;
+	max-height: 100%;
+	padding: 8px 0px 8px 0px;
 `;
 
 const NameHeader = styled.h2`

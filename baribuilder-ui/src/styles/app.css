@@ -925,6 +925,7 @@ figcaption {
 	background: var(--color-secondary);
 	border-radius: 100%;
 	object-fit: cover;
+	max-height: 100%;
 }
 
 .post-card-avatar .default-avatar {
