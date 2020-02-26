@@ -34,7 +34,6 @@ const DefaultLayout = props => {
 				<html lang={site.lang} />
 				<style type="text/css">{`${site.codeinjection_styles}`}</style>
 				<body className={bodyClass} />
-				<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 			</Helmet>
 
 			<div className="viewport">

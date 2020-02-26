@@ -1,7 +1,11 @@
 import React from "react";
+import Helmet from "react-helmet";
 
 const TipsInlineForm = () => (
 	<React.Fragment>
+		<Helmet>
+			<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+		</Helmet>
 		<form
 			action="https://app.convertkit.com/forms/1228912/subscriptions"
 			className="seva-form formkit-form"
