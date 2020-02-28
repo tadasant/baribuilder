@@ -20,6 +20,7 @@
 	"dependencies": {
 		"airtable": "^0.8.1",
 		"axios": "^0.19.2",
-		"lodash": "^4.17.15"
+		"lodash": "^4.17.15",
+		"unfluff": "^3.2.0"
 	}
 }

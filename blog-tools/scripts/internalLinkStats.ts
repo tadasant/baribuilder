@@ -4,6 +4,7 @@ import { Keyword, Link, Post } from "../common/types";
 import GhostApiClient from "../common/GhostApiClient";
 import AirtableApiClient from "../common/AirtableApiClient";
 import _ from "lodash";
+import unfluff from "unfluff";
 
 /// Import all posts from the Ghost API
 
@@ -23,6 +24,8 @@ async function main() {
 			slug: ghostPost.slug
 		};
 		postsBySlug[post.slug] = post;
+		postsBySlug[post.slug].inboundLinks = [];
+		postsBySlug[post.slug].outboundLinks = [];
 	});
 
 	/// Import all published posts from the Airtable API (BariBuilder Blog Articles base)
@@ -68,14 +71,50 @@ async function main() {
 		}
 	});
 
-	console.log(JSON.stringify(postsBySlug, null, 2));
-
 	// TODO the rest
 	/// Iterate over each Post
-	// identify, using a regex, any existing <a href> to an internal link
-	// when identified, add it to that post's outboundLink && the matching post's inboundLinks
+	Object.values(postsBySlug).forEach(post => {
+		// grab all the links in the content
+		const contentAsHtml = `<html>${post.content}</html>`;
+		const links = unfluff(contentAsHtml).links;
+		links.forEach((link: { text: string; href: string }) => {
+			const isRelative =
+				!link.href.startsWith("http") && !link.href.startsWith("//");
+			const isBariBuilder =
+				isRelative || link.href.includes("baribuilder.com/blog");
+			if (isBariBuilder) {
+				const tokens = link.href.split("/");
+				const slug =
+					tokens.length > 1
+						? tokens[tokens.length - 1] === ""
+							? tokens[tokens.length - 2]
+							: tokens[tokens.length - 1]
+						: undefined;
+				if (slug === undefined || !(slug in postsBySlug) || slug === "") {
+					console.warn(
+						`Could not identify matching slug for ${link.href} (${slug}).`
+					);
+				} else {
+					postsBySlug[slug].inboundLinks.push({
+						anchor: link.text,
+						slug
+					});
+					postsBySlug[post.slug].outboundLinks.push({
+						anchor: link.text,
+						slug
+					});
+				}
+			}
+		});
+	});
 
 	// Dump the Post[] output as a pretty printed table
+
+	Object.values(postsBySlug).forEach(post => {
+		console.log(
+			`Post ${post.slug}:\t\t ${post.inboundLinks.length} inbound, ${post.outboundLinks.length} outbound`
+		);
+	});
 }
 
 main();
