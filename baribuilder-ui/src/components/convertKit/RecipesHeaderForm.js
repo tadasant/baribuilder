@@ -84,7 +84,7 @@ const RecipesHeaderForm = () => (
 								<div />
 								<div />
 							</div>
-							<span>Send me the download</span>
+							<span>Send me the PDF</span>
 						</button>
 					</div>
 					<div
