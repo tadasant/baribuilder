@@ -3,6 +3,7 @@ import Airtable from "airtable";
 export interface AirtablePost {
 	publishedUrl: string;
 	relatedKeywordIds: string[];
+	viableAnchors: string[];
 }
 
 export interface AirtableKeyword {
@@ -24,7 +25,7 @@ class AirtableApiClient {
 		await this.base("Post Queue")
 			.select({
 				filterByFormula: 'NOT({Published URL} = "")',
-				fields: ["Published URL", "Related Keywords"]
+				fields: ["Published URL", "Related Keywords", "Viable Anchors"]
 			})
 			.all()
 			.then(response => {
@@ -33,7 +34,11 @@ class AirtableApiClient {
 						// @ts-ignore
 						publishedUrl: record.get("Published URL"),
 						// @ts-ignore
-						relatedKeywordIds: record.get("Related Keywords")
+						relatedKeywordIds: record.get("Related Keywords"),
+						// @ts-ignore
+						viableAnchors: record.get("Viable Anchors")
+							? (record as any).get("Viable Anchors").split(",")
+							: []
 					};
 					result.push(post);
 				});

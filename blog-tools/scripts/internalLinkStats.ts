@@ -5,10 +5,11 @@ import GhostApiClient from "../common/GhostApiClient";
 import AirtableApiClient from "../common/AirtableApiClient";
 import _ from "lodash";
 import unfluff from "unfluff";
-
-/// Import all posts from the Ghost API
+import PrettyTable from "prettytable";
+import { createObjectCsvWriter } from "csv-writer";
 
 async function main() {
+	/// Import all posts from the Ghost API
 	const ghostClient = new GhostApiClient({
 		url: "baribuilder-blog.ghost.io",
 		key: process.env.GHOST_CONTENT_API_KEY,
@@ -26,6 +27,7 @@ async function main() {
 		postsBySlug[post.slug] = post;
 		postsBySlug[post.slug].inboundLinks = [];
 		postsBySlug[post.slug].outboundLinks = [];
+		postsBySlug[post.slug].possibleLinks = [];
 	});
 
 	/// Import all published posts from the Airtable API (BariBuilder Blog Articles base)
@@ -51,7 +53,6 @@ async function main() {
 			tokens[tokens.length - 1] === ""
 				? tokens[tokens.length - 2]
 				: tokens[tokens.length - 1];
-		console.log(slug);
 		return slug;
 	});
 
@@ -71,7 +72,6 @@ async function main() {
 		}
 	});
 
-	// TODO the rest
 	/// Iterate over each Post
 	Object.values(postsBySlug).forEach(post => {
 		// grab all the links in the content
@@ -109,12 +109,64 @@ async function main() {
 	});
 
 	// Dump the Post[] output as a pretty printed table
+	const pt = new PrettyTable();
+	pt.fieldNames(["Slug", "# Inbound", "# Outbound"]);
 
 	Object.values(postsBySlug).forEach(post => {
-		console.log(
-			`Post ${post.slug}:\t\t ${post.inboundLinks.length} inbound, ${post.outboundLinks.length} outbound`
-		);
+		pt.addRow([post.slug, post.inboundLinks.length, post.outboundLinks.length]);
 	});
+
+	pt.print();
+
+	// Fill out possible links
+	console.debug("Analyzing possible links...");
+	// Object.values(postsBySlug).forEach(post => {
+	// 	const { content } = post;
+	// 	Object.values(postsBySlug).forEach(innerPost => {
+	// 		if (innerPost.slug !== post.slug) {
+	// 			innerPost.targetKeywords.forEach(targetKeyword => {
+	// 				if (content.includes(targetKeyword.value)) {
+	// 					post.possibleLinks.push({
+	// 						slug: innerPost.slug,
+	// 						anchor: targetKeyword.value,
+	// 						expectedTraffic: targetKeyword.expectedTraffic
+	// 					});
+	// 				}
+	// 			});
+	// 		}
+	// 	});
+	// });
+
+	// Dump everything in postsBySlug.values to a CSV
+	const currentLinksWriter = createObjectCsvWriter({
+		path: "output-current-links.csv",
+		header: [
+			{ id: "slug", title: "Slug" },
+			{ id: "edit-url", title: "Edit URL" },
+			{ id: "num-inbound", title: "# inbound links" },
+			{ id: "num-outbound", title: "# outbound links" }
+		]
+	});
+
+	const data = Object.values(postsBySlug).map(post => ({
+		slug: post.slug,
+		"edit-url": post.editUrl,
+		"num-inbound": post.inboundLinks.length,
+		"num-outbound": post.outboundLinks.length
+	}));
+
+	await currentLinksWriter.writeRecords(data);
+
+	// const possibleLinksWriter = createObjectCsvWriter({
+	// 	path: "output-possible-links.csv",
+	// 	header: [
+	// 		{ id: "slug", title: "Slug" },
+	// 		{ id: "edit-url", title: "Edit URL" },
+	// 		{ id: "link-anchor", title: "Link Anchor" },
+	//     { id: "link-slug", title: "Link Slug" },
+	//     { id: "link-traffic", title: "Link Traffic" },
+	// 	]
+	// });
 }
 
 main();
