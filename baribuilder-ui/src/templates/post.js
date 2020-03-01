@@ -12,6 +12,7 @@ import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
 import RecipesHeaderForm from "../components/convertKit/RecipesHeaderForm";
 import RecipesModal from "../components/convertKit/RecipesModal";
+import CustomPost from "../components/rendering/CustomPost";
 
 const AuthorFooter = styled.footer``;
 
@@ -55,10 +56,8 @@ const Post = ({ data, location }) => {
 							<RecipesModal />
 
 							{/* The main post content */}
-							<section
-								className="content-body load-external-scripts"
-								dangerouslySetInnerHTML={{ __html: post.html }}
-							/>
+							<CustomPost post={post} />
+
 							{/* End of article tips CTA */}
 							<InlineFormDiv>
 								<TipsInlineForm />
