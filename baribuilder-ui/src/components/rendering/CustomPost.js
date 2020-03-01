@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import HtmlToReact from "html-to-react";
 import { trackCustomEvent } from "gatsby-plugin-google-analytics";
+import { useScrollPercentage } from "react-scroll-percentage";
 
 const htmlToReactParser = new HtmlToReact.Parser();
 const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 
 const CustomPost = props => {
+	const [ref, percentage] = useScrollPercentage();
+	const [isRead, setIsRead] = useState(false);
+
+	// When reader hits 70% of the article, consider it read
+	if (percentage > 0.7 && !isRead) {
+		const locationTokens = window.location.href.split("/");
+		// Ends with a slash, so -2
+		const postSlug = locationTokens[locationTokens.length - 2];
+		setIsRead(prevIsRead => {
+			if (!prevIsRead) {
+				trackCustomEvent({
+					category: "Article",
+					action: "Read",
+					nonInteraction: false,
+					label: postSlug
+				});
+			}
+			return true;
+		});
+	}
+
 	const submitLinkClickEvent = (href, anchorText, callback) => {
 		const locationTokens = window.location.href.split("/");
 		// Ends with a slash, so -2
@@ -20,7 +42,6 @@ const CustomPost = props => {
 				: isOutbound
 				? "Outbound Link"
 				: "Internal Link",
-			// string - required - Type of interaction (e.g. 'play')
 			action: "Click",
 			nonInteraction: false,
 			label: `from ${fromSlug} to ${href} via ${anchorText}`,
@@ -66,7 +87,7 @@ const CustomPost = props => {
 	);
 
 	return (
-		<section className="content-body load-external-scripts">
+		<section className="content-body load-external-scripts" ref={ref}>
 			{contentComponent}
 			{/* // dangerouslySetInnerHTML={{ __html: props.post.html }} */}
 		</section>

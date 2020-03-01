@@ -725,6 +725,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.7.2":
+  version "7.8.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.4.tgz#d79f5a2040f7caa24d53e563aad49cbc05581308"
+  integrity sha512-neAp3zt80trRVBI1x0azq6c57aNBqYZH8KhMm3TaB7wEI5Q4A2SHfBHE8w9gOhI/lrqxtEbXZgQIrHP+wvSGwQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@^7.7.6":
   version "7.7.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.7.tgz#194769ca8d6d7790ec23605af9ee3e42a0aa79cf"
@@ -9469,6 +9476,13 @@ react-hot-loader@^4.8.4:
     shallowequal "^1.0.2"
     source-map "^0.7.3"
 
+react-intersection-observer@^8.25.1:
+  version "8.26.1"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.26.1.tgz#0d72e54eb00d7710d9e8dc1109cc09791e06bb1b"
+  integrity sha512-eMA7K1G5CqJYkl8TjWJFEd8FtIXWHb93RAWMtZ4duEJ5DYh5E7KQcuzTGI155vTwfJ257JD+Jk5S/NJzz+DhlQ==
+  dependencies:
+    tiny-invariant "^1.1.0"
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
@@ -9488,6 +9502,14 @@ react-reconciler@^0.20.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.13.6"
+
+react-scroll-percentage@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-scroll-percentage/-/react-scroll-percentage-4.2.0.tgz#5f1b815b18c4959ee540c037eca142f0a00ad436"
+  integrity sha512-mJgX+YCRcEzX8jDkAm8pv+gfBFJFO+t8tIANOGcEjFfGFhLTNWs9OJakC4laL5LZXyImohFE5N30XLaA2Ng95g==
+  dependencies:
+    "@babel/runtime" "^7.7.2"
+    react-intersection-observer "^8.25.1"
 
 react-side-effect@^1.1.0:
   version "1.1.5"
@@ -11035,6 +11057,11 @@ timsort@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
+
+tiny-invariant@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
+  integrity sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
 
 tinycolor2@^1.1.2:
   version "1.4.1"
