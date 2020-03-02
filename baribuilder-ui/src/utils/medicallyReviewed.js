@@ -56,5 +56,6 @@ module.exports = {
 	"pain-after-bariatric-surgery": ["gintas"],
 	"hiatal-hernia-after-gastric-bypass": ["gintas"],
 	"gastric-sleeve-surgery-recovery-time": ["gintas"],
-	"gastric-sleeve-diet-after-one-year": ["gintas"]
+	"gastric-sleeve-diet-after-one-year": ["gintas"],
+	"pain-after-gastric-sleeve": ["gintas"]
 };
