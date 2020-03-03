@@ -58,5 +58,6 @@ module.exports = {
 	"gastric-sleeve-surgery-recovery-time": ["gintas"],
 	"gastric-sleeve-diet-after-one-year": ["gintas"],
 	"pain-after-gastric-sleeve": ["gintas"],
-	"weight-loss-surgery-failure": ["gintas"]
+	"weight-loss-surgery-failure": ["gintas"],
+	"bariatric-surgery-forum": ["gintas"]
 };
