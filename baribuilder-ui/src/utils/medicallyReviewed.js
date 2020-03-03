@@ -60,5 +60,6 @@ module.exports = {
 	"pain-after-gastric-sleeve": ["gintas"],
 	"weight-loss-surgery-failure": ["gintas"],
 	"bariatric-surgery-forum": ["gintas"],
-	"bariatric-medical-alert-bracelet": ["gintas"]
+	"bariatric-medical-alert-bracelet": ["gintas"],
+	"gastric-sleeve-scars": ["gintas"]
 };
