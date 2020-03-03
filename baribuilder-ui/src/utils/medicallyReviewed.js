@@ -59,5 +59,6 @@ module.exports = {
 	"gastric-sleeve-diet-after-one-year": ["gintas"],
 	"pain-after-gastric-sleeve": ["gintas"],
 	"weight-loss-surgery-failure": ["gintas"],
-	"bariatric-surgery-forum": ["gintas"]
+	"bariatric-surgery-forum": ["gintas"],
+	"bariatric-medical-alert-bracelet": ["gintas"]
 };
