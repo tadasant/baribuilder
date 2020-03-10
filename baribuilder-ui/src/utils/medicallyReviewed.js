@@ -62,5 +62,6 @@ module.exports = {
 	"bariatric-surgery-forum": ["gintas"],
 	"bariatric-medical-alert-bracelet": ["gintas"],
 	"gastric-sleeve-scars": ["gintas"],
-	"gastric-sleeve-forum": ["gintas"]
+	"gastric-sleeve-forum": ["gintas"],
+	"gastric-bypass-recovery-time": ["gintas"]
 };
