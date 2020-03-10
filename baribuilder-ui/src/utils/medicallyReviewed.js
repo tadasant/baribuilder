@@ -61,5 +61,6 @@ module.exports = {
 	"weight-loss-surgery-failure": ["gintas"],
 	"bariatric-surgery-forum": ["gintas"],
 	"bariatric-medical-alert-bracelet": ["gintas"],
-	"gastric-sleeve-scars": ["gintas"]
+	"gastric-sleeve-scars": ["gintas"],
+	"gastric-sleeve-forum": ["gintas"]
 };
