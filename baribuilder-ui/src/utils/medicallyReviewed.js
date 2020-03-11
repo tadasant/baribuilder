@@ -63,5 +63,6 @@ module.exports = {
 	"bariatric-medical-alert-bracelet": ["gintas"],
 	"gastric-sleeve-scars": ["gintas"],
 	"gastric-sleeve-forum": ["gintas"],
-	"gastric-bypass-recovery-time": ["gintas"]
+	"gastric-bypass-recovery-time": ["gintas"],
+	"gastric-sleeve-failure-rate": ["gintas"]
 };
