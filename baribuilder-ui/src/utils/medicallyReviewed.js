@@ -64,5 +64,6 @@ module.exports = {
 	"gastric-sleeve-scars": ["gintas"],
 	"gastric-sleeve-forum": ["gintas"],
 	"gastric-bypass-recovery-time": ["gintas"],
-	"gastric-sleeve-failure-rate": ["gintas"]
+	"gastric-sleeve-failure-rate": ["gintas"],
+	"gastric-sleeve-app": ["gintas"]
 };
