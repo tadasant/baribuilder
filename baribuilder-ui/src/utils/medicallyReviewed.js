@@ -66,5 +66,6 @@ module.exports = {
 	"gastric-bypass-recovery-time": ["gintas"],
 	"gastric-sleeve-failure-rate": ["gintas"],
 	"gastric-sleeve-app": ["gintas"],
-	"cost-of-gastric-sleeve-surgery-without-insurance": ["gintas"]
+	"cost-of-gastric-sleeve-surgery-without-insurance": ["gintas"],
+	"lap-band-pain": ["gintas"]
 };
