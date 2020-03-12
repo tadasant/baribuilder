@@ -67,5 +67,6 @@ module.exports = {
 	"gastric-sleeve-failure-rate": ["gintas"],
 	"gastric-sleeve-app": ["gintas"],
 	"cost-of-gastric-sleeve-surgery-without-insurance": ["gintas"],
-	"lap-band-pain": ["gintas"]
+	"lap-band-pain": ["gintas"],
+	"weight-loss-surgery-horror-stories": ["gintas"]
 };
