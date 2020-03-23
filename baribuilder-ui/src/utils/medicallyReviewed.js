@@ -69,5 +69,6 @@ module.exports = {
 	"cost-of-gastric-sleeve-surgery-without-insurance": ["gintas"],
 	"lap-band-pain": ["gintas"],
 	"weight-loss-surgery-horror-stories": ["gintas"],
-	"gastric-bypass-scars": ["gintas"]
+	"gastric-bypass-scars": ["gintas"],
+	"hiatal-hernia-and-gastric-sleeve": ["gintas"]
 };
