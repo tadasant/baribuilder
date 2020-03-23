@@ -70,5 +70,6 @@ module.exports = {
 	"lap-band-pain": ["gintas"],
 	"weight-loss-surgery-horror-stories": ["gintas"],
 	"gastric-bypass-scars": ["gintas"],
-	"hiatal-hernia-and-gastric-sleeve": ["gintas"]
+	"hiatal-hernia-and-gastric-sleeve": ["gintas"],
+	"how-to-pay-for-bariatric-surgery-without-insurance": ["gintas"]
 };
