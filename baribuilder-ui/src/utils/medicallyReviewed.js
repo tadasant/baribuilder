@@ -71,5 +71,6 @@ module.exports = {
 	"weight-loss-surgery-horror-stories": ["gintas"],
 	"gastric-bypass-scars": ["gintas"],
 	"hiatal-hernia-and-gastric-sleeve": ["gintas"],
-	"how-to-pay-for-bariatric-surgery-without-insurance": ["gintas"]
+	"how-to-pay-for-bariatric-surgery-without-insurance": ["gintas"],
+	"gastric-bypass-surgery-cost-without-insurance": ["gintas"]
 };
