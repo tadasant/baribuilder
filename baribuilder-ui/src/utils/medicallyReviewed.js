@@ -73,5 +73,6 @@ module.exports = {
 	"hiatal-hernia-and-gastric-sleeve": ["gintas"],
 	"how-to-pay-for-bariatric-surgery-without-insurance": ["gintas"],
 	"gastric-bypass-surgery-cost-without-insurance": ["gintas"],
-	"stomach-pain-after-gastric-bypass": ["gintas"]
+	"stomach-pain-after-gastric-bypass": ["gintas"],
+	"gastric-bypass-success-stories": ["gintas"]
 };
