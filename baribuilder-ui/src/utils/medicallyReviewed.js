@@ -74,5 +74,8 @@ module.exports = {
 	"how-to-pay-for-bariatric-surgery-without-insurance": ["gintas"],
 	"gastric-bypass-surgery-cost-without-insurance": ["gintas"],
 	"stomach-pain-after-gastric-bypass": ["gintas"],
-	"gastric-bypass-success-stories": ["gintas"]
+	"gastric-bypass-success-stories": ["gintas"],
+	"gastric-bypass-forum": ["gintas"],
+	"bariatric-patients-can-boost-their-immune-system-during-coronavirus": ["gintas"],
+	"are-obese-people-more-susceptible-to-coronavirus": ["gintas"]
 };
