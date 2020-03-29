@@ -39,11 +39,20 @@ const Post = ({ data, location }) => {
 			<Layout>
 				<div className="container">
 					<article className="content">
+						{/* Amazon Associated disclaimer */}
+						<div className="post__amazon-disclaimer-container">
+							<p className="post__amazon-disclaimer">
+								As an Amazon Associate, BariBuilder earns from qualifying
+								purchases.
+							</p>
+						</div>
+
 						{post.feature_image ? (
 							<figure className="post-feature-image">
 								<img src={post.feature_image} alt={post.title} />
 							</figure>
 						) : null}
+
 						<section className="post-full-content">
 							<h1 className="content-title">{post.title}</h1>
 

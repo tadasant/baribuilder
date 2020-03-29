@@ -783,7 +783,8 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .site-main {
-	padding: 20px 0;
+	/* 0 padding to make room for Amazon disclaimer */
+	padding: 0 0;
 }
 
 /* Index */
@@ -930,6 +931,16 @@ figcaption {
 
 .post-card-avatar .default-avatar {
 	width: 26px;
+}
+
+.post__amazon-disclaimer-container {
+	display: flex;
+	justify-content: center;
+}
+
+.post__amazon-disclaimer {
+	font-size: 10px;
+	margin: 0px;
 }
 
 /* Tag Archives
