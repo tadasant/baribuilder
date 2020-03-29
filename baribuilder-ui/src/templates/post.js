@@ -10,8 +10,8 @@ import TipsInlineForm from "../components/convertKit/TipsInlineForm";
 
 import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
-import RecipesHeaderForm from "../components/convertKit/RecipesHeaderForm";
-import RecipesModal from "../components/convertKit/RecipesModal";
+import WorkoutsHeaderForm from "../components/convertKit/WorkoutsHeaderForm";
+import WorkoutsModal from "../components/convertKit/WorkoutsModal";
 import CustomPost from "../components/rendering/CustomPost";
 
 const AuthorFooter = styled.footer``;
@@ -58,11 +58,11 @@ const Post = ({ data, location }) => {
 
 							{/* CTA to sign up for newsletter */}
 							<InlineFormDiv>
-								<RecipesHeaderForm />
+								<WorkoutsHeaderForm />
 							</InlineFormDiv>
 
 							{/* Modal CTA to sign up for newsletter */}
-							<RecipesModal />
+							<WorkoutsModal />
 
 							{/* The main post content */}
 							<CustomPost post={post} />

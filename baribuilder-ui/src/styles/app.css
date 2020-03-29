@@ -784,7 +784,7 @@ figcaption {
 
 .site-main {
 	/* 0 padding to make room for Amazon disclaimer */
-	padding: 0 0;
+	padding: 20px 0;
 }
 
 /* Index */
@@ -936,6 +936,7 @@ figcaption {
 .post__amazon-disclaimer-container {
 	display: flex;
 	justify-content: center;
+	margin-top: -20px;
 }
 
 .post__amazon-disclaimer {
