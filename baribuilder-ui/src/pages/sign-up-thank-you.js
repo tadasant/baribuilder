@@ -23,7 +23,6 @@ const SignUpThankYou = ({ location }) => {
 	if (typeof window !== "undefined") {
 		const urlParams = new URLSearchParams(location.search);
 		if (urlParams && urlParams.has("pdf")) {
-			console.log(urlParams.get("pdf"));
 			if (urlParams.get("pdf") === "recipes") {
 				config.redirectUrl =
 					"https://baribuilder.s3.amazonaws.com/_external/12-protein-rich-recipes-v1.pdf";
