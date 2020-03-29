@@ -32,12 +32,16 @@ const CustomPost = props => {
 		const locationTokens = window.location.href.split("/");
 		// Ends with a slash, so -2
 		const fromSlug = locationTokens[locationTokens.length - 2];
+		const isReferral =
+			href.includes("amzn.to") || href.includes("tag=baribuilder");
 		// TODO remove this when tracking real referrals
 		const isReferralTest = href.includes("amazon.com");
 		const isOutbound =
 			!href.startsWith("/") && !href.includes("baribuilder.com/blog");
 		trackCustomEvent({
-			category: isReferralTest
+			category: isReferral
+				? "Amazon Referral Link"
+				: isReferralTest
 				? "Referral Test Link"
 				: isOutbound
 				? "Outbound Link"
