@@ -106,6 +106,7 @@ const WebsiteMeta = ({
 			<PinterestTag />
 			<TwitterTag />
 			<AdRollPixel />
+			<ShareThisMeta />
 			<ImageMeta image={shareImage} />
 		</>
 	);
