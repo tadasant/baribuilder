@@ -689,6 +689,11 @@ figcaption {
 	padding: 5px 10px;
 	color: #fff;
 	opacity: 0.7;
+	cursor: pointer;
+}
+
+.site-nav-sub-menu-item {
+	color: var(--color-base);
 }
 
 .site-nav-item:hover {

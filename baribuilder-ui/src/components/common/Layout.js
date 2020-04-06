@@ -18,7 +18,7 @@ import "../../styles/app.css";
  * styles, and meta data for each page.
  *
  */
-const DefaultLayout = props => {
+const DefaultLayout = (props) => {
 	const { data, children, bodyClass, isHome } = props;
 	const site = data.allGhostSettings.edges[0].node;
 	const twitterUrl = site.twitter
@@ -27,6 +27,7 @@ const DefaultLayout = props => {
 	const facebookUrl = site.facebook
 		? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
 		: null;
+	const tags = data.allGhostTag.nodes;
 
 	return (
 		<>
@@ -71,7 +72,11 @@ const DefaultLayout = props => {
 										</Link>
 									) : null}
 									{/* The navigation items as setup in Ghost */}
-									<Navigation data={site.navigation} navClass="site-nav-item" />
+									<Navigation
+										data={site.navigation}
+										navClass="site-nav-item"
+										tags={tags}
+									/>
 								</div>
 								<div className="site-nav-right">
 									{site.twitter && (
@@ -168,6 +173,7 @@ const DefaultLayout = props => {
 									<Navigation
 										data={site.navigation}
 										navClass="site-foot-nav-item"
+										tags={tags}
 									/>
 								</div>
 							</div>
@@ -184,11 +190,11 @@ DefaultLayout.propTypes = {
 	bodyClass: PropTypes.string,
 	isHome: PropTypes.bool,
 	data: PropTypes.shape({
-		allGhostSettings: PropTypes.object.isRequired
-	}).isRequired
+		allGhostSettings: PropTypes.object.isRequired,
+	}).isRequired,
 };
 
-const DefaultLayoutSettingsQuery = props => (
+const DefaultLayoutSettingsQuery = (props) => (
 	<StaticQuery
 		query={graphql`
 			query LayoutQuery {
@@ -213,9 +219,16 @@ const DefaultLayoutSettingsQuery = props => (
 						}
 					}
 				}
+				allGhostTag {
+					nodes {
+						name
+						slug
+						postCount
+					}
+				}
 			}
 		`}
-		render={data => <DefaultLayout data={data} {...props} />}
+		render={(data) => <DefaultLayout data={data} {...props} />}
 	/>
 );
 
