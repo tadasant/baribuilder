@@ -15,20 +15,18 @@ import { Link } from "gatsby";
 const Navigation = ({ data, navClass }) => (
 	<>
 		{data.map((navItem, i) => {
+			const url = navItem.url.startsWith("https://baribuilder.com")
+				? navItem.url.split("https://baribuilder.com")[1]
+				: navItem.url;
 			if (navItem.url.match(/^\s?http(s?)/gi)) {
 				return (
-					<a
-						className={navClass}
-						href={navItem.url}
-						key={i}
-						rel="noopener noreferrer"
-					>
+					<a className={navClass} href={url} key={i} rel="noopener noreferrer">
 						{navItem.label}
 					</a>
 				);
 			} else {
 				return (
-					<Link className={navClass} to={navItem.url} key={i}>
+					<Link className={navClass} to={url} key={i}>
 						{navItem.label}
 					</Link>
 				);
