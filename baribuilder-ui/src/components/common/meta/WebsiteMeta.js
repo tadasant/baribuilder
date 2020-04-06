@@ -10,6 +10,7 @@ import config from "../../../utils/siteConfig";
 import TwitterTag from "./TwitterTag";
 import PinterestTag from "./PinterestTag";
 import AdRollPixel from "./AdRollPixel";
+import ShareThisMeta from "./ShareThisMeta";
 
 const WebsiteMeta = ({
 	data,
@@ -18,7 +19,7 @@ const WebsiteMeta = ({
 	title,
 	description,
 	image,
-	type
+	type,
 }) => {
 	settings = settings.allGhostSettings.edges[0].node;
 
@@ -116,19 +117,19 @@ WebsiteMeta.propTypes = {
 		feature_image: PropTypes.string,
 		description: PropTypes.string,
 		bio: PropTypes.string,
-		profile_image: PropTypes.string
+		profile_image: PropTypes.string,
 	}).isRequired,
 	settings: PropTypes.shape({
-		allGhostSettings: PropTypes.object.isRequired
+		allGhostSettings: PropTypes.object.isRequired,
 	}).isRequired,
 	canonical: PropTypes.string.isRequired,
 	title: PropTypes.string,
 	description: PropTypes.string,
 	image: PropTypes.string,
-	type: PropTypes.oneOf([`WebSite`, `Series`]).isRequired
+	type: PropTypes.oneOf([`WebSite`, `Series`]).isRequired,
 };
 
-const WebsiteMetaQuery = props => (
+const WebsiteMetaQuery = (props) => (
 	<StaticQuery
 		query={graphql`
 			query GhostSettingsWebsiteMeta {
@@ -141,7 +142,7 @@ const WebsiteMetaQuery = props => (
 				}
 			}
 		`}
-		render={data => <WebsiteMeta settings={data} {...props} />}
+		render={(data) => <WebsiteMeta settings={data} {...props} />}
 	/>
 );
 

@@ -13,6 +13,7 @@ import medicallyReviewed from "../utils/medicallyReviewed";
 import WorkoutsHeaderForm from "../components/convertKit/WorkoutsHeaderForm";
 import WorkoutsModal from "../components/convertKit/WorkoutsModal";
 import CustomPost from "../components/rendering/CustomPost";
+import ShareThisMeta from "../components/common/meta/ShareThisMeta";
 
 const AuthorFooter = styled.footer``;
 
@@ -67,11 +68,15 @@ const Post = ({ data, location }) => {
 							{/* The main post content */}
 							<CustomPost post={post} />
 
+							{/* Social media sharing buttons  */}
+							<ShareThisMeta />
+							<div class="sharethis-inline-share-buttons" />
+
 							{/* End of article tips CTA */}
 							<InlineFormDiv>
 								<TipsInlineForm />
 							</InlineFormDiv>
-							{post.authors.map(author => {
+							{post.authors.map((author) => {
 								// hack for medical reviewers -- could eventually integrate into custom CMS
 								let role = "Author";
 								if (
@@ -102,12 +107,12 @@ Post.propTypes = {
 			feature_image: PropTypes.string,
 			authors: PropTypes.arrayOf(
 				PropTypes.shape({
-					slug: PropTypes.string.isRequired
+					slug: PropTypes.string.isRequired,
 				})
-			)
-		}).isRequired
+			),
+		}).isRequired,
 	}).isRequired,
-	location: PropTypes.object.isRequired
+	location: PropTypes.object.isRequired,
 };
 
 export default Post;
