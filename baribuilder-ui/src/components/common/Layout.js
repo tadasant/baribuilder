@@ -166,11 +166,6 @@ const DefaultLayout = (props) => {
 									>
 										Privacy Policy
 									</a>
-									<Navigation
-										data={site.navigation}
-										navClass="site-foot-nav-item"
-										tags={tags}
-									/>
 								</div>
 							</div>
 						</div>

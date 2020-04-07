@@ -1138,3 +1138,19 @@ figcaption {
 .site-foot-nav-right a:last-child {
 	padding-right: 0;
 }
+
+/* /search */
+
+@media (max-width: 500px) {
+	.google-search-container {
+		margin-left: 16px;
+		margin-right: 16px;
+	}
+}
+
+@media (min-width: 501px) {
+	.google-search-container {
+		margin-left: 48px;
+		margin-right: 48px;
+	}
+}
