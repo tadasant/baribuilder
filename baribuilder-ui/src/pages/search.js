@@ -38,6 +38,10 @@ const Search = ({ location }) => {
 			<MetaData location={location} title="Search" />
 			<Layout>
 				<div className="google-search-container">
+					<p className="disclaimer">
+						Please note that the first few results on this page may be external
+						advertisements. Scroll down for BariBuilder results.
+					</p>
 					<div
 						className="gcse-searchbox"
 						data-enableHistory="true"

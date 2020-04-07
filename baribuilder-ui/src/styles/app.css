@@ -773,10 +773,10 @@ figcaption {
 /* Hamburger menu for left nav when mobile */
 .site-nav-left .hamburger-menu {
 	display: none;
-	color: white;
+	color: #fff;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 	.site-nav-left .hamburger-menu {
 		display: inline;
 	}
@@ -792,6 +792,29 @@ figcaption {
 
 .site-nav-right {
 	margin: 0 -10px 0 20px;
+}
+
+.site-nav-right .search-icon {
+	color: #fff;
+}
+
+.search-bar {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 8px;
+}
+
+.search-bar .input-box {
+	border-radius: 8px;
+	color: var(--color-base);
+	padding: 4px;
+}
+
+.search-bar .search-button {
+	color: #fff;
+	background-color: var(--color-base);
+	margin-left: 8px;
+	border-color: rgba(255, 255, 255, 0.8);
 }
 
 .site-nav-button {
@@ -1153,4 +1176,8 @@ figcaption {
 		margin-left: 48px;
 		margin-right: 48px;
 	}
+}
+
+.google-search-container .disclaimer {
+	text-align: center;
 }

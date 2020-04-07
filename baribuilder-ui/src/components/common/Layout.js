@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { Link, StaticQuery, graphql } from "gatsby";
+import { Link, StaticQuery, graphql, navigate } from "gatsby";
+import { IconButton, Button } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 import Img from "gatsby-image";
 
 import { Navigation } from ".";
@@ -19,6 +21,8 @@ import "../../styles/app.css";
  *
  */
 const DefaultLayout = (props) => {
+	const [showSearchBar, setShowSearchBar] = useState(false);
+	const [searchValue, setSearchValue] = useState("");
 	const { data, children, bodyClass, isHome } = props;
 	const site = data.allGhostSettings.edges[0].node;
 	const twitterUrl = site.twitter
@@ -28,6 +32,20 @@ const DefaultLayout = (props) => {
 		? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
 		: null;
 	const tags = data.allGhostTag.nodes;
+
+	const handleSearchChange = (event) => {
+		setSearchValue(event.target.value);
+	};
+
+	const handleSearchKey = (event) => {
+		if (event.key === "Enter") {
+			handleSearch();
+		}
+	};
+
+	const handleSearch = () => {
+		navigate(`/search?q=${encodeURI(searchValue)}`);
+	};
 
 	return (
 		<>
@@ -75,6 +93,15 @@ const DefaultLayout = (props) => {
 									<Navigation navClass="site-nav-item" tags={tags} />
 								</div>
 								<div className="site-nav-right">
+									{/* Search bar */}
+									<IconButton
+										className="search-icon"
+										onClick={() => setShowSearchBar((prev) => !prev)}
+									>
+										<SearchIcon />
+									</IconButton>
+
+									{/* Social Media icons */}
 									{site.twitter && (
 										<a
 											href={twitterUrl}
@@ -118,6 +145,25 @@ const DefaultLayout = (props) => {
 								</div>
 							</nav>
 						</div>
+
+						{showSearchBar ? (
+							<div className="search-bar">
+								<input
+									className="input-box"
+									type="text"
+									autoFocus
+									onChange={handleSearchChange}
+									onKeyDown={handleSearchKey}
+								/>
+								<Button
+									className="search-button"
+									variant="outlined"
+									onClick={handleSearch}
+								>
+									Search
+								</Button>
+							</div>
+						) : null}
 					</header>
 
 					<main className="site-main">
