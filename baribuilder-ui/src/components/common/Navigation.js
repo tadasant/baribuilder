@@ -17,9 +17,15 @@ import upperFirst from "lodash/upperFirst";
  */
 const Navigation = ({ navClass, tags }) => {
 	const [topicsMenuAnchor, setTopicsMenuAnchor] = useState(null);
+	const [topicsMobileMenuAnchor, setTopicsMobileMenuAnchor] = useState(null);
 	const [hamburgerMenuAnchor, setHamburgerMenuAnchor] = useState(null);
 	const handleTopicsClick = (event) => {
 		setTopicsMenuAnchor((prev) => (prev === null ? event.currentTarget : null));
+	};
+	const handleMobileTopicsClick = (event) => {
+		setTopicsMobileMenuAnchor((prev) =>
+			prev === null ? event.currentTarget : null
+		);
 	};
 	const handleHamburgerClick = (event) => {
 		setHamburgerMenuAnchor((prev) =>
@@ -71,20 +77,60 @@ const Navigation = ({ navClass, tags }) => {
 					open={Boolean(hamburgerMenuAnchor)}
 					onClose={handleHamburgerClick}
 					anchorOrigin={{
-						horizontal: "right",
+						vertical: "bottom",
 					}}
 					getContentAnchorEl={null}
 					className="site-nav-sub-menu"
 				>
-					{sortedTags.map((tag, i) => (
+					{navItems.map((navItem) => (
 						<MenuItem>
-							<Link
-								className="site-nav-sub-menu-item"
-								to={`/blog/tag/${tag.slug}`}
-								key={i}
-							>
-								{upperFirst(tag.name)} ({tag.postCount})
-							</Link>
+							{navItem.isRelative ? (
+								<Link className={navClass} to={navItem.url}>
+									{navItem.label}
+								</Link>
+							) : navItem.isAbsolute ? (
+								<a
+									className={navClass}
+									href={navItem.url}
+									rel="noopener noreferrer"
+								>
+									{navItem.label}
+								</a>
+							) : navItem.hasSubMenu ? (
+								<>
+									<span
+										className={navClass}
+										aria-controls="simple-menu"
+										aria-haspopup="true"
+										onClick={handleTopicsClick}
+									>
+										{navItem.label}
+									</span>
+									<Menu
+										anchorEl={topicsMobileMenuAnchor}
+										keepMounted
+										open={Boolean(topicsMobileMenuAnchor)}
+										onClose={handleMobileTopicsClick}
+										anchorOrigin={{
+											horizontal: "right",
+										}}
+										getContentAnchorEl={null}
+										className="site-nav-sub-menu"
+									>
+										{sortedTags.map((tag, i) => (
+											<MenuItem>
+												<Link
+													className="site-nav-sub-menu-item"
+													to={`/blog/tag/${tag.slug}`}
+													key={i}
+												>
+													{upperFirst(tag.name)} ({tag.postCount})
+												</Link>
+											</MenuItem>
+										))}
+									</Menu>
+								</>
+							) : null}
 						</MenuItem>
 					))}
 				</Menu>
