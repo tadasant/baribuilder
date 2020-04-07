@@ -692,6 +692,15 @@ figcaption {
 	cursor: pointer;
 }
 
+.site-nav-sub-menu .MuiMenu-paper {
+	background-color: var(--color-base);
+}
+
+.site-nav-sub-menu a {
+	text-decoration: none;
+	color: #fff;
+}
+
 .site-nav-sub-menu-item {
 	color: var(--color-base);
 }

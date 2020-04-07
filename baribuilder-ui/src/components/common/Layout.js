@@ -72,11 +72,7 @@ const DefaultLayout = (props) => {
 										</Link>
 									) : null}
 									{/* The navigation items as setup in Ghost */}
-									<Navigation
-										data={site.navigation}
-										navClass="site-nav-item"
-										tags={tags}
-									/>
+									<Navigation navClass="site-nav-item" tags={tags} />
 								</div>
 								<div className="site-nav-right">
 									{site.twitter && (

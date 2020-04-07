@@ -14,41 +14,21 @@ import upperFirst from "lodash/upperFirst";
  * to a `site-nav-item` class.
  *
  */
-const Navigation = ({ data, navClass, tags }) => {
+const Navigation = ({ navClass, tags }) => {
 	const [topicsMenuAnchor, setTopicsMenuAnchor] = useState(null);
 	const handleTopicsClick = (event) => {
 		setTopicsMenuAnchor((prev) => (prev === null ? event.currentTarget : null));
 	};
 
 	const sortedTags = tags
-		.filter((tag) => tag.postCount > 1)
-		.sort((a, b) => (a.postCount > b.postCount ? -1 : 1));
+		.sort((a, b) => (a.postCount > b.postCount ? -1 : 1))
+		.slice(0, 8);
 
 	return (
 		<>
-			{data.map((navItem, i) => {
-				const url = navItem.url.startsWith("https://baribuilder.com")
-					? navItem.url.split("https://baribuilder.com")[1]
-					: navItem.url;
-				if (navItem.url.match(/^\s?http(s?)/gi)) {
-					return (
-						<a
-							className={navClass}
-							href={url}
-							key={i}
-							rel="noopener noreferrer"
-						>
-							{navItem.label}
-						</a>
-					);
-				} else {
-					return (
-						<Link className={navClass} to={url} key={i}>
-							{navItem.label}
-						</Link>
-					);
-				}
-			})}
+			<Link className={navClass} to="/blog/">
+				Blog
+			</Link>
 			<span
 				className={navClass}
 				aria-controls="simple-menu"
@@ -62,6 +42,11 @@ const Navigation = ({ data, navClass, tags }) => {
 				keepMounted
 				open={Boolean(topicsMenuAnchor)}
 				onClose={handleTopicsClick}
+				anchorOrigin={{
+					vertical: "bottom",
+				}}
+				getContentAnchorEl={null}
+				className="site-nav-sub-menu"
 			>
 				{sortedTags.map((tag, i) => (
 					<MenuItem>
@@ -75,6 +60,20 @@ const Navigation = ({ data, navClass, tags }) => {
 					</MenuItem>
 				))}
 			</Menu>
+			<a
+				className={navClass}
+				href="https://shop.baribuilder.com/"
+				rel="noopener noreferrer"
+			>
+				Shop
+			</a>
+			<a
+				className={navClass}
+				href="https://shop.baribuilder.com/about"
+				rel="noopener noreferrer"
+			>
+				About
+			</a>
 		</>
 	);
 };
