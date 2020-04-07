@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.9.9",
+		"@material-ui/icons": "^4.9.1",
 		"@tryghost/helpers": "1.1.5",
 		"@tryghost/helpers-gatsby": "1.0.8",
 		"cheerio": "1.0.0-rc.3",

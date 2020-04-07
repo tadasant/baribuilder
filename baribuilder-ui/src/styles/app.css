@@ -770,6 +770,22 @@ figcaption {
 	display: flex;
 }
 
+/* Hamburger menu for left nav when mobile */
+.site-nav-left .hamburger-menu {
+	display: none;
+	color: white;
+}
+
+@media (max-width: 500px) {
+	.site-nav-left .hamburger-menu {
+		display: inline;
+	}
+
+	.site-nav-left .flat-menu {
+		display: none;
+	}
+}
+
 .site-nav-logo {
 	margin: 0 5px 0 5px;
 }
