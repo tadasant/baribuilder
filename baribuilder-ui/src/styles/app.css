@@ -766,7 +766,7 @@ figcaption {
 }
 
 .site-nav-left {
-	margin: 0 20px 0 -10px;
+	margin: 0 0 0 -10px;
 	display: flex;
 }
 
@@ -995,6 +995,7 @@ figcaption {
 .post__amazon-disclaimer {
 	font-size: 10px;
 	margin: 0px;
+	text-align: center;
 }
 
 /* Tag Archives
