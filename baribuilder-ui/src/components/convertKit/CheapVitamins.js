@@ -75,14 +75,22 @@ const ButtonContainer = styled.div`
 
 const tags = [
 	{
-		name: "Gastric Bypass",
-		value: "gastric-bypass",
-		price: 15,
-	},
-	{
 		name: "Gastric Sleeve",
 		value: "gastric-sleeve",
 		price: 14,
+		landingUrl: "https://ck.baribuilder.com/gastric-sleeve-vitamins",
+	},
+	{
+		name: "Gastric Bypass",
+		value: "gastric-bypass",
+		price: 15,
+		landingUrl: "https://ck.baribuilder.com/gastric-bypass-vitamins",
+	},
+	{
+		name: "Other",
+		value: "other",
+		price: 14,
+		landingUrl: "https://ck.baribuilder.com/other-vitamins",
 	},
 ];
 
@@ -115,7 +123,13 @@ const CheapVitamins = ({ vitaminImage }) => {
 				</AdCopyContainer>
 
 				<ButtonContainer>
-					<CTAButton>Show me how</CTAButton>
+					<a
+						href={tagByValue[selectedSurgery].landingUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<CTAButton>Show me how</CTAButton>
+					</a>
 				</ButtonContainer>
 			</AdStack>
 		</CheapVitaminsContainer>
