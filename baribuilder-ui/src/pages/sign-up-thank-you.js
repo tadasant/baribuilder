@@ -36,9 +36,9 @@ const SignUpThankYou = ({ location }) => {
 			config.timeDelay = 2000;
 		} else if (urlParams && urlParams.has("calculator")) {
 			if (urlParams.get("calculator") === "sleeve") {
-				config.redirectUrl = "https://https://shop.baribuilder.com/sleeve";
+				config.redirectUrl = "https://shop.baribuilder.com/sleeve";
 			} else if (urlParams.get("calculator") === "bypass") {
-				config.redirectUrl = "https://https://shop.baribuilder.com/bypass";
+				config.redirectUrl = "https://shop.baribuilder.com/bypass";
 			} else if (urlParams.get("calculator") === "other") {
 				config.redirectUrl = "https://shop.baribuilder.com/goals";
 			}
