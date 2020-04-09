@@ -17,7 +17,7 @@ const SignUpThankYou = ({ location }) => {
 		redirectText: "our homepage",
 		hideConfirmation: false,
 		externalLink: false,
-		timeDelay: 5000
+		timeDelay: 5000,
 	};
 
 	if (typeof window !== "undefined") {
@@ -31,6 +31,18 @@ const SignUpThankYou = ({ location }) => {
 					"https://baribuilder.s3.amazonaws.com/_external/10-home-exercises-v1.pdf";
 			}
 			config.redirectText = "your PDF download";
+			config.hideConfirmation = true;
+			config.externalLink = true;
+			config.timeDelay = 2000;
+		} else if (urlParams && urlParams.has("calculator")) {
+			if (urlParams.get("calculator") === "sleeve") {
+				config.redirectUrl = "https://https://shop.baribuilder.com/sleeve";
+			} else if (urlParams.get("calculator") === "bypass") {
+				config.redirectUrl = "https://https://shop.baribuilder.com/bypass";
+			} else if (urlParams.get("calculator") === "other") {
+				config.redirectUrl = "https://shop.baribuilder.com/goals";
+			}
+			config.redirectText = "the calculator";
 			config.hideConfirmation = true;
 			config.externalLink = true;
 			config.timeDelay = 2000;
@@ -77,8 +89,8 @@ const SignUpThankYou = ({ location }) => {
 
 SignUpThankYou.propTypes = {
 	location: PropTypes.shape({
-		pathname: PropTypes.string.isRequired
-	}).isRequired
+		pathname: PropTypes.string.isRequired,
+	}).isRequired,
 };
 
 export default SignUpThankYou;
