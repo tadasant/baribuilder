@@ -14,12 +14,14 @@ import WorkoutsHeaderForm from "../components/convertKit/WorkoutsHeaderForm";
 import WorkoutsModal from "../components/convertKit/WorkoutsModal";
 import CustomPost from "../components/rendering/CustomPost";
 import ShareThisMeta from "../components/common/meta/ShareThisMeta";
+import CheapVitamins from "../components/convertKit/CheapVitamins";
 
 const AuthorFooter = styled.footer``;
 
 const InlineFormDiv = styled.div`
 	margin: 16px;
 	margin-bottom: 48px;
+	margin-top: 48px;
 `;
 
 /**
@@ -30,6 +32,7 @@ const InlineFormDiv = styled.div`
  */
 const Post = ({ data, location }) => {
 	const post = data.ghostPost;
+	const { vitaminImage } = data;
 
 	return (
 		<>
@@ -59,7 +62,7 @@ const Post = ({ data, location }) => {
 
 							{/* CTA to sign up for newsletter */}
 							<InlineFormDiv>
-								<WorkoutsHeaderForm />
+								<CheapVitamins vitaminImage={vitaminImage} />
 							</InlineFormDiv>
 
 							{/* Modal CTA to sign up for newsletter */}
@@ -121,6 +124,13 @@ export const postQuery = graphql`
 	query($slug: String!) {
 		ghostPost(slug: { eq: $slug }) {
 			...GhostPostFields
+		}
+		vitaminImage: file(relativePath: { eq: "resources/vitamins-ad.jpg" }) {
+			childImageSharp {
+				fixed(width: 400) {
+					...GatsbyImageSharpFixed
+				}
+			}
 		}
 	}
 `;
