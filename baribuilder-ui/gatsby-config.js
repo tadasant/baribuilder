@@ -11,8 +11,8 @@ try {
 	ghostConfig = {
 		production: {
 			apiUrl: process.env.GHOST_API_URL,
-			contentApiKey: process.env.GHOST_CONTENT_API_KEY
-		}
+			contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+		},
 	};
 } finally {
 	const { apiUrl, contentApiKey } =
@@ -36,7 +36,7 @@ try {
  */
 module.exports = {
 	siteMetadata: {
-		siteUrl: config.siteUrl
+		siteUrl: config.siteUrl,
 	},
 	plugins: [
 		/**
@@ -46,8 +46,8 @@ module.exports = {
 			resolve: `gatsby-source-filesystem`,
 			options: {
 				path: path.join(__dirname, `src`, `pages`),
-				name: `pages`
-			}
+				name: `pages`,
+			},
 		},
 		// Setup for optimised images.
 		// See https://www.gatsbyjs.org/packages/gatsby-image/
@@ -55,8 +55,8 @@ module.exports = {
 			resolve: `gatsby-source-filesystem`,
 			options: {
 				path: path.join(__dirname, `src`, `images`),
-				name: `images`
-			}
+				name: `images`,
+			},
 		},
 		`gatsby-plugin-sharp`,
 		`gatsby-transformer-sharp`,
@@ -65,7 +65,7 @@ module.exports = {
 			options:
 				process.env.NODE_ENV === `development`
 					? ghostConfig.development
-					: ghostConfig.production
+					: ghostConfig.production,
 		},
 		/**
 		 *  Utility Plugins
@@ -90,8 +90,8 @@ module.exports = {
                         }
                     }
                 }
-              `
-			}
+              `,
+			},
 		},
 		{
 			resolve: `gatsby-plugin-feed`,
@@ -108,8 +108,8 @@ module.exports = {
                     }
                 }
               `,
-				feeds: [generateRSSFeed(config)]
-			}
+				feeds: [generateRSSFeed(config)],
+			},
 		},
 		{
 			resolve: `gatsby-plugin-advanced-sitemap`,
@@ -159,26 +159,26 @@ module.exports = {
                 }`,
 				mapping: {
 					allGhostPost: {
-						sitemap: `posts`
+						sitemap: `posts`,
 					},
 					allGhostTag: {
-						sitemap: `tags`
+						sitemap: `tags`,
 					},
 					allGhostAuthor: {
-						sitemap: `authors`
+						sitemap: `authors`,
 					},
 					allGhostPage: {
-						sitemap: `pages`
-					}
+						sitemap: `pages`,
+					},
 				},
 				exclude: [
 					`/dev-404-page`,
 					`/404`,
 					`/404.html`,
-					`/offline-plugin-app-shell-fallback`
+					`/offline-plugin-app-shell-fallback`,
 				],
-				createLinkInHead: true
-			}
+				createLinkInHead: true,
+			},
 		},
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-force-trailing-slashes`,
@@ -186,8 +186,8 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-facebook-pixel`,
 			options: {
-				pixelId: "2046900505418306"
-			}
+				pixelId: "2046900505418306",
+			},
 		},
 		{
 			resolve: `gatsby-plugin-google-analytics`,
@@ -195,8 +195,16 @@ module.exports = {
 				trackingId: "UA-104887163-2",
 				// Defines where to place the tracking script - `true` in the head and `false` in the body
 				head: true,
-				respectDNT: true
-			}
-		}
-	]
+				respectDNT: true,
+			},
+		},
+		{
+			resolve: `gatsby-plugin-hotjar-tracking`,
+			options: {
+				includeInDevelopment: false,
+				id: 1065021,
+				sv: 6,
+			},
+		},
+	],
 };

@@ -5118,6 +5118,13 @@ gatsby-plugin-google-analytics@^2.1.31:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
+gatsby-plugin-hotjar-tracking@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-hotjar-tracking/-/gatsby-plugin-hotjar-tracking-1.1.0.tgz#9dd1e1c780a68ceb4d4118a29e36984821d3f0d5"
+  integrity sha512-ec3t8cLz0FABGqnmhccCwam/SCPdDdCAw7mqTGLoq2XPM6zKGZkbArjdXUIX6NS3jmuqk9h9An8Rwr+zyb9Asw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
 gatsby-plugin-manifest@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.1.1.tgz#e987d6e655b1dcfba6e10d65ff20722aaeb75391"
