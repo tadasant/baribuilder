@@ -16,7 +16,6 @@ import AdRollPixel from "./custom/AdRollPixel";
 
 import escapeHtml from "escape-html";
 import ShareThisMeta from "./custom/ShareThisMeta";
-import HotJar from "./custom/HotJar";
 
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
 	const ghostPost = data;
@@ -174,7 +173,6 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
 			<PinterestTag />
 			<AdRollPixel />
 			<ShareThisMeta />
-			<HotJar />
 			<ImageMeta image={shareImage} />
 		</>
 	);

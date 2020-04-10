@@ -11,7 +11,6 @@ import TwitterTag from "./custom/TwitterTag";
 import PinterestTag from "./custom/PinterestTag";
 import AdRollPixel from "./custom/AdRollPixel";
 import ShareThisMeta from "./custom/ShareThisMeta";
-import HotJar from "./custom/HotJar";
 
 const WebsiteMeta = ({
 	data,
@@ -108,7 +107,6 @@ const WebsiteMeta = ({
 			<TwitterTag />
 			<AdRollPixel />
 			<ShareThisMeta />
-			<HotJar />
 			<ImageMeta image={shareImage} />
 		</>
 	);

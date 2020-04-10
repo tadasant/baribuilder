@@ -11,7 +11,6 @@ import TwitterTag from "./custom/TwitterTag";
 import PinterestTag from "./custom/PinterestTag";
 import AdRollPixel from "./custom/AdRollPixel";
 import ShareThisMeta from "./custom/ShareThisMeta";
-import HotJar from "./custom/HotJar";
 
 const AuthorMeta = ({ data, settings, canonical }) => {
 	settings = settings.allGhostSettings.edges[0].node;
@@ -81,7 +80,6 @@ const AuthorMeta = ({ data, settings, canonical }) => {
 			<TwitterTag />
 			<AdRollPixel />
 			<ShareThisMeta />
-			<HotJar />
 			<ImageMeta image={shareImage} />
 		</>
 	);
