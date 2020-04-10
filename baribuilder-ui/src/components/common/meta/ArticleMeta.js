@@ -10,11 +10,13 @@ import ImageMeta from "./ImageMeta";
 import config from "../../../utils/siteConfig";
 
 import { tags as tagsHelper } from "@tryghost/helpers";
-import TwitterTag from "./TwitterTag";
-import PinterestTag from "./PinterestTag";
-import AdRollPixel from "./AdRollPixel";
+import TwitterTag from "./custom/TwitterTag";
+import PinterestTag from "./custom/PinterestTag";
+import AdRollPixel from "./custom/AdRollPixel";
 
 import escapeHtml from "escape-html";
+import ShareThisMeta from "./custom/ShareThisMeta";
+import HotJar from "./custom/HotJar";
 
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
 	const ghostPost = data;
@@ -22,7 +24,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
 
 	const author = getAuthorProperties(ghostPost.primary_author);
 	const publicTags = _.map(
-		tagsHelper(ghostPost, { visibility: `public`, fn: tag => tag }),
+		tagsHelper(ghostPost, { visibility: `public`, fn: (tag) => tag }),
 		`name`
 	);
 	const primaryTag = publicTags[0] || ``;
@@ -171,6 +173,8 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
 			<TwitterTag />
 			<PinterestTag />
 			<AdRollPixel />
+			<ShareThisMeta />
+			<HotJar />
 			<ImageMeta image={shareImage} />
 		</>
 	);
@@ -189,25 +193,25 @@ ArticleMetaGhost.propTypes = {
 			PropTypes.shape({
 				name: PropTypes.string,
 				slug: PropTypes.string,
-				visibility: PropTypes.string
+				visibility: PropTypes.string,
 			})
 		),
 		primaryTag: PropTypes.shape({
-			name: PropTypes.string
+			name: PropTypes.string,
 		}),
 		og_title: PropTypes.string,
 		og_description: PropTypes.string,
 		twitter_title: PropTypes.string,
 		twitter_description: PropTypes.string,
-		excerpt: PropTypes.string.isRequired
+		excerpt: PropTypes.string.isRequired,
 	}).isRequired,
 	settings: PropTypes.shape({
-		allGhostSettings: PropTypes.object.isRequired
+		allGhostSettings: PropTypes.object.isRequired,
 	}).isRequired,
-	canonical: PropTypes.string.isRequired
+	canonical: PropTypes.string.isRequired,
 };
 
-const ArticleMetaQuery = props => (
+const ArticleMetaQuery = (props) => (
 	<StaticQuery
 		query={graphql`
 			query GhostSettingsArticleMeta {
@@ -220,7 +224,7 @@ const ArticleMetaQuery = props => (
 				}
 			}
 		`}
-		render={data => <ArticleMetaGhost settings={data} {...props} />}
+		render={(data) => <ArticleMetaGhost settings={data} {...props} />}
 	/>
 );
 

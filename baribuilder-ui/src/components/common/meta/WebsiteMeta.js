@@ -7,11 +7,11 @@ import url from "url";
 
 import ImageMeta from "./ImageMeta";
 import config from "../../../utils/siteConfig";
-import TwitterTag from "./TwitterTag";
-import PinterestTag from "./PinterestTag";
-import AdRollPixel from "./AdRollPixel";
-import ShareThisMeta from "./ShareThisMeta";
-import HotJar from "./HotJar";
+import TwitterTag from "./custom/TwitterTag";
+import PinterestTag from "./custom/PinterestTag";
+import AdRollPixel from "./custom/AdRollPixel";
+import ShareThisMeta from "./custom/ShareThisMeta";
+import HotJar from "./custom/HotJar";
 
 const WebsiteMeta = ({
 	data,

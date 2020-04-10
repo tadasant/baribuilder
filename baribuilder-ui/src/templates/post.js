@@ -12,7 +12,6 @@ import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
 import RecipesModal from "../components/convertKit/RecipesModal";
 import CustomPost from "../components/rendering/CustomPost";
-import ShareThisMeta from "../components/common/meta/ShareThisMeta";
 import CheapVitamins from "../components/convertKit/CheapVitamins";
 
 const AuthorFooter = styled.footer``;
@@ -70,8 +69,6 @@ const Post = ({ data, location }) => {
 							{/* The main post content */}
 							<CustomPost post={post} />
 
-							{/* Social media sharing buttons  */}
-							<ShareThisMeta />
 							<div class="sharethis-inline-share-buttons" />
 
 							{/* End of article tips CTA */}

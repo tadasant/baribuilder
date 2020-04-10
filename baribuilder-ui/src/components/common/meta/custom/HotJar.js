@@ -8,6 +8,7 @@ const HotJar = () => {
 		// Using Helmet as workaround for lack of Fragment support https://github.com/nfl/react-helmet/issues/342
 		<Helmet>
 			<script
+				async
 				dangerouslySetInnerHTML={{
 					__html: `
 					(function(h,o,t,j,a,r){

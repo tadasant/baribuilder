@@ -7,9 +7,11 @@ import { StaticQuery, graphql } from "gatsby";
 import ImageMeta from "./ImageMeta";
 import getAuthorProperties from "./getAuthorProperties";
 import config from "../../../utils/siteConfig";
-import TwitterTag from "./TwitterTag";
-import PinterestTag from "./PinterestTag";
-import AdRollPixel from "./AdRollPixel";
+import TwitterTag from "./custom/TwitterTag";
+import PinterestTag from "./custom/PinterestTag";
+import AdRollPixel from "./custom/AdRollPixel";
+import ShareThisMeta from "./custom/ShareThisMeta";
+import HotJar from "./custom/HotJar";
 
 const AuthorMeta = ({ data, settings, canonical }) => {
 	settings = settings.allGhostSettings.edges[0].node;
@@ -78,6 +80,8 @@ const AuthorMeta = ({ data, settings, canonical }) => {
 			<PinterestTag />
 			<TwitterTag />
 			<AdRollPixel />
+			<ShareThisMeta />
+			<HotJar />
 			<ImageMeta image={shareImage} />
 		</>
 	);
@@ -90,15 +94,15 @@ AuthorMeta.propTypes = {
 		profile_image: PropTypes.string,
 		website: PropTypes.string,
 		twitter: PropTypes.string,
-		facebook: PropTypes.string
+		facebook: PropTypes.string,
 	}).isRequired,
 	settings: PropTypes.shape({
-		allGhostSettings: PropTypes.object.isRequired
+		allGhostSettings: PropTypes.object.isRequired,
 	}).isRequired,
-	canonical: PropTypes.string.isRequired
+	canonical: PropTypes.string.isRequired,
 };
 
-const AuthorMetaQuery = props => (
+const AuthorMetaQuery = (props) => (
 	<StaticQuery
 		query={graphql`
 			query GhostSettingsAuthorMeta {
@@ -111,7 +115,7 @@ const AuthorMetaQuery = props => (
 				}
 			}
 		`}
-		render={data => <AuthorMeta settings={data} {...props} />}
+		render={(data) => <AuthorMeta settings={data} {...props} />}
 	/>
 );
 
