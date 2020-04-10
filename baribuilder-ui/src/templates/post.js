@@ -10,8 +10,7 @@ import TipsInlineForm from "../components/convertKit/TipsInlineForm";
 
 import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
-import WorkoutsHeaderForm from "../components/convertKit/WorkoutsHeaderForm";
-import WorkoutsModal from "../components/convertKit/WorkoutsModal";
+import RecipesModal from "../components/convertKit/RecipesModal";
 import CustomPost from "../components/rendering/CustomPost";
 import ShareThisMeta from "../components/common/meta/ShareThisMeta";
 import CheapVitamins from "../components/convertKit/CheapVitamins";
@@ -66,7 +65,7 @@ const Post = ({ data, location }) => {
 							</InlineFormDiv>
 
 							{/* Modal CTA to sign up for newsletter */}
-							<WorkoutsModal />
+							<RecipesModal />
 
 							{/* The main post content */}
 							<CustomPost post={post} />
