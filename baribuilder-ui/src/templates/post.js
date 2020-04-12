@@ -6,13 +6,13 @@ import Helmet from "react-helmet";
 import { Layout } from "../components/common";
 import { MetaData } from "../components/common/meta";
 import AuthorCard from "../components/common/AuthorCard";
-import TipsInlineForm from "../components/convertKit/TipsInlineForm";
+import TipsInlineForm from "../components/ads/TipsInlineForm";
 
 import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
-import RecipesModal from "../components/convertKit/RecipesModal";
+import RecipesModal from "../components/ads/RecipesModal";
 import CustomPost from "../components/rendering/CustomPost";
-import CheapVitamins from "../components/convertKit/CheapVitamins";
+import CheapVitamins from "../components/ads/CheapVitamins";
 
 const AuthorFooter = styled.footer``;
 
