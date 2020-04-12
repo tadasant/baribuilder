@@ -12,7 +12,9 @@ import styled from "styled-components";
 import medicallyReviewed from "../utils/medicallyReviewed";
 import RecipesModal from "../components/ads/RecipesModal";
 import CustomPost from "../components/rendering/CustomPost";
-import CheapVitamins from "../components/ads/CheapVitamins";
+import VitaminsSleeveForm from "../components/ads/VitaminsSleeveForm";
+import VitaminsBypassForm from "../components/ads/VitaminsBypassForm";
+import VitaminsBariatricForm from "../components/ads/VitaminsBariatricForm";
 
 const AuthorFooter = styled.footer``;
 
@@ -60,7 +62,14 @@ const Post = ({ data, location }) => {
 
 							{/* CTA to sign up for newsletter */}
 							<InlineFormDiv>
-								<CheapVitamins vitaminImage={vitaminImage} />
+								{/* Show the ad appropriate for the article (sleeve/bypass/generic) */}
+								{post.tags.some((tag) => tag.slug === "gastric-bypass") ? (
+									<VitaminsBypassForm />
+								) : post.tags.some((tag) => tag.slug === "gastric-sleeve") ? (
+									<VitaminsSleeveForm />
+								) : (
+									<VitaminsBariatricForm />
+								)}
 							</InlineFormDiv>
 
 							{/* Modal CTA to sign up for newsletter */}
@@ -106,6 +115,12 @@ Post.propTypes = {
 			feature_image: PropTypes.string,
 			authors: PropTypes.arrayOf(
 				PropTypes.shape({
+					slug: PropTypes.string.isRequired,
+				})
+			),
+			tags: PropTypes.arrayOf(
+				PropTypes.shape({
+					name: PropTypes.string.isRequired,
 					slug: PropTypes.string.isRequired,
 				})
 			),
