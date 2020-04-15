@@ -5,11 +5,13 @@ import { Link, StaticQuery, graphql, navigate } from "gatsby";
 import { IconButton, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import Img from "gatsby-image";
+import { ToastContainer } from "react-toastify";
 
 import { Navigation } from ".";
 import config from "../../utils/siteConfig";
 
 // Styles
+import "react-toastify/dist/ReactToastify.css";
 import "../../styles/app.css";
 
 /**
@@ -54,6 +56,9 @@ const DefaultLayout = (props) => {
 				<style type="text/css">{`${site.codeinjection_styles}`}</style>
 				<body className={bodyClass} />
 			</Helmet>
+
+			{/* Allows for use of toast in children */}
+			<ToastContainer />
 
 			<div className="viewport">
 				<div className="viewport-top">

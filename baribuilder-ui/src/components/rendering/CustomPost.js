@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import HtmlToReact from "html-to-react";
-import { trackCustomEvent } from "gatsby-plugin-google-analytics";
+import { fireEvent } from "../../analytics/googleAnalytics";
 import { useScrollPercentage } from "react-scroll-percentage";
 
 const htmlToReactParser = new HtmlToReact.Parser();
 const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 
-const CustomPost = props => {
+const CustomPost = (props) => {
 	const [ref, percentage] = useScrollPercentage();
 	const [isRead, setIsRead] = useState(false);
 
@@ -15,13 +15,13 @@ const CustomPost = props => {
 		const locationTokens = window.location.href.split("/");
 		// Ends with a slash, so -2
 		const postSlug = locationTokens[locationTokens.length - 2];
-		setIsRead(prevIsRead => {
+		setIsRead((prevIsRead) => {
 			if (!prevIsRead) {
-				trackCustomEvent({
+				fireEvent({
 					category: "Article",
 					action: "Read",
 					nonInteraction: false,
-					label: postSlug
+					label: postSlug,
 				});
 			}
 			return true;
@@ -38,7 +38,7 @@ const CustomPost = props => {
 		const isReferralTest = href.includes("amazon.com");
 		const isOutbound =
 			!href.startsWith("/") && !href.includes("baribuilder.com/blog");
-		trackCustomEvent({
+		fireEvent({
 			category: isReferral
 				? "Amazon Referral Link"
 				: isReferralTest
@@ -49,19 +49,19 @@ const CustomPost = props => {
 			action: "Click",
 			nonInteraction: false,
 			label: `from ${fromSlug} to ${href} via ${anchorText}`,
-			hitCallback: callback
+			hitCallback: callback,
 		});
 	};
 
 	const processingInstructions = [
 		{
-			shouldProcessNode: function(node) {
+			shouldProcessNode: function (node) {
 				return node.type === "tag" && node.name === "a";
 			},
-			processNode: function(node, children) {
+			processNode: function (node, children) {
 				const hrefClicked = node.attribs.href;
 				const anchorText = children[0];
-				const handleClick = event => {
+				const handleClick = (event) => {
 					event.preventDefault();
 					submitLinkClickEvent(hrefClicked, anchorText, () => {
 						window.location.href = hrefClicked;
@@ -72,15 +72,15 @@ const CustomPost = props => {
 						{children}
 					</a>
 				);
-			}
+			},
 		},
 		{
 			// Everything else
-			shouldProcessNode: function(node) {
+			shouldProcessNode: function (node) {
 				return true;
 			},
-			processNode: processNodeDefinitions.processDefaultNode
-		}
+			processNode: processNodeDefinitions.processDefaultNode,
+		},
 	];
 
 	const contentComponent = htmlToReactParser.parseWithInstructions(

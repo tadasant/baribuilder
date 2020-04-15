@@ -1182,3 +1182,8 @@ figcaption {
 .google-search-container .disclaimer {
 	text-align: center;
 }
+
+/* Allow toasts to take up more than 320px */
+.Toastify__toast-container {
+	width: unset;
+}
