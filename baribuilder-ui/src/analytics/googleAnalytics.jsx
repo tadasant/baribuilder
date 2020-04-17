@@ -8,6 +8,7 @@
  *     true / false
  *   label:
  *     `from ${fromSlug} to ${href} via ${anchorText}`
+ *     `${postSlug}`
  *   hitCallback
  *
  * extraOptions

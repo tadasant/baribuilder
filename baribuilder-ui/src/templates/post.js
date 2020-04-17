@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import Helmet from "react-helmet";
@@ -15,6 +15,7 @@ import CustomPost from "../components/rendering/CustomPost";
 import VitaminsSleeveForm from "../components/ads/VitaminsSleeveForm";
 import VitaminsBypassForm from "../components/ads/VitaminsBypassForm";
 import VitaminsBariatricForm from "../components/ads/VitaminsBariatricForm";
+import { fireEvent } from "../analytics/googleAnalytics";
 
 const AuthorFooter = styled.footer``;
 
@@ -31,8 +32,15 @@ const InlineFormDiv = styled.div`
  *
  */
 const Post = ({ data, location }) => {
+	useEffect(() => {
+		fireEvent({
+			category: "Article",
+			action: "View",
+			nonInteraction: false,
+			label: postSlug,
+		});
+	}, []);
 	const post = data.ghostPost;
-	const { vitaminImage } = data;
 
 	return (
 		<>
