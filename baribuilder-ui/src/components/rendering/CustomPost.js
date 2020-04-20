@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HtmlToReact from "html-to-react";
 import { fireEvent } from "../../analytics/googleAnalytics";
 import { useScrollPercentage } from "react-scroll-percentage";
@@ -9,19 +9,30 @@ const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 const CustomPost = (props) => {
 	const [ref, percentage] = useScrollPercentage();
 	const [isRead, setIsRead] = useState(false);
+	const [numSecondsSinceOpened, setNumSecondsSinceOpened] = useState(0);
+
+	useEffect(() => {
+		fireEvent({
+			category: "Article",
+			action: "View",
+			nonInteraction: true,
+			label: props.post.slug,
+		});
+		setInterval(() => {
+			setNumSecondsSinceOpened((prev) => prev + 1);
+		}, 1000);
+	}, []);
 
 	// When reader hits 70% of the article, consider it read
 	if (percentage > 0.7 && !isRead) {
-		const locationTokens = window.location.href.split("/");
-		// Ends with a slash, so -2
-		const postSlug = locationTokens[locationTokens.length - 2];
 		setIsRead((prevIsRead) => {
 			if (!prevIsRead) {
 				fireEvent({
 					category: "Article",
 					action: "Read",
 					nonInteraction: false,
-					label: postSlug,
+					label: props.post.slug,
+					value: numSecondsSinceOpened,
 				});
 			}
 			return true;

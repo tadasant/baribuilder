@@ -1,21 +1,18 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { graphql } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
 import Helmet from "react-helmet";
-
-import { Layout } from "../components/common";
-import { MetaData } from "../components/common/meta";
-import AuthorCard from "../components/common/AuthorCard";
-import TipsInlineForm from "../components/ads/TipsInlineForm";
-
 import styled from "styled-components";
-import medicallyReviewed from "../utils/medicallyReviewed";
 import RecipesModal from "../components/ads/RecipesModal";
-import CustomPost from "../components/rendering/CustomPost";
-import VitaminsSleeveForm from "../components/ads/VitaminsSleeveForm";
-import VitaminsBypassForm from "../components/ads/VitaminsBypassForm";
+import TipsInlineForm from "../components/ads/TipsInlineForm";
 import VitaminsBariatricForm from "../components/ads/VitaminsBariatricForm";
-import { fireEvent } from "../analytics/googleAnalytics";
+import VitaminsBypassForm from "../components/ads/VitaminsBypassForm";
+import VitaminsSleeveForm from "../components/ads/VitaminsSleeveForm";
+import { Layout } from "../components/common";
+import AuthorCard from "../components/common/AuthorCard";
+import { MetaData } from "../components/common/meta";
+import CustomPost from "../components/rendering/CustomPost";
+import medicallyReviewed from "../utils/medicallyReviewed";
 
 const AuthorFooter = styled.footer``;
 
@@ -32,14 +29,6 @@ const InlineFormDiv = styled.div`
  *
  */
 const Post = ({ data, location }) => {
-	useEffect(() => {
-		fireEvent({
-			category: "Article",
-			action: "View",
-			nonInteraction: false,
-			label: postSlug,
-		});
-	}, []);
 	const post = data.ghostPost;
 
 	return (

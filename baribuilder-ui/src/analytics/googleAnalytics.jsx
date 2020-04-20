@@ -1,14 +1,15 @@
 /**
  * options
  *   category:
- *     "Article" | "Amazon Referral Link" | "Referral Test Link" | "Outbound Link" | "Internal Link"
+ *     "Article" | "Ad" | "Amazon Referral Link" | "Referral Test Link" | "Outbound Link" | "Internal Link"
  *   action:
- *     "Read"
+ *     "Read" (with value of # seconds to get to that point) | "View"
  *   nonInteraction:
  *     true / false
  *   label:
  *     `from ${fromSlug} to ${href} via ${anchorText}`
  *     `${postSlug}`
+ *     `${ad-content}-${ad-placement}`
  *   hitCallback
  *
  * extraOptions
