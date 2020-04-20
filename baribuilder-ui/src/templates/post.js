@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
-import RecipesModal from "../components/ads/RecipesModal";
-import TipsInlineForm from "../components/ads/TipsInlineForm";
-import VitaminsBariatricForm from "../components/ads/VitaminsBariatricForm";
-import VitaminsBypassForm from "../components/ads/VitaminsBypassForm";
-import VitaminsSleeveForm from "../components/ads/VitaminsSleeveForm";
+import {
+	RecipesModal,
+	TipsInlineForm,
+	VitaminsBariatricForm,
+	VitaminsBypassForm,
+	VitaminsSleeveForm,
+} from "../components/ads";
 import { Layout } from "../components/common";
 import AuthorCard from "../components/common/AuthorCard";
 import { MetaData } from "../components/common/meta";
@@ -61,11 +63,11 @@ const Post = ({ data, location }) => {
 							<InlineFormDiv>
 								{/* Show the ad appropriate for the article (sleeve/bypass/generic) */}
 								{post.tags.some((tag) => tag.slug === "gastric-bypass") ? (
-									<VitaminsBypassForm />
+									<VitaminsBypassForm adPlacement="top_of_article" />
 								) : post.tags.some((tag) => tag.slug === "gastric-sleeve") ? (
-									<VitaminsSleeveForm />
+									<VitaminsSleeveForm adPlacement="top_of_article" />
 								) : (
-									<VitaminsBariatricForm />
+									<VitaminsBariatricForm adPlacement="top_of_article" />
 								)}
 							</InlineFormDiv>
 
@@ -79,7 +81,7 @@ const Post = ({ data, location }) => {
 
 							{/* End of article tips CTA */}
 							<InlineFormDiv>
-								<TipsInlineForm />
+								<TipsInlineForm adPlacement="end_of_article" />
 							</InlineFormDiv>
 							{post.authors.map((author) => {
 								// hack for medical reviewers -- could eventually integrate into custom CMS
