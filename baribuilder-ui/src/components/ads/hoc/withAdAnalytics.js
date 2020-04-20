@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
-import TrackVisibility from "react-on-screen";
+
+// options:
+// This can be used when doing quirky things with popups where traditional "is visible" heuristics are bad
+//  disableView?: boolean;
 
 // NOTE: get isVisible from withVisibilityTracker
 
 // interface InputProps {
 //  adContent?: string;
 // 	adPlacement?: string;
-//
+
 // }
 
 // interface OutputProps {
@@ -18,7 +21,7 @@ import TrackVisibility from "react-on-screen";
 // AdContent is the string sent along with GA events representing an id for the content used in the ad
 function withAdAnalytics(WrappedComponent, options) {
 	return function (inputProps) {
-		const { adContent, adPlacement } = options;
+		const { adContent, adPlacement, disableView } = options;
 		console.log(
 			`Rendering withAdAnalytics component with ${
 				inputProps.adContent || adContent
@@ -26,7 +29,9 @@ function withAdAnalytics(WrappedComponent, options) {
 		);
 
 		useEffect(() => {
-			console.log(`isVisible: ${inputProps.isVisible}`);
+			if (disableView !== undefined && !disableView) {
+				console.log(`isVisible: ${inputProps.isVisible}`);
+			}
 		}, [inputProps.isVisible]);
 
 		const trackSubscribeClick = () => console.log("Subscribe clicked");

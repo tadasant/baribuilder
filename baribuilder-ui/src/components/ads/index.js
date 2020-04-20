@@ -21,15 +21,13 @@ const RecipesHeaderForm = withVisibilityTracker(
 		adContent: "hungry_protein_rich_recipes_pdf",
 	})
 );
-// Coding these in directly because ConvertKit CSS for popups makes this quirky
-// const RecipesModal = withVisibilityTracker(
-// 	withAdAnalytics(_RecipesModal, {
-// 		adContent: "hungry_protein_rich_recipes_pdf",
-// 		adPlacement: "50%_popup",
-// 	})
-// );
-const RecipesModal = _RecipesModal;
-
+const RecipesModal = withVisibilityTracker(
+	withAdAnalytics(_RecipesModal, {
+		adContent: "hungry_protein_rich_recipes_pdf",
+		adPlacement: "50%_popup",
+		disableView: true,
+	})
+);
 const TipsHeaderForm = withVisibilityTracker(
 	withAdAnalytics(_TipsHeaderForm, {
 		adContent: "tips_newsletter",
@@ -60,14 +58,13 @@ const WorkoutsHeaderForm = withVisibilityTracker(
 		adContent: "stuck_home_workouts_pdf",
 	})
 );
-// Coding these in directly because ConvertKit CSS for popups makes this quirky
-// const WorkoutsModal = withVisibilityTracker(
-// 	withAdAnalytics(_WorkoutsModal, {
-// 		adContent: "stuck_home_workouts_pdf",
-// 		adPlacement: "50%_popup",
-// 	})
-// );
-const WorkoutsModal = _WorkoutsModal;
+const WorkoutsModal = withVisibilityTracker(
+	withAdAnalytics(_WorkoutsModal, {
+		adContent: "stuck_home_workouts_pdf",
+		adPlacement: "50%_popup",
+		disableView: true,
+	})
+);
 
 export {
 	CheapVitamins,

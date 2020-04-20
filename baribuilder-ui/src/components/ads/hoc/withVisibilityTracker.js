@@ -1,6 +1,5 @@
 import React from "react";
 import TrackVisibility from "react-on-screen";
-import PropTypes from "prop-types";
 
 function withVisibilityTracker(WrappedComponent) {
 	return (props) => (
