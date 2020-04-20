@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { fireEvent } from "../../../analytics/googleAnalytics";
 
 // options:
 // This can be used when doing quirky things with popups where traditional "is visible" heuristics are bad
@@ -22,15 +23,36 @@ import React, { useEffect } from "react";
 function withAdAnalytics(WrappedComponent, options) {
 	return function (inputProps) {
 		const { adContent, adPlacement, disableView } = options;
-		console.log(
-			`Rendering withAdAnalytics component with ${
-				inputProps.adContent || adContent
-			}-${inputProps.adPlacement || adPlacement}`
-		);
+		const label = `${inputProps.adContent || adContent}-${
+			inputProps.adPlacement || adPlacement
+		}`;
+		console.log(`Rendering withAdAnalytics component with ${label}`);
 
+		const [timeStartedReading, setTimeStartedReading] = useState(0);
+		const [wasVisible, setWasVisible] = useState(false);
 		useEffect(() => {
-			if (disableView !== undefined && !disableView) {
-				console.log(`isVisible: ${inputProps.isVisible}`);
+			if (disableView === undefined || !disableView) {
+				if (isVisible) {
+					fireEvent({
+						category: "Ad",
+						action: "View",
+						nonInteraction: true,
+						label,
+					});
+					setTimeStartedReading(new Date().getTime());
+					setWasVisible(true);
+				} else {
+					if (wasVisible) {
+						fireEvent({
+							category: "Ad",
+							action: "Read",
+							nonInteraction: true,
+							value: new Date().getTime() - timeStartedReading,
+							label,
+						});
+					}
+					setWasVisible(false);
+				}
 			}
 		}, [inputProps.isVisible]);
 
