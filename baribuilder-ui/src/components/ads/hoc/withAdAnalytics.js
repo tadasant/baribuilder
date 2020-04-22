@@ -55,10 +55,37 @@ function withAdAnalytics(WrappedComponent, options) {
 			}
 		}, [inputProps.isVisible]);
 
-		const trackSubscribeClick = () => console.log("Subscribe clicked");
-		const trackEmailOnFocus = () => console.log("Email focused");
-		const trackEmailOnBlur = (fieldValue) =>
-			console.log(`Email blurred with value ${fieldValue}`);
+		const trackSubscribeHover = () =>
+			fireEvent({
+				category: "Ad",
+				action: "Subscribe (Hover)",
+				nonInteraction: false,
+				label,
+			});
+		const trackSubscribeClick = () =>
+			fireEvent({
+				category: "Ad",
+				action: "Subscribe (Click)",
+				nonInteraction: false,
+				label,
+			});
+		const trackEmailOnFocus = () =>
+			fireEvent({
+				category: "Ad",
+				action: "Email (Focus)",
+				nonInteraction: false,
+				label,
+			});
+		const trackEmailOnBlur = (fieldValue) => {
+			if (fieldValue && fieldValue.length > 1) {
+				fireEvent({
+					category: "Ad",
+					action: "Email (Blur)",
+					nonInteraction: false,
+					label,
+				});
+			}
+		};
 
 		const {
 			adContent: _adContent,
@@ -72,6 +99,7 @@ function withAdAnalytics(WrappedComponent, options) {
 				trackSubscribeClick={trackSubscribeClick}
 				trackEmailOnFocus={trackEmailOnFocus}
 				trackEmailOnBlur={trackEmailOnBlur}
+				trackSubscribeHover={trackSubscribeHover}
 				{...otherProps}
 			/>
 		);

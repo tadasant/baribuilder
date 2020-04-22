@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Img from "gatsby-image";
 import keyBy from "lodash/keyBy";
 
+// TODO: add click/focus analytics
+
 const CheapVitaminsContainer = styled.div`
 	display: flex;
 	box-shadow: 0 0px 2px rgba(0, 0, 0, 0.15);

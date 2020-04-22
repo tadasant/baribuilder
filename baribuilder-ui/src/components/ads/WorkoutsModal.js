@@ -1,6 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
 
+// TODO: add click/focus analytics
+
 const WorkoutsModal = () => (
 	<React.Fragment>
 		<Helmet>
