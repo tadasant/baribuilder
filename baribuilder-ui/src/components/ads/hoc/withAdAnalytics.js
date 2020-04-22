@@ -25,7 +25,6 @@ function withAdAnalytics(WrappedComponent, options) {
 		const label = `${inputProps.adContent || adContent}-${
 			inputProps.adPlacement || adPlacement
 		}`;
-		console.log(`Rendering withAdAnalytics component with ${label}`);
 
 		const [timeStartedReading, setTimeStartedReading] = useState(0);
 		const [wasVisible, setWasVisible] = useState(false);

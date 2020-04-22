@@ -1,7 +1,13 @@
 import React from "react";
 import Helmet from "react-helmet";
+import PropTypes from "prop-types";
 
-const VitaminsSleeveForm = () => (
+const VitaminsSleeveForm = ({
+	trackSubscribeClick,
+	trackSubscribeHover,
+	trackEmailOnBlur,
+	trackEmailOnFocus,
+}) => (
 	<React.Fragment>
 		<Helmet>
 			<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
@@ -76,6 +82,8 @@ const VitaminsSleeveForm = () => (
 						</div>
 						<div className="formkit-field">
 							<input
+								onFocus={trackEmailOnFocus}
+								onBlur={(event) => trackEmailOnBlur(event.currentTarget.value)}
 								className="formkit-input"
 								name="email_address"
 								placeholder="Your email address"
@@ -90,6 +98,8 @@ const VitaminsSleeveForm = () => (
 							/>
 						</div>
 						<button
+							onMouseOver={trackSubscribeHover}
+							onClick={trackSubscribeClick}
 							data-element="submit"
 							className="formkit-submit formkit-submit"
 							style={{
@@ -125,5 +135,12 @@ const VitaminsSleeveForm = () => (
 		</form>
 	</React.Fragment>
 );
+
+VitaminsSleeveForm.propTypes = {
+	trackSubscribeClick: PropTypes.func,
+	trackSubscribeHover: PropTypes.func,
+	trackEmailOnFocus: PropTypes.func,
+	trackEmailOnBlur: PropTypes.func,
+};
 
 export default VitaminsSleeveForm;
