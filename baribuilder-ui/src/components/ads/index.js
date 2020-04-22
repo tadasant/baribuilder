@@ -10,6 +10,7 @@ import _WorkoutsHeaderForm from "./WorkoutsHeaderForm";
 import _WorkoutsModal from "./WorkoutsModal";
 import withAdAnalytics from "./hoc/withAdAnalytics";
 import withVisibilityTracker from "./hoc/withVisibilityTracker";
+import withModalVisibilityTracker from "./hoc/withModalVisibilityTracker";
 
 const CheapVitamins = withVisibilityTracker(
 	withAdAnalytics(_CheapVitamins, {
@@ -21,11 +22,10 @@ const RecipesHeaderForm = withVisibilityTracker(
 		adContent: "hungry_protein_rich_recipes_pdf",
 	})
 );
-const RecipesModal = withVisibilityTracker(
+const RecipesModal = withModalVisibilityTracker(
 	withAdAnalytics(_RecipesModal, {
 		adContent: "hungry_protein_rich_recipes_pdf",
 		adPlacement: "50%_popup",
-		disableView: true,
 	})
 );
 const TipsHeaderForm = withVisibilityTracker(
@@ -58,11 +58,10 @@ const WorkoutsHeaderForm = withVisibilityTracker(
 		adContent: "stuck_home_workouts_pdf",
 	})
 );
-const WorkoutsModal = withVisibilityTracker(
+const WorkoutsModal = withModalVisibilityTracker(
 	withAdAnalytics(_WorkoutsModal, {
 		adContent: "stuck_home_workouts_pdf",
 		adPlacement: "50%_popup",
-		disableView: true,
 	})
 );
 

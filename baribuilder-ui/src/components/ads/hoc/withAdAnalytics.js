@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { fireEvent } from "../../../analytics/googleAnalytics";
 
 // options:
-// This can be used when doing quirky things with popups where traditional "is visible" heuristics are bad
 //  disableView?: boolean;
 
-// NOTE: get isVisible from withVisibilityTracker
+// NOTE: get isVisible from withVisibilityTracker or withModalVisibilityTracker
 
 // interface InputProps {
 //  adContent?: string;

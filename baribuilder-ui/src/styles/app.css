@@ -1186,4 +1186,5 @@ figcaption {
 /* Allow toasts to take up more than 320px */
 .Toastify__toast-container {
 	width: unset;
+	z-index: 99999;
 }
