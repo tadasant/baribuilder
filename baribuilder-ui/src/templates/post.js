@@ -6,9 +6,7 @@ import styled from "styled-components";
 import {
 	RecipesModal,
 	TipsInlineForm,
-	VitaminsBariatricForm,
-	VitaminsBypassForm,
-	VitaminsSleeveForm,
+	RecipesHeaderForm,
 } from "../components/ads";
 import { Layout } from "../components/common";
 import AuthorCard from "../components/common/AuthorCard";
@@ -61,14 +59,15 @@ const Post = ({ data, location }) => {
 
 							{/* CTA to sign up for newsletter */}
 							<InlineFormDiv>
-								{/* Show the ad appropriate for the article (sleeve/bypass/generic) */}
+								{/* Show the ad appropriate for the article (sleeve/bypass/generic)
 								{post.tags.some((tag) => tag.slug === "gastric-bypass") ? (
 									<VitaminsBypassForm adPlacement="top_of_article" />
 								) : post.tags.some((tag) => tag.slug === "gastric-sleeve") ? (
 									<VitaminsSleeveForm adPlacement="top_of_article" />
 								) : (
 									<VitaminsBariatricForm adPlacement="top_of_article" />
-								)}
+								)} */}
+								<RecipesHeaderForm />
 							</InlineFormDiv>
 
 							{/* Modal CTA to sign up for newsletter */}
