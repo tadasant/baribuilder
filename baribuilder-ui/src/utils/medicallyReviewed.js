@@ -78,5 +78,6 @@ module.exports = {
 	"gastric-bypass-forum": ["gintas"],
 	"bariatric-patients-can-boost-their-immune-system-during-coronavirus": ["gintas"],
 	"are-obese-people-more-susceptible-to-coronavirus": ["gintas"],
-	"gastric-sleeve-expected-weight-loss": ["gintas"]
+	"gastric-sleeve-expected-weight-loss": ["gintas"],
+	"bariatric-desserts": ["gintas"]
 };
