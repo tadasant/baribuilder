@@ -80,5 +80,6 @@ module.exports = {
 	"are-obese-people-more-susceptible-to-coronavirus": ["gintas"],
 	"gastric-sleeve-expected-weight-loss": ["gintas"],
 	"bariatric-desserts": ["gintas"],
-	"hypnosis-gastric-bypass": ["gintas"]
+	"hypnosis-gastric-bypass": ["gintas"],
+	"gastric-bypass-alternative": ["gintas"]
 };
