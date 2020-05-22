@@ -81,5 +81,6 @@ module.exports = {
 	"gastric-sleeve-expected-weight-loss": ["gintas"],
 	"bariatric-desserts": ["gintas"],
 	"hypnosis-gastric-bypass": ["gintas"],
-	"gastric-bypass-alternative": ["gintas"]
+	"gastric-bypass-alternative": ["gintas"],
+	"bariatric-surgery-requirements": ["gintas"]
 };
