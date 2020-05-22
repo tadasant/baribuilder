@@ -83,5 +83,6 @@ module.exports = {
 	"hypnosis-gastric-bypass": ["gintas"],
 	"gastric-bypass-alternative": ["gintas"],
 	"bariatric-surgery-requirements": ["gintas"],
-	"gastric-bypass-requirements": ["gintas"]
+	"gastric-bypass-requirements": ["gintas"],
+	"bariatric-surgery-alternatives": ["gintas"]
 };
