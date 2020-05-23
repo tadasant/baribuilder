@@ -84,5 +84,6 @@ module.exports = {
 	"gastric-bypass-alternative": ["gintas"],
 	"bariatric-surgery-requirements": ["gintas"],
 	"gastric-bypass-requirements": ["gintas"],
-	"bariatric-surgery-alternatives": ["gintas"]
+	"bariatric-surgery-alternatives": ["gintas"],
+	"diarrhea-after-gastric-bypass": ["gintas"]
 };
