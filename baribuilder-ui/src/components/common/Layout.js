@@ -4,8 +4,10 @@ import Helmet from "react-helmet";
 import { Link, StaticQuery, graphql, navigate } from "gatsby";
 import { IconButton, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import ClearIcon from "@material-ui/icons/Clear";
 import Img from "gatsby-image";
 import { ToastContainer } from "react-toastify";
+import styled from "styled-components";
 
 import { Navigation } from ".";
 import config from "../../utils/siteConfig";
@@ -13,6 +15,28 @@ import config from "../../utils/siteConfig";
 // Styles
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/app.css";
+
+const CTABarDiv = styled.div`
+	position: sticky;
+	top: 0px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+`;
+
+const CTAContainer = styled.div`
+	background-color: rgba(0, 0, 0, 0.05);
+	border-radius: 3px;
+	padding: 8px;
+	display: flex;
+`;
+
+const ClearButton = styled(IconButton)`
+	&& {
+		color: rgba(0, 0, 0, 0.2);
+		padding: 8px;
+	}
+`;
 
 /**
  * Main layout component
@@ -24,6 +48,7 @@ import "../../styles/app.css";
  */
 const DefaultLayout = (props) => {
 	const [showSearchBar, setShowSearchBar] = useState(false);
+	const [showCTABar, setShowCTABar] = useState(true);
 	const [searchValue, setSearchValue] = useState("");
 	const { data, children, bodyClass, isHome } = props;
 	const site = data.allGhostSettings.edges[0].node;
@@ -121,20 +146,6 @@ const DefaultLayout = (props) => {
 											/>
 										</a>
 									)}
-									{site.facebook && (
-										<a
-											href={facebookUrl}
-											className="site-nav-item"
-											target="_blank"
-											rel="noopener noreferrer"
-										>
-											<img
-												className="site-nav-icon"
-												src="/images/icons/facebook.svg"
-												alt="Facebook"
-											/>
-										</a>
-									)}
 									<a
 										className="site-nav-item"
 										href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
@@ -170,6 +181,30 @@ const DefaultLayout = (props) => {
 							</div>
 						) : null}
 					</header>
+
+					<CTABarDiv>
+						<a
+							href="https://www.facebook.com/groups/bariatric.wls.community.baribuilder"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{data.facebookButton ? (
+								<CTAContainer>
+									<Img
+										fixed={data.facebookButton.childImageSharp.fixed}
+										alt="Join Facebook Group"
+									/>
+									<ClearButton
+										onClick={() => setShowCTABar((prev) => !prev)}
+										disableRipple
+										disableFocusRipple
+									>
+										<ClearIcon />
+									</ClearButton>
+								</CTAContainer>
+							) : null}
+						</a>
+					</CTABarDiv>
 
 					<main className="site-main">
 						{/* All the main content gets inserted here, index.js, post.js */}
@@ -258,6 +293,15 @@ const DefaultLayoutSettingsQuery = (props) => (
 						name
 						slug
 						postCount
+					}
+				}
+				facebookButton: file(
+					relativePath: { eq: "resources/facebook-cta-button-flat.png" }
+				) {
+					childImageSharp {
+						fixed(height: 36) {
+							...GatsbyImageSharpFixed
+						}
 					}
 				}
 			}
