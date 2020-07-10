@@ -18,21 +18,25 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../styles/app.css";
 
 const CTABarDiv = styled.div`
-	position: sticky;
-	top: 0px;
-	display: flex;
-	justify-content: center;
-	z-index: 5;
+	&& {
+		position: sticky;
+		top: 0px;
+		display: flex;
+		justify-content: center;
+		z-index: 5;
+	}
 `;
 
 const CTAContainer = styled.div`
-	background-color: rgba(0, 0, 0, 0.05);
-	border-radius: 3px;
-	padding: 8px;
-	display: flex;
+	&& {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 3px;
+		padding: 8px;
+		display: flex;
 
-	// 36 px button plus 16 px of padding
-	height: 52px;
+		// 36 px button plus 16 px of padding
+		height: 52px;
+	}
 `;
 
 const ClearButton = styled(IconButton)`
