@@ -206,5 +206,6 @@ module.exports = {
 				sv: 6,
 			},
 		},
+		"gatsby-plugin-styled-components",
 	],
 };
