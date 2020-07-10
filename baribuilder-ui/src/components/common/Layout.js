@@ -8,6 +8,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import Img from "gatsby-image";
 import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
+import { fireEvent } from "../../analytics/googleAnalytics";
 
 import { Navigation } from ".";
 import config from "../../utils/siteConfig";
@@ -40,6 +41,9 @@ const ClearButton = styled(IconButton)`
 		padding: 8px;
 	}
 `;
+
+const CTA_LINK =
+	"https://www.facebook.com/groups/bariatric.wls.community.baribuilder";
 
 /**
  * Main layout component
@@ -75,6 +79,15 @@ const DefaultLayout = (props) => {
 
 	const handleSearch = () => {
 		navigate(`/search?q=${encodeURI(searchValue)}`);
+	};
+
+	const handleCTAClick = (event) => {
+		event.preventDefault();
+		fireEvent({
+			category: "Facebook Group Link",
+			action: "Open",
+		});
+		window.open(CTA_LINK, "_blank");
 	};
 
 	return (
@@ -189,9 +202,10 @@ const DefaultLayout = (props) => {
 						<CTABarDiv>
 							<CTAContainer>
 								<a
-									href="https://www.facebook.com/groups/bariatric.wls.community.baribuilder"
+									href={CTA_LINK}
 									target="_blank"
 									rel="noopener noreferrer"
+									onClick={handleCTAClick}
 								>
 									<Img
 										fixed={data.facebookButton.childImageSharp.fixed}
