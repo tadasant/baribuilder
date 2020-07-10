@@ -843,19 +843,6 @@ figcaption {
 /* Index */
 /* ---------------------------------------------------------- */
 
-.resource-list {
-	display: grid;
-	justify-content: space-between;
-	grid-gap: 30px;
-	grid-template-columns: 1fr 1fr;
-}
-
-@media (max-width: 680px) {
-	.resource-list {
-		grid-template-columns: 1fr;
-	}
-}
-
 .resource-card {
 	display: flex;
 	justify-content: center;

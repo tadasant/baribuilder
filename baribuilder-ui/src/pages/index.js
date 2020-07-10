@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { Layout, ResourceCard } from "../components/common";
 import { MetaData } from "../components/common/meta";
+import styled from "styled-components";
 
 /**
  * Main blog page (home page)
@@ -14,8 +15,10 @@ import { MetaData } from "../components/common/meta";
 const blogDescription =
 	"Read about topics related to life after bariatric surgery; everything from vitamins to lifestyle to complications.";
 
-const shopDescription =
-	"Use the calculator within our shopping website to comparison shop bariatric vitamin products.";
+const ResourceListSection = styled.section`
+	display: flex;
+	justify-content: center;
+`;
 
 const Index = ({ data, location }) => {
 	return (
@@ -33,20 +36,14 @@ const Index = ({ data, location }) => {
 						easier. Check them out below!
 					</p>
 					<hr />
-					<section className="resource-list">
+					<ResourceListSection>
 						<ResourceCard
 							img={data.blogImage.childImageSharp.fixed}
 							title="Blog"
 							description={blogDescription}
 							url="blog"
 						/>
-						<ResourceCard
-							img={data.shopImage.childImageSharp.fixed}
-							title="Shop"
-							description={shopDescription}
-							url="https://shop.baribuilder.com/"
-						/>
-					</section>
+					</ResourceListSection>
 				</div>
 			</Layout>
 		</>
@@ -55,31 +52,24 @@ const Index = ({ data, location }) => {
 
 Index.propTypes = {
 	location: PropTypes.shape({
-		pathname: PropTypes.string.isRequired
+		pathname: PropTypes.string.isRequired,
 	}).isRequired,
 	data: PropTypes.shape({
 		shopImage: PropTypes.shape({
 			childImageSharp: PropTypes.shape({
-				fixed: PropTypes.object
-			})
+				fixed: PropTypes.object,
+			}),
 		}),
 		blogImage: PropTypes.shape({
 			childImageSharp: PropTypes.shape({
-				fixed: PropTypes.object
-			})
-		})
-	})
+				fixed: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 export const query = graphql`
 	query IndexQuery {
-		shopImage: file(relativePath: { eq: "resources/shop.jpg" }) {
-			childImageSharp {
-				fixed(height: 200) {
-					...GatsbyImageSharpFixed
-				}
-			}
-		}
 		blogImage: file(relativePath: { eq: "resources/blog.jpg" }) {
 			childImageSharp {
 				fixed(height: 200) {

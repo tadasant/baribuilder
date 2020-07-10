@@ -47,17 +47,7 @@ const Navigation = ({ navClass, tags }) => {
 		{
 			label: "Topics",
 			hasSubMenu: true,
-		},
-		{
-			url: "https://shop.baribuilder.com/",
-			label: "Shop",
-			isAbsolute: true,
-		},
-		{
-			url: "https://shop.baribuilder.com/about",
-			label: "About",
-			isAbsolute: true,
-		},
+		}
 	];
 
 	return (

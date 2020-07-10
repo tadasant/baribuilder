@@ -203,14 +203,6 @@ const DefaultLayout = (props) => {
 									</a>
 									<a
 										className="site-foot-nav-item"
-										href="https://shop.baribuilder.com/terms-and-conditions"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										Terms & Conditions
-									</a>
-									<a
-										className="site-foot-nav-item"
 										href="https://www.iubenda.com/privacy-policy/25172832"
 										target="_blank"
 										rel="noopener noreferrer"
