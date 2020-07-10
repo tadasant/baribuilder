@@ -77,5 +77,15 @@ module.exports = {
 	"gastric-bypass-success-stories": ["gintas"],
 	"gastric-bypass-forum": ["gintas"],
 	"bariatric-patients-can-boost-their-immune-system-during-coronavirus": ["gintas"],
-	"are-obese-people-more-susceptible-to-coronavirus": ["gintas"]
+	"are-obese-people-more-susceptible-to-coronavirus": ["gintas"],
+	"gastric-sleeve-expected-weight-loss": ["gintas"],
+	"bariatric-desserts": ["gintas"],
+	"hypnosis-gastric-bypass": ["gintas"],
+	"gastric-bypass-alternative": ["gintas"],
+	"bariatric-surgery-requirements": ["gintas"],
+	"gastric-bypass-requirements": ["gintas"],
+	"bariatric-surgery-alternatives": ["gintas"],
+	"diarrhea-after-gastric-bypass": ["gintas"],
+	"is-gastric-bypass-safe": ["gintas"],
+	"how-to-shrink-liver-in-3-days": ["gintas"]
 };
