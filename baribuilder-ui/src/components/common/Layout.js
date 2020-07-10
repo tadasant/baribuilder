@@ -19,9 +19,9 @@ import "../../styles/app.css";
 const CTABarDiv = styled.div`
 	position: sticky;
 	top: 0px;
-	height: 36px;
 	display: flex;
 	justify-content: center;
+	z-index: 5;
 `;
 
 const CTAContainer = styled.div`
@@ -29,6 +29,9 @@ const CTAContainer = styled.div`
 	border-radius: 3px;
 	padding: 8px;
 	display: flex;
+
+	// 36 px button plus 16 px of padding
+	height: 52px;
 `;
 
 const ClearButton = styled(IconButton)`
@@ -182,29 +185,29 @@ const DefaultLayout = (props) => {
 						) : null}
 					</header>
 
-					<CTABarDiv>
-						<a
-							href="https://www.facebook.com/groups/bariatric.wls.community.baribuilder"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{data.facebookButton ? (
-								<CTAContainer>
+					{showCTABar && data.facebookButton ? (
+						<CTABarDiv>
+							<CTAContainer>
+								<a
+									href="https://www.facebook.com/groups/bariatric.wls.community.baribuilder"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
 									<Img
 										fixed={data.facebookButton.childImageSharp.fixed}
 										alt="Join Facebook Group"
 									/>
-									<ClearButton
-										onClick={() => setShowCTABar((prev) => !prev)}
-										disableRipple
-										disableFocusRipple
-									>
-										<ClearIcon />
-									</ClearButton>
-								</CTAContainer>
-							) : null}
-						</a>
-					</CTABarDiv>
+								</a>
+								<ClearButton
+									onClick={() => setShowCTABar((prev) => !prev)}
+									disableRipple
+									disableFocusRipple
+								>
+									<ClearIcon />
+								</ClearButton>
+							</CTAContainer>
+						</CTABarDiv>
+					) : null}
 
 					<main className="site-main">
 						{/* All the main content gets inserted here, index.js, post.js */}
