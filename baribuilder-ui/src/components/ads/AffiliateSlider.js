@@ -135,7 +135,8 @@ const AffiliateSlider = (props) => {
 		if (
 			!wasCleared &&
 			!reachedScrollPercentage &&
-			props.scrollPercentage > percentage / 100
+			props.scrollPercentage >
+				(percentage === undefined ? 50 : percentage) / 100
 		) {
 			setReachedScrollPercentage((prev) => {
 				// Make sure we only fire the show affiliate ad event once
@@ -186,7 +187,7 @@ const AffiliateSlider = (props) => {
 						</CopyP>
 						<CTAContentContainer>
 							<CTAButton>
-								<ShoppingCartIcon /> {cta}
+								<ShoppingCartIcon /> {cta === undefined ? "Buy" : cta}
 							</CTAButton>
 						</CTAContentContainer>
 					</AdContentDiv>
