@@ -10,9 +10,9 @@ const ContainerDiv = styled.div`
 		background-color: var(--color-vitag-green-translucent);
 		width: 100%;
 		border-radius: 3px;
-		padding: 8px;
-		display: flex;
-		justify-content: center;
+		padding: 4px;
+		display: grid;
+		grid-template-columns: 48px auto 48px;
 		position: fixed;
 
 		bottom: 0px;
@@ -49,8 +49,10 @@ const ContainerDiv = styled.div`
 	}
 
 	> * {
-		margin-left: 4px;
-		margin-right: 4px;
+		max-height: 42px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 `;
 
@@ -58,6 +60,8 @@ const ClearButton = styled(IconButton)`
 	&& {
 		color: rgba(0, 0, 0, 0.2);
 		padding: 8px;
+		display: flex;
+		justify-content: center;
 	}
 `;
 
@@ -70,6 +74,7 @@ const CTAButton = styled.button`
 		line-height: normal;
 		color: var(--color-base);
 		box-shadow: 0 0px 2px rgba(0, 0, 0, 0.15);
+		max-height: 32px;
 	}
 `;
 
@@ -80,6 +85,17 @@ const AdImg = styled.img`
 
 const CopyP = styled.p`
 	line-height: 32px;
+`;
+
+const AdContentDiv = styled.div`
+	display: flex;
+	justify-content: center;
+	max-height: 32px;
+
+	> * {
+		margin-left: 4px;
+		margin-right: 4px;
+	}
 `;
 
 // TODO track metric: shown with this id on this slug
@@ -101,20 +117,27 @@ const AffiliateSlider = (props) => {
 
 	return (
 		<ContainerDiv>
-			<AdImg src={imgSrc} />
-			<CopyP>
-				<b>{copy}</b>
-			</CopyP>
-			<CTAButton>
-				{cta} <ShoppingCartIcon />
-			</CTAButton>
-			<ClearButton
-				onClick={() => setWasCleared((prev) => !prev)}
-				disableRipple
-				disableFocusRipple
-			>
-				<ClearIcon />
-			</ClearButton>
+			<div />
+			<div>
+				<AdContentDiv>
+					<AdImg src={imgSrc} />
+					<CopyP>
+						<b>{copy}</b>
+					</CopyP>
+					<CTAButton>
+						{cta} <ShoppingCartIcon />
+					</CTAButton>
+				</AdContentDiv>
+			</div>
+			<div>
+				<ClearButton
+					onClick={() => setWasCleared((prev) => !prev)}
+					disableRipple
+					disableFocusRipple
+				>
+					<ClearIcon />
+				</ClearButton>
+			</div>
 		</ContainerDiv>
 	);
 };
