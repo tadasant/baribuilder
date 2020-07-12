@@ -8,6 +8,7 @@ import { fireEvent } from "../../analytics/googleAnalytics";
 
 const ContainerDiv = styled.div`
 	&& {
+		z-index: 100;
 		background-color: var(--color-vitag-green-translucent);
 		width: 100%;
 		border-radius: 3px;
