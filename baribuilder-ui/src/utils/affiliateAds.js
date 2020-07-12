@@ -40,34 +40,34 @@ const affiliateAds = {
 		{
 			...proteinInfusedWaterAd,
 			id: "protein-infused-water-pouch-reset",
-			copy: "",
+			copy: "Get some protein infused water to assist your reset",
 		},
 		{
 			...proteinShakesAd,
 			id: "protein-shakes-pouch-reset",
-			copy: "",
+			copy: "Get some protein shakes to assist your reset",
 		},
 		{
 			...crystalLightAd,
 			id: "crystal-light-pouch-reset",
-			copy: "",
+			copy: "Use Crystal Light as a sugar-free, low calorie liquid",
 		},
 	],
 	"liver-shrinking-diet": [
 		{
 			...proteinInfusedWaterAd,
 			id: "protein-infused-water-liver-shrinking",
-			copy: "",
+			copy: "Get some protein infused water as part of the diet",
 		},
 		{
 			...proteinShakesAd,
 			id: "protein-shakes-liver-shrinking",
-			copy: "",
+			copy: "Get some protein shakes as part of the diet",
 		},
 		{
 			...crystalLightAd,
 			id: "crystal-light-liver-shrinking",
-			copy: "",
+			copy: "Use Crystal Light as a sugar-free, low calorie liquid",
 		},
 	],
 	"gastric-bypass-and-hair-loss": [
@@ -81,76 +81,76 @@ const affiliateAds = {
 		{
 			...proteinShakesAd,
 			id: "protein-shakes-hair-bypass",
-			copy: "",
+			copy: "Make sure you're getting plenty of protein shakes",
 		},
 	],
 	"cheating-on-liquid-diet-before-gastric-bypass": [
 		{
 			...proteinShakesAd,
 			id: "protein-shakes-liquid-diet-bypass",
-			copy: "",
+			copy: "Don't cheat: drink protein shakes",
 		},
 		{
 			...crystalLightAd,
 			id: "crystal-light-liquid-diet-bypass",
-			copy: "",
+			copy: "Don't cheat: try Crystal Light as a low calorie option",
 		},
 	],
 	"how-to-tighten-loose-skin-after-gastric-bypass-without-surgery": [
 		{
 			...proteinInfusedWaterAd,
 			id: "protein-infused-water-loose-skin-without-surgery",
-			copy: "",
+			copy: "Fill your daily protein quota with protein infused water",
 		},
 	],
 	"liquid-diet-before-gastric-bypass-surgery": [
 		{
 			...proteinInfusedWaterAd,
 			id: "protein-infused-water-liquid-bypass",
-			copy: "",
+			copy: "Fill your daily protein quota with protein infused water",
 		},
 		{
 			...crystalLightAd,
 			id: "crystal-light-liquid-bypass",
-			copy: "",
+			copy: "Use Crystal Light as a sugar-free, low calorie liquid",
 		},
 	],
 	"bariatric-surgery-and-popcorn": [
 		{
 			...proteinShakesAd,
 			id: "protein-shakes-popcorn",
-			copy: "",
+			copy: "Instead of popcorn, drink protein shakes",
 		},
 	],
 	"gastric-sleeve-regrets": [
 		{
 			...multivitaminAd,
 			id: "sleeve-regrets-multivitamin",
-			copy: "",
+			copy: "Make sure you're getting the right multivitamins",
 		},
 	],
 	"gastric-sleeve-and-alcohol": [
 		{
 			...multivitaminAd,
 			id: "sleeve-alcohol-multivitamin",
-			copy: "",
+			copy: "Make sure you're getting the right multivitamins",
 		},
 	],
 	"gastric-bypass-pre-op-diet": [
 		{
 			...proteinInfusedWaterAd,
 			id: "protein-infused-water-bypass-preop",
-			copy: "",
+			copy: "Get some protein infused water as part of your pre-op diet",
 		},
 		{
 			...proteinShakesAd,
 			id: "protein-shakes-bypass-preop",
-			copy: "",
+			copy: "Get some protein shakes as part of your pre-op diet",
 		},
 		{
 			...crystalLightAd,
 			id: "crystal-light-bypass-preop",
-			copy: "",
+			copy: "Get some Crystal Light as part of your pre-op diet",
 		},
 	],
 	default: [
