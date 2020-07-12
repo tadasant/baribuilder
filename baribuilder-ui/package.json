@@ -58,7 +58,7 @@
 		"react-on-screen": "^2.1.1",
 		"react-scroll-percentage": "^4.2.0",
 		"react-toastify": "^5.5.0",
-		"sharp": "^0.25.4",
+		"sharp": "0.22.1",
 		"styled-components": "^4.3.1"
 	}
 }
