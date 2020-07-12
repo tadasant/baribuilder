@@ -56,8 +56,9 @@ const ClearButton = styled(IconButton)`
 	}
 `;
 
-const CTA_LINK =
+const FACEBOOK_GROUP_URL =
 	"https://www.facebook.com/groups/bariatric.wls.community.baribuilder";
+const CTA_LINK = FACEBOOK_GROUP_URL;
 
 /**
  * Main layout component
@@ -176,6 +177,21 @@ const DefaultLayout = (props) => {
 											/>
 										</a>
 									)}
+									{FACEBOOK_GROUP_URL && (
+										<a
+											href={FACEBOOK_GROUP_URL}
+											className="site-nav-item"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<img
+												className="site-nav-icon"
+												src="/images/icons/facebook.svg"
+												alt="Facebook"
+											/>
+										</a>
+									)}
+
 									<a
 										className="site-nav-item"
 										href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
@@ -264,7 +280,7 @@ const DefaultLayout = (props) => {
 								<div className="site-foot-nav-right">
 									<a
 										className="site-foot-nav-item"
-										href="http://eepurl.com/dHMECz"
+										href="https://ck.baribuilder.com/weekly-tips"
 										target="_blank"
 										rel="noopener noreferrer"
 									>

@@ -211,7 +211,7 @@ AffiliateSlider.propTypes = {
 		id: PropTypes.string.isRequired,
 		link: PropTypes.string.isRequired,
 		copy: PropTypes.string.isRequired,
-		cta: PropTypes.string.isRequired,
+		cta: PropTypes.string,
 		imgSrc: PropTypes.string,
 		percentage: PropTypes.number,
 	}).isRequired,

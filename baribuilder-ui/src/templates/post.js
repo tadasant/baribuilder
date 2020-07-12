@@ -94,6 +94,20 @@ const Post = ({ data, location }) => {
 							{/* The main post content */}
 							<CustomPost post={post} />
 
+							{/* CTA to join the Facebook group */}
+							<p>
+								<i>
+									Want to discuss this article or ask a question? Join our{" "}
+									<a
+										href="https://www.facebook.com/groups/bariatric.wls.community.baribuilder/"
+										target="_blank"
+										rel="noopener noreferer"
+									>
+										Facebook community of peers just like you.
+									</a>
+								</i>
+							</p>
+
 							<div class="sharethis-inline-share-buttons" />
 
 							{/* End of article tips CTA */}
