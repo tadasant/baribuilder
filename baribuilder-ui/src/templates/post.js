@@ -10,6 +10,7 @@ import AuthorCard from "../components/common/AuthorCard";
 import { MetaData } from "../components/common/meta";
 import CustomPost from "../components/rendering/CustomPost";
 import medicallyReviewed from "../utils/medicallyReviewed";
+import { useScrollPercentage } from "react-scroll-percentage";
 
 // Loadable so that it does random choosing of ad on the client side
 const LoadableAffiliateSlider = Loadable(() =>
@@ -31,6 +32,7 @@ const InlineFormDiv = styled.div`
  *
  */
 const Post = ({ data, location }) => {
+	const [scrollPercentageRef, scrollPercentage] = useScrollPercentage();
 	const post = data.ghostPost;
 
 	return (
@@ -41,10 +43,13 @@ const Post = ({ data, location }) => {
 			</Helmet>
 			<Layout>
 				{/* Affiliate ad that shows up partway down the page */}
-				<LoadableAffiliateSlider slug={post.slug} />
+				<LoadableAffiliateSlider
+					slug={post.slug}
+					scrollPercentage={scrollPercentage}
+				/>
 
 				<div className="container">
-					<article className="content">
+					<article className="content" ref={scrollPercentageRef}>
 						{/* Amazon Associated disclaimer */}
 						<div className="post__amazon-disclaimer-container">
 							<p className="post__amazon-disclaimer">

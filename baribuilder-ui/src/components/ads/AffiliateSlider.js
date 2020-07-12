@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
@@ -124,17 +124,33 @@ const AdAnchor = styled.a`
 	}
 `;
 
-// TODO track metric: shown with this id on this slug
-// TODO track metric: click
 const AffiliateSlider = (props) => {
 	const [wasCleared, setWasCleared] = useState(false);
-	// useState for reachedScrollPercentage
-
+	const [reachedScrollPercentage, setReachedScrollPercentage] = useState(false);
 	const { id, link, copy, imgSrc, cta, percentage } = props.ad;
+	const { slug } = props;
 
-	// make sure to cover both mobile and desktop case
+	useEffect(() => {
+		if (
+			!wasCleared &&
+			!reachedScrollPercentage &&
+			props.scrollPercentage > percentage / 100
+		) {
+			setReachedScrollPercentage((prev) => {
+				// Make sure we only fire the show affiliate ad event once
+				if (!prev) {
+					fireEvent({
+						category: "Affiliate Ad",
+						action: "Show",
+						label: `${slug}: ${id}`,
+					});
+				}
+				return true;
+			});
+		}
+	}, [props.scrollPercentage, wasCleared]);
 
-	if (wasCleared) {
+	if (wasCleared || !reachedScrollPercentage) {
 		return null;
 	}
 
@@ -143,7 +159,7 @@ const AffiliateSlider = (props) => {
 		fireEvent({
 			category: "Affiliate Ad",
 			action: "Click",
-			label: id,
+			label: `${slug}: ${id}`,
 		});
 		window.open(link, "_blank");
 	};
@@ -197,7 +213,7 @@ AffiliateSlider.propTypes = {
 		imgSrc: PropTypes.string,
 		percentage: PropTypes.number,
 	}).isRequired,
-	amazonImage: PropTypes.object.isRequired,
+	scrollPercentage: PropTypes.number,
 };
 
 export default AffiliateSlider;
