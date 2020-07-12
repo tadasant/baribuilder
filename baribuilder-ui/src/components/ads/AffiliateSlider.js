@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { fireEvent } from "../../analytics/googleAnalytics";
 
 const ContainerDiv = styled.div`
 	&& {
@@ -19,17 +20,19 @@ const ContainerDiv = styled.div`
 		animation-duration: 1s;
 		animation-name: slidein-desktop;
 
-		height: 48px;
-
 		// ShareThis has a 1024 breakpoint where it moves to the bottom
 		@media (max-width: 1024px) {
 			bottom: 48px;
 			animation-name: slidein-mobile;
 		}
 
+		@media (max-width: 400px) {
+			grid-template-columns: 0px auto 48px;
+		}
+
 		@keyframes slidein-desktop {
 			from {
-				bottom: -48px;
+				bottom: -64px;
 			}
 
 			to {
@@ -49,10 +52,10 @@ const ContainerDiv = styled.div`
 	}
 
 	> * {
-		max-height: 42px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		text-align: center;
 	}
 `;
 
@@ -65,6 +68,20 @@ const ClearButton = styled(IconButton)`
 	}
 `;
 
+const ImageContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-width: 32px;
+`;
+
+const CTAContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-width: 48px;
+`;
+
 const CTAButton = styled.button`
 	&& {
 		padding: 8px;
@@ -74,7 +91,6 @@ const CTAButton = styled.button`
 		line-height: normal;
 		color: var(--color-base);
 		box-shadow: 0 0px 2px rgba(0, 0, 0, 0.15);
-		max-height: 32px;
 	}
 `;
 
@@ -84,17 +100,27 @@ const AdImg = styled.img`
 `;
 
 const CopyP = styled.p`
-	line-height: 32px;
+	margin-bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 `;
 
 const AdContentDiv = styled.div`
 	display: flex;
 	justify-content: center;
-	max-height: 32px;
 
 	> * {
 		margin-left: 4px;
 		margin-right: 4px;
+	}
+`;
+
+const AdAnchor = styled.a`
+	color: var(--color-base);
+	&:hover {
+		// Remove the underline on hover
+		text-decoration: none;
 	}
 `;
 
@@ -104,30 +130,50 @@ const AffiliateSlider = (props) => {
 	const [wasCleared, setWasCleared] = useState(false);
 	// useState for reachedScrollPercentage
 
-	const { amazonImage } = props;
 	const { id, link, copy, imgSrc, cta, percentage } = props.ad;
 
-	// render an x button to hide it
-	// render a box with the copy, optional img,
 	// make sure to cover both mobile and desktop case
 
 	if (wasCleared) {
 		return null;
 	}
 
+	const handleAdClick = (event) => {
+		event.preventDefault();
+		fireEvent({
+			category: "Affiliate Ad",
+			action: "Click",
+			label: id,
+		});
+		window.open(link, "_blank");
+	};
+
 	return (
 		<ContainerDiv>
 			<div />
 			<div>
-				<AdContentDiv>
-					<AdImg src={imgSrc} />
-					<CopyP>
-						<b>{copy}</b>
-					</CopyP>
-					<CTAButton>
-						{cta} <ShoppingCartIcon />
-					</CTAButton>
-				</AdContentDiv>
+				<AdAnchor
+					href={link}
+					target="_blank"
+					rel="noopener noreferrer"
+					onClick={handleAdClick}
+				>
+					<AdContentDiv>
+						{imgSrc ? (
+							<ImageContentContainer>
+								<AdImg src={imgSrc} />
+							</ImageContentContainer>
+						) : null}
+						<CopyP>
+							<b>{copy}</b>
+						</CopyP>
+						<CTAContentContainer>
+							<CTAButton>
+								<ShoppingCartIcon /> {cta}
+							</CTAButton>
+						</CTAContentContainer>
+					</AdContentDiv>
+				</AdAnchor>
 			</div>
 			<div>
 				<ClearButton
