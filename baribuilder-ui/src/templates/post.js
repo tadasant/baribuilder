@@ -4,7 +4,6 @@ import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
 import Loadable from "@loadable/component";
-import { TipsInlineForm, RecipesHeaderForm } from "../components/ads";
 import { Layout } from "../components/common";
 import AuthorCard from "../components/common/AuthorCard";
 import { MetaData } from "../components/common/meta";
@@ -15,6 +14,14 @@ import { useScrollPercentage } from "react-scroll-percentage";
 // Loadable so that it does random choosing of ad on the client side
 const LoadableAffiliateSlider = Loadable(() =>
 	import("../components/ads/AffiliateSliderContainer")
+);
+
+const LoadableRecipesHeaderForm = Loadable(() =>
+	import("../components/ads/RecipesHeaderForm")
+);
+
+const LoadableTipsInlineForm = Loadable(() =>
+	import("../components/ads/TipsInlineForm")
 );
 
 const AuthorFooter = styled.footer``;
@@ -50,21 +57,15 @@ const Post = ({ data, location }) => {
 
 				<div className="container">
 					<article className="content" ref={scrollPercentageRef}>
-						{/* Amazon Associated disclaimer */}
-						<div className="post__amazon-disclaimer-container">
-							<p className="post__amazon-disclaimer">
-								As an Amazon Associate, BariBuilder earns from qualifying
-								purchases.
-							</p>
-						</div>
-
-						{post.feature_image ? (
-							<figure className="post-feature-image">
-								<img src={post.feature_image} alt={post.title} />
-							</figure>
-						) : null}
-
 						<section className="post-full-content">
+							{/* Amazon Associates disclaimer */}
+							<div className="post__amazon-disclaimer-container">
+								<p className="post__amazon-disclaimer">
+									As an Amazon Associate, BariBuilder earns from qualifying
+									purchases.
+								</p>
+							</div>
+
 							<h1 className="content-title">{post.title}</h1>
 
 							{/* CTA to sign up for newsletter */}
@@ -77,8 +78,14 @@ const Post = ({ data, location }) => {
 								) : (
 									<VitaminsBariatricForm adPlacement="top_of_article" />
 								)} */}
-								<RecipesHeaderForm />
+								<LoadableRecipesHeaderForm />
 							</InlineFormDiv>
+
+							{post.feature_image ? (
+								<figure className="post-feature-image">
+									<img src={post.feature_image} alt={post.title} />
+								</figure>
+							) : null}
 
 							{/* Modal CTA to sign up for newsletter */}
 							{/* Removing to make things less busy for the AffiliateSlider */}
@@ -91,7 +98,7 @@ const Post = ({ data, location }) => {
 
 							{/* End of article tips CTA */}
 							<InlineFormDiv>
-								<TipsInlineForm adPlacement="end_of_article" />
+								<LoadableTipsInlineForm adPlacement="end_of_article" />
 							</InlineFormDiv>
 							{post.authors.map((author) => {
 								// hack for medical reviewers -- could eventually integrate into custom CMS
