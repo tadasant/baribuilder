@@ -14,7 +14,7 @@ const ContainerDiv = styled.div`
 		border-radius: 3px;
 		padding: 4px;
 		display: grid;
-		grid-template-columns: 48px auto 48px;
+		grid-template-columns: 48px 1fr 48px;
 		position: fixed;
 
 		bottom: 0px;

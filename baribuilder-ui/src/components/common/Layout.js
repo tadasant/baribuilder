@@ -19,18 +19,26 @@ import "../../styles/app.css";
 
 const CTABarDiv = styled.div`
 	&& {
+		background-color: rgba(0, 0, 0, 0.05);
 		position: sticky;
 		top: 0px;
-		display: flex;
+		width: 100%;
+		display: grid;
+		grid-template-columns: 48px 1fr 48px;
 		justify-content: center;
 		z-index: 5;
+	}
+
+	> * {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
 	}
 `;
 
 const CTAContainer = styled.div`
 	&& {
-		background-color: rgba(0, 0, 0, 0.05);
-		border-radius: 3px;
 		padding: 8px;
 		display: flex;
 
@@ -43,6 +51,8 @@ const ClearButton = styled(IconButton)`
 	&& {
 		color: rgba(0, 0, 0, 0.2);
 		padding: 8px;
+		display: flex;
+		justify-content: center;
 	}
 `;
 
@@ -204,6 +214,7 @@ const DefaultLayout = (props) => {
 
 					{showCTABar && data.facebookButton ? (
 						<CTABarDiv>
+							<div />
 							<CTAContainer>
 								<a
 									href={CTA_LINK}
@@ -216,6 +227,8 @@ const DefaultLayout = (props) => {
 										alt="Join Facebook Group"
 									/>
 								</a>
+							</CTAContainer>
+							<div>
 								<ClearButton
 									onClick={() => setShowCTABar((prev) => !prev)}
 									disableRipple
@@ -223,7 +236,7 @@ const DefaultLayout = (props) => {
 								>
 									<ClearIcon />
 								</ClearButton>
-							</CTAContainer>
+							</div>
 						</CTABarDiv>
 					) : null}
 
