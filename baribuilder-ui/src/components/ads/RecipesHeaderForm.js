@@ -3,7 +3,12 @@ import Helmet from "react-helmet";
 
 // TODO: add click/focus analytics
 
-const RecipesHeaderForm = () => (
+const RecipesHeaderForm = ({
+	trackSubscribeClick,
+	trackSubscribeHover,
+	trackEmailOnBlur,
+	trackEmailOnFocus,
+}) => (
 	<React.Fragment>
 		<Helmet>
 			<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
@@ -59,6 +64,8 @@ const RecipesHeaderForm = () => (
 						</div>
 						<div className="formkit-field">
 							<input
+								onFocus={trackEmailOnFocus}
+								onBlur={(event) => trackEmailOnBlur(event.currentTarget.value)}
 								className="formkit-input"
 								name="email_address"
 								placeholder="Your email address"
@@ -72,6 +79,8 @@ const RecipesHeaderForm = () => (
 							/>
 						</div>
 						<button
+							onMouseOver={trackSubscribeHover}
+							onClick={trackSubscribeClick}
 							data-element="submit"
 							className="formkit-submit formkit-submit"
 							style={{
