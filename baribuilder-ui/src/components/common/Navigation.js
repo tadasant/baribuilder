@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { Menu, MenuItem, IconButton } from "@material-ui/core";
@@ -47,7 +47,7 @@ const Navigation = ({ navClass, tags }) => {
 		{
 			label: "Topics",
 			hasSubMenu: true,
-		}
+		},
 	];
 
 	return (
@@ -68,12 +68,13 @@ const Navigation = ({ navClass, tags }) => {
 					onClose={handleHamburgerClick}
 					anchorOrigin={{
 						vertical: "bottom",
+						horizontal: "left",
 					}}
 					getContentAnchorEl={null}
 					className="site-nav-sub-menu"
 				>
-					{navItems.map((navItem) => (
-						<MenuItem>
+					{navItems.map((navItem, i) => (
+						<MenuItem key={`${navItem.url}-${i}`}>
 							{navItem.isRelative ? (
 								<Link className={navClass} to={navItem.url}>
 									{navItem.label}
@@ -87,7 +88,7 @@ const Navigation = ({ navClass, tags }) => {
 									{navItem.label}
 								</a>
 							) : navItem.hasSubMenu ? (
-								<>
+								<Fragment key={navItem.url}>
 									<span
 										className={navClass}
 										aria-controls="simple-menu"
@@ -102,24 +103,24 @@ const Navigation = ({ navClass, tags }) => {
 										open={Boolean(topicsMobileMenuAnchor)}
 										onClose={handleMobileTopicsClick}
 										anchorOrigin={{
+											vertical: "bottom",
 											horizontal: "right",
 										}}
 										getContentAnchorEl={null}
 										className="site-nav-sub-menu"
 									>
 										{sortedTags.map((tag, i) => (
-											<MenuItem>
+											<MenuItem key={`menuitem-${i}`}>
 												<Link
 													className="site-nav-sub-menu-item"
 													to={`/blog/tag/${tag.slug}`}
-													key={i}
 												>
 													{upperFirst(tag.name)} ({tag.postCount})
 												</Link>
 											</MenuItem>
 										))}
 									</Menu>
-								</>
+								</Fragment>
 							) : null}
 						</MenuItem>
 					))}
@@ -128,10 +129,10 @@ const Navigation = ({ navClass, tags }) => {
 
 			{/* Desktop below */}
 			<div className="flat-menu">
-				{navItems.map((navItem) => {
+				{navItems.map((navItem, i) => {
 					if (navItem.isRelative) {
 						return (
-							<Link className={navClass} to={navItem.url}>
+							<Link className={navClass} to={navItem.url} key={navItem.url}>
 								{navItem.label}
 							</Link>
 						);
@@ -143,6 +144,7 @@ const Navigation = ({ navClass, tags }) => {
 								className={navClass}
 								href={navItem.url}
 								rel="noopener noreferrer"
+								key={navItem.url}
 							>
 								{navItem.label}
 							</a>
@@ -151,7 +153,7 @@ const Navigation = ({ navClass, tags }) => {
 
 					if (navItem.hasSubMenu) {
 						return (
-							<>
+							<Fragment key={`${navItem.url}-${i}`}>
 								<span
 									className={navClass}
 									aria-controls="simple-menu"
@@ -167,23 +169,23 @@ const Navigation = ({ navClass, tags }) => {
 									onClose={handleTopicsClick}
 									anchorOrigin={{
 										vertical: "bottom",
+										horizontal: "left",
 									}}
 									getContentAnchorEl={null}
 									className="site-nav-sub-menu"
 								>
 									{sortedTags.map((tag, i) => (
-										<MenuItem>
+										<MenuItem key={`menuitem-${i}`}>
 											<Link
 												className="site-nav-sub-menu-item"
 												to={`/blog/tag/${tag.slug}`}
-												key={i}
 											>
 												{upperFirst(tag.name)} ({tag.postCount})
 											</Link>
 										</MenuItem>
 									))}
 								</Menu>
-							</>
+							</Fragment>
 						);
 					}
 				})}
@@ -197,18 +199,12 @@ Navigation.defaultProps = {
 };
 
 Navigation.propTypes = {
-	data: PropTypes.arrayOf(
-		PropTypes.shape({
-			label: PropTypes.string.isRequired,
-			url: PropTypes.string.isRequired,
-		}).isRequired
-	).isRequired,
 	navClass: PropTypes.string,
 	tags: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string,
 			slug: PropTypes.string,
-			postCount: PropTypes.string,
+			postCount: PropTypes.number,
 		})
 	),
 };

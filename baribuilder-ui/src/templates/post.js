@@ -108,7 +108,7 @@ const Post = ({ data, location }) => {
 								</i>
 							</p>
 
-							<div class="sharethis-inline-share-buttons" />
+							<div className="sharethis-inline-share-buttons" />
 
 							{/* End of article tips CTA */}
 							<InlineFormDiv>
