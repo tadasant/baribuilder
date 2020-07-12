@@ -27,6 +27,9 @@ what's here to work the way you'd like it to.
 	--color-border: #c7d5d8;
 	--color-bg: #f5f5f5;
 	--color-deemphasized: #738a94;
+	--color-vitag-blue: #3bafe0;
+	--color-vitag-green: #82cd23;
+	--color-vitag-green-translucent: #82cd23bb;
 
 	/* Fonts */
 	--font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",

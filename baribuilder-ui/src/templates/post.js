@@ -3,16 +3,19 @@ import PropTypes from "prop-types";
 import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
-import {
-	RecipesModal,
-	TipsInlineForm,
-	RecipesHeaderForm,
-} from "../components/ads";
+import Loadable from "@loadable/component";
+import { TipsInlineForm, RecipesHeaderForm } from "../components/ads";
 import { Layout } from "../components/common";
 import AuthorCard from "../components/common/AuthorCard";
 import { MetaData } from "../components/common/meta";
 import CustomPost from "../components/rendering/CustomPost";
 import medicallyReviewed from "../utils/medicallyReviewed";
+import { useScrollPercentage } from "react-scroll-percentage";
+
+// Loadable so that it does random choosing of ad on the client side
+const LoadableAffiliateSlider = Loadable(() =>
+	import("../components/ads/AffiliateSliderContainer")
+);
 
 const AuthorFooter = styled.footer``;
 
@@ -29,6 +32,7 @@ const InlineFormDiv = styled.div`
  *
  */
 const Post = ({ data, location }) => {
+	const [scrollPercentageRef, scrollPercentage] = useScrollPercentage();
 	const post = data.ghostPost;
 
 	return (
@@ -38,8 +42,14 @@ const Post = ({ data, location }) => {
 				<style type="text/css">{`${post.codeinjection_styles}`}</style>
 			</Helmet>
 			<Layout>
+				{/* Affiliate ad that shows up partway down the page */}
+				<LoadableAffiliateSlider
+					slug={post.slug}
+					scrollPercentage={scrollPercentage}
+				/>
+
 				<div className="container">
-					<article className="content">
+					<article className="content" ref={scrollPercentageRef}>
 						{/* Amazon Associated disclaimer */}
 						<div className="post__amazon-disclaimer-container">
 							<p className="post__amazon-disclaimer">
@@ -71,7 +81,8 @@ const Post = ({ data, location }) => {
 							</InlineFormDiv>
 
 							{/* Modal CTA to sign up for newsletter */}
-							<RecipesModal />
+							{/* Removing to make things less busy for the AffiliateSlider */}
+							{/* <RecipesModal /> */}
 
 							{/* The main post content */}
 							<CustomPost post={post} />
