@@ -1,6 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withModalVisibilityTracker from "./hoc/withModalVisibilityTracker";
 
 const RecipesModal = ({
 	trackSubscribeClick,
@@ -152,4 +154,9 @@ RecipesModal.propTypes = {
 	trackEmailOnBlur: PropTypes.func,
 };
 
-export default RecipesModal;
+export default withModalVisibilityTracker(
+	withAdAnalytics(RecipesModal, {
+		adContent: "hungry_protein_rich_recipes_pdf",
+		adPlacement: "50%_popup",
+	})
+);

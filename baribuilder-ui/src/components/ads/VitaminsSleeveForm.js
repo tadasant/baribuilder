@@ -1,6 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withVisibilityTracker from "./hoc/withVisibilityTracker";
 
 const VitaminsSleeveForm = ({
 	trackSubscribeClick,
@@ -143,4 +145,8 @@ VitaminsSleeveForm.propTypes = {
 	trackEmailOnBlur: PropTypes.func,
 };
 
-export default VitaminsSleeveForm;
+export default withVisibilityTracker(
+	withAdAnalytics(VitaminsSleeveForm, {
+		adContent: "sleeve_vitamins_overpaying_calculator",
+	})
+);

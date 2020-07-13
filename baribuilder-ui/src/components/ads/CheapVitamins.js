@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
 import keyBy from "lodash/keyBy";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withVisibilityTracker from "./hoc/withVisibilityTracker";
 
 // TODO: add click/focus analytics
 
@@ -138,4 +140,8 @@ const CheapVitamins = ({ vitaminImage }) => {
 	);
 };
 
-export default CheapVitamins;
+export default withVisibilityTracker(
+	withAdAnalytics(CheapVitamins, {
+		adContent: "cheap_vitamins_custom_calculator",
+	})
+);

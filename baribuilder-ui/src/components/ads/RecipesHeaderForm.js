@@ -1,5 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withVisibilityTracker from "./hoc/withVisibilityTracker";
 
 const RecipesHeaderForm = ({
 	trackSubscribeClick,
@@ -118,4 +120,8 @@ const RecipesHeaderForm = ({
 	</React.Fragment>
 );
 
-export default RecipesHeaderForm;
+export default withVisibilityTracker(
+	withAdAnalytics(RecipesHeaderForm, {
+		adContent: "hungry_protein_rich_recipes_pdf",
+	})
+);

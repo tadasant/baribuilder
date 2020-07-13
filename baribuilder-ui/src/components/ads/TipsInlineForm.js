@@ -1,6 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withVisibilityTracker from "./hoc/withVisibilityTracker";
 
 const TipsInlineForm = ({
 	trackSubscribeClick,
@@ -123,4 +125,8 @@ TipsInlineForm.propTypes = {
 	trackEmailOnBlur: PropTypes.func,
 };
 
-export default TipsInlineForm;
+export default withVisibilityTracker(
+	withAdAnalytics(TipsInlineForm, {
+		adContent: "tips_newsletter",
+	})
+);

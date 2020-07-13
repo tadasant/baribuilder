@@ -1,5 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withVisibilityTracker from "./hoc/withVisibilityTracker";
 
 // TODO: add click/focus analytics
 
@@ -97,4 +99,8 @@ const TipsHeaderForm = () => (
 	</React.Fragment>
 );
 
-export default TipsHeaderForm;
+export default withVisibilityTracker(
+	withAdAnalytics(TipsHeaderForm, {
+		adContent: "tips_newsletter",
+	})
+);

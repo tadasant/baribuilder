@@ -1,6 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withVisibilityTracker from "./hoc/withVisibilityTracker";
 
 const VitaminsBypassForm = ({
 	trackSubscribeClick,
@@ -143,4 +145,8 @@ VitaminsBypassForm.propTypes = {
 	trackEmailOnBlur: PropTypes.func,
 };
 
-export default VitaminsBypassForm;
+export default withVisibilityTracker(
+	withAdAnalytics(VitaminsBypassForm, {
+		adContent: "bypass_vitamins_overpaying_calculator",
+	})
+);

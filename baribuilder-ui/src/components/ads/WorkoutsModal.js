@@ -1,5 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
+import withAdAnalytics from "./hoc/withAdAnalytics";
+import withModalVisibilityTracker from "./hoc/withModalVisibilityTracker";
 
 // TODO: add click/focus analytics
 
@@ -134,4 +136,9 @@ const WorkoutsModal = () => (
 	</React.Fragment>
 );
 
-export default WorkoutsModal;
+export default withModalVisibilityTracker(
+	withAdAnalytics(WorkoutsModal, {
+		adContent: "stuck_home_workouts_pdf",
+		adPlacement: "50%_popup",
+	})
+);
