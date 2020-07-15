@@ -115,7 +115,10 @@ const Navigation = ({ navClass, tags }) => {
 													className="site-nav-sub-menu-item"
 													to={`/blog/tag/${tag.slug}`}
 												>
-													{upperFirst(tag.name)} ({tag.postCount})
+													{upperFirst(tag.name)}{" "}
+													{tag.postCount !== "0" &&
+														tag.postCount !== 0 &&
+														`(${tag.postCount})`}
 												</Link>
 											</MenuItem>
 										))}
@@ -180,7 +183,10 @@ const Navigation = ({ navClass, tags }) => {
 												className="site-nav-sub-menu-item"
 												to={`/blog/tag/${tag.slug}`}
 											>
-												{upperFirst(tag.name)} ({tag.postCount})
+												{upperFirst(tag.name)}{" "}
+												{tag.postCount !== "0" &&
+													tag.postCount !== 0 &&
+													`(${tag.postCount})`}
 											</Link>
 										</MenuItem>
 									))}
