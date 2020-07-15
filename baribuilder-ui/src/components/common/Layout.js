@@ -56,6 +56,12 @@ const ClearButton = styled(IconButton)`
 	}
 `;
 
+const FacebookGroupAnchor = styled.a`
+	// Can't be too close to the clear button
+	padding-right: 8px;
+	padding-left: 8px;
+`;
+
 const FacebookGroupImg = styled.img`
 	max-height: 32px;
 `;
@@ -236,7 +242,7 @@ const DefaultLayout = (props) => {
 						<CTABarDiv>
 							<div />
 							<CTAContainer>
-								<a
+								<FacebookGroupAnchor
 									href={CTA_LINK}
 									target="_blank"
 									rel="noopener noreferrer"
@@ -246,7 +252,7 @@ const DefaultLayout = (props) => {
 										src="/images/facebook-cta-button-flat.png"
 										alt="Join Facebook Group"
 									/>
-								</a>
+								</FacebookGroupAnchor>
 							</CTAContainer>
 							<div>
 								<ClearButton
