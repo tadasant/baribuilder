@@ -39,7 +39,7 @@ const CTABarDiv = styled.div`
 
 const CTAContainer = styled.div`
 	&& {
-		padding: 8px;
+		padding: 4px;
 		display: flex;
 
 		// 36 px button plus 16 px of padding
@@ -239,7 +239,7 @@ const DefaultLayout = (props) => {
 									onClick={handleCTAClick}
 								>
 									<Img
-										fixed={data.facebookButton.childImageSharp.fixed}
+										fluid={data.facebookButton.childImageSharp.fluid}
 										alt="Join Facebook Group"
 									/>
 								</a>
@@ -349,8 +349,8 @@ const DefaultLayoutSettingsQuery = (props) => (
 					relativePath: { eq: "resources/facebook-cta-button-flat.png" }
 				) {
 					childImageSharp {
-						fixed(height: 36) {
-							...GatsbyImageSharpFixed
+						fluid(maxHeight: 36) {
+							...GatsbyImageSharpFluid
 						}
 					}
 				}
