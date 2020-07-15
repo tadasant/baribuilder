@@ -56,6 +56,10 @@ const ClearButton = styled(IconButton)`
 	}
 `;
 
+const FacebookGroupImg = styled.img`
+	max-height: 32px;
+`;
+
 const FACEBOOK_GROUP_URL =
 	"https://www.facebook.com/groups/bariatric.wls.community.baribuilder";
 const CTA_LINK = FACEBOOK_GROUP_URL;
@@ -238,8 +242,8 @@ const DefaultLayout = (props) => {
 									rel="noopener noreferrer"
 									onClick={handleCTAClick}
 								>
-									<Img
-										fluid={data.facebookButton.childImageSharp.fluid}
+									<FacebookGroupImg
+										src="/images/facebook-cta-button-flat.png"
 										alt="Join Facebook Group"
 									/>
 								</a>
