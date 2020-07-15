@@ -170,28 +170,35 @@ const AffiliateSlider = (props) => {
 		<ContainerDiv>
 			<div />
 			<div>
-				<AdAnchor
-					href={link}
-					target="_blank"
-					rel="noopener noreferrer"
-					onClick={handleAdClick}
-				>
-					<AdContentDiv>
-						{imgSrc ? (
+				<AdContentDiv>
+					{imgSrc ? (
+						<AdAnchor
+							href={link}
+							target="_blank"
+							rel="noopener noreferrer"
+							onClick={handleAdClick}
+						>
 							<ImageContentContainer>
 								<AdImg src={imgSrc} />
 							</ImageContentContainer>
-						) : null}
-						<CopyP>
-							<b>{copy}</b>
-						</CopyP>
-						<CTAContentContainer>
+						</AdAnchor>
+					) : null}
+					<CopyP>
+						<b>{copy}</b>
+					</CopyP>
+					<CTAContentContainer>
+						<AdAnchor
+							href={link}
+							target="_blank"
+							rel="noopener noreferrer"
+							onClick={handleAdClick}
+						>
 							<CTAButton>
 								<ShoppingCartIcon /> {cta === undefined ? "Buy" : cta}
 							</CTAButton>
-						</CTAContentContainer>
-					</AdContentDiv>
-				</AdAnchor>
+						</AdAnchor>
+					</CTAContentContainer>
+				</AdContentDiv>
 			</div>
 			<div>
 				<ClearButton
