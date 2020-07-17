@@ -12,7 +12,8 @@
  */
 
 const proteinShakesAd = {
-	link: "https://amzn.to/3flPK0l",
+	link:
+		"https://www.amazon.com/Premier-Protein-Shake-Chocolate-11-5/dp/B07MJL8NXR/ref=as_li_ss_tl?dchild=1&keywords=premier+protein+shakes&qid=1594523391&sr=8-4&linkCode=ll1&tag=bariduiler-ad-20&linkId=a9fc18273fc6a5870c221eb23b8511e5&language=en_US",
 	imgSrc:
 		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/premier-protein.png",
 };
@@ -20,19 +21,28 @@ const proteinShakesAd = {
 const proteinInfusedWaterAd = {
 	link: "https://amzn.to/2WdVFNM",
 	imgSrc:
-		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/protein-water.png",
+		"https://www.amazon.com/Protein2o-Flavor-Fusion-Piece-Variety/dp/B07BBWJY5X/ref=as_li_ss_tl?dchild=1&keywords=bariatric+protein+bottles&qid=1594523226&sr=8-23&linkCode=ll1&tag=bariduiler-ad-20&linkId=3034cf9b4cf8da9a396d54f0320ad94e&language=en_US",
 };
 
 const crystalLightAd = {
-	link: "https://amzn.to/2OfW5ij",
+	link:
+		"https://www.amazon.com/Crystal-Light-Pitcher-Packets-Canisters/dp/B00B041EP0/ref=as_li_ss_tl?dchild=1&keywords=crystal+light&qid=1594523521&sr=8-7&linkCode=ll1&tag=bariduiler-ad-20&linkId=d464907be04cdfe05809b813baa2d1e8&language=en_US",
 	imgSrc:
 		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/crystal-light.png",
 };
 
 const multivitaminAd = {
-	link: "https://amzn.to/2Of4Ske",
+	link:
+		"https://www.amazon.com/Bariatric-Advantage-Ultra-Multi-Formula/dp/B07DP7RKTK/ref=as_li_ss_tl?dchild=1&keywords=multivitamin+bariatric+advantage&qid=1594524168&sr=8-8&linkCode=ll1&tag=bariduiler-ad-20&linkId=e89f2e34af1e81e35977c2cf4c67d8b1&language=en_US",
 	imgSrc:
 		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/ba-multivitamin.png",
+};
+
+const calciumAd = {
+	link:
+		"https://www.amazon.com/BariMelts-Calcium-Dissolvable-Bariatric-Vitamins/dp/B00OKNCI0S/ref=as_li_ss_tl?dchild=1&keywords=bariatric+calcium&qid=1594494395&sr=8-7&linkCode=ll1&tag=bariduiler-ad-20&linkId=32c7d2b10787faca188a1e20240e6df3&language=en_US",
+	imgSrc:
+		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/bari-melts-calcium.png",
 };
 
 const affiliateAds = {
@@ -155,11 +165,9 @@ const affiliateAds = {
 	],
 	default: [
 		{
+			...calciumAd,
 			id: "barimelts-calcium",
-			link: "https://amzn.to/3gMSCnt",
 			copy: "Use Bariatric Calcium to keep your bones strong",
-			imgSrc:
-				"https://baribuilder-affiliate-imgs.s3.amazonaws.com/bari-melts-calcium.png",
 		},
 	],
 };
