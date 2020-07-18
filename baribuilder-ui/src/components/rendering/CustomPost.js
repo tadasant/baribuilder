@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import HtmlToReact from "html-to-react";
 import { fireEvent } from "../../analytics/googleAnalytics";
 import { useScrollPercentage } from "react-scroll-percentage";
+import LazyLoad from "react-lazyload";
 
 const htmlToReactParser = new HtmlToReact.Parser();
 const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
@@ -65,6 +66,7 @@ const CustomPost = (props) => {
 	};
 
 	const processingInstructions = [
+		// Custom tracked anchor tags
 		{
 			shouldProcessNode: function (node) {
 				return node.type === "tag" && node.name === "a";
@@ -82,6 +84,20 @@ const CustomPost = (props) => {
 					<a {...node.attribs} onClick={handleClick}>
 						{children}
 					</a>
+				);
+			},
+		},
+		// Custom lazy-loaded img's
+		{
+			shouldProcessNode: function (node) {
+				return node.name === "img";
+			},
+			processNode: function (node) {
+				return (
+					// Starts loading the image while 200px offscreen
+					<LazyLoad once offset={200}>
+						<img {...node.attribs} />
+					</LazyLoad>
 				);
 			},
 		},
