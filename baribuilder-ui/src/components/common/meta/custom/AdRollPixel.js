@@ -7,6 +7,8 @@ import Helmet from "react-helmet";
 const AdRollPixel = () => {
 	var adroll_adv_id = "XELL45XZINHKFLSWAZXCEW";
 	var adroll_pix_id = "6I3C5DVKQREFZC6Q44RXUC";
+	// Disabling until needed
+	return null;
 	return (
 		// Using Helmet as workaround for lack of Fragment support https://github.com/nfl/react-helmet/issues/342
 		<Helmet>

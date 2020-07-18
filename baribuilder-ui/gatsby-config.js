@@ -198,14 +198,15 @@ module.exports = {
 				respectDNT: true,
 			},
 		},
-		{
-			resolve: `gatsby-plugin-hotjar-tracking`,
-			options: {
-				includeInDevelopment: false,
-				id: 1065021,
-				sv: 6,
-			},
-		},
+		// Disabling hotjar until needed
+		// {
+		// 	resolve: `gatsby-plugin-hotjar-tracking`,
+		// 	options: {
+		// 		includeInDevelopment: false,
+		// 		id: 1065021,
+		// 		sv: 6,
+		// 	},
+		// },
 		"gatsby-plugin-styled-components",
 	],
 };
