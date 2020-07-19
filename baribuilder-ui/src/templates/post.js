@@ -30,6 +30,11 @@ const InlineFormDiv = styled.div`
 	margin: 16px;
 	margin-bottom: 48px;
 	margin-top: 48px;
+
+	form {
+		// Overriding CovertKit's box shadow to make it stick out more.
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+	}
 `;
 
 /**
