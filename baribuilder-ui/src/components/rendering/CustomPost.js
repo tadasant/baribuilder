@@ -93,6 +93,8 @@ const CustomPost = (props) => {
 				return node.name === "img";
 			},
 			processNode: function (node) {
+				node.attribs.className = node.attribs.class;
+				delete node.attribs.class;
 				return (
 					// Starts loading the image while 200px offscreen
 					<LazyLoad once offset={200}>
