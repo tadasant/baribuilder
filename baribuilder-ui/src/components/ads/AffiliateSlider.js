@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import LaunchIcon from "@material-ui/icons/Launch";
 import { fireEvent } from "../../analytics/googleAnalytics";
 import ShowCTAContext from "../common/ShowCTAContext";
 
@@ -12,7 +12,8 @@ const ContainerDiv = styled.div`
 		z-index: 10;
 		background-color: var(--color-vitag-green-translucent);
 		width: 100%;
-		padding: 4px;
+		padding-top: 4px;
+		padding-bottom: 4px;
 		display: grid;
 		grid-template-columns: 48px 1fr 48px;
 		position: fixed;
@@ -188,7 +189,7 @@ const AffiliateSlider = (props) => {
 							onClick={handleAdClick}
 						>
 							<CTAButton>
-								<ShoppingCartIcon /> {cta === undefined ? "Buy" : cta}
+								{cta === undefined ? "Buy" : cta} <LaunchIcon />
 							</CTAButton>
 						</AdAnchor>
 					</CTAContentContainer>
