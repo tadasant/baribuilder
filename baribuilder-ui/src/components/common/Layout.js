@@ -20,13 +20,12 @@ import "../../styles/app.css";
 
 const CTABarDiv = styled.div`
 	&& {
-		background-color: rgba(0, 0, 0, 0.05);
+		background-color: var(--color-vitag-green-translucent);
 		position: sticky;
 		top: 0px;
 		width: 100%;
 		display: grid;
 		grid-template-columns: 48px 1fr 48px;
-		justify-content: center;
 		z-index: 5;
 	}
 

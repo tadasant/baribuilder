@@ -93,6 +93,7 @@ const CustomPost = (props) => {
 				return node.name === "img";
 			},
 			processNode: function (node) {
+				// Rename class -> className so React knows what to do with it
 				node.attribs.className = node.attribs.class;
 				delete node.attribs.class;
 				return (

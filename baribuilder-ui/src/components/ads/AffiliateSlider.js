@@ -9,24 +9,17 @@ import ShowCTAContext from "../common/ShowCTAContext";
 
 const ContainerDiv = styled.div`
 	&& {
-		z-index: 100;
+		z-index: 10;
 		background-color: var(--color-vitag-green-translucent);
 		width: 100%;
-		border-radius: 3px;
 		padding: 4px;
 		display: grid;
 		grid-template-columns: 48px 1fr 48px;
 		position: fixed;
 
-		bottom: 0px;
+		top: ${({ showingCTA }) => (showingCTA ? "52px" : "0px")};
 		animation-duration: 1s;
 		animation-name: slidein-desktop;
-
-		// ShareThis has a 1024 breakpoint where it moves to the bottom
-		@media (max-width: 1024px) {
-			bottom: 48px;
-			animation-name: slidein-mobile;
-		}
 
 		@media (max-width: 400px) {
 			grid-template-columns: 0px auto 48px;
@@ -34,21 +27,21 @@ const ContainerDiv = styled.div`
 
 		@keyframes slidein-desktop {
 			from {
-				bottom: -64px;
+				top: -64px;
 			}
 
 			to {
-				bottom: 0px;
+				top: ${({ showingCTA }) => (showingCTA ? "52px" : "0px")};
 			}
 		}
 
 		@keyframes slidein-mobile {
 			from {
-				bottom: -48px;
+				top: -64px;
 			}
 
 			to {
-				bottom: 48px;
+				top: ${({ showingCTA }) => (showingCTA ? "52px" : "0px")};
 			}
 		}
 	}
@@ -132,8 +125,6 @@ const AffiliateSlider = (props) => {
 	const { id, link, copy, imgSrc, cta, percentage } = props.ad;
 	const { slug, showingCTA } = props;
 
-	// console.log({ showingCTA });
-
 	useEffect(() => {
 		if (
 			!wasCleared &&
@@ -170,7 +161,7 @@ const AffiliateSlider = (props) => {
 	};
 
 	return (
-		<ContainerDiv>
+		<ContainerDiv showingCTA={showingCTA}>
 			<div />
 			<div>
 				<AdContentDiv>
