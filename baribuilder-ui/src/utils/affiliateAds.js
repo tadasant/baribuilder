@@ -45,6 +45,34 @@ const calciumAd = {
 		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/bari-melts-calcium.png",
 };
 
+const wlsJourneyEbookAd = {
+	link: "https://baribuilder.ck.page/1e5d1b46fd",
+	imgSrc: "https://baribuilder-affiliate-imgs.s3.amazonaws.com/wls-journey.png",
+	cta: "Learn More",
+};
+
+const vsgJourneyEbookAd = {
+	link: "https://baribuilder.ck.page/b983111d28",
+	imgSrc: "https://baribuilder-affiliate-imgs.s3.amazonaws.com/vsg-journey.png",
+	cta: "Learn More",
+};
+
+const rnyJourneyEbookAd = {
+	link: "https://baribuilder.ck.page/8a0f2372af",
+	imgSrc: "https://baribuilder-affiliate-imgs.s3.amazonaws.com/rny-journey.png",
+	cta: "Learn More",
+};
+
+const mealPlanEbookAd = {
+	link: "https://baribuilder.ck.page/d00dd75267",
+	imgSrc: "https://baribuilder-affiliate-imgs.s3.amazonaws.com/meal-plan.png",
+	cta: "Learn More",
+};
+
+// TODO: Comprehensive eBook to avoid weight regain after surgery
+
+// TODO: bariatric meal deliveries? "Put it on autopilot: bariatric meal deliveries"
+
 const affiliateAds = {
 	"gastric-bypass-pouch-reset": [
 		{
@@ -61,6 +89,21 @@ const affiliateAds = {
 			...crystalLightAd,
 			id: "crystal-light-pouch-reset",
 			copy: "Use Crystal Light as a sugar-free, low calorie liquid",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric bypass journey",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-39topics",
+			copy: "39 gastric bypass topics, all in one e-book",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric bypass post-op questions",
 		},
 	],
 	"liver-shrinking-diet": [
@@ -93,6 +136,21 @@ const affiliateAds = {
 			id: "protein-shakes-hair-bypass",
 			copy: "Make sure you're getting plenty of protein shakes",
 		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric bypass journey",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-39topics",
+			copy: "39 gastric bypass topics, all in one e-book",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric bypass post-op questions",
+		},
 	],
 	"cheating-on-liquid-diet-before-gastric-bypass": [
 		{
@@ -105,12 +163,42 @@ const affiliateAds = {
 			id: "crystal-light-liquid-diet-bypass",
 			copy: "Don't cheat: try Crystal Light as a low calorie option",
 		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric bypass journey",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-39topics",
+			copy: "39 gastric bypass topics, all in one e-book",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric bypass post-op questions",
+		},
 	],
 	"how-to-tighten-loose-skin-after-gastric-bypass-without-surgery": [
 		{
 			...proteinInfusedWaterAd,
 			id: "protein-infused-water-loose-skin-without-surgery",
 			copy: "Fill your daily protein quota with protein infused water",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric bypass journey",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-39topics",
+			copy: "39 gastric bypass topics, all in one e-book",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric bypass post-op questions",
 		},
 	],
 	"liquid-diet-before-gastric-bypass-surgery": [
@@ -123,6 +211,21 @@ const affiliateAds = {
 			...crystalLightAd,
 			id: "crystal-light-liquid-bypass",
 			copy: "Use Crystal Light as a sugar-free, low calorie liquid",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric bypass journey",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-39topics",
+			copy: "39 gastric bypass topics, all in one e-book",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric bypass post-op questions",
 		},
 	],
 	"bariatric-surgery-and-popcorn": [
@@ -138,12 +241,42 @@ const affiliateAds = {
 			id: "sleeve-regrets-multivitamin",
 			copy: "Make sure you're getting the right multivitamins",
 		},
+		{
+			...vsgJourneyEbookAd,
+			id: "vsg-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric sleeve journey",
+		},
+		{
+			...vsgJourneyEbookAd,
+			id: "vsg-journey-ebook-39topics",
+			copy: "39 gastric sleeve topics, all in one e-book",
+		},
+		{
+			...vsgJourneyEbookAd,
+			id: "vsg-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric sleeve post-op questions",
+		},
 	],
 	"gastric-sleeve-and-alcohol": [
 		{
 			...multivitaminAd,
 			id: "sleeve-alcohol-multivitamin",
 			copy: "Make sure you're getting the right multivitamins",
+		},
+		{
+			...vsgJourneyEbookAd,
+			id: "vsg-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric sleeve journey",
+		},
+		{
+			...vsgJourneyEbookAd,
+			id: "vsg-journey-ebook-39topics",
+			copy: "39 gastric sleeve topics, all in one e-book",
+		},
+		{
+			...vsgJourneyEbookAd,
+			id: "vsg-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric sleeve post-op questions",
 		},
 	],
 	"gastric-bypass-pre-op-diet": [
@@ -162,12 +295,47 @@ const affiliateAds = {
 			id: "crystal-light-bypass-preop",
 			copy: "Get some Crystal Light as part of your pre-op diet",
 		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-allinone",
+			copy: "All-in-one e-book for your gastric bypass journey",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-39topics",
+			copy: "39 gastric bypass topics, all in one e-book",
+		},
+		{
+			...rnyJourneyEbookAd,
+			id: "rny-journey-ebook-questions",
+			copy: "An e-book to answer all your gastric bypass post-op questions",
+		},
 	],
 	default: [
 		{
 			...calciumAd,
 			id: "barimelts-calcium",
 			copy: "Use Bariatric Calcium to keep your bones strong",
+		},
+		{
+			...wlsJourneyEbookAd,
+			id: "wls-journey-ebook-allinone",
+			copy: "All-in-one e-book for your bariatric journey",
+		},
+		{
+			...wlsJourneyEbookAd,
+			id: "wls-journey-ebook-97topics",
+			copy: "97 WLS topics, all in one e-book",
+		},
+		{
+			...wlsJourneyEbookAd,
+			id: "wls-journey-ebook-questions",
+			copy: "An e-book to answer all your post-op questions",
+		},
+		{
+			...mealPlanEbookAd,
+			id: "meal-plan-ebook",
+			copy: "Get a curated 4 week meal plan for after surgery",
 		},
 	],
 };
