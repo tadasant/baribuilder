@@ -5,6 +5,7 @@ import { IconButton } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { fireEvent } from "../../analytics/googleAnalytics";
+import ShowCTAContext from "../common/ShowCTAContext";
 
 const ContainerDiv = styled.div`
 	&& {
@@ -129,7 +130,9 @@ const AffiliateSlider = (props) => {
 	const [wasCleared, setWasCleared] = useState(false);
 	const [reachedScrollPercentage, setReachedScrollPercentage] = useState(false);
 	const { id, link, copy, imgSrc, cta, percentage } = props.ad;
-	const { slug } = props;
+	const { slug, showingCTA } = props;
+
+	// console.log({ showingCTA });
 
 	useEffect(() => {
 		if (
@@ -223,6 +226,14 @@ AffiliateSlider.propTypes = {
 		percentage: PropTypes.number,
 	}).isRequired,
 	scrollPercentage: PropTypes.number,
+	slug: PropTypes.string.isRequired,
+	showingCTA: PropTypes.bool.isRequired,
 };
 
-export default AffiliateSlider;
+const AffiliateSliderWithContext = (props) => (
+	<ShowCTAContext.Consumer>
+		{(showingCTA) => <AffiliateSlider showingCTA={showingCTA} {...props} />}
+	</ShowCTAContext.Consumer>
+);
+
+export default AffiliateSliderWithContext;

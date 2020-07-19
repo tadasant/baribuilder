@@ -9,6 +9,7 @@ import Img from "gatsby-image";
 import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import { fireEvent } from "../../analytics/googleAnalytics";
+import ShowCTAContext from "./ShowCTAContext";
 
 import { Navigation } from ".";
 import config from "../../utils/siteConfig";
@@ -268,7 +269,9 @@ const DefaultLayout = (props) => {
 
 					<main className="site-main">
 						{/* All the main content gets inserted here, index.js, post.js */}
-						{children}
+						<ShowCTAContext.Provider value={showCTABar}>
+							{children}
+						</ShowCTAContext.Provider>
 					</main>
 				</div>
 
