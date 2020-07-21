@@ -79,12 +79,12 @@ const RecipesHeaderForm = ({
 							/>
 						</div>
 						<button
-							onMouseOver={
-								trackSubscribeHover &&
-								hj &&
+							onMouseOver={() => {
+								trackSubscribeHover();
 								// JavaScript trigger for HotJar to start recording
-								hj("trigger", "hovered_email_subscribe")
-							}
+								hj && hj("trigger", "hovered_email_subscribe");
+								// console.error("hotjar triggered");
+							}}
 							onClick={trackSubscribeClick}
 							data-element="submit"
 							className="formkit-submit formkit-submit"
