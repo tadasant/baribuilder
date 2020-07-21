@@ -65,7 +65,12 @@ const TipsInlineForm = ({
 						</div>
 						<div className="formkit-field">
 							<input
-								onFocus={trackEmailOnFocus}
+								onFocus={() => {
+									trackEmailOnFocus();
+									// JavaScript trigger for HotJar to start recording
+									hj && hj("trigger", "hovered_email_subscribe");
+									// console.error("hotjar triggered");
+								}}
 								onBlur={(event) => trackEmailOnBlur(event.currentTarget.value)}
 								className="formkit-input"
 								name="email_address"
@@ -80,12 +85,7 @@ const TipsInlineForm = ({
 							/>
 						</div>
 						<button
-							onMouseOver={() => {
-								trackSubscribeHover();
-								// JavaScript trigger for HotJar to start recording
-								hj && hj("trigger", "hovered_email_subscribe");
-								// console.error("hotjar triggered");
-							}}
+							onMouseOver={trackSubscribeHover}
 							onClick={trackSubscribeClick}
 							data-element="submit"
 							className="formkit-submit formkit-submit"
