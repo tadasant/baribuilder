@@ -143,6 +143,8 @@ const AffiliateSlider = (props) => {
 						action: "Show",
 						label: `${slug}: ${id}`,
 					});
+					// JavaScript trigger for HotJar to start recording
+					hj && hj("trigger", "show_affiliate_ad");
 				}
 				return true;
 			});
@@ -168,7 +170,13 @@ const AffiliateSlider = (props) => {
 			<div>
 				<AdContentDiv>
 					{imgSrc ? (
-						<AdSpan onClick={handleAdClick}>
+						<AdSpan
+							onClick={handleAdClick}
+							onMouseOver={
+								// JavaScript trigger for HotJar to start recording
+								() => hj && hj("trigger", "hovered_affiliate_ad")
+							}
+						>
 							<ImageContentContainer>
 								<AdImg src={imgSrc} />
 							</ImageContentContainer>
@@ -178,7 +186,13 @@ const AffiliateSlider = (props) => {
 						<b>{copy}</b>
 					</CopyP>
 					<CTAContentContainer>
-						<AdSpan onClick={handleAdClick}>
+						<AdSpan
+							onClick={handleAdClick}
+							onMouseOver={
+								// JavaScript trigger for HotJar to start recording
+								() => hj && hj("trigger", "hovered_affiliate_ad")
+							}
+						>
 							<CTAButton>
 								{cta === undefined ? "Buy" : cta} <LaunchIcon />
 							</CTAButton>

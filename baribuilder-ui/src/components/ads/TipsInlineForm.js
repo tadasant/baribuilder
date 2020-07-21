@@ -80,7 +80,12 @@ const TipsInlineForm = ({
 							/>
 						</div>
 						<button
-							onMouseOver={trackSubscribeHover}
+							onMouseOver={
+								trackSubscribeHover &&
+								hj &&
+								// JavaScript trigger for HotJar to start recording
+								hj("trigger", "hovered_email_subscribe")
+							}
 							onClick={trackSubscribeClick}
 							data-element="submit"
 							className="formkit-submit formkit-submit"
