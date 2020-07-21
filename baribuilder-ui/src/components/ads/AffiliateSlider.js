@@ -112,9 +112,11 @@ const AdContentDiv = styled.div`
 	}
 `;
 
-const AdAnchor = styled.a`
+const AdSpan = styled.span`
 	color: var(--color-base);
 	&:hover {
+		cursor: pointer;
+
 		// Remove the underline on hover
 		text-decoration: none;
 	}
@@ -151,8 +153,7 @@ const AffiliateSlider = (props) => {
 		return null;
 	}
 
-	const handleAdClick = (event) => {
-		event.preventDefault();
+	const handleAdClick = () => {
 		fireEvent({
 			category: "Affiliate Ad",
 			action: "Click",
@@ -167,31 +168,21 @@ const AffiliateSlider = (props) => {
 			<div>
 				<AdContentDiv>
 					{imgSrc ? (
-						<AdAnchor
-							href={link}
-							target="_blank"
-							rel="noopener noreferrer"
-							onClick={handleAdClick}
-						>
+						<AdSpan onClick={handleAdClick}>
 							<ImageContentContainer>
 								<AdImg src={imgSrc} />
 							</ImageContentContainer>
-						</AdAnchor>
+						</AdSpan>
 					) : null}
 					<CopyP>
 						<b>{copy}</b>
 					</CopyP>
 					<CTAContentContainer>
-						<AdAnchor
-							href={link}
-							target="_blank"
-							rel="noopener noreferrer"
-							onClick={handleAdClick}
-						>
+						<AdSpan onClick={handleAdClick}>
 							<CTAButton>
 								{cta === undefined ? "Buy" : cta} <LaunchIcon />
 							</CTAButton>
-						</AdAnchor>
+						</AdSpan>
 					</CTAContentContainer>
 				</AdContentDiv>
 			</div>
