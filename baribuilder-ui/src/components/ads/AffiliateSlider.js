@@ -162,11 +162,15 @@ const AffiliateSlider = (props) => {
 			action: "Click",
 			label: `${slug}: ${id}`,
 		});
+		hj && hj("tagRecording", ["clicked_affiliate_ad"]);
 		window.open(link, "_blank");
 	};
 
 	return (
-		<ContainerDiv showingCTA={showingCTA}>
+		<ContainerDiv
+			showingCTA={showingCTA}
+			onTouchStart={() => hj & hj("tagRecording", ["touch_start_affiliate_ad"])}
+		>
 			<div />
 			<div>
 				<AdContentDiv>
