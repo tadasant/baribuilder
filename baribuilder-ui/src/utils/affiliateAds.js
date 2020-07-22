@@ -21,7 +21,7 @@ const proteinShakesAd = {
 const proteinInfusedWaterAd = {
 	link: "https://amzn.to/2WdVFNM",
 	imgSrc:
-		"https://www.amazon.com/Protein2o-Flavor-Fusion-Piece-Variety/dp/B07BBWJY5X/ref=as_li_ss_tl?dchild=1&keywords=bariatric+protein+bottles&qid=1594523226&sr=8-23&linkCode=ll1&tag=bariduiler-ad-20&linkId=3034cf9b4cf8da9a396d54f0320ad94e&language=en_US",
+		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/protein-water.png",
 };
 
 const crystalLightAd = {
