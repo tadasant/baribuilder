@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AffiliateSlider from "./AffiliateSlider";
+import AffiliateSliderModal from "./AffiliateSliderModal";
 import affiliateAds from "../../utils/affiliateAds";
 import PropTypes from "prop-types";
 
@@ -15,7 +16,11 @@ const AffiliateSliderContainer = (props) => {
 		setChosenAd(candidateAds[randomIdx]);
 	}, [slug]);
 
-	return chosenAd ? <AffiliateSlider ad={chosenAd} {...props} /> : null;
+	// Uncomment if I want slider instead of modal
+	// const component = AffiliateSlider;
+	const Slider = AffiliateSliderModal;
+
+	return chosenAd ? <Slider ad={chosenAd} {...props} /> : null;
 };
 
 AffiliateSliderContainer.propTypes = {
