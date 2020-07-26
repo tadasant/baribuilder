@@ -114,6 +114,8 @@ const AdContentDiv = styled.div`
 
 const AdSpan = styled.span`
 	color: var(--color-base);
+	display: flex;
+
 	&:hover {
 		cursor: pointer;
 
