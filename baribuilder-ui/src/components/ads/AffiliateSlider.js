@@ -146,7 +146,7 @@ const AffiliateSlider = (props) => {
 						label: `${slug}: ${id}`,
 					});
 					// JavaScript trigger for HotJar to start recording
-					hj && hj("trigger", "show_affiliate_ad");
+					window.hj && window.hj("trigger", "show_affiliate_ad");
 					// console.error("hotjar triggered");
 				}
 				return true;
@@ -164,7 +164,7 @@ const AffiliateSlider = (props) => {
 			action: "Click",
 			label: `${slug}: ${id}`,
 		});
-		hj && hj("tagRecording", ["clicked_affiliate_ad"]);
+		window.hj && window.hj("tagRecording", ["clicked_affiliate_ad"]);
 		window.open(link, "_blank");
 	};
 
@@ -182,7 +182,7 @@ const AffiliateSlider = (props) => {
 							onMouseOver={
 								// JavaScript trigger for HotJar to start recording
 								() => {
-									hj && hj("trigger", "hovered_affiliate_ad");
+									window.hj && window.hj("trigger", "hovered_affiliate_ad");
 									// console.error("hotjar triggered");
 								}
 							}
@@ -201,7 +201,7 @@ const AffiliateSlider = (props) => {
 							onMouseOver={
 								// JavaScript trigger for HotJar to start recording
 								() => {
-									hj && hj("trigger", "hovered_affiliate_ad");
+									window.hj && window.hj("trigger", "hovered_affiliate_ad");
 									// console.error("hotjar triggered");
 								}
 							}

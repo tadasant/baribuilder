@@ -68,7 +68,7 @@ const TipsInlineForm = ({
 								onFocus={() => {
 									trackEmailOnFocus();
 									// JavaScript trigger for HotJar to start recording
-									hj && hj("trigger", "hovered_email_subscribe");
+									window.hj && window.hj("trigger", "hovered_email_subscribe");
 									// console.error("hotjar triggered");
 								}}
 								onBlur={(event) => trackEmailOnBlur(event.currentTarget.value)}

@@ -19,7 +19,8 @@ const proteinShakesAd = {
 };
 
 const proteinInfusedWaterAd = {
-	link: "https://www.amazon.com/Protein2o-Flavor-Fusion-Piece-Variety/dp/B07BBWJY5X/ref=as_li_ss_tl?dchild=1&keywords=bariatric+protein+bottles&qid=1594523226&sr=8-23&linkCode=ll1&tag=bariduiler-ad-20&linkId=3034cf9b4cf8da9a396d54f0320ad94e&language=en_US",
+	link:
+		"https://www.amazon.com/Protein2o-Flavor-Fusion-Piece-Variety/dp/B07BBWJY5X/ref=as_li_ss_tl?dchild=1&keywords=bariatric+protein+bottles&qid=1594523226&sr=8-23&linkCode=ll1&tag=bariduiler-ad-20&linkId=3034cf9b4cf8da9a396d54f0320ad94e&language=en_US",
 	imgSrc:
 		"https://baribuilder-affiliate-imgs.s3.amazonaws.com/protein-water.png",
 };
@@ -66,6 +67,12 @@ const rnyJourneyEbookAd = {
 const mealPlanEbookAd = {
 	link: "https://baribuilder.ck.page/d00dd75267",
 	imgSrc: "https://baribuilder-affiliate-imgs.s3.amazonaws.com/meal-plan.png",
+	cta: "Learn More",
+};
+
+const surgeonAd = {
+	link: "https://baribuilder.ck.page/e6e745cd2f",
+	imgSrc: "https://baribuilder-affiliate-imgs.s3.amazonaws.com/surgeon.jpg",
 	cta: "Learn More",
 };
 
@@ -312,30 +319,36 @@ const affiliateAds = {
 		},
 	],
 	default: [
+		// {
+		// 	...calciumAd,
+		// 	id: "barimelts-calcium",
+		// 	copy: "Use Bariatric Calcium to keep your bones strong",
+		// },
+		// {
+		// 	...wlsJourneyEbookAd,
+		// 	id: "wls-journey-ebook-allinone",
+		// 	copy: "All-in-one e-book for your bariatric journey",
+		// },
+		// {
+		// 	...wlsJourneyEbookAd,
+		// 	id: "wls-journey-ebook-97topics",
+		// 	copy: "97 WLS topics, all in one e-book",
+		// },
+		// {
+		// 	...wlsJourneyEbookAd,
+		// 	id: "wls-journey-ebook-questions",
+		// 	copy: "An e-book to answer all your post-op questions",
+		// },
+		// {
+		// 	...mealPlanEbookAd,
+		// 	id: "meal-plan-ebook",
+		// 	copy: "Get a curated 4 week meal plan for after surgery",
+		// },
 		{
-			...calciumAd,
-			id: "barimelts-calcium",
-			copy: "Use Bariatric Calcium to keep your bones strong",
-		},
-		{
-			...wlsJourneyEbookAd,
-			id: "wls-journey-ebook-allinone",
-			copy: "All-in-one e-book for your bariatric journey",
-		},
-		{
-			...wlsJourneyEbookAd,
-			id: "wls-journey-ebook-97topics",
-			copy: "97 WLS topics, all in one e-book",
-		},
-		{
-			...wlsJourneyEbookAd,
-			id: "wls-journey-ebook-questions",
-			copy: "An e-book to answer all your post-op questions",
-		},
-		{
-			...mealPlanEbookAd,
-			id: "meal-plan-ebook",
-			copy: "Get a curated 4 week meal plan for after surgery",
+			...surgeonAd,
+			id: "find-a-surgeon",
+			copy:
+				"Need help finding a surgeon for your first, or revisional, surgery?",
 		},
 	],
 };
