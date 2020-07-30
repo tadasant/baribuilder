@@ -88,5 +88,6 @@ module.exports = {
 	"diarrhea-after-gastric-bypass": ["gintas"],
 	"is-gastric-bypass-safe": ["gintas"],
 	"how-to-shrink-liver-in-3-days": ["gintas"],
-	"lap-band-and-pregnancy": ["gintas"]
+	"lap-band-and-pregnancy": ["gintas"],
+	"acid-reflux-after-gastric-bypass"
 };
