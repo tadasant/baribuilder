@@ -87,5 +87,6 @@ module.exports = {
 	"bariatric-surgery-alternatives": ["gintas"],
 	"diarrhea-after-gastric-bypass": ["gintas"],
 	"is-gastric-bypass-safe": ["gintas"],
-	"how-to-shrink-liver-in-3-days": ["gintas"]
+	"how-to-shrink-liver-in-3-days": ["gintas"],
+	"lap-band-and-pregnancy": ["gintas"]
 };
