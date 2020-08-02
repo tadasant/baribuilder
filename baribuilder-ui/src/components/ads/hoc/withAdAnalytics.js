@@ -21,7 +21,7 @@ import { fireEvent } from "../../../analytics/googleAnalytics";
 // AdContent is the string sent along with GA events representing an id for the content used in the ad
 function withAdAnalytics(WrappedComponent, options) {
 	return function (inputProps) {
-		const { adContent, adPlacement, disableView } = options;
+		const { adContent, adPlacement, disableView } = options || {};
 		const label = `${inputProps.adContent || adContent}-${
 			inputProps.adPlacement || adPlacement
 		}`;

@@ -319,31 +319,31 @@ const affiliateAds = {
 		},
 	],
 	default: [
-		// {
-		// 	...calciumAd,
-		// 	id: "barimelts-calcium",
-		// 	copy: "Use Bariatric Calcium to keep your bones strong",
-		// },
-		// {
-		// 	...wlsJourneyEbookAd,
-		// 	id: "wls-journey-ebook-allinone",
-		// 	copy: "All-in-one e-book for your bariatric journey",
-		// },
-		// {
-		// 	...wlsJourneyEbookAd,
-		// 	id: "wls-journey-ebook-97topics",
-		// 	copy: "97 WLS topics, all in one e-book",
-		// },
-		// {
-		// 	...wlsJourneyEbookAd,
-		// 	id: "wls-journey-ebook-questions",
-		// 	copy: "An e-book to answer all your post-op questions",
-		// },
-		// {
-		// 	...mealPlanEbookAd,
-		// 	id: "meal-plan-ebook",
-		// 	copy: "Get a curated 4 week meal plan for after surgery",
-		// },
+		{
+			...calciumAd,
+			id: "barimelts-calcium",
+			copy: "Use Bariatric Calcium to keep your bones strong",
+		},
+		{
+			...wlsJourneyEbookAd,
+			id: "wls-journey-ebook-allinone",
+			copy: "All-in-one e-book for your bariatric journey",
+		},
+		{
+			...wlsJourneyEbookAd,
+			id: "wls-journey-ebook-97topics",
+			copy: "97 WLS topics, all in one e-book",
+		},
+		{
+			...wlsJourneyEbookAd,
+			id: "wls-journey-ebook-questions",
+			copy: "An e-book to answer all your post-op questions",
+		},
+		{
+			...mealPlanEbookAd,
+			id: "meal-plan-ebook",
+			copy: "Get a curated 4 week meal plan for after surgery",
+		},
 		{
 			...surgeonAd,
 			id: "find-a-surgeon",

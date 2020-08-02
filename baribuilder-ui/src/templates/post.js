@@ -55,10 +55,11 @@ const Post = ({ data, location }) => {
 			</Helmet>
 			<Layout>
 				{/* Affiliate ad that shows up partway down the page */}
-				<LoadableAffiliateSlider
+				{/* Removing this while we're trying inline affiliate ads */}
+				{/* <LoadableAffiliateSlider
 					slug={post.slug}
 					scrollPercentage={scrollPercentage}
-				/>
+				/> */}
 
 				<div className="container">
 					<article className="content" ref={scrollPercentageRef}>
