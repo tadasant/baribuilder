@@ -90,5 +90,6 @@ module.exports = {
 	"how-to-shrink-liver-in-3-days": ["gintas"],
 	"lap-band-and-pregnancy": ["gintas"],
 	"acid-reflux-after-gastric-bypass": ["gintas"],
-	"gastric-bypass-diet-menu": ["gintas"]
+	"gastric-bypass-diet-menu": ["gintas"],
+	"lap-band-pre-op-diet": ["gintas"]
 };
