@@ -95,5 +95,6 @@ module.exports = {
 	"heartburn-after-gastric-bypass-surgery": ["gintas"],
 	"gastric-bypass-ulcers": ["gintas"],
 	"keto-diet-after-bariatric-surgery": ["gintas"],
-	"lap-band-acid-reflux": ["gintas"]
+	"lap-band-acid-reflux": ["gintas"],
+	"weight-loss-stall-after-gastric bypass": ["gintas"]
 };
