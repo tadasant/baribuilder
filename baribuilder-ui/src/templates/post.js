@@ -16,14 +16,13 @@ const LoadableAffiliateSlider = Loadable(() =>
 	import("../components/ads/AffiliateSliderContainer")
 );
 
-// Running support groups instead
-// const LoadableRecipesHeaderForm = Loadable(() =>
-// 	import("../components/ads/RecipesHeaderForm")
-// );
-
-const LoadableSupportCallsHeaderForm = Loadable(() =>
-	import("../components/ads/SupportCallsHeaderForm")
+const LoadableRecipesHeaderForm = Loadable(() =>
+	import("../components/ads/RecipesHeaderForm")
 );
+
+// const LoadableSupportCallsHeaderForm = Loadable(() =>
+// 	import("../components/ads/SupportCallsHeaderForm")
+// );
 
 const LoadableTipsInlineForm = Loadable(() =>
 	import("../components/ads/TipsInlineForm")
@@ -89,8 +88,8 @@ const Post = ({ data, location }) => {
 								) : (
 									<VitaminsBariatricForm adPlacement="top_of_article" />
 								)} */}
-								{/* <LoadableRecipesHeaderForm /> */}
-								<LoadableSupportCallsHeaderForm />
+								<LoadableRecipesHeaderForm />
+								{/* <LoadableSupportCallsHeaderForm /> */}
 							</InlineFormDiv>
 
 							{post.feature_image ? (
