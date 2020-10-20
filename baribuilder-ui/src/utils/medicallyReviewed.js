@@ -91,5 +91,10 @@ module.exports = {
 	"lap-band-and-pregnancy": ["gintas"],
 	"acid-reflux-after-gastric-bypass": ["gintas"],
 	"gastric-bypass-diet-menu": ["gintas"],
-	"lap-band-pre-op-diet": ["gintas"]
+	"lap-band-pre-op-diet": ["gintas"],
+	"heartburn-after-gastric-bypass-surgery": ["gintas"],
+	"gastric-bypass-ulcers": ["gintas"],
+	"keto-diet-after-bariatric-surgery": ["gintas"],
+	"lap-band-acid-reflux": ["gintas"],
+	"weight-loss-stall-after-gastric bypass": ["gintas"]
 };
