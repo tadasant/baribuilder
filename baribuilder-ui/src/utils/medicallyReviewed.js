@@ -94,5 +94,6 @@ module.exports = {
 	"lap-band-pre-op-diet": ["gintas"],
 	"heartburn-after-gastric-bypass-surgery": ["gintas"],
 	"gastric-bypass-ulcers": ["gintas"],
-	"keto-diet-after-bariatric-surgery": ["gintas"]
+	"keto-diet-after-bariatric-surgery": ["gintas"],
+	"lap-band-acid-reflux": ["gintas"]
 };
