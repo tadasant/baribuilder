@@ -96,5 +96,6 @@ module.exports = {
 	"gastric-bypass-ulcers": ["gintas"],
 	"keto-diet-after-bariatric-surgery": ["gintas"],
 	"lap-band-acid-reflux": ["gintas"],
-	"weight-loss-stall-after-gastric bypass": ["gintas"]
+	"weight-loss-stall-after-gastric bypass": ["gintas"],
+	"pros-and-cons-of-bariatric-surgery": ["gintas"]
 };
