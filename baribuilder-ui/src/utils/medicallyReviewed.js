@@ -100,5 +100,6 @@ module.exports = {
 	"pros-and-cons-of-bariatric-surgery": ["gintas"],
 	"heartburn-with-lap-band": ["gintas"],
 	"gastric-bypass-problems": ["gintas"],
-	"gastric-balloon-surgery-cost": ["gintas"]
+	"gastric-balloon-surgery-cost": ["gintas"],
+	"lap-band-diet-menu": ["gintas"]
 };
