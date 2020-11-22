@@ -99,5 +99,6 @@ module.exports = {
 	"weight-loss-stall-after-gastric bypass": ["gintas"],
 	"pros-and-cons-of-bariatric-surgery": ["gintas"],
 	"heartburn-with-lap-band": ["gintas"],
-	"gastric-bypass-problems": ["gintas"]
+	"gastric-bypass-problems": ["gintas"],
+	"gastric-balloon-surgery-cost": ["gintas"]
 };
