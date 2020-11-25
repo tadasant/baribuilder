@@ -101,5 +101,6 @@ module.exports = {
 	"heartburn-with-lap-band": ["gintas"],
 	"gastric-bypass-problems": ["gintas"],
 	"gastric-balloon-surgery-cost": ["gintas"],
-	"lap-band-diet-menu": ["gintas"]
+	"lap-band-diet-menu": ["gintas"],
+	"lap-band-liquid-diet": ["gintas"]
 };
