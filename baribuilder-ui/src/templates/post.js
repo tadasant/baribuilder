@@ -17,7 +17,9 @@ const LoadableAffiliateSlider = Loadable(() =>
 );
 
 const LoadableRecipesHeaderForm = Loadable(() =>
-	import("../components/ads/RecipesHeaderForm")
+	// old recipes PDF we used to use
+	// import("../components/ads/RecipesHeaderForm")
+	import("../components/ads/KetoRecipesHeaderForm")
 );
 
 // const LoadableSupportCallsHeaderForm = Loadable(() =>
