@@ -54,9 +54,29 @@ const KetoRecipesHeaderForm = ({
 						<div className="formkit-field">
 							<input
 								className="formkit-input"
+								aria-label="Your first name"
+								name="fields[first_name]"
+								placeholder="Your first name"
+								type="text"
+								style={{
+									color: "rgb(139, 139, 139)",
+									borderColor: "rgb(221, 224, 228)",
+									fontWeight: 400,
+								}}
+							/>
+						</div>
+						<div className="formkit-field">
+							<input
+								onFocus={() => {
+									trackEmailOnFocus();
+									// JavaScript trigger for HotJar to start recording
+									window.hj && window.hj("trigger", "hovered_email_subscribe");
+									// console.error("hotjar triggered");
+								}}
+								onBlur={(event) => trackEmailOnBlur(event.currentTarget.value)}
+								className="formkit-input"
 								name="email_address"
-								aria-label="Email Address"
-								placeholder="Email Address"
+								placeholder="Your email address"
 								required
 								type="email"
 								style={{
@@ -67,12 +87,14 @@ const KetoRecipesHeaderForm = ({
 							/>
 						</div>
 						<button
+							onMouseOver={trackSubscribeHover}
+							onClick={trackSubscribeClick}
 							data-element="submit"
 							className="formkit-submit formkit-submit"
 							style={{
 								color: "rgb(255, 255, 255)",
 								backgroundColor: "rgb(0, 139, 204)",
-								borderRadius: 7,
+								borderRadius: 3,
 								fontWeight: 700,
 							}}
 						>
@@ -81,7 +103,7 @@ const KetoRecipesHeaderForm = ({
 								<div />
 								<div />
 							</div>
-							<span className>Send me the PDF</span>
+							<span>Send me the PDF</span>
 						</button>
 					</div>
 					<div
@@ -89,7 +111,7 @@ const KetoRecipesHeaderForm = ({
 						data-element="disclaimer"
 						style={{ color: "rgb(139, 139, 139)", fontSize: 13 }}
 					>
-						<p>​</p>
+						<p></p>
 					</div>
 				</div>
 			</div>
@@ -105,6 +127,6 @@ const KetoRecipesHeaderForm = ({
 
 export default withVisibilityTracker(
 	withAdAnalytics(KetoRecipesHeaderForm, {
-		adContent: "hungry_protein_rich_recipes_pdf",
+		adContent: "trying_keto_recipes_pdf",
 	})
 );
