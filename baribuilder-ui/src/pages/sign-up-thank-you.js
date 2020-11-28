@@ -29,6 +29,9 @@ const SignUpThankYou = ({ location }) => {
 			} else if (urlParams.get("pdf") === "exercises") {
 				config.redirectUrl =
 					"https://baribuilder.s3.amazonaws.com/_external/10-home-exercises-v1.pdf";
+			} else if (urlParams.get("pdf") === "keto-recipes") {
+				config.redirectUrl =
+					"https://baribuilder.s3.amazonaws.com/_external/12-bariatric-keto-diet-recipes-v1-short.pdf";
 			}
 			config.redirectText = "your PDF download";
 			config.hideConfirmation = true;
