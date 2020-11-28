@@ -1,5 +1,6 @@
 # Netlify redirects file, edit with your domain
 # https://www.netlify.com/docs/redirects/
 
-https://condescending-keller-8431b5.netlify.com/*      https://baribuilder.com/:splat    301!
-/content/*  https://blog.baribuilder.com/content/:splat   302!
+https://condescending-keller-8431b5.netlify.com/*   https://baribuilder.com/:splat                    301!
+/content/*                                          https://blog.baribuilder.com/content/:splat       302!
+/12-bariatric-keto-recipes-short                    https://lp.baribuilder.com/keto-recipes-landing/
