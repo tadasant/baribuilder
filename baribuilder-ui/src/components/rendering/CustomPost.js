@@ -145,7 +145,9 @@ const CustomPost = (props) => {
 				if (["h3", "h2", "h1"].includes(node.name)) {
 					nextHIdx++;
 				}
-				return result;
+				// disabling affiliate inline ads; shifting to use targetted inline signups
+				return false;
+				// return result;
 			},
 			processNode: function (node, children) {
 				// Rename class -> className so React knows what to do with it
