@@ -26,8 +26,10 @@ const LoadableRecipesHeaderForm = Loadable(() =>
 // 	import("../components/ads/SupportCallsHeaderForm")
 // );
 
-const LoadableTipsInlineForm = Loadable(() =>
-	import("../components/ads/TipsInlineForm")
+const LoadableTipsInlineForm = Loadable(
+	() => import("../components/ads/TipsInlineFormNoImage")
+	// Removing this to use the less flashy tips
+	// import("../components/ads/TipsInlineForm")
 );
 
 const AuthorFooter = styled.footer``;
@@ -41,6 +43,12 @@ const InlineFormDiv = styled.div`
 		// Overriding CovertKit's box shadow to make it stick out more.
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
 	}
+`;
+
+const InlineFormDivNoImage = styled.div`
+	margin: 16px;
+	margin-bottom: 48px;
+	margin-top: 48px;
 `;
 
 /**
@@ -124,9 +132,12 @@ const Post = ({ data, location }) => {
 							<div className="sharethis-inline-share-buttons" />
 
 							{/* End of article tips CTA */}
-							<InlineFormDiv>
+							{/* <InlineFormDiv>
 								<LoadableTipsInlineForm adPlacement="end_of_article" />
-							</InlineFormDiv>
+							</InlineFormDiv> */}
+							<InlineFormDivNoImage>
+								<LoadableTipsInlineForm adPlacement="end_of_article" />
+							</InlineFormDivNoImage>
 							{post.authors.map((author) => {
 								// hack for medical reviewers -- could eventually integrate into custom CMS
 								let role = "Author";

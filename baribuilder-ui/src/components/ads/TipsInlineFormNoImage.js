@@ -92,7 +92,8 @@ const TipsInlineFormNoImage = ({
 							<div />
 						</div>
 						<span className>
-							Like what you read? Sign up for weekly WLS tips in your inbox
+							Like what you're reading? Sign up for weekly WLS tips in your
+							inbox.
 						</span>
 					</button>
 				</div>
