@@ -7,7 +7,7 @@ const InlineCTAForm = Loadable(() =>
 
 const FORM_IDS = {
 	KETO_12: 111111,
-	HIGH_PROTEIN_12: 222222,
+	HIGH_PROTEIN_12: 1538723,
 	AT_HOME_EXERCISES_10: 3333333
 }
 
@@ -24,7 +24,7 @@ const AD_PLACEMENTS = {
 }
 
 const AD_IMGS = {
-	PEANUT_BUTTER_CUP: ""
+	PEANUT_BUTTER_CUP: "https://embed.filekitcdn.com/e/6BBQyDxEeLtfyY667eRUm5/dTMgJHz6GGF5zbntYj6RfM"
 }
 
 const postToCTAs = {
@@ -32,11 +32,11 @@ const postToCTAs = {
 		TOP: {
 			component: InlineCTAForm,
 			props: {
-				adContent: "",
-				adPlacement: "",
+				adContent: AD_CONTENTS.HIGH_PROTEIN_12,
+				adPlacement: AD_PLACEMENTS.TOP,
 				formId: FORM_IDS.KETO_12,
-				imgSrc: "",
-				headerCopy: ""
+				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
+				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals."
 			},
 		},
 		MIDDLE: {
@@ -62,33 +62,33 @@ const postToCTAs = {
 	},
 	default: {
 		TOP: {
-			component: null,
+			component: InlineCTAForm,
 			props: {
-				adContent: "",
-				adPlacement: "",
+				adContent: AD_CONTENTS.HIGH_PROTEIN_12,
+				adPlacement: AD_PLACEMENTS.TOP,
 				formId: FORM_IDS.KETO_12,
-				imgSrc: "",
-				headerCopy: ""
+				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
+				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals."
 			},
 		},
 		MIDDLE: {
-			component: null,
+			component: InlineCTAForm,
 			props: {
-				adContent: "",
-				adPlacement: "",
+				adContent: AD_CONTENTS.HIGH_PROTEIN_12,
+				adPlacement: AD_PLACEMENTS.MIDDLE,
 				formId: FORM_IDS.KETO_12,
-				imgSrc: "",
-				headerCopy: ""
+				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
+				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals."
 			},
 		},
 		BOTTOM: {
-			component: null,
+			component: InlineCTAForm,
 			props: {
-				adContent: "",
-				adPlacement: "",
+				adContent: AD_CONTENTS.HIGH_PROTEIN_12,
+				adPlacement: AD_PLACEMENTS.BOTTOM,
 				formId: FORM_IDS.KETO_12,
-				imgSrc: "",
-				headerCopy: ""
+				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
+				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals."
 			},
 		},
 	},

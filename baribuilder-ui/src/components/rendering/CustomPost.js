@@ -11,6 +11,12 @@ const htmlToReactParser = new HtmlToReact.Parser();
 const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 
 const CustomPost = (props) => {
+	// contains .component and .props
+	const { middleCTAConfig } = props;
+	const MiddleCTAComponent = (
+		<middleCTAConfig.component {...middleCTAConfig.props} />
+	);
+
 	const [ref, percentage] = useScrollPercentage();
 	const [isRead, setIsRead] = useState(false);
 	const [numSecondsSinceOpened, setNumSecondsSinceOpened] = useState(0);
@@ -158,6 +164,25 @@ const CustomPost = (props) => {
 				return (
 					<React.Fragment>
 						{nextRandomAffiliateInlineAd(nextHIdx)}
+						<h3 {...node.attribs}>{children}</h3>
+					</React.Fragment>
+				);
+			},
+		},
+		// Place middleCTA ad after 2 headers (don't use in combination with enabled random affiliate ads)
+		{
+			shouldProcessNode: function (node) {
+				return nextHIdx == 3;
+			},
+			processNode: function (node, children) {
+				// Rename class -> className so React knows what to do with it
+				node.attribs.className = node.attribs.class;
+				delete node.attribs.class;
+				node.attribs.srcSet = node.attribs.srcset;
+				delete node.attribs.srcset;
+				return (
+					<React.Fragment>
+						{MiddleCTAComponent}
 						<h3 {...node.attribs}>{children}</h3>
 					</React.Fragment>
 				);

@@ -10,6 +10,7 @@ import { MetaData } from "../components/common/meta";
 import CustomPost from "../components/rendering/CustomPost";
 import medicallyReviewed from "../utils/medicallyReviewed";
 import { useScrollPercentage } from "react-scroll-percentage";
+import postToCTAs from "../utils/postCTAs";
 
 // Loadable so that it does random choosing of ad on the client side
 const LoadableAffiliateSlider = Loadable(() =>
@@ -60,6 +61,12 @@ const InlineFormDivNoImage = styled.div`
 const Post = ({ data, location }) => {
 	const [scrollPercentageRef, scrollPercentage] = useScrollPercentage();
 	const post = data.ghostPost;
+	const ctaConfig = Object.keys(postToCTApost).includes(post.slug)
+		? postToCTAs[post.slug]
+		: postToCTAs.default;
+
+	const TopCTAComponent = ctaConfig.TOP.component;
+	const BottomCTAComponent = ctaConfig.BOTTOM.component;
 
 	return (
 		<>
@@ -98,7 +105,9 @@ const Post = ({ data, location }) => {
 								) : (
 									<VitaminsBariatricForm adPlacement="top_of_article" />
 								)} */}
-								<LoadableRecipesHeaderForm />
+								<TopCTAComponent {...ctaConfig.TOP.props} />
+
+								{/* <LoadableRecipesHeaderForm /> */}
 								{/* <LoadableSupportCallsHeaderForm /> */}
 							</InlineFormDiv>
 
@@ -113,7 +122,7 @@ const Post = ({ data, location }) => {
 							{/* <RecipesModal /> */}
 
 							{/* The main post content */}
-							<CustomPost post={post} />
+							<CustomPost post={post} middleCTAConfig={ctaConfig.MIDDLE} />
 
 							{/* CTA to join the Facebook group */}
 							<p>
@@ -132,9 +141,10 @@ const Post = ({ data, location }) => {
 							<div className="sharethis-inline-share-buttons" />
 
 							{/* End of article tips CTA */}
-							{/* <InlineFormDiv>
-								<LoadableTipsInlineForm adPlacement="end_of_article" />
-							</InlineFormDiv> */}
+							<InlineFormDiv>
+								<BottomCTAComponent {...ctaConfig.BOTTOM.props} />
+								{/* <LoadableTipsInlineForm adPlacement="end_of_article" /> */}
+							</InlineFormDiv>
 							<InlineFormDivNoImage>
 								<LoadableTipsInlineForm adPlacement="end_of_article" />
 							</InlineFormDivNoImage>
