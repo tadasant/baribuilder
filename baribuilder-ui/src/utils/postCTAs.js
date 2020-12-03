@@ -73,7 +73,7 @@ const postToCTAs = {
 				formId: FORM_IDS.KETO_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
 				headerCopy:
-					"Concerned about weight regain? Here are 12 bariatric keto recipes.",
+					"Concerned about weight regain? Here are 12 bariatric keto recipes for bypass patients.",
 			},
 		},
 		MIDDLE: {
@@ -83,7 +83,8 @@ const postToCTAs = {
 				adPlacement: AD_PLACEMENTS.MIDDLE,
 				formId: FORM_IDS.HIGH_PROTEIN_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
-				headerCopy: "12 high protein recipes to get you through the week.",
+				headerCopy:
+					"Gastric bypass patients: 12 high protein recipes to get you through the week.",
 			},
 		},
 		BOTTOM: {
@@ -106,7 +107,7 @@ const postToCTAs = {
 				formId: FORM_IDS.KETO_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
 				headerCopy:
-					"Bariatric keto can help stop weight regain - try these 12 recipes.",
+					"Regaining weight after your sleeve? Bariatric keto can help get you back on track - try these 12 recipes.",
 			},
 		},
 		MIDDLE: {
@@ -116,7 +117,8 @@ const postToCTAs = {
 				adPlacement: AD_PLACEMENTS.MIDDLE,
 				formId: FORM_IDS.KETO_12,
 				imgSrc: AD_IMGS.KETO_BOOK_COFFEE,
-				headerCopy: "12 recipes to kick off your bariatric keto diet.",
+				headerCopy:
+					"12 recipes to kick off your bariatric keto diet after your gastric sleeve.",
 			},
 		},
 		BOTTOM: {
@@ -170,7 +172,8 @@ const postToCTAs = {
 				adPlacement: AD_PLACEMENTS.TOP,
 				formId: FORM_IDS.HIGH_PROTEIN_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
-				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals.",
+				headerCopy:
+					"Looking ahead to life after your bypass? Try one of these 12 delicious bariatric meals.",
 			},
 		},
 		MIDDLE: {
@@ -235,7 +238,8 @@ const postToCTAs = {
 				adPlacement: AD_PLACEMENTS.TOP,
 				formId: FORM_IDS.HIGH_PROTEIN_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
-				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals.",
+				headerCopy:
+					"Hungry? Try one of these 12 delicious bariatric meals for bypass patients.",
 			},
 		},
 		MIDDLE: {
@@ -268,7 +272,7 @@ const postToCTAs = {
 				formId: FORM_IDS.KETO_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
 				headerCopy:
-					"Bariatric keto can help stop weight regain - try these 12 recipes.",
+					"Bariatric keto can help stop weight regain after a gastric bypass - try these 12 recipes.",
 			},
 		},
 		MIDDLE: {
@@ -333,7 +337,8 @@ const postToCTAs = {
 				adPlacement: AD_PLACEMENTS.TOP,
 				formId: FORM_IDS.HIGH_PROTEIN_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
-				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals.",
+				headerCopy:
+					"Hungry? Try one of these 12 delicious bariatric meals after your gastric bypass.",
 			},
 		},
 		MIDDLE: {
@@ -365,7 +370,8 @@ const postToCTAs = {
 				adPlacement: AD_PLACEMENTS.TOP,
 				formId: FORM_IDS.HIGH_PROTEIN_12,
 				imgSrc: AD_IMGS.PEANUT_BUTTER_CUP,
-				headerCopy: "Hungry? Try one of these 12 delicious bariatric meals.",
+				headerCopy:
+					"Tempted to cheat your sleeve diet? Try one of these 12 delicious bariatric meals.",
 			},
 		},
 		MIDDLE: {
