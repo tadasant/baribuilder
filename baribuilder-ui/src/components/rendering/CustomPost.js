@@ -6,9 +6,21 @@ import LazyLoad from "react-lazyload";
 import affiliateAdsOriginal from "../../utils/affiliateAds";
 import _ from "lodash";
 import AffiliateInlineAd from "../ads/AffiliateInlineAd";
+import styled from "styled-components";
 
 const htmlToReactParser = new HtmlToReact.Parser();
 const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
+
+const InlineFormDiv = styled.div`
+	margin: 16px;
+	margin-bottom: 48px;
+	margin-top: 48px;
+
+	form {
+		// Overriding CovertKit's box shadow to make it stick out more.
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+	}
+`;
 
 const CustomPost = (props) => {
 	// contains .component and .props
@@ -162,7 +174,7 @@ const CustomPost = (props) => {
 				node.attribs.srcSet = node.attribs.srcset;
 				delete node.attribs.srcset;
 				return (
-					<React.Fragment>
+					<React.Fragment key={`aff-ad-h-index-${nextHIdx}`}>
 						{nextRandomAffiliateInlineAd(nextHIdx)}
 						<h3 {...node.attribs}>{children}</h3>
 					</React.Fragment>
@@ -172,17 +184,23 @@ const CustomPost = (props) => {
 		// Place middleCTA ad after 2 headers (don't use in combination with enabled random affiliate ads)
 		{
 			shouldProcessNode: function (node) {
-				return nextHIdx == 3;
+				return ["h3", "h2", "h1"].includes(node.name) && nextHIdx == 3;
 			},
 			processNode: function (node, children) {
 				// Rename class -> className so React knows what to do with it
-				node.attribs.className = node.attribs.class;
-				delete node.attribs.class;
-				node.attribs.srcSet = node.attribs.srcset;
-				delete node.attribs.srcset;
+				if (node.attribs.class) {
+					node.attribs.className = node.attribs.class;
+					delete node.attribs.class;
+				}
+				if (node.attribs.srcset) {
+					node.attribs.srcSet = node.attribs.srcset;
+					delete node.attribs.srcset;
+				}
+
 				return (
-					<React.Fragment>
-						{MiddleCTAComponent}
+					<React.Fragment key={`cta-h-index-${nextHIdx}`}>
+						<InlineFormDiv>{MiddleCTAComponent}</InlineFormDiv>
+
 						<h3 {...node.attribs}>{children}</h3>
 					</React.Fragment>
 				);

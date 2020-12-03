@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Helmet from "react-helmet";
 import withAdAnalytics from "./hoc/withAdAnalytics";
 import withVisibilityTracker from "./hoc/withVisibilityTracker";
@@ -49,7 +49,7 @@ const ConvertKitInlineCTAForm = (props) => {
 						data-element="column"
 						className="formkit-background"
 						style={{
-							backgroundImage: `url("${imgSrc}")'`,
+							backgroundImage: `url("${imgSrc}")`,
 						}}
 					/>
 					<div data-element="column" className="formkit-column">

@@ -61,7 +61,7 @@ const InlineFormDivNoImage = styled.div`
 const Post = ({ data, location }) => {
 	const [scrollPercentageRef, scrollPercentage] = useScrollPercentage();
 	const post = data.ghostPost;
-	const ctaConfig = Object.keys(postToCTApost).includes(post.slug)
+	const ctaConfig = Object.keys(postToCTAs).includes(post.slug)
 		? postToCTAs[post.slug]
 		: postToCTAs.default;
 
