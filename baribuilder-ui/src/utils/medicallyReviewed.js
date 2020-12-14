@@ -103,5 +103,6 @@ module.exports = {
 	"gastric-balloon-surgery-cost": ["gintas"],
 	"lap-band-diet-menu": ["gintas"],
 	"lap-band-liquid-diet": ["gintas"],
-	"duodenal-switch-cost": ["gintas"]
+	"duodenal-switch-cost": ["gintas"],
+	"weight-loss-surgery-insurance-secrets": ["gintas"]
 };
