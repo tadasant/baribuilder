@@ -31,7 +31,7 @@ const SignUpThankYou = ({ location }) => {
 					"https://baribuilder.s3.amazonaws.com/_external/10-home-exercises-v1.pdf";
 			} else if (urlParams.get("pdf") === "keto-recipes") {
 				config.redirectUrl =
-					"https://baribuilder.s3.amazonaws.com/_external/12-bariatric-keto-diet-recipes-v1-short.pdf";
+					"https://baribuilder.s3.amazonaws.com/_external/12-bariatric-keto-diet-recipes-v1.pdf";
 			}
 			config.redirectText = "your PDF download";
 			config.hideConfirmation = true;
