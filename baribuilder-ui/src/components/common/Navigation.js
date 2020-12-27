@@ -48,6 +48,11 @@ const Navigation = ({ navClass, tags }) => {
 			label: "Topics",
 			hasSubMenu: true,
 		},
+		{
+			url: "https://store.baribuilder.com/",
+			label: "Store",
+			isAbsolute: true,
+		},
 	];
 
 	return (

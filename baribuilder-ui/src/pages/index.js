@@ -15,9 +15,16 @@ import styled from "styled-components";
 const blogDescription =
 	"Read about topics related to life after bariatric surgery; everything from vitamins to lifestyle to complications.";
 
+const shopDescription =
+	"Find products hand-curated for bariatric patients in the BariBuilder store.";
+
 const ResourceListSection = styled.section`
 	display: flex;
 	justify-content: center;
+`;
+
+const ResourceCardContainer = styled.div`
+	margin: 8px;
 `;
 
 const Index = ({ data, location }) => {
@@ -37,12 +44,22 @@ const Index = ({ data, location }) => {
 					</p>
 					<hr />
 					<ResourceListSection>
-						<ResourceCard
-							img={data.blogImage.childImageSharp.fixed}
-							title="Blog"
-							description={blogDescription}
-							url="blog"
-						/>
+						<ResourceCardContainer>
+							<ResourceCard
+								img={data.blogImage.childImageSharp.fixed}
+								title="Blog"
+								description={blogDescription}
+								url="blog"
+							/>
+						</ResourceCardContainer>
+						<ResourceCardContainer>
+							<ResourceCard
+								img={data.shopImage.childImageSharp.fixed}
+								title="Shop"
+								description={shopDescription}
+								url="https://store.baribuilder.com/"
+							/>
+						</ResourceCardContainer>
 					</ResourceListSection>
 				</div>
 			</Layout>
@@ -70,6 +87,13 @@ Index.propTypes = {
 
 export const query = graphql`
 	query IndexQuery {
+		shopImage: file(relativePath: { eq: "resources/shop.jpg" }) {
+			childImageSharp {
+				fixed(height: 200) {
+					...GatsbyImageSharpFixed
+				}
+			}
+		}
 		blogImage: file(relativePath: { eq: "resources/blog.jpg" }) {
 			childImageSharp {
 				fixed(height: 200) {
