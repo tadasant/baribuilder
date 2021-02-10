@@ -128,7 +128,7 @@ const CustomPost = (props) => {
 				const linkURL = node.attribs.href;
 				let isOnDoFollowWhitelist = false;
 				doFollowLinkPrefixes.forEach((doFollowPrefix) => {
-					if (linkURL.startsWith(doFollowPrefix)) {
+					if (linkUrl && linkURL.startsWith(doFollowPrefix)) {
 						isOnDoFollowWhitelist = true;
 					}
 				});
