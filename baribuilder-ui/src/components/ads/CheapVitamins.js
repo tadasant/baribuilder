@@ -130,7 +130,7 @@ const CheapVitamins = ({ vitaminImage }) => {
 					<a
 						href={tagByValue[selectedSurgery].landingUrl}
 						target="_blank"
-						rel="noopener noreferrer"
+						rel="noopener noreferrer nofollow"
 					>
 						<CTAButton>Show me how</CTAButton>
 					</a>

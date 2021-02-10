@@ -178,7 +178,7 @@ const DefaultLayout = (props) => {
 											href={twitterUrl}
 											className="site-nav-item"
 											target="_blank"
-											rel="noopener noreferrer"
+											rel="noopener noreferrer nofollow"
 										>
 											<img
 												className="site-nav-icon"
@@ -206,7 +206,7 @@ const DefaultLayout = (props) => {
 										className="site-nav-item"
 										href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
 										target="_blank"
-										rel="noopener noreferrer"
+										rel="noopener noreferrer nofollow"
 									>
 										<img
 											className="site-nav-icon"
@@ -294,7 +294,7 @@ const DefaultLayout = (props) => {
 										className="site-foot-nav-item"
 										href="https://ck.baribuilder.com/weekly-tips"
 										target="_blank"
-										rel="noopener noreferrer"
+										rel="noopener noreferrer nofollow"
 									>
 										Subscribe
 									</a>
@@ -302,7 +302,7 @@ const DefaultLayout = (props) => {
 										className="site-foot-nav-item"
 										href="https://www.iubenda.com/privacy-policy/25172832"
 										target="_blank"
-										rel="noopener noreferrer"
+										rel="noopener noreferrer nofollow"
 									>
 										Privacy Policy
 									</a>

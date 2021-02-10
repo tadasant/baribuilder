@@ -7,6 +7,7 @@ import affiliateAdsOriginal from "../../utils/affiliateAds";
 import _ from "lodash";
 import AffiliateInlineAd from "../ads/AffiliateInlineAd";
 import styled from "styled-components";
+import doFollowLinkPrefixes from "./doFollowLinkPrefixes";
 
 const htmlToReactParser = new HtmlToReact.Parser();
 const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
@@ -123,12 +124,25 @@ const CustomPost = (props) => {
 				return node.type === "tag" && node.name === "a";
 			},
 			processNode: function (node, children) {
-				const hrefClicked = node.attribs.href;
+				// Make all links nofollow unless they are on whitelist
+				const linkURL = node.attribs.href;
+				let isOnDoFollowWhitelist = false;
+				doFollowLinkPrefixes.forEach((doFollowPrefix) => {
+					if (linkURL.startsWith(doFollowPrefix)) {
+						isOnDoFollowWhitelist = true;
+					}
+				});
+				if (!isOnDoFollowWhitelist) {
+					node.attribs.rel = node.attribs.rel
+						? `${node.attribs.rel} nofollow`
+						: "nofollow";
+				}
+
 				const anchorText = children[0];
 				const handleClick = (event) => {
 					event.preventDefault();
-					submitLinkClickEvent(hrefClicked, anchorText, () => {
-						window.location.href = hrefClicked;
+					submitLinkClickEvent(linkURL, anchorText, () => {
+						window.location.href = linkURL;
 					});
 				};
 				return (
