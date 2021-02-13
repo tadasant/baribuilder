@@ -104,5 +104,6 @@ module.exports = {
 	"lap-band-diet-menu": ["gintas"],
 	"lap-band-liquid-diet": ["gintas"],
 	"duodenal-switch-cost": ["gintas"],
-	"weight-loss-surgery-insurance-secrets": ["gintas"]
+	"weight-loss-surgery-insurance-secrets": ["gintas"],
+	"gastric-bypass-vitamin-schedule": ["gintas"]
 };
