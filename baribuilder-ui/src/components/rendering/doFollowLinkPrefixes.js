@@ -6,6 +6,7 @@ const doFollowLinkPrefixes = [
 	"https://store.baribuilder.com",
 	"https://vitaglab.com",
 	"https://www.neverbingeagain.com/stop-binge-eating/",
+	"https://handstations.co.uk/covid-19-vaccine-frequently-asked-questionss",
 ];
 
 export default doFollowLinkPrefixes;
