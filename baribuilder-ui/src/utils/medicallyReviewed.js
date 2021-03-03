@@ -106,5 +106,6 @@ module.exports = {
 	"duodenal-switch-cost": ["gintas"],
 	"weight-loss-surgery-insurance-secrets": ["gintas"],
 	"gastric-bypass-vitamin-schedule": ["gintas"],
-	"gastric-bypass-vitamin-deficiency": ["gintas"]
+	"gastric-bypass-vitamin-deficiency": ["gintas"],
+	"pros-and-cons-of-gastric-bypass": ["gintas"]
 };
