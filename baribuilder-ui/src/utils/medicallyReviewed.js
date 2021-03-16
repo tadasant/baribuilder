@@ -107,5 +107,6 @@ module.exports = {
 	"weight-loss-surgery-insurance-secrets": ["gintas"],
 	"gastric-bypass-vitamin-schedule": ["gintas"],
 	"gastric-bypass-vitamin-deficiency": ["gintas"],
-	"pros-and-cons-of-gastric-bypass": ["gintas"]
+	"pros-and-cons-of-gastric-bypass": ["gintas"],
+	"gastric-sleeve-risks": ["gintas"]
 };
