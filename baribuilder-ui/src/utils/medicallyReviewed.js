@@ -109,5 +109,7 @@ module.exports = {
 	"gastric-bypass-vitamin-deficiency": ["gintas"],
 	"pros-and-cons-of-gastric-bypass": ["gintas"],
 	"gastric-sleeve-risks": ["gintas"],
-	"gastric=bypass-vitamins": ["gintas"]
+	"gastric=bypass-vitamins": ["gintas"],
+	"bariatric-vitamin-schedule": ["gintas"],
+	"gastric-bypass-cost": ["gintas']
 };
