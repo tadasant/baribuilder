@@ -76,7 +76,9 @@ module.exports = {
 	"stomach-pain-after-gastric-bypass": ["gintas"],
 	"gastric-bypass-success-stories": ["gintas"],
 	"gastric-bypass-forum": ["gintas"],
-	"bariatric-patients-can-boost-their-immune-system-during-coronavirus": ["gintas"],
+	"bariatric-patients-can-boost-their-immune-system-during-coronavirus": [
+		"gintas",
+	],
 	"are-obese-people-more-susceptible-to-coronavirus": ["gintas"],
 	"gastric-sleeve-expected-weight-loss": ["gintas"],
 	"bariatric-desserts": ["gintas"],
@@ -111,5 +113,5 @@ module.exports = {
 	"gastric-sleeve-risks": ["gintas"],
 	"gastric=bypass-vitamins": ["gintas"],
 	"bariatric-vitamin-schedule": ["gintas"],
-	"gastric-bypass-cost": ["gintas']
+	"gastric-bypass-cost": ["gintas"],
 };
