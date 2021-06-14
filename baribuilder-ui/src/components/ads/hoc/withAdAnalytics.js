@@ -1,38 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { fireEvent } from "../../../analytics/googleAnalytics";
 
-const trackSubscribeHover = () =>
-	fireEvent({
-		category: "Ad",
-		action: "Subscribe (Hover)",
-		nonInteraction: false,
-		label,
-	});
-const trackSubscribeClick = () =>
-	fireEvent({
-		category: "Ad",
-		action: "Subscribe (Click)",
-		nonInteraction: false,
-		label,
-	});
-const trackEmailOnFocus = () =>
-	fireEvent({
-		category: "Ad",
-		action: "Email (Focus)",
-		nonInteraction: false,
-		label,
-	});
-const trackEmailOnBlur = (fieldValue) => {
-	if (fieldValue && fieldValue.length > 1) {
-		fireEvent({
-			category: "Ad",
-			action: "Email (Blur)",
-			nonInteraction: false,
-			label,
-		});
-	}
-};
-
 // options:
 //  disableView?: boolean;
 
@@ -92,6 +60,38 @@ function withAdAnalytics(WrappedComponent, options) {
 			isVisible,
 			...otherProps
 		} = inputProps;
+
+		const trackSubscribeHover = () =>
+			fireEvent({
+				category: "Ad",
+				action: "Subscribe (Hover)",
+				nonInteraction: false,
+				label,
+			});
+		const trackSubscribeClick = () =>
+			fireEvent({
+				category: "Ad",
+				action: "Subscribe (Click)",
+				nonInteraction: false,
+				label,
+			});
+		const trackEmailOnFocus = () =>
+			fireEvent({
+				category: "Ad",
+				action: "Email (Focus)",
+				nonInteraction: false,
+				label,
+			});
+		const trackEmailOnBlur = (fieldValue) => {
+			if (fieldValue && fieldValue.length > 1) {
+				fireEvent({
+					category: "Ad",
+					action: "Email (Blur)",
+					nonInteraction: false,
+					label,
+				});
+			}
+		};
 
 		return (
 			<WrappedComponent
