@@ -287,7 +287,7 @@ const DefaultLayout = (props) => {
 							</div>
 							<div className="site-foot-bottom">
 								<div className="site-foot-nav-left">
-									<Link to="/">{site.title}</Link> © 2019
+									<Link to="/">{site.title}</Link> © {new Date().getFullYear()}
 								</div>
 								<div className="site-foot-nav-right">
 									<a
