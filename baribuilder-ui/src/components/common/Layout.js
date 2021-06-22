@@ -56,19 +56,25 @@ const ClearButton = styled(IconButton)`
 	}
 `;
 
-const FacebookGroupAnchor = styled.a`
+const CTAAnchor = styled.a`
 	// Can't be too close to the clear button
 	padding-right: 8px;
 	padding-left: 8px;
+
+	color: var(--color-base);
 `;
 
-const FacebookGroupImg = styled.img`
+const CTAImg = styled.img`
 	max-height: 32px;
+	padding-right: 8px;
 `;
 
+const CALCIUM_URL =
+	"https://store.baribuilder.com/discount/READER_10?redirect=%2Fproducts%2Fbariatic-calcium-citrate-chewables";
 const FACEBOOK_GROUP_URL =
 	"https://www.facebook.com/groups/bariatric.wls.community.baribuilder";
-const CTA_LINK = FACEBOOK_GROUP_URL;
+// const CTA_LINK = FACEBOOK_GROUP_URL;
+const CTA_LINK = CALCIUM_URL;
 
 /**
  * Main layout component
@@ -242,17 +248,23 @@ const DefaultLayout = (props) => {
 						<CTABarDiv>
 							<div />
 							<CTAContainer>
-								<FacebookGroupAnchor
+								<CTAAnchor
 									href={CTA_LINK}
 									target="_blank"
 									rel="noopener noreferrer"
 									onClick={handleCTAClick}
 								>
-									<FacebookGroupImg
+									{/* <CTAImg
 										src="/images/facebook-cta-button-flat.png"
 										alt="Join Facebook Group"
+									/> */}
+									<CTAImg
+										src="/images/baribuilder-calcium.png"
+										alt="BariBuilder Calcium"
 									/>
-								</FacebookGroupAnchor>
+									Use coupon code <b>READER_10</b> to get <b>10% off</b> our
+									delicious Bariatric Calcium chewables.
+								</CTAAnchor>
 							</CTAContainer>
 							<div>
 								<ClearButton
