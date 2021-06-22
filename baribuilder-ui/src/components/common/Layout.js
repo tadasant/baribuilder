@@ -115,7 +115,7 @@ const DefaultLayout = (props) => {
 	const handleCTAClick = (event) => {
 		event.preventDefault();
 		fireEvent({
-			category: "Facebook Group Link",
+			category: "READER_10 CTA Click",
 			action: "Open",
 		});
 		window.open(CTA_LINK, "_blank");
