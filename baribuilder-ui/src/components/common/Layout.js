@@ -43,7 +43,7 @@ const CTAContainer = styled.div`
 		display: flex;
 
 		// 36 px button plus 16 px of padding
-		height: 52px;
+		min-height: 52px;
 	}
 `;
 
