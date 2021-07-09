@@ -118,7 +118,7 @@ const DefaultLayout = (props) => {
 			category: "READER_10 CTA Click",
 			action: "Open",
 		});
-		window.open(CTA_LINK, "_blank");
+		window.open(CTA_LINK);
 	};
 
 	return (
@@ -250,7 +250,7 @@ const DefaultLayout = (props) => {
 							<CTAContainer>
 								<CTAAnchor
 									href={CTA_LINK}
-									target="_blank"
+									// target="_blank"
 									rel="noopener noreferrer"
 									onClick={handleCTAClick}
 								>
