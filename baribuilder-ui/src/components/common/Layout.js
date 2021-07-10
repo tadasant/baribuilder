@@ -118,7 +118,7 @@ const DefaultLayout = (props) => {
 			category: "READER_10 CTA Click",
 			action: "Open",
 		});
-		window.open(CTA_LINK);
+		window.open(event.target.href, "_self");
 	};
 
 	return (
