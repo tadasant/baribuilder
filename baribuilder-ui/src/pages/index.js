@@ -38,9 +38,7 @@ const Index = ({ data, location }) => {
 						you need to make sure your journey after weight loss surgery is as
 						smooth as can be. We work with surgeons, dietitians, and other
 						medical professionals to put together educational - but still easily
-						readable and digestible! - articles, and work with a team of
-						software engineers to build useful tools that will make your life
-						easier. Check them out below!
+						readable and digestible! - articles.
 					</p>
 					<hr />
 					<ResourceListSection>
@@ -50,14 +48,6 @@ const Index = ({ data, location }) => {
 								title="Blog"
 								description={blogDescription}
 								url="blog"
-							/>
-						</ResourceCardContainer>
-						<ResourceCardContainer>
-							<ResourceCard
-								img={data.shopImage.childImageSharp.fixed}
-								title="Shop"
-								description={shopDescription}
-								url="https://store.baribuilder.com/"
 							/>
 						</ResourceCardContainer>
 					</ResourceListSection>

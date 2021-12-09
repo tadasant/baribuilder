@@ -193,7 +193,7 @@ const DefaultLayout = (props) => {
 											/>
 										</a>
 									)}
-									{FACEBOOK_GROUP_URL && (
+									{/* {FACEBOOK_GROUP_URL && (
 										<a
 											href={FACEBOOK_GROUP_URL}
 											className="site-nav-item"
@@ -206,7 +206,7 @@ const DefaultLayout = (props) => {
 												alt="Facebook"
 											/>
 										</a>
-									)}
+									)} */}
 
 									<a
 										className="site-nav-item"
@@ -244,7 +244,7 @@ const DefaultLayout = (props) => {
 						) : null}
 					</header>
 
-					{showCTABar && data.facebookButton ? (
+					{/* {showCTABar && data.facebookButton ? (
 						<CTABarDiv>
 							<div />
 							<CTAContainer>
@@ -254,10 +254,10 @@ const DefaultLayout = (props) => {
 									rel="noopener noreferrer"
 									onClick={handleCTAClick}
 								>
-									{/* <CTAImg
+									<CTAImg
 										src="/images/facebook-cta-button-flat.png"
 										alt="Join Facebook Group"
-									/> */}
+									/>
 									<CTAImg
 										src="/images/baribuilder-calcium.png"
 										alt="BariBuilder Calcium"
@@ -276,7 +276,7 @@ const DefaultLayout = (props) => {
 								</ClearButton>
 							</div>
 						</CTABarDiv>
-					) : null}
+					) : null} */}
 
 					<main className="site-main">
 						{/* All the main content gets inserted here, index.js, post.js */}

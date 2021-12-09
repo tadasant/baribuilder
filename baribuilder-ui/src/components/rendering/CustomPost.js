@@ -170,56 +170,56 @@ const CustomPost = (props) => {
 			},
 		},
 		// Inline affiliate ads under h tags
-		{
-			shouldProcessNode: function (node) {
-				const result =
-					["h3", "h2", "h1"].includes(node.name) && nextHIdx % 2 === 0;
-				if (["h3", "h2", "h1"].includes(node.name)) {
-					nextHIdx++;
-				}
-				// disabling affiliate inline ads; shifting to use targetted inline signups
-				return false;
-				// return result;
-			},
-			processNode: function (node, children) {
-				// Rename class -> className so React knows what to do with it
-				node.attribs.className = node.attribs.class;
-				delete node.attribs.class;
-				node.attribs.srcSet = node.attribs.srcset;
-				delete node.attribs.srcset;
-				return (
-					<React.Fragment key={`aff-ad-h-index-${nextHIdx}`}>
-						{nextRandomAffiliateInlineAd(nextHIdx)}
-						<h3 {...node.attribs}>{children}</h3>
-					</React.Fragment>
-				);
-			},
-		},
+		// {
+		// 	shouldProcessNode: function (node) {
+		// 		const result =
+		// 			["h3", "h2", "h1"].includes(node.name) && nextHIdx % 2 === 0;
+		// 		if (["h3", "h2", "h1"].includes(node.name)) {
+		// 			nextHIdx++;
+		// 		}
+		// 		// disabling affiliate inline ads; shifting to use targetted inline signups
+		// 		return false;
+		// 		// return result;
+		// 	},
+		// 	processNode: function (node, children) {
+		// 		// Rename class -> className so React knows what to do with it
+		// 		node.attribs.className = node.attribs.class;
+		// 		delete node.attribs.class;
+		// 		node.attribs.srcSet = node.attribs.srcset;
+		// 		delete node.attribs.srcset;
+		// 		return (
+		// 			<React.Fragment key={`aff-ad-h-index-${nextHIdx}`}>
+		// 				{nextRandomAffiliateInlineAd(nextHIdx)}
+		// 				<h3 {...node.attribs}>{children}</h3>
+		// 			</React.Fragment>
+		// 		);
+		// 	},
+		// },
 		// Place middleCTA ad after 2 headers (don't use in combination with enabled random affiliate ads)
-		{
-			shouldProcessNode: function (node) {
-				return ["h3", "h2", "h1"].includes(node.name) && nextHIdx == 3;
-			},
-			processNode: function (node, children) {
-				// Rename class -> className so React knows what to do with it
-				if (node.attribs.class) {
-					node.attribs.className = node.attribs.class;
-					delete node.attribs.class;
-				}
-				if (node.attribs.srcset) {
-					node.attribs.srcSet = node.attribs.srcset;
-					delete node.attribs.srcset;
-				}
+		// {
+		// 	shouldProcessNode: function (node) {
+		// 		return ["h3", "h2", "h1"].includes(node.name) && nextHIdx == 3;
+		// 	},
+		// 	processNode: function (node, children) {
+		// 		// Rename class -> className so React knows what to do with it
+		// 		if (node.attribs.class) {
+		// 			node.attribs.className = node.attribs.class;
+		// 			delete node.attribs.class;
+		// 		}
+		// 		if (node.attribs.srcset) {
+		// 			node.attribs.srcSet = node.attribs.srcset;
+		// 			delete node.attribs.srcset;
+		// 		}
 
-				return (
-					<React.Fragment key={`cta-h-index-${nextHIdx}`}>
-						<InlineFormDiv>{MiddleCTAComponent}</InlineFormDiv>
+		// 		return (
+		// 			<React.Fragment key={`cta-h-index-${nextHIdx}`}>
+		// 				<InlineFormDiv>{MiddleCTAComponent}</InlineFormDiv>
 
-						<h3 {...node.attribs}>{children}</h3>
-					</React.Fragment>
-				);
-			},
-		},
+		// 				<h3 {...node.attribs}>{children}</h3>
+		// 			</React.Fragment>
+		// 		);
+		// 	},
+		// },
 		{
 			// Everything else
 			shouldProcessNode: function (node) {

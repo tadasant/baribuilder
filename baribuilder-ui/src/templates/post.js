@@ -86,18 +86,18 @@ const Post = ({ data, location }) => {
 					<article className="content" ref={scrollPercentageRef}>
 						<section className="post-full-content">
 							{/* Amazon Associates disclaimer */}
-							<div className="post__amazon-disclaimer-container">
+							{/* <div className="post__amazon-disclaimer-container">
 								<p className="post__amazon-disclaimer">
 									As an Amazon Associate, BariBuilder earns from qualifying
 									purchases.
 								</p>
-							</div>
+							</div> */}
 
 							<h1 className="content-title">{post.title}</h1>
 
 							{/* CTA to sign up for newsletter */}
-							<InlineFormDiv>
-								{/* Show the ad appropriate for the article (sleeve/bypass/generic)
+							{/* <InlineFormDiv> */}
+							{/* Show the ad appropriate for the article (sleeve/bypass/generic)
 								{post.tags.some((tag) => tag.slug === "gastric-bypass") ? (
 									<VitaminsBypassForm adPlacement="top_of_article" />
 								) : post.tags.some((tag) => tag.slug === "gastric-sleeve") ? (
@@ -105,11 +105,11 @@ const Post = ({ data, location }) => {
 								) : (
 									<VitaminsBariatricForm adPlacement="top_of_article" />
 								)} */}
-								<TopCTAComponent {...ctaConfig.TOP.props} />
+							{/* <TopCTAComponent {...ctaConfig.TOP.props} /> */}
 
-								{/* <LoadableRecipesHeaderForm /> */}
-								{/* <LoadableSupportCallsHeaderForm /> */}
-							</InlineFormDiv>
+							{/* <LoadableRecipesHeaderForm /> */}
+							{/* <LoadableSupportCallsHeaderForm /> */}
+							{/* </InlineFormDiv> */}
 
 							{post.feature_image ? (
 								<figure className="post-feature-image">
@@ -125,7 +125,7 @@ const Post = ({ data, location }) => {
 							<CustomPost post={post} middleCTAConfig={ctaConfig.MIDDLE} />
 
 							{/* CTA to join the Facebook group */}
-							<p>
+							{/* <p>
 								<i>
 									Want to discuss this article or ask a question? Join our{" "}
 									<a
@@ -136,18 +136,18 @@ const Post = ({ data, location }) => {
 										Facebook community of peers just like you.
 									</a>
 								</i>
-							</p>
+							</p> */}
 
 							<div className="sharethis-inline-share-buttons" />
 
 							{/* End of article tips CTA */}
-							<InlineFormDiv>
+							{/* <InlineFormDiv>
 								<BottomCTAComponent {...ctaConfig.BOTTOM.props} />
-								{/* <LoadableTipsInlineForm adPlacement="end_of_article" /> */}
+								<LoadableTipsInlineForm adPlacement="end_of_article" />
 							</InlineFormDiv>
 							<InlineFormDivNoImage>
 								<LoadableTipsInlineForm adPlacement="end_of_article" />
-							</InlineFormDivNoImage>
+							</InlineFormDivNoImage> */}
 							{post.authors.map((author) => {
 								// hack for medical reviewers -- could eventually integrate into custom CMS
 								let role = "Author";
@@ -196,7 +196,7 @@ Post.propTypes = {
 export default Post;
 
 export const postQuery = graphql`
-	query($slug: String!) {
+	query ($slug: String!) {
 		ghostPost(slug: { eq: $slug }) {
 			...GhostPostFields
 		}
