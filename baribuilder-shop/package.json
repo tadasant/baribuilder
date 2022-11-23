@@ -15,7 +15,7 @@
     "graphql-tag": "^2.9.2",
     "immutability-helper": "^2.8.1",
     "intersection-observer": "^0.5.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "npm-font-open-sans": "^1.1.0",
     "qs": "^6.5.2",
     "rc-pagination": "^1.17.2",
